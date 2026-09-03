@@ -1,6 +1,6 @@
 # SOP-27 · P15 — Reach-Layer Campaign Builds (LTSF Clearance)
 
-**Draft v0.1 · for review · proposed addition to SOP-27 v2.0 Element 4**
+**Draft v0.2 · for review · proposed addition to SOP-27 v2.0 Element 4**
 
 Status: DRAFT. Not yet ratified. Built from the decisions recorded in Section 8 below.
 
@@ -89,8 +89,7 @@ This is the layer that tiers by bid (Section 5).
 
 Split the charged SKUs into high, medium and low charge bands and give each band its own campaign, so budget and attention can be steered to where the charge actually is.
 
-Band measure: **dollars of LTSF charge per month per SKU**, read from the LTSF row.
-*Band boundaries are an open item — see Section 9, OPEN-1.*
+Band measure: **dollars of LTSF charge per month per product**, read from the LTSF row. Boundaries per 4.0.
 
 ### 3.5 B5 — Sponsored Brands
 
@@ -102,7 +101,29 @@ Retargeting detail-page viewers of the family, and high-intent audiences, with c
 
 ---
 
-## 4. Intensity is set by charge
+## 4. Intensity is set by charge, gated by clearability
+
+### 4.0 The gate runs first
+
+**P4 runs before P15.** P15 builds nothing until the P4 lane test has returned a result for the SKU.
+
+| P4 result | What P15 does |
+|---|---|
+| **LANE OPEN** | Build at the charge band's intensity (4.1). |
+| **LANE SPLIT** | Build at the charge band's intensity, sized to the clearable residual only. State the residual routed to the terminal option. |
+| **LANE CLOSED** | **P15 does not run.** Route to P14. No reach campaign is built on a lane arithmetic has closed. |
+
+**Charge alone must never set intensity.** Charge measures what the stock costs to hold; it says nothing about whether traffic can move it. The two are frequently inverted: the September charge file carries a product at 27% of the portfolio charge whose aged units clear in 253 months at current velocity. Under a charge-only rule that product draws the largest build in the lane and clears nothing. Clearability gates, charge sizes.
+
+**Charge band boundaries** are the thresholds the LTSF Master already carries, and are not set locally:
+
+| Band | Boundary | Source |
+|---|---|---|
+| High | ≥ $5,000 per month per product | LTSF Section 7.1, the CRITICAL tier definition |
+| Medium | $2,000 to $4,999 per month | LTSF Section 7.4, the RED-tier escalation line |
+| Low | under $2,000 per month | the remainder |
+
+### 4.1 The intensity dials
 
 The structure above does not change with charge. **How much of it gets built does.**
 
@@ -178,7 +199,7 @@ Recorded from the review session. Each is a ratified position, not an inference.
 | D-2 | The reach layer is added on top. Existing SOP-27 procedures are unchanged. |
 | D-3 | Testing is allowed where it buys sales at low bids. Aggressive ranking tests remain barred. |
 | D-4 | The catch-all approach applies to all four archetypes. |
-| D-5 | Intensity scales with charge. The bid ceiling never scales with charge. |
+| D-5 | Intensity scales with charge, gated first by the P4 lane test. The bid ceiling never scales with charge. Revised at v0.2 against the September charge file: charge alone inverted the priority, sending the largest build to the least clearable stock. |
 | D-6 | The archetype rules remain in force as boundaries on the reach layer. |
 | D-7 | One keyword, one home, across the whole lane. Bid tiers are separated by keyword, never by price on the same keyword. |
 | D-8 | High-volume exact at high bids is avoided, because the lane is not buying rank. |
@@ -191,8 +212,8 @@ Not written into the procedure. Each needs a decision before ratification.
 
 | ID | Item |
 |---|---|
-| OPEN-1 | **Charge band boundaries.** Measure assumed to be dollars of LTSF charge per month per SKU. The numbers dividing low / medium / high are not set. Until they are, B4 cannot be built consistently. |
-| OPEN-2 | **The R2 subtrahend.** SOP-27 §1.2 and P3 say subtract the winning salvage option (removal, liquidation or disposal net). WE-2 and the Economics Set case E7 subtract the LTSF charge avoided. These are different amounts and give different ceilings. Every bid in this procedure depends on which is correct. |
+| ~~OPEN-1~~ | ~~**Charge band boundaries.**~~ **CLOSED.** Bands read from LTSF Section 7.1 ($5,000, the CRITICAL tier line) and Section 7.4 ($2,000, the RED-tier escalation line). No local threshold required. Recorded at 4.0. |
+| OPEN-2 | **The R2 subtrahend — now urgent.** SOP-27 §1.2 and P3 say subtract the winning salvage option (removal, liquidation or disposal net). WE-2 and Economics Set case E7 subtract the LTSF charge avoided. These are different amounts and give different ceilings. **The September charge file settles the sign question against the documents:** all 516 SKUs in the SKU Cash Action Tracker carry a *positive* exit value, $0.37 to $12.14 per unit, with no negatives. P3 step 2's stated basis — *"Because the alternative is usually negative, the subtraction usually raises the ceiling"* — and LTSF §4.2's *"all typically negative or near zero"* are both contradicted by live data. Under the salvage reading every ceiling in the lane is *lower* than the procedure implies, not higher. Every bid in P15 depends on this. |
 | OPEN-3 | **v4.0 scenario S-A10.** It puts LTSF-burdened products on a profit-only posture and routes LTSF velocity requirements to deals and pricing, "not to PPC subsidy". The reach layer is low-cost by design, so the clash is smaller than it is for R2, but the rule as written still reaches this lane. |
 | OPEN-4 | **Budget cap on the reach layer.** Budget is named as the primary intensity dial but has no stated limit. The P4 required-clicks figure sizes the proven lane; the reach layer has no equivalent. |
 | OPEN-5 | **Counterparty procedures.** #12 has no procedure that builds a liquidation campaign, #29 has no liquidation wall spec, #38 and #26 do not mention the lane. P15 cannot execute until at least #12 and #29 carry matching steps. |
