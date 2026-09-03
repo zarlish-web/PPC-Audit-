@@ -1,0 +1,772 @@
+<title>PPC Oversight System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --ink:#101820; --ink-2:#3D4A57; --ink-3:#6B7784;
+    --paper:#EDF0F3; --surface:#FFFFFF; --surface-2:#F6F8FA;
+    --rule:#D2D9E1; --rule-strong:#B4BFCB;
+    --accent:#14496F; --accent-2:#2C7AAE; --accent-soft:#E2EDF5;
+    --crit:#A32620; --crit-bg:#F7E4E2;
+    --warn:#8F5B00; --warn-bg:#F8EEDA;
+    --ok:#1B6B45;  --ok-bg:#E0F0E7;
+    --tier-d:#4E9BC9; --tier-w:#24688F; --tier-m:#123A57;
+    --tier-d-bg:#E8F2F9; --tier-w-bg:#E0EBF2; --tier-m-bg:#DBE3EA;
+    --shadow:0 1px 2px rgba(16,24,32,.06), 0 8px 24px -16px rgba(16,24,32,.24);
+    --w:1140px; --prose:70ch;
+    --f-display:"Archivo","Helvetica Neue",Arial,sans-serif;
+    --f-body:"IBM Plex Sans","Segoe UI",Helvetica,Arial,sans-serif;
+    --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#DDE4EB; --ink-2:#A7B3C0; --ink-3:#7C8A98;
+      --paper:#0D1319; --surface:#141C24; --surface-2:#1A242E;
+      --rule:#2A3742; --rule-strong:#3C4C59;
+      --accent:#6FB2DC; --accent-2:#8FC8EA; --accent-soft:#17293A;
+      --crit:#E99089; --crit-bg:#331B19;
+      --warn:#D8A85A; --warn-bg:#302518;
+      --ok:#77C79D;  --ok-bg:#152A20;
+      --tier-d:#8CC8E8; --tier-w:#579CC6; --tier-m:#33698F;
+      --tier-d-bg:#16262F; --tier-w-bg:#152431; --tier-m-bg:#131E29;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#DDE4EB; --ink-2:#A7B3C0; --ink-3:#7C8A98;
+    --paper:#0D1319; --surface:#141C24; --surface-2:#1A242E;
+    --rule:#2A3742; --rule-strong:#3C4C59;
+    --accent:#6FB2DC; --accent-2:#8FC8EA; --accent-soft:#17293A;
+    --crit:#E99089; --crit-bg:#331B19;
+    --warn:#D8A85A; --warn-bg:#302518;
+    --ok:#77C79D;  --ok-bg:#152A20;
+    --tier-d:#8CC8E8; --tier-w:#579CC6; --tier-m:#33698F;
+    --tier-d-bg:#16262F; --tier-w-bg:#152431; --tier-m-bg:#131E29;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:var(--f-body); font-size:16px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--w); margin:0 auto; padding:0 28px}
+  p{margin:0 0 1em}
+  a{color:var(--accent); text-decoration-thickness:1px; text-underline-offset:2px}
+  :focus-visible{outline:2px solid var(--accent-2); outline-offset:2px; border-radius:2px}
+
+  /* ---------- masthead ---------- */
+  .top{
+    position:sticky; top:0; z-index:20;
+    background:color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter:saturate(140%) blur(8px);
+    border-bottom:1px solid var(--rule);
+  }
+  .top .wrap{display:flex; align-items:center; gap:24px; height:50px}
+  .top .mark{
+    font-family:var(--f-mono); font-size:11px; font-weight:600; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--ink); white-space:nowrap;
+  }
+  .top nav{display:flex; gap:2px; overflow-x:auto; scrollbar-width:thin; margin-left:auto}
+  .top nav a{
+    font-family:var(--f-mono); font-size:11px; letter-spacing:.06em; color:var(--ink-3);
+    text-decoration:none; padding:5px 8px; border-radius:3px; white-space:nowrap;
+  }
+  .top nav a:hover{color:var(--accent); background:var(--accent-soft)}
+
+  header.mast{padding:64px 0 40px; border-bottom:1px solid var(--rule-strong)}
+  .eyebrow{
+    font-family:var(--f-mono); font-size:11px; font-weight:500; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--accent); margin-bottom:18px;
+  }
+  h1{
+    font-family:var(--f-display); font-weight:800; font-size:clamp(34px,5.2vw,58px);
+    line-height:1.02; letter-spacing:-.024em; margin:0 0 20px; text-wrap:balance;
+    max-width:16ch;
+  }
+  .standfirst{
+    font-size:19px; line-height:1.55; color:var(--ink-2); max-width:60ch; margin:0 0 32px;
+  }
+  .standfirst strong{color:var(--ink); font-weight:600}
+  .mast-meta{
+    display:flex; flex-wrap:wrap; gap:0; border-top:1px solid var(--rule);
+  }
+  .mast-meta div{
+    flex:1 1 170px; padding:14px 18px 14px 0; border-right:1px solid var(--rule);
+  }
+  .mast-meta div:last-child{border-right:0}
+  .mast-meta dt, .mast-meta .k{
+    font-family:var(--f-mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--ink-3); display:block; margin-bottom:5px;
+  }
+  .mast-meta .v{font-size:14px; font-weight:500; color:var(--ink)}
+
+  /* ---------- tier strip ---------- */
+  .strip{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--rule); margin:40px 0 8px; border:1px solid var(--rule)}
+  .tier-col{background:var(--surface); padding:24px 22px 26px; display:flex; flex-direction:column; gap:14px}
+  .tier-col--d{border-top:4px solid var(--tier-d)}
+  .tier-col--w{border-top:4px solid var(--tier-w)}
+  .tier-col--m{border-top:4px solid var(--tier-m)}
+  .tier-name{font-family:var(--f-display); font-weight:700; font-size:22px; letter-spacing:-.015em; margin:0}
+  .tier-role{font-family:var(--f-mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin-top:-8px}
+  .tier-line{display:flex; gap:10px; font-size:13.5px; line-height:1.45}
+  .tier-line .lk{
+    font-family:var(--f-mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--ink-3); flex:0 0 62px; padding-top:3px;
+  }
+  .tier-line .lv{color:var(--ink-2)}
+  .tier-line .lv b{color:var(--ink); font-weight:600}
+  .tier-never{
+    margin-top:auto; padding-top:14px; border-top:1px dashed var(--rule-strong);
+    font-size:13px; color:var(--ink-2);
+  }
+  .tier-never b{font-family:var(--f-mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--crit); display:block; margin-bottom:4px}
+
+  /* ---------- sections ---------- */
+  section{padding:52px 0; border-bottom:1px solid var(--rule)}
+  .sec-head{display:flex; gap:18px; align-items:baseline; margin-bottom:8px}
+  .sec-num{
+    font-family:var(--f-mono); font-size:12px; font-weight:600; color:var(--accent);
+    letter-spacing:.06em; flex:0 0 auto; padding-top:2px;
+  }
+  h2{
+    font-family:var(--f-display); font-weight:700; font-size:clamp(24px,3vw,32px);
+    letter-spacing:-.018em; line-height:1.15; margin:0; text-wrap:balance;
+  }
+  .sec-lede{max-width:var(--prose); color:var(--ink-2); font-size:16.5px; margin:0 0 30px 0; padding-left:30px}
+  .sec-lede strong{color:var(--ink); font-weight:600}
+  h3{
+    font-family:var(--f-display); font-weight:600; font-size:17px; letter-spacing:-.005em;
+    margin:34px 0 12px; color:var(--ink);
+  }
+  h3 .h3num{font-family:var(--f-mono); font-size:12px; color:var(--ink-3); margin-right:8px; font-weight:500}
+
+  /* ---------- principles ---------- */
+  .principles{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--rule); border:1px solid var(--rule)}
+  .principle--wide{grid-column:span 2}
+  @media (max-width:1000px){ .principles{grid-template-columns:repeat(2,1fr)} }
+  @media (max-width:640px){ .principles{grid-template-columns:1fr} .principle--wide{grid-column:span 1} }
+  .principle{background:var(--surface); padding:20px 22px 22px}
+  .principle .pn{
+    font-family:var(--f-mono); font-size:11px; font-weight:600; color:var(--accent-2);
+    letter-spacing:.08em; display:block; margin-bottom:8px;
+  }
+  .principle h4{font-family:var(--f-display); font-weight:700; font-size:15.5px; margin:0 0 7px; letter-spacing:-.008em}
+  .principle p{font-size:14px; line-height:1.55; color:var(--ink-2); margin:0}
+  .principle p em{color:var(--ink); font-style:normal; font-weight:600}
+
+  /* ---------- tables ---------- */
+  .tscroll{overflow-x:auto; border:1px solid var(--rule); background:var(--surface)}
+  table{border-collapse:collapse; width:100%; min-width:680px; font-size:14px}
+  thead th{
+    font-family:var(--f-mono); font-size:10px; font-weight:600; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--ink-3); text-align:left;
+    padding:12px 14px; border-bottom:1px solid var(--rule-strong); background:var(--surface-2);
+    white-space:nowrap; vertical-align:bottom;
+  }
+  tbody td{padding:12px 14px; border-bottom:1px solid var(--rule); vertical-align:top; color:var(--ink-2); line-height:1.45}
+  tbody tr:last-child td{border-bottom:0}
+  tbody td:first-child{color:var(--ink); font-weight:500}
+  td .mono, .mono{font-family:var(--f-mono); font-size:12.5px; font-variant-numeric:tabular-nums}
+  .num{font-variant-numeric:tabular-nums}
+
+  .pill{
+    display:inline-block; font-family:var(--f-mono); font-size:10px; font-weight:600;
+    letter-spacing:.08em; text-transform:uppercase; padding:3px 7px; border-radius:2px;
+    white-space:nowrap;
+  }
+  .pill--d{background:var(--tier-d-bg); color:var(--tier-d); box-shadow:inset 0 0 0 1px var(--tier-d)}
+  .pill--w{background:var(--tier-w-bg); color:var(--tier-w); box-shadow:inset 0 0 0 1px var(--tier-w)}
+  .pill--m{background:var(--tier-m-bg); color:var(--tier-m); box-shadow:inset 0 0 0 1px var(--tier-m)}
+  .pill--p1{background:var(--crit-bg); color:var(--crit); box-shadow:inset 0 0 0 1px var(--crit)}
+  .pill--p2{background:var(--warn-bg); color:var(--warn); box-shadow:inset 0 0 0 1px var(--warn)}
+  .pill--p3{background:var(--accent-soft); color:var(--accent); box-shadow:inset 0 0 0 1px var(--accent)}
+  .pill--p4{background:var(--surface-2); color:var(--ink-3); box-shadow:inset 0 0 0 1px var(--rule-strong)}
+  .pill--ok{background:var(--ok-bg); color:var(--ok); box-shadow:inset 0 0 0 1px var(--ok)}
+
+  /* ---------- tier blocks ---------- */
+  .tier{border:1px solid var(--rule); background:var(--surface); margin-top:8px}
+  .tier--d{border-top:4px solid var(--tier-d)}
+  .tier--w{border-top:4px solid var(--tier-w)}
+  .tier--m{border-top:4px solid var(--tier-m)}
+  .tier-spec{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1px; background:var(--rule); border-bottom:1px solid var(--rule)}
+  .tier-spec > div{background:var(--surface-2); padding:14px 18px}
+  .tier-spec .k{font-family:var(--f-mono); font-size:10px; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3); display:block; margin-bottom:5px}
+  .tier-spec .v{font-size:13.5px; font-weight:500; color:var(--ink); line-height:1.4}
+
+  .checks{padding:8px 0}
+  .check{display:grid; grid-template-columns:64px 1fr; gap:0 4px; padding:15px 22px; border-bottom:1px solid var(--rule)}
+  .check:last-child{border-bottom:0}
+  .check .cid{font-family:var(--f-mono); font-size:12.5px; font-weight:600; padding-top:1px}
+  .tier--d .cid{color:var(--tier-d)} .tier--w .cid{color:var(--tier-w)} .tier--m .cid{color:var(--tier-m)}
+  .check .cbody h5{font-family:var(--f-display); font-weight:700; font-size:15px; margin:0 0 4px; letter-spacing:-.005em}
+  .check .cbody p{font-size:14px; color:var(--ink-2); margin:0 0 8px; line-height:1.5; max-width:76ch}
+  .trig{
+    display:inline-flex; flex-wrap:wrap; gap:6px; align-items:center;
+    font-family:var(--f-mono); font-size:11.5px; color:var(--ink-2);
+    background:var(--surface-2); border:1px solid var(--rule); border-radius:2px;
+    padding:4px 9px; font-variant-numeric:tabular-nums;
+  }
+  .trig b{color:var(--ink-3); font-weight:500; letter-spacing:.1em; text-transform:uppercase; font-size:9.5px}
+
+  .tier-foot{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--rule); border-top:1px solid var(--rule)}
+  .tier-foot > div{background:var(--surface-2); padding:18px 22px}
+  .tier-foot h6{
+    font-family:var(--f-mono); font-size:10px; letter-spacing:.13em; text-transform:uppercase;
+    color:var(--ink-3); margin:0 0 10px; font-weight:600;
+  }
+  .tier-foot ul{margin:0; padding-left:18px; font-size:14px; color:var(--ink-2); line-height:1.55}
+  .tier-foot li{margin-bottom:5px}
+  .tier-foot li:last-child{margin-bottom:0}
+  .tier-foot li b{color:var(--ink); font-weight:600}
+  .stop{color:var(--crit); font-weight:600}
+
+  /* ---------- format blocks ---------- */
+  .fmt{border:1px solid var(--rule); background:var(--surface); margin-bottom:18px}
+  .fmt-h{padding:14px 18px; border-bottom:1px solid var(--rule); display:flex; align-items:center; gap:12px; flex-wrap:wrap; background:var(--surface-2)}
+  .fmt-h strong{font-family:var(--f-display); font-weight:700; font-size:15px}
+  .fmt-h span{font-size:13px; color:var(--ink-3)}
+  .fmt-cols{padding:16px 18px; display:flex; flex-wrap:wrap; gap:6px}
+  .col-chip{
+    font-family:var(--f-mono); font-size:11.5px; padding:4px 9px;
+    background:var(--surface-2); border:1px solid var(--rule); border-radius:2px; color:var(--ink-2);
+  }
+  .col-chip.key{background:var(--accent-soft); border-color:var(--accent-2); color:var(--accent)}
+  .fmt-note{padding:0 18px 16px; font-size:13.5px; color:var(--ink-3); max-width:80ch}
+
+  /* ---------- failure modes ---------- */
+  .fails{display:grid; grid-template-columns:repeat(auto-fit,minmax(330px,1fr)); gap:1px; background:var(--rule); border:1px solid var(--rule)}
+  .fail{background:var(--surface); padding:20px 22px; border-left:3px solid var(--crit)}
+  .fail h4{font-family:var(--f-display); font-weight:700; font-size:15.5px; margin:0 0 6px; letter-spacing:-.008em}
+  .fail p{font-size:14px; color:var(--ink-2); margin:0 0 8px; line-height:1.5}
+  .fail .fix{font-size:13px; color:var(--ink-2)}
+  .fail .fix b{font-family:var(--f-mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ok); display:block; margin-bottom:3px}
+
+  footer{padding:44px 0 64px; color:var(--ink-3); font-size:13.5px}
+  footer p{max-width:72ch}
+  footer .mono{color:var(--ink-2)}
+
+  @media (max-width:860px){
+    .strip{grid-template-columns:1fr}
+    .tier-foot{grid-template-columns:1fr}
+    .sec-lede{padding-left:0}
+    .check{grid-template-columns:1fr; gap:6px}
+    .top nav{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important; transition:none!important; scroll-behavior:auto!important}
+  }
+  html{scroll-behavior:smooth; scroll-padding-top:64px}
+</style>
+
+<div class="top">
+  <div class="wrap">
+    <span class="mark">PPC Oversight System</span>
+    <nav>
+      <a href="#s1">§1 Principles</a>
+      <a href="#s2">§2 Signal maturity</a>
+      <a href="#s3">§3 Daily</a>
+      <a href="#s4">§4 Weekly</a>
+      <a href="#s5">§5 Monthly</a>
+      <a href="#s6">§6 Thresholds</a>
+      <a href="#s7">§7 Decision rights</a>
+      <a href="#s8">§8 Formats</a>
+      <a href="#s9">§9 Failure modes</a>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap">
+  <header class="mast">
+    <div class="eyebrow">Amazon Sponsored Ads — Operating Manual</div>
+    <h1>PPC Oversight System</h1>
+    <p class="standfirst">Three tempos, one account. The daily tier <strong>protects</strong>, the weekly tier <strong>steers</strong>, the monthly tier <strong>decides</strong>. Each tier reads only the signals that have matured by the time it runs — which is the whole point of separating them, and the reason most PPC accounts oscillate instead of compound.</p>
+    <div class="mast-meta">
+      <div><span class="k">Scope</span><span class="v">One brand portfolio, SP / SB / SD</span></div>
+      <div><span class="k">Tiers</span><span class="v">Daily · Weekly · Monthly</span></div>
+      <div><span class="k">Owners</span><span class="v">Specialist · Manager · Account Lead</span></div>
+      <div><span class="k">Review of system</span><span class="v">Quarterly, or after any P1</span></div>
+      <div><span class="k">Version</span><span class="v">1.0</span></div>
+    </div>
+  </header>
+
+  <div class="strip">
+    <div class="tier-col tier-col--d">
+      <h3 class="tier-name" style="margin:0">Daily</h3>
+      <div class="tier-role">Control — stop loss</div>
+      <div class="tier-line"><span class="lk">Timebox</span><span class="lv"><b>15 min</b>, exception-based</span></div>
+      <div class="tier-line"><span class="lk">Owner</span><span class="lv">PPC Specialist</span></div>
+      <div class="tier-line"><span class="lk">Reads</span><span class="lv">Spend, delivery, eligibility, stock, Buy Box</span></div>
+      <div class="tier-line"><span class="lk">Moves</span><span class="lv">Pauses and budget relief only</span></div>
+      <div class="tier-never"><b>Never touches</b>Bids, placements, negatives, structure — conversion data is not mature enough to justify them.</div>
+    </div>
+    <div class="tier-col tier-col--w">
+      <h3 class="tier-name" style="margin:0">Weekly</h3>
+      <div class="tier-role">Steering — the work</div>
+      <div class="tier-line"><span class="lk">Timebox</span><span class="lv"><b>75–90 min</b>, fixed weekday</span></div>
+      <div class="tier-line"><span class="lk">Owner</span><span class="lv">PPC Manager decides, Specialist prepares</span></div>
+      <div class="tier-line"><span class="lk">Reads</span><span class="lv">14-day bids, 30-day budget, 60-day search terms</span></div>
+      <div class="tier-line"><span class="lk">Moves</span><span class="lv">Bids, placements, budgets, negatives, harvests</span></div>
+      <div class="tier-never"><b>Never touches</b>Budget envelope, campaign architecture, pricing or margin assumptions.</div>
+    </div>
+    <div class="tier-col tier-col--m">
+      <h3 class="tier-name" style="margin:0">Monthly</h3>
+      <div class="tier-role">Strategy — the direction</div>
+      <div class="tier-line"><span class="lk">Timebox</span><span class="lv"><b>Half day</b>, within 5 working days of close</span></div>
+      <div class="tier-line"><span class="lk">Owner</span><span class="lv">Account Lead with PPC Manager</span></div>
+      <div class="tier-line"><span class="lk">Reads</span><span class="lv">Settled P&amp;L, TACoS, rank, mix, lever decay</span></div>
+      <div class="tier-line"><span class="lk">Moves</span><span class="lv">Envelope, objective mix, structure, thresholds</span></div>
+      <div class="tier-never"><b>Never touches</b>Individual keyword bids — that is the weekly tier's job and re-doing it here breaks the audit trail.</div>
+    </div>
+  </div>
+
+  <section id="s1">
+    <div class="sec-head"><span class="sec-num">§1</span><h2>Operating principles</h2></div>
+    <p class="sec-lede">Seven rules. If a cadence, a threshold or a report ever conflicts with one of these, the principle wins and the artefact gets rewritten. <strong>An oversight system without enforced principles is just a meeting schedule.</strong></p>
+    <div class="principles">
+      <div class="principle">
+        <span class="pn">P1</span>
+        <h4>Match the window to the data's maturity</h4>
+        <p>Sponsored Products attribution runs 7 days (14 on some reports). The last 72 hours of conversion data is always incomplete. A keyword judged on three-day data is judged on a number that <em>has not finished arriving</em>.</p>
+      </div>
+      <div class="principle">
+        <span class="pn">P2</span>
+        <h4>Sufficiency before action</h4>
+        <p>No bid cut under 10 clicks. No negation under 2× target CPA in spend. No CVR read under 20 clicks. Below the bar the correct decision is <em>keep observing</em> — and that gets logged as a decision, not as silence.</p>
+      </div>
+      <div class="principle">
+        <span class="pn">P3</span>
+        <h4>One lever per entity per cycle</h4>
+        <p>Move the bid, or the placement modifier, or the budget. If all three move together and performance shifts, you have learned <em>nothing about which one did it</em>, and next cycle you are guessing again.</p>
+      </div>
+      <div class="principle">
+        <span class="pn">P4</span>
+        <h4>Observation lock after every change</h4>
+        <p>Any entity changed this cycle is frozen for <em>14 days</em>; new campaigns for <em>21</em>. Re-judging a change before it matures is the single most common cause of bids that oscillate for months without converging.</p>
+      </div>
+      <div class="principle">
+        <span class="pn">P5</span>
+        <h4>Every action is graded</h4>
+        <p>Each cycle opens by scoring the changes from two cycles ago — <em>worked / flat / backfired</em> — against the expected outcome written when they were made. A lever that reads flat twice on the same entity is retired for it, not repeated harder.</p>
+      </div>
+      <div class="principle">
+        <span class="pn">P6</span>
+        <h4>Thresholds are set before the breach</h4>
+        <p>Every trigger in §6 lives in a version-controlled config file. Thresholds are changed in the monthly review with a reason recorded — <em>never argued in the moment</em>, when the number in front of you is doing the arguing.</p>
+      </div>
+      <div class="principle principle--wide">
+        <span class="pn">P7</span>
+        <h4>A null result is an output</h4>
+        <p>"No exceptions" is logged daily. An empty log and a skipped check look identical in hindsight, so the system requires the null row — it is the <em>evidence the check ran</em>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="s2">
+    <div class="sec-head"><span class="sec-num">§2</span><h2>Signal maturity: what may be read when</h2></div>
+    <p class="sec-lede">This table is the reason the system has three tiers rather than one. Each signal becomes trustworthy at a different age, and <strong>the tier that reads it is the first tier that runs after it has settled</strong>. Reading a signal early is not "being responsive" — it is acting on noise, and it costs money in both directions.</p>
+    <div class="tscroll">
+      <table>
+        <thead>
+          <tr><th>Signal</th><th>Settles in</th><th>Read at</th><th>Window used</th><th>Why not sooner</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Spend, impressions, clicks, CPC</td><td class="mono">Same day</td><td><span class="pill pill--d">Daily</span></td><td class="mono">Yesterday + 7d mean</td><td>Delivery data is complete on arrival — this is the only family that is.</td></tr>
+          <tr><td>Budget exhaustion / in-budget hours</td><td class="mono">Same day</td><td><span class="pill pill--d">Daily</span></td><td class="mono">Yesterday</td><td>A campaign that ran out at 14:00 is losing the afternoon today too.</td></tr>
+          <tr><td>Ad eligibility, suppression, Buy Box, stock</td><td class="mono">Same day</td><td><span class="pill pill--d">Daily</span></td><td class="mono">Live</td><td>Account-state faults burn budget at full rate until someone looks.</td></tr>
+          <tr><td>Keyword conversion rate &amp; ACoS</td><td class="mono">7–14 days</td><td><span class="pill pill--w">Weekly</span></td><td class="mono">Trailing 14d</td><td>Attribution backfills for a week; the tail is not optional, it is most of it on considered purchases.</td></tr>
+          <tr><td>Search-term negation candidates</td><td class="mono">14–30 days</td><td><span class="pill pill--w">Weekly</span></td><td class="mono">Rolling 60d</td><td>A term with 8 clicks and no sale in 10 days is a small sample, not a waster.</td></tr>
+          <tr><td>Harvest candidates (term → exact)</td><td class="mono">30–60 days</td><td><span class="pill pill--w">Weekly</span></td><td class="mono">Rolling 60d</td><td>Two orders is the floor for believing a term converts at all.</td></tr>
+          <tr><td>Placement performance (TOS / PDP / ROS)</td><td class="mono">14–30 days</td><td><span class="pill pill--w">Weekly</span></td><td class="mono">Trailing 30d</td><td>Placement mix shifts with competitor bidding; one week is a snapshot of their week, not yours.</td></tr>
+          <tr><td>Organic &amp; sponsored rank movement</td><td class="mono">14–30 days</td><td><span class="pill pill--m">Monthly</span></td><td class="mono">Logged weekly, read monthly</td><td>Rank is noisy daily and directional monthly. Log it often; judge it rarely.</td></tr>
+          <tr><td>TACoS, contribution margin, CM2 after ads</td><td class="mono">30 days + settlement</td><td><span class="pill pill--m">Monthly</span></td><td class="mono">Closed month</td><td>Returns, fees and reimbursements land after the month ends. Pre-settlement margin is a draft.</td></tr>
+          <tr><td>Objective mix &amp; campaign architecture</td><td class="mono">60–90 days</td><td><span class="pill pill--m">Monthly / quarterly</span></td><td class="mono">Trailing 90d</td><td>Structure changes reset learning. Make them rarely and deliberately.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="s3">
+    <div class="sec-head"><span class="sec-num">§3</span><h2>Daily tier — control</h2></div>
+    <p class="sec-lede">Fifteen minutes, seven checks, exception-based. The daily pass exists to <strong>catch breakage and stop loss</strong>, nothing else. If it starts producing bid changes it has stopped being oversight and become an optimisation pass running on immature data — the most expensive habit in Amazon PPC.</p>
+    <div class="tier tier--d">
+      <div class="tier-spec">
+        <div><span class="k">Owner</span><span class="v">PPC Specialist</span></div>
+        <div><span class="k">Timebox</span><span class="v">15 min</span></div>
+        <div><span class="k">When</span><span class="v">Every business day, before 10:00 local</span></div>
+        <div><span class="k">Data as of</span><span class="v">Yesterday 23:59 marketplace time</span></div>
+        <div><span class="k">Output</span><span class="v">Daily Exception Log (or a NIL row)</span></div>
+      </div>
+      <div class="checks">
+        <div class="check"><div class="cid">D1</div><div class="cbody">
+          <h5>Account &amp; ad eligibility</h5>
+          <p>Suppressed or ineligible ads, policy flags, failed payment method, campaigns that hit an end date overnight. A campaign can be "active" in your plan and serving nothing.</p>
+          <span class="trig"><b>Trigger</b> any ineligible ad on a top-20 spend ASIN, or any unplanned campaign end</span>
+        </div></div>
+        <div class="check"><div class="cid">D2</div><div class="cbody">
+          <h5>Delivery integrity</h5>
+          <p>Campaigns that had traffic in the prior 7 days and have now gone silent. Usually a paused ad group, a bid below the floor, a lost Buy Box, or a listing change — never nothing.</p>
+          <span class="trig"><b>Trigger</b> 0 impressions for 2 consecutive days after ≥ 500 impressions in the prior 7d</span>
+        </div></div>
+        <div class="check"><div class="cid">D3</div><div class="cbody">
+          <h5>Buy Box &amp; inventory on advertised ASINs</h5>
+          <p>The quiet killer: ads keep spending at full rate while conversion collapses. Losing the Buy Box does not stop delivery, it only stops sales. Stock cover is checked in the same pass.</p>
+          <span class="trig"><b>Trigger</b> Buy Box &lt; 90% · or DOH &lt; 21 days · or any OOS advertised child ASIN</span>
+        </div></div>
+        <div class="check"><div class="cid">D4</div><div class="cbody">
+          <h5>Spend pacing against the envelope</h5>
+          <p>Month-to-date spend against the monthly envelope agreed in §5. Pace drift is corrected weekly, not daily — the daily job is only to see it early enough that the weekly pass can act.</p>
+          <span class="trig"><b>Trigger</b> MTD pace &gt; ±10% of plan · escalates to P2 beyond ±20%</span>
+        </div></div>
+        <div class="check"><div class="cid">D5</div><div class="cbody">
+          <h5>Spend anomaly by campaign</h5>
+          <p>A campaign whose daily spend departs sharply from its own recent behaviour. Up usually means a competitor left or a bid rule fired; down usually means delivery is broken.</p>
+          <span class="trig"><b>Trigger</b> daily spend &gt; 150% or &lt; 50% of its trailing 7-day mean</span>
+        </div></div>
+        <div class="check"><div class="cid">D6</div><div class="cbody">
+          <h5>Budget cap timing</h5>
+          <p>Not whether a campaign capped, but <em>when</em>. A ranking campaign that goes dark at 16:00 is missing the highest-intent hours of the day, which is a ranking problem, not a budget problem.</p>
+          <span class="trig"><b>Trigger</b> out of budget before 18:00 · before 20:00 on a Ranking-objective campaign</span>
+        </div></div>
+        <div class="check"><div class="cid">D7</div><div class="cbody">
+          <h5>Runaway spend</h5>
+          <p>The one conversion-adjacent check the daily tier is allowed, because at this magnitude the sample is no longer ambiguous. It is a circuit breaker, not an optimisation.</p>
+          <span class="trig"><b>Trigger</b> ≥ 3× target CPA spent · 0 orders · over ≥ 5 rolling days</span>
+        </div></div>
+      </div>
+      <div class="tier-foot">
+        <div>
+          <h6>Pre-authorised actions</h6>
+          <ul>
+            <li><b>Pause ads</b> on an OOS or Buy-Box-lost ASIN, and log the reinstatement date.</li>
+            <li><b>Budget relief</b> on a capped campaign — max <b>+25%</b>, once per campaign per week, within the monthly envelope.</li>
+            <li><b>Circuit-break pause</b> on any campaign breaching D7.</li>
+            <li><b>Escalate</b> anything else, with the log row as the ticket.</li>
+          </ul>
+        </div>
+        <div>
+          <h6>Explicitly out of scope</h6>
+          <ul>
+            <li class="stop">Bid changes of any size.</li>
+            <li class="stop">Placement modifier changes.</li>
+            <li class="stop">Adding negatives or harvesting search terms.</li>
+            <li class="stop">Creating, archiving or restructuring campaigns.</li>
+            <li>All of these wait for the weekly pass, where the data supporting them has settled.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="s4">
+    <div class="sec-head"><span class="sec-num">§4</span><h2>Weekly tier — steering</h2></div>
+    <p class="sec-lede">The tier that does the actual work. Nine steps, run <strong>in order</strong>, on a fixed weekday — Tuesday is the usual choice, so the weekend has settled and there is still a working week left to react in. The order is not cosmetic: gates precede bids because a bid set before its inventory and margin gate is known is a bid set blind.</p>
+    <div class="tier tier--w">
+      <div class="tier-spec">
+        <div><span class="k">Owner</span><span class="v">PPC Manager decides · Specialist prepares</span></div>
+        <div><span class="k">Timebox</span><span class="v">75–90 min</span></div>
+        <div><span class="k">When</span><span class="v">Fixed weekday, same slot every week</span></div>
+        <div><span class="k">Windows</span><span class="v">14d bids · 30d budget &amp; placement · 60d search terms</span></div>
+        <div><span class="k">Output</span><span class="v">Decided bulk + Weekly Change Log + 1-page summary</span></div>
+      </div>
+      <div class="checks">
+        <div class="check"><div class="cid">W1</div><div class="cbody">
+          <h5>Execution verification — did last week's changes land?</h5>
+          <p>Diff last cycle's approved change log against the current bulk export, row by row. This is first for a reason: <em>approved is not uploaded</em>. Partial uploads, rejected rows and overwritten bids are the most common silent failure in a managed account, and every downstream conclusion is wrong if the changes never took.</p>
+          <span class="trig"><b>Gate</b> 100% of approved rows verified present, or the cycle does not proceed to W5</span>
+        </div></div>
+        <div class="check"><div class="cid">W2</div><div class="cbody">
+          <h5>Grade the matured cycle</h5>
+          <p>Score every change made <em>two</em> cycles ago — now past its observation lock — as worked, flat or backfired against the expected outcome recorded at the time. This is what converts a change log into a control system rather than a diary.</p>
+          <span class="trig"><b>Rule</b> a lever flat twice on the same entity is retired for that entity and the next lever in the hierarchy is used</span>
+        </div></div>
+        <div class="check"><div class="cid">W3</div><div class="cbody">
+          <h5>Set the gates before touching anything</h5>
+          <p>For each SKU: inventory cover (DOH), true break-even ACoS from that SKU's own margin, and the campaign's declared objective — Ranking, Discovery, Profitable Conversion or Defensive. Every later decision is judged against these three, and they differ per SKU.</p>
+          <span class="trig"><b>Gate</b> no bid, budget or placement decision is made for a SKU whose DOH, break-even and objective are not all known</span>
+        </div></div>
+        <div class="check"><div class="cid">W4</div><div class="cbody">
+          <h5>Search-term pass — negate, harvest, de-duplicate</h5>
+          <p>Negate proven wasters, promote proven converters into exact, and check that the same term is not being bought three times across match types in the same portfolio. Self-competition inflates CPC against yourself.</p>
+          <span class="trig"><b>Negate</b> ≥ 2× target CPA spent, 0 orders, ≥ 10 clicks, 60d &nbsp;·&nbsp; <b>Harvest</b> ≥ 2 orders at ≤ target ACoS, 60d</span>
+        </div></div>
+        <div class="check"><div class="cid">W5</div><div class="cbody">
+          <h5>Bid pass — by objective, step-capped</h5>
+          <p>Bids move against the objective set in W3, not against a single account ACoS target. A Ranking keyword is allowed to run above break-even by design; a Profitable Conversion keyword is not. Step sizes are capped so a wrong call is cheap and reversible.</p>
+          <span class="trig"><b>Step</b> ±10–15% routine · ±25% correction · never two direction changes on one entity inside 14d</span>
+        </div></div>
+        <div class="check"><div class="cid">W6</div><div class="cbody">
+          <h5>Placement pass</h5>
+          <p>Top-of-search, product-page and rest-of-search modifiers, read on 30-day data. Placement is the strongest single lever on ranking campaigns and the easiest to over-tune, so it moves slowly and one campaign at a time.</p>
+          <span class="trig"><b>Step</b> ≤ 20 percentage points · one move per campaign per 14 days</span>
+        </div></div>
+        <div class="check"><div class="cid">W7</div><div class="cbody">
+          <h5>Budget pass — reallocate inside the envelope</h5>
+          <p>Money moves between campaigns, not into the account. The weekly tier is not permitted to grow total spend; it is permitted to spend the agreed envelope better. Envelope changes escalate to the monthly tier.</p>
+          <span class="trig"><b>Constraint</b> sum of weekly budgets ≤ monthly envelope ÷ days remaining</span>
+        </div></div>
+        <div class="check"><div class="cid">W8</div><div class="cbody">
+          <h5>Hygiene sweep</h5>
+          <p>Enabled keywords inside paused ad groups, campaigns with no negatives, ad groups with no product ad, unassigned portfolios, targets whose SKU no longer exists. Individually trivial, collectively a steady leak.</p>
+          <span class="trig"><b>Target</b> zero open hygiene items carried more than two cycles</span>
+        </div></div>
+        <div class="check"><div class="cid">W9</div><div class="cbody">
+          <h5>Package, log, approve</h5>
+          <p>Produce the decided bulk, the change log with an expected outcome and review date on every row, and a five-line summary. Nothing is uploaded before the log row exists — the log is written first, so that W1 next week has something to verify against.</p>
+          <span class="trig"><b>Rule</b> every changed row carries a rationale of ≤ 25 words and a dated expected outcome</span>
+        </div></div>
+      </div>
+      <div class="tier-foot">
+        <div>
+          <h6>Lever hierarchy — try in this order</h6>
+          <ul>
+            <li><b>1. Bid</b> — cheapest to reverse, smallest blast radius.</li>
+            <li><b>2. Placement modifier</b> — when the bid is right but the position is not.</li>
+            <li><b>3. Budget</b> — when the campaign is efficient and capped.</li>
+            <li><b>4. Negation / harvest</b> — when the traffic itself is wrong.</li>
+            <li><b>5. Structure</b> — last resort; escalates to monthly, resets learning.</li>
+          </ul>
+        </div>
+        <div>
+          <h6>Stop conditions for the cycle</h6>
+          <ul>
+            <li class="stop">W1 fails — changes never landed. Fix the upload, then restart.</li>
+            <li class="stop">A SKU's margin or inventory data is missing — that SKU is skipped, not guessed.</li>
+            <li class="stop">A proposed change exceeds the Manager's authority in §7 — it is proposed, not made.</li>
+            <li>Skipped items are logged as skipped, with the reason. Silence is not an outcome.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="s5">
+    <div class="sec-head"><span class="sec-num">§5</span><h2>Monthly tier — strategy</h2></div>
+    <p class="sec-lede">Half a day, within five working days of month close so that returns and fees have settled. The monthly tier asks a different question from the other two: not "is the account being run well?" but <strong>"is it being run toward the right thing?"</strong> It is the only tier permitted to change the envelope, the objective mix, the structure, or the thresholds the other tiers obey.</p>
+    <div class="tier tier--m">
+      <div class="tier-spec">
+        <div><span class="k">Owner</span><span class="v">Account Lead with PPC Manager</span></div>
+        <div><span class="k">Timebox</span><span class="v">Half day</span></div>
+        <div><span class="k">When</span><span class="v">Within 5 working days of month close</span></div>
+        <div><span class="k">Windows</span><span class="v">Closed month · trailing 90d for structure</span></div>
+        <div><span class="k">Output</span><span class="v">Review Pack + next envelope + threshold changes</span></div>
+      </div>
+      <div class="checks">
+        <div class="check"><div class="cid">M1</div><div class="cbody">
+          <h5>Profit truth, not ACoS</h5>
+          <p>Ad spend read against contribution margin per SKU, plus TACoS trend across the trailing six months. ACoS answers "was the ad efficient"; CM2 after ads answers "did the business make money" — and on a multi-SKU portfolio those two routinely disagree.</p>
+          <span class="trig"><b>Reads</b> TACoS 6-month trend · CM2 after ads per SKU · spend vs. contribution by objective</span>
+        </div></div>
+        <div class="check"><div class="cid">M2</div><div class="cbody">
+          <h5>Objective mix against product stage</h5>
+          <p>Share of spend by objective compared with the target mix for each product's stage. A launch product carrying 70% Profitable Conversion spend is not being launched; a mature product carrying 40% Ranking spend is funding a race it has already won.</p>
+          <span class="trig"><b>Reference mix</b> Launch ≈ 50/30/15/5 · Scale ≈ 35/25/30/10 · Harvest ≈ 15/15/60/10 &nbsp;(Rank/Disc/Profit/Def)</span>
+        </div></div>
+        <div class="check"><div class="cid">M3</div><div class="cbody">
+          <h5>Rank progression against targets</h5>
+          <p>Target keywords versus their rank targets, using the weekly rank log. The question that matters: is the ranking spend <em>buying rank</em>, or only buying sales at a worse ACoS than the profitable campaigns would have delivered? A ranking push with no rank movement over 8 weeks is a subsidy.</p>
+          <span class="trig"><b>Sufficiency stop</b> target rank held for 21 days → step ranking spend down 20% per cycle and watch</span>
+        </div></div>
+        <div class="check"><div class="cid">M4</div><div class="cbody">
+          <h5>Lever effectiveness &amp; decay</h5>
+          <p>Aggregate the month's W2 grades by lever. Levers decay: bid increases that bought volume in month one often read flat by month four, which means the constraint has moved somewhere else — usually to creative, price, or the listing.</p>
+          <span class="trig"><b>Signal</b> a lever &lt; 40% "worked" across the month is escalated as a diagnosis problem, not a tuning problem</span>
+        </div></div>
+        <div class="check"><div class="cid">M5</div><div class="cbody">
+          <h5>Coverage &amp; competitive position</h5>
+          <p>Keyword gaps against the master list, share of voice on the head terms, new entrants, and price or Buy Box pressure. Much of what looks like PPC decay is a competitor changing price, and no bid change fixes that.</p>
+          <span class="trig"><b>Reads</b> uncovered terms ≥ 500 SV · SOV on top-20 terms · competitor price deltas · new advertisers on head terms</span>
+        </div></div>
+        <div class="check"><div class="cid">M6</div><div class="cbody">
+          <h5>Structure &amp; campaign lifecycle</h5>
+          <p>Every campaign is placed on the lifecycle — launch, scale, harvest, sunset — and anything that has stalled is acted on. This is the only tier allowed to create or archive campaigns, because structural change resets learning and must be rare.</p>
+          <span class="trig"><b>Sunset</b> &lt; 10 clicks and 0 orders over 60 days → archive · <b>Promote</b> 3 consecutive cycles at ≤ target ACoS → scale</span>
+        </div></div>
+        <div class="check"><div class="cid">M7</div><div class="cbody">
+          <h5>Next month's envelope and forecast</h5>
+          <p>Set the budget envelope by objective for the coming month against seasonality, inventory cover and the launch calendar. This number is what the weekly tier is then constrained by — it is set here, once, deliberately.</p>
+          <span class="trig"><b>Constraint</b> envelope capped by inventory: no objective may be funded past its SKU's sell-through cover</span>
+        </div></div>
+        <div class="check"><div class="cid">M8</div><div class="cbody">
+          <h5>Threshold review and stakeholder report</h5>
+          <p>Any threshold in §6 that fired constantly or never fired is retuned, with the reason recorded. Then one report to the brand owner in Finding → Why it matters → Action → Expected impact, which is the only format non-specialists reliably act on.</p>
+          <span class="trig"><b>Rule</b> threshold changes are versioned in config with a date and a reason — never adjusted silently mid-month</span>
+        </div></div>
+      </div>
+      <div class="tier-foot">
+        <div>
+          <h6>Decisions reserved to this tier</h6>
+          <ul>
+            <li><b>Budget envelope</b> — total and by objective.</li>
+            <li><b>Objective reassignment</b> for a campaign or SKU.</li>
+            <li><b>Campaign creation, archiving, restructure.</b></li>
+            <li><b>Threshold changes</b> to §6.</li>
+            <li><b>Authorising deliberately unprofitable ranking spend</b>, with an end date attached.</li>
+          </ul>
+        </div>
+        <div>
+          <h6>Quarterly extension</h6>
+          <ul>
+            <li>Full account architecture and naming audit.</li>
+            <li>Match-type and duplication audit across the whole portfolio.</li>
+            <li>Break-even and margin refresh from current COGS and fees.</li>
+            <li>Review of this system: which checks earned their time, which did not.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="s6">
+    <div class="sec-head"><span class="sec-num">§6</span><h2>Threshold library</h2></div>
+    <p class="sec-lede">The complete trigger set, in one place, versioned in config. Values below are a defensible starting point for a mid-volume portfolio — <strong>tune them to your own CPA and volume in the first M8, then leave them alone between monthly reviews</strong>. A threshold that is negotiable in the moment is not a threshold.</p>
+    <div class="tscroll">
+      <table>
+        <thead><tr><th>ID</th><th>Trigger</th><th>Threshold</th><th>Severity</th><th>Response</th><th>Owner</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">D1</td><td>Ad ineligible / suppressed on top-20 spend ASIN</td><td class="mono">any</td><td><span class="pill pill--p1">P1</span></td><td>Fix listing or pause spend within 2h</td><td>Specialist</td></tr>
+          <tr><td class="mono">D2</td><td>Delivery stopped on a previously active campaign</td><td class="mono">0 impr. 2 days</td><td><span class="pill pill--p2">P2</span></td><td>Diagnose cause before any bid change</td><td>Specialist</td></tr>
+          <tr><td class="mono">D3a</td><td>Buy Box share on advertised ASIN</td><td class="mono">&lt; 90%</td><td><span class="pill pill--p2">P2</span></td><td>Flag to brand; pause if &lt; 70%</td><td>Specialist</td></tr>
+          <tr><td class="mono">D3b</td><td>Days of inventory cover</td><td class="mono">&lt; 21 days</td><td><span class="pill pill--p2">P2</span></td><td>Cap ranking spend; plan backup SKU</td><td>Manager</td></tr>
+          <tr><td class="mono">D3c</td><td>Advertised child ASIN out of stock</td><td class="mono">0 units</td><td><span class="pill pill--p1">P1</span></td><td>Pause its ads same hour; log reinstatement date</td><td>Specialist</td></tr>
+          <tr><td class="mono">D4</td><td>MTD spend pace vs. envelope</td><td class="mono">± 10% / ± 20%</td><td><span class="pill pill--p3">P3</span> / <span class="pill pill--p2">P2</span></td><td>Correct at next weekly; escalate beyond 20%</td><td>Manager</td></tr>
+          <tr><td class="mono">D5</td><td>Campaign daily spend vs. own 7-day mean</td><td class="mono">&gt; 150% or &lt; 50%</td><td><span class="pill pill--p2">P2</span></td><td>Investigate same day; no bid change</td><td>Specialist</td></tr>
+          <tr><td class="mono">D6</td><td>Out of budget before</td><td class="mono">18:00 · 20:00 ranking</td><td><span class="pill pill--p3">P3</span></td><td>Budget relief ≤ +25% or reallocate weekly</td><td>Specialist</td></tr>
+          <tr><td class="mono">D7</td><td>Spend with zero orders</td><td class="mono">≥ 3× CPA, 5 days</td><td><span class="pill pill--p1">P1</span></td><td>Circuit-break pause; review at weekly</td><td>Specialist</td></tr>
+          <tr><td class="mono">W4a</td><td>Search term negation</td><td class="mono">≥ 2× CPA, 0 orders, ≥ 10 clicks / 60d</td><td><span class="pill pill--p3">P3</span></td><td>Negative exact at ad group; phrase if root-wide</td><td>Manager</td></tr>
+          <tr><td class="mono">W4b</td><td>Search term harvest</td><td class="mono">≥ 2 orders at ≤ target ACoS / 60d</td><td><span class="pill pill--ok">Opportunity</span></td><td>Promote to exact; negate in source campaign</td><td>Manager</td></tr>
+          <tr><td class="mono">W5a</td><td>Bid decision sufficiency floor</td><td class="mono">≥ 10 clicks in 14d</td><td>—</td><td>Below floor: observe, log as observed</td><td>Manager</td></tr>
+          <tr><td class="mono">W5b</td><td>Bid step cap</td><td class="mono">±15% routine · ±25% correction</td><td>—</td><td>Larger steps escalate to Account Lead</td><td>Manager</td></tr>
+          <tr><td class="mono">W5c</td><td>Keyword ACoS vs. SKU break-even (Profit objective)</td><td class="mono">&gt; break-even 2 cycles</td><td><span class="pill pill--p3">P3</span></td><td>Step bid down 15%; pause on the third</td><td>Manager</td></tr>
+          <tr><td class="mono">W6</td><td>Placement modifier change</td><td class="mono">≤ 20 pts, 1 per campaign / 14d</td><td>—</td><td>Log expected outcome; grade at W2</td><td>Manager</td></tr>
+          <tr><td class="mono">W6b</td><td>Top-of-search impression share on ranking campaign</td><td class="mono">&lt; 20%</td><td><span class="pill pill--p3">P3</span></td><td>Raise TOS modifier or bid — one, not both</td><td>Manager</td></tr>
+          <tr><td class="mono">W8</td><td>Hygiene item carried</td><td class="mono">&gt; 2 cycles</td><td><span class="pill pill--p3">P3</span></td><td>Named owner and a due date, in the log</td><td>Manager</td></tr>
+          <tr><td class="mono">M1</td><td>TACoS trend</td><td class="mono">+3 pts over 3 months</td><td><span class="pill pill--p4">P4</span></td><td>Full efficiency review at monthly</td><td>Account Lead</td></tr>
+          <tr><td class="mono">M3</td><td>Ranking spend with no rank movement</td><td class="mono">8 weeks</td><td><span class="pill pill--p4">P4</span></td><td>Re-diagnose: listing, price, or reviews — not bids</td><td>Account Lead</td></tr>
+          <tr><td class="mono">M6</td><td>Campaign sunset</td><td class="mono">&lt; 10 clicks, 0 orders / 60d</td><td><span class="pill pill--p4">P4</span></td><td>Archive; keep the keyword in the master list</td><td>Account Lead</td></tr>
+          <tr><td class="mono">M7</td><td>Envelope increase request</td><td class="mono">&gt; +15%</td><td><span class="pill pill--p4">P4</span></td><td>Brand owner approval with forecast attached</td><td>Brand owner</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="s7">
+    <div class="sec-head"><span class="sec-num">§7</span><h2>Decision rights &amp; escalation</h2></div>
+    <p class="sec-lede">Two tables. The first says <strong>how fast</strong> something must be answered; the second says <strong>who may answer it, and how far they may go</strong>. Severity is assigned by the threshold that fired, not by whoever noticed it — otherwise everything becomes P1 within a month and the ladder stops meaning anything.</p>
+
+    <h3><span class="h3num">7.1</span>Severity ladder</h3>
+    <div class="tscroll">
+      <table>
+        <thead><tr><th>Level</th><th>Response time</th><th>Typical cause</th><th>Who acts</th><th>Who is told</th></tr></thead>
+        <tbody>
+          <tr><td><span class="pill pill--p1">P1</span></td><td class="mono">Within 2 hours</td><td>Runaway spend, OOS on a top-spend ASIN, ad eligibility break, tracking failure</td><td>Specialist acts immediately under pre-authorisation</td><td>Manager, same hour</td></tr>
+          <tr><td><span class="pill pill--p2">P2</span></td><td class="mono">Same business day</td><td>Buy Box loss, CPC +40% w/w on a ranking campaign, delivery stopped, pace drift &gt; 20%</td><td>Specialist proposes, Manager approves</td><td>Manager, in the daily log</td></tr>
+          <tr><td><span class="pill pill--p3">P3</span></td><td class="mono">Next weekly cycle</td><td>Efficiency drift, low top-of-search share, harvest backlog, hygiene debt</td><td>Manager decides in the weekly pass</td><td>Recorded in the weekly change log</td></tr>
+          <tr><td><span class="pill pill--p4">P4</span></td><td class="mono">Next monthly cycle</td><td>Objective mix, structure, TACoS trend, threshold retune</td><td>Account Lead decides</td><td>Monthly review pack</td></tr>
+          <tr><td><span class="pill pill--p4">P5</span></td><td class="mono">Scheduled with the brand</td><td>Envelope increase &gt; 15%, strategy pivot, deliberately unprofitable ranking push, price or margin change</td><td>Brand owner decides</td><td>Written recommendation with forecast</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3><span class="h3num">7.2</span>Authority limits — who may move what, how far</h3>
+    <div class="tscroll">
+      <table>
+        <thead><tr><th>Lever</th><th>Specialist</th><th>PPC Manager</th><th>Account Lead</th><th>Brand owner</th></tr></thead>
+        <tbody>
+          <tr><td>Keyword / target bid</td><td class="mono">±15% within approved band</td><td class="mono">±40%</td><td class="mono">Any, with rationale</td><td class="mono">—</td></tr>
+          <tr><td>Campaign budget</td><td class="mono">+25% relief, 1× per week</td><td class="mono">Reallocate inside envelope</td><td class="mono">Set envelope</td><td class="mono">Envelope &gt; +15%</td></tr>
+          <tr><td>Placement modifier</td><td class="mono">—</td><td class="mono">≤ 20 pts / 14d</td><td class="mono">Any</td><td class="mono">—</td></tr>
+          <tr><td>Negatives</td><td class="mono">—</td><td class="mono">Yes, per W4</td><td class="mono">Yes</td><td class="mono">—</td></tr>
+          <tr><td>Pause a campaign</td><td class="mono">P1 circuit-break only</td><td class="mono">Yes</td><td class="mono">Yes</td><td class="mono">—</td></tr>
+          <tr><td>Create / archive campaign</td><td class="mono">—</td><td class="mono">Propose</td><td class="mono">Approve</td><td class="mono">Informed</td></tr>
+          <tr><td>Objective reassignment</td><td class="mono">—</td><td class="mono">Propose</td><td class="mono">Approve</td><td class="mono">Informed</td></tr>
+          <tr><td>Change a §6 threshold</td><td class="mono">—</td><td class="mono">Propose</td><td class="mono">Approve at M8</td><td class="mono">—</td></tr>
+          <tr><td>Run below break-even deliberately</td><td class="mono">—</td><td class="mono">—</td><td class="mono">Propose, with end date</td><td class="mono">Approve</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="s8">
+    <div class="sec-head"><span class="sec-num">§8</span><h2>Report formats</h2></div>
+    <p class="sec-lede">Three artefacts, one per tier, and they interlock: the weekly log's <strong>expected outcome</strong> and <strong>review date</strong> are what W2 grades two cycles later, and those grades are what M4 aggregates. Drop those two columns and the whole feedback loop quietly stops working. Highlighted fields are the ones that make the loop close.</p>
+
+    <div class="fmt">
+      <div class="fmt-h"><span class="pill pill--d">Daily</span><strong>Daily Exception Log</strong><span>One row per exception — or one NIL row per day.</span></div>
+      <div class="fmt-cols">
+        <span class="col-chip">Date</span><span class="col-chip">Check ID</span><span class="col-chip">Entity type</span><span class="col-chip">Entity</span>
+        <span class="col-chip">Observed value</span><span class="col-chip">Threshold</span><span class="col-chip">Severity</span>
+        <span class="col-chip">Action taken</span><span class="col-chip">Actioned by</span><span class="col-chip">Escalated to</span>
+        <span class="col-chip key">Reinstatement / review date</span><span class="col-chip">Status</span>
+      </div>
+      <p class="fmt-note">If no check fires, write one row: date, <span class="mono">NIL</span>, checked by, timestamp. That row is the proof the pass ran — without it, a skipped day and a clean day are indistinguishable in the record.</p>
+    </div>
+
+    <div class="fmt">
+      <div class="fmt-h"><span class="pill pill--w">Weekly</span><strong>Weekly Change Log</strong><span>One row per changed entity. Written before upload, graded two cycles later.</span></div>
+      <div class="fmt-cols">
+        <span class="col-chip">Cycle date</span><span class="col-chip">Entity type</span><span class="col-chip">Campaign</span><span class="col-chip">Ad group</span>
+        <span class="col-chip">Target / keyword</span><span class="col-chip">SKU</span><span class="col-chip">Objective</span>
+        <span class="col-chip">Lever</span><span class="col-chip">From</span><span class="col-chip">To</span><span class="col-chip">Step %</span>
+        <span class="col-chip">Trigger ID</span><span class="col-chip">Rationale ≤ 25 words</span>
+        <span class="col-chip key">Expected outcome</span><span class="col-chip key">Review date</span>
+        <span class="col-chip key">Grade — worked / flat / backfired</span><span class="col-chip">Graded on</span>
+        <span class="col-chip">Uploaded ✓</span><span class="col-chip">Verified at W1 ✓</span>
+      </div>
+      <p class="fmt-note">Accompanied by the decided bulk and a five-line summary: spend, sales, ACoS, what changed, what to watch. The two ✓ columns are what make W1 a two-minute diff instead of a forensic exercise.</p>
+    </div>
+
+    <div class="fmt">
+      <div class="fmt-h"><span class="pill pill--m">Monthly</span><strong>Monthly Review Pack</strong><span>One workbook, eight tabs, mirroring M1–M8.</span></div>
+      <div class="fmt-cols">
+        <span class="col-chip">1 · Summary</span><span class="col-chip">2 · P&amp;L and TACoS</span><span class="col-chip">3 · Objective mix vs. stage</span>
+        <span class="col-chip">4 · Rank progression</span><span class="col-chip key">5 · Lever effectiveness</span><span class="col-chip">6 · Coverage &amp; competitive</span>
+        <span class="col-chip">7 · Structure actions</span><span class="col-chip key">8 · Next envelope</span><span class="col-chip">9 · Threshold changes</span>
+      </div>
+      <p class="fmt-note">The stakeholder-facing summary is written as Finding → Why it matters → Action → Expected impact. Every finding traces back to a trigger ID from §6, so no recommendation arrives without the evidence that produced it.</p>
+    </div>
+  </section>
+
+  <section id="s9">
+    <div class="sec-head"><span class="sec-num">§9</span><h2>Failure modes</h2></div>
+    <p class="sec-lede">Six ways this system decays. Every one of them has been observed in accounts that had a documented cadence — <strong>the cadence is not the control; the enforcement is</strong>. Check for these at the quarterly review.</p>
+    <div class="fails">
+      <div class="fail">
+        <h4>Daily optimisation creep</h4>
+        <p>The daily pass starts nudging bids because the data is right there. Conversions have not settled, so the nudges are noise-chasing, and bids oscillate for months without converging.</p>
+        <p class="fix"><b>Guard</b>Bid columns are absent from the daily view. If it is not on screen it does not get touched.</p>
+      </div>
+      <div class="fail">
+        <h4>Approved ≠ uploaded</h4>
+        <p>Decisions are made, the bulk half-fails on upload, nobody diffs it, and next cycle reads results from changes that were never live. The account looks unresponsive to good decisions.</p>
+        <p class="fix"><b>Guard</b>W1 runs first and blocks the cycle. The verified ✓ column is not optional.</p>
+      </div>
+      <div class="fail">
+        <h4>The ungraded change log</h4>
+        <p>Changes are recorded but never scored, so the log becomes a diary. Levers that stopped working keep being pulled because nothing ever said they stopped.</p>
+        <p class="fix"><b>Guard</b>W2 is a gate, not a courtesy. Expected outcome is a required field at write time.</p>
+      </div>
+      <div class="fail">
+        <h4>One ACoS target for every SKU</h4>
+        <p>A single account-wide target ignores that break-even differs per SKU and that a Ranking keyword is supposed to exceed it. Profitable products get starved to subsidise thin ones.</p>
+        <p class="fix"><b>Guard</b>W3 gates every decision on that SKU's own break-even and declared objective.</p>
+      </div>
+      <div class="fail">
+        <h4>Severity inflation</h4>
+        <p>Everything becomes P1 because P1 gets attention. Within a quarter the ladder carries no information and genuine emergencies queue behind routine drift.</p>
+        <p class="fix"><b>Guard</b>Severity comes from the fired threshold, never from the reporter. Reviewed at M8.</p>
+      </div>
+      <div class="fail">
+        <h4>Silent thresholds</h4>
+        <p>A threshold set too loose never fires and looks like health; set too tight it fires constantly and gets ignored. Either way the check has stopped being a check.</p>
+        <p class="fix"><b>Guard</b>M8 reviews fire rates. Never-fired and always-fired are both defects.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Tune the numbers in §6 to your own CPA, volume and margin before the first cycle — the structure is the durable part, the values are a starting position. <span class="mono">Thresholds live in config/thresholds.yml · log templates in templates/</span></p>
+  </footer>
+</div>

@@ -1,0 +1,4 @@
+date,check_id,entity_type,entity,sku,observed_value,threshold,severity,action_taken,actioned_by,escalated_to,review_or_reinstate_date,status,notes
+2026-09-02,D3c,ad_group,SLUG-SP-EXACT-example-SKU01,SKU01,0 units on hand,0 units,P1,Paused ads on OOS child ASIN,specialist,manager,2026-09-16,closed,Restock ETA 14 Sep — reinstate on arrival not before
+2026-09-02,D6,campaign,SLUG-SP-EXACT-example-SKU01,SKU01,Out of budget 16:20,before 20:00 (ranking),P3,Budget relief +25% (1 of 1 this week),specialist,,2026-09-09,open,Reallocate properly at next weekly (W7) rather than repeat relief
+2026-09-03,NIL,,,,,,,No exceptions,specialist,,,closed,Pass completed 09:14 — all 7 checks clear

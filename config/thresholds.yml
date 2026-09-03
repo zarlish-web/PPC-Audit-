@@ -1,0 +1,246 @@
+# PPC Oversight System — threshold configuration
+# Version: 1.0
+#
+# These values are the ONLY place thresholds are defined. Principle P6:
+# thresholds are set before the breach and changed only at the monthly
+# review (M8), with a dated reason recorded in `changelog` at the bottom.
+# Never adjust a threshold mid-cycle because the number in front of you
+# is uncomfortable.
+#
+# Starting values suit a mid-volume portfolio. Tune to your own CPA,
+# volume and margin at the first M8, then leave them alone.
+
+meta:
+  version: "1.0"
+  portfolio: "<brand / portfolio name>"
+  marketplace: "<e.g. amazon.com>"
+  currency: "USD"
+  target_cpa: 12.00          # portfolio default; per-SKU overrides below
+  last_reviewed: "2026-09-03"
+  next_review: "monthly, at M8"
+
+# Per-SKU overrides. Break-even ACoS comes from that SKU's own margin —
+# never from an account-wide number (see failure mode: one ACoS target).
+skus:
+  # EXAMPLE-SKU-01:
+  #   target_cpa: 9.50
+  #   break_even_acos: 0.34
+  #   stage: scale            # launch | scale | harvest
+  #   backup_sku: EXAMPLE-SKU-01-B
+
+# ---------------------------------------------------------------------
+# DAILY — control tier. Reads delivery and account state only.
+# ---------------------------------------------------------------------
+daily:
+  D1_ad_eligibility:
+    trigger: "any ineligible or suppressed ad on a top-20 spend ASIN"
+    severity: P1
+    response_hours: 2
+    owner: specialist
+
+  D2_delivery_integrity:
+    zero_impression_days: 2
+    prior_impressions_7d_min: 500
+    severity: P2
+    owner: specialist
+
+  D3a_buy_box:
+    warn_below: 0.90
+    pause_below: 0.70
+    severity: P2
+    owner: specialist
+
+  D3b_inventory_cover:
+    doh_warn_days: 21
+    severity: P2
+    owner: manager
+
+  D3c_out_of_stock:
+    trigger: "advertised child ASIN at 0 units"
+    severity: P1
+    response_hours: 1
+    owner: specialist
+
+  D4_spend_pacing:
+    warn_pct: 0.10            # +/- vs. MTD plan
+    escalate_pct: 0.20
+    severity: P3              # P2 beyond escalate_pct
+    owner: manager
+
+  D5_spend_anomaly:
+    high_multiple_of_7d_mean: 1.50
+    low_multiple_of_7d_mean: 0.50
+    severity: P2
+    owner: specialist
+
+  D6_budget_cap_time:
+    standard_campaign_hour: 18
+    ranking_campaign_hour: 20
+    severity: P3
+    owner: specialist
+
+  D7_runaway_spend:
+    cpa_multiple: 3.0
+    orders: 0
+    rolling_days: 5
+    severity: P1
+    action: "circuit-break pause; review at next weekly"
+    owner: specialist
+
+# Pre-authorised daily actions. Anything not listed here is escalated,
+# not performed. Bids, placements, negatives and structure are OUT of
+# scope for the daily tier by design.
+daily_authority:
+  pause_oos_or_lost_buybox: true
+  budget_relief_max_pct: 0.25
+  budget_relief_frequency: "once per campaign per week"
+  circuit_break_pause: true
+  bid_changes: false
+  placement_changes: false
+  negatives: false
+  structure_changes: false
+
+# ---------------------------------------------------------------------
+# WEEKLY — steering tier. Runs W1..W9 in order.
+# ---------------------------------------------------------------------
+weekly:
+  run_day: "Tuesday"
+  windows:
+    bids_days: 14
+    budget_days: 30
+    placement_days: 30
+    search_terms_days: 60
+
+  W1_execution_verification:
+    required_match_pct: 1.00
+    on_failure: "halt cycle before W5; fix the upload and restart"
+
+  W2_grading:
+    grade_changes_from_cycles_ago: 2
+    grades: [worked, flat, backfired, too-soon]
+    retire_lever_after_flat_count: 2
+
+  W3_gates:
+    require_doh: true
+    require_break_even_acos: true
+    require_objective: true
+    on_missing: "skip the SKU and log it as skipped — never guess"
+    objectives: [ranking, discovery, profitable_conversion, defensive]
+
+  W4a_negation:
+    spend_multiple_of_cpa: 2.0
+    max_orders: 0
+    min_clicks: 10
+    window_days: 60
+  W4b_harvest:
+    min_orders: 2
+    max_acos: "target"        # <= that SKU's target ACoS
+    window_days: 60
+    action: "promote to exact; negate in the source campaign"
+
+  W5_bids:
+    min_clicks_for_decision: 10
+    min_clicks_for_cvr_read: 20
+    routine_step_pct: 0.15
+    correction_step_pct: 0.25
+    no_direction_reversal_within_days: 14
+    profit_objective_over_breakeven_cycles_to_cut: 2
+
+  W6_placement:
+    max_step_points: 20
+    min_days_between_changes: 14
+    tos_impression_share_floor: 0.20
+
+  W7_budget:
+    constraint: "sum of weekly budgets <= monthly envelope / days remaining"
+    envelope_changes: "escalate to monthly (M7)"
+
+  W8_hygiene:
+    max_cycles_carried: 2
+
+  W9_logging:
+    max_rationale_words: 25
+    require_expected_outcome: true
+    require_review_date: true
+    write_log_before_upload: true
+
+# Try levers in this order. Escalate down the list only when the one
+# above is exhausted — cheapest and most reversible first.
+lever_hierarchy:
+  - bid
+  - placement_modifier
+  - budget
+  - negation_or_harvest
+  - structure          # escalates to monthly; resets learning
+
+# ---------------------------------------------------------------------
+# MONTHLY — strategy tier. The only tier that may change the envelope,
+# the objective mix, the structure, or these thresholds.
+# ---------------------------------------------------------------------
+monthly:
+  run_within_working_days_of_close: 5
+
+  M1_profit:
+    tacos_trend_alert_points: 3      # over 3 months
+    read: [tacos_6m_trend, cm2_after_ads_per_sku, spend_vs_contribution_by_objective]
+
+  M2_objective_mix:
+    # Rank / Discovery / Profitable Conversion / Defensive
+    launch:  {ranking: 0.50, discovery: 0.30, profitable_conversion: 0.15, defensive: 0.05}
+    scale:   {ranking: 0.35, discovery: 0.25, profitable_conversion: 0.30, defensive: 0.10}
+    harvest: {ranking: 0.15, discovery: 0.15, profitable_conversion: 0.60, defensive: 0.10}
+    drift_alert_points: 10
+
+  M3_rank:
+    no_movement_alert_weeks: 8
+    sufficiency_stop_days_at_target: 21
+    step_down_pct_per_cycle: 0.20
+
+  M4_lever_effectiveness:
+    worked_rate_floor: 0.40          # below this, re-diagnose, don't re-tune
+
+  M5_coverage:
+    uncovered_term_min_sv: 500
+    track: [sov_top20_terms, competitor_price_deltas, new_head_term_advertisers]
+
+  M6_structure:
+    sunset_max_clicks: 10
+    sunset_max_orders: 0
+    sunset_window_days: 60
+    promote_after_cycles_at_target: 3
+
+  M7_envelope:
+    owner_approval_above_increase_pct: 0.15
+    constraint: "no objective funded past its SKU's inventory cover"
+
+  M8_threshold_review:
+    flag_never_fired: true
+    flag_always_fired: true
+    require_dated_reason: true
+
+# ---------------------------------------------------------------------
+# Governance
+# ---------------------------------------------------------------------
+severity:
+  P1: {response: "2 hours",            acts: specialist,  informs: manager}
+  P2: {response: "same business day",  acts: specialist,  approves: manager}
+  P3: {response: "next weekly cycle",  acts: manager}
+  P4: {response: "next monthly cycle", acts: account_lead}
+  P5: {response: "scheduled with brand", acts: brand_owner}
+
+authority:
+  bid_pct:            {specialist: 0.15, manager: 0.40, account_lead: null}   # null = unlimited with rationale
+  budget:             {specialist: "+25% relief 1x/week", manager: "reallocate in envelope", account_lead: "set envelope", brand_owner: "envelope >+15%"}
+  placement:          {specialist: false, manager: "<=20pts/14d", account_lead: true}
+  negatives:          {specialist: false, manager: true, account_lead: true}
+  pause_campaign:     {specialist: "P1 circuit-break only", manager: true, account_lead: true}
+  create_archive:     {manager: "propose", account_lead: "approve"}
+  objective_change:   {manager: "propose", account_lead: "approve"}
+  threshold_change:   {manager: "propose", account_lead: "approve at M8"}
+  below_breakeven_run:{account_lead: "propose with end date", brand_owner: "approve"}
+
+# Every threshold change goes here, with a date and a reason.
+changelog:
+  - date: "2026-09-03"
+    change: "Initial version."
+    reason: "System established."
