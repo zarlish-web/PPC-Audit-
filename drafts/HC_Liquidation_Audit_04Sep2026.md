@@ -11,9 +11,9 @@ Data: post-deployment bulk 16 Aug – 3 Sep · SellerBoard 16 Aug – 4 Sep · D
 
 ## The plan in six lines
 
-**Black is finished and should stop.** 82 units sold against an 80-unit target, cover is negative, and there is no remaining charge to avoid. Its allowable ad cost is now about **$3/unit**; it is being advertised at **$16.84**. The charge file already says *Stop Promo*.
+**Black is being advertised at roughly twice what it can carry.** Its remaining 80 charge-bearing units clear in about six weeks, so its avoidable charge — and therefore its allowable ad cost — is about **$8/unit**. It is being advertised at **$16.84**, and it took 64% of the spend.
 
-**White is the entire remaining job** — 108 units short of target, 4.15 months of cover, and it carries **69% of the charge**.
+**White is the larger remaining job** — 153 charge-bearing units against Black's 80, four and a half months of cover, and **69% of the charge**. Its ceiling is about $19/unit and it is inside it.
 
 **The budget is not the constraint. Reach is.** $343.73/day sits enabled and only **11%** of it spends. The lane is nine times short on impressions, not short of money.
 
@@ -60,14 +60,16 @@ The product does make money per unit before storage. What it cannot carry is sto
 
 Allowable ad cost = contribution + the charge a unit avoids by selling now rather than at its current pace:
 
-| | Charge/unit/mo | Months of cover | Avoidable | **Ceiling** |
-|---|---|---|---|---|
-| **WHITE** | $3.84 | 4.15 | $15.94 | **$19.01** |
-| **BLACK** | $3.28 | −0.04 | ~$0 | **$3.07** |
+Months to clear is computed from **AIS units at realised velocity**, not from the charge file's DOH/MOH columns — those come from the same stale snapshot as its price and landed cost.
 
-**This split is the most important number in the audit.** Black has already cleared its target, so it has no future charge to avoid — its ceiling collapses to bare contribution. White still holds four months of accruing charge, which is what funds a high allowable ad cost.
+| | AIS units | Realised velocity | Months to clear | Charge/unit/mo | Avoidable | **Ceiling** |
+|---|---|---|---|---|---|---|
+| **WHITE** | 153 | 1.15/day | ~4.4 | $3.84 | $16.90 | **$19.97** |
+| **BLACK** | 80 | 1.80/day | ~1.5 | $3.28 | $4.92 | **$7.99** |
 
-Against a blended actual of **$16.84 per ad-attributed unit**: White clears its ceiling; **Black exceeds its own by more than five times.**
+**This split is the most important number in the audit.** Both SKUs still carry charge, but Black clears its remaining pool in about six weeks against White's four and a half months — so Black has roughly a third of White's avoidable charge and therefore roughly a third of the allowable ad cost.
+
+Against a blended actual of **$16.84 per ad-attributed unit**: White sits inside its ceiling; **Black runs at roughly twice its own.**
 
 ---
 
@@ -84,7 +86,7 @@ Against a blended actual of **$16.84 per ad-attributed unit**: White clears its 
 
 43 of the 59 units are ad-attributed; ~16 organic. Real ACOS 34.4%.
 
-**Most of the spend went to the SKU with the lowest ceiling.** Black took 64% of ad spend and holds a $3.07 ceiling. White, which carries the remaining job and a $19.01 ceiling, took 36%.
+**The spend is pointed at the wrong SKU.** Black took **64%** of ad spend against a **$7.99** ceiling. White, which holds nearly twice the charge-bearing units and a **$19.97** ceiling, took **36%**. The allocation is close to inverted against the economics.
 
 ---
 
@@ -181,7 +183,7 @@ It ran anyway, took **11% of total ad spend**, and returned nothing. A staged de
 
 | # | Verdict | Evidence |
 |---|---|---|
-| **1** | **Stop advertising Black.** | Target met (82/80), cover negative, no charge left to avoid. Ceiling $3.07 against $16.84 actual. The charge file already says *Stop Promo* |
+| **1** | **Cut Black's spend to its ceiling — roughly $8/unit, against $16.84 today.** Not a stop: Black still holds 80 charge-bearing units, 46 of them at 456+ days | §2. The charge file's *Stop Promo* refers to its promotional target being met (82/80), not to advertising |
 | **2** | **White is the whole job.** 108 units, 4.15 months cover, 69% of the charge | §2, §3 |
 | **3** | **Reallocate, do not add budget.** Move from Phrase ($75/day at 8%) and TESTING ($55/day at 1%) into the auto catch-all and broad lanes hitting their caps | §5 |
 | **4** | **Close the expansion book.** ~$90/day enabled, ~$20 spent, eleven campaigns under 200 impressions | §5 |
@@ -200,9 +202,9 @@ It ran anyway, took **11% of total ad spend**, and returned nothing. A staged de
 | Aged units | Charge file "Aged Units" 651 | Charge file "Total AIS Units" 233 · plan 311 · DOH ~262 |
 | Landed cost | Charge file $18.86 | SellerBoard $21.36 |
 | Price | Charge file $41.95 | SellerBoard $39.95 |
-| Terminal option, Black | Charge file **LIQ** | 14 Aug plan **Keep-at-Amazon** |
+| Black months of cover | Charge file DOH −1.07 / MOH −0.04 | 80 AIS units still accruing · ~1.5 months at realised velocity |
 
-The last row needs an owner's answer. The deciding system says liquidate Black; the PPC plan says keep everything. They cannot both stand.
+The last row matters because the ceiling is built on it. The charge file's DOH and MOH columns carry the same stale date as its price and landed cost, and they imply Black has no stock while the same file counts 80 charge-bearing units. The AIS unit count is used here.
 
 ---
 
@@ -230,8 +232,8 @@ The last row needs an owner's answer. The deciding system says liquidate Black; 
 
 | # | Decision | Owner | By |
 |---|---|---|---|
-| 1 | **Black: liquidate as the charge file says, or keep at Amazon as the plan says?** Everything about Black's spend follows from this | LTSF owner with PPC Lead | Immediately |
-| 2 | Authorise stopping Black advertising pending #1 | PPC Lead | This week |
+| 1 | Confirm Black's true remaining charge-bearing units and cover — the charge file's DOH and AIS columns disagree, and Black's ceiling is built on the answer | LTSF owner with Data Ops | Immediately |
+| 2 | Authorise cutting Black's cost per unit to its ceiling — roughly half its current level | PPC Lead | This week |
 | 3 | Approve the reallocation — no new budget, ~$130/day moved from idle campaigns to lanes at their cap | PPC Lead | This week |
 | 4 | Correct the charge file's price, landed cost and unit basis — and confirm which other products were sized off the same stale figures | Brand Management with Data Ops | Before the next cycle |
 | 5 | Rule on which ceiling definition governs: contribution plus bounded avoidable charge, as used here, or one of the two other constructions in current use | PPC Lead with Finance | Before the next plan |
