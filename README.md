@@ -121,6 +121,8 @@ The canon's break-even figures are still computed and shown on every plan, so th
 | Minimum bid | **$0.25** | Below this the bid does not clear enough auctions to matter |
 | Minimum daily budget | **$5.00** | Below this the campaign cannot deliver a readable day |
 
+**Delivering campaigns are corrected gradually.** A campaign producing orders moves 5 cents a cycle toward its ceiling and keeps its budget — it is clearing stock, and cutting it cuts units. Hard cuts, pauses and budget cuts are for lanes with zero orders. Every multi-cycle walk states how many cycles it takes and when it completes.
+
 A campaign is funded at the floor or paused — never cut to something in between, which produces a lane that spends and cannot deliver. Where the computed ceiling falls below $0.25, the floor governs and the gap is logged as accepted over-ceiling spend against the charge it avoids.
 
 **Still open:** the Hanging Closet plan predates the leak audit, the refund gate, the objective re-tag and these floors. Seven of its budget cuts land below $5/day and its bids land at $0.24. It needs re-running.

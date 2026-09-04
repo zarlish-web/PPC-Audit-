@@ -98,6 +98,9 @@ Nothing ships with a failure open that is not a named missing input.
 | exit | The stock threshold at which clearance exits is stated |
 | vocabulary | Every verdict comes from the closed list; no invented strings |
 | one lever | No row carries two unrelated levers in one cycle |
+| gradual | No bid move over 5 cents on a campaign that produced orders |
+| no hard cuts | No budget cut, pause or structural change on a delivering campaign |
+| walk stated | Every multi-cycle correction states its cycle count and completion date |
 | sign-off | Every human-confirm trigger flagged, with its trade-off in reviewer units |
 | deal state | No figure blends a deal window with a clean window |
 | staleness | No anchor older than 45 days, or predating a price/fee/packaging/LTSF change |

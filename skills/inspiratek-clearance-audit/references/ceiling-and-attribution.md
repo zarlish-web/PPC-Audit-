@@ -103,13 +103,26 @@ Where a campaign shipped nothing, fall back to the route implied by its product 
 
 ### Bringing a lane back to its ceiling
 
-For a delivering campaign above its ceiling, scale the budget by exactly the factor it is over:
+**Which method applies depends on whether the campaign is producing orders.**
+
+**Delivering — orders greater than zero.** Walk the bid down, 5 cents per cycle, and hold the budget. The campaign is clearing stock; cutting its budget cuts the units it clears, which is the opposite of the objective.
+
+```
+new bid = max(current bid − 0.05, ceiling × CVR, 0.25 floor)
+cycles to arrive = ceil((current bid − target) ÷ 0.05)
+```
+
+State the cycle count and the completion date. A bid at $0.45 walking to $0.25 is four cycles, and the plan says so rather than implying it lands next week.
+
+**Not delivering — zero orders.** No step limit. Scale the budget by exactly the factor the lane is over:
 
 ```
 new budget = observed daily spend × (ceiling ÷ cost per unit cleared)
 ```
 
-This is arithmetic rather than judgement, it is checkable from the file, and it does not round to a convenient number. Bids in the same campaign are cut to `ceiling × CVR` in the same pass — a budget cut without a bid cut just spends the same money faster.
+Then apply the floors: the result is either at or above $5.00/day, or the campaign is paused. Nothing is staged in between.
+
+**Never a hard cut on a delivering lane.** A budget cut, a pause, or a bid move over 5 cents on a campaign producing orders trades a known stream of clearance for a guess about efficiency.
 
 ### Worked shape
 

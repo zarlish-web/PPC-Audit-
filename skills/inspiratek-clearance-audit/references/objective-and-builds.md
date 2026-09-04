@@ -119,3 +119,4 @@ One row per campaign to build, carrying at minimum:
 - More campaigns than the clearability gate says can be fed
 - Any campaign, bid or budget below the operating floors
 - A narrow term set justified as cost control — width is the point, and the bid is the cost control
+- A hard cut or a pause on a campaign that is producing orders — those move 5 cents a cycle

@@ -325,6 +325,29 @@ Decide from 30-day data, not the 7-day window — a thin window produces too few
 
 **Placement modifiers are set per campaign per placement from that campaign's own conversion data.** Never a blanket percentage in either direction — a blanket 0% is the same mistake as a blanket 135%, just cheaper. Top of Search is often the best placement on conversion and revenue per click while being worst on CPA, so the fix is usually to reduce the modifier, not remove it. See `references/placement-tiers.md`.
 
+### Gradual correction — never break a campaign that is working
+
+**A campaign producing orders is corrected in small steps, never cut hard, however bad its cost looks.** It is delivering units, and units are the objective. An aggressive cut on a delivering lane trades a known stream of clearance for a guess about efficiency.
+
+**The test is simple and readable from the file: did the campaign produce orders in the window?**
+
+| | Delivering — orders > 0 | Not delivering — zero orders |
+|---|---|---|
+| The lever | **The bid, and only the bid** | Bid, budget, or pause as the evidence supports |
+| Step size | **5 cents maximum per cycle** | No step limit |
+| Budget | **Held.** Cutting it cuts units, which is the thing we want | Cut or paused where the evidence supports it |
+| Pause | Not while it delivers | Available |
+
+**The walk-down.** A delivering campaign above its ceiling moves 5 cents a cycle toward it, and keeps moving each cycle until it arrives. State in the plan **how many cycles the correction takes and the date it completes** — a bid at $0.45 against a $0.25 floor is four cycles, not one decision.
+
+The same 5-cent limit applies upward. A delivering campaign under its ceiling is raised gradually too, so a correction in either direction stays readable against the cycle that caused it.
+
+**Never below the floor.** The walk stops at $0.25 even where the computed ceiling sits lower; the gap is logged as accepted over-ceiling spend.
+
+**This is what "aggressive" means, and it is barred on a delivering campaign:** a bid move over 5 cents, a budget cut of any size, a pause, or a structural change. If the arithmetic says a delivering lane is far over ceiling, that is a reason to start walking it down this cycle — not a reason to take it out in one move.
+
+*Definition note: "delivering" is read here as one or more orders in the window. A single order on heavy spend is a thin read, so it still gets the gradual treatment but is reviewed at every cycle rather than left to walk on its own.*
+
 **Two thresholds, and they are not the same threshold.** The canon's sample gate parks a **zero-order row under 15 clicks** — hold and wait, and say whether low clicks are consistent with low search volume. The negation line is separate and further out: at conversion rate *c*, one order is not expected until roughly `1/c` clicks, so a term below that showing zero orders is not evidence of failure and negating it removes discovery surface. Both are stated, and neither is used in place of the other. **A row with orders is never parked by either gate.**
 
 **Every row that does not change is classified, not ignored.** Produce a No-Action Census: verdict class, row count, and the mechanical reason no action is allowed. A file where most rows are silent cannot be reviewed.
