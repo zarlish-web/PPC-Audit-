@@ -260,39 +260,77 @@ Full rules, the worked table and what to do when the gate contradicts the search
 
 ---
 
-## 5 · The ceiling
+## 5 · The ceiling — three numbers, and the bid sits between them
 
-**The ruling at the top of this file settles which construction governs: forward cash.** Compute the canon's figures anyway — they are the honest picture of what the push costs — but the plan is sized on forward cash.
+**Forward cash governs the decision. Break-even is not discarded — it is the reference point you must know before you decide anything.** One tells you what you may spend; the other tells you where profit actually ended. Working without the second is flying blind, even when you have ruled that the first wins.
 
-```
-contribution     = ASP − referral − FBA − refund cost per unit shipped
-avoidable charge = storage per unit per month × min(2, months to clear at realised velocity)
-CEILING          = contribution + avoidable charge
-max click price  = CEILING × conversion rate,  then raised to the $0.25 floor if it lands below
-```
+Compute all three, every time, per child:
 
-**`min(2, months to clear)` means take whichever is smaller.** Two months is the most charge the plan is allowed to claim credit for, however long the stock would otherwise sit. But if the stock will actually be gone sooner than two months, only that shorter period is claimable — a variation clearing in six weeks cannot avoid two months of charge, because the third month was never going to happen.
-
-Alongside it, always state the canon's figures so the cost of the ruling is visible, not hidden:
+| | What it is | What it means |
+|---|---|---|
+| **1 · The floor** | $0.25 default | Below this the bid wins nothing. Not a choice |
+| **2 · Max profitable CPC** | `margin $ × CVR` | **Where profit ends.** Past this the sale itself loses money |
+| **3 · Max click price** | `(contribution + avoided charge) × CVR` | **Where forward cash ends.** The hard cap — never exceeded |
 
 ```
-break-even ACoS    = (ASP − COGS − Amazon bundled fees) ÷ ASP    no return allowance
-max profitable CPC = margin $ × CVR
+break-even ACoS    = (ASP − COGS − Amazon bundled fees) ÷ ASP     no return allowance
+margin $           = ASP − COGS − Amazon bundled fees
+max profitable CPC = margin $ × CVR                                       ← number 2
+avoided charge     = storage per unit per month × min(2, months to clear)
+ceiling            = contribution + avoided charge
+max click price    = ceiling × CVR                                        ← number 3
 ```
 
-Where the plan bids above `max profitable CPC`, that is the labeled investment, and it carries three things or it is not compliant: **a cap** (the ceiling), **a date** (when it is re-read), and **a log** (the charge being avoided, in dollars).
+**The zone between 2 and 3 is the subsidy zone.** Spending there is deliberate: the sale loses money and the avoided storage charge pays for it. That is the ruling, and it is legitimate.
+
+**Bid low in the zone, not at the top of it.** Number 3 is a maximum, never a target. Start near the bottom, and move up only when volume genuinely requires it — every cent above number 2 is money the charge has to justify.
+
+### The subsidy check — what makes this disciplined rather than a blank cheque
+
+At any bid, you can price exactly how much you are subsidising and test it against what you are buying:
+
+```
+subsidy per click = bid − max profitable CPC
+subsidy per unit  = subsidy per click ÷ CVR
+```
+
+**The test: is the subsidy per unit less than the charge avoided per unit?**
+
+- **Yes** → the forward-cash argument holds. The spend is justified and the plan says so with both numbers.
+- **No** → you are paying more to avoid the charge than the charge costs. That is not forward cash any more, it is just loss, and it is logged as such with the gap in dollars.
+
+This is the same boundary as number 3 expressed per unit rather than per click, so it never contradicts the ceiling — it just makes the ceiling's meaning visible to a reader who does not want to re-derive it.
+
+### When the floor sits above the ceiling
+
+It happens, and it is not an error. On one live product:
+
+| | White | Black |
+|---|---|---|
+| Floor bid | $0.25 | $0.25 |
+| Max profitable CPC | $0.067 | $0.091 |
+| Max click price | $0.234 | $0.236 |
+| Subsidy per unit at the floor | $8.40 | $5.40 |
+| Charge avoided per unit | $7.68 | $4.92 |
+| **Gap** | **$0.72 over** | **$0.48 over** |
+
+Both children's whole workable band sits **below** the minimum bid that buys anything. The floor governs, the product runs at $0.25, and the plan states plainly that each unit carries roughly 50–70 cents of loss beyond what the avoided charge justifies.
+
+**That is a finding, not a rounding note.** It says the clearance case is marginal at any bid, and it belongs next to the pricing recommendation going to Brand Management — because a small price move changes every one of these numbers.
 
 ### Rules that still hold
 
-**COGS never enters a live decision column on aged stock.** It is identical across every option for the same units, so it cannot change which option wins.
+**COGS never enters a live decision column on aged stock.** Identical across every option for the same units, so it cannot change which option wins.
 
-**The ceiling test is cost per unit *cleared*, built from cost per unit *shipped*.** Not cost per ad-attributed order — advertising may attribute only a fraction of units, and the two denominators can differ by four times. CPA per order is for keyword-level decisions only.
+**The ceiling test is cost per unit *cleared*, built from cost per unit *shipped*.** Not cost per ad-attributed order — the two can differ by four times. CPA per order is for keyword-level decisions only.
 
-**Where a campaign ships more than one child, its ceiling is weighted by the children it actually ships**, not by its name and not by the lower child by default.
+**A campaign shipping more than one child takes a ceiling weighted by the children it actually ships** — not its name, not the lower child by default.
 
-**Count the charge once.** It sits either inside the fees line reducing contribution, or added back as avoided charge — never both.
+**Count the charge once.** Either inside the fees line reducing contribution, or added back as avoided charge. Never both.
 
-**Months-to-clear is computed, never read** — from charge-bearing units at realised velocity, not from a supplied cover or days-on-hand column.
+**Months-to-clear is computed, never read** — from charge-bearing units at realised velocity.
+
+**`min(2, months to clear)` takes whichever is smaller.** Two months is the most the plan may claim; stock clearing sooner claims only the shorter period, because the rest of the charge was never going to be paid.
 
 **Deal-state and clean-state are computed separately, never blended.** Clean-state governs ordinary decisions.
 

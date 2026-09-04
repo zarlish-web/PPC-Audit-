@@ -89,7 +89,10 @@ Nothing ships with a failure open that is not a named missing input.
 | negative CM | Pricing routed to BM as a parallel recommendation, never used to withhold the push |
 | stock gate | No clearance push on a not-GREEN SKU, and none on a SKU whose hero size is RED |
 | ceiling | No new bid above the forward-cash ceiling for its routed child |
-| both constructions | Canon break-even and the forward-cash ceiling both shown; forward cash is the one acted on, per the standing ruling |
+| three numbers | The floor, max profitable CPC and max click price all computed and shown per child |
+| subsidy priced | Every bid above max profitable CPC states its subsidy per unit against the charge avoided per unit |
+| subsidy justified | Where subsidy per unit exceeds the charge avoided, the gap is logged in dollars and routed to the pricing recommendation |
+| bid placement | Bids sit low in the subsidy zone; the ceiling is a maximum, never used as a target |
 | floors | No bid under $0.25 and no budget under $5.00 anywhere in the file, staged or live |
 | no starved lanes | No campaign cut to a value between zero and the floor — funded at the floor or paused |
 | budget direction | No budget reduced as an efficiency action; reductions only on a pause, or from a lane genuinely at its cap |

@@ -112,9 +112,19 @@ Each exists because something went wrong on a live product.
 | SOP-12 P13 | Draft v0.1 — not ratified |
 | Hanging Closet plan | Delivered, then corrected — see below |
 
-**RULED, 4 September 2026 — the clearance ceiling is forward cash.** On a liquidation product PPC is the lever that moves the stock. Spending a little beyond profitable is accepted, because the charge avoided is worth more than the margin given up. A negative contribution does not stop the push and does not by itself send the product to pricing; pricing goes to Brand Management as a parallel recommendation.
+**RULED, 4 September 2026 — forward cash governs, break-even is the reference.** On a liquidation product PPC is the lever that moves the stock, and spending past profitable is accepted because the avoided charge pays for it. But break-even is not discarded — it is computed every time so nobody bids blind.
 
-The canon's break-even figures are still computed and shown on every plan, so the cost of the ruling is visible rather than hidden.
+Three numbers per child, and the bid sits between them:
+
+| | Formula | Meaning |
+|---|---|---|
+| Floor | $0.25 default | Below this nothing wins |
+| **Max profitable CPC** | margin × CVR | **Where profit ends** |
+| **Max click price** | (contribution + avoided charge) × CVR | **Where forward cash ends — the hard cap** |
+
+The gap between the last two is the **subsidy zone**. Bid low in it; the cap is a maximum, never a target. And price the subsidy: `(bid − max profitable CPC) ÷ CVR` is the subsidy per unit, and it has to come in under the charge avoided per unit or the forward-cash argument does not hold and the gap is logged.
+
+A negative contribution does not stop the push; pricing goes to Brand Management as a parallel recommendation.
 
 **Operating floors, defaults, overridable per product:**
 
