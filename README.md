@@ -110,16 +110,20 @@ Each exists because something went wrong on a live product.
 | SOP-12 P13 | Draft v0.1 — not ratified |
 | Hanging Closet plan | Delivered, then corrected — see below |
 
-**Open — one decision blocks everything else.** Two ceiling constructions are live in the account and they point opposite ways:
+**RULED, 4 September 2026 — the clearance ceiling is forward cash.** On a liquidation product PPC is the lever that moves the stock. Spending a little beyond profitable is accepted, because the charge avoided is worth more than the margin given up. A negative contribution does not stop the push and does not by itself send the product to pricing; pricing goes to Brand Management as a parallel recommendation.
 
-| | Construction | Hanging Closet result |
+The canon's break-even figures are still computed and shown on every plan, so the cost of the ruling is visible rather than hidden.
+
+**Operating floors, defaults, overridable per product:**
+
+| Floor | Default | Why |
 |---|---|---|
-| **A** | Canon: the surcharge is a margin drag, so break-even gets *worse*; clear up to break-even, no further | Max profitable CPC **$0.067–$0.091**; CM after carry negative on both children → **ROUTE TO BM** |
-| **B** | Forward cash: selling now avoids charge later, so the charge is added *to* the ceiling | Ceiling $7.99–$10.75, max click price **$0.23–$0.24** → fund a reach layer |
+| Minimum bid | **$0.25** | Below this the bid does not clear enough auctions to matter |
+| Minimum daily budget | **$5.00** | Below this the campaign cannot deliver a readable day |
 
-A plan built on A stops and sends the product to pricing. A plan built on B funds campaigns. **This is the highest-value open decision in the repo** and it is filed as such — the skill computes and shows both, names which one it acted on, and never picks silently.
+A campaign is funded at the floor or paused — never cut to something in between, which produces a lane that spends and cannot deliver. Where the computed ceiling falls below $0.25, the floor governs and the gap is logged as accepted over-ceiling spend against the charge it avoids.
 
-The Hanging Closet plan was built on B, before the leak audit, the refund gate and the canon check existed. It needs re-running.
+**Still open:** the Hanging Closet plan predates the leak audit, the refund gate, the objective re-tag and these floors. Seven of its budget cuts land below $5/day and its bids land at $0.24. It needs re-running.
 
 ---
 

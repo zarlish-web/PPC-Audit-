@@ -12,7 +12,7 @@ A clearance campaign answers one question: **how cheaply can we move these units
 |---|---|---|
 | Buys | Position | Volume at a price where losing costs little |
 | Judged on | Rank movement against a sized push | Units shipped, cost per unit cleared, charge avoided |
-| Bid may exceed break-even | Yes, sized, capped, time-boxed | Only as a labeled, capped, dated exception — see §5 |
+| Bid may exceed break-even | Yes, sized, capped, time-boxed | **Yes** — that is the ruling. Capped at the forward-cash ceiling, dated, and logged against the charge avoided |
 | Top-of-search premium | The primary lever | Barred as a rank lever; a modifier is set only where that placement's own CPA sits inside the ceiling |
 | Exact match | The vehicle for the push | Proven converters only |
 | Success looks like | A rank number | An empty shelf |
@@ -36,7 +36,17 @@ Propose from this list. A build that is not one of these is a new concept and go
 | **B3 · Attribute groups** | One campaign per product attribute the stock actually has — size, tier count, material, colour | Phrase, Broad on the widest | Tiered by keyword, never by price on the same keyword |
 | **B4 · Proven converters** | Terms with demonstrated conversion on this product | Exact | Ceiling × that term's own CVR |
 | **B5 · Sponsored Brands** | Product Collection across Broad, Phrase, Exact and ASIN targeting — not Phrase-only | Mixed | Its own ceiling; SB clicks price differently from SP |
-| **B6 · Sponsored Display** | Competitor, category, views, purchase, audiences | Product and audience | Its own ceiling |
+| **B6 · Category targeting** | The categories this product genuinely sits in, with refinements | SP category targets | At or under the ceiling |
+| **B7 · Sponsored Display** | Competitor, category, views, purchase, audiences | Product and audience | Its own ceiling |
+
+### The operating floors apply to every class
+
+| Floor | Default |
+|---|---|
+| Minimum bid | **$0.25** |
+| Minimum daily budget | **$5.00** |
+
+A proposed campaign that cannot justify $5/day is not proposed. A bid the ceiling puts below $0.25 is written at $0.25, and the difference is logged as accepted over-ceiling spend against the charge it avoids. **Nothing is ever staged between zero and the floor** — that produces a lane that spends and cannot deliver.
 
 **Intensity — how many classes open — is set by the charge band. Whether any open at all is set by the clearability gate, never by the charge.** The largest charge in a portfolio is frequently the least clearable stock in it, because low velocity is what aged it. A large charge on a closed lane is a reason to clear faster by another route, not to spend into it.
 
@@ -68,7 +78,7 @@ One row per campaign to build, carrying at minimum:
 
 | Column | Why |
 |---|---|
-| Build class | B1–B6 above |
+| Build class | B1–B7 above |
 | Campaign name | House naming convention |
 | Targeting type / match | What it buys |
 | SKU set | Which children, and only which children |
@@ -104,6 +114,8 @@ One row per campaign to build, carrying at minimum:
 - A rank target, or any campaign whose success measure is a rank position
 - A top-of-search premium bought to hold position
 - Exact-match expansion onto unproven terms
-- A bid above the ceiling on any row, under any justification that is not the labeled, capped, dated exception
+- A bid above the **forward-cash ceiling** — above break-even is expected and allowed; above the ceiling is not
 - A family-wide budget move, a shared coupon, or a parent re-point on an overstock archetype
 - More campaigns than the clearability gate says can be fed
+- Any campaign, bid or budget below the operating floors
+- A narrow term set justified as cost control — width is the point, and the bid is the cost control

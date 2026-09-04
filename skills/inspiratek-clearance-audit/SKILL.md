@@ -22,7 +22,16 @@ This skill is the **aged-stock branch** of the account's PPC family. It does not
 | The plan document and the execution workbook | `ppc-plan-builder`, `ppc-workbook-builder` | This skill supplies the clearance content they carry |
 | **The leak audit, the refund gate, product-ad attribution, the data traps, clearability, publishing** | **This skill** | Its actual contribution |
 
-**Where this skill and the locked canon disagree, the canon wins and the disagreement is reported, never silently resolved.** One such disagreement is live and material — see §5.
+**Where this skill and the locked canon disagree, the canon wins and the disagreement is reported, never silently resolved** — except where the account has ruled. One such ruling is standing and it governs this whole skill:
+
+> **RULING — the clearance ceiling is forward cash (Construction B).** On a liquidation product, PPC is the lever that moves the stock. Spending a little beyond profitable is accepted, because the charge avoided is worth more than the margin given up. A negative contribution does **not** stop the push and does **not** by itself send the product to pricing. Recorded 4 September 2026.
+
+Two consequences, and they are the opposite of what the canon alone would do:
+
+- **The plan does not stop on negative CM.** It still recommends pricing work where price is the bigger lever — that goes in the Brand Management findings alongside the push, not instead of it.
+- **The job is to spend the clearance budget well, not to spend as little as possible.** Fund it properly, cover the term set widely, and control cost through the bid rather than by starving the lane.
+
+The canon's own §3 permits this: LTSF-Clearance is one of the three labeled investment objectives that may exceed break-even **while capped, dated and logged**. This skill supplies the cap, the date and the log.
 
 ## How a run is assembled
 
@@ -54,10 +63,25 @@ The build classes and what may be proposed under a clearance objective: `referen
 
 ---
 
-Two canon rules that decide most clearance products before any campaign is opened:
+Two gates still stand, and neither is an economics gate:
 
-- **Under negative CM the LTSF answer is pricing, not bids.** Route to Brand Management. An aged SKU whose contribution does not survive the surcharge cannot be advertised into profit at any bid, and a bid book built for it is wasted work.
-- **Gate the push on stock.** GREEN (overstock, room to clear) → aggressive up to break-even. Not GREEN (already low) → **do not push**; it clears naturally, and the LTSF is flagged in the Suggestion rather than funded. Never run a clearance push on a SKU whose hero size is RED — clear the aged variation, protect the hero.
+- **Gate the push on stock, not on profit.** GREEN (overstock, room to clear) → push. Not GREEN (already low) → **do not push**; that stock clears by itself and spending on it buys nothing. Never run a clearance push on a SKU whose hero size is nearly out — clear the aged variation, protect the hero. *This gate is about how much stock is left, not about whether the maths is profitable. The ruling above removed the profit gate; it did not remove this one.*
+- **Under negative CM, pricing still goes to Brand Management** — as a recommendation running alongside the push, never as a reason to withhold it.
+
+## Operating floors — below these, nothing works
+
+**A campaign is either funded properly or it is paused. There is no middle.** Below these levels a campaign cannot win enough auctions to produce a readable result, so the money is spent and nothing is learned.
+
+| Floor | Default | Meaning |
+|---|---|---|
+| Minimum bid | **$0.25** | Below this the bid does not clear enough auctions to matter |
+| Minimum daily budget | **$5.00** | Below this the campaign cannot deliver a readable day |
+
+These are defaults, not constants. A product may set its own, and the override is recorded with the reason.
+
+**When the computed ceiling falls below the floor, the floor governs.** A ceiling of $0.23 does not become a $0.23 bid — it becomes a $0.25 bid, and the gap is written down as accepted over-ceiling spend with the charge it is avoiding. That is exactly the "capped, dated, logged" exception, used deliberately rather than drifted into.
+
+**Never cut a campaign to a number between zero and the floor.** Cutting a $75/day campaign to $2.94 produces a lane that spends money and cannot deliver. Either it earns $5/day or it is paused, and the plan says which and why.
 
 ## Do this in order
 
@@ -199,51 +223,41 @@ Full rules, the worked table and what to do when the gate contradicts the search
 
 ## 5 · The ceiling
 
-**Start from the canon, not from this skill.** Compute and state first:
+**The ruling at the top of this file settles which construction governs: forward cash.** Compute the canon's figures anyway — they are the honest picture of what the push costs — but the plan is sized on forward cash.
 
 ```
-break-even ACoS  = (ASP − COGS − Amazon bundled fees) ÷ ASP     no return allowance
-margin $         = ASP − COGS − Amazon bundled fees
-max profitable CPC = margin $ × CVR at the delivering placement
-clicks-to-loss   = margin $ ÷ CPC
-CPA              = CPC ÷ CVR
+contribution     = ASP − referral − FBA − refund cost per unit shipped
+avoidable charge = storage per unit per month × min(2, months to clear at realised velocity)
+CEILING          = contribution + avoidable charge
+max click price  = CEILING × conversion rate,  then raised to the $0.25 floor if it lands below
 ```
 
-Then apply the surcharge **the way the canon applies it**: *the surcharge is a margin drag, so the SKU's effective break-even is worse.* Recompute break-even net of the drag, and check the sign:
+**`min(2, months to clear)` means take whichever is smaller.** Two months is the most charge the plan is allowed to claim credit for, however long the stock would otherwise sit. But if the stock will actually be gone sooner than two months, only that shorter period is claimable — a variation clearing in six weeks cannot avoid two months of charge, because the third month was never going to happen.
+
+Alongside it, always state the canon's figures so the cost of the ruling is visible, not hidden:
 
 ```
-CM after carry = margin $ − (storage per unit per month × months held to sale)
+break-even ACoS    = (ASP − COGS − Amazon bundled fees) ÷ ASP    no return allowance
+max profitable CPC = margin $ × CVR
 ```
 
-**If CM after carry is negative, stop.** The verdict is ROUTE TO BM — the lever is price, not bids — and no campaign work is authorised. This is the most common outcome on genuinely aged stock and it is a finding, not a failure.
+Where the plan bids above `max profitable CPC`, that is the labeled investment, and it carries three things or it is not compliant: **a cap** (the ceiling), **a date** (when it is re-read), and **a log** (the charge being avoided, in dollars).
 
-If CM after carry is positive, the clearance objective runs at **break-even ACoS: sell the aged stock out up to break-even, no further**, ring-fenced, labeled, and tagged separately in TACoS, under the objective's own cap.
-
-**Exit clearance when stock clears below the surcharge threshold**, and say on the face of the plan what that threshold is.
-
-### The disagreement to report, not resolve
-
-This skill's inherited construction adds avoided storage *to* the ceiling:
-
-```
-ceiling = contribution + (storage per unit per month × min(2, months to clear))
-```
-
-That is a forward-cash argument — selling now avoids charge later — and it moves the ceiling **up**. The canon treats the same surcharge as a margin drag and moves break-even **down**. On the same product the two produce opposite recommendations, and the gap is large: on one live product the forward-cash ceiling read $19.97 per unit where the canon's max profitable CPC read 6.7 cents.
-
-**Do not pick one silently.** Compute both, show both, name which one the plan acted on, and file the choice as a decision requested. Under the canon's own rule the forward-cash figure is only available as one of the three labeled investment objectives, and then **only while capped, dated and logged** — never as an open-ended raise.
-
-### Rules that hold under either construction
+### Rules that still hold
 
 **COGS never enters a live decision column on aged stock.** It is identical across every option for the same units, so it cannot change which option wins.
 
-**The ceiling test is cost per unit *cleared*, built from cost per unit *shipped*.** Not cost per ad-attributed order — advertising may attribute only a fraction of units, and the two denominators produce very different numbers. CPA per order is for keyword-level decisions only.
+**The ceiling test is cost per unit *cleared*, built from cost per unit *shipped*.** Not cost per ad-attributed order — advertising may attribute only a fraction of units, and the two denominators can differ by four times. CPA per order is for keyword-level decisions only.
 
 **Where a campaign ships more than one child, its ceiling is weighted by the children it actually ships**, not by its name and not by the lower child by default.
 
-**Deal-state and clean-state are computed separately, never blended.** A window containing a deal is read twice — once from deal-state data, once from clean-state — and neither substitutes for the other. Clean-state governs ordinary decisions.
+**Count the charge once.** It sits either inside the fees line reducing contribution, or added back as avoided charge — never both.
 
-**Every anchor is stale past 45 days, or after any price, fee, packaging or LTSF change.** A verdict resting on a stale anchor is provisional and says so.
+**Months-to-clear is computed, never read** — from charge-bearing units at realised velocity, not from a supplied cover or days-on-hand column.
+
+**Deal-state and clean-state are computed separately, never blended.** Clean-state governs ordinary decisions.
+
+**Every anchor is stale past 45 days, or after any price, fee, packaging or LTSF change.**
 
 Construction, worked examples and the per-campaign blend: `references/ceiling-and-attribution.md`.
 
@@ -288,7 +302,13 @@ Then compare storage saved against extra ad cost at each level. Net benefit usua
 
 **State the stock ceiling.** Units ÷ velocity is often a harder limit than budget.
 
-**Released budget is not automatically redeployed.** Before recommending a reallocation, check that some lane inside its ceiling is actually budget-capped. Where every lane that clears runs far below its budget and every lane with reach sits above ceiling, the money has nowhere to go — release it and say so. Utilisation measures whether a lane *can* spend, never whether it *should*.
+**Released budget is redeployed into coverage, not back into a lane that cannot spend it.** Under the clearance ruling the money is meant to work, so releasing it and stopping is not the answer. But a lane running at 5% of its budget is short of reach, not short of money, and adding budget there changes nothing.
+
+So the destination for released money is **new reachable surface**: more relevant keywords, the auto campaign's four groups, category targeting, and product targeting. That is where an under-spending clearance product actually converts budget into units.
+
+**Check reach before funding.** A lane an order of magnitude short on impressions gets more targets, not more budget. A lane at or near its cap gets more budget. State which case each lane is in, with the impression numbers.
+
+**Every funded lane sits at or above the floors.** A lane not worth $5/day is paused and its budget goes to one that is.
 
 ---
 
@@ -329,7 +349,18 @@ Decide from 30-day data, not the 7-day window — a thin window produces too few
 
 Exact-heavy builds are the most common failure. Check your own output: if most Exact keywords have no conversion evidence, move them to Phrase.
 
-**Cover every surface.** SP, SB (Product Collection across Broad, Phrase, Exact and ASIN targeting — not Phrase-only), SD (competitor, category, views, purchase, audiences), Auto split into four isolated campaigns. The six build classes, the separation rules and the added-tab structure: `references/objective-and-builds.md`.
+**Cover every surface, widely.** On a clearance product coverage is the lever — the plan is trying to find volume at a low price, and a narrow term set cannot. Build across:
+
+- **Keywords** — every relevant term the master list carries, on Broad and Phrase, not a shortlist
+- **Auto** — split into four isolated campaigns (close, loose, substitutes, complements)
+- **Category targeting** — the categories this product genuinely sits in, with refinements where they narrow to the right shelf
+- **Product targeting (PAT)** — competitor and complement ASINs
+- **Sponsored Brands** — Product Collection across Broad, Phrase, Exact and ASIN targeting, not Phrase-only
+- **Sponsored Display** — competitor, category, views, purchase, audiences
+
+**Width comes from the target set; cost control comes from the bid.** Do not control cost by running fewer campaigns — that starves the lane and buys nothing. Control it by keeping every bid between the $0.25 floor and the ceiling.
+
+The seven build classes, the separation rules and the added-tab structure: `references/objective-and-builds.md`.
 
 **No bid above the ceiling**, where the maximum click price is `ceiling × conversion rate`. Bidding strategy fixed or down-only only — up-and-down can breach the ceiling at auction. Placement multipliers per §8, never blanket.
 

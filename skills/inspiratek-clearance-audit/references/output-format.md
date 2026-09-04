@@ -86,10 +86,14 @@ Nothing ships with a failure open that is not a named missing input.
 | scope | No campaign advertising a foreign SKU is in the file |
 | attribution | Spend reconciles to product-ad attribution, not campaign totals |
 | break-even | Break-even ACoS computed per SKU from the canon formula, no return allowance |
-| negative CM | Any SKU whose CM after carry is negative is routed to BM, not bid |
+| negative CM | Pricing routed to BM as a parallel recommendation, never used to withhold the push |
 | stock gate | No clearance push on a not-GREEN SKU, and none on a SKU whose hero size is RED |
-| ceiling | No new bid above max profitable CPC for its routed child |
-| both constructions | Canon break-even and the forward-cash ceiling both shown, with the acted-on one named |
+| ceiling | No new bid above the forward-cash ceiling for its routed child |
+| both constructions | Canon break-even and the forward-cash ceiling both shown; forward cash is the one acted on, per the standing ruling |
+| floors | No bid under $0.25 and no budget under $5.00 anywhere in the file, staged or live |
+| no starved lanes | No campaign cut to a value between zero and the floor — funded at the floor or paused |
+| over-ceiling log | Every bid above max profitable CPC carries its cap, its re-read date and the charge it avoids |
+| build width | The build spans keywords, auto, category and product targeting — not keywords alone |
 | labeled exception | Any spend above break-even is capped, dated and logged |
 | exit | The stock threshold at which clearance exits is stated |
 | vocabulary | Every verdict comes from the closed list; no invented strings |
@@ -106,8 +110,8 @@ Nothing ships with a failure open that is not a named missing input.
 | reversal | Every action has a Reverses If with a read date |
 | negation | No term negated below the negation line; no converting row parked by the sample gate |
 | placement | No blanket modifier in either direction; each set from its own campaign's data |
-| budget | No budget raised on a lane whose cost per unit cleared exceeds its ceiling |
-| redeployment | Released budget is only redeployed into a lane that is inside its ceiling *and* budget-capped |
+| budget | Budget raised only where the lane can actually deliver more; a lane short of reach gets targets instead |
+| redeployment | Released budget goes to new reachable surface, or to a lane at its cap — never to a lane short of reach |
 | leak share | The document states what share of total monthly loss the PPC plan addresses |
 | declaration | Archetype, risk tier, floor price and terminal option read, never derived |
 | objective re-tag | Every campaign on aged SKUs carries the clearance objective, with its prior value recorded |
