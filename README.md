@@ -21,7 +21,9 @@ skills/inspiratek-clearance-audit/
     ├── placement-tiers.md              modifiers per campaign per placement
     └── output-format.md                document spine, workbook tabs, validation gate
 
-drafts/                                 SOPs — review and ratify
+drafts/                                 SOPs and amendments — review and ratify
+├── AMD-01 decision_framework §8.3       the clearance ceiling contradiction
+├── AMD-02 v4.0 §8.1 S-A10               the S-A10 vs SOP-27 R2 conflict
 scripts/                                the reproducible run
 ├── build_hc.py                         decision rules applied to a bulk
 ├── write_hc.py                         workbook writer, 13 tabs
@@ -111,6 +113,8 @@ Each exists because something went wrong on a live product.
 | The skill | Merged from the installed baseline plus one live run; not yet re-run end to end |
 | SOP-27 P15 | Draft v0.4 — not ratified |
 | SOP-12 P13 | Draft v0.1 — not ratified |
+| AMD-01 · decision_framework §8.3 | Draft v0.1 — not ratified |
+| AMD-02 · v4.0 §8.1 S-A10 | Draft v0.1 — not ratified |
 | Hanging Closet plan | Delivered, then corrected — see below |
 
 **RULED, 4 September 2026 — forward cash governs, break-even is the reference.** On a liquidation product PPC is the lever that moves the stock, and spending past profitable is accepted because the avoided charge pays for it. But break-even is not discarded — it is computed every time so nobody bids blind.
