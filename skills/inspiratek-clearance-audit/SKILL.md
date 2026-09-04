@@ -211,6 +211,21 @@ The standard mapping assigns objectives from targeting type — brand keyword to
 
 Objective is a campaign property, one per block, taken from the campaign row. Re-tag the campaign, not the keyword, and record the prior value so the change is auditable.
 
+### The re-tag is decided on performance, never applied blindly
+
+**Confirmed 4 September 2026.** A campaign is not re-labelled because of what it used to be for. It is read on what it is producing now, and that read decides what happens to it. **A campaign earning at a profitable ACoS is not touched — whatever objective it was carrying.**
+
+| What the campaign is producing | What happens |
+|---|---|
+| **Orders at a profitable ACoS** | **Keep it running, unchanged.** It is already doing the job. Nothing is cut, nothing is re-pointed |
+| **Orders, but ACoS above profitable** | **Diagnose the placement first.** Find which placement is carrying the cost, correct that modifier, then move the bid. Re-label |
+| **Moderate results** | Adjust per the correction ladder, and re-label |
+| **Poor results** | **Pause.** There is nothing here to re-point |
+
+**Placement comes before the bid.** When a delivering campaign's ACoS is too high, the first question is not "how much do I cut" — it is **"where is the cost coming from?"** Pull the campaign's own placement report and read Top of Search, Rest of Search and Product Pages separately. A campaign can look expensive overall because one placement is expensive while the other two are fine. Cutting the bid then punishes all three and loses the cheap orders along with the dear ones. Correct the modifier that is actually causing it, re-read, and only then apply the ladder to the bid if it is still over. See `references/placement-tiers.md`.
+
+**This is why almost nothing gets "abandoned mid-push".** A rank campaign that was earning keeps earning. The disclosure below applies only to the campaigns performance actually stops — the paused ones — and to what a re-label bars going forward.
+
 **What the re-tag makes illegal.** Every one of these is barred on a re-tagged campaign, and a plan carrying one has not re-tagged:
 
 - Rank targets, rank movement as a success measure, and the seven-state ranking progress test — there is no rank objective to progress toward
@@ -221,7 +236,9 @@ Objective is a campaign property, one per block, taken from the campaign row. Re
 
 **What it makes the governing measures.** Velocity, months to clear, cost per unit cleared against the ceiling, and the charge avoided — judged on total units shipped, never on ad-attributed orders alone.
 
-**Where a re-tagged campaign was mid-push**, say so and state what is being abandoned. A rank programme stopped halfway is a real cost and the document owns it rather than letting it disappear in a re-tag.
+**Where a campaign was mid-push and performance stopped it**, say so and state what is being abandoned — the campaign, what it was chasing, how far it had got, and roughly what was spent getting there. A rank programme stopped halfway is a real cost and the document owns it rather than letting it disappear in a re-label. Where no rank history was supplied, the plan says "prior objective was Ranking, no rank data supplied to measure what is lost" and moves on. **This never blocks the run** — it is a disclosure, not a gate.
+
+It does not apply to a campaign kept running at a profitable ACoS. Nothing was abandoned there.
 
 ### 1.2 Four rules that govern every figure downstream
 
@@ -474,6 +491,8 @@ Once a campaign has delivered, how hard it is corrected is set by its **ACoS**, 
 | **50 – 70%** | Moderate | **Cut 20%** |
 | **70 – 100%** | Moderate-heavy | **Cut 30%** |
 | **100% and above** | Unaffordable | **Cut 50%**, even on a single order. If still at or above 100% next cycle, **pause** |
+
+**Read the placement before applying the band.** A high ACoS is a symptom, and on a delivering campaign the cause is often one placement rather than the bid. Pull that campaign's own placement report, read Top of Search, Rest of Search and Product Pages separately, and correct the modifier that is carrying the cost. Then re-read the campaign. If it is still in a cutting band, apply the ladder to the bid; often it is not. Cutting the bid first punishes every placement equally and loses the cheap orders along with the dear ones.
 
 **Confirmed 4 September 2026.** The bands as first given left two stretches uncovered — 50–70% and 30–35%. They were filled to make the ladder contiguous, put back for confirmation, and confirmed. The ladder is now settled: every ACoS value falls in exactly one band, and no band is a matter of judgement at read time.
 

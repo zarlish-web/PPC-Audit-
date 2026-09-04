@@ -118,6 +118,8 @@ Where a campaign shipped nothing, fall back to the route implied by its product 
 
 **Two levers, and neither is the budget.**
 
+**0 · Read the placement first.** On a delivering campaign a high ACoS is often one placement, not the bid. Read Top of Search, Rest of Search and Product Pages separately from that campaign's own placement report, correct the modifier carrying the cost, then re-read. Apply the band only if the campaign is still over. Cutting the bid first punishes all three placements and loses the cheap orders with the dear ones.
+
 **1 · Correct the bid, by the amount the ACoS band sets.**
 
 | ACoS | Action |
