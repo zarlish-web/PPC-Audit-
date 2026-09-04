@@ -124,6 +124,7 @@ These are defaults, not constants. A product may set its own, and the override i
 
 ## Do this in order
 
+0. **Grade the prior cycle** — verify what was executed, grade what it produced, before anything else
 1. **Intake, verify, and re-tag the objective** — reconcile every source, then set every campaign to clearance
 2. **Quantify the leaks** — dollars per month, every lever, with an owner
 3. **Diagnose** — exposure vs conversion, syntax, size, variant, competitors
@@ -135,6 +136,26 @@ These are defaults, not constants. A product may set its own, and the override i
 9. **Build new campaigns**, then **write it up**
 
 Do not skip to step 9. The build is sized by steps 5 to 7, and steps 4 and 6 can close it entirely.
+
+---
+
+## 0 · Grade the prior cycle
+
+**Runs before any analysis, whenever a prior cycle exists.** A cycle that does not read the last one is the first cycle done twice, and the whole point of running this repeatedly is that each pass knows what the last pass tried.
+
+**Verify execution before grading anything.** Check every prior action against the **current** bulk and the **current** inventory, never against the plan that describes them. An action that never deployed is not a failed lever, it is an unexecuted one — grading it teaches a false lesson. Report the execution rate as a number; a cycle where half the actions never shipped is a process finding that outranks every performance finding in the same document.
+
+**Grade against the objective, not against advertising metrics.** Units cleared, aged-pool drawdown, cost per unit cleared, months to clear, charge actually accrued, subsidy per unit at realised conversion. Reconcile the pool drawdown against sales plus removals rather than trusting one source.
+
+**A unit shipped is not a unit cleared.** On a product returning 22%, one in five units counted as cleared this cycle comes back next cycle and re-enters the aged pool. Grade on units cleared; a grade taken before the refund window closes is marked **provisional with a re-read date**.
+
+**Six grades, and each licenses something different:** WORKED, FLAT, BACKFIRED, TOO EARLY, NOT EXECUTED, CONTAMINATED. **A lever below half its prediction is replaced, not deepened** — repeating an underperforming lever is the most common way a product loses three cycles in a row.
+
+**The grading feeds this cycle's decisions rather than sitting in a section at the back.** A BACKFIRED lever is not proposed again. A FLAT-twice lever is replaced, and the replacement says what it does differently. A child whose velocity moved gets a recomputed ceiling before anything is staged against it.
+
+**On a first cycle there is nothing to grade, and that is stated rather than skipped.** What the first cycle owes the second: a prediction on every action in the units the next cycle will measure, a read date accounting for the refund lag, the dated baseline, and the decided file retained so execution can be verified against it.
+
+Full method, grade definitions and checks: `references/prior-cycle-grading.md`.
 
 ---
 
@@ -158,8 +179,10 @@ Required per product. Say up front what is missing rather than discovering it at
 | 12 | Placement report | Required for step 8. Without it no modifier may be set in either direction |
 | 13 | Decision-template bulk | Where decisions get written |
 | 14 | Slack thread for the product | Lever history, rulings, return reasons, listing changes, who owns what |
+| 15 | **The prior cycle's decided file and its logged predictions** | **Required where a prior cycle exists** — step 0 cannot run without it, and without step 0 this is a first cycle repeated |
+| 16 | The prior cycle's action log or impact ledger | What was decided, what was executed, how it graded |
 
-Optional but valuable: parent-level SQP with cart-adds, ASIN Insights, competitor price history, removal order detail, per-SKU floor prices, the prior cycle's prediction register.
+Optional but valuable: parent-level SQP with cart-adds, ASIN Insights, competitor price history, removal order detail, per-SKU floor prices.
 
 **Build the verification table before any analysis.** Every figure that later carries weight needs a named governing source. See `references/data-traps.md` for the contradictions that recur — read it before trusting any number.
 
@@ -512,5 +535,6 @@ A fully argued case for every row cannot be produced reliably across hundreds of
 - `references/ceiling-and-attribution.md` — ceiling construction, the acceleration cap, per-unit-cleared, per-campaign blends, product-ad attribution
 - `references/placement-tiers.md` — setting modifiers per campaign per placement
 - `references/objective-and-builds.md` — what the clearance objective permits, the seven build classes, the added tabs
+- `references/prior-cycle-grading.md` — step 0. Execution verification, grade definitions, the refund lag, what grading changes
 - `references/keyword-and-target-selection.md` — keyword intent to ASIN routing, cannibalisation, volume tiers, PAT and category selection
 - `references/output-format.md` — document spine, workbook tabs, validation gate, publishing

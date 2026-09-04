@@ -57,10 +57,11 @@ Back comes the plan document, the filled Final Bulk, added `New SP` / `New SB` /
 
 **The one thing that makes a liquidation run different is the objective re-tag at step 1.** Ranking, Market Share, Discovery and Profitable Conversion all become LTSF-Clearance; only Defensive on a brand term survives. That re-tag bars rank targets, the top-of-search ladder, DSTR sizing and Exact expansion onto unproven terms — and makes velocity, months-to-clear and cost per unit cleared the governing measures.
 
-## The nine steps
+## The ten steps
 
 | Step | What it does |
 |---|---|
+| 0 | **Grade the prior cycle** — verify what was executed, grade what it produced |
 | 1 | Intake, verify, **re-tag the objective** — every campaign on aged SKUs becomes clearance |
 | 2 | **Leak audit** — ten levers, dollars per month, ranked, owned |
 | 3 | Diagnose — exposure vs conversion, syntax, variant, competitors, reach |

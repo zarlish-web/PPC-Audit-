@@ -14,6 +14,7 @@ Step 9. Three artefacts, one house shape.
 | — | Action plan at a glance | Every action, rows touched, daily $ effect, owner, success measure, section |
 | 1 | Product story and context-corrected metrics | Current position, then the numbered Readings |
 | 2 | **Leak audit** | Ten levers priced, ranked, owned, and the share PPC addresses |
+| 0 | **Prior cycle graded** | Execution rate, every action's grade, what it changes in this plan — or "first cycle, nothing to grade" |
 | 3 | What we did and what it produced | Attributed performance, and the prior cycle graded |
 | 4 | Earning potential and the declarations | Spend envelope, posture record, search terms |
 | 5 | Recovered value | Every action priced in forward cash |
@@ -117,6 +118,12 @@ Nothing ships with a failure open that is not a named missing input.
 | sign-off | Every human-confirm trigger flagged, with its trade-off in reviewer units |
 | deal state | No figure blends a deal window with a clean window |
 | staleness | No anchor older than 45 days, or predating a price/fee/packaging/LTSF change |
+| execution verified | Every prior action checked against the current bulk, not the prior plan |
+| grades fed forward | No BACKFIRED lever re-proposed; no lever under half its prediction repeated unchanged |
+| units cleared | Grades use units cleared, not units shipped, wherever returns data exists |
+| provisional marked | Any grade inside the refund window carries a re-read date |
+| drawdown reconciled | Aged-pool movement reconciles to sales plus removals, or the gap is named |
+| predictions logged | This cycle logs predictions in the units the next cycle will measure |
 | denominator | Ceiling tests use cost per unit cleared, not cost per attributed order |
 | refund gate | No BLOCK SKU carries spend; no FLOOR SKU is scaled |
 | sunk cost | COGS appears in no ceiling term |
