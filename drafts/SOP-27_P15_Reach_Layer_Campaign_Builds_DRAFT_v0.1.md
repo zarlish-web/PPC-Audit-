@@ -1,239 +1,306 @@
 # SOP-27 · P15 — Reach-Layer Campaign Builds (LTSF Clearance)
 
-**Draft v0.2 · for review · proposed addition to SOP-27 v2.0 Element 4**
+**Draft v0.3 · for review · proposed addition to SOP-27 v2.0 Element 4**
 
-Status: DRAFT. Not yet ratified. Built from the decisions recorded in Section 8 below.
+Status: DRAFT. Not yet ratified. Decisions recorded at Section 10, open items at Section 11.
 
----
-
-## Why this procedure exists
-
-SOP-27 v2.0 covers what to do with campaigns that **already exist** when a tag lands: retag them, quarantine them, shut off the wrong spend, keep proven converters at the ceiling.
-
-It says nothing about **building new campaigns to bring in more traffic**. That work is done in practice and had no written procedure. P15 is that procedure.
-
-P15 **adds to** SOP-27. It deletes nothing. P2, P5, P6, P7, P8, P9, P10, P12 and P14 stand unchanged.
+**This procedure carries zero local thresholds.** Every number it uses is named by its source and read at run time. Where a value appears below it is a *placeholder in a formula*, never a setting. An operator who finds a threshold written into this document has found a defect.
 
 ---
 
-## 1. Verdict and scope
+## 0. What this procedure is
 
-**VERDICT: the reach layer buys cheap traffic, never position.** Its job is to convert aged units into sales from traffic the proven-converter set does not touch, at a click price low enough that a run of clicks without a sale costs very little. Every rule below exists to keep the click price down and the coverage wide. A bid raised to win a position is not this layer and is barred by R4.
+P15 is the **decision framework for building new campaigns on stock carrying an LTSF tag**. Given one product with a liquidation objective and the inputs at Section 1, it states the order the questions are asked in, the calculations that answer them, what each outcome permits, and the standard the written conclusion must meet.
 
-**Runs on:** any SKU carrying an LTSF terminal or at-risk tag, all four archetypes.
+It is built to be run. An operator or an agent holding this document and the required inputs should be able to produce the full analysis and defend every step of it without asking what a number should be — because every number is read, not chosen.
 
-**Does not decide:** archetype, tier, floor price, salvage value, units, cliff date, or the terminal option. Those are read from the LTSF declaration per P1 and are never derived here.
-
-### 1.1 The two layers
-
-| | Proven layer (existing) | Reach layer (this procedure) |
-|---|---|---|
-| Contents | Terms carrying orders at or above the G2 sufficiency line | Auto targeting, broad, broad-modifier and phrase |
-| Match types | Exact and auto close match | Auto, broad, broad modifier, phrase |
-| Bid | Up to the R2 maximum liquidation CPC | At or below the R2 maximum liquidation CPC |
-| Purpose | Certainty — terms known to convert | Coverage — find cheap sales anywhere |
-| Governed by | P6, P9 | P15 |
-
-Both run at the same time. Neither replaces the other.
-
-### 1.2 Why exact head terms are avoided
-
-Exact match on a high-volume term clears at a CPC well above the R2 ceiling. Bidding the ceiling on such a term wins no impressions, so the spend buys silence. The reach layer therefore runs on the match types where a low bid still wins the tail: auto, broad, broad modifier and phrase. This is not a preference; it follows from the ceiling, and where the ceiling rises (a deal window per P11 step 4) the same test is re-run and exact may re-enter.
+**P15 adds to SOP-27. It deletes nothing.** P2, P5, P6, P7, P8, P9, P10, P12 and P14 stand unchanged. SOP-27 covers what to do with campaigns that already exist when a tag lands. P15 covers building new ones.
 
 ---
 
-## 2. The one-keyword-one-home rule
+## 1. Inputs
 
-> **A keyword appears in exactly one liquidation campaign.**
+Analysis does not start until each row reads present and dated. A missing row suppresses its dependent step and is recorded in T7 Manifest per v4.0 gate G8. **No input is estimated, and no missing input is worked around.**
 
-Applies across the whole liquidation lane — proven layer and reach layer together.
-
-Two consequences at build:
-
-1. **Proven converters are negative-exacted out of every reach campaign.** The proven layer owns those terms.
-2. **A keyword appears in one bid tier only.** Tiers are separated by keyword, never by putting the same keyword at two prices.
-
-**Why.** Amazon admits only one of an advertiser's campaigns into any one auction, and normally selects the highest bidder. Where the same keyword sits in several campaigns at different bids, the highest-bid campaign takes the traffic — including the cheap traffic the low-bid campaign was built to catch. The lower tiers then run near-idle and their results read as failure when they never served. Separating by keyword removes the overlap and makes each tier's numbers real.
-
-**Checkable at staging:** no duplicate keyword string across the lane's campaigns; every proven converter present as a negative exact in every reach campaign.
-
----
-
-## 3. Build types
-
-All six are available. How many are built is set by charge (Section 4).
-
-### 3.1 B1 — Catch-all auto
-
-One auto campaign holding every SKU currently carrying a charge. Bid at or below the R2 ceiling. One ad group. Let it run and read the search-term report weekly.
-
-Purpose: cheapest possible discovery across the whole charged set, with no keyword research required.
-
-### 3.2 B2 — Catch-all manual broad
-
-Every charged SKU, plus the keywords Amazon suggests for them, on broad match at a low bid.
-
-Purpose: the same wide net as B1 but with keyword-level reporting, so terms can be read and moved.
-
-### 3.3 B3 — Tiered attribute groups
-
-Where the charged set spans many SKUs, group them by a shared attribute — same size, same colour, or a shared keyword root. For each group take the top search-volume keywords for that attribute from the MKL, **2 to 5 keywords per group**, and run them on **phrase** or **broad modifier**.
-
-Broad modifier is written with a `+` before each token (`+bamboo +sheets +queen`). It gives more control than plain broad while still reaching a wide term pool.
-
-Purpose: relevance without cost. A queen-size group bidding on queen-size roots reaches buyers already asking for what the aged units are.
-
-This is the layer that tiers by bid (Section 5).
-
-### 3.4 B4 — Charge-band campaigns
-
-Split the charged SKUs into high, medium and low charge bands and give each band its own campaign, so budget and attention can be steered to where the charge actually is.
-
-Band measure: **dollars of LTSF charge per month per product**, read from the LTSF row. Boundaries per 4.0.
-
-### 3.5 B5 — Sponsored Brands
-
-The same wide, low-bid approach in Sponsored Brands, pointed at the Brand Store clearance page where one exists (P11 step 2).
-
-### 3.6 B6 — Sponsored Display
-
-Retargeting detail-page viewers of the family, and high-intent audiences, with creative featuring the aged SKUs. Bids low. Judged on cost per acquisition against the R2 allowable ad cost per unit, per P11 step 1 and v4.0 scenarios S-F5 and S-F6 — never on a standing efficiency band.
+| # | Input | Source | What it decides here |
+|---|---|---|---|
+| I-1 | The seven declaration fields | LTSF row, per P1 | Whether P15 may run at all |
+| I-2 | Archetype | LTSF declaration | The boundaries at Section 7 |
+| I-3 | Risk tier | LTSF declaration | Cadence and posture |
+| I-4 | Floor price, salvage value per unit, winning terminal option | LTSF declaration | The R2 ceiling |
+| I-5 | Remaining units by bracket, cliff date | LTSF cliff calendar | The R3 pace |
+| I-6 | Monthly charge per product | LTSF charge file | The intensity band at Section 6 |
+| I-7 | Realised velocity per SKU | LTSF charge file or SellerBoard | The clearability gate at Section 5 |
+| I-8 | Converter CVR on the proven set | T2 block K5, subject to gate G2 | The ceiling and the required-clicks figure |
+| I-9 | Market CPC at the required volume | T4 "Expected CPC" and current suggested bids | Whether the lane opens |
+| I-10 | Keyword set with syntax tag, relevancy, search volume, suggested bid | MKL, subject to gate G12 | Tier assignment at Section 8 |
+| I-11 | Variation map naming the aged children | D2 | Archetype B scope |
+| I-12 | Live campaign and keyword inventory for the product | Bulk export | The one-keyword-one-home check |
 
 ---
 
-## 4. Intensity is set by charge, gated by clearability
+## 2. The decision order
 
-### 4.0 The gate runs first
+Every question is answered in this order. **A later question is never used to overturn an earlier one**, and an unanswered question stops the run rather than being assumed.
 
-**P4 runs before P15.** P15 builds nothing until the P4 lane test has returned a result for the SKU.
+```
+Q1  Is the declaration complete?            no  -> STOP. Return to the LTSF Owner (P1).
+Q2  What does the archetype permit?             -> sets boundaries (Section 7)
+Q3  What is the economic ceiling?               -> R2 (Section 3)
+Q4  What pace is required?                      -> R3 (Section 4)
+Q5  Can traffic clear the units at all?     no  -> STOP building. Route to P14 (Section 5).
+Q6  How much of the structure is built?         -> charge band (Section 6)
+Q7  What is built, and how is it separated?     -> Sections 8 and 9
+Q8  How is the conclusion written?              -> Section 12
+```
+
+Q5 is the gate. Everything after it is conditional on it.
+
+---
+
+## 3. Q3 — the economic ceiling
+
+The ceiling is the maximum a click may cost. It is computed, never chosen, and it is recomputed whenever any of its inputs move.
+
+**Terminal-tagged units:**
+
+```
+allowable ad cost per unit  =  net recovery at the salvage price
+                             − the winning alternative's per-unit value
+
+maximum liquidation CPC     =  allowable ad cost per unit × converter CVR
+```
+
+**Archetype D, where the units are aged but not terminal:**
+
+```
+spend ceiling per unit      =  contribution above the floor price
+maximum CPC                 =  spend ceiling per unit × converter CVR
+```
+
+**Rules that govern the computation**
+
+1. Both subtrahends are **read from the declaration**. PPC computes neither.
+2. **Sunk COGS appears in no term.** A computation citing acquisition cost is failure mode F2 (R7, LTSF Principle 2).
+3. The ceiling is a function of five declared inputs — floor price, salvage value, unit count, cliff date and CVR. It is **stale the moment any one moves**, and carrying a stale ceiling is failure mode F6.
+4. Where gate G9 marks reads PROVISIONAL after a price or depth change, the ceiling **holds at its last dated value** and is not recomputed on a provisional CVR.
+5. Where converter evidence sits below the gate G2 line, the ceiling **cannot be computed**. See Section 5.3.
+
+**The sign of the subtrahend is not assumed.** Whether subtracting the alternative raises or lowers the ceiling depends on the sign of the declared value in that cycle, and both signs occur. The analysis states the value it read and the direction it moved the ceiling. It never carries a stated expectation about the sign from this document or any other.
+
+---
+
+## 4. Q4 — the required pace
+
+```
+required units per day   =  remaining units ÷ days to the declared cliff date
+required clicks per day  =  required units per day ÷ converter CVR
+required daily budget    =  required clicks per day × market CPC at that volume
+```
+
+**Market CPC is read at the volume the lane needs, not at the volume it currently buys.** The price that clears a small number of clicks a day is not the price that clears a large one, and reading the current figure understates the cost of the pace.
+
+Re-derive whenever remaining units, the cliff date or the CVR moves.
+
+---
+
+## 5. Q5 — the clearability gate
+
+**P4 runs before P15 builds anything.**
 
 | P4 result | What P15 does |
 |---|---|
-| **LANE OPEN** | Build at the charge band's intensity (4.1). |
-| **LANE SPLIT** | Build at the charge band's intensity, sized to the clearable residual only. State the residual routed to the terminal option. |
-| **LANE CLOSED** | **P15 does not run.** Route to P14. No reach campaign is built on a lane arithmetic has closed. |
+| **LANE OPEN** | Build at the band's intensity (Section 6). |
+| **LANE SPLIT** | Build sized to the clearable residual only. State the residual routed to the terminal option. |
+| **LANE CLOSED** | **Build nothing.** Route to P14 with the five closure numbers. |
 
-**Charge alone must never set intensity.** Charge measures what the stock costs to hold; it says nothing about whether traffic can move it. The two are frequently inverted: the September charge file carries a product at 27% of the portfolio charge whose aged units clear in 253 months at current velocity. Under a charge-only rule that product draws the largest build in the lane and clears nothing. Clearability gates, charge sizes.
+### 5.1 Charge never overrides the gate
 
-**Charge band boundaries** are the thresholds the LTSF Master already carries, and are not set locally:
+Charge measures what stock costs to hold. It says nothing about whether traffic can move it, and the two are frequently inverted — the largest charge in a portfolio is often the least clearable stock in it, because low velocity is what aged it.
 
-| Band | Boundary | Source |
-|---|---|---|
-| High | ≥ $5,000 per month per product | LTSF Section 7.1, the CRITICAL tier definition |
-| Medium | $2,000 to $4,999 per month | LTSF Section 7.4, the RED-tier escalation line |
-| Low | under $2,000 per month | the remainder |
+**Clearability gates. Charge only sizes.** A closed lane at the top of the charge table receives no build, and the size of its charge is the reason to close it faster, not to spend into it.
 
-### 4.1 The intensity dials
+### 5.2 The clearability read
 
-The structure above does not change with charge. **How much of it gets built does.**
+```
+months to clear at current velocity  =  aged units ÷ realised units per month
+```
 
-| Dial | Low charge | Medium charge | High charge |
+Read against the time remaining to the declared cliff. Where the figure exceeds the runway by a wide margin, the arithmetic has already answered Q5 and the P4 traffic check confirms it rather than rescuing it. **No bid, budget or coverage change closes a gap of that shape**, and proposing one is the error this section exists to prevent.
+
+### 5.3 Where the ceiling cannot be computed
+
+Where converter evidence sits below the gate G2 sufficiency line, the CVR is unreadable, so the ceiling and the required-clicks figure are both unavailable. The lane is neither open nor closed; it is **unmeasured**.
+
+The resolution is the reach layer itself, at its floor bid, run to accumulate clicks to the sufficiency line. This is legal under Section 9 because it buys sales rather than position and costs a small fraction of the accruing charge. It is recorded as an unmeasured lane with a dated read, and Q3 and Q4 are answered once sufficiency lands.
+
+**A lane is never left in this state undated.** An unmeasured lane accrues the charge exactly like a measured one.
+
+---
+
+## 6. Q6 — intensity
+
+Structure does not change with charge. **How much of the structure is built does.**
+
+**Band boundaries are read from the LTSF Master** — Section 7.1 for the CRITICAL tier line and Section 7.4 for the escalation line. They are not restated here and not set locally.
+
+| Dial | Low band | Middle band | High band |
 |---|---|---|---|
-| Build types | B1 | B1, B2, B3 | B1–B6 |
-| Budget | Small | Moderate | Large — this is the primary dial |
-| Surfaces | SP only | SP | SP + SB + SD |
-| Tier depth | One group | Group by attribute | Group by attribute and charge band |
-| Check cadence | Weekly (P12) | Weekly | Daily inside the final 14 days |
-| **Bid ceiling** | **R2 ceiling** | **R2 ceiling** | **R2 ceiling — unchanged** |
+| Build types | Widest-net build only | Widest-net plus keyword-level builds | Full set, all surfaces |
+| Budget | Smallest | Moderate | Largest — the primary dial |
+| Surfaces | Sponsored Products | Sponsored Products | Add Sponsored Brands and Sponsored Display |
+| Grouping depth | Single group | Group by attribute | Group by attribute and by band |
+| Check cadence | The standing weekly pass | Weekly | Daily inside the closing window before the cliff |
+| **Bid ceiling** | **R2** | **R2** | **R2 — unchanged** |
 
-**The bottom row is a hard rule.** A larger charge buys more coverage, more budget and more surfaces. It never buys a higher click price. A charge cannot raise the R2 ceiling, because the ceiling is a function of the declared salvage economics and the conversion rate, and the charge is already inside it.
-
----
-
-## 5. Bid tiers
-
-Within B3, several bid levels may run at once — for example $0.25, $0.35 and $0.50.
-
-**What the tiers are for.** On broad, broad modifier and phrase, one keyword matches many search terms at widely different prices. The bid decides which price band of terms the campaign can win at all. A low bid reaches only the cheap tail; a higher bid opens a more contested band. The bid is a filter on reachable traffic, not a lever on position.
-
-**How tiers are assigned.** Each keyword goes in exactly one tier. Assign from the MKL, using search volume and suggested bid as the guide:
-
-| Tier | Bid | Keywords assigned |
-|---|---|---|
-| Low | lowest | Long-tail, low-volume, low suggested bid |
-| Mid | middle | Mid-volume roots |
-| High | highest, still at or under the R2 ceiling | Head roots, where even the tail of the match is contested |
-
-**Never** put one keyword in two tiers at two prices. That is not a test; it is one campaign serving and two idle.
-
-**Reading the result.** Compare tiers on cost per unit moved against the R2 allowable ad cost, not on ACOS against a standing band. A tier returning no sales after a fair read is closed and its keywords route to the next tier up or out of the lane.
+**The bottom row is a hard rule.** A larger charge buys more coverage, more budget and more surfaces. It never buys a higher click price. The charge is already inside the ceiling's own arithmetic; letting it raise the ceiling counts it twice.
 
 ---
 
-## 6. The test rule
+## 7. Q2 — archetype boundaries
 
-R4 bars ranking spend on tagged units, and P9 step 4 bars experiments on Archetype C. Those rules stand. This section states what they do and do not reach, because the reach layer is a form of testing and was being caught by wording aimed at something else.
-
-> **Allowed — a reach test.** Buys sales at bids at or below the R2 ceiling. Bid tiers, new match types, new attribute groups, a new surface. It costs little, and if it returns nothing the loss is small.
->
-> **Barred — a ranking test.** Buys position. Any bid above the R2 ceiling, any top-of-search premium, any funded push, any rank objective.
-
-**The dividing line, checkable from the bulk file: does the bid sit above the R2 ceiling?** Above it, the action is a ranking test and is barred. At or below it, the action is a reach test and is allowed.
-
-This resolves the Archetype C problem in SOP-27 §1.3.1. The bar there is on tests that spend real money to buy information inside a decision window too short to use it. A reach test buys sales, not information, and costs a fraction of the bracket rate while running. It is therefore not the class of experiment §1.3.1 excludes.
-
-**It also unblocks the ceiling.** The R2 ceiling needs a conversion rate; a conversion rate needs clicks; gate G2 requires 100 clicks for a CVR read. On a thin set the old wording barred the only activity that could produce those clicks. The reach layer supplies them at a price that does not matter.
-
----
-
-## 7. Archetype boundaries
-
-Structure is the same for all four. The archetype sets what the reach layer may touch.
+Structure is the same for all four. The archetype sets what may be touched.
 
 | Archetype | Boundary on the reach layer |
 |---|---|
-| **A — Fixable Demand** | Reach traffic only. Do not attempt to fix a conversion defect by buying more clicks; the listing repair runs in parallel under LTSF Family 1 and its 48-hour SLA. Scaling a defect multiplies the defect. |
-| **B — Variation Overstock** | Only the aged children enter any reach campaign. The parent and the healthy children are excluded from every SKU list, every catch-all, and every attribute group. No family-wide budget move. This is an LTSF hard rule and breaching it is failure mode F8. |
-| **C — Structurally Dead** | The reach layer runs. No ranking spend of any kind, ever, at any charge level. |
-| **D — Aged Healthy** | The product still sells at margin, so budget headroom is larger at the same charge band. No retag and no quarantine — the reach campaigns sit alongside the standing structure rather than replacing it. |
+| **A — Fixable Demand** | Reach traffic only. A conversion defect is not fixed by buying more clicks; the listing repair runs in parallel under LTSF Family 1. Scaling a defect multiplies it. |
+| **B — Variation Overstock** | Only the aged children named by the D2 map enter any campaign. Parent and healthy children are excluded from every SKU list and every group. No family-wide move. LTSF hard rule; breaching it is failure mode F8. |
+| **C — Structurally Dead** | The reach layer runs. **No ranking spend of any kind, at any charge level, ever.** |
+| **D — Aged Healthy** | The product still sells at margin, so budget headroom is larger at the same band. No retag and no quarantine — reach campaigns sit alongside the standing structure. |
 
 ---
 
-## 8. Decisions this procedure records
+## 8. Q7a — what is built
 
-Recorded from the review session. Each is a ratified position, not an inference.
+Six build classes. Which are used is set by Section 6; **all of them obey Sections 3, 7 and 9.**
+
+| Class | Shape | Purpose |
+|---|---|---|
+| **B1** Widest net, automatic | One automatic-targeting campaign over the charged SKU set | Cheapest discovery with no keyword research |
+| **B2** Widest net, manual | The charged SKU set against platform-suggested keywords on the broadest match available | The same reach with keyword-level reporting |
+| **B3** Attribute groups | SKUs grouped by a shared attribute; a small number of that attribute's highest-volume roots from the MKL, on the controlled-broad match types | Relevance without cost |
+| **B4** Band groups | The charged set split by charge band, one campaign each | Steers budget and attention to where the charge is |
+| **B5** Brand surface | The same wide, low-bid approach in Sponsored Brands | Adds a surface at the high band |
+| **B6** Display surface | Retargeting and high-intent audiences on the aged SKUs | Judged on cost per acquisition against the R2 allowable ad cost, per v4.0 S-F5 and S-F6 — never on a standing efficiency band |
+
+### 8.1 Why the exact head is avoided
+
+Exact match on a high-volume term clears above the R2 ceiling. Bidding the ceiling there wins no impressions, so the spend buys silence.
+
+The reach layer therefore runs on the match types where a low bid still wins the tail. **This is a consequence of the ceiling, not a preference** — where the ceiling rises, for instance at a deal-window CVR under P11 step 4, the same comparison is re-run and the exact head may re-enter.
+
+### 8.2 Bid tiers
+
+On the broader match types, one keyword matches many search terms at widely different prices. **The bid decides which price band of terms is reachable at all.** It is a filter on reachable traffic, not a lever on position.
+
+Where tiers are used, they are derived from the MKL's own suggested-bid distribution across the assigned keyword set, **all at or under the R2 ceiling**. The number of tiers follows from the spread in that distribution; a set with no spread takes one tier.
+
+Each keyword sits in exactly one tier. Tiers are read against **cost per unit moved versus the R2 allowable ad cost**, never against a standing efficiency band.
+
+---
+
+## 9. Q7b — the separation rules
+
+### 9.1 One keyword, one home
+
+> **A keyword appears in exactly one campaign in the lane.**
+
+Applies across the proven layer and the reach layer together. Two consequences at build:
+
+1. Proven converters are negative-exacted out of every reach campaign.
+2. A keyword appears in one bid tier only. **Tiers are separated by keyword, never by price on the same keyword.**
+
+**Why.** The platform admits only one of an advertiser's campaigns into any one auction, normally the highest bidder. Where one keyword sits in several campaigns at several bids, the highest takes the traffic — including the cheap traffic the low-bid campaign was built to catch. The lower tiers then run near-idle, and their results read as failure when they never served. Separating by keyword removes the overlap and makes each tier's numbers real.
+
+### 9.2 The two layers
+
+| | Proven layer | Reach layer |
+|---|---|---|
+| Contents | Terms carrying orders at or above the G2 line | Automatic targeting and the broader match types |
+| Bid | Up to the R2 ceiling | At or under the R2 ceiling |
+| Purpose | Certainty | Coverage |
+| Governed by | P6, P9 | P15 |
+
+Both run at once. Neither replaces the other. **Proven-converters-only is not weakened by the existence of the reach layer**; it governs its own layer exactly as before.
+
+### 9.3 The test boundary
+
+R4 bars ranking spend on tagged units and P9 bars experiments on Archetype C. Those rules stand. This states what they reach.
+
+> **Allowed — a reach test.** Buys sales at bids at or under the R2 ceiling. Tiers, match types, groups, surfaces. Costs little; a null result is cheap.
+>
+> **Barred — a ranking test.** Buys position. Any bid above the ceiling, any top-of-search premium, any funded push, any rank objective.
+
+**The dividing line is checkable from the bulk file: does the bid sit above the R2 ceiling?** Above it, barred. At or under it, allowed.
+
+This is consistent with SOP-27 §1.3.1, which excludes tests that spend real money to buy *information* inside a decision window too short to use it. A reach test buys sales, not information.
+
+---
+
+## 10. Q8 — the written analysis
+
+The output of P15 is not a campaign list. It is **an analysis a reviewer can check without rebuilding it.** Every conclusion carries these, in this order:
+
+| # | Element | Standard |
+|---|---|---|
+| 1 | **The declaration read** | The seven fields with their dates and the LTSF row reference. No field restated from memory. |
+| 2 | **The ceiling** | The formula, each input with its source and date, the result, and which direction the subtrahend moved it. |
+| 3 | **The pace** | Required units per day, required clicks per day, and the market CPC read at that volume — stated as a different figure from the current CPC. |
+| 4 | **The clearability verdict** | Months to clear at current velocity against the runway, then the P4 result: open, split, closed or unmeasured. |
+| 5 | **What follows from it** | The build set, the band that sized it, and the archetype boundary that scoped it. On a closed lane: the five P14 numbers and nothing else. |
+| 6 | **The separation** | That one-keyword-one-home holds, evidenced from the bulk. |
+| 7 | **The prediction** | Units expected cleared by the cliff date, its basis tag (HIST / MARKET / TEST), and the dated read. An untagged prediction is not a weak prediction; it is no prediction. |
+| 8 | **The expiry** | The review date, set to the cliff date. No terminal decision is open-ended (LTSF Principle 5, R6). |
+
+**Banned in this analysis:** any sentence without a number; any threshold not traced to v4.0 or the LTSF declaration; any recommendation to raise a bid above the ceiling; any conclusion stated as a word where the framework produces a figure. A lane closure written as "PPC cannot clear this" rather than as the five numbers is returned unread (failure mode F11).
+
+---
+
+## 11. Staging checks
+
+Run before any set goes to #38.
+
+1. No keyword string appears in more than one campaign in the lane.
+2. Every proven converter present as a negative exact in every reach campaign.
+3. No bid above the R2 ceiling, and the ceiling dated later than all five of its inputs.
+4. No placement multiplier above zero on any tagged entity (R4).
+5. No rank or push objective anywhere in the set (R1, R4).
+6. Archetype B: no parent and no healthy child in any SKU list.
+7. Every campaign carries the cliff date in its name (R5) and expires at it (R6).
+8. Every campaign on the #37 automation exclusion list, and the addition recorded.
+9. Every build carries a logged prediction with its basis tag and a dated read.
+10. P4 result recorded for the SKU, and the build consistent with it.
+
+---
+
+## 12. Decisions recorded
 
 | ID | Decision |
 |---|---|
-| D-1 | Proven-converters-only survives. It governs the proven layer and is not weakened. |
-| D-2 | The reach layer is added on top. Existing SOP-27 procedures are unchanged. |
-| D-3 | Testing is allowed where it buys sales at low bids. Aggressive ranking tests remain barred. |
-| D-4 | The catch-all approach applies to all four archetypes. |
-| D-5 | Intensity scales with charge, gated first by the P4 lane test. The bid ceiling never scales with charge. Revised at v0.2 against the September charge file: charge alone inverted the priority, sending the largest build to the least clearable stock. |
-| D-6 | The archetype rules remain in force as boundaries on the reach layer. |
-| D-7 | One keyword, one home, across the whole lane. Bid tiers are separated by keyword, never by price on the same keyword. |
-| D-8 | High-volume exact at high bids is avoided, because the lane is not buying rank. |
+| D-1 | Proven-converters-only survives, governing its own layer, unweakened. |
+| D-2 | The reach layer is added on top. Existing SOP-27 procedures unchanged. |
+| D-3 | Testing is permitted where it buys sales at or under the ceiling. Ranking tests remain barred. |
+| D-4 | The approach applies to all four archetypes. |
+| D-5 | Intensity is gated by clearability and sized by charge band. The ceiling never scales with either. |
+| D-6 | Archetype rules remain in force as boundaries. |
+| D-7 | One keyword, one home, across the whole lane. Tiers separate by keyword, never by price on one keyword. |
+| D-8 | The exact head is avoided as a consequence of the ceiling, re-testable when the ceiling moves. |
+| D-9 | This procedure carries no local thresholds. Bands, gates and limits are read from their authorities at run time. |
 
 ---
 
-## 9. Open items
+## 13. Open items
 
 Not written into the procedure. Each needs a decision before ratification.
 
 | ID | Item |
 |---|---|
-| ~~OPEN-1~~ | ~~**Charge band boundaries.**~~ **CLOSED.** Bands read from LTSF Section 7.1 ($5,000, the CRITICAL tier line) and Section 7.4 ($2,000, the RED-tier escalation line). No local threshold required. Recorded at 4.0. |
-| OPEN-2 | **The R2 subtrahend — now urgent.** SOP-27 §1.2 and P3 say subtract the winning salvage option (removal, liquidation or disposal net). WE-2 and Economics Set case E7 subtract the LTSF charge avoided. These are different amounts and give different ceilings. **The September charge file settles the sign question against the documents:** all 516 SKUs in the SKU Cash Action Tracker carry a *positive* exit value, $0.37 to $12.14 per unit, with no negatives. P3 step 2's stated basis — *"Because the alternative is usually negative, the subtraction usually raises the ceiling"* — and LTSF §4.2's *"all typically negative or near zero"* are both contradicted by live data. Under the salvage reading every ceiling in the lane is *lower* than the procedure implies, not higher. Every bid in P15 depends on this. |
-| OPEN-3 | **v4.0 scenario S-A10.** It puts LTSF-burdened products on a profit-only posture and routes LTSF velocity requirements to deals and pricing, "not to PPC subsidy". The reach layer is low-cost by design, so the clash is smaller than it is for R2, but the rule as written still reaches this lane. |
-| OPEN-4 | **Budget cap on the reach layer.** Budget is named as the primary intensity dial but has no stated limit. The P4 required-clicks figure sizes the proven lane; the reach layer has no equivalent. |
-| OPEN-5 | **Counterparty procedures.** #12 has no procedure that builds a liquidation campaign, #29 has no liquidation wall spec, #38 and #26 do not mention the lane. P15 cannot execute until at least #12 and #29 carry matching steps. |
+| OPEN-1 | **The R2 subtrahend.** SOP-27 §1.2 and P3 subtract the winning salvage option. WE-2 and Economics case E7 subtract the charge avoided. These are different quantities and give different ceilings. Every bid in P15 sits under whichever is correct. Section 3 is written to be neutral on the sign, but it cannot be neutral on which quantity to use. |
+| OPEN-2 | **v4.0 scenario S-A10** puts LTSF-burdened products on a profit-only posture and routes velocity requirements away from PPC. The reach layer is low-cost by construction, so the clash is narrower than for R2, but the rule as written still reaches this lane. |
+| OPEN-3 | **A budget limit for the reach layer.** Budget is named the primary intensity dial and has no stated cap. The proven lane is sized by required clicks; the reach layer has no equivalent sizing rule. |
+| OPEN-4 | **Counterparty procedures.** #12 carries no procedure that builds a liquidation campaign, #29 no wall specification for one, and #38 and #26 do not mention the lane. P15 cannot execute end to end until at least #12 and #29 carry matching steps. |
+| OPEN-5 | **A sufficiency deadline for the unmeasured lane at 5.3.** The reach layer resolves an unmeasured lane, but nothing states how long it may stay unmeasured before the lane is closed on the absence of evidence. |
 
 ---
 
-## 10. Staging checks
-
-Run before any reach-layer set goes to #38.
-
-1. No keyword string appears in more than one campaign in the lane.
-2. Every proven converter is present as a negative exact in every reach campaign.
-3. No bid exceeds the R2 maximum liquidation CPC, dated within its five inputs.
-4. No placement multiplier above zero on any tagged entity (R4).
-5. No rank or push objective on any campaign in the set (R1, R4).
-6. Archetype B: no parent ASIN and no healthy child in any SKU list.
-7. Every campaign carries the cliff date in its name (R5) and an expiry at that date (R6).
-8. Every campaign added to the #37 automation exclusion list, and the addition recorded.
-9. Every deployed build carries a logged prediction with its basis tag (HIST / MARKET / TEST) and a day-7 read date.
-
----
-
-*Inspiratek & Ecotero LLC · Confidential · DRAFT — not for deployment until Section 9 is closed*
+*Inspiratek & Ecotero LLC · Confidential · DRAFT — not for deployment until Section 13 is closed*
