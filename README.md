@@ -62,7 +62,9 @@ Back comes the plan document, the filled Final Bulk, added `New SP` / `New SB` /
 
 **The one thing that makes a liquidation run different is the objective re-tag at step 1.** Ranking, Market Share, Discovery and Profitable Conversion all become LTSF-Clearance; only Defensive on a brand term survives. That re-tag bars rank targets, the top-of-search ladder, DSTR sizing and Exact expansion onto unproven terms — and makes velocity, months-to-clear and cost per unit cleared the governing measures.
 
-**But the re-tag is decided on performance, never applied blindly** *(confirmed 4 September 2026)*. A campaign earning at a profitable ACoS is kept running untouched, whatever objective it carried. One delivering above profitable has its **placement diagnosed before its bid is moved** — find which placement carries the cost, fix that modifier, re-read, then apply the ladder if it is still over. Moderate performers are adjusted and re-labelled; poor ones are paused. So very little is ever abandoned mid-push: what was earning keeps earning.
+**The label always changes; performance decides the bids** *(confirmed 4 September 2026)*. Every campaign is re-labelled — none is left on Ranking because it was ranking well. We push for sales now, not position, regardless of placement and regardless of how the rank push was going. What each campaign's **bids** do is then read from what it is producing: profitable ACoS is left running exactly as it is, a delivering lane above profitable has its **placement diagnosed before its bid is moved**, moderate performers go to the ladder, poor ones are paused. So little is abandoned mid-push — what ends is the rank programme around a campaign, not the campaign.
+
+Reading placement for cost and buying placement for rank are different things, and only the second is barred. Correcting a modifier because Top of Search runs at three times the campaign's ACoS is always allowed; raising one to hold a position is not.
 
 ## The ten steps
 

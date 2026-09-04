@@ -147,8 +147,10 @@ Nothing ships with a failure open that is not a named missing input.
 | redeployment | Growth comes from targets and coverage; budget moves only between lanes that actually spend theirs |
 | leak share | The document states what share of total monthly loss the PPC plan addresses |
 | declaration | Archetype, risk tier, floor price and terminal option read, never derived |
-| objective re-tag | Every campaign read on performance before re-labelling; profitable lanes kept running untouched; prior objective recorded on every campaign re-labelled |
+| objective re-tag | Every campaign re-labelled to clearance except Defensive on a brand term, with its prior objective recorded — no campaign left on Ranking because it was ranking well |
+| bids on performance | Bid decisions taken from what each campaign is producing now; a lane at profitable ACoS left running at its current bids and budget |
 | placement first | Every delivering campaign in a cutting band has its placement report read and its modifier corrected before the bid is moved |
+| modifier basis | Every placement modifier justified from cost, never from position held or rank at risk |
 | no rank artefacts | No rank target, TOS premium bought for position, or DSTR sizing survives the re-tag |
 | build classes | Every proposed campaign is one of B1-B7; none invented |
 | added tabs | New campaigns split by ad product; negations carry campaign, mode and evidence standard |

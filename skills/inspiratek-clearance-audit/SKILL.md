@@ -211,25 +211,34 @@ The standard mapping assigns objectives from targeting type — brand keyword to
 
 Objective is a campaign property, one per block, taken from the campaign row. Re-tag the campaign, not the keyword, and record the prior value so the change is auditable.
 
-### The re-tag is decided on performance, never applied blindly
+### The label always changes. Performance decides what happens to the bids
 
-**Confirmed 4 September 2026.** A campaign is not re-labelled because of what it used to be for. It is read on what it is producing now, and that read decides what happens to it. **A campaign earning at a profitable ACoS is not touched — whatever objective it was carrying.**
+**Confirmed 4 September 2026.** Two separate decisions that are easy to confuse:
 
-| What the campaign is producing | What happens |
-|---|---|
-| **Orders at a profitable ACoS** | **Keep it running, unchanged.** It is already doing the job. Nothing is cut, nothing is re-pointed |
-| **Orders, but ACoS above profitable** | **Diagnose the placement first.** Find which placement is carrying the cost, correct that modifier, then move the bid. Re-label |
-| **Moderate results** | Adjust per the correction ladder, and re-label |
-| **Poor results** | **Pause.** There is nothing here to re-point |
+**1 · The label changes on every campaign.** No exceptions beyond Defensive on a brand term. **We are not pushing for rank any more — we are pushing for sales**, regardless of placement and regardless of how well the rank push was going. A campaign is not left on a Ranking objective because it was doing well at ranking; that is exactly the campaign that would quietly keep spending on rank while the stock ages.
+
+**2 · What happens to its bids is decided on what it is producing now**, never on what it used to be for.
+
+| What the campaign is producing | What happens to the bids | Label |
+|---|---|---|
+| **Orders at a profitable ACoS** | **Nothing. Leave it running exactly as it is.** It is already doing the job | Re-labelled |
+| **Orders, but ACoS above profitable** | **Diagnose the placement first.** Find which placement carries the cost, correct that modifier, then move the bid | Re-labelled |
+| **Moderate results** | Adjust per the correction ladder | Re-labelled |
+| **Poor results** | **Pause.** There is nothing here worth re-pointing | Re-labelled, then paused |
+
+So "keep it running" means the **bids, budget and structure are untouched** — not that the objective stays. The campaign carries on producing exactly as it did yesterday, but it is now counted, judged and funded as a clearance lane: measured on units cleared, barred from new rank spend, and never sized against a rank goal.
 
 **Placement comes before the bid.** When a delivering campaign's ACoS is too high, the first question is not "how much do I cut" — it is **"where is the cost coming from?"** Pull the campaign's own placement report and read Top of Search, Rest of Search and Product Pages separately. A campaign can look expensive overall because one placement is expensive while the other two are fine. Cutting the bid then punishes all three and loses the cheap orders along with the dear ones. Correct the modifier that is actually causing it, re-read, and only then apply the ladder to the bid if it is still over. See `references/placement-tiers.md`.
 
-**This is why almost nothing gets "abandoned mid-push".** A rank campaign that was earning keeps earning. The disclosure below applies only to the campaigns performance actually stops — the paused ones — and to what a re-label bars going forward.
+**Reading placement for cost is not the same as buying placement for rank**, and the re-tag bars only the second. Correcting a modifier because Top of Search is running at three times the campaign's ACoS is cost control and is always allowed. Raising a modifier to hold a position, or keeping an expensive placement because rank would slip, is rank spend and is barred. The test is what the plan says the modifier is *for*.
+
+**This is why almost nothing gets "abandoned mid-push".** A campaign that was earning keeps earning at the same bids. What ends is the rank programme around it — the target, the position goal, the sizing — not the campaign.
 
 **What the re-tag makes illegal.** Every one of these is barred on a re-tagged campaign, and a plan carrying one has not re-tagged:
 
 - Rank targets, rank movement as a success measure, and the seven-state ranking progress test — there is no rank objective to progress toward
-- The top-of-search modifier ladder used to buy position
+- The top-of-search modifier ladder used to buy position — modifiers are still set, but from cost, never from rank
+- Holding an expensive placement on the grounds that rank would slip if it were corrected
 - DSTR and target-clicks sizing derived from a rank goal
 - Any bid above the ceiling justified as a sized, capped ranking push
 - Exact-match expansion on unproven terms
