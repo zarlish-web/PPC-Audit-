@@ -107,6 +107,30 @@ The attribute matrix explodes fast. Five sizes × four colours × five volume ti
 
 A campaign that does not make the cut is listed as **proposed, not funded**, with the budget it would need. That way the next cycle can open it without re-deriving the whole build.
 
+### Before you build anything, check whether it already exists — paused
+
+**RULED 4 September 2026.** A paused keyword or campaign is not absent. It is switched off, and it still holds its ID, its history and its place in the account. **Rebuilding it creates a duplicate; re-enabling it does not.**
+
+The canon already says *"if a term already carries a **live** keyword row it is a reactivation, not a new launch."* **Live is the wrong word.** A paused instance is exactly the case that produces the duplicate, because it is the one a keyword-list comparison misses.
+
+**Run this before any campaign or keyword is proposed:**
+
+| What you find | What you do |
+|---|---|
+| A **live** instance, same term, same match type | **Drop it from the build.** It already runs. Two of our own rows in one auction is self-competition |
+| A **paused** instance, same term, same match type | **Re-enable that instance.** Drop the proposed row |
+| **Several** paused instances at the same match type | Re-enable **one** — the one with the most history. The rest stay off. One active instance per term per match type |
+| A paused **campaign** that fits the build | Re-enable it rather than creating its twin, and keep its existing budget |
+| Nothing | Build it new |
+
+**Why rebuilding is worse than it looks.** A duplicate splits performance history across two rows, so neither reaches the click line and neither can be read. It puts two of our own bids into the same auction. And it leaves the paused original sitting there to be rediscovered next cycle, when someone rebuilds it again.
+
+**Match on normalised text: plurals collapse, word order does not.** *quilt sets* and *quilt set* are one identity. *queen bed quilt* and *bed quilt queen* are two — word order reflects different intent and both launch.
+
+**Never enable a campaign on its own.** From a real incident: a campaign shipped carrying ENABLE because "a term it holds cleared the release test", while all 200 keyword rows beneath it read WITHHELD or NO ACTION. Deploying it would have switched on 200 broad keywords the goal excluded. **A campaign's enabling verdict must be supported by an acting verdict on at least one row beneath it.**
+
+**Check why it was paused before switching it on.** A term paused for relevance, refunds or catalogue reasons must stay off — re-enabling it undoes a decision someone made deliberately. Where no reason is recorded, say so in the reasoning rather than implying the pause was performance.
+
 ### The sizing rule governs what you build, not what you inherit
 
 **PROPOSED 4 September 2026, from the SLQS back-test — not yet confirmed.**

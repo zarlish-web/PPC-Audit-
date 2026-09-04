@@ -112,6 +112,11 @@ Nothing ships with a failure open that is not a named missing input.
 | intent routing | Every ASIN matches its keyword's intent class; no child a keyword has ruled out |
 | campaign purity | No campaign mixes two attribute families, and none spans two search-volume tiers |
 | cannibalisation | No keyword inside a campaign captures another under that campaign's match type |
+| reactivation checked | Every proposed keyword and campaign checked against paused instances before being built; the check is recorded with its verdict per term |
+| no duplicates | No proposed row duplicates a live instance of the same term at the same match type |
+| one active instance | Where several paused instances exist at one match type, exactly one is re-enabled and the rest stay off |
+| enable supported | No campaign carries an enabling verdict without an acting verdict on a row beneath it |
+| pause reason read | Every re-enable states why the instance was paused, or states plainly that no reason was recorded |
 | campaign count | Campaigns x $5.00 does not exceed the budget available for new builds |
 | PAT edge | Every product target names the edge that justifies it, with the numbers |
 | category refinements | Refinements set against our current price, rating and review count |
