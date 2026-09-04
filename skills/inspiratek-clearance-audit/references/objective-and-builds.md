@@ -50,6 +50,8 @@ A proposed campaign that cannot justify $5/day is not proposed. A bid the ceilin
 
 **Intensity — how many classes open — is set by the charge band. Whether any open at all is set by the clearability gate, never by the charge.** The largest charge in a portfolio is frequently the least clearable stock in it, because low velocity is what aged it. A large charge on a closed lane is a reason to clear faster by another route, not to spend into it.
 
+**Which keywords and which ASINs go into each of these: `keyword-and-target-selection.md`.**
+
 ### Separation rules
 
 These are what make the numbers readable afterwards, and every one is checkable from the file.
@@ -58,6 +60,8 @@ These are what make the numbers readable afterwards, and every one is checkable 
 - **Proven converters are negative-exacted out of every reach campaign**, the same day the reach campaign opens.
 - **Any term promoted from discovery into capture is added as negative exact to the campaign that found it**, the same day.
 - **Bid tiers separate by keyword, never by price on the same keyword.** The point of a tier is to reach different keywords at different prices, not to bid twice on one.
+- **One search-volume tier per campaign**, and **no keyword inside a campaign may capture another** under that campaign's match type. A big keyword sharing a budget with a small one starves it into permanent unreadability.
+- **The ASIN must match the keyword's intent.** Generic terms take any child; size terms take that size; colour terms take that colour; fully specific terms take exactly one child.
 - **Bidding strategy is fixed or down-only.** Up-and-down can breach the ceiling at auction, which makes the ceiling unenforceable from the file.
 - **Placement multipliers per campaign per placement**, from that campaign's own data — never blanket, in either direction.
 - **Archetype B (variation overstock): aged children only.** No parent, no healthy child, in any SKU list or group. The healthy children subsidise the fix; their economics and price anchors are not spent on it.

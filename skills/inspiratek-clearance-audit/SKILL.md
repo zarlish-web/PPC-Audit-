@@ -422,6 +422,8 @@ Exact-heavy builds are the most common failure. Check your own output: if most E
 
 **Width comes from the target set; cost control comes from the bid.** Do not control cost by running fewer campaigns — that starves the lane and buys nothing. Control it by keeping every bid between the $0.25 floor and the ceiling.
 
+**Which keywords go in which campaign, which ASIN serves each keyword, which competitor ASINs to conquest and how to refine a category: `references/keyword-and-target-selection.md`.** That file carries the intent-to-ASIN routing, the cannibalisation check, the search-volume tiers and the campaign-count arithmetic.
+
 The seven build classes, the separation rules and the added-tab structure: `references/objective-and-builds.md`.
 
 **No bid above the ceiling**, where the maximum click price is `ceiling × conversion rate`. Bidding strategy fixed or down-only only — up-and-down can breach the ceiling at auction. Placement multipliers per §8, never blanket.
@@ -471,5 +473,6 @@ A fully argued case for every row cannot be produced reliably across hundreds of
 - `references/refund-gate.md` — tiering SKUs by refund risk before routing spend
 - `references/ceiling-and-attribution.md` — ceiling construction, the acceleration cap, per-unit-cleared, per-campaign blends, product-ad attribution
 - `references/placement-tiers.md` — setting modifiers per campaign per placement
-- `references/objective-and-builds.md` — what the clearance objective permits, the six build classes, the added tabs
+- `references/objective-and-builds.md` — what the clearance objective permits, the seven build classes, the added tabs
+- `references/keyword-and-target-selection.md` — keyword intent to ASIN routing, cannibalisation, volume tiers, PAT and category selection
 - `references/output-format.md` — document spine, workbook tabs, validation gate, publishing

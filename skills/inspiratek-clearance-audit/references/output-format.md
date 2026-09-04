@@ -98,6 +98,12 @@ Nothing ships with a failure open that is not a named missing input.
 | click line | Nothing paused or negated on performance below 15 clicks, or below 20-25 where the click price is about $0.15 or under |
 | over-ceiling log | Every bid above max profitable CPC carries its cap, its re-read date and the charge it avoids |
 | build width | The build spans keywords, auto, category and product targeting — not keywords alone |
+| intent routing | Every ASIN matches its keyword's intent class; no child a keyword has ruled out |
+| campaign purity | No campaign mixes two attribute families, and none spans two search-volume tiers |
+| cannibalisation | No keyword inside a campaign captures another under that campaign's match type |
+| campaign count | Campaigns x $5.00 does not exceed the budget available for new builds |
+| PAT edge | Every product target names the edge that justifies it, with the numbers |
+| category refinements | Refinements set against our current price, rating and review count |
 | labeled exception | Any spend above break-even is capped, dated and logged |
 | exit | The stock threshold at which clearance exits is stated |
 | vocabulary | Every verdict comes from the closed list; no invented strings |
