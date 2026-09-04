@@ -265,6 +265,11 @@ Full method and the worked shape of the table: `references/leak-audit.md`.
 
 **Runs before any spend is routed, not after.** If refund rates vary by variant, days-of-cover routing alone will send money at stock that comes back.
 
+**Why this is a step and not a diagnosis item.** The earlier version of this skill kept the refund read inside step 3, as one of several things to look at. It moved out for two reasons, and it should not move back without a reason of the same weight:
+
+1. **Step 5 cannot run without it.** The ceiling test is cost per unit *cleared*, and that is `cost per unit shipped ÷ (1 − refund rate)`. Read the refund rate after the ceiling and the ceiling was computed on the wrong denominator.
+2. **A tier stops work.** BLOCK pauses a SKU; FLOOR forbids scaling one. Something that stops work is a gate, and a gate belongs before the thing it gates — not alongside observations that only describe.
+
 ```
 ad cost per unit cleared = ad cost per unit shipped ÷ (1 − refund rate)
 ```
