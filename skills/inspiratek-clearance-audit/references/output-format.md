@@ -139,7 +139,7 @@ Nothing ships with a failure open that is not a named missing input.
 | declaration | Archetype, risk tier, floor price and terminal option read, never derived |
 | objective re-tag | Every campaign on aged SKUs carries the clearance objective, with its prior value recorded |
 | no rank artefacts | No rank target, TOS premium bought for position, or DSTR sizing survives the re-tag |
-| build classes | Every proposed campaign is one of B1-B6; none invented |
+| build classes | Every proposed campaign is one of B1-B7; none invented |
 | added tabs | New campaigns split by ad product; negations carry campaign, mode and evidence standard |
 | gates named | Every proposed campaign is live-now or names the condition it waits on |
 

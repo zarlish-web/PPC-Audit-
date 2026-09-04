@@ -24,7 +24,7 @@ This skill is the **aged-stock branch** of the account's PPC family. It does not
 
 **Where this skill and the locked canon disagree, the canon wins and the disagreement is reported, never silently resolved** — except where the account has ruled. One such ruling is standing and it governs this whole skill:
 
-> **RULING — the clearance ceiling is forward cash (Construction B).** On a liquidation product, PPC is the lever that moves the stock. Spending a little beyond profitable is accepted, because the charge avoided is worth more than the margin given up. A negative contribution does **not** stop the push and does **not** by itself send the product to pricing. Recorded 4 September 2026.
+> **RULING — the clearance ceiling is forward cash.** On a liquidation product, PPC is the lever that moves the stock. Spending a little beyond profitable is accepted, because the charge avoided is worth more than the margin given up. A negative contribution does **not** stop the push and does **not** by itself send the product to pricing. Recorded 4 September 2026.
 
 Two consequences, and they are the opposite of what the canon alone would do:
 
@@ -378,7 +378,7 @@ market click price read AT THAT VOLUME, not at the volume the lane buys today
 | **OPEN** | Market click price at the required volume is at or under the ceiling | Fund the full required-clicks budget |
 | **SPLIT** | Only a residual volume clears at or under the ceiling | Buy what the ceiling buys; state the residual and route it |
 | **CLOSED** | No volume clears at or under the ceiling | Build nothing. Hand back five numbers: required clicks/day, the ceiling, market CPC at that volume, units clearable at the ceiling, the residual |
-| **UNMEASURED** | Converter evidence below the sufficiency line, so no conversion rate can be read | Reach layer at floor bids to accumulate clicks, with a dated read |
+| **UNMEASURED** | Too few converters to read a conversion rate at all | Reach layer at floor bids to accumulate clicks, with a dated read |
 
 **A closed lane is a correct outcome, not a failure.** It routes the choice to a price move or a terminal option, both of which recover more than spending above the ceiling. The response to a closure is never to widen the term set.
 
@@ -448,7 +448,9 @@ The same 5-cent limit applies upward. A delivering campaign under its ceiling is
 
 *Definition note: "delivering" is read here as one or more orders in the window. A single order on heavy spend is a thin read, so it still gets the gradual treatment but is reviewed at every cycle rather than left to walk on its own.*
 
-**Two thresholds, and they are not the same threshold.** The canon's sample gate parks a **zero-order row under 15 clicks** — hold and wait, and say whether low clicks are consistent with low search volume. The negation line is separate and further out: at conversion rate *c*, one order is not expected until roughly `1/c` clicks, so a term below that showing zero orders is not evidence of failure and negating it removes discovery surface. Both are stated, and neither is used in place of the other. **A row with orders is never parked by either gate.**
+**The click line, and nothing tighter.** A zero-order row is not judged on performance until it reaches **15 clicks**, or **20–25 clicks where the click price is about $0.15 or under** — cheap clicks earn more patience. Below that a term has not had its chance, and pausing it removes the discovery surface that finds the cheapest orders. Reaching the line is a **review trigger**, not an automatic pause: look at the term itself before deciding. **A row with orders is never parked by any gate.**
+
+Terms describing a material, size or feature the product does not have are negated on sight at any click count — that is a relevance decision, not a performance one.
 
 **Every row that does not change is classified, not ignored.** Produce a No-Action Census: verdict class, row count, and the mechanical reason no action is allowed. A file where most rows are silent cannot be reviewed.
 

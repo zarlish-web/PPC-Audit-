@@ -32,31 +32,36 @@ A campaign whose product ads are entirely this product's SKUs is in scope. A cam
 
 ## Part 2 — The ceiling
 
-### Two constructions, and they disagree
+### Three numbers, and the bid sits between them
 
-**Construction A — the canon (`pmp-optimization-sr` §3, §8.3).** The surcharge is a margin drag; it makes break-even *worse*.
-
-```
-break-even ACoS    = (ASP − COGS − Amazon bundled fees) ÷ ASP    no return allowance
-margin $           = ASP − COGS − Amazon bundled fees
-max profitable CPC = margin $ × CVR at the delivering placement
-CM after carry     = margin $ − (storage per unit per month × months held to sale)
-```
-
-`CM after carry` negative → **ROUTE TO BM.** The lever is price. No bid work is authorised.
-`CM after carry` positive → clearance objective, **up to break-even ACoS and no further**, ring-fenced, labeled, tagged separately in TACoS, and exited when stock clears below the surcharge threshold.
-
-**Construction B — forward cash (this skill's inherited rule).** Selling now avoids charge later, so the charge is added *to* the ceiling.
+**Forward cash governs — that is ruled. Break-even is the reference you must know before deciding anything.** One says what you may spend; the other says where profit actually ended. Compute both, every time.
 
 ```
-contribution = ASP − referral − FBA − refund cost per unit shipped
-ceiling      = contribution + (storage per unit per month × min(2, months to clear))
-max click price = ceiling × conversion rate
+break-even ACoS    = (ASP - COGS - Amazon bundled fees) / ASP     no return allowance
+margin $           = ASP - COGS - Amazon bundled fees
+max profitable CPC = margin $ x CVR                          <- where profit ends
+avoided charge     = storage per unit per month x min(2, months to clear)
+ceiling            = contribution + avoided charge
+max click price    = ceiling x CVR                           <- where forward cash ends, the hard cap
+floor bid          = $0.25 default                           <- below this nothing wins
 ```
 
-**They point opposite ways on the same product, and the gap is not small.** On one live child: Construction A gives a max profitable CPC of **$0.067**; Construction B gives a ceiling of $10.75 and a max click price of **$0.23** — and taken at months-to-clear rather than the two-month cap, $19.97 and $0.44. A plan built on A stops; a plan built on B funds a reach layer.
+**Between max profitable CPC and max click price is the subsidy zone.** Spending there is deliberate: the sale loses money and the avoided charge pays for it. **Bid low in the zone** — the cap is a maximum, never a target.
 
-**Compute both. Show both. Name the one the plan acted on. File the choice as a decision requested.** Under the canon, Construction B is only available as one of the three labeled investment objectives, and then only while **capped, dated and logged**.
+### Pricing the subsidy
+
+```
+subsidy per click = bid - max profitable CPC
+subsidy per unit  = subsidy per click / CVR
+```
+
+**Test: subsidy per unit at or under the charge avoided per unit.** Under it, the forward-cash argument holds and the plan says so with both numbers. Over it, we are paying more to avoid the charge than the charge costs — that is loss, not forward cash, and the gap is logged in dollars and routed to the pricing recommendation.
+
+Same boundary as the ceiling, expressed per unit so a reader sees what the ceiling means without re-deriving it.
+
+### When the floor sits above the ceiling
+
+Not an error. Live example: both children's whole workable band sat below the $0.25 minimum bid, so the floor governed and each unit carried $0.48-$0.72 of loss beyond what the avoided charge justified. That is a finding about how marginal the clearance case is, and it belongs beside the pricing recommendation.
 
 Where the units are aged but not terminal and the product still sells at margin, the ceiling comes instead from contribution above the declared floor price, and the guard is that realised net price stays above that floor at every step.
 
@@ -64,7 +69,7 @@ Where the units are aged but not terminal and the product still sells at margin,
 
 **COGS is sunk and appears in no term.** It is identical across every option for the same units, so it cannot change which option wins. Showing it makes every option on an underwater product look like a loss, which produces paralysis rather than a decision.
 
-**Under Construction B, the acceleration window is capped at two months.** The default exists because the whole projected hold inflates the ceiling most on exactly the stock least able to justify it: a slow variant has the longest runway and the weakest case for spending against it. And it is capped again at the real clearance time — a variant that clears in 1.5 months cannot avoid two months of charge.
+**The acceleration window is capped at two months.** The default exists because the whole projected hold inflates the ceiling most on exactly the stock least able to justify it: a slow variant has the longest runway and the weakest case for spending against it. And it is capped again at the real clearance time — a variant that clears in 1.5 months cannot avoid two months of charge.
 
 **Count the charge once.** It sits either inside the fees line reducing contribution, or added back as avoided charge — never both. Check the fees line against the modelled fee: a gap of roughly the per-unit surcharge means the charge is already inside it.
 
@@ -133,25 +138,29 @@ Terms describing a material, size or feature the product does not have are negat
 
 ### Worked shape
 
+Real numbers from one live product, both children:
+
 | | Child A | Child B |
 |---|---|---|
 | Contribution before storage | $3.07 | $3.07 |
 | Storage per unit per month | $3.84 | $3.28 |
 | Months to clear | 4.4 | 1.5 |
 | Acceleration months, `min(2, mtc)` | **2.0** | **1.5** |
+| Charge avoided per unit | $7.68 | $4.92 |
 | **Ceiling** | **$10.75** | **$7.99** |
 | Conversion rate | 2.18% | 2.95% |
-| **B — maximum click price** | **$0.23** | **$0.24** |
-| A — break-even ACoS | 7.68% | 7.68% |
-| A — margin $ | $3.07 | $3.07 |
-| **A — max profitable CPC** | **$0.067** | **$0.091** |
-| A — CM after carry | **−$13.83** | **−$1.85** |
-| **A — verdict** | **ROUTE TO BM** | **ROUTE TO BM** |
+| Floor bid | $0.25 | $0.25 |
+| **Max profitable CPC** — profit ends | **$0.067** | **$0.091** |
+| **Max click price** — forward cash ends | **$0.234** | **$0.236** |
+| Subsidy per unit at the floor bid | $8.40 | $5.40 |
+| Charge avoided per unit | $7.68 | $4.92 |
+| **Gap** | **$0.72 over** | **$0.48 over** |
 | Ad cost per unit shipped | $11.35 | $13.38 |
 | Refund rate | 26.1% | 19.4% |
 | **Ad cost per unit cleared** | **$15.36** | **$16.60** |
-| Position | 1.43x over | 2.08x over |
 
-Both children carry negative CM after the surcharge, so under the canon this product does not get a bid plan at all — the verdict is ROUTE TO BM and the lever is price. Construction B, on the same inputs, funds a reach layer at 23–24 cents. That is the whole disagreement in one table, and it is why both rows belong in every document.
+Two things this table shows that no single number would.
 
-Note what the capped window does to Child A under Construction B: taken at 4.4 months its ceiling reads $19.97 and the child looks comfortably inside. Capped at two months it reads $10.75 and the same child is 43% over. The cap is not conservatism for its own sake — it is the difference between two opposite recommendations.
+**The whole workable band sits below the floor.** Both children's max click price is under the $0.25 minimum bid, so the floor governs and every click is subsidised past what the avoided charge justifies — by 48 to 72 cents a unit. The push still runs, per the ruling, but the plan states that gap and sends it to the pricing recommendation, because a small price move changes every row here.
+
+**The acceleration cap is doing real work.** Taken at Child A's full 4.4 months, its ceiling reads $19.97 and a max click price of $0.44, and the child looks comfortably affordable. Capped at two months it reads $10.75 and $0.234, and the same child is over. The cap is not conservatism for its own sake — it is the difference between two opposite readings of the same product.

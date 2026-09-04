@@ -26,7 +26,7 @@ Where a leak cannot be priced, say so in its row, name what would price it, and 
 
 **7 · Retention.** Refund rate by SKU, sellable quota, reason codes, deal lag. Price the refunded contribution plus the handling, and note that refunded units re-enter the aged pool and re-accrue charge — so on a clearance product a refund costs twice.
 
-**8 · PPC efficiency.** Placement pricing, syntax mix, SKU routing, zero-order spend past the sufficiency line, harvest backlog, match mix, budget utilisation. Price the spend above ceiling, not the spend.
+**8 · PPC efficiency.** Placement pricing, syntax mix, SKU routing, zero-order spend past the click line, harvest backlog, match mix, budget utilisation. Price the spend above ceiling, not the spend.
 
 **9 · Demand beyond search.** Deal cadence and whether uplift was ever measured, off-Amazon traffic, multi-channel fulfilment. Price the units a deal moves against the contribution it gives away.
 
