@@ -49,27 +49,26 @@ Visual standard: Arial. H1 navy `1F3864`, H2 `2E5496`. Tables navy header, white
 
 ## 2 · The decided bulk workbook
 
-The original file preserved exactly — every sheet, every column, in order — plus the decision columns and the supporting tabs.
+**Do not invent a tab list.** The account has a real one, and inventing a structure organised around this skill's own logic is a mistake `ppc-workbook-builder` has already made once and corrected. The workbook is built by `ppc-workbook-builder` against the account's real tab set; this skill supplies the clearance content that goes into it.
 
-| Tab | Contains |
+**Template fidelity is exact, not approximate.** Same tab names, same order, same column headers — including wording that predates the build and reads oddly for the current product. Same fonts, fills, widths, freeze panes, number formats. The real template is not internally uniform, and that is not a defect to correct: clone each tab's actual styling, including the inconsistencies.
+
+**The tab list is invariant; what goes inside a tab is not.** A finding specific to this product with no ready-made home is added as extra columns or a grouped sub-block inside the relevant existing tab, styled to match its neighbours — never as a new top-level tab.
+
+The original bulk is preserved exactly — every sheet, every column, in order — with `New Bids`, `New Budget`, `New Percentage`, `Action`, `Reasoning` and `Reverses If` filled on rows that change.
+
+Where this skill's own content needs somewhere to live, it goes in the tab that already covers that subject:
+
+| Clearance content | Goes in |
 |---|---|
-| Summary | Declarations, ceilings, actuals, scope, and what was excluded |
-| **Final Bulk** | Every row, source column order, plus `New Bids` `New Budget` `New Percentage` `Scenario` `Placement Scenario` `Action` `Reasoning` `Reverses If` |
-| Change Review Sheet | Only rows that change: entity, campaign, target, field, from, to, action, why, what reverses it |
-| Campaign Decisions | Every campaign, one row, with its own ceiling and utilisation |
-| Leak Audit | The ranked table from §2 |
-| Inventory | Per SKU: units, velocity, months to clear, economics, ceiling, refund tier, gate verdict |
-| Search Terms | Every term with a verdict and the sufficiency test |
-| Negatives | What is negated and on what evidence — or empty, with the reason |
-| Fix Queue | Spending terms held rather than negated, and what happens instead |
-| Placement | Per campaign per placement, modifier set and why — or the reason none may be set |
-| No-Action Census | Every unchanged row classified, with the mechanical reason |
-| BM Recommendations | Findings that are not PPC levers, routed with evidence and an owner |
-| Deployment Waves | What opens when, the daily $ effect, and what gates each wave |
-| Validation Gate | The checks below, pass or fail with a count |
-| Not Built | Tabs this cycle cannot support, why, and the input that would build them |
+| The ranked leak table | The summary or findings tab, as a grouped block |
+| Refund tier per SKU | The inventory tab, as extra columns |
+| Per-SKU ceilings, both constructions | The inventory tab, side by side, labeled |
+| Campaigns excluded as multi-product | The summary tab, named with their SKU counts |
+| No-action classification | The census or validation tab |
+| Findings that are not PPC levers | The Brand Management findings log |
 
-Colour: amber on a filled decision column, red on a cut or pause, green on a raise or hold.
+Colour follows the template, not this skill.
 
 ---
 
@@ -83,8 +82,18 @@ Nothing ships with a failure open that is not a named missing input.
 | coverage | Every row carries either a verdict or a census class |
 | scope | No campaign advertising a foreign SKU is in the file |
 | attribution | Spend reconciles to product-ad attribution, not campaign totals |
-| ceiling | No new bid above `ceiling × CVR` for its routed child |
-| acceleration | Acceleration window is `min(2, months to clear)` on every SKU |
+| break-even | Break-even ACoS computed per SKU from the canon formula, no return allowance |
+| negative CM | Any SKU whose CM after carry is negative is routed to BM, not bid |
+| stock gate | No clearance push on a not-GREEN SKU, and none on a SKU whose hero size is RED |
+| ceiling | No new bid above max profitable CPC for its routed child |
+| both constructions | Canon break-even and the forward-cash ceiling both shown, with the acted-on one named |
+| labeled exception | Any spend above break-even is capped, dated and logged |
+| exit | The stock threshold at which clearance exits is stated |
+| vocabulary | Every verdict comes from the closed list; no invented strings |
+| one lever | No row carries two unrelated levers in one cycle |
+| sign-off | Every human-confirm trigger flagged, with its trade-off in reviewer units |
+| deal state | No figure blends a deal window with a clean window |
+| staleness | No anchor older than 45 days, or predating a price/fee/packaging/LTSF change |
 | denominator | Ceiling tests use cost per unit cleared, not cost per attributed order |
 | refund gate | No BLOCK SKU carries spend; no FLOOR SKU is scaled |
 | sunk cost | COGS appears in no ceiling term |
@@ -92,7 +101,7 @@ Nothing ships with a failure open that is not a named missing input.
 | charge counted once | The surcharge is in the fees line or added back, not both |
 | reasoning | Every action has a reasoning, and every reasoning carries a number |
 | reversal | Every action has a Reverses If with a read date |
-| negation | No term negated below the sufficiency line |
+| negation | No term negated below the negation line; no converting row parked by the sample gate |
 | placement | No blanket modifier in either direction; each set from its own campaign's data |
 | budget | No budget raised on a lane whose cost per unit cleared exceeds its ceiling |
 | redeployment | Released budget is only redeployed into a lane that is inside its ceiling *and* budget-capped |

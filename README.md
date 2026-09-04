@@ -30,6 +30,12 @@ scripts/                                the reproducible run
 
 ---
 
+## Where this sits
+
+The clearance skill is the **aged-stock branch** of the account's PPC family, not a standalone system. Economics, objective bands, per-SKU gates and the verdict vocabulary are governed by `pmp-optimization-sr` → `reference/decision_framework.md`, which is locked canon. Writing and validation are governed by `ppc-decision-reasoning`. The plan and workbook are built by `ppc-plan-builder` and `ppc-workbook-builder`.
+
+What this skill actually owns: **the leak audit, the refund gate, product-ad attribution, the data traps, the clearability read, and publishing.**
+
 ## The governing idea
 
 **Advertising is usually the smallest leak on an aged product.**
@@ -89,7 +95,16 @@ Each exists because something went wrong on a live product.
 | SOP-12 P13 | Draft v0.1 — not ratified |
 | Hanging Closet plan | Delivered, then corrected — see below |
 
-**Open:** the Hanging Closet plan was built before the leak audit, refund gate and two-month acceleration cap were folded in. Under those rules both children sit over ceiling and the higher-refund child is a FLOOR SKU that must not be scaled. The plan needs re-running through steps 2, 4 and 5.
+**Open — one decision blocks everything else.** Two ceiling constructions are live in the account and they point opposite ways:
+
+| | Construction | Hanging Closet result |
+|---|---|---|
+| **A** | Canon: the surcharge is a margin drag, so break-even gets *worse*; clear up to break-even, no further | Max profitable CPC **$0.067–$0.091**; CM after carry negative on both children → **ROUTE TO BM** |
+| **B** | Forward cash: selling now avoids charge later, so the charge is added *to* the ceiling | Ceiling $7.99–$10.75, max click price **$0.23–$0.24** → fund a reach layer |
+
+A plan built on A stops and sends the product to pricing. A plan built on B funds campaigns. **This is the highest-value open decision in the repo** and it is filed as such — the skill computes and shows both, names which one it acted on, and never picks silently.
+
+The Hanging Closet plan was built on B, before the leak audit, the refund gate and the canon check existed. It needs re-running.
 
 ---
 

@@ -11,6 +11,24 @@ The governing idea: **advertising is usually the smallest leak on an aged produc
 
 A plan that goes straight to campaigns is the characteristic failure of this work. It looks complete, it is defensible row by row, and it fixes the tenth-largest problem.
 
+## Where this sits, and what outranks it
+
+This skill is the **aged-stock branch** of the account's PPC family. It does not own the economics.
+
+| Question | Governed by | This skill's part |
+|---|---|---|
+| Break-even, ACoS bands, objective assignment, per-SKU gates, verdict vocabulary | `pmp-optimization-sr` → `reference/decision_framework.md` — **locked canon** | Read it, cite it, never restate it differently |
+| How a decision is written and validated | `ppc-decision-reasoning` | Applies to every row this skill writes |
+| The plan document and the execution workbook | `ppc-plan-builder`, `ppc-workbook-builder` | This skill supplies the clearance content they carry |
+| **The leak audit, the refund gate, product-ad attribution, the data traps, clearability, publishing** | **This skill** | Its actual contribution |
+
+**Where this skill and the locked canon disagree, the canon wins and the disagreement is reported, never silently resolved.** One such disagreement is live and material — see §5.
+
+Two canon rules that decide most clearance products before any campaign is opened:
+
+- **Under negative CM the LTSF answer is pricing, not bids.** Route to Brand Management. An aged SKU whose contribution does not survive the surcharge cannot be advertised into profit at any bid, and a bid book built for it is wasted work.
+- **Gate the push on stock.** GREEN (overstock, room to clear) → aggressive up to break-even. Not GREEN (already low) → **do not push**; it clears naturally, and the LTSF is flagged in the Suggestion rather than funded. Never run a clearance push on a SKU whose hero size is RED — clear the aged variation, protect the hero.
+
 ## Do this in order
 
 1. **Intake and verify** — reconcile every source before analysing anything
@@ -123,20 +141,51 @@ Full rules, the worked table and what to do when the gate contradicts the search
 
 ## 5 · The ceiling
 
+**Start from the canon, not from this skill.** Compute and state first:
+
 ```
-contribution = ASP − referral − FBA − refund cost per unit shipped
-ceiling      = contribution + (storage per unit per month × months of acceleration)
+break-even ACoS  = (ASP − COGS − Amazon bundled fees) ÷ ASP     no return allowance
+margin $         = ASP − COGS − Amazon bundled fees
+max profitable CPC = margin $ × CVR at the delivering placement
+clicks-to-loss   = margin $ ÷ CPC
+CPA              = CPC ÷ CVR
 ```
 
-**Months of acceleration is two by default, and never more than the months the stock actually takes to clear.** Use `min(2, months to clear at realised velocity)`. Counting the whole projected hold inflates the ceiling most on exactly the stock least able to justify it — a slow variant has the longest runway and the weakest case for spending against it.
+Then apply the surcharge **the way the canon applies it**: *the surcharge is a margin drag, so the SKU's effective break-even is worse.* Recompute break-even net of the drag, and check the sign:
 
-**COGS is sunk on aged stock** and appears in no term. It is identical across every option for the same units, so it can never change which option wins, and showing it makes every option look like a loss.
+```
+CM after carry = margin $ − (storage per unit per month × months held to sale)
+```
 
-**The ceiling test is cost per unit *cleared*, built from cost per unit *shipped*.** Not cost per ad-attributed order — advertising may attribute only a fraction of units, and the two denominators produce very different numbers. Use CPA per order for keyword-level decisions only.
+**If CM after carry is negative, stop.** The verdict is ROUTE TO BM — the lever is price, not bids — and no campaign work is authorised. This is the most common outcome on genuinely aged stock and it is a finding, not a failure.
+
+If CM after carry is positive, the clearance objective runs at **break-even ACoS: sell the aged stock out up to break-even, no further**, ring-fenced, labeled, and tagged separately in TACoS, under the objective's own cap.
+
+**Exit clearance when stock clears below the surcharge threshold**, and say on the face of the plan what that threshold is.
+
+### The disagreement to report, not resolve
+
+This skill's inherited construction adds avoided storage *to* the ceiling:
+
+```
+ceiling = contribution + (storage per unit per month × min(2, months to clear))
+```
+
+That is a forward-cash argument — selling now avoids charge later — and it moves the ceiling **up**. The canon treats the same surcharge as a margin drag and moves break-even **down**. On the same product the two produce opposite recommendations, and the gap is large: on one live product the forward-cash ceiling read $19.97 per unit where the canon's max profitable CPC read 6.7 cents.
+
+**Do not pick one silently.** Compute both, show both, name which one the plan acted on, and file the choice as a decision requested. Under the canon's own rule the forward-cash figure is only available as one of the three labeled investment objectives, and then **only while capped, dated and logged** — never as an open-ended raise.
+
+### Rules that hold under either construction
+
+**COGS never enters a live decision column on aged stock.** It is identical across every option for the same units, so it cannot change which option wins.
+
+**The ceiling test is cost per unit *cleared*, built from cost per unit *shipped*.** Not cost per ad-attributed order — advertising may attribute only a fraction of units, and the two denominators produce very different numbers. CPA per order is for keyword-level decisions only.
 
 **Where a campaign ships more than one child, its ceiling is weighted by the children it actually ships**, not by its name and not by the lower child by default.
 
-Always show the storage-adjusted ceiling alongside the LTSF model's break-even ad cost. They answer different questions and both belong in the document.
+**Deal-state and clean-state are computed separately, never blended.** A window containing a deal is read twice — once from deal-state data, once from clean-state — and neither substitutes for the other. Clean-state governs ordinary decisions.
+
+**Every anchor is stale past 45 days, or after any price, fee, packaging or LTSF change.** A verdict resting on a stale anchor is provisional and says so.
 
 Construction, worked examples and the per-campaign blend: `references/ceiling-and-attribution.md`.
 
@@ -198,9 +247,15 @@ Decide from 30-day data, not the 7-day window — a thin window produces too few
 
 **Placement modifiers are set per campaign per placement from that campaign's own conversion data.** Never a blanket percentage in either direction — a blanket 0% is the same mistake as a blanket 135%, just cheaper. Top of Search is often the best placement on conversion and revenue per click while being worst on CPA, so the fix is usually to reduce the modifier, not remove it. See `references/placement-tiers.md`.
 
-**Never negate below the sufficiency line.** At a conversion rate *c*, one order is not expected until roughly `1/c` clicks. A term with fewer clicks than that showing zero orders is not evidence of failure, and negating it removes discovery surface — often the surface producing the cheapest orders in the account. State the line, and how many terms have reached it.
+**Two thresholds, and they are not the same threshold.** The canon's sample gate parks a **zero-order row under 15 clicks** — hold and wait, and say whether low clicks are consistent with low search volume. The negation line is separate and further out: at conversion rate *c*, one order is not expected until roughly `1/c` clicks, so a term below that showing zero orders is not evidence of failure and negating it removes discovery surface. Both are stated, and neither is used in place of the other. **A row with orders is never parked by either gate.**
 
 **Every row that does not change is classified, not ignored.** Produce a No-Action Census: verdict class, row count, and the mechanical reason no action is allowed. A file where most rows are silent cannot be reviewed.
+
+**Use the closed verdict vocabulary.** Verdicts come from the canon's list — CLEARANCE, HOLD, TRIM BUDGET, BID DOWN TO PROFITABLE CPC, STOP-LOSS, NEGATE, RE-POINT VARIATION, PAUSE, ROUTE-TO-BM, MANUAL, and the campaign-level set — never invented strings. A new string is a new concept, and a new concept goes to the canon before it goes in a file.
+
+**One lever per row per cycle**, and argue why that lever and not the adjacent one. Where a ceiling breach genuinely requires both a budget and a bid move, that is one decision with two parts and it says so explicitly rather than arriving as two unexplained changes.
+
+**Flag for human sign-off, never silently deploy:** an action on a 500+ SV keyword, any gate failure, any structural change, a bid move over 25%, a budget move over $50/day. The flag states the trade-off in the reviewer's own units — what is foregone in dollars per week against what is retained in orders and CPA — so it can be approved or declined from the flag itself.
 
 ---
 
