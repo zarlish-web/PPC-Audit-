@@ -56,6 +56,11 @@ STRUCTURE
 Two questions that are not files:
  A. What has already been tried on this product, and what did it produce?
  B. Is there anything about this product I would not learn from the data?
+
+I will come back with questions where the files disagree with each other rather
+than picking an answer myself — particularly on anything feeding the ceiling,
+the pace, the archetype or the disposition, and on any term whose house meaning
+differs from its ordinary one.
 ```
 
 ---

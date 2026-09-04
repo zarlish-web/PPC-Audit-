@@ -37,6 +37,30 @@ Steps 1–5 of the run. Read alongside `prompts.md`.
 
 A missing input suppresses its dependent step and is recorded. It never licenses an estimate, a smaller version of the action, or a value carried from a prior cycle without its date.
 
+### 1.1 Ask rather than resolve it yourself
+
+**A contradiction in the inputs is a question for the person who supplied them, not a puzzle to solve alone.**
+
+Two sources disagreeing, a term used in a way that does not match its ordinary meaning, a figure that will not reconcile, a column whose definition is not obvious — the operator who prepared the data usually knows the answer in one line. Guessing turns a ten-second question into a wrong ceiling, and a wrong ceiling is priced into every bid in the plan.
+
+**When to ask rather than note and move on.** Ask when the answer changes a decision. Where the contradiction only affects how a figure is described, record it as a figure to reconcile and continue. Where it feeds **the ceiling, the pace, the archetype or the disposition**, stop that branch and ask — those four are where a wrong assumption is both expensive and invisible.
+
+**How to ask.** State the two things that disagree, what each implies, and which decision is waiting:
+
+> *"The charge file gives this SKU 80 units still carrying charge, but its cover column reads as no stock remaining. The first implies an $8 ceiling, the second implies $3. Which is right?"*
+
+Answerable in one line, and worth more than an hour of inference.
+
+**While waiting.** Finish everything that does not depend on the answer, and mark the dependent branch blocked rather than filling it with an assumption. A blocked branch is visible; an assumed one is not.
+
+**Never silently resolve a vocabulary difference.** Words like *liquidate*, *aged*, *clear*, *terminal* and *floor* carry house meanings that differ from their ordinary ones — *liquidate* may mean sell through on the platform rather than dispose of stock, and the two lead to opposite recommendations. Where a term's meaning would change what you recommend, ask what it means here before using it.
+
+### 1.2 When two sources disagree, prefer the count
+
+A raw count — units, orders, clicks, dollars charged — is an observation. A derived field — days on hand, months on hand, months to clear, break-even — is a calculation resting on other fields, and it inherits every error underneath it.
+
+**Where a derived field and a count conflict, the count governs**, and the derived field is unreadable until reconciled. On a clearance product the derived fields are precisely the ones that decide whether to spend, so an inherited error lands directly on the ceiling.
+
 ---
 
 ## 2. Context corrections
@@ -69,7 +93,13 @@ Rank and performance stories differ completely depending on which term is being 
 
 State each reading separately. Averaging is what hides a divergence.
 
-### 2.5 Provenance
+### 2.5 The staleness cascade
+
+**Staleness is a property of the file, not of the field.** A file with one field known stale has no clean fields, only unchecked ones — the price, the cost, the unit counts and every derived column were captured in the same pull and carry the same date.
+
+The test is cheap. Pick two or three fields verifiable against an independent source — price against what the listing actually sold at, cost against the profit export, units against an inventory source — and check them. If any fails, **quarantine the whole file** until reconciled, and do not use its derived columns at all.
+
+### 2.6 Provenance
 
 Which child was actually enabled over the window the performance history spans, and does each campaign advertise the child its name implies?
 
@@ -105,6 +135,8 @@ Where the units are aged but not terminal and the product still sells at margin,
 **Sunk cost of goods appears in no term.** It is identical across every option for the same units, so it can never change which option wins. Showing it makes every option on an underwater product look like a loss, which produces paralysis rather than a decision.
 
 **Do not assume the sign of the declared subtrahend.** Both signs occur in live data. State the value read and which direction it moved the ceiling.
+
+**Months-to-clear is computed, never read.** Derive it from charge-bearing units at realised velocity. Do not take it from a supplied cover, days-on-hand or months-on-hand column — those are derived, frequently stale, and the ceiling is a direct function of this number.
 
 **The ceiling is stale the moment any input moves** — floor price, salvage value, unit count, cliff date, conversion rate. A ceiling dated earlier than its inputs is recomputed before anything is staged against it.
 

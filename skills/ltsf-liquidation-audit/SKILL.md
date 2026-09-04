@@ -43,11 +43,23 @@ Send the intake request in `references/prompts.md` §0. It lists each file, why 
 
 Do not begin until the operator has supplied the inputs **or explicitly confirmed which do not exist for this cycle**. Record the confirmed absences — they become the named gaps in the final section.
 
+### Step 0b — Ask before assuming
+
+Two rules that apply throughout the run, not just at intake. Both come from real errors.
+
+**A contradiction is a question, not a puzzle.** Where two sources disagree, a figure will not reconcile, or a column's definition is not obvious, ask the person who prepared the data. They usually answer in one line. Ask whenever the answer touches the **ceiling, the pace, the archetype or the disposition** — otherwise record it as a figure to reconcile and continue. While waiting, finish everything that does not depend on it and mark the dependent branch blocked rather than filling it with an assumption.
+
+**Never silently resolve a vocabulary difference.** *Liquidate*, *aged*, *clear*, *terminal* and *floor* carry house meanings that differ from their ordinary ones — *liquidate* may mean sell through on the platform rather than dispose of stock, and those lead to opposite recommendations. Where a term's meaning would change what you recommend, ask what it means here.
+
+See `references/decision-framework.md` §1.1 and §1.2.
+
 ### Step 1 — Read the declaration
 
 Read the seven declared fields. Any blank or undated field stops the procedure.
 
 Copy them into the audit's opening table with their dates and the source row reference. Everything downstream cites these rather than restating them from memory.
+
+**Prefer counts over derived fields.** Where a supplied cover, days-on-hand or months-to-clear column conflicts with a raw unit count, the count governs — derived fields inherit every error beneath them, and on this lane they feed the ceiling directly.
 
 ### Step 2 — Correct the context before any verdict
 
