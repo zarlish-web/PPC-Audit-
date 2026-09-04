@@ -1,6 +1,6 @@
 # SOP-27 · P15 — Reach-Layer Campaign Builds (LTSF Clearance)
 
-**Draft v0.3 · for review · proposed addition to SOP-27 v2.0 Element 4**
+**Draft v0.4 · for review · proposed addition to SOP-27 v2.0 Element 4**
 
 Status: DRAFT. Not yet ratified. Decisions recorded at Section 10, open items at Section 11.
 
@@ -203,9 +203,11 @@ Each keyword sits in exactly one tier. Tiers are read against **cost per unit mo
 
 ### 9.1 One keyword, one home
 
-> **A keyword appears in exactly one campaign in the lane.**
+> **A keyword appears in exactly one campaign per ad product.**
 
-Applies across the proven layer and the reach layer together. Two consequences at build:
+**Scoped per ad product, not across the lane.** Sponsored Products, Sponsored Brands and Sponsored Display do not compete in the same auction, so the same keyword running in a Sponsored Products campaign and a Sponsored Brands campaign is correct coverage, not self-competition. The rule bites *within* an ad product, where two campaigns genuinely contest one slot.
+
+Applies across the proven layer and the reach layer together, within each ad product. Two consequences at build:
 
 1. Proven converters are negative-exacted out of every reach campaign.
 2. A keyword appears in one bid tier only. **Tiers are separated by keyword, never by price on the same keyword.**
@@ -260,7 +262,7 @@ The output of P15 is not a campaign list. It is **an analysis a reviewer can che
 
 Run before any set goes to #38.
 
-1. No keyword string appears in more than one campaign in the lane.
+1. No keyword string appears in more than one campaign **within the same ad product**. Cross-product repetition is expected and is not a finding.
 2. Every proven converter present as a negative exact in every reach campaign.
 3. No bid above the R2 ceiling, and the ceiling dated later than all five of its inputs.
 4. No placement multiplier above zero on any tagged entity (R4).
@@ -283,7 +285,7 @@ Run before any set goes to #38.
 | D-4 | The approach applies to all four archetypes. |
 | D-5 | Intensity is gated by clearability and sized by charge band. The ceiling never scales with either. |
 | D-6 | Archetype rules remain in force as boundaries. |
-| D-7 | One keyword, one home, across the whole lane. Tiers separate by keyword, never by price on one keyword. |
+| D-7 | One keyword, one home, **per ad product**. Tiers separate by keyword, never by price on one keyword. Scoped per ad product at v0.4 after testing against a live decided bulk, where cross-product repetition proved correct and within-product overlap was already absent. |
 | D-8 | The exact head is avoided as a consequence of the ceiling, re-testable when the ceiling moves. |
 | D-9 | This procedure carries no local thresholds. Bands, gates and limits are read from their authorities at run time. |
 
@@ -295,7 +297,7 @@ Not written into the procedure. Each needs a decision before ratification.
 
 | ID | Item |
 |---|---|
-| OPEN-1 | **The R2 subtrahend.** SOP-27 §1.2 and P3 subtract the winning salvage option. WE-2 and Economics case E7 subtract the charge avoided. These are different quantities and give different ceilings. Every bid in P15 sits under whichever is correct. Section 3 is written to be neutral on the sign, but it cannot be neutral on which quantity to use. |
+| OPEN-1 | **The R2 subtrahend — answered by practice, wording still to correct.** SOP-27 §1.2 and P3 subtract the winning salvage option. WE-2 and Economics case E7 subtract the charge avoided. A live clearance audit reviewed at v0.4 builds its adopted ceiling as contribution before advertising **plus storage avoided over a bounded acceleration window**, which is the charge-avoided reading. Practice therefore follows E7, not the salvage wording in §1.2 and P3, and those two need correcting to match. Two details from that build are worth carrying into the rule: the avoided charge is counted over a **stated, bounded window** rather than the whole projected hold, and the ceiling is tracked as **ad cost per unit shipped against the ceiling**, not only as a CPC. |
 | OPEN-2 | **v4.0 scenario S-A10** puts LTSF-burdened products on a profit-only posture and routes velocity requirements away from PPC. The reach layer is low-cost by construction, so the clash is narrower than for R2, but the rule as written still reaches this lane. |
 | OPEN-3 | **A budget limit for the reach layer.** Budget is named the primary intensity dial and has no stated cap. The proven lane is sized by required clicks; the reach layer has no equivalent sizing rule. |
 | OPEN-4 | **Counterparty procedures.** #12 carries no procedure that builds a liquidation campaign, #29 no wall specification for one, and #38 and #26 do not mention the lane. P15 cannot execute end to end until at least #12 and #29 carry matching steps. |
