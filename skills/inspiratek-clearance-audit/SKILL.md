@@ -24,6 +24,36 @@ This skill is the **aged-stock branch** of the account's PPC family. It does not
 
 **Where this skill and the locked canon disagree, the canon wins and the disagreement is reported, never silently resolved.** One such disagreement is live and material — see §5.
 
+## How a run is assembled
+
+Every product runs through the same pipeline whatever the objective. What changes for liquidation is **§1.1 — the objective re-tag** — and what that re-tag then makes legal or illegal downstream.
+
+**What the operator supplies**
+
+1. **The Final Bulk** — one sheet built at our end carrying every campaign, ad group, keyword, target, product ad, negative and bidding-adjustment row for the product, with `Action`, `Reasoning`, `New Bids`, `New Budget` and `New Percentage` **blank**. This is the file the run fills in. It is never rebuilt from scratch and its column order is never changed.
+2. **The raw data files** — the intake list at §1.
+3. **The objective**, stated. For this skill it is clearance; if it is not, this is the wrong skill.
+
+**What the run does, and with which skill**
+
+| Stage | Skill | Produces |
+|---|---|---|
+| Analysis and economics | `pmp-optimization-sr` (canon) + **this skill** | Break-even, gates, leak audit, refund tiers, clearability |
+| The written plan | `ppc-plan-builder` | The plan document |
+| Filling the decision columns | `ppc-decision-reasoning` | `Action`, `Reasoning`, `Reverses If` on every row that changes |
+| Assembling the workbook | `ppc-workbook-builder` | Final Bulk filled, plus the added tabs below, in the account's real tab set |
+
+**What comes back**
+
+- **The plan document** — the analysis and the argument.
+- **The Final Bulk, filled** — campaign-, ad-group-, keyword- and placement-level actions written into the blank columns. Nothing added, nothing reordered.
+- **New-campaign tabs** where the plan proposes a build — one per ad product, SP / SB / SD kept separate, each row carrying its build class, targeting, match type, SKU set, bid, budget and the gate it waits on.
+- **A negation tab** — every negative to add, with the campaign it goes into, the mode, and the evidence standard it met.
+
+The build classes and what may be proposed under a clearance objective: `references/objective-and-builds.md`.
+
+---
+
 Two canon rules that decide most clearance products before any campaign is opened:
 
 - **Under negative CM the LTSF answer is pricing, not bids.** Route to Brand Management. An aged SKU whose contribution does not survive the surcharge cannot be advertised into profit at any bid, and a bid book built for it is wasted work.
@@ -31,7 +61,7 @@ Two canon rules that decide most clearance products before any campaign is opene
 
 ## Do this in order
 
-1. **Intake and verify** — reconcile every source before analysing anything
+1. **Intake, verify, and re-tag the objective** — reconcile every source, then set every campaign to clearance
 2. **Quantify the leaks** — dollars per month, every lever, with an owner
 3. **Diagnose** — exposure vs conversion, syntax, size, variant, competitors
 4. **Gate on refunds** — tier the SKUs before any spend is routed
@@ -70,7 +100,35 @@ Optional but valuable: parent-level SQP with cart-adds, ASIN Insights, competito
 
 **Build the verification table before any analysis.** Every figure that later carries weight needs a named governing source. See `references/data-traps.md` for the contradictions that recur — read it before trusting any number.
 
-### 1.1 Four rules that govern every figure downstream
+### 1.1 Re-tag the objective before any row is read
+
+**This is the step that makes a liquidation run different from every other run, and it happens once, at the top.**
+
+The standard mapping assigns objectives from targeting type — brand keyword to Defensive, **Exact to Ranking**, auto and broad to Discovery, product targeting to Profitable Conversion. **On a product whose objective is clearance that mapping is wrong**, and applying it silently is how a liquidation product ends up with a rank programme inside it.
+
+| Live objective on the account | Becomes, on a clearance product |
+|---|---|
+| Ranking / Re-Ranking | **LTSF-Clearance** |
+| Market Share | **LTSF-Clearance** |
+| Discovery | **LTSF-Clearance** — the reach layer serves the same purpose here |
+| Profitable Conversion | **LTSF-Clearance** |
+| Defensive on a brand term | Defensive stays. Owned demand is not aged stock |
+
+Objective is a campaign property, one per block, taken from the campaign row. Re-tag the campaign, not the keyword, and record the prior value so the change is auditable.
+
+**What the re-tag makes illegal.** Every one of these is barred on a re-tagged campaign, and a plan carrying one has not re-tagged:
+
+- Rank targets, rank movement as a success measure, and the seven-state ranking progress test — there is no rank objective to progress toward
+- The top-of-search modifier ladder used to buy position
+- DSTR and target-clicks sizing derived from a rank goal
+- Any bid above the ceiling justified as a sized, capped ranking push
+- Exact-match expansion on unproven terms
+
+**What it makes the governing measures.** Velocity, months to clear, cost per unit cleared against the ceiling, and the charge avoided — judged on total units shipped, never on ad-attributed orders alone.
+
+**Where a re-tagged campaign was mid-push**, say so and state what is being abandoned. A rank programme stopped halfway is a real cost and the document owns it rather than letting it disappear in a re-tag.
+
+### 1.2 Four rules that govern every figure downstream
 
 **Attribute through product-ad rows, never campaign totals.** A campaign that carries this product's ad may carry five hundred others. Filtering "campaigns containing this product" and summing their spend can overstate by multiples. See `references/attribution.md`.
 
@@ -271,7 +329,7 @@ Decide from 30-day data, not the 7-day window — a thin window produces too few
 
 Exact-heavy builds are the most common failure. Check your own output: if most Exact keywords have no conversion evidence, move them to Phrase.
 
-**Cover every surface.** SP, SB (Product Collection across Broad, Phrase, Exact and ASIN targeting — not Phrase-only), SD (competitor, category, views, purchase, audiences), Auto split into four isolated campaigns.
+**Cover every surface.** SP, SB (Product Collection across Broad, Phrase, Exact and ASIN targeting — not Phrase-only), SD (competitor, category, views, purchase, audiences), Auto split into four isolated campaigns. The six build classes, the separation rules and the added-tab structure: `references/objective-and-builds.md`.
 
 **No bid above the ceiling**, where the maximum click price is `ceiling × conversion rate`. Bidding strategy fixed or down-only only — up-and-down can breach the ceiling at auction. Placement multipliers per §8, never blanket.
 
@@ -320,4 +378,5 @@ A fully argued case for every row cannot be produced reliably across hundreds of
 - `references/refund-gate.md` — tiering SKUs by refund risk before routing spend
 - `references/ceiling-and-attribution.md` — ceiling construction, the acceleration cap, per-unit-cleared, per-campaign blends, product-ad attribution
 - `references/placement-tiers.md` — setting modifiers per campaign per placement
+- `references/objective-and-builds.md` — what the clearance objective permits, the six build classes, the added tabs
 - `references/output-format.md` — document spine, workbook tabs, validation gate, publishing

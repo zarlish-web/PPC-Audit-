@@ -42,11 +42,26 @@ What this skill actually owns: **the leak audit, the refund gate, product-ad att
 
 Quantify every lever first, rank by size, then size the PPC plan against what it can actually deliver. A plan that only addresses advertising typically addresses 8–15% of the loss — and it looks complete while doing it.
 
+## How a run works
+
+You supply the **Final Bulk** — every row for the product, with Action, Reasoning, New Bids, New Budget and New Percentage blank — plus the raw data files. The run fills those columns in place and adds what it proposes to create.
+
+| Stage | Skill |
+|---|---|
+| Analysis and economics | `pmp-optimization-sr` (canon) + this skill |
+| The written plan | `ppc-plan-builder` |
+| Filling the decision columns | `ppc-decision-reasoning` |
+| Assembling the workbook | `ppc-workbook-builder` |
+
+Back comes the plan document, the filled Final Bulk, added `New SP` / `New SB` / `New SD` tabs for anything proposed, and a `Negatives` tab.
+
+**The one thing that makes a liquidation run different is the objective re-tag at step 1.** Ranking, Market Share, Discovery and Profitable Conversion all become LTSF-Clearance; only Defensive on a brand term survives. That re-tag bars rank targets, the top-of-search ladder, DSTR sizing and Exact expansion onto unproven terms — and makes velocity, months-to-clear and cost per unit cleared the governing measures.
+
 ## The nine steps
 
 | Step | What it does |
 |---|---|
-| 1 | Intake and verify — reconcile every source before analysing anything |
+| 1 | Intake, verify, **re-tag the objective** — every campaign on aged SKUs becomes clearance |
 | 2 | **Leak audit** — ten levers, dollars per month, ranked, owned |
 | 3 | Diagnose — exposure vs conversion, syntax, variant, competitors, reach |
 | 4 | **Refund gate** — tier the SKUs before any spend is routed |

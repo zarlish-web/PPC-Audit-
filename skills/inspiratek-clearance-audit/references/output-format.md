@@ -67,6 +67,9 @@ Where this skill's own content needs somewhere to live, it goes in the tab that 
 | Campaigns excluded as multi-product | The summary tab, named with their SKU counts |
 | No-action classification | The census or validation tab |
 | Findings that are not PPC levers | The Brand Management findings log |
+| Campaigns proposed for build | Added tabs `New SP` / `New SB` / `New SD`, one per ad product |
+| Negatives to add | Added tab `Negatives`, or delivered empty with the reason |
+| Prior objective before the clearance re-tag | The campaign tab, as a column, so the change is auditable |
 
 Colour follows the template, not this skill.
 
@@ -107,5 +110,10 @@ Nothing ships with a failure open that is not a named missing input.
 | redeployment | Released budget is only redeployed into a lane that is inside its ceiling *and* budget-capped |
 | leak share | The document states what share of total monthly loss the PPC plan addresses |
 | declaration | Archetype, risk tier, floor price and terminal option read, never derived |
+| objective re-tag | Every campaign on aged SKUs carries the clearance objective, with its prior value recorded |
+| no rank artefacts | No rank target, TOS premium bought for position, or DSTR sizing survives the re-tag |
+| build classes | Every proposed campaign is one of B1-B6; none invented |
+| added tabs | New campaigns split by ad product; negations carry campaign, mode and evidence standard |
+| gates named | Every proposed campaign is live-now or names the condition it waits on |
 
 A check that fails on a missing input is reported as such — the input named, and the decision it blocks — rather than quietly passing.
