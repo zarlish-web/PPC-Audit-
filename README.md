@@ -1,145 +1,108 @@
-# PPC Oversight System
+# PPC Liquidation Skill Set
 
-An operating manual for running an Amazon Sponsored Ads portfolio at three tempos.
+Everything needed to run an Amazon PPC clearance audit on one product, the same way, every time.
 
-The daily tier **protects**, the weekly tier **steers**, the monthly tier **decides**. Each tier
-reads only the signals that have matured by the time it runs. That separation is the whole point:
-it is why accounts run this way compound instead of oscillate.
-
-| | Daily | Weekly | Monthly |
-|---|---|---|---|
-| **Role** | Control — stop loss | Steering — the work | Strategy — the direction |
-| **Timebox** | 15 min, exception-based | 75–90 min, fixed weekday | Half day, within 5 days of close |
-| **Owner** | PPC Specialist | Manager decides, Specialist prepares | Account Lead with Manager |
-| **Reads** | Spend, delivery, eligibility, stock, Buy Box | 14d bids, 30d budget & placement, 60d search terms | Settled P&L, TACoS, rank, mix, lever decay |
-| **Moves** | Pauses and budget relief only | Bids, placements, budgets, negatives, harvests | Envelope, objective mix, structure, thresholds |
-| **Never touches** | Bids, placements, negatives, structure | Envelope, architecture, margin assumptions | Individual keyword bids |
-
-**Full manual:** [`docs/ppc-oversight-system.html`](docs/ppc-oversight-system.html) — §1 principles,
-§2 signal maturity, §3–§5 the three tiers, §6 threshold library, §7 decision rights, §8 report
-formats, §9 failure modes.
+Built from a review of the SOP corpus, two live plan documents, a live decided bulk, and one full run on a real product — the Hanging Closet Organizer — whose findings then corrected the skill twice.
 
 ---
 
-## The seven principles
-
-1. **Match the window to the data's maturity.** SP attribution runs 7 days (14 on some reports).
-   The last 72 hours of conversion data is always incomplete.
-2. **Sufficiency before action.** No bid cut under 10 clicks, no negation under 2× target CPA,
-   no CVR read under 20 clicks. Below the bar, "keep observing" is the decision — and it gets logged.
-3. **One lever per entity per cycle.** Move the bid, or the placement, or the budget. Not all three,
-   or you learn nothing about which one worked.
-4. **Observation lock.** Anything changed is frozen 14 days; new campaigns 21. Re-judging early is
-   the main cause of bids that never converge.
-5. **Every action is graded.** Each cycle scores the changes from two cycles ago as
-   worked / flat / backfired. A lever flat twice on one entity is retired for it.
-6. **Thresholds are set before the breach.** They live in `config/thresholds.yml` and change only at
-   the monthly review, with a dated reason.
-7. **A null result is an output.** "No exceptions" is logged. An empty log and a skipped check look
-   identical in hindsight.
-
----
-
-## Daily — control (15 min)
-
-Catch breakage and stop loss. Not an optimisation pass.
-
-| ID | Check | Trigger |
-|---|---|---|
-| D1 | Account & ad eligibility | Any ineligible ad on a top-20 spend ASIN |
-| D2 | Delivery integrity | 0 impressions 2 days after ≥ 500 impressions in prior 7d |
-| D3 | Buy Box & inventory | BB < 90% · DOH < 21 days · any OOS advertised child ASIN |
-| D4 | Spend pacing | MTD pace > ±10% of plan (P2 beyond ±20%) |
-| D5 | Spend anomaly | Daily spend > 150% or < 50% of own trailing 7-day mean |
-| D6 | Budget cap timing | Out of budget before 18:00 · before 20:00 if Ranking |
-| D7 | Runaway spend | ≥ 3× target CPA, 0 orders, ≥ 5 rolling days |
-
-**Pre-authorised:** pause OOS/BB-lost ads · budget relief ≤ +25% once per campaign per week ·
-circuit-break pause on D7. **Out of scope:** bids, placements, negatives, structure.
-
-**Output:** `templates/daily-exception-log.csv` — one row per exception, or one NIL row.
-
----
-
-## Weekly — steering (75–90 min)
-
-Run in order. Gates precede bids because a bid set before its gate is known is set blind.
-
-| ID | Step | Key rule |
-|---|---|---|
-| W1 | Execution verification | Diff last cycle's approved log against the live bulk. **Approved ≠ uploaded.** Blocks the cycle. |
-| W2 | Grade the matured cycle | Score changes from 2 cycles ago vs. their recorded expected outcome |
-| W3 | Set the gates | DOH, that SKU's break-even ACoS, and the campaign objective — all three, or skip the SKU |
-| W4 | Search-term pass | Negate ≥ 2× CPA / 0 orders / ≥ 10 clicks / 60d · harvest ≥ 2 orders at ≤ target ACoS |
-| W5 | Bid pass | By objective. ±15% routine, ±25% correction, no direction reversal inside 14d |
-| W6 | Placement pass | ≤ 20 points, one move per campaign per 14 days |
-| W7 | Budget pass | Reallocate inside the envelope. Envelope changes escalate to monthly |
-| W8 | Hygiene sweep | Nothing carried more than two cycles |
-| W9 | Package, log, approve | Log written **before** upload; ≤ 25-word rationale, expected outcome, review date |
-
-**Lever hierarchy:** bid → placement modifier → budget → negation/harvest → structure (escalates).
-
-**Output:** decided bulk + `templates/weekly-change-log.csv` + a five-line summary.
-
----
-
-## Monthly — strategy (half day)
-
-The only tier that may change the envelope, the objective mix, the structure, or the thresholds.
-
-| ID | Step | Key rule |
-|---|---|---|
-| M1 | Profit truth, not ACoS | CM2 after ads per SKU; TACoS 6-month trend |
-| M2 | Objective mix vs. stage | Launch 50/30/15/5 · Scale 35/25/30/10 · Harvest 15/15/60/10 |
-| M3 | Rank progression | Sufficiency stop at 21 days held; 8 weeks with no movement → re-diagnose |
-| M4 | Lever effectiveness | Lever < 40% "worked" is a diagnosis problem, not a tuning problem |
-| M5 | Coverage & competitive | Uncovered terms ≥ 500 SV, SOV, new entrants, price pressure |
-| M6 | Structure & lifecycle | Sunset < 10 clicks / 0 orders / 60d · promote after 3 cycles at target |
-| M7 | Next envelope | Capped by inventory cover; > +15% needs brand owner approval |
-| M8 | Threshold review & report | Never-fired and always-fired are both defects |
-
-**Output:** `templates/monthly-review-pack.md` + next envelope + threshold changes, with the
-stakeholder summary written as Finding → Why it matters → Action → Expected impact.
-
----
-
-## Severity ladder
-
-| Level | Response | Who acts |
-|---|---|---|
-| **P1** | 2 hours | Specialist, under pre-authorisation; Manager told same hour |
-| **P2** | Same business day | Specialist proposes, Manager approves |
-| **P3** | Next weekly cycle | Manager |
-| **P4** | Next monthly cycle | Account Lead |
-| **P5** | Scheduled with the brand | Brand owner |
-
-Severity comes from the threshold that fired, never from whoever noticed it — otherwise everything
-becomes P1 within a month and the ladder stops carrying information.
-
-Authority limits (who may move what, how far) are in `config/thresholds.yml` under `authority`,
-and in §7.2 of the manual.
-
----
-
-## Repository layout
+## What's here
 
 ```
-docs/ppc-oversight-system.html   The full manual, §1–§9
-config/thresholds.yml            Every threshold, in one versioned place
-templates/daily-exception-log.csv
-templates/weekly-change-log.csv
-templates/monthly-review-pack.md
+skills/ltsf-liquidation-audit/     THE SKILL — install this
+├── SKILL.md                       the 8-step run
+└── references/
+    ├── prompts.md                 exact prompts, copy-paste, one per step
+    ├── decision-framework.md      steps 1–5: inputs, corrections, ceiling, pace, gate
+    ├── campaign-builds.md         step 7: build classes, bid tiers, separation, staging checks
+    ├── output-format.md           step 8: document spine, writing standards, validation gate
+    └── worked-example.md          a real run including where it went wrong
+
+drafts/                            THE SOPs — review and ratify
+├── SOP-27_P15_Reach_Layer_Campaign_Builds       new procedure: building clearance campaigns
+├── SOP-12_P13_Dated_Liquidation_Campaign        the receiving procedure #12 was missing
+├── Product_Audit_Format_Standard                merged format from the ranking + clearance plans
+└── HC_Liquidation_Audit_04Sep2026               the first live run, as the reference output
 ```
 
-## Setting it up
+---
 
-1. Fill in `meta` and `skus` in `config/thresholds.yml` — per-SKU break-even ACoS is not optional;
-   an account-wide ACoS target starves profitable products to subsidise thin ones.
-2. Pick the weekly run day and hold it. Tuesday works well: the weekend has settled and there is
-   still a working week to react in.
-3. Run four weekly cycles before judging any threshold. The first W2 grade cannot exist until
-   cycle 3.
-4. At the first M8, retune the §6 values to your own CPA and volume — then leave them alone
-   between monthly reviews.
+## How to use it
 
-The structure is the durable part. The numbers are a starting position.
+**To run an audit.** Install the skill (`ltsf-liquidation-audit.skill`), then ask for a clearance audit on a product. It triggers on its own. Step 0 sends the intake list; nothing starts until the inputs arrive or their absence is confirmed.
+
+**To run it manually without the skill.** Work through `references/prompts.md` in order — §0 through §8, plus §9 if the lane closes. Each prompt is written to be pasted as-is.
+
+**To understand a decision it made.** `decision-framework.md` for anything about the ceiling, pace or the gate. `campaign-builds.md` for anything about structure or bids.
+
+**To check work before shipping.** The validation gate at the end of `output-format.md`. Sixteen checks; the first six are traceability and are the ones that fail quietly.
+
+---
+
+## The eight steps
+
+| Step | What it does |
+|---|---|
+| 0 | Intake — 25 inputs, each with why it's needed |
+| 0b | Ask before assuming — contradictions go back to whoever supplied the data |
+| 1 | Read the declaration — seven fields, none derived |
+| 2 | **Context corrections** — find what makes the raw numbers misleading, *before* any verdict |
+| 3 | Build the ceiling — computed, never chosen |
+| 4 | Required pace — market click price read at the volume needed, not the volume bought |
+| 5 | **Clearability gate** — can traffic clear this at all? Open, split, closed or unmeasured |
+| 6 | Decide the existing account |
+| 7 | Build new campaigns — two layers, six classes, separation rules |
+| 8 | Write it up, then run the validation gate |
+
+Step 2 and step 5 are where the value is. Step 2 stops an audit being confidently wrong. Step 5 stops money going into stock that advertising cannot move.
+
+---
+
+## The rules that came from real errors
+
+Each of these exists because something went wrong on a live run.
+
+**Ask rather than resolve.** A contradiction is a question for whoever prepared the data, not a puzzle to solve alone. Ask when the answer touches the ceiling, the pace, the archetype or the disposition. Mark blocked branches blocked — a blocked branch is visible, an assumed one is not.
+
+**Never silently resolve a vocabulary difference.** *Liquidate*, *aged*, *clear*, *terminal*, *floor* carry house meanings. Reading one in its ordinary sense produced a decision request for a conflict that did not exist.
+
+**Prefer counts over derived fields.** A count is an observation. Days-on-hand, months-to-clear and break-even are calculations that inherit every error beneath them — and they are what feed the ceiling.
+
+**Staleness is a property of the file, not the field.** One stale field means no clean fields, only unchecked ones. Verify two or three against independent sources; quarantine the file if any fails.
+
+**Charge size never overrides the clearability gate.** The largest charge in a portfolio is often the least clearable stock in it, because low velocity is what aged it.
+
+**The avoided charge is counted over a bounded window.** Counting the whole projected hold inflates the ceiling most on the stock least able to justify it.
+
+**Count the charge once.** It sits either in the fees line reducing contribution, or added back as avoided — never both.
+
+---
+
+## What the first run found
+
+On a product carrying 233 charge-bearing units and $849.89/month:
+
+- **The two child SKUs needed opposite decisions.** One had roughly a third of the other's allowable ad cost, and was taking 64% of the spend.
+- **11% of enabled budget could spend.** The lane was impression-constrained — nine times short — not budget-constrained.
+- **52% of budget sat in campaigns that could not serve.** An 18-campaign expansion book spent about $20 in nineteen days.
+- **The cheap wide lanes were the only ones working, and were starved** — one at 96% of a $5/day budget.
+- **Exact took 58% of keyword spend at the worst cost per order** in the account.
+- **A prior plan's break-even line did not exist**, and the error was inherited from a stale source file rather than invented — so correcting the plan alone would have fixed nothing.
+
+---
+
+## Status
+
+| Item | State |
+|---|---|
+| The skill | Drafted, run once on live data, corrected twice from it |
+| SOP-27 P15 | Draft v0.4 — not ratified |
+| SOP-12 P13 | Draft v0.1 — not ratified |
+| Format standard | Draft v0.1 |
+| Counterparty procedures at #29, #38, #26 | Not started |
+
+**Open decisions** are listed at the end of each draft. The ones that block execution: a budget cap for the reach layer, a deadline for an unmeasured lane, and the conflict between the criteria system's profit-only posture for LTSF-burdened products and this lane's allowance to spend against avoided charge.
+
+---
+
+*Inspiratek & Ecotero LLC · Confidential*
