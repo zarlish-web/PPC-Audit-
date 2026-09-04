@@ -116,7 +116,16 @@ Judged per keyword or per target, never per campaign.
 | Minimum bid | **$0.25** | Below this the bid does not clear enough auctions to matter |
 | Minimum daily budget | **$5.00** | Below this the campaign cannot deliver a readable day |
 
-These are defaults, not constants. A product may set its own, and the override is recorded with the reason.
+**Confirmed 4 September 2026 — these are defaults, not universal constants.** A product may set its own floor where its own click economics justify it. Where clicks in a category genuinely cost $0.08, a floor of $0.15 is legitimate and the plan says so.
+
+An override is not a free hand. It is valid only when all four hold:
+
+- The override is **stated in the plan**, both numbers shown — the default and the product's own
+- The reason is **measured on this product or its category**, with the figure in it. "Clicks here average $0.08 across 340 clicks" is a reason; "the floor felt high" is not
+- It moves the floor to a level that **still buys a readable result**. A lower floor is only lower, never a way to fund a lane that cannot deliver
+- The **paused-or-funded rule survives it.** Whatever the floor is set to, nothing is cut to a value between zero and that floor
+
+Where no override is stated, $0.25 and $5.00 govern.
 
 **When the computed ceiling falls below the floor, the floor governs.** A ceiling of $0.23 does not become a $0.23 bid — it becomes a $0.25 bid, and the gap is written down as accepted over-ceiling spend with the charge it is avoiding. That is exactly the "capped, dated, logged" exception, used deliberately rather than drifted into.
 
@@ -296,7 +305,7 @@ Compute all three, every time, per child:
 
 | | What it is | What it means |
 |---|---|---|
-| **1 · The floor** | $0.25 default | Below this the bid wins nothing. Not a choice |
+| **1 · The floor** | $0.25, or this product's stated override | Below this the bid wins nothing. Binding once set |
 | **2 · Max profitable CPC** | `margin $ × CVR` | **Where profit ends.** Past this the sale itself loses money |
 | **3 · Max click price** | `(contribution + avoided charge) × CVR` | **Where forward cash ends.** The hard cap — never exceeded |
 
@@ -461,6 +470,8 @@ Once a campaign has delivered, how hard it is corrected is set by its **ACoS**, 
 | **50 – 70%** | Moderate | **Cut 20%** |
 | **70 – 100%** | Moderate-heavy | **Cut 30%** |
 | **100% and above** | Unaffordable | **Cut 50%**, even on a single order. If still at or above 100% next cycle, **pause** |
+
+**Confirmed 4 September 2026.** The bands as first given left two stretches uncovered — 50–70% and 30–35%. They were filled to make the ladder contiguous, put back for confirmation, and confirmed. The ladder is now settled: every ACoS value falls in exactly one band, and no band is a matter of judgement at read time.
 
 **The bands are absolute percentages**, the same on every product. But **every plan states the product's own break-even ACoS beside them**, so the reader can see how far past profit each band sits. On one live product break-even was 7.68%, which means "under 30% is working" is running at nearly four times break-even — legitimate under the forward-cash ruling, but worth seeing plainly rather than assuming 30% is close to profitable.
 

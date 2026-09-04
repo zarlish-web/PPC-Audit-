@@ -94,7 +94,8 @@ Nothing ships with a failure open that is not a named missing input.
 | subsidy priced | Every bid above max profitable CPC states its subsidy per unit against the charge avoided per unit |
 | subsidy justified | Where subsidy per unit exceeds the charge avoided, the gap is logged in dollars and routed to the pricing recommendation |
 | bid placement | Bids sit low in the subsidy zone; the ceiling is a maximum, never used as a target |
-| floors | No bid under $0.25 and no budget under $5.00 anywhere in the file, staged or live |
+| floors | No bid or budget below this product's floor anywhere in the file, staged or live |
+| floor override | Any floor below $0.25 or $5.00 is stated in the plan with both numbers and a measured reason; absent one, the defaults govern |
 | no starved lanes | No campaign cut to a value between zero and the floor — funded at the floor or paused |
 | budget direction | No budget reduced as an efficiency action; reductions only on a pause, or from a lane genuinely at its cap |
 | paper savings | Any budget released is stated against the lane's actual spend, so a cut to an unspent cap is never reported as a saving |

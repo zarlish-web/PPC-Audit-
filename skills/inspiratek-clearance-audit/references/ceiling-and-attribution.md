@@ -43,7 +43,7 @@ max profitable CPC = margin $ x CVR                          <- where profit end
 avoided charge     = MONTHLY charge per unit x min(clearance window, months to clear)
 ceiling            = contribution + avoided charge
 max click price    = ceiling x CVR                           <- where forward cash ends, the hard cap
-floor bid          = $0.25 default                           <- below this nothing wins
+floor bid          = $0.25, or this product's stated override <- below this nothing wins
 ```
 
 **Between max profitable CPC and max click price is the subsidy zone.** Spending there is deliberate: the sale loses money and the avoided charge pays for it. **Bid low in the zone** — the cap is a maximum, never a target.

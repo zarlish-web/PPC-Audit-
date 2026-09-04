@@ -136,12 +136,14 @@ The gap between the last two is the **subsidy zone**. Bid low in it; the cap is 
 
 A negative contribution does not stop the push; pricing goes to Brand Management as a parallel recommendation.
 
-**Operating floors, defaults, overridable per product:**
+**Operating floors — defaults, not universal constants. Confirmed 4 September 2026.**
 
 | Floor | Default | Why |
 |---|---|---|
 | Minimum bid | **$0.25** | Below this the bid does not clear enough auctions to matter |
 | Minimum daily budget | **$5.00** | Below this the campaign cannot deliver a readable day |
+
+A product may set its own floor where its own click economics justify it — a category where clicks cost $0.08 can legitimately run a $0.15 floor. The override has to be stated in the plan with both numbers, backed by a measured figure from this product or its category, and it never becomes a way to fund a lane that cannot deliver. Nothing is ever cut to a value between zero and the floor, whatever the floor is set to.
 
 **The correction ladder.** How hard a delivering campaign is corrected is set by its ACoS, not a flat rule:
 
