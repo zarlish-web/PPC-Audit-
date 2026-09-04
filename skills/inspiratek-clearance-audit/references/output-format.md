@@ -112,6 +112,9 @@ Nothing ships with a failure open that is not a named missing input.
 | intent routing | Every ASIN matches its keyword's intent class; no child a keyword has ruled out |
 | campaign purity | No campaign mixes two attribute families, and none spans two search-volume tiers |
 | cannibalisation | No keyword inside a campaign captures another under that campaign's match type |
+| leak still leaking | Every leak proved to be currently flowing — live rows, real spend in the last window, and a lever that moves money; anything already closed is marked so with its date, not counted |
+| execution proven | An action is graded EXECUTED only where the live value matches the decided value; a filled decision column is a proposal, never proof |
+| pause convention | The account's pause convention is established before any re-enable; where pauses are performance-based, a paused term stays paused unless the reasoning names what changed |
 | reactivation checked | Every proposed keyword and campaign checked against paused instances before being built; the check is recorded with its verdict per term |
 | no duplicates | No proposed row duplicates a live instance of the same term at the same match type |
 | one active instance | Where several paused instances exist at one match type, exactly one is re-enabled and the rest stay off |

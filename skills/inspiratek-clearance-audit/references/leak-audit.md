@@ -59,3 +59,26 @@ Every row carries a named owner. PPC owns lever 8 and part of 4. Everything else
 | Execution | Whoever the action was assigned to |
 
 A leak with no owner is itself a finding, and it is reported as one.
+
+---
+
+## A leak is only real if it is still leaking
+
+**RULED 4 September 2026, after making the same error twice on one product.**
+
+Two of the largest PPC leaks in a live plan were already closed before the plan was written, and both were counted anyway:
+
+| Leak | Claimed | Actually released | Why |
+|---|---|---|---|
+| Ad spend on SKUs that clear unaided | $2,414/month | **$0.00** | Closed by cutting budget **caps** the account reaches 4.4% of |
+| Keywords with clicks and zero orders | $2,156/month | **$0.00** | The 43 keywords were **already paused**, before the plan existed |
+
+**$4,570/month of claimed recovery, none of it real.** The first was the wrong lever. The second was the right lever already pulled.
+
+**Before a leak enters the table, prove it is still flowing:**
+
+1. **Is the spend actually happening now?** Not enabled, not capped — spent, in the last window, on rows that are live.
+2. **Is the fix a lever that moves money?** A cap the lane never reaches releases nothing. A pause on something already paused releases nothing.
+3. **State the release against actual spend**, never against the cap or against a historical figure.
+
+A leak that fails any of the three is written into the plan as **already closed**, with the date and who closed it — never deleted, because next cycle needs to know it was checked, and never counted, because counting it inflates the recovery and hides the leaks that are real.

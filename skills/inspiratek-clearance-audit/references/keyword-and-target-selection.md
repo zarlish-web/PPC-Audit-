@@ -129,7 +129,13 @@ The canon already says *"if a term already carries a **live** keyword row it is 
 
 **Never enable a campaign on its own.** From a real incident: a campaign shipped carrying ENABLE because "a term it holds cleared the release test", while all 200 keyword rows beneath it read WITHHELD or NO ACTION. Deploying it would have switched on 200 broad keywords the goal excluded. **A campaign's enabling verdict must be supported by an acting verdict on at least one row beneath it.**
 
-**Check why it was paused before switching it on.** A term paused for relevance, refunds or catalogue reasons must stay off — re-enabling it undoes a decision someone made deliberately. Where no reason is recorded, say so in the reasoning rather than implying the pause was performance.
+**Check why it was paused before switching it on — and find out what the account's pause convention actually is.** A term paused for relevance, refunds or catalogue reasons must stay off; re-enabling it undoes a decision someone made deliberately.
+
+**Absence of a recorded reason is not absence of a reason.** On a live product four terms were re-enabled on the reading that they carried "no reason recorded". The account then confirmed it pauses on performance. All four were withdrawn — one had a sibling that took 36 clicks with zero orders, one already had a live instance of the same term, one had no history anywhere to overturn the pause with.
+
+**So: ask what a pause means on this account before treating any pause as neutral.** Where the convention is performance, the default flips — a paused term stays paused unless something has changed that would make it work now, and the reasoning names what changed.
+
+**One thing worth catching while you look:** a paused term that *converted* is not a performance pause. On the same product, "bedspread king size" Exact sat paused having taken 15 clicks and returned 2 orders the week before. That is a question for whoever paused it, not a row to quietly re-enable or quietly leave.
 
 ### The sizing rule governs what you build, not what you inherit
 
