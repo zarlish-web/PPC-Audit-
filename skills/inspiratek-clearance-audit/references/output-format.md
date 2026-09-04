@@ -58,6 +58,8 @@ Visual standard: Arial. H1 navy `1F3864`, H2 `2E5496`. Tables navy header, white
 
 The original bulk is preserved exactly — every sheet, every column, in order — with `New Bids`, `New Budget`, `New Percentage`, `Action`, `Reasoning` and `Reverses If` filled on rows that change.
 
+**The audit fills those columns; the account team does not.** The file arrives blank and goes back decided, with each `Action` written so it can be executed directly on the campaign without re-reading the plan document. Rows left blank are blank because the analysis reached no decision, and each one is classified in the No-Action Census with the reason.
+
 Where this skill's own content needs somewhere to live, it goes in the tab that already covers that subject:
 
 | Clearance content | Goes in |
@@ -135,6 +137,8 @@ Nothing ships with a failure open that is not a named missing input.
 | sunk cost | COGS appears in no ceiling term |
 | derived fields | Months-to-clear computed from counts, not read from a cover column |
 | charge counted once | The surcharge is in the fees line or added back, not both |
+| columns filled | No decided row returned with an empty decision column; no blank row missing from the No-Action Census |
+| directly executable | Every Action states the change to make, not a suggestion to consider it |
 | reasoning | Every action has a reasoning, and every reasoning carries a number |
 | reversal | Every action has a Reverses If with a read date |
 | negation | No term negated below the click line; no converting row parked by any gate |

@@ -49,7 +49,7 @@ Quantify every lever first, rank by size, then size the PPC plan against what it
 
 ## How a run works
 
-You supply the **Final Bulk** — every row for the product, with Action, Reasoning, New Bids, New Budget and New Percentage blank — plus the raw data files. The run fills those columns in place and adds what it proposes to create.
+You supply the **Final Bulk** — every row for the product, with Action, Reasoning, New Bids, New Budget and New Percentage blank — plus the raw data files. **The run fills those columns in place** and adds what it proposes to create. Each Action is written so it can be executed directly on the campaign; rows left blank are classified in the No-Action Census with the reason. *(Confirmed 4 September 2026.)*
 
 | Stage | Skill |
 |---|---|

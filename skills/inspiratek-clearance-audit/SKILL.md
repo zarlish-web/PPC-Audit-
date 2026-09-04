@@ -446,12 +446,16 @@ What actually converts an under-spending clearance product into units is **more 
 
 ## 8 · Decide the existing account
 
+**Confirmed 4 September 2026 — the audit fills the decision columns, not the account team.** The Final Bulk arrives with `Action`, `Reasoning`, `New Bids`, `New Budget` and `New Percentage` empty. It goes back **filled**, with the action written so it can be taken directly on the campaign without anyone re-deriving it from the plan document. A file returned with those columns still empty is the file that was handed over, and it is not a deliverable.
+
 Preserve the original file exactly — every sheet, every column, in order. Fill `New Bids`, `New Budget`, `New Percentage`, `Action`, `Reasoning` and `Reverses If`.
 
-- `Action` is short and imperative: "Raise bid $0.58 to $0.75", "Pause", "Set to +20%"
+- `Action` is short, imperative, and **directly executable**: "Raise bid $0.58 to $0.75", "Pause", "Set to +20%". Not "consider raising", not "review" — the person opening the file changes the campaign to what the cell says
 - `Reasoning` carries the evidence with the number in it
 - `Reverses If` names what would undo the decision, and when it is read
 - Colour-code Action: green raise, amber cut, red pause
+
+**A row is left blank only when the analysis genuinely reached no decision**, and every blank row is then classified in the No-Action Census with the mechanical reason no action is allowed — under the click line, parked by a gate, foreign SKU, and so on. Blank means "ruled out, here is why", never "not looked at".
 
 Decide from 30-day data, not the 7-day window — a thin window produces too few winners to act on.
 
