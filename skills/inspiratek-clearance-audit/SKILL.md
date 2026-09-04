@@ -541,6 +541,17 @@ So compute both anchors per product, and let them gate the ladder:
 
 The bands still set **how much** comes off. The anchors decide **whether anything comes off at all**. Nothing about the confirmed band values changes.
 
+**The anchors gate performance corrections only.** Found by running this rule on a live file, 4 September 2026. Two kinds of decision are not performance corrections and are not gated by break-even:
+
+| Not a performance decision | Why it overrides |
+|---|---|
+| **Relevance** — the term describes a material, size or feature the product does not have | Already ruled. Negated on sight at any click count |
+| **Incrementality** — the SKU holds little cover and clears without paid support | We would be paying for units that were going to sell anyway. Profitable is not the question; **incremental** is |
+
+On one live file seven keywords converted at **12.7% to 32.6% ACoS** — all below that product's 33.7% break-even, all profitable, all correctly cut because their SKUs clear unaided. The break-even protection exists to stop a profitable lane being cut **for efficiency**. It was never meant to force us to keep paying for sales we would get for free.
+
+**Say which it is in the reasoning.** A cut that reads as an efficiency call when it is really an incrementality call is the same row with the wrong argument, and the next cycle will reverse it for the wrong reason.
+
 **ACoS at or above 100% overrides the delivering protection** in every case, ceiling or no ceiling. Orders do not shield a lane paying more for the sale than the sale is worth.
 
 **State all three numbers together in the plan** — break-even ACoS, ceiling ACoS, and the campaign's own ACoS — so a reader can see which of the three zones each lane is in without re-deriving anything.

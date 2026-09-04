@@ -120,7 +120,9 @@ Nothing ships with a failure open that is not a named missing input.
 | one lever | No row carries two unrelated levers in one cycle |
 | ladder applied | Every delivering campaign's bid move matches its ACoS band, and the band is named |
 | two anchors | Break-even ACoS and ceiling ACoS computed per product and stated beside every campaign's own ACoS |
-| profitable protected | No campaign cut at or below its break-even ACoS |
+| profitable protected | No campaign cut at or below its break-even ACoS on performance grounds |
+| lever named | Every cut of a profitable row names relevance or incrementality as its basis, never efficiency |
+| evidence in file | Every decision's evidence is readable from the delivered file, not only from a window held elsewhere |
 | over-ceiling corrected | No campaign above its ceiling ACoS left uncorrected on the grounds that it delivers |
 | clean window | The longest deal-free run is named with its length; volume and ASP read from it, or marked provisional |
 | inherited structure | Oversized inherited campaigns triaged by cannibalisation, starvation and spend held — not proposed for wholesale rebuild; the remainder logged as structural debt with its size |
