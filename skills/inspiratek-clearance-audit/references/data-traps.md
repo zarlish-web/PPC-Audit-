@@ -28,6 +28,16 @@ The FBA inventory report's `units-shipped-t7/t30/t60/t90` fields overstated volu
 
 **Use FBA for stock, age bands and fees only.** Sellerboard governs velocity and economics.
 
+## A fixed charge divided by few units is not a unit cost
+
+**From `ppc-workbook-builder` §3, absorbed 4 September 2026.** Storage, long-term storage and removal fees are periodic charges on inventory that *sits*. Divide them across a small unit count and they produce per-unit figures that look like catastrophic unit economics and are nothing of the kind.
+
+**The test is direct:** compare fee-per-unit against units sold across the child set. Where high-volume children pay one figure and low-volume children pay several times it, **the difference is allocation, not cost.**
+
+On a real build this read as thirteen children losing money per unit — one at **−$59.53**. On marginal economics, variable fees only, **every one was positive, between $5.32 and $24.04 a unit.** The verdict that followed from the unseparated figure was to **block advertising on 1,051 units of aged stock holding $9,907 of recoverable forward cash** — the exact opposite of what those children needed.
+
+**State the variable fee benchmark, state the fixed charge being allocated, and judge the child on the first.** This is the same error as putting COGS in a ceiling, arriving from a different direction: a number that is identical across every option, presented as if it discriminated between them.
+
 ## A margin-only ad ceiling is far too tight
 
 A CM2 calculation gave $13.26 per unit where the storage-adjusted figure was $28.47. Working from the margin-only number nearly produced a recommendation to cut spend when the correct move was to increase it.
