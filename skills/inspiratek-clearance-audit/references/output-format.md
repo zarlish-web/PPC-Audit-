@@ -92,6 +92,10 @@ Nothing ships with a failure open that is not a named missing input.
 | both constructions | Canon break-even and the forward-cash ceiling both shown; forward cash is the one acted on, per the standing ruling |
 | floors | No bid under $0.25 and no budget under $5.00 anywhere in the file, staged or live |
 | no starved lanes | No campaign cut to a value between zero and the floor — funded at the floor or paused |
+| budget direction | No budget reduced as an efficiency action; reductions only on a pause, or from a lane genuinely at its cap |
+| paper savings | Any budget released is stated against the lane's actual spend, so a cut to an unspent cap is never reported as a saving |
+| waste located | Waste is removed at keyword or target level, never by reducing a campaign budget |
+| click line | Nothing paused or negated on performance below 15 clicks, or below 20-25 where the click price is about $0.15 or under |
 | over-ceiling log | Every bid above max profitable CPC carries its cap, its re-read date and the charge it avoids |
 | build width | The build spans keywords, auto, category and product targeting — not keywords alone |
 | labeled exception | Any spend above break-even is capped, dated and logged |
@@ -111,10 +115,10 @@ Nothing ships with a failure open that is not a named missing input.
 | charge counted once | The surcharge is in the fees line or added back, not both |
 | reasoning | Every action has a reasoning, and every reasoning carries a number |
 | reversal | Every action has a Reverses If with a read date |
-| negation | No term negated below the negation line; no converting row parked by the sample gate |
+| negation | No term negated below the click line; no converting row parked by any gate |
 | placement | No blanket modifier in either direction; each set from its own campaign's data |
-| budget | Budget raised only where the lane can actually deliver more; a lane short of reach gets targets instead |
-| redeployment | Released budget goes to new reachable surface, or to a lane at its cap — never to a lane short of reach |
+| budget | A lane short of reach gets more targets, not more budget and not less |
+| redeployment | Growth comes from targets and coverage; budget moves only between lanes that actually spend theirs |
 | leak share | The document states what share of total monthly loss the PPC plan addresses |
 | declaration | Archetype, risk tier, floor price and terminal option read, never derived |
 | objective re-tag | Every campaign on aged SKUs carries the clearance objective, with its prior value recorded |

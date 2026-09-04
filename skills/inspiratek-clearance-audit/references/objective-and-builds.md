@@ -103,7 +103,9 @@ One row per campaign to build, carrying at minimum:
 | Clicks / orders / spend | The evidence |
 | Evidence standard met | Which line it passed |
 
-**Nothing is negated below the negation line** — at conversion rate *c*, one order is not expected until roughly `1/c` clicks. Below that, zero orders is not evidence, and the term stays. Structural negatives — own catalogue, a material we do not sell — are exempt: those are negated on relevance, not on performance, and the tab says which basis applied.
+**Nothing is negated on performance below the click line** — 15 clicks with no orders at ordinary click prices, 20–25 where clicks cost about $0.15 or less. Below that the term has not had its chance and it stays. Reaching the line is a review trigger, not an automatic kill: look at the term itself before deciding.
+
+Structural negatives — own catalogue, a material we do not sell, a size we do not stock — are exempt from any click count. Those are relevance decisions and are made on sight. The tab says which basis applied.
 
 **Where nothing qualifies, the tab is delivered empty with the reason on it.** An empty negation tab that explains itself is a finding; a missing one is an omission.
 
@@ -120,3 +122,4 @@ One row per campaign to build, carrying at minimum:
 - Any campaign, bid or budget below the operating floors
 - A narrow term set justified as cost control — width is the point, and the bid is the cost control
 - A hard cut or a pause on a campaign that is producing orders — those move 5 cents a cycle
+- A budget reduction offered as an efficiency saving — waste is removed at target level, and a cut to an unspent cap saves nothing

@@ -91,7 +91,9 @@ Each exists because something went wrong on a live product.
 
 **Never negate below the sufficiency line.** At conversion rate *c*, one order is not expected until roughly 1/c clicks. Below that, zero orders is not evidence.
 
-**Released budget is not automatically redeployed.** Check that some lane inside its ceiling is actually budget-capped. Utilisation measures whether a lane can spend, never whether it should.
+**Budget is not a waste lever.** A budget is a cap, not a spend — cutting a cap the lane never reached saves nothing. On one product the enabled budget was $343.73/day against $38.12/day of actual spend, so cutting it to $89 released $0.00 and only removed headroom. Waste is a specific keyword taking clicks and returning nothing; it is removed where it lives, and the budget stays.
+
+**The click line for waste.** 15 clicks with no orders at ordinary click prices, 20–25 where clicks cost about $0.15 or less. Below that a term has not had its chance. Reaching the line triggers a review, not an automatic pause.
 
 **Prefer the count over the derived field**, and treat staleness as a property of the file, not the field.
 
@@ -121,9 +123,11 @@ The canon's break-even figures are still computed and shown on every plan, so th
 | Minimum bid | **$0.25** | Below this the bid does not clear enough auctions to matter |
 | Minimum daily budget | **$5.00** | Below this the campaign cannot deliver a readable day |
 
-**Delivering campaigns are corrected gradually.** A campaign producing orders moves 5 cents a cycle toward its ceiling and keeps its budget — it is clearing stock, and cutting it cuts units. Hard cuts, pauses and budget cuts are for lanes with zero orders. Every multi-cycle walk states how many cycles it takes and when it completes.
+**Delivering campaigns are corrected gradually.** A campaign producing orders moves 5 cents a cycle toward its ceiling and keeps its budget. Every multi-cycle walk states how many cycles it takes and when it completes.
 
-A campaign is funded at the floor or paused — never cut to something in between, which produces a lane that spends and cannot deliver. Where the computed ceiling falls below $0.25, the floor governs and the gap is logged as accepted over-ceiling spend against the charge it avoids.
+**Growth comes from targets, cost control from the bid.** Neither is the budget. A lane spending 11% of its cap is short of reach — it gets more keywords, auto groups, category and product targeting, not a smaller budget.
+
+Where the computed ceiling falls below $0.25, the floor governs and the gap is logged as accepted over-ceiling spend against the charge it avoids.
 
 **Still open:** the Hanging Closet plan predates the leak audit, the refund gate, the objective re-tag and these floors. Seven of its budget cuts land below $5/day and its bids land at $0.24. It needs re-running.
 

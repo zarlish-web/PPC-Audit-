@@ -68,6 +68,45 @@ Two gates still stand, and neither is an economics gate:
 - **Gate the push on stock, not on profit.** GREEN (overstock, room to clear) → push. Not GREEN (already low) → **do not push**; that stock clears by itself and spending on it buys nothing. Never run a clearance push on a SKU whose hero size is nearly out — clear the aged variation, protect the hero. *This gate is about how much stock is left, not about whether the maths is profitable. The ruling above removed the profit gate; it did not remove this one.*
 - **Under negative CM, pricing still goes to Brand Management** — as a recommendation running alongside the push, never as a reason to withhold it.
 
+## Budget is not a waste lever
+
+**On a clearance product the default direction for budget is up or hold. Never down as an efficiency action.**
+
+The reasoning is arithmetic, not preference. **A daily budget is a cap, not a spend.** It only turns into money if the auction lets it. So cutting a cap the campaign was never reaching saves nothing at all — it just removes the headroom the lane needed to grow into.
+
+On one live product the enabled budget was $343.73/day and actual spend was $38.12/day — 11%. A plan that cut the cap to $89 released **$0.00 of real money** and capped every lane's upside. That plan looked disciplined and did nothing except make the product smaller.
+
+**Waste is not a budget. Waste is a specific target taking clicks and returning nothing.** You remove it where it lives — at the keyword or product target — and the budget stays where it is, now buying better traffic.
+
+| Situation | The wrong move | The right move |
+|---|---|---|
+| Campaign spends 11% of its budget | Cut the budget to match spend | Give it more targets and check the bid — it is short of reach, not of money |
+| Campaign is over its ceiling | Cut the budget | Walk the bid down, pause the wasteful targets inside it |
+| A keyword has clicks and no orders | Cut the campaign budget | Pause or negate that keyword |
+| Every target in a campaign is waste | Starve it | Pause the campaign |
+
+**Budget only comes down in two cases**, and both are stated as such:
+
+1. **The campaign is paused entirely** — it cannot serve, or nothing in it is worth running.
+2. **The lane is genuinely at its cap and the money is worth more elsewhere.** Only a lane actually spending its budget can release money by giving some up. A lane at 11% releases nothing.
+
+Anything else is a raise or a hold.
+
+## What counts as wasted, and when
+
+Judged per keyword or per target, never per campaign.
+
+| Condition | Verdict |
+|---|---|
+| Zero orders, **15+ clicks** at ordinary click prices | Review now — pause or negate if it also fails relevance |
+| Zero orders, **20–25 clicks** where the click price is very low (about $0.15 or under) | Review now — cheap clicks earn more patience before judgement |
+| Zero orders, **below that click count** | **Not waste.** Keep running, keep watching. It has not had its chance |
+| Any orders at all | Not waste. It is delivering — correct it gradually, per §8 |
+
+**The click line is a review trigger, not an automatic pause.** At the line, look at the term itself: does it describe this product, does it carry real search volume, is it the kind of traffic we want. A term that is genuinely relevant and simply unlucky may earn another window; a term describing something we do not sell is negated the moment it is seen, without waiting for any click count.
+
+**A term below the line is never touched on performance grounds.** Zero orders on 6 clicks is not evidence of anything. Cutting there removes the discovery surface that finds the cheap orders.
+
 ## Operating floors — below these, nothing works
 
 **A campaign is either funded properly or it is paused. There is no middle.** Below these levels a campaign cannot win enough auctions to produce a readable result, so the money is spent and nothing is learned.
@@ -302,13 +341,13 @@ Then compare storage saved against extra ad cost at each level. Net benefit usua
 
 **State the stock ceiling.** Units ÷ velocity is often a harder limit than budget.
 
-**Released budget is redeployed into coverage, not back into a lane that cannot spend it.** Under the clearance ruling the money is meant to work, so releasing it and stopping is not the answer. But a lane running at 5% of its budget is short of reach, not short of money, and adding budget there changes nothing.
+**An under-spending lane is short of reach, not short of money.** Adding budget to a lane running at 11% changes nothing, and taking budget away from it saves nothing. Both moves are noise.
 
-So the destination for released money is **new reachable surface**: more relevant keywords, the auto campaign's four groups, category targeting, and product targeting. That is where an under-spending clearance product actually converts budget into units.
+What actually converts an under-spending clearance product into units is **more reachable surface**: more relevant keywords, the auto campaign's four groups, category targeting, product targeting, and the other ad products.
 
-**Check reach before funding.** A lane an order of magnitude short on impressions gets more targets, not more budget. A lane at or near its cap gets more budget. State which case each lane is in, with the impression numbers.
+**So the plan's growth lever is targets, and its cost lever is the bid.** Neither is the budget.
 
-**Every funded lane sits at or above the floors.** A lane not worth $5/day is paused and its budget goes to one that is.
+**State each lane's case with its impression numbers.** A lane far short on impressions gets more targets. A lane at or near its cap gets more budget. A lane over ceiling gets its bid walked and its waste cleared. Only a lane genuinely at its cap can release money by giving budget up — and the plan says so with the utilisation figure attached, rather than implying a paper saving.
 
 ---
 
@@ -333,10 +372,10 @@ Decide from 30-day data, not the 7-day window — a thin window produces too few
 
 | | Delivering — orders > 0 | Not delivering — zero orders |
 |---|---|---|
-| The lever | **The bid, and only the bid** | Bid, budget, or pause as the evidence supports |
+| The lever | **The bid, and only the bid** | The bid, and pausing the wasteful targets inside it |
 | Step size | **5 cents maximum per cycle** | No step limit |
-| Budget | **Held.** Cutting it cuts units, which is the thing we want | Cut or paused where the evidence supports it |
-| Pause | Not while it delivers | Available |
+| Budget | **Held** | **Held.** Budget is not a waste lever — see above |
+| Pause | Not while it delivers | The campaign is paused only when every target in it is waste |
 
 **The walk-down.** A delivering campaign above its ceiling moves 5 cents a cycle toward it, and keeps moving each cycle until it arrives. State in the plan **how many cycles the correction takes and the date it completes** — a bid at $0.45 against a $0.25 floor is four cycles, not one decision.
 
@@ -344,7 +383,7 @@ The same 5-cent limit applies upward. A delivering campaign under its ceiling is
 
 **Never below the floor.** The walk stops at $0.25 even where the computed ceiling sits lower; the gap is logged as accepted over-ceiling spend.
 
-**This is what "aggressive" means, and it is barred on a delivering campaign:** a bid move over 5 cents, a budget cut of any size, a pause, or a structural change. If the arithmetic says a delivering lane is far over ceiling, that is a reason to start walking it down this cycle — not a reason to take it out in one move.
+**This is what "aggressive" means, and it is barred on a delivering campaign:** a bid move over 5 cents, a budget cut of any size, a pause, or a structural change. If the arithmetic says a delivering lane is far over ceiling, that is a reason to start walking it down this cycle and to clear the waste inside it — not a reason to take it out in one move.
 
 *Definition note: "delivering" is read here as one or more orders in the window. A single order on heavy spend is a thin read, so it still gets the gradual treatment but is reviewed at every cycle rather than left to walk on its own.*
 
