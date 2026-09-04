@@ -140,7 +140,17 @@ A negative contribution does not stop the push; pricing goes to Brand Management
 | Minimum bid | **$0.25** | Below this the bid does not clear enough auctions to matter |
 | Minimum daily budget | **$5.00** | Below this the campaign cannot deliver a readable day |
 
-**Delivering campaigns are corrected gradually.** A campaign producing orders moves 5 cents a cycle toward its ceiling and keeps its budget. Every multi-cycle walk states how many cycles it takes and when it completes.
+**The correction ladder.** How hard a delivering campaign is corrected is set by its ACoS, not a flat rule:
+
+| ACoS | Action |
+|---|---|
+| Under 30% | No change — working |
+| 30–50% | A few cents, one step per cycle |
+| 50–70% | Cut 20% |
+| 70–100% | Cut 30% |
+| 100%+ | Cut 50% even on one order; pause if still there next cycle |
+
+Bands are absolute, with the product's own break-even stated beside them — on one product break-even was 7.68%, so "under 30% is working" means four times break-even. ACoS at or above 100% overrides the delivering protection; below it, orders shield the lane. The floors still bind, and budget is untouched by the ladder.
 
 **Growth comes from targets, cost control from the bid.** Neither is the budget. A lane spending 11% of its cap is short of reach — it gets more keywords, auto groups, category and product targeting, not a smaller budget.
 

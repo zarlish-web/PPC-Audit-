@@ -118,14 +118,22 @@ Where a campaign shipped nothing, fall back to the route implied by its product 
 
 **Two levers, and neither is the budget.**
 
-**1 · Walk the bid down.** 5 cents per cycle, every cycle, until it reaches the ceiling.
+**1 · Correct the bid, by the amount the ACoS band sets.**
+
+| ACoS | Action |
+|---|---|
+| Under 30% | No change |
+| 30 – 50% | 5 cents, one step per cycle |
+| 50 – 70% | Cut 20% |
+| 70 – 100% | Cut 30% |
+| 100%+ | Cut 50%, even on one order; pause if still there next cycle |
 
 ```
-new bid = max(current bid − 0.05, ceiling × CVR, 0.25 floor)
-cycles to arrive = ceil((current bid − target) ÷ 0.05)
+new bid = max(current bid x (1 - band cut), 0.25 floor)
+5-cent band: new bid = max(current bid - 0.05, 0.25 floor)
 ```
 
-State the cycle count and the completion date. A bid at $0.45 walking to $0.25 is four cycles, and the plan says so rather than implying it lands next week. The same 5-cent limit applies upward.
+Bands are absolute, with the product's own break-even ACoS stated beside them. Where a correction runs over several cycles, state the cycle count and completion date. The 5-cent limit applies upward too.
 
 **2 · Remove the waste inside it.** Pause or negate the specific targets that have passed the click line with no orders. That is where the money is actually leaking, and removing it lowers the campaign's cost per unit without lowering its reach.
 

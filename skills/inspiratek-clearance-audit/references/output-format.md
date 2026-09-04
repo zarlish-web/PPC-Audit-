@@ -115,8 +115,10 @@ Nothing ships with a failure open that is not a named missing input.
 | billing date | The billing date is named, with units clearable before it and what that is worth |
 | vocabulary | Every verdict comes from the closed list; no invented strings |
 | one lever | No row carries two unrelated levers in one cycle |
-| gradual | No bid move over 5 cents on a campaign that produced orders |
-| no hard cuts | No budget cut, pause or structural change on a delivering campaign |
+| ladder applied | Every delivering campaign's bid move matches its ACoS band, and the band is named |
+| break-even shown | The product's own break-even ACoS is stated beside the bands |
+| 100% override | No campaign at or above 100% ACoS shielded by having orders |
+| no hard cuts | No budget cut on a delivering campaign; the ladder corrects the bid, not the budget |
 | walk stated | Every multi-cycle correction states its cycle count and completion date |
 | sign-off | Every human-confirm trigger flagged, with its trade-off in reviewer units |
 | deal state | No figure blends a deal window with a clean window |

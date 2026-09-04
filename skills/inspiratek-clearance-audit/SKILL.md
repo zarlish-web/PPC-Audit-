@@ -448,28 +448,29 @@ Decide from 30-day data, not the 7-day window — a thin window produces too few
 
 **Placement modifiers are set per campaign per placement from that campaign's own conversion data.** Never a blanket percentage in either direction — a blanket 0% is the same mistake as a blanket 135%, just cheaper. Top of Search is often the best placement on conversion and revenue per click while being worst on CPA, so the fix is usually to reduce the modifier, not remove it. See `references/placement-tiers.md`.
 
-### Gradual correction — never break a campaign that is working
+### The correction ladder — how hard, decided by ACoS
 
-**A campaign producing orders is corrected in small steps, never cut hard, however bad its cost looks.** It is delivering units, and units are the objective. An aggressive cut on a delivering lane trades a known stream of clearance for a guess about efficiency.
+**A campaign with no orders and under 10–15 clicks is not judged at all. It waits.**
 
-**The test is simple and readable from the file: did the campaign produce orders in the window?**
+Once a campaign has delivered, how hard it is corrected is set by its **ACoS**, not by a flat rule. This is what "don't be aggressive on something that is working" means in practice: nothing happens to a lane at 6%, and a hard cut on a lane at 120% is not aggression, it is necessary.
 
-| | Delivering — orders > 0 | Not delivering — zero orders |
+| ACoS | Band | Action |
 |---|---|---|
-| The lever | **The bid, and only the bid** | The bid, and pausing the wasteful targets inside it |
-| Step size | **5 cents maximum per cycle** | No step limit |
-| Budget | **Held** | **Held.** Budget is not a waste lever — see above |
-| Pause | Not while it delivers | The campaign is paused only when every target in it is waste |
+| **Under 30%** | Working | **No change.** Keep it running |
+| **30 – 50%** | Slightly high | **A few cents** — the 5-cent walk, one step per cycle |
+| **50 – 70%** | Moderate | **Cut 20%** |
+| **70 – 100%** | Moderate-heavy | **Cut 30%** |
+| **100% and above** | Unaffordable | **Cut 50%**, even on a single order. If still at or above 100% next cycle, **pause** |
 
-**The walk-down.** A delivering campaign above its ceiling moves 5 cents a cycle toward it, and keeps moving each cycle until it arrives. State in the plan **how many cycles the correction takes and the date it completes** — a bid at $0.45 against a $0.25 floor is four cycles, not one decision.
+**The bands are absolute percentages**, the same on every product. But **every plan states the product's own break-even ACoS beside them**, so the reader can see how far past profit each band sits. On one live product break-even was 7.68%, which means "under 30% is working" is running at nearly four times break-even — legitimate under the forward-cash ruling, but worth seeing plainly rather than assuming 30% is close to profitable.
 
-The same 5-cent limit applies upward. A delivering campaign under its ceiling is raised gradually too, so a correction in either direction stays readable against the cycle that caused it.
+**ACoS at or above 100% overrides the delivering protection.** Orders do not shield a lane that is paying more for the sale than the sale is worth. Everywhere below 100%, orders do shield it — the correction is proportionate and gradual.
 
-**Never below the floor.** The walk stops at $0.25 even where the computed ceiling sits lower; the gap is logged as accepted over-ceiling spend.
+**The floors still bind.** No cut lands below $0.25, whatever the percentage says. Where the ladder would take a bid under the floor, it goes to the floor and stops there.
 
-**This is what "aggressive" means, and it is barred on a delivering campaign:** a bid move over 5 cents, a budget cut of any size, a pause, or a structural change. If the arithmetic says a delivering lane is far over ceiling, that is a reason to start walking it down this cycle and to clear the waste inside it — not a reason to take it out in one move.
+**Budget is untouched by the ladder.** It corrects the bid and clears the waste inside the campaign. Budget only moves when a campaign is paused outright — see the budget section above.
 
-*Definition note: "delivering" is read here as one or more orders in the window. A single order on heavy spend is a thin read, so it still gets the gradual treatment but is reviewed at every cycle rather than left to walk on its own.*
+**State the walk.** Where a correction takes more than one cycle, say how many cycles and on what date it completes. A 5-cent step from $0.45 to $0.25 is four cycles, and the plan says so rather than implying it lands next week.
 
 **The click line, and nothing tighter.** A zero-order row is not judged on performance until it reaches **15 clicks**, or **20–25 clicks where the click price is about $0.15 or under** — cheap clicks earn more patience. Below that a term has not had its chance, and pausing it removes the discovery surface that finds the cheapest orders. Reaching the line is a **review trigger**, not an automatic pause: look at the term itself before deciding. **A row with orders is never parked by any gate.**
 
