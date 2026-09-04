@@ -12,10 +12,10 @@ Step 9. Three artefacts, one house shape.
 |---|---|---|
 | — | The plan in five lines | The verdict, before any table |
 | — | Action plan at a glance | Every action, rows touched, daily $ effect, owner, success measure, section |
+| 0 | **Prior cycle graded** | Execution rate, every action's grade, what each changes in this plan — or "first cycle, nothing to grade" |
 | 1 | Product story and context-corrected metrics | Current position, then the numbered Readings |
 | 2 | **Leak audit** | Ten levers priced, ranked, owned, and the share PPC addresses |
-| 0 | **Prior cycle graded** | Execution rate, every action's grade, what it changes in this plan — or "first cycle, nothing to grade" |
-| 3 | What we did and what it produced | Attributed performance, and the prior cycle graded |
+| 3 | What we did and what it produced | Attributed performance, and the prior cycle's actuals |
 | 4 | Earning potential and the declarations | Spend envelope, posture record, search terms |
 | 5 | Recovered value | Every action priced in forward cash |
 | 6 | Diagnosis — where the spend sits | The affordability test, campaign by campaign |
