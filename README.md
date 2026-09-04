@@ -12,12 +12,15 @@ Built by merging the installed `inspiratek-clearance-audit` skill with a review 
 inspiratek-clearance-audit.skill        THE SKILL — install this
 
 skills/inspiratek-clearance-audit/
-├── SKILL.md                            the 9-step run
+├── SKILL.md                            the ten steps, 0 through 9
 └── references/
+    ├── prior-cycle-grading.md          step 0 — verify execution, then grade it
     ├── data-traps.md                   the contradictions that recur, and how to check
     ├── leak-audit.md                   the ten levers, priced and ranked
     ├── refund-gate.md                  tiering SKUs before routing spend
     ├── ceiling-and-attribution.md      what spend is ours, and what a click may cost
+    ├── objective-and-builds.md         the clearance re-tag, and build classes B1–B7
+    ├── keyword-and-target-selection.md what to target, and which ASIN it routes to
     ├── placement-tiers.md              modifiers per campaign per placement
     └── output-format.md                document spine, workbook tabs, validation gate
 
