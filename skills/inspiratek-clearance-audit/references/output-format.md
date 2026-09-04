@@ -110,6 +110,9 @@ Nothing ships with a failure open that is not a named missing input.
 | category refinements | Refinements set against our current price, rating and review count |
 | labeled exception | Any spend above break-even is capped, dated and logged |
 | exit | The stock threshold at which clearance exits is stated |
+| window read | The clearance window is read from the declaration, not assumed; where unstated it was asked |
+| charge basis | Avoided charge built from the file's ONE month figure, never a multi-month reading |
+| billing date | The billing date is named, with units clearable before it and what that is worth |
 | vocabulary | Every verdict comes from the closed list; no invented strings |
 | one lever | No row carries two unrelated levers in one cycle |
 | gradual | No bid move over 5 cents on a campaign that produced orders |

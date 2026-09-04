@@ -68,7 +68,7 @@ Back comes the plan document, the filled Final Bulk, added `New SP` / `New SB` /
 | 2 | **Leak audit** — ten levers, dollars per month, ranked, owned |
 | 3 | Diagnose — exposure vs conversion, syntax, variant, competitors, reach |
 | 4 | **Refund gate** — tier the SKUs before any spend is routed |
-| 5 | **The ceiling** — storage-adjusted, per unit cleared, capped at two months |
+| 5 | **The ceiling** — three numbers, the subsidy zone, per unit cleared |
 | 6 | **Clearability gate** — can traffic move this at all: open, split, closed, unmeasured |
 | 7 | Spend to volume — with degradation, and the stock ceiling |
 | 8 | Decide the existing account |
@@ -84,7 +84,9 @@ Each exists because something went wrong on a live product.
 
 **Attribute through product-ad rows, never campaign totals.** Catch-all campaigns carry hundreds of SKUs. One filter pulled in $1,501 of spend of which the product's share was $0.45.
 
-**The acceleration window is capped at two months, and at the real clearance time.** Taking months-to-clear as the multiplier nearly doubled a ceiling and flipped the verdict on the child it was applied to.
+**The charge file carries one month's charge, and the clearance window is a deadline handed to PPC.** Two months is the default, not a constant — it is read per product per cycle, capped again at the real clearance time, and asked for where unstated. And it is a deadline, never a pace: clearing sooner is always better.
+
+**The charge bills on a date, so the value of clearing steps.** A unit sold the day before billing avoids the whole month; the day after, none of it. On one product that made 32 units clearable before the 15th worth $118 — which is what sequences the deployment waves.
 
 **Ceiling tests use cost per unit cleared.** Not cost per ad-attributed order. Where advertising attributes a quarter of units the two differ by four times.
 

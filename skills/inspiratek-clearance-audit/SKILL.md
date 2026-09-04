@@ -299,10 +299,28 @@ Compute all three, every time, per child:
 break-even ACoS    = (ASP − COGS − Amazon bundled fees) ÷ ASP     no return allowance
 margin $           = ASP − COGS − Amazon bundled fees
 max profitable CPC = margin $ × CVR                                       ← number 2
-avoided charge     = storage per unit per month × min(2, months to clear)
+avoided charge     = MONTHLY charge per unit × min(clearance window, months to clear)
 ceiling            = contribution + avoided charge
 max click price    = ceiling × CVR                                        ← number 3
 ```
+
+**Read the charge as one month, and read the window from the declaration.**
+
+The charge file carries **one month's charge** — September's charge, billed on September's billing date. It is not a multi-month figure and must not be used as one. Divide it by the charge-bearing units to get charge per unit per month, then multiply by the window.
+
+**The clearance window is a deadline handed to PPC, not a number PPC picks.** It comes from the LTSF programme with the charge target. Two months is the common case, so it is the default when nothing else is stated — but it is **read per product per cycle, and where nobody has stated it, ask rather than assume two.** A product given a one-month window has a one-month cap.
+
+The window is capped again at the real clearance time: `min(window, months to clear at realised velocity)`. Stock that will be gone in six weeks cannot avoid two months of charge, because the second month was never going to be paid.
+
+**The window is a deadline, never a pace to hold.** If the stock can clear sooner, clear it sooner — the charge stops the day the unit ships, and finishing early is the objective, not overachievement.
+
+### The charge bills on a date, so the value of clearing steps
+
+This is the part a smooth monthly model hides. A unit sold the day before billing avoids the whole month's charge. The same unit sold the day after avoids none of it.
+
+On one live product: $849.89/month across 233 charge-bearing units is **$3.65 per unit per month**, billing on the 15th. From the 4th that is 11 days, and at 2.95 units/day about **32 units can clear before billing — $118 of charge avoided by hitting the date rather than missing it.**
+
+So the plan states the **billing date**, how many units can realistically clear before it at current pace, and what that is worth. Deployment waves are sequenced against that date, not against a tidy week boundary.
 
 **The zone between 2 and 3 is the subsidy zone.** Spending there is deliberate: the sale loses money and the avoided storage charge pays for it. That is the ruling, and it is legitimate.
 

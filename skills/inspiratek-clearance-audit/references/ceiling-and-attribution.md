@@ -40,7 +40,7 @@ A campaign whose product ads are entirely this product's SKUs is in scope. A cam
 break-even ACoS    = (ASP - COGS - Amazon bundled fees) / ASP     no return allowance
 margin $           = ASP - COGS - Amazon bundled fees
 max profitable CPC = margin $ x CVR                          <- where profit ends
-avoided charge     = storage per unit per month x min(2, months to clear)
+avoided charge     = MONTHLY charge per unit x min(clearance window, months to clear)
 ceiling            = contribution + avoided charge
 max click price    = ceiling x CVR                           <- where forward cash ends, the hard cap
 floor bid          = $0.25 default                           <- below this nothing wins
@@ -69,7 +69,15 @@ Where the units are aged but not terminal and the product still sells at margin,
 
 **COGS is sunk and appears in no term.** It is identical across every option for the same units, so it cannot change which option wins. Showing it makes every option on an underwater product look like a loss, which produces paralysis rather than a decision.
 
-**The acceleration window is capped at two months.** The default exists because the whole projected hold inflates the ceiling most on exactly the stock least able to justify it: a slow variant has the longest runway and the weakest case for spending against it. And it is capped again at the real clearance time — a variant that clears in 1.5 months cannot avoid two months of charge.
+**The charge file carries ONE month's charge.** It is that month's charge, billed on that month's billing date — never a multi-month figure. Divide by charge-bearing units for charge per unit per month, then multiply by the window.
+
+**The clearance window is a deadline handed to PPC, read per product per cycle.** It arrives from the LTSF programme with the charge target. Two months is the common case and the default when nothing is stated, but it is not a constant — **where no window has been stated for this product, ask rather than assume two.**
+
+**The window is capped again at the real clearance time.** A variant clearing in 1.5 months cannot avoid two months of charge, because the second month was never going to be paid.
+
+**The window is a deadline, not a pace.** Clearing sooner is better, always — the charge stops the day the unit ships.
+
+**The charge bills on a date, so the avoided charge steps rather than accruing smoothly.** A unit sold the day before billing avoids the whole month; sold the day after, it avoids none. The plan names the billing date, the units that can clear before it at current pace, and what that is worth — and sequences the deployment waves against that date.
 
 **Count the charge once.** It sits either inside the fees line reducing contribution, or added back as avoided charge — never both. Check the fees line against the modelled fee: a gap of roughly the per-unit surcharge means the charge is already inside it.
 
