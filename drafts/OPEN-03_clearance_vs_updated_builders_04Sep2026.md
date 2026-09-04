@@ -1,8 +1,12 @@
-# OPEN-03 — three conflicts between the clearance skill and the updated builders
+# OPEN-03 — three conflicts between the clearance skill and the updated builders  ·  RULED
+
+> **1. Both, sometimes; sometimes PPC alone** — resolved into the coverage-ratio test, run per segment.
+> **2. Semi-relevant is narrower than first read** — the real cut was 9 keywords, not 56. My first estimate classified by campaign name instead of by keyword.
+> **3. Placement: None governs new launches** — existing premiums are judged on whether Top of Search is paying its way, and cut where it is not.
 
 **Raised:** 4 September 2026
 **Between:** `inspiratek-clearance-audit` (this repo) and the updated `ppc-plan-builder` / `ppc-workbook-builder`
-**Status:** OPEN — not resolved, not worked around. Needs a ruling.
+**Status:** CLOSED 4 September 2026 — all three ruled. Kept as the record of what was asked and answered.
 
 The updated builders now carry clearance rules natively that they did not carry when this skill was merged. Most of it agrees. **Three things do not**, and each changes what ships on the Quilt Set.
 

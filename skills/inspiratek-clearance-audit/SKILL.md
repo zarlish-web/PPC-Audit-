@@ -24,6 +24,46 @@ This skill is the **aged-stock branch** of the account's PPC family. It does not
 
 **Where this skill and the locked canon disagree, the canon wins and the disagreement is reported, never silently resolved** — except where the account has ruled. One such ruling is standing and it governs this whole skill:
 
+## Which lever clears the stock — deals, PPC, or both
+
+**RULED 4 September 2026: both, sometimes; sometimes PPC alone.** Neither absolute is right. The updated `ppc-plan-builder` says deals are the designated clearance mechanism and PPC only supports; this skill previously said PPC is the lever. **The truth is per segment, and it is computable — so compute it rather than arguing it.**
+
+### The test: can search supply the required pace?
+
+```
+required pace   = units to clear ÷ months in the window ÷ 30
+suppliable pace = addressable monthly searches × market CVR × reachable impression share ÷ 30
+coverage ratio  = suppliable ÷ required
+```
+
+| Coverage ratio | Verdict | What it means |
+|---|---|---|
+| **1.0 and above** | **PPC CAN LEAD** | The demand exists and we are simply not in front of it. Advertising alone can hit the pace |
+| **0.4 to 1.0** | **PPC SHARES** | Search supplies part of it. The deal covers the gap, and the plan states both numbers |
+| **Under 0.4** | **DEALS MUST LEAD** | Search cannot move this stock at any bid. Advertising here is spending against a demand pool that does not exist |
+
+**Run it per segment, never once per product.** One live product returned three different verdicts:
+
+| Segment | Pool | Required | Suppliable | Ratio | Verdict |
+|---|---|---|---|---|---|
+| Whole product | 2,516 units | 41.9/day | 28.7/day | 0.68 | **PPC SHARES** |
+| Light grey | 899 units | 15.0/day | **0.1/day** | **0.00** | **DEALS MUST LEAD** |
+| Twin | 166 units | 2.8/day | 1.8/day | 0.66 | **PPC SHARES** |
+
+Light grey holds **36% of the pool against 84 monthly searches.** No bid moves it — at 100% impression share it yields under two units a month. Advertising it is not aggression, it is arithmetic failure. That segment needs deal depth or an off-Amazon route, and the plan says so instead of funding a lane that cannot deliver.
+
+**What each verdict changes:**
+
+- **PPC CAN LEAD** — advertising is sized to the full required pace. The deal, if one runs, is upside.
+- **PPC SHARES** — advertising is sized to the suppliable pace, **not** the required pace, and the shortfall is written up as a named deal or pricing requirement with its unit count. Sizing PPC to the required pace here is how a lane gets funded past what search can return.
+- **DEALS MUST LEAD** — advertising holds at the floor for coverage only. The clearance recommendation goes to Brand Management with the segment's unit count attached.
+
+**This is the clearability gate at product level**, and it resolves the disagreement rather than picking a side: on a segment where search can supply the pace, PPC leads and the builders' "supporting visibility" reading is too narrow. On a segment where it cannot, the builders are exactly right and no ceiling argument rescues it.
+
+**Never substitute advertising spend for a discount the product needs.** Where the ratio is under 1.0 the gap is a pricing or deal decision, and it is routed as one — priced, dated and owned — not absorbed by bidding harder.
+
+---
+
 > **RULING — the clearance ceiling is forward cash.** On a liquidation product, PPC is the lever that moves the stock. Spending a little beyond profitable is accepted, because the charge avoided is worth more than the margin given up. A negative contribution does **not** stop the push and does **not** by itself send the product to pricing. Recorded 4 September 2026.
 
 Two consequences, and they are the opposite of what the canon alone would do:
@@ -248,6 +288,18 @@ Objective is a campaign property, one per block, taken from the campaign row. Re
 So "keep it running" means the **bids, budget and structure are untouched** — not that the objective stays. The campaign carries on producing exactly as it did yesterday, but it is now counted, judged and funded as a clearance lane: measured on units cleared, barred from new rank spend, and never sized against a rank goal.
 
 **Placement comes before the bid.** When a delivering campaign's ACoS is too high, the first question is not "how much do I cut" — it is **"where is the cost coming from?"** Pull the campaign's own placement report and read Top of Search, Rest of Search and Product Pages separately. A campaign can look expensive overall because one placement is expensive while the other two are fine. Cutting the bid then punishes all three and loses the cheap orders along with the dear ones. Correct the modifier that is actually causing it, re-read, and only then apply the ladder to the bid if it is still over. See `references/placement-tiers.md`.
+
+### Placement on a clearance product — new launches start at none, existing ones are judged
+
+**RULED 4 September 2026.** The updated `ppc-plan-builder` sets `Clearance/LTSF → Placement: None`. That governs **new launches**, where no evidence exists yet — a premium on day one is a guess, and on clearance we do not guess. It does **not** condemn an existing campaign that has earned one.
+
+| Campaign | Rule |
+|---|---|
+| **New build** | **Start at 0%.** No premium until that campaign's own data earns it |
+| **Existing, Top of Search performing and justifying its cost** | **Keep the premium.** It is paying for itself |
+| **Existing, Top of Search not performing** | **Reduce it there too** — same as any other over-cost lane |
+
+So the question is never "is this a clearance product" but **"is Top of Search paying its way in this campaign"**, re-read every cycle. On one live product 37 of 1,341 combinations carried a +10% to +30% premium, each set from that campaign's own conversion data. Those stand — and each is re-read next cycle against its own Top-of-Search cost, and cut where it stops justifying.
 
 **Reading placement for cost is not the same as buying placement for rank**, and the re-tag bars only the second. Correcting a modifier because Top of Search is running at three times the campaign's ACoS is cost control and is always allowed. Raising a modifier to hold a position, or keeping an expensive placement because rank would slip, is rank spend and is barred. The test is what the plan says the modifier is *for*.
 
