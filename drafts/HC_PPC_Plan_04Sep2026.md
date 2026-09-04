@@ -3,7 +3,7 @@
 **US · Parent B0FGZGFRL2 · HANGING-CLOSET-BLACK (B0D5C1GM7K) · HANGING-CLOSET-WHITE (B0D5C1BB94)**
 **4 September 2026 · window 16 August – 3 September 2026, 19 days**
 
-Companion workbook: `HC_Decided_Bulk_04Sep2026.xlsx` — 13 tabs, Final Bulk carries all 1,032 rows with Action, Reasoning, Reverses If, New Bids, New Budget and New Percentage.
+Companion workbook: **HC_Decided_Bulk_04Sep2026.xlsx** — 13 tabs, Final Bulk carries all 1,032 rows with Action, Reasoning, Reverses If, New Bids, New Budget and New Percentage.
 
 Declared objective: **clear aged stock**. No ranking objective on these units.
 
@@ -59,7 +59,7 @@ Declared objective: **clear aged stock**. No ranking objective on these units.
 Five corrections. Each reverses a conclusion the raw numbers support.
 
 **Reading 1 — the campaign-level pull overstates this product by roughly double, and the portfolio-level pull understates it.**
-Anchoring on "campaigns that contain a Hanging Closet product ad" pulls in three campaigns — `Decolure_SP_Exact_PAT_Defensive`, `BAMBOO-KING-LIGHTGREY-6PCS_SP_Exact_PAT_Defensive` and `High LTSF Charge SKUS - Automatic - USA` — that carry $1,501 of spend between them. Those campaigns advertise between 19 and 589 SKUs each. **Hanging Closet's share of their spend is $0.45.**
+Anchoring on "campaigns that contain a Hanging Closet product ad" pulls in three campaigns — Decolure_SP_Exact_PAT_Defensive, BAMBOO-KING-LIGHTGREY-6PCS_SP_Exact_PAT_Defensive and High LTSF Charge SKUS - Automatic - USA — that carry $1,501 of spend between them. Those campaigns advertise between 19 and 589 SKUs each. **Hanging Closet's share of their spend is $0.45.**
 *The check that settles it:* attributing through product-ad rows gives $743.12 across both children, against $731.46 read at portfolio level. The two agree to within $11.66.
 
 **Reading 2 — the charge file's product economics predate the plan that used them.**
@@ -215,15 +215,33 @@ Each campaign is judged against a ceiling weighted by the children it actually s
 
 ### 3.2 The expansion book
 
-The 14 August plan's exact campaigns, nineteen days of impressions:
+The 14 August plan's twenty exact campaigns, over nineteen days. Sorted by impressions.
 
-```
-2,537   968   849   600   537   172   166   129
-  101    76    68    44    23    17    12     9
-    3     3     2     0
-```
+| Term | Impressions | Clicks | Spend | Budget/day | Verdict |
+|---|---|---|---|---|---|
+| closet hanging organizer | 2,537 | 23 | $10.12 | $9.23 | Clears — hold |
+| closet organizers and storage hanging | 968 | 10 | $4.50 | $5.00 | Below read |
+| hanging wire shelf | 849 | 6 | $2.70 | $5.00 | Below read |
+| 4 tier hanging closet organizer | 600 | 5 | $3.50 | $5.00 | Below read |
+| wire closet organizer | 537 | 4 | $1.80 | $5.00 | Below read |
+| hanging closet organizers and storage | 172 | 4 | $1.80 | $5.00 | Pause |
+| closet organizer systems shelving | 166 | 4 | $1.77 | $6.25 | Pause |
+| linen closet organizers and storage | 129 | 1 | $0.45 | $5.00 | Pause |
+| small closet organizers and storage | 101 | 2 | $0.90 | $6.25 | Pause |
+| kids closet organizers and storage | 76 | 3 | $1.35 | $5.00 | Pause |
+| hanging closet organizer with drawers | 68 | 1 | $0.45 | $5.00 | Pause |
+| clothes organizer for closet | 44 | 0 | $0.00 | $5.00 | Pause |
+| clothes organizers and storage | 23 | 1 | $0.45 | $5.00 | Pause |
+| hanging closet organizer with shelves | 17 | 0 | $0.00 | $5.00 | Pause |
+| 3 shelf hanging closet organizer | 12 | 0 | $0.00 | $5.00 | Pause |
+| storage closet organizer | 9 | 0 | $0.00 | $5.00 | Pause |
+| hanging closet organizer wide | 3 | 0 | $0.00 | $5.00 | Pause |
+| hanging closet organizer 3 shelf | 3 | 0 | $0.00 | $5.00 | Pause |
+| 4 shelf hanging closet organizer | 2 | 0 | $0.00 | $5.00 | Pause |
+| hanging closet organizer 4 shelf | 0 | 0 | $0.00 | $5.00 | Pause |
+| **Total** | **6,316** | **64** | **$29.79** | **$106.73** | 15 paused |
 
-Eleven under 200 impressions, four in single digits, two at zero. Roughly $107/day enabled against $29.79 spent in total. They were priced against an assumed ~8% conversion rate; actual is 2.33%. **These terms are not underfunded — they are unservable at any bid this product can afford.**
+Eleven sit under 200 impressions, four in single digits, one at zero. Roughly $107/day enabled against $29.79 spent in nineteen days. They were priced against an assumed 8% conversion rate; actual is 2.33%. **These terms are not underfunded — they are unservable at any bid this product can afford.**
 
 ### 3.3 Where the money goes — nowhere
 
@@ -242,7 +260,7 @@ An earlier draft of this analysis recommended moving roughly $130/day into the c
 
 ### 4.1 How each budget is derived
 
-For a delivering campaign over its ceiling, the new budget is the observed daily spend scaled by exactly the factor the lane is over — `ceiling ÷ cost per order`. Nothing is rounded to a convenient number.
+For a delivering campaign over its ceiling, the new budget is the observed daily spend scaled by exactly the factor the lane is over — ceiling divided by cost per order. Nothing is rounded to a convenient number.
 
 | Campaign | Spend/day | CPA | Ceiling | Factor | New budget |
 |---|---|---|---|---|---|
