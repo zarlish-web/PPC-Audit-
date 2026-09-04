@@ -505,9 +505,45 @@ Once a campaign has delivered, how hard it is corrected is set by its **ACoS**, 
 
 **Confirmed 4 September 2026.** The bands as first given left two stretches uncovered — 50–70% and 30–35%. They were filled to make the ladder contiguous, put back for confirmation, and confirmed. The ladder is now settled: every ACoS value falls in exactly one band, and no band is a matter of judgement at read time.
 
-**The bands are absolute percentages**, the same on every product. But **every plan states the product's own break-even ACoS beside them**, so the reader can see how far past profit each band sits. On one live product break-even was 7.68%, which means "under 30% is working" is running at nearly four times break-even — legitimate under the forward-cash ruling, but worth seeing plainly rather than assuming 30% is close to profitable.
+**The bands are absolute percentages**, the same on every product. They express appetite — how hard we are willing to correct — and they do not change from product to product.
 
-**ACoS at or above 100% overrides the delivering protection.** Orders do not shield a lane that is paying more for the sale than the sale is worth. Everywhere below 100%, orders do shield it — the correction is proportionate and gradual.
+### Two anchors gate the ladder, because absolute bands alone fail at both ends
+
+**PROPOSED 4 September 2026, from the SLQS back-test — not yet confirmed.**
+
+Every product has two ACoS numbers of its own, and they move enormously between products:
+
+```
+break-even ACoS = margin $ ÷ ASP                    where profit ends
+ceiling ACoS    = forward-cash ceiling ÷ ASP        where forward cash ends
+```
+
+| Product | Break-even ACoS | Ceiling ACoS |
+|---|---|---|
+| Hanging Closet, white | 7.7% | 26.9% |
+| Hanging Closet, black | 7.7% | 20.0% |
+| Quilt Set | **33.7%** | **69.6%** |
+
+The bands sit in completely different places on those two products, and applying them alone breaks at **both ends**:
+
+| Case | Ladder alone says | Reality |
+|---|---|---|
+| Quilt Set campaign at **32%** | 30–50% band → cut 5 cents | **It is below break-even. It is profitable, and we would be cutting it** |
+| Hanging Closet campaign at **28%** | Under 30% → no change | **It is above the 26.9% ceiling. We would be leaving an unaffordable lane alone** |
+
+So compute both anchors per product, and let them gate the ladder:
+
+| Where the campaign sits | What happens |
+|---|---|
+| **At or below its break-even ACoS** | **Never cut.** It is profitable. Whatever band it falls in, the ladder does not touch it |
+| **Between break-even and the ceiling ACoS** | **The ladder applies exactly as written.** This is the subsidy zone in ACoS terms |
+| **Above its ceiling ACoS** | **Always correct**, whatever the band and whatever the orders. The delivering protection is void here, the same way it is at 100% |
+
+The bands still set **how much** comes off. The anchors decide **whether anything comes off at all**. Nothing about the confirmed band values changes.
+
+**ACoS at or above 100% overrides the delivering protection** in every case, ceiling or no ceiling. Orders do not shield a lane paying more for the sale than the sale is worth.
+
+**State all three numbers together in the plan** — break-even ACoS, ceiling ACoS, and the campaign's own ACoS — so a reader can see which of the three zones each lane is in without re-deriving anything.
 
 **The floors still bind.** No cut lands below $0.25, whatever the percentage says. Where the ladder would take a bid under the floor, it goes to the floor and stops there.
 

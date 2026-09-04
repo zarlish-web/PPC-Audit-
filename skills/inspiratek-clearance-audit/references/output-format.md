@@ -119,6 +119,11 @@ Nothing ships with a failure open that is not a named missing input.
 | vocabulary | Every verdict comes from the closed list; no invented strings |
 | one lever | No row carries two unrelated levers in one cycle |
 | ladder applied | Every delivering campaign's bid move matches its ACoS band, and the band is named |
+| two anchors | Break-even ACoS and ceiling ACoS computed per product and stated beside every campaign's own ACoS |
+| profitable protected | No campaign cut at or below its break-even ACoS |
+| over-ceiling corrected | No campaign above its ceiling ACoS left uncorrected on the grounds that it delivers |
+| clean window | The longest deal-free run is named with its length; volume and ASP read from it, or marked provisional |
+| inherited structure | Oversized inherited campaigns triaged by cannibalisation, starvation and spend held — not proposed for wholesale rebuild; the remainder logged as structural debt with its size |
 | break-even shown | The product's own break-even ACoS is stated beside the bands |
 | 100% override | No campaign at or above 100% ACoS shielded by having orders |
 | no hard cuts | No budget cut on a delivering campaign; the ladder corrects the bid, not the budget |

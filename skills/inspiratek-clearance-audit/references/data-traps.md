@@ -2,6 +2,24 @@
 
 Every one of these cost real time on a live product. Check for them before trusting any figure.
 
+## There may be no clean window at all
+
+**PROPOSED 4 September 2026, from the SLQS back-test — not yet confirmed.**
+
+The standing rule is that deal windows and the 14 days after them are excluded from trend verdicts. That assumes a clean window exists somewhere. On one live product **five Lightning Deals ran inside 28 days** — 28 July, 6, 11, 19 and 24 August — so no uncontaminated day existed in the reporting window at all. The plan applied the exclusion rule rigorously going forward and never applied it to its own baseline, so every headline figure, and the whole spend-to-volume curve built on them, rested on a base the plan's own standard would have rejected.
+
+Refusing to read anything is not the answer — nothing would ever ship. **Contamination is not uniform across metrics, so split the read:**
+
+| Metric | What a deal does to it | Read it from |
+|---|---|---|
+| Units, sales, velocity | **Distorts heavily** — this is what a deal is for | The longest deal-free run only. If under 14 days, mark provisional with a re-read date |
+| Realised ASP | **Distorts heavily** — the discount is the deal | Same |
+| Refund rate | **Distorts on a 2–3 week lag**, so the damage lands outside the window itself | Cohort, never calendar. Say which cohort |
+| Cost per click, impression share | **Barely moves** — the auction does not know about the deal | The full window is fine |
+| Conversion rate vs market index | **Barely moves** — both sides rise together | The full window is fine |
+
+**Name the longest deal-free run in the plan, with its length in days.** Where every volume figure comes from a contaminated window, say so once, plainly, and mark every projection resting on it as provisional rather than letting it read as measured.
+
 ## FBA `units-shipped` columns are unreliable
 
 The FBA inventory report's `units-shipped-t7/t30/t60/t90` fields overstated volume by 65% on one product — 686 against Sellerboard's 416 for the same window. Two rounds of analysis were built on the wrong number before it was caught.

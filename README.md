@@ -159,7 +159,15 @@ A product may set its own floor where its own click economics justify it — a c
 | 70–100% | Cut 30% |
 | 100%+ | Cut 50% even on one order; pause if still there next cycle |
 
-Bands are absolute, with the product's own break-even stated beside them — on one product break-even was 7.68%, so "under 30% is working" means four times break-even. ACoS at or above 100% overrides the delivering protection; below it, orders shield the lane. The floors still bind, and budget is untouched by the ladder.
+Bands are absolute and set **how much** comes off. Two anchors computed per product decide **whether anything comes off at all** *(proposed 4 September 2026, not yet confirmed)*:
+
+```
+break-even ACoS = margin ÷ ASP              at or below it, never cut — it is profitable
+ceiling ACoS    = forward-cash ceiling ÷ ASP   above it, always correct, orders no defence
+                                              between them, the ladder as written
+```
+
+They sit in very different places by product — 7.7% and 26.9% on one, 33.7% and 69.6% on another — which is why the bands alone fail at both ends: they would cut a profitable campaign at 32% on the second product, and leave an over-ceiling campaign at 28% alone on the first. ACoS at or above 100% overrides the delivering protection in every case. The floors still bind, and budget is untouched by the ladder.
 
 **Growth comes from targets, cost control from the bid.** Neither is the budget. A lane spending 11% of its cap is short of reach — it gets more keywords, auto groups, category and product targeting, not a smaller budget.
 

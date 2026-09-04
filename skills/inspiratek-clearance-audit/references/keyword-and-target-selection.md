@@ -107,6 +107,22 @@ The attribute matrix explodes fast. Five sizes × four colours × five volume ti
 
 A campaign that does not make the cut is listed as **proposed, not funded**, with the budget it would need. That way the next cycle can open it without re-deriving the whole build.
 
+### The sizing rule governs what you build, not what you inherit
+
+**PROPOSED 4 September 2026, from the SLQS back-test — not yet confirmed.**
+
+One live account carries **447 campaigns sized 28 to 65 keywords each**. Rebuilding all of them to 4–5 is not a cycle's work, and a plan that proposes it will not be executed. Do not propose it.
+
+**Inherited campaigns are triaged, not rebuilt.** Rank them by the money actually at stake and split only the ones where the oversizing is demonstrably costing something:
+
+1. **Run the cannibalisation check on every oversized campaign.** It is mechanical and cheap. A pair where one keyword captures another under that campaign's match type is a confirmed problem, not a theoretical one.
+2. **Add the starvation test.** A keyword whose impression share sits far below what its search volume should give it, inside a campaign where a bigger term is taking the auctions, is being starved. That is the oversizing doing real damage.
+3. **Rank by spend held.** A 60-keyword campaign carrying $4/day can wait. One carrying $300/day cannot.
+4. **Split what fits the cycle**, and no more.
+5. **Log the rest as structural debt**, with its campaign count and the spend inside it, so the next cycle knows the size of what is left rather than rediscovering it.
+
+New builds hold to 4–5 from the first cycle. The account converges over several cycles instead of being rewritten in one that never happens.
+
 ---
 
 ## 6 · Sponsored Brands
