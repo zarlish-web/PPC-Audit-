@@ -105,6 +105,10 @@ Nothing ships with a failure open that is not a named missing input.
 | click line | Nothing paused or negated on performance below 15 clicks, or below 20-25 where the click price is about $0.15 or under |
 | over-ceiling log | Every bid above max profitable CPC carries its cap, its re-read date and the charge it avoids |
 | build width | The build spans keywords, auto, category and product targeting — not keywords alone |
+| catalogue matrix | The live variation family is read, and the sizes, colours and piece counts we sell are stated explicitly before any keyword is judged |
+| catalogue alignment | Every keyword — live, proposed and in the master list — scanned against the catalogue complement; nothing names a size, colour, material or bundle we do not sell |
+| structural vs stock | Each negative says whether it is structural (never sold, permanent) or a stock gate (sold but at zero, reversible) |
+| adjacent category | Cross-category terms are isolated and kill-switched, never mixed in with catalogue mismatches |
 | intent routing | Every ASIN matches its keyword's intent class; no child a keyword has ruled out |
 | campaign purity | No campaign mixes two attribute families, and none spans two search-volume tiers |
 | cannibalisation | No keyword inside a campaign captures another under that campaign's match type |

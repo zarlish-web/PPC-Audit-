@@ -190,10 +190,29 @@ Required per product. Say up front what is missing rather than discovering it at
 | 14 | Slack thread for the product | Lever history, rulings, return reasons, listing changes, who owns what |
 | 15 | **The prior cycle's decided file and its logged predictions** | **Required where a prior cycle exists** — step 0 cannot run without it, and without step 0 this is a first cycle repeated |
 | 16 | The prior cycle's action log or impact ledger | What was decided, what was executed, how it graded |
+| 17 | **The live variation family from Seller Central** | **Every size and colour we actually sell, with stock. Required — see below** |
 
 Optional but valuable: parent-level SQP with cart-adds, ASIN Insights, competitor price history, removal order detail, per-SKU floor prices.
 
 **Build the verification table before any analysis.** Every figure that later carries weight needs a named governing source. See `references/data-traps.md` for the contradictions that recur — read it before trusting any number.
+
+### 1.0 Build the catalogue matrix, before a single keyword is read
+
+**Added 4 September 2026, after a live catch by the account owner.**
+
+The rule "negate any term naming a size, colour or feature we do not sell" appears in **five places** in this skill. On a live product it was never applied — because nothing required the catalogue as an input, and no gate checked it. A plan went out proposing **Twin XL, California King, Full and Super King keywords on a product sold only in Twin, Queen and King.** Three live keywords naming colours we do not stock were sitting in the account about to have their bids raised.
+
+**A rule nobody can execute is not a rule.** So the catalogue is now an input, and building the matrix is a numbered step.
+
+1. **Pull the live variation family** — every child SKU, its size, its colour, its stock, its listing status.
+2. **Write the matrix out explicitly**: the sizes we sell, the colours we sell, and any gaps inside the grid. State the piece count per size where it differs — a 2-piece twin and a 3-piece queen are different products to a shopper searching "3 piece".
+3. **Write the complement too** — the sizes, colours, materials and bundles we do **not** sell. That list is what the scan runs against, and it is longer and more useful than the list of what we do sell.
+4. **Scan every keyword** — live, proposed, and in the master list — against the complement. Anything naming an attribute outside the catalogue is a structural negative, at any click count.
+5. **Put the matrix in the workbook** as its own tab, so next cycle re-runs the check instead of re-deriving the catalogue.
+
+**Check the adjacent-category terms separately, and keep the distinction.** A cross-category term like *comforter* is not a catalogue mismatch — it is a deliberate bet that a lightweight summer quilt serves that intent, and it belongs in an isolated lane with a refund kill-switch. A term naming a size we have never sold is not a bet; it is an error. Do not let the second hide inside the first.
+
+**Out of stock is not the same as not in the catalogue.** A size we sell but currently hold at zero is a stock gate, read per cycle and reversible on replenishment. A size we have never sold is structural and permanent. The negatives tab says which basis applied.
 
 ### 1.1 Re-tag the objective before any row is read
 
