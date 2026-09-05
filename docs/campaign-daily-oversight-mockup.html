@@ -51,6 +51,11 @@
   .chip{background:var(--surface); border:1px solid var(--rule-2); border-radius:5px; padding:6px 11px; font-size:12px; color:var(--ink-2)}
   .chip.on{background:var(--blue-bg); border-color:var(--blue); color:var(--blue); font-weight:600}
   .spacer{margin-left:auto}
+  .dr{display:flex; align-items:center; gap:7px; background:var(--surface); border:1px solid var(--rule-2); border-radius:5px; padding:5px 10px}
+  .dr-ico{color:var(--ink-3); font-size:12px}
+  .dr input[type=date]{border:0; background:transparent; font-family:var(--f); font-size:12.5px; color:var(--ink); font-variant-numeric:tabular-nums; padding:1px 2px}
+  .dr-sep{color:var(--ink-3); font-size:11px}
+  .dr-len{font-family:var(--m); font-size:10.5px; font-weight:600; color:var(--blue); background:var(--blue-bg); border-radius:3px; padding:2px 7px; white-space:nowrap}
 
   /* ---- pinned profile ---- */
   .profile{position:sticky; top:0; z-index:30; background:var(--surface); border:1px solid var(--rule-2); border-radius:7px; box-shadow:0 1px 3px rgba(17,24,39,.05), 0 8px 20px -18px rgba(17,24,39,.4); margin-bottom:14px}
@@ -158,14 +163,14 @@
 <div class="app">
   <div class="phead">
     <h1>Campaign Daily Oversight</h1>
-    <p>Mockup of the proposed tab. Pinned product profile, objective-led sub-tabs, lens toggles inside each tab. Figures are real values from the Bamboo Fitted Sheet screenshots; the new columns are illustrative. Defaults to <b>1d</b> — a bad yesterday is invisible inside a 30-day average. Data through <b>2026-09-04</b>.</p>
+    <p>Mockup of the proposed tab. Pinned product profile, objective-led sub-tabs, lens toggles inside each tab. Figures are real values from the Bamboo Fitted Sheet screenshots; the new columns are illustrative. Date range picker, defaulting to a <b>single day</b> — a bad yesterday is invisible inside a 30-day average. Data through <b>2026-09-04</b>.</p>
   </div>
 
   <div class="ctrls">
     <select class="sel"><option>Decolure — Bamboo Fitted Sheet</option><option>Decolure — Bamboo Sheets 6 Piece</option></select>
     <span class="chip on">US</span><span class="chip">CA</span>
     <span class="spacer"></span>
-    <span class="chip on">1d</span><span class="chip">7d</span><span class="chip">14d</span><span class="chip">30d</span><span class="chip">90d</span>
+    <div class="dr"><span class="dr-ico">▦</span><input type="date" value="2026-09-04" aria-label="From"><span class="dr-sep">→</span><input type="date" value="2026-09-04" aria-label="To"><span class="dr-len">1 day</span></div>
   </div>
 
   <!-- ============ PINNED PROFILE ============ -->

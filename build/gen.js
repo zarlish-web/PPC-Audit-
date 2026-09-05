@@ -138,8 +138,8 @@ add(CODE([
 ]));
 add(P('',{after:200}));
 add(H2('1.1 · Date window'));
-add(RUNS([{t:'The selector must offer 1d, and 1d is the default — this is the daily tier. ',b:true,c:INK},
- {t:'A bad yesterday is invisible inside a 30-day average, and the existing Performance Monitor defaults to 30d. Longer windows (7d / 14d / 30d / 90d) stay available for context, but the pass is run on 1d with the 7-day rolling figures beside it.'}],{after:200}));
+add(RUNS([{t:'A date range picker (from / to), not preset buttons. ',b:true,c:INK},
+ {t:'Presets cannot express "the three days around the deal" or "since the price change", which is what people actually need to look at. It defaults to a SINGLE DAY, because this is the daily tier and a bad yesterday is invisible inside a 30-day average; the existing Performance Monitor defaults to 30d. Show the selected span as a length badge (1 day, 12 days) so nobody misreads a wide range as a daily figure, and keep the 7-day rolling values beside the day figures regardless of the range chosen.'}],{after:200}));
 add(H2('1.2 · Three rules that hold across the screen'));
 add(TBL(['Rule','Why'],[
  ['The profile is context, not content','Every ceiling, gate and diagnosis below it reads from the profile. It stays pinned so nobody decides without it.'],

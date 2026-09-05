@@ -29,10 +29,13 @@ Read this with `README.md` (the three-tier system) and `config/thresholds.yml`
   Shared spine + that tab's own columns
 ```
 
-**Date window.** The selector must offer **1d**, and 1d is the default — this is the daily
-tier. A bad yesterday is invisible inside a 30-day average, and the existing Performance
-Monitor defaults to 30d. Longer windows stay available (7d / 14d / 30d / 90d) for context,
-but the pass is run on 1d with the 7-day rolling figures beside it.
+**Date window.** A **date range picker** (from / to), not preset buttons — presets can't
+express "the three days around the deal" or "since the price change", which is what people
+actually need to look at. It **defaults to a single day**, because this is the daily tier and
+a bad yesterday is invisible inside a 30-day average; the existing Performance Monitor
+defaults to 30d. Show the selected span as a length badge (`1 day`, `12 days`) so nobody
+misreads a wide range as a daily figure, and keep the 7-day rolling values beside the
+day figures regardless of the range chosen.
 
 Three rules that hold across the whole screen:
 
