@@ -29,6 +29,11 @@ Read this with `README.md` (the three-tier system) and `config/thresholds.yml`
   Shared spine + that tab's own columns
 ```
 
+**Date window.** The selector must offer **1d**, and 1d is the default — this is the daily
+tier. A bad yesterday is invisible inside a 30-day average, and the existing Performance
+Monitor defaults to 30d. Longer windows stay available (7d / 14d / 30d / 90d) for context,
+but the pass is run on 1d with the 7-day rolling figures beside it.
+
 Three rules that hold across the whole screen:
 
 - **The profile is context, not content.** Every ceiling, gate and diagnosis below it
@@ -51,8 +56,8 @@ Three rules that hold across the whole screen:
 
 One row. Only what gates a decision:
 
-`price + deal flag` · `Buy Box %` · `days of cover` · `break-even ACoS` ·
-`max allowable CPC` · `TACoS day / 7d` · `exceptions (n)`
+`price + deal flag` · `preferred variations (n live, lowest cover)` · `advertised SKU now` ·
+`break-even ACoS` · `max allowable CPC` · `TACoS day / 7d` · `exceptions (n)`
 
 Everything else lives in the expanded state. A full profile block is 300–400px and
 would push the table off a laptop screen.
@@ -66,8 +71,8 @@ would push the table off a laptop screen.
 | Thumbnail, title, parent ASIN, child ASIN, SKU, marketplace | |
 | Current price · net price after any running deal | |
 | Deal | type (Lightning / Best / Coupon / Promo), discount %, start–end, live Y/N |
-| Buy Box % | **over the window, not at read time** — a 9am snapshot reads 100% on a day you lost the box from noon. Flag < 90%, alert < 70% |
-| Inventory | units on hand · days of cover · units inbound |
+| **Preferred variations** | A table, not a single figure — days cover is **per child ASIN**, so a product-level number hides the variation that is actually at risk. One row per preferred variation: variation · SKU · **advertised now?** · units on hand · days cover · inbound · next shipment ETA. Backup variations listed beneath, marked as such. |
+| Days cover (per variation) | Read against the next shipment ETA, not in isolation: 19 days cover with stock landing on day 12 is fine; 19 days with nothing booked is a gate on ranking spend. |
 | COGS / landed cost · Amazon fees (referral + FBA) | |
 | Return rate | compute margin on **net** units — gross overstates it |
 | Contribution margin per unit, before ads | |
@@ -111,14 +116,14 @@ rating / review count.
 
 **Today's exceptions**
 
-Count + severity chips for D1–D7 (ad eligibility, delivery stopped, Buy Box, stock
-cover, spend pacing, spend anomaly, budget cap time, runaway spend). Each clicks
+Count + severity chips for D1–D7 (ad eligibility, delivery stopped, stock cover,
+spend pacing, spend anomaly, budget cap time, runaway spend). Each clicks
 through to the affected campaign or keyword.
 
 ### 2.3 Why this block exists
 
 A window showing ad sales down 23.5% and orders down 21.0% on flat impressions cannot
-be diagnosed from ad data alone. It is bidding, price, Buy Box, or a competitor — and
+be diagnosed from ad data alone. It is bidding, price, stock, or a competitor — and
 in three of those four cases no bid change would have fixed it.
 
 ---
@@ -444,7 +449,7 @@ until people stop looking:
 
 | Baseline | Use for |
 |---|---|
-| vs yesterday | Competitor price, deal on/off, BSR, Buy Box, rating |
+| vs yesterday | Competitor price, deal on/off, BSR, rating |
 | vs 7-day mean | Spend, CPC, sessions (this is what D5 already uses) |
 | vs target | Rank — distance to committed target, not yesterday's wobble |
 

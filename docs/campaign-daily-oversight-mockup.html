@@ -1,0 +1,485 @@
+<title>Daily Oversight Mockup</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    --ink:#111827; --ink-2:#4B5563; --ink-3:#8A94A2;
+    --paper:#F4F6F9; --surface:#FFFFFF; --surface-2:#F8FAFC; --surface-3:#EEF2F7;
+    --rule:#E1E7EF; --rule-2:#CBD4E0;
+    --blue:#2D5FA8; --blue-2:#4A82C8; --blue-bg:#EAF1FA;
+    --violet:#6D46C8; --violet-bg:#F0EAFB;
+    --red:#B3261E; --red-bg:#FBE9E7;
+    --amber:#96610A; --amber-bg:#FDF1DC;
+    --green:#1B6B45; --green-bg:#E4F2EA;
+    --rank1:#B7E4C7; --rank2:#8FD4AE; --rank3:#6FC496;
+    --f:"IBM Plex Sans",system-ui,-apple-system,Segoe UI,sans-serif;
+    --m:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+    --ink:#E5EAF0; --ink-2:#A6B0BD; --ink-3:#78838F;
+    --paper:#0E1318; --surface:#161D25; --surface-2:#1B242D; --surface-3:#212C36;
+    --rule:#2A353F; --rule-2:#3A4753;
+    --blue:#79ADEA; --blue-2:#9AC4F2; --blue-bg:#16273A;
+    --violet:#B49AF0; --violet-bg:#241C3B;
+    --red:#EB958E; --red-bg:#331917;
+    --amber:#DCA857; --amber-bg:#302516;
+    --green:#6FC79B; --green-bg:#14291F;
+    --rank1:#1F4634; --rank2:#2A5C44; --rank3:#357355;
+  }}
+  :root[data-theme="dark"]{
+    --ink:#E5EAF0; --ink-2:#A6B0BD; --ink-3:#78838F;
+    --paper:#0E1318; --surface:#161D25; --surface-2:#1B242D; --surface-3:#212C36;
+    --rule:#2A353F; --rule-2:#3A4753;
+    --blue:#79ADEA; --blue-2:#9AC4F2; --blue-bg:#16273A;
+    --violet:#B49AF0; --violet-bg:#241C3B;
+    --red:#EB958E; --red-bg:#331917;
+    --amber:#DCA857; --amber-bg:#302516;
+    --green:#6FC79B; --green-bg:#14291F;
+    --rank1:#1F4634; --rank2:#2A5C44; --rank3:#357355;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--paper); color:var(--ink); font-family:var(--f); font-size:13px; line-height:1.5}
+  .app{max-width:1500px; margin:0 auto; padding:20px 20px 60px}
+  .num{font-variant-numeric:tabular-nums}
+  button{font-family:inherit; cursor:pointer}
+  :focus-visible{outline:2px solid var(--blue-2); outline-offset:1px}
+
+  /* ---- page head ---- */
+  .phead h1{font-size:19px; font-weight:700; margin:0 0 3px; letter-spacing:-.01em}
+  .phead p{margin:0 0 14px; color:var(--ink-2); font-size:12.5px; max-width:88ch}
+  .ctrls{display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:14px}
+  .sel{background:var(--surface); border:1px solid var(--rule-2); border-radius:5px; padding:7px 11px; font-size:12.5px; font-weight:500; color:var(--ink)}
+  .chip{background:var(--surface); border:1px solid var(--rule-2); border-radius:5px; padding:6px 11px; font-size:12px; color:var(--ink-2)}
+  .chip.on{background:var(--blue-bg); border-color:var(--blue); color:var(--blue); font-weight:600}
+  .spacer{margin-left:auto}
+
+  /* ---- pinned profile ---- */
+  .profile{position:sticky; top:0; z-index:30; background:var(--surface); border:1px solid var(--rule-2); border-radius:7px; box-shadow:0 1px 3px rgba(17,24,39,.05), 0 8px 20px -18px rgba(17,24,39,.4); margin-bottom:14px}
+  .pf-row{display:flex; align-items:stretch; flex-wrap:wrap}
+  .pf-id{display:flex; align-items:center; gap:11px; padding:12px 15px; border-right:1px solid var(--rule); min-width:230px; flex:0 0 auto}
+  .thumb{width:38px; height:38px; border-radius:4px; background:linear-gradient(140deg,#CDDCE8,#9FB6C6); flex:0 0 auto}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .thumb{background:linear-gradient(140deg,#2E3E4C,#465A6B)}}
+  .pf-id .nm{font-weight:600; font-size:13px; line-height:1.25}
+  .pf-id .sub{font-family:var(--m); font-size:10.5px; color:var(--ink-3)}
+  .pf-cells{display:flex; flex:1 1 auto; flex-wrap:wrap}
+  .pf-c{padding:11px 15px; border-right:1px solid var(--rule); flex:1 1 105px; min-width:105px}
+  .pf-c:last-child{border-right:0}
+  .pf-c .k{font-family:var(--m); font-size:9px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); display:block; margin-bottom:3px; white-space:nowrap}
+  .pf-c .v{font-size:14px; font-weight:600; font-variant-numeric:tabular-nums; line-height:1.2}
+  .pf-c .d{display:block; font-family:var(--m); font-size:10px; margin-top:3px; line-height:1.2}
+  .up{color:var(--green)} .down{color:var(--red)} .flat{color:var(--ink-3)}
+  .pf-c.warn{background:var(--amber-bg)} .pf-c.warn .v{color:var(--amber)}
+  .pf-c.bad{background:var(--red-bg)} .pf-c.bad .v{color:var(--red)}
+  .pf-exp{border-left:1px solid var(--rule); padding:11px 14px; display:flex; align-items:center; flex:0 0 auto}
+  .exbtn{background:var(--surface-3); border:1px solid var(--rule-2); border-radius:5px; padding:7px 12px; font-size:11.5px; font-weight:600; color:var(--ink-2); white-space:nowrap}
+  .exbtn:hover{background:var(--blue-bg); border-color:var(--blue); color:var(--blue)}
+
+  .pf-more{border-top:1px solid var(--rule); padding:16px 15px; display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px}
+  .pf-more[hidden]{display:none}
+  .blk h4{font-family:var(--m); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); margin:0 0 9px; font-weight:600}
+  .kv{display:flex; justify-content:space-between; gap:12px; padding:4px 0; border-bottom:1px dotted var(--rule); font-size:12px}
+  .kv:last-child{border-bottom:0}
+  .kv span:first-child{color:var(--ink-2)}
+  .kv span:last-child{font-family:var(--m); font-variant-numeric:tabular-nums; font-weight:500}
+
+  .cmp-lead{background:var(--amber-bg); border:1px solid var(--amber); border-radius:5px; padding:8px 11px; font-size:12px; color:var(--amber); font-weight:600; margin-bottom:9px}
+  .cmp{width:100%; border-collapse:collapse; font-size:11.5px}
+  .cmp th{font-family:var(--m); font-size:9px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); text-align:left; padding:4px 7px; font-weight:600}
+  .cmp td{padding:4px 7px; border-top:1px solid var(--rule); font-variant-numeric:tabular-nums; color:var(--ink-2)}
+  .cmp td:first-child{color:var(--ink); font-weight:500}
+  .cmp tr.chg td{background:var(--amber-bg)}
+
+  /* ---- tabs ---- */
+  .tabs{display:flex; gap:5px; flex-wrap:wrap; margin-bottom:0}
+  .tab{background:var(--surface); border:1px solid var(--rule-2); border-bottom:none; border-radius:6px 6px 0 0; padding:9px 14px; font-size:12.5px; font-weight:500; color:var(--ink-2); display:flex; align-items:center; gap:6px}
+  .tab .n{font-family:var(--m); font-size:10.5px; font-weight:700; background:var(--red-bg); color:var(--red); border-radius:9px; padding:1px 6px}
+  .tab[aria-selected="true"]{background:var(--surface); color:var(--blue); font-weight:700; border-color:var(--rule-2); box-shadow:inset 0 3px 0 var(--blue)}
+  .tab:not([aria-selected="true"]){background:var(--surface-3); color:var(--ink-3)}
+
+  .panel{background:var(--surface); border:1px solid var(--rule-2); border-radius:0 7px 7px 7px; overflow:hidden}
+  .sub{display:flex; align-items:center; gap:18px; flex-wrap:wrap; padding:10px 15px; background:var(--surface-2); border-bottom:1px solid var(--rule)}
+  .sub .st{display:flex; align-items:baseline; gap:6px}
+  .sub .st .k{font-family:var(--m); font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3)}
+  .sub .st .v{font-size:13.5px; font-weight:700; font-variant-numeric:tabular-nums}
+  .lens{display:flex; gap:4px; margin-left:auto}
+  .lens button{background:var(--surface); border:1px solid var(--rule-2); border-radius:4px; padding:4px 10px; font-size:11.5px; color:var(--ink-2)}
+  .lens button.on{background:var(--violet-bg); border-color:var(--violet); color:var(--violet); font-weight:600}
+
+  .note{padding:9px 15px; font-size:11.5px; color:var(--ink-2); background:var(--blue-bg); border-bottom:1px solid var(--rule)}
+  .note b{color:var(--ink)}
+
+  /* ---- table ---- */
+  .tw{overflow-x:auto}
+  table.grid{border-collapse:separate; border-spacing:0; width:100%; font-size:12px; white-space:nowrap}
+  table.grid th, table.grid td{padding:8px 10px; border-bottom:1px solid var(--rule); text-align:right; font-variant-numeric:tabular-nums}
+  table.grid th.l, table.grid td.l{text-align:left}
+  thead .grp th{font-family:var(--m); font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); background:var(--surface-3); border-bottom:1px solid var(--rule-2); padding:5px 10px; font-weight:600; text-align:center}
+  thead .grp th.sp{background:var(--surface-2)}
+  thead .cols th{font-family:var(--m); font-size:9.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-3); background:var(--surface-2); border-bottom:1px solid var(--rule-2); font-weight:600; position:sticky; top:0}
+  .bl{border-left:1px solid var(--rule-2)}
+  tbody tr:hover td{background:var(--surface-2)}
+  td.kw{font-weight:600; color:var(--ink); position:relative; padding-left:16px}
+  .rail{position:absolute; left:0; top:0; bottom:0; width:3px}
+  .dchip{font-family:var(--m); font-size:9px; font-weight:700; padding:1px 5px; border-radius:2px; margin-left:6px; vertical-align:1px}
+  .sv{color:var(--ink-2)}
+  .obj{font-family:var(--m); font-size:9px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:2px 6px; border-radius:2px}
+  .o-rank{background:var(--blue-bg); color:var(--blue)}
+  .o-disc{background:var(--violet-bg); color:var(--violet)}
+  .o-prof{background:var(--green-bg); color:var(--green)}
+  .o-def{background:var(--amber-bg); color:var(--amber)}
+  .st-live{color:var(--green); font-weight:600}
+  .st-pk{color:var(--amber); font-weight:600}
+  .plc{color:var(--violet); font-size:11px}
+  .pct{display:block; font-size:9.5px; color:var(--ink-3); font-family:var(--m)}
+  .cons{font-size:10px; font-weight:700; letter-spacing:.03em; padding:3px 7px; border-radius:3px; display:inline-block}
+  .c-list{background:var(--red-bg); color:var(--red)}
+  .c-imp{background:var(--blue-bg); color:var(--blue)}
+  .c-bud{background:var(--violet-bg); color:var(--violet)}
+  .c-cre{background:var(--amber-bg); color:var(--amber)}
+  .c-ok{background:var(--green-bg); color:var(--green)}
+  .c-obs{background:var(--surface-3); color:var(--ink-3)}
+  .cap-bad{color:var(--red); font-weight:600}
+  .ceil-over{color:var(--red); font-weight:600}
+  .ceil-near{color:var(--amber); font-weight:600}
+  .ceil-ok{color:var(--ink-2)}
+  .gap-neg{color:var(--red); font-weight:600}
+  .gap-ok{color:var(--green); font-weight:600}
+  .settle{color:var(--ink-3); font-style:italic}
+  .rk{display:inline-block; min-width:20px; padding:2px 0; border-radius:2px; font-family:var(--m); font-size:10.5px; text-align:center; color:var(--ink)}
+  .rk1{background:var(--rank1)} .rk2{background:var(--rank2)} .rk3{background:var(--rank3)}
+  .rkna{color:var(--ink-3); font-family:var(--m); font-size:10.5px}
+  .strip{display:flex; gap:2px; justify-content:flex-end}
+
+  .foot{padding:10px 15px; font-size:11px; color:var(--ink-3); background:var(--surface-2); border-top:1px solid var(--rule)}
+  .foot b{color:var(--ink-2)}
+  .legend{display:flex; gap:14px; flex-wrap:wrap; margin-top:14px; font-size:11.5px; color:var(--ink-2); align-items:center}
+  .legend .sw{display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:5px; vertical-align:-1px}
+</style>
+
+<div class="app">
+  <div class="phead">
+    <h1>Campaign Daily Oversight</h1>
+    <p>Mockup of the proposed tab. Pinned product profile, objective-led sub-tabs, lens toggles inside each tab. Figures are real values from the Bamboo Fitted Sheet screenshots; the new columns are illustrative. Defaults to <b>1d</b> — a bad yesterday is invisible inside a 30-day average. Data through <b>2026-09-04</b>.</p>
+  </div>
+
+  <div class="ctrls">
+    <select class="sel"><option>Decolure — Bamboo Fitted Sheet</option><option>Decolure — Bamboo Sheets 6 Piece</option></select>
+    <span class="chip on">US</span><span class="chip">CA</span>
+    <span class="spacer"></span>
+    <span class="chip on">1d</span><span class="chip">7d</span><span class="chip">14d</span><span class="chip">30d</span><span class="chip">90d</span>
+  </div>
+
+  <!-- ============ PINNED PROFILE ============ -->
+  <div class="profile">
+    <div class="pf-row">
+      <div class="pf-id">
+        <div class="thumb"></div>
+        <div><div class="nm">Bamboo Fitted Sheet</div><div class="sub">B0C4XQ2M1P · DEC-BAM-FS-QN</div></div>
+      </div>
+      <div class="pf-cells">
+        <div class="pf-c"><span class="k">Price</span><span class="v">$44.99</span><span class="d flat">no deal</span></div>
+        <div class="pf-c warn"><span class="k">Preferred vars</span><span class="v">2 live</span><span class="d down">lowest 19d cover</span></div>
+        <div class="pf-c"><span class="k">Advertised now</span><span class="v">QN-WHT</span><span class="d flat">+ KG-WHT</span></div>
+        <div class="pf-c"><span class="k">Break-even ACoS</span><span class="v">34.0%</span></div>
+        <div class="pf-c"><span class="k">Max CPC</span><span class="v">$3.10</span><span class="d flat">@ 19.4% CVR</span></div>
+        <div class="pf-c"><span class="k">TACoS 7d</span><span class="v">18.2%</span><span class="d down">day 21.4%</span></div>
+        <div class="pf-c bad"><span class="k">Exceptions</span><span class="v">4</span><span class="d down">1 P1 · 3 P2</span></div>
+      </div>
+      <div class="pf-exp"><button class="exbtn" id="pfBtn" aria-expanded="false">Expand ▾</button></div>
+    </div>
+
+    <div class="pf-more" id="pfMore" hidden>
+      <div class="blk">
+        <h4>Economics</h4>
+        <div class="kv"><span>Price · net after deal</span><span>$44.99 · —</span></div>
+        <div class="kv"><span>COGS + fees</span><span>$29.70</span></div>
+        <div class="kv"><span>Return rate</span><span>4.1%</span></div>
+        <div class="kv"><span>Contribution / unit</span><span>$15.29</span></div>
+        <div class="kv"><span>Break-even ACoS</span><span>34.0%</span></div>
+        <div class="kv"><span>Target ACoS</span><span>25.0%</span></div>
+        <div class="kv"><span>Break-even CPC</span><span>$4.22</span></div>
+        <div class="kv"><span>Max allowable CPC</span><span>$3.10</span></div>
+      </div>
+      <div class="blk" style="grid-column:span 2; min-width:0">
+        <h4>Preferred variations — inventory &amp; advertising state</h4>
+        <div style="overflow-x:auto"><table class="cmp">
+          <thead><tr><th>Variation</th><th>SKU</th><th>Advertised</th><th style="text-align:right">On hand</th><th style="text-align:right">Days cover</th><th style="text-align:right">Inbound</th><th>Next shipment</th></tr></thead>
+          <tbody>
+            <tr class="chg"><td>Queen / White</td><td>DEC-BAM-FS-QN-WHT</td><td><b>Live</b></td><td style="text-align:right">412</td><td style="text-align:right" class="down">19</td><td style="text-align:right">480</td><td>12 Sep · in transit</td></tr>
+            <tr><td>King / White</td><td>DEC-BAM-FS-KG-WHT</td><td><b>Live</b></td><td style="text-align:right">780</td><td style="text-align:right">41</td><td style="text-align:right">—</td><td>—</td></tr>
+            <tr><td>Queen / Grey</td><td>DEC-BAM-FS-QN-GRY</td><td>Backup</td><td style="text-align:right">260</td><td style="text-align:right">33</td><td style="text-align:right">300</td><td>20 Sep · booked</td></tr>
+          </tbody>
+        </table></div>
+        <div style="margin-top:7px; font-size:11.5px; color:var(--ink-3)">Days cover is per child ASIN, so it lives here rather than as one product-level figure. Cover of 19d against a 12 Sep arrival is the gate on ranking spend for QN-WHT.</div>
+      </div>
+      <div class="blk">
+        <h4>The day &nbsp;·&nbsp; day / 7d rolling</h4>
+        <div class="kv"><span>Ad spend</span><span>$971 / $1,043</span></div>
+        <div class="kv"><span>Ad sales</span><span class="settle">$2,937 / $3,180</span></div>
+        <div class="kv"><span>Organic sales</span><span class="settle">$1,684 / $1,901</span></div>
+        <div class="kv"><span>Total sales</span><span class="settle">$4,621 / $5,081</span></div>
+        <div class="kv"><span>TACoS</span><span>21.4% / 18.2%</span></div>
+        <div class="kv"><span>Sessions</span><span>2,140</span></div>
+        <div class="kv"><span>Unit session %</span><span>9.8%</span></div>
+        <div class="kv"><span>BSR</span><span>#3,412 &nbsp;<span class="down">▼ 610</span></span></div>
+      </div>
+      <div class="blk" style="grid-column:span 2; min-width:0">
+        <h4>Competitors — top 10 by BSR · only changes highlighted</h4>
+        <div class="cmp-lead">2 competitors dropped price · 1 started a deal · our price rank 4 of 11</div>
+        <div style="overflow-x:auto"><table class="cmp">
+          <thead><tr><th>Brand</th><th>ASIN</th><th style="text-align:right">Price</th><th style="text-align:right">Δ</th><th>Deal</th><th style="text-align:right">BSR</th><th style="text-align:right">Δ</th><th style="text-align:right">Rating</th></tr></thead>
+          <tbody>
+            <tr class="chg"><td>Cozy Earth</td><td>B08KJ4R2Q1</td><td style="text-align:right">$38.49</td><td style="text-align:right" class="down">−$6.50</td><td>Lightning 15%</td><td style="text-align:right">#1,204</td><td style="text-align:right" class="up">▲ 890</td><td style="text-align:right">4.6 (12k)</td></tr>
+            <tr class="chg"><td>Bedsure</td><td>B07YFN3K8L</td><td style="text-align:right">$34.99</td><td style="text-align:right" class="down">−$4.00</td><td>—</td><td style="text-align:right">#1,880</td><td style="text-align:right" class="up">▲ 340</td><td style="text-align:right">4.4 (48k)</td></tr>
+            <tr><td>California Design Den</td><td>B01M0F1QZK</td><td style="text-align:right">$49.99</td><td style="text-align:right" class="flat">—</td><td>—</td><td style="text-align:right">#2,640</td><td style="text-align:right" class="flat">▲ 40</td><td style="text-align:right">4.5 (31k)</td></tr>
+            <tr><td><b>Decolure (us)</b></td><td>B0C4XQ2M1P</td><td style="text-align:right">$44.99</td><td style="text-align:right" class="flat">—</td><td>—</td><td style="text-align:right">#3,412</td><td style="text-align:right" class="down">▼ 610</td><td style="text-align:right">4.5 (2.1k)</td></tr>
+            <tr><td>Mellanni</td><td>B00NLLUMOE</td><td style="text-align:right">$32.97</td><td style="text-align:right" class="flat">—</td><td>—</td><td style="text-align:right">#3,910</td><td style="text-align:right" class="flat">▼ 55</td><td style="text-align:right">4.6 (240k)</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ TABS ============ -->
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-t="rank">Ranking <span class="n">3</span></button>
+    <button class="tab" role="tab" aria-selected="false" data-t="auto">Auto</button>
+    <button class="tab" role="tab" aria-selected="false" data-t="man">Manual <span class="n">1</span></button>
+    <button class="tab" role="tab" aria-selected="false" data-t="pat">Product &amp; Category</button>
+    <button class="tab" role="tab" aria-selected="false" data-t="sb">SB</button>
+    <button class="tab" role="tab" aria-selected="false" data-t="sd">SD</button>
+  </div>
+
+  <div class="panel">
+    <div class="sub">
+      <div class="st"><span class="k">This tab</span></div>
+      <div class="st"><span class="k">Spend</span><span class="v" id="stSpend">$538</span></div>
+      <div class="st"><span class="k">Sales</span><span class="v" id="stSales">$1,714</span></div>
+      <div class="st"><span class="k">ACoS</span><span class="v" id="stAcos">31.4%</span></div>
+      <div class="st"><span class="k">Share of ad spend</span><span class="v" id="stShare">55.4%</span></div>
+      <div class="lens">
+        <button class="on">Keywords</button><button>Placement</button><button>Target</button><button>Ranks</button>
+      </div>
+    </div>
+    <div class="note" id="tabNote"></div>
+    <div class="tw"><table class="grid" id="grid"></table></div>
+    <div class="foot" id="tabFoot"></div>
+  </div>
+
+  <div class="legend">
+    <span><span class="sw" style="background:var(--red-bg); box-shadow:inset 0 0 0 1px var(--red)"></span>Listing-constrained — hold funding</span>
+    <span><span class="sw" style="background:var(--amber-bg); box-shadow:inset 0 0 0 1px var(--amber)"></span>Creative-constrained</span>
+    <span><span class="sw" style="background:var(--blue-bg); box-shadow:inset 0 0 0 1px var(--blue)"></span>Impression-constrained</span>
+    <span><span class="sw" style="background:var(--green-bg); box-shadow:inset 0 0 0 1px var(--green)"></span>On track</span>
+    <span><span class="sw" style="background:hsl(42 70% 88%); box-shadow:inset 0 0 0 1px hsl(42 65% 55%)"></span>Duplicate group D1 — one keyword, one shade</span>
+  </div>
+</div>
+
+<script>
+(function(){
+  var pfBtn=document.getElementById('pfBtn'), pfMore=document.getElementById('pfMore');
+  pfBtn.addEventListener('click',function(){
+    var open=pfMore.hidden; pfMore.hidden=!open;
+    pfBtn.setAttribute('aria-expanded',String(open));
+    pfBtn.textContent=open?'Collapse ▴':'Expand ▾';
+  });
+
+  function rk(v){ if(v==null) return '<span class="rkna">N/A</span>';
+    var c=v<=3?'rk3':v<=8?'rk2':'rk1'; return '<span class="rk '+c+'">'+v+'</span>'; }
+  function strip(a){ return '<span class="strip">'+a.map(rk).join('')+'</span>'; }
+  function ceil(cpc,c){ var r=cpc/c; var cl=r>1?'ceil-over':r>0.9?'ceil-near':'ceil-ok';
+    return '<span class="'+cl+'">$'+cpc.toFixed(2)+'</span><span class="pct">of $'+c.toFixed(2)+' · '+Math.round(r*100)+'%</span>'; }
+
+  var CONS={list:['Listing','c-list'],cre:['Creative','c-cre'],imp:['Impression','c-imp'],bud:['Budget','c-bud'],ok:['On track','c-ok'],obs:['Observing','c-obs']};
+  function cons(k){ return '<span class="cons '+CONS[k][1]+'">'+CONS[k][0]+'</span>'; }
+
+  // duplicate group shading — hash(normalised key) mod 8, hue table
+  var HUES=[42,25,340,300,265,225,190,165];
+  function dupStyle(g){ var h=HUES[g%8];
+    return {rail:'hsl('+h+' 65% 62%)', wash:'hsl('+h+' 70% 95%)', chip:'hsl('+h+' 65% 35%)', chipbg:'hsl('+h+' 70% 90%)'}; }
+
+  var RANK_ROWS=[
+    {c:'BAM-SP-EXACT-bamboo-fitted-sheet-QN', kw:'bamboo fitted sheet', dup:0, tgts:1, other:1, sv:3327, obj:'rank', st:'Live',
+     tr:5, cr:8, rank:[8,9,8,7,7,8,9,8,8,7,9,8,10,11], cpr:142, dstr:9,
+     reqC:96, actC:119, reqI:3480, actI:4318, ctrM:3.10, ctrA:2.76, cvrM:19.8, cvrA:12.6,
+     bid:1.68, tos:65, bud:120, spend:217, cap:'in budget', cpc:1.82, cpcT:1.95, cpcP:0.97, cpcR:0.98, ceilv:3.10,
+     clk:{t:119,tos:104,pdp:12,ros:3}, ord:15, sales:534, acos:40.6, con:'list'},
+    {c:'BAM-SP-EXACT-bamboo-fitted-sheets-QN', kw:'bamboo fitted sheets', dup:0, tgts:1, other:1, sv:3327, obj:'rank', st:'Live',
+     tr:5, cr:8, rank:[8,9,8,7,7,8,9,8,8,7,9,8,10,11], cpr:142, dstr:9,
+     reqC:96, actC:31, reqI:1010, actI:1120, ctrM:3.10, ctrA:2.77, cvrM:19.8, cvrA:16.1,
+     bid:1.55, tos:40, bud:60, spend:58, cap:'in budget', cpc:1.87, cpcT:2.02, cpcP:1.01, cpcR:0.94, ceilv:3.10,
+     clk:{t:31,tos:26,pdp:4,ros:1}, ord:5, sales:176, acos:33.0, con:'obs'},
+    {c:'BAM-SP-EXACT-bamboo-fitted-sheet-queen-QN', kw:'bamboo fitted sheet queen', dup:null, tgts:1, other:0, sv:1925, obj:'rank', st:'Live',
+     tr:3, cr:4, rank:[4,3,3,3,4,3,4,5,4,4,5,4,4,4], cpr:88, dstr:6,
+     reqC:71, actC:44, reqI:1420, actI:419, ctrM:9.8, ctrA:10.5, cvrM:21.0, cvrA:20.4,
+     bid:2.05, tos:80, bud:90, spend:99.57, cap:'16:20', cpc:2.26, cpcT:2.41, cpcP:1.18, cpcR:1.05, ceilv:3.36,
+     clk:{t:44,tos:44,pdp:0,ros:0}, ord:9, sales:316, acos:31.5, con:'bud'},
+    {c:'BAM-SP-EXACT-bamboo-fitted-sheet-king-KG', kw:'bamboo fitted sheet king', dup:null, tgts:1, other:0, sv:1842, obj:'rank', st:'Live',
+     tr:3, cr:3, rank:[3,4,4,3,3,3,3,3,4,4,4,2,3,3], cpr:81, dstr:5,
+     reqC:52, actC:23, reqI:1240, actI:167, ctrM:12.1, ctrA:13.8, cvrM:34.0, cvrA:39.1,
+     bid:1.60, tos:55, bud:75, spend:40.50, cap:'in budget', cpc:1.76, cpcT:1.78, cpcP:0, cpcR:0.69, ceilv:4.55,
+     clk:{t:23,tos:23,pdp:0,ros:0}, ord:9, sales:289, acos:14.0, con:'imp'},
+    {c:'BAM-SP-EXACT-bamboo-viscose-fitted-sheet-QN', kw:'bamboo viscose fitted sheet', dup:null, tgts:3, other:0, sv:254, obj:'rank', st:'Live',
+     tr:null, cr:null, rank:[null,null,null,null,null,null,null,null,null,null,null,null,null,null], cpr:null, dstr:null,
+     reqC:null, actC:25, reqI:null, actI:324, ctrM:8.4, ctrA:7.72, cvrM:18.2, cvrA:8.00,
+     bid:2.60, tos:70, bud:60, spend:73.12, cap:'17:05', cpc:2.92, cpcT:3.02, cpcP:1.89, cpcR:1.56, ceilv:1.94,
+     clk:{t:25,tos:23,pdp:1,ros:1}, ord:2, sales:70, acos:104.6, con:'list'},
+    {c:'BAM-SP-EXACT-brand-decolure-sheets-QN', kw:'decolure bamboo sheets', dup:null, tgts:1, other:0, sv:410, obj:'def', st:'Live',
+     tr:1, cr:1, rank:[1,1,1,1,1,1,1,1,1,1,1,1,1,2], cpr:null, dstr:null,
+     reqC:null, actC:18, reqI:null, actI:640, ctrM:14.0, ctrA:12.8, cvrM:38.0, cvrA:44.4,
+     bid:0.85, tos:30, bud:40, spend:14.20, cap:'in budget', cpc:0.79, cpcT:0.84, cpcP:0.52, cpcR:0.48, ceilv:5.20,
+     clk:{t:18,tos:16,pdp:2,ros:0}, ord:8, sales:360, acos:3.9, con:'ok'}
+  ];
+
+  function spine(r){
+    var capCls = /:/.test(r.cap) ? 'cap-bad' : '';
+    return ''
+      + '<td class="l">'+r.st+'</td>'
+      + '<td class="l"><span class="obj o-'+r.obj+'">'+(r.obj==='rank'?'Ranking':r.obj==='def'?'Defensive':r.obj==='disc'?'Discovery':'Profit')+'</span></td>'
+      + '<td>$'+r.bid.toFixed(2)+'</td><td>'+r.tos+'%</td>'
+      + '<td>$'+r.bud+'</td><td class="'+capCls+'">'+r.cap+'</td>';
+  }
+
+  function rankTable(){
+    var h='<thead>'
+      +'<tr class="grp"><th colspan="2" class="l sp">Campaign</th><th>Verdict</th><th colspan="5" class="sp">Setup</th>'
+      +'<th colspan="6">Ranking commitment</th><th colspan="4">CTR / CVR</th>'
+      +'<th colspan="5">Delivery &amp; ceiling</th><th colspan="2">Result</th><th>Rank 14d</th></tr>'
+      +'<tr class="cols"><th class="l">Campaign · keyword</th><th class="l">State</th>'
+      +'<th class="l bl">Constraint</th>'
+      +'<th class="l bl">Objective</th><th>Bid</th><th>TOS%</th><th>Budget</th><th>Cap</th><th>#Tgt</th>'
+      +'<th class="bl">Tgt rank</th><th>Now</th><th>CPR</th><th>DSTR</th><th>Req clk</th><th>Act clk</th>'
+      +'<th class="bl">CTR mkt</th><th>CTR act</th><th>CVR mkt</th><th>CVR act</th>'
+      +'<th class="bl">Req impr</th><th>Act impr</th><th>Clicks TOS/PDP/ROS</th><th>CPC vs ceiling</th><th>Spend</th>'
+      +'<th class="bl">Sales</th><th>ACoS</th><th class="bl">Constraint</th><th class="bl">Newest first</th></tr></thead>';
+    var b='<tbody>';
+    RANK_ROWS.forEach(function(r){
+      var d = r.dup!==null && r.dup!==undefined ? dupStyle(r.dup) : null;
+      var kwCell = '<td class="l kw"'+(d?' style="background:'+d.wash+'"':'')+'>'
+        + (d?'<span class="rail" style="background:'+d.rail+'"></span>':'')
+        + r.kw + (d?'<span class="dchip" style="background:'+d.chipbg+';color:'+d.chip+'">⧉ D1</span>':'')
+        + '<span class="pct">'+r.c+'</span></td>';
+      var gapC = r.reqC==null ? '<span class="rkna">—</span>'
+        : '<span class="'+(r.actC>=r.reqC?'gap-ok':'gap-neg')+'">'+r.actC+'</span>';
+      var gapI = r.reqI==null ? '<span class="rkna">—</span>'
+        : '<span class="'+(r.actI>=r.reqI?'gap-ok':'gap-neg')+'">'+r.actI.toLocaleString()+'</span>';
+      var cvrCls = r.cvrA < r.cvrM*0.6 ? 'ceil-over' : '';
+      b+='<tr>'+kwCell
+        +'<td class="l">'+r.st+'</td>'
+        +'<td class="l bl">'+cons(r.con)+'</td>'
+        +'<td class="l bl"><span class="obj o-'+r.obj+'">'+(r.obj==='rank'?'Ranking':'Defensive')+'</span></td>'
+        +'<td>$'+r.bid.toFixed(2)+'</td>'
+        +'<td>'+r.tos+'%</td><td>$'+r.bud+'</td>'
+        +'<td class="'+(/:/.test(r.cap)?'cap-bad':'')+'">'+r.cap+'</td>'
+        +'<td'+(r.tgts>1?' class="ceil-over"':'')+'>'+r.tgts+'</td>'
+        +'<td class="bl">'+(r.tr?'#'+r.tr:'<span class="rkna">—</span>')+'</td>'
+        +'<td>'+(r.cr?'#'+r.cr:'<span class="rkna">—</span>')+'</td>'
+        +'<td>'+(r.cpr||'<span class="rkna">—</span>')+'</td>'
+        +'<td>'+(r.dstr||'<span class="rkna">—</span>')+'</td>'
+        +'<td>'+(r.reqC||'<span class="rkna">—</span>')+'</td><td>'+gapC+'</td>'
+        +'<td class="bl">'+r.ctrM.toFixed(2)+'%</td><td>'+r.ctrA.toFixed(2)+'%</td>'
+        +'<td>'+r.cvrM.toFixed(1)+'%</td><td class="'+cvrCls+'">'+r.cvrA.toFixed(1)+'%</td>'
+        +'<td class="bl">'+(r.reqI?r.reqI.toLocaleString():'<span class="rkna">—</span>')+'</td><td>'+gapI+'</td>'
+        +'<td class="plc">'+r.clk.tos+' / '+r.clk.pdp+' / '+r.clk.ros
+          +'<span class="pct">'+Math.round(r.clk.tos/r.clk.t*100)+'% / '+Math.round(r.clk.pdp/r.clk.t*100)+'% / '+Math.round(r.clk.ros/r.clk.t*100)+'%</span></td>'
+        +'<td>'+ceil(r.cpc,r.ceilv)+'</td>'
+        +'<td>$'+r.spend.toFixed(2)+'</td>'
+        +'<td class="bl settle">$'+r.sales+'</td><td class="settle">'+r.acos.toFixed(1)+'%</td>'
+        +'<td class="bl">'+strip(r.rank)+'</td></tr>';
+    });
+    return h+b+'</tbody>';
+  }
+
+  var SIMPLE={
+    auto:{note:'<b>Auto — Discovery.</b> Judged on discovery yield, not ACoS. Row expands to the four auto target types; bids are set per type, so that is the real grain underneath.',
+      cols:['Campaign','State','Objective','Target type','Bid','Budget','Cap','Impr','Clicks','CPC','Orders','ACoS','New terms','Cost / harvest','Already harvested','Negatives'],
+      rows:[
+        ['BAM-SP-AUTO-QN','Live','disc','close match','$0.92','$45','in budget','18,420','96','$0.94','11','38.2%','7','$12.90','14%','212'],
+        ['BAM-SP-AUTO-QN','Live','disc','loose match','$0.62','—','—','24,110','58','$0.71','4','61.0%','12','$6.80','9%','—'],
+        ['BAM-SP-AUTO-QN','Live','disc','substitutes','$0.70','—','—','9,340','31','$0.83','3','49.4%','2','$18.40','31%','—'],
+        ['BAM-SP-AUTO-QN','Paused','disc','complements','$0.45','—','—','1,120','4','$0.51','0','—','0','—','—','—']
+      ]},
+    man:{note:'<b>Manual (broad / phrase) — Discovery.</b> Same discovery-yield and negative-coverage block as Auto. A broad campaign at 80% ACoS feeding three profitable exact campaigns is working.',
+      cols:['Campaign','State','Objective','Keyword','SV','Match','Bid','Budget','Cap','Clicks','CPC','Orders','ACoS','New terms','Cost / harvest','Negatives'],
+      rows:[
+        ['BAM-SP-BROAD-bamboo-sheets-QN','Live','disc','bamboo sheets','12,400','Broad','$1.10','$60','15:40','142','$1.18','14','44.9%','19','$8.80','96'],
+        ['BAM-SP-BROAD-bamboo-sheets-QN','Live','disc','bamboo bedding','4,180','Broad','$1.10','—','—','63','$1.06','5','52.1%','8','$8.35','—'],
+        ['BAM-SP-PHRASE-fitted-sheet-QN','Live','disc','bamboo fitted sheet','3,327','Phrase','$1.25','$40','in budget','48','$1.31','7','36.4%','4','$15.70','61'],
+        ['BAM-SP-PHRASE-fitted-sheet-QN','Paused','disc','cooling fitted sheet','2,010','Phrase','$1.25','—','—','9','$1.44','1','48.0%','1','$12.96','—']
+      ]},
+    pat:{note:'<b>Product &amp; Category — Profitable Conversion.</b> Targets an ASIN or a category node, so there is no keyword, SV, CPR or rank. Expect PDP-dominant placement; high TOS share is a flag.',
+      cols:['Campaign','State','Objective','Target','Brand','Their price','vs ours','Their BSR','Deal','Bid','Budget','Clicks','TOS share','CPC vs ceiling','Orders','ACoS'],
+      rows:[
+        ['BAM-SP-PAT-conquest-QN','Live','prof','B08KJ4R2Q1','Cozy Earth','$38.49','−$6.50','#1,204','Lightning 15%','$0.95','$35','61','8%','$0.98 / $3.10','7','29.8%'],
+        ['BAM-SP-PAT-conquest-QN','Live','prof','B07YFN3K8L','Bedsure','$34.99','−$10.00','#1,880','—','$0.95','—','44','6%','$1.02 / $3.10','4','38.2%'],
+        ['BAM-SP-CAT-bedding-QN','Live','prof','Sheets &amp; Pillowcases','—','—','—','—','—','$0.72','$25','88','41%','$0.79 / $3.10','6','41.0%']
+      ]},
+    sb:{note:'<b>Sponsored Brands.</b> New-to-brand is what SB exists for — judging it on ACoS alone misses the point. SB placements differ from SP, so the TOS/PDP/ROS block is not reused here.',
+      cols:['Campaign','State','Objective','Format','Landing page','Bid','Budget','Impr','Clicks','CTR','Orders','NTB orders','NTB %','Sales','NTB sales','ACoS','TOS IS%'],
+      rows:[
+        ['BAM-SB-COLLECTION-QN','Live','def','Product Collection','Store — Bamboo','$1.40','$50','42,100','214','0.51%','19','13','68%','$742','$508','24.1%','31%'],
+        ['BAM-SBV-bamboo-sheets-QN','Live','disc','Video','Detail page','$1.85','$45','28,600','188','0.66%','14','11','79%','$548','$430','29.9%','18%']
+      ]},
+    sd:{note:'<b>Sponsored Display.</b> CPC and vCPM campaigns are not comparable — never sum them. Off-Amazon delivery lives on this tab; it reads 0 on every SP row because SP does not serve off-Amazon.',
+      cols:['Campaign','State','Objective','Targeting','Cost type','Bid','Budget','Impr','Viewable impr','vCPM','Clicks','VTC','Orders','NTB %','On-AMZ','Off-AMZ','ACoS'],
+      rows:[
+        ['BAM-SD-remarketing-QN','Live','prof','Views remarketing','CPC','$0.68','$30','96,400','71,200','—','142','23','16','22%','78%','22%','27.4%'],
+        ['BAM-SD-contextual-QN','Live','disc','Similar products','vCPM','$4.20','$25','214,000','168,900','$4.06','96','41','9','61%','54%','46%','48.9%']
+      ]}
+  };
+
+  function simpleTable(k){
+    var d=SIMPLE[k], h='<thead><tr class="cols">';
+    d.cols.forEach(function(c,i){ h+='<th class="'+(i<4?'l':'')+'">'+c+'</th>'; });
+    h+='</tr></thead><tbody>';
+    d.rows.forEach(function(r){
+      h+='<tr>';
+      r.forEach(function(v,i){
+        if(i===2){ var lbl=v==='disc'?'Discovery':v==='prof'?'Profit':v==='def'?'Defensive':'Ranking';
+          h+='<td class="l"><span class="obj o-'+v+'">'+lbl+'</span></td>'; }
+        else if(i===1){ h+='<td class="l">'+v+'</td>'; }
+        else h+='<td class="'+(i<4?'l':'')+'">'+v+'</td>';
+      });
+      h+='</tr>';
+    });
+    return h+'</tbody>';
+  }
+
+  var META={
+    rank:{note:'<b>Ranking — the full tier.</b> Sorted by the constraint column, not the rank gap: a campaign short on clicks because it is impression-constrained gets a bid change today; one short because CVR collapsed is escalated to whoever owns the listing.',
+      foot:'Conversion columns for the last 3 days are still settling and are shown in grey — no deltas are computed inside that window. The two <b>bamboo fitted sheet</b> / <b>bamboo fitted sheets</b> rows normalise to the same key and the same match type, so they are one duplicate group (⧉ D1) — Amazon serves both from one auction. Keep the higher-click instance, pause the other.',
+      s:['$538','$1,714','31.4%','55.4%']},
+    auto:{foot:'Discovery yield is the judgement column here, not ACoS. <b>Loose match</b> produced 12 new harvestable terms at $6.80 each; <b>substitutes</b> produced 2 at $18.40 with 31% of spend going to terms already harvested elsewhere — that is leakage, and the negatives are missing.', s:['$182','$389','46.8%','18.7%']},
+    man:{foot:'One flag on this tab: <b>BAM-SP-BROAD-bamboo-sheets-QN</b> capped at 15:40, so it stopped discovering during the highest-intent hours of the day.', s:['$247','$561','44.0%','25.4%']},
+    pat:{foot:'<b>BAM-SP-CAT-bedding-QN</b> is taking 41% of its clicks at top-of-search — unusual for category targeting and worth checking, since it is behaving like a keyword campaign. Both conquest targets dropped price in the last 24h; see the competitor strip above.', s:['$88','$214','41.1%','9.1%']},
+    sb:{foot:'Both campaigns are running above the product break-even ACoS of 34.0% on ad sales alone, but 68% and 79% of their orders are new-to-brand — which is the return SB is bought for.', s:['$174','$1,290','13.5%','17.9%']},
+    sd:{foot:'The vCPM campaign cannot be compared to the CPC one on ACoS. Read it on viewable impressions, view-through conversions and NTB share.', s:['$61','$186','32.8%','6.3%']}
+  };
+
+  var grid=document.getElementById('grid'), note=document.getElementById('tabNote'), foot=document.getElementById('tabFoot');
+  var st=[document.getElementById('stSpend'),document.getElementById('stSales'),document.getElementById('stAcos'),document.getElementById('stShare')];
+
+  function render(k){
+    grid.innerHTML = k==='rank' ? rankTable() : simpleTable(k);
+    note.innerHTML = k==='rank' ? META.rank.note : SIMPLE[k].note;
+    foot.innerHTML = META[k].foot;
+    META[k].s.forEach(function(v,i){ st[i].textContent=v; });
+  }
+
+  document.querySelectorAll('.tab').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('.tab').forEach(function(x){ x.setAttribute('aria-selected','false'); });
+      b.setAttribute('aria-selected','true');
+      render(b.dataset.t);
+    });
+  });
+
+  document.querySelectorAll('.lens button').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('.lens button').forEach(function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+    });
+  });
+
+  render('rank');
+})();
+</script>
