@@ -1,0 +1,395 @@
+<html><head><meta charset="utf-8"></head><body>
+<h1>Campaign Daily Oversight — build spec</h1>
+<p>The daily tier of the PPC Oversight System, as a screen. One product, one marketplace, day grain. Sits alongside the existing Performance Monitor tables and reuses their arithmetic, their placement estimator and their attribution-settling treatment.</p>
+
+<h2>A) SCREEN LAYOUT</h2>
+<p>Top to bottom, one screen:</p>
+<ul>
+<li>PINNED PRODUCT PROFILE — does not scroll away. Compact one row by default, click to expand.</li>
+<li>SUB-TAB BAR — Ranking / Auto / Manual / Product &amp; Category / SB / SD. Each label carries its own exception count, e.g. "Ranking (3)".</li>
+<li>SUBTOTAL STRIP — this tab: spend, sales, ACoS, % of product ad spend.</li>
+<li>LENS TOGGLES — Keywords / Placement / Target / Ranks. These sit INSIDE each tab, not beside it. They are different views of the same campaigns, not different campaign types.</li>
+<li>TABLE — the shared column spine plus that tab's own columns.</li>
+</ul>
+<p>Three rules that hold across the whole screen:</p>
+<ul>
+<li>The profile is context, not content. Every ceiling, gate and diagnosis below it reads from the profile, so it stays pinned and nobody decides without it.</li>
+<li>Profile figures stay product-total. They do NOT react to the selected sub-tab — if they did, TACoS and organic sales would stop being coherent. The subtotal strip carries the tab's own numbers.</li>
+<li>Tabs are objective-led. Objective comes from targeting type by the standing rule (Exact = Ranking, auto and broad = Discovery, product/category = Profitable Conversion, brand keyword = Defensive). Where the two diverge, objective wins: a brand-defence Exact campaign is Defensive and is judged on defence, not on rank gap.</li>
+</ul>
+
+<h2>B) DATE RANGE</h2>
+<ul>
+<li>A from/to date range picker. NOT preset 1d / 7d / 30d buttons.</li>
+<li>Presets cannot express "the three days around the deal" or "since the price change", which is what people actually need to look at.</li>
+<li>Defaults to a SINGLE DAY. This is the daily tier and a bad yesterday is invisible inside a 30-day average. The current Performance Monitor defaults to 30d.</li>
+<li>Show the selected span as a length badge — "1 day", "12 days" — so nobody misreads a wide range as a daily figure.</li>
+<li>The 7-day rolling values stay beside the day figures regardless of the range chosen.</li>
+</ul>
+
+<h1>PRODUCT PROFILE — new pinned header block</h1>
+<p>Grain: one product x one marketplace. Everything here is product-level, not segment-level.</p>
+
+<h2>COMPACT STATE (pinned, always visible)</h2>
+<p>One row. Only what gates a decision:</p>
+<ul>
+<li>Price + deal flag</li>
+<li>Preferred variations — count live, and the lowest days cover among them</li>
+<li>Advertised SKU right now</li>
+<li>Break-even ACoS</li>
+<li>Max allowable CPC</li>
+<li>TACoS — day / 7-day rolling</li>
+<li>Exceptions count</li>
+</ul>
+<p>Everything else lives in the expanded state. A full profile block is 300-400px and would push the table off a laptop screen.</p>
+
+<h2>1) IDENTITY &amp; ECONOMICS</h2>
+<ul>
+<li>Thumbnail, product title, parent ASIN, child ASIN, SKU, marketplace</li>
+<li>Current price, and net price after any running deal</li>
+<li>Our deal/promo status and type (Lightning / Best / Coupon / Promo), discount %, start-end date, live now Y/N</li>
+<li>COGS / landed cost, and Amazon fees (referral + FBA)</li>
+<li>Return rate — compute margin on NET units. Gross overstates it.</li>
+<li>Contribution margin per unit, before ads</li>
+<li>Break-even ACoS = contribution margin per unit / price. This is the ACoS at which CM2 = 0.</li>
+<li>Target ACoS — the profit target, set below break-even by objective</li>
+<li>Blended CVR — product, trailing 30 days</li>
+<li>Break-even CPC at blended CVR = break-even ACoS x price x CVR</li>
+<li>Max allowable CPC at blended CVR = target ACoS x price x CVR</li>
+</ul>
+<p>NOTE ON THE CEILINGS: label both CPC figures "at blended CVR — per-keyword ceilings are on the rows". Recompute them whenever price or the deal changes. Price down pushes the ceiling down; deal-lifted CVR pushes it back up. The net effect must be computed, not assumed.</p>
+
+<h2>2) PREFERRED VARIATIONS</h2>
+<p>A table, not a single figure. Days cover is per child ASIN, so one product-level number hides the variation that is actually at risk.</p>
+<p>One row per preferred variation:</p>
+<ul>
+<li>Variation name</li>
+<li>SKU</li>
+<li>Advertised right now? Yes / No</li>
+<li>Units on hand</li>
+<li>Days cover</li>
+<li>Inbound units</li>
+<li>Next shipment ETA</li>
+</ul>
+<p>Backup variations listed beneath, marked as backup.</p>
+<p>NOTE ON DAYS COVER: read it against the next shipment ETA, never in isolation. 19 days cover with stock landing on day 12 is fine. 19 days cover with nothing booked is a gate on ranking spend.</p>
+
+<h2>3) THE DAY</h2>
+<p>Each figure with its 7-day rolling value beside it:</p>
+<ul>
+<li>Total ad spend</li>
+<li>Total ad sales</li>
+<li>Total organic sales</li>
+<li>Total sales</li>
+<li>TACoS — day + 7-day rolling</li>
+<li>Sessions</li>
+<li>Unit session % (conversion)</li>
+<li>Units ordered</li>
+<li>Organic and ad sales %</li>
+</ul>
+<p>NOTE ON TACOS — three things:</p>
+<ul>
+<li>It belongs HERE, not in the segment tile row. There is no all-source sales figure per segment, so the empty segment tile is correct behaviour. Remove that tile or relabel it "product-level only" so it stops reading as broken.</li>
+<li>The numerator is SP + SB + SD spend. SP alone against a total-sales denominator is not TACoS, and it drifts further the more SB and SD we run.</li>
+<li>Daily TACoS is noisy — organic sales swing far more day to day than spend does. The 7-day rolling figure is the real number. The daily value is a pulse, never a trigger.</li>
+</ul>
+<p>NOTE ON ATTRIBUTION: mark the last 3 days as still settling, the same treatment the chart already uses.</p>
+
+<h2>4) RANK &amp; POSITION</h2>
+<ul>
+<li>BSR today, delta vs yesterday, 30-day sparkline</li>
+<li>Category and subcategory BSR</li>
+<li>Star rating + review count, delta vs yesterday</li>
+<li>Our price rank out of the competitor set, e.g. "4 of 11"</li>
+</ul>
+
+<h2>5) COMPETITOR STRIP — top 10 ASINs</h2>
+<p>One compact cell per competitor, sorted by BSR:</p>
+<ul>
+<li>ASIN + brand name</li>
+<li>Price + delta vs yesterday</li>
+<li>Deal running? type + %</li>
+<li>BSR + delta vs yesterday</li>
+<li>Rating / review count</li>
+</ul>
+<p>RULES:</p>
+<ul>
+<li>Highlight ONLY what changed since yesterday. Nobody will scan 40 static cells daily.</li>
+<li>Add one derived summary line above the strip. This is the line people actually read: "2 competitors dropped price · 1 started a deal · our price rank 4 of 11"</li>
+</ul>
+
+<h2>6) TODAY'S EXCEPTIONS</h2>
+<ul>
+<li>Count plus severity chips for the daily checks D1-D7: ad eligibility, delivery stopped, stock cover, spend pacing, spend anomaly, budget cap time, runaway spend</li>
+<li>Each one clicks through to the affected campaign or keyword</li>
+</ul>
+
+<h2>WHY THIS BLOCK EXISTS</h2>
+<p>The current window shows ad sales down 23.5% and orders down 21.0% while impressions are roughly flat. Nothing on the screen today can tell us whether that is bidding, price, stock or a competitor deal. This block answers it at a glance — and in the cases where it is not PPC, no bid change would have fixed it.</p>
+
+<h1>SHARED COLUMN SPINE</h1>
+<p>Every tab carries these columns, in this order.</p>
+<h2>Identity</h2>
+<ul>
+<li>Campaign</li>
+<li>Effective state — derived: Live / Paused-KW / Paused-Campaign / Archived. A keyword is live only if BOTH the keyword state AND the campaign state are enabled. Show the raw values in the tooltip.</li>
+<li>Objective — Ranking / Discovery / Profitable Conversion / Defensive</li>
+<li>Portfolio</li>
+<li>Advertised SKU</li>
+</ul>
+<h2>Levers</h2>
+<ul>
+<li>Bid</li>
+<li>TOS modifier %, PDP modifier %, ROS modifier %</li>
+<li>Effective bid per placement = base bid x (1 + modifier). This is context, not the judgement.</li>
+<li>Budget</li>
+<li>Spend as % of budget</li>
+<li>In-budget % — how much of the day we served</li>
+<li>Cap time — when it went dark. FLAG if capped before 18:00, or before 20:00 on a Ranking campaign.</li>
+</ul>
+<h2>Ceiling</h2>
+<ul>
+<li>Max allowable CPC for this row</li>
+<li>CPC vs ceiling, split Total / TOS / PDP / ROS</li>
+<li>Show as headroom: "$1.95 of $1.50 (130%)". Amber at 90-100%, red above 100%.</li>
+</ul>
+<h2>Performance — Total / TOS / PDP / ROS for each</h2>
+<ul>
+<li>Impressions</li>
+<li>Clicks</li>
+<li>Click share % — what proportion of clicks each placement took</li>
+<li>CTR</li>
+<li>CVR</li>
+<li>CPC</li>
+<li>Orders</li>
+<li>Sales</li>
+<li>ACoS</li>
+</ul>
+<h2>Row flags — colour the row, do not add columns</h2>
+<ul>
+<li>More than 1 enabled target in the campaign</li>
+<li>Duplicate keyword</li>
+<li>Budget capped early</li>
+<li>Zero orders at 3x target CPA or more</li>
+<li>ACoS above the SKU break-even on a Profitable Conversion campaign</li>
+</ul>
+
+<h1>TAB 1 — RANKING</h1>
+<p>Objective: Ranking. Exact keyword campaigns. This is the full tier; every other tab is a reduction of it. Brand-defence exact campaigns sit here under a Defensive chip and are judged on defence, not on rank gap.</p>
+<h2>Target composition</h2>
+<ul>
+<li>Primary target — the enabled target with the MOST CLICKS in the window. NOT the highest search volume. The row's ACoS, CVR, CPC and placement split are dominated by whichever target got the traffic, so labelling the row with a high-SV target that got 3 clicks makes every metric beside it describe a different keyword.</li>
+<li>Primary target search volume</li>
+<li>Number of enabled targets — FLAG RED if more than 1. The row expands to list every enabled target with its clicks and SV, so the rest can be paused.</li>
+<li>Number of other campaigns targeting this same keyword — FLAG if more than 0</li>
+<li>Duplicate group chip</li>
+</ul>
+<h2>Ranking commitment</h2>
+<ul>
+<li>Target rank</li>
+<li>Current rank</li>
+<li>CPR from Helium 10</li>
+<li>DSTR from DataRova</li>
+<li>Required sales, and actual sales</li>
+<li>Required clicks, actual clicks, and the gap</li>
+<li>Required impressions = required clicks / target CTR</li>
+<li>Actual impressions, and the impression gap</li>
+<li>14 to 30 day organic rank strip, newest first</li>
+</ul>
+<h2>CTR and CVR — three values each</h2>
+<ul>
+<li>CTR: market (from SQP), target, actual, and the gap</li>
+<li>CVR: market (from SQP), target, actual, and the gap</li>
+</ul>
+<p>WHY THREE VALUES: the chain runs required sales, divided by CVR gives required clicks, divided by CTR gives required impressions, compared against what our TOS share can actually deliver. A CVR assumption is already inside Target Clicks ("at our own measured conversion") — this surfaces it, because when that assumption is wrong the required-clicks figure is wrong by the same factor, silently.</p>
+<h2>Constraint column — the only column that outputs a decision</h2>
+<p>Read in order. First match wins.</p>
+<ul>
+<li>1. Actual CVR below 60% of market CVR, verdict LISTING-CONSTRAINED. Hold the push, fix page / price / reviews, do not fund.</li>
+<li>2. Actual CTR below 60% of market CTR, verdict CREATIVE-CONSTRAINED. Main image, title, price, badge. Bids will not fix CTR.</li>
+<li>3. Impressions below required impressions, verdict IMPRESSION-CONSTRAINED. Raise the bid OR the TOS modifier. One, not both.</li>
+<li>4. Budget capped before 20:00, verdict BUDGET-CONSTRAINED. Raise budget or reallocate.</li>
+<li>5. Otherwise, verdict ON TRACK.</li>
+</ul>
+<p>SUFFICIENCY: CVR needs at least 20 clicks and CTR needs at least 500 impressions before either can be read. Below that floor, show the target, grey the actual and set the constraint to OBSERVING. A "listing-constrained" verdict off 4 clicks sends someone to rewrite a listing that was never the problem.</p>
+<p>CVR FLOOR IS A FUNDING GATE: below the rule-1 floor the campaign is not eligible for a bid or budget increase this cycle, regardless of rank gap. Rank follows sales velocity, so clicks that do not convert do not rank — they just spend the ranking budget.</p>
+<p>SORT THIS TAB BY THE CONSTRAINT COLUMN, not by the rank gap. A campaign 40 clicks short because it is impression-constrained gets a bid change today. One 40 clicks short because CVR collapsed gets escalated to whoever owns the listing.</p>
+
+<h1>TAB 2 — AUTO</h1>
+<p>Objective: Discovery. There are no keywords here. The row is the campaign, expanding to its four auto target types — bids are set per target type, so that is the real grain underneath.</p>
+<h2>Per target type — close match, loose match, substitutes, complements</h2>
+<ul>
+<li>State</li>
+<li>Bid</li>
+<li>Impressions, clicks, CTR, CPC, orders, sales, ACoS</li>
+</ul>
+<h2>Discovery yield — judge auto on THIS, not on ACoS</h2>
+<ul>
+<li>New harvestable search terms found in the window</li>
+<li>Cost per harvested term</li>
+<li>% of spend going to terms already harvested elsewhere — this is leakage</li>
+</ul>
+<h2>Negative coverage</h2>
+<ul>
+<li>Number of negatives on the campaign</li>
+<li>Are harvested terms negated back into this campaign? An auto campaign with no negatives leaks into its own exact campaigns.</li>
+</ul>
+<p>DRILL: open the campaign to see the search terms it generated.</p>
+
+<h1>TAB 3 — MANUAL (BROAD / PHRASE)</h1>
+<p>Objective: Discovery. The row is the campaign, expanding to all targeted keywords.</p>
+<ul>
+<li>Per keyword: keyword, search volume, state, bid, clicks, sales, ACoS</li>
+<li>Same discovery yield block as Auto</li>
+<li>Same negative coverage block as Auto</li>
+<li>DRILL: search terms generated, per campaign</li>
+</ul>
+<p>NOTE: Amazon Sponsored Products has Exact, Phrase and Broad only. There is no broad match modifier — that is a Google concept. Broad shaped by negatives is the negative-coverage column above.</p>
+<p>AUTO AND MANUAL ARE NOT JUDGED ON ACOS. They are Discovery by definition. A broad campaign at 80% ACoS feeding three profitable exact campaigns is working. One at 30% ACoS producing no new harvestable terms is a dead end wearing a good number.</p>
+
+<h1>TAB 4 — PRODUCT &amp; CATEGORY TARGETING</h1>
+<p>Objective: Profitable Conversion, or Defensive where the target is our own ASIN. The row is the campaign, expanding to each target.</p>
+<p>This is separate from Manual because a PAT row targets an ASIN and a Category row targets a category node. Neither has a keyword, a search volume, a CPR or a rank, so they cannot share the Manual schema.</p>
+<ul>
+<li>PAT target: ASIN plus the RESOLVED BRAND NAME plus product title. Never a bare ASIN.</li>
+<li>Category target: category node plus refinements (price band, rating, brand)</li>
+<li>State, bid, budget, cap time</li>
+</ul>
+<h2>Conquest context — joined from the Product Profile competitor set</h2>
+<ul>
+<li>Their price vs ours</li>
+<li>Their BSR</li>
+<li>Their rating</li>
+<li>Deal running?</li>
+</ul>
+<p>This is what decides whether a target is worth defending or dropping.</p>
+<p>PLACEMENT NOTE: expect PDP-dominant placement here. FLAG a PAT campaign with a high TOS share — it usually means the target is behaving like a keyword campaign.</p>
+<p>DRILL: which ASINs the ads actually served on.</p>
+
+<h1>TAB 5 — SPONSORED BRANDS</h1>
+<ul>
+<li>Ad format — Product Collection, Store Spotlight, Video</li>
+<li>Landing page — Store vs custom URL</li>
+<li>Headline and creative</li>
+<li>NEW-TO-BRAND: NTB orders, NTB sales, NTB % of orders. This is what SB exists for — judging SB on ACoS alone misses the point entirely.</li>
+<li>Top-of-search impression share</li>
+<li>Viewable impressions</li>
+</ul>
+<p>NOTE: SB placements differ from SP. Do not reuse the TOS / PDP / ROS block as-is.</p>
+
+<h1>TAB 6 — SPONSORED DISPLAY</h1>
+<ul>
+<li>Targeting — contextual (product / category) vs audience (views remarketing, purchases remarketing, similar-to)</li>
+<li>Cost type — CPC vs vCPM. These are NOT comparable. Never sum them.</li>
+<li>Viewable impressions</li>
+<li>vCPM</li>
+<li>View-through conversions</li>
+<li>NTB</li>
+<li>On-Amazon vs off-Amazon split</li>
+</ul>
+<p>NOTE: the existing OFF-AMZ column reads 0 on every SP row because Sponsored Products does not serve off-Amazon. It is not "too sparse to rate" — it is structurally empty on SP, and belongs on this tab.</p>
+
+<h1>DUPLICATE KEYWORD DETECTION</h1>
+<p>WHY: Amazon exact match already serves close variants — plurals, misspellings, stemming, function words. Two targets that normalise to the same key are bidding in the SAME auction. We are outbidding ourselves.</p>
+<h2>The match key</h2>
+<p>Match key = normalised keyword + match type. To normalise:</p>
+<ul>
+<li>Lowercase</li>
+<li>Strip punctuation — hyphens, apostrophes, commas, slashes</li>
+<li>Drop stopwords: a, an, the, for, of, with, and, or, in, on, to, by</li>
+<li>Singularise each token</li>
+</ul>
+<h2>Singularise carefully — this is not a trailing-s strip</h2>
+<ul>
+<li>Ends in ss, us or is — leave unchanged. Mattress, status, analysis.</li>
+<li>Ends in ies — becomes y. Canopies becomes canopy.</li>
+<li>Ends in es after s, x, z, ch or sh — drop the es. Boxes becomes box.</li>
+<li>Otherwise ends in s — drop the s. Sheets becomes sheet.</li>
+<li>Plus an irregulars list.</li>
+</ul>
+<p>A naive trailing-s strip turns "mattress" into "mattres" and the team stops trusting the flag entirely.</p>
+<h2>Three cases</h2>
+<ul>
+<li>TIER 1 — same key, same word order, SAME match type. This is real self-competition. Filled cell wash plus a solid rail. Keep one instance, pause the rest.</li>
+<li>TIER 2 — matches only after sorting the tokens, so the word order differs. Lower confidence. No fill, dashed rail, same hue. A human confirms before acting.</li>
+<li>CROSS-MATCH-TYPE — same key, DIFFERENT match type. This is intended Hero/Halo layering, NOT a defect. Do not shade it. Show a link icon and count instead, and check that an isolation negative exists for that exact term in the broader campaign. Flag if it does not.</li>
+</ul>
+<h2>Shading — one keyword, one shade</h2>
+<ul>
+<li>WHERE: the keyword cell background plus a 3px left rail. NOT the whole row — the row already carries the rank heatmap, the placement purples, crawl markers and low-click greying, and a full-width wash fights all of them.</li>
+<li>SLOT: slot = hash of the NORMALISED key, mod 8. Hashing the normalised key means plural and singular land on the same shade. Hash-based rather than row-order-based means the shade is stable across the keyword view, the campaign view and future sessions.</li>
+<li>PALETTE: 8 hues. No red, which reads as an error, and no green, which is already the rank heatmap. Use amber, orange, rose, magenta, violet, indigo, cyan, teal. Keep the wash very light and the rail saturated. Check violet and indigo against the placement-estimate purple before shipping.</li>
+<li>CHIP: a group ID in the keyword cell — D1, D2, D3. The chip is the identifier and the shade is only a scanning aid, so the signal still works in greyscale, for colourblind viewers, and when two unrelated groups land on the same slot. Click the chip to filter the table to that group.</li>
+<li>KEEP / PAUSE: within each Tier 1 group, mark one row KEEP — the one with the most clicks, or on a tie the one in the Ranking-objective campaign — and mark the rest PAUSE.</li>
+<li>Store the normalised key as a hidden sortable column so duplicate rows can be sorted adjacent.</li>
+</ul>
+
+<h1>ECONOMIC CEILINGS</h1>
+<p>Max allowable CPC = target ACoS x price x CVR.</p>
+<p>CVR is inside that formula, and CVR varies per keyword. A keyword converting at 25% justifies roughly double the CPC of one converting at 12% on the same product. So the profile carries a reference ceiling at blended CVR, and each row carries its own ceiling at its own CVR.</p>
+<h2>Which CVR to use on a row</h2>
+<ul>
+<li>20 clicks or more in the window — use the row's own measured CVR</li>
+<li>Below that — use the SQP market CVR, and mark the cell as estimated</li>
+<li>Never use a blended product CVR on an individual row</li>
+</ul>
+<h2>Multi-SKU campaigns</h2>
+<ul>
+<li>If a campaign has product ads for more than one SKU, use the LOWEST ceiling across them and flag the row. One bid serves all of them, so the thinnest-margin SKU sets the limit.</li>
+</ul>
+<h2>The decision this drives</h2>
+<ul>
+<li>Over ceiling on TOS only, under on PDP and ROS — cut the TOS MODIFIER. Not the base bid, which would discard the profitable PDP and ROS traffic.</li>
+<li>Over ceiling on every placement — cut the BASE BID.</li>
+<li>Under ceiling everywhere but under-delivering — headroom exists. Raise the bid OR the modifier. One, not both.</li>
+</ul>
+<h2>Objective gating — the one place where acting on the number in front of you is wrong</h2>
+<ul>
+<li>Profitable Conversion and Defensive — ENFORCE the ceiling.</li>
+<li>Discovery (auto, broad, phrase) — advisory only. Judge on discovery yield instead.</li>
+<li>Ranking — DO NOT ENFORCE. Running above break-even is the entire point of a ranking push. The constraint there is the ranking budget and the CVR gate, not ACoS. Enforcing the ceiling on this tab will kill working pushes.</li>
+</ul>
+
+<h1>DATA INTEGRITY RULES</h1>
+<p>These apply to every tab and are not optional.</p>
+<h2>Attribution settling</h2>
+<ul>
+<li>Mark the last 3 days as still settling, the same treatment the chart already uses.</li>
+<li>NO DELTAS INSIDE THE SETTLING WINDOW. A conversion delta there compares a settled number against one still arriving, so it always reads as a decline and will manufacture a fake drop every single morning.</li>
+</ul>
+<h2>Delta baselines — pick the right one per metric</h2>
+<ul>
+<li>Vs yesterday — competitor price, deal on/off, BSR, rating. Things that genuinely move overnight.</li>
+<li>Vs 7-day mean — spend, CPC, sessions. One day alone is noise. This is what the D5 anomaly check already uses.</li>
+<li>Vs target — rank. The useful delta is distance to the committed target rank, not yesterday's wobble.</li>
+</ul>
+<p>A naive "vs yesterday" on everything makes the noisy metrics scream constantly, and then people stop looking.</p>
+<h2>Sufficiency floors</h2>
+<ul>
+<li>CVR needs 20 clicks or more</li>
+<li>CTR needs 500 impressions or more</li>
+<li>Bid decisions need 10 clicks or more</li>
+<li>Below the floor the answer is "observing", which is a logged decision, not silence.</li>
+</ul>
+<h2>Data vintage</h2>
+<ul>
+<li>The rank-crawl staleness banner is exactly the right instinct. Extend it.</li>
+<li>Required-clicks blends a rank up to 5 days old, weekly SQP, a monthly Helium 10 CPR and a measured CVR. Stamp the composite age on the derived column, not only on the crawl.</li>
+</ul>
+<h2>Estimate coverage</h2>
+<ul>
+<li>Per-cell placement coverage already exists in a tooltip. Surface a per-row indicator as well.</li>
+<li>Hover-only disclosure means people read estimates as measurements, and a 32%-covered row currently looks identical to a 95%-covered one.</li>
+</ul>
+
+<h1>OPEN ITEMS</h1>
+<ul>
+<li>1. COMPOSITE DATA VINTAGE on required-clicks and the CPR / DSTR columns.</li>
+<li>2. COMPETITOR DATA SOURCE. Daily price, BSR and deal state for 10 ASINs per product is a real pipeline — Keepa, DataDive or Helium 10. This is the most-specified and least-sourced part of the profile.</li>
+<li>3. TACOS NUMERATOR. Confirm it carries SP + SB + SD spend, not SP alone.</li>
+<li>4. OFF-AMZ COLUMN. It reads 0 on every SP row. Confirm it moves to the SD tab.</li>
+<li>5. EXCEPTION ENGINE. Confirm D1-D7 actually fire against the thresholds config and produce a queue, rather than the counts being read off columns by eye.</li>
+<li>6. ACTION-LOG GRADING. Confirm something reads the log back and scores actions worked / flat / backfired two cycles later. Without that the log is a diary, and the weekly execution-verification step has no input.</li>
+</ul>
+<p>Where the standing SOPs disagree with this spec on a threshold, a definition or a lever, THE SOPs WIN. This was written from a design conversation, not from the SOP set — reconcile SOP 15 (Auto), 16 (PAT and Conquest), 17/18/19 (SB and SD), 23 (Ranking Push), 28 (Placement and Modifier), 29 (Negation) and 30 (Harvest) before building.</p>
+</body></html>
