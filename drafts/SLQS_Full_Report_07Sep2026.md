@@ -14,6 +14,12 @@ The alternative route for this stock is liquidation, which the company's own LTS
 
 The deal is therefore worth continuing. The advertising rate is what needs correcting, and most of that correction is already built and ready to deploy.
 
+**Two things need a decision this week, separately from the advertising.**
+
+The deal now running **ends on 13 September**, six days from now. Every figure in this report describes the deal period, so what happens on 14 September needs deciding before then.
+
+And the deal is not reaching the stock that needs to move. The three SKUs holding **half the inventory** sold 28 units of 160; at that rate they take **326 days** to clear. Queen Ivory, which takes the most advertising money, has about **16 days** of stock left. Section 7a sets this out.
+
 ---
 
 ## 2. The unit
@@ -85,6 +91,23 @@ Cash after Amazon fees, advertising and the deal fee.
 **3 September is the reference day.** Twenty-five units at $9.93 per unit in advertising, finishing $11 ahead after the deal fee. It was both the strongest pre-push volume and the only positive day in the window. That configuration is the one worth rebuilding toward, at a somewhat lower click price than it ran at.
 
 **5 and 6 September** are the two days the bid push was live. Volume rose to 30 and then 53 units — the push did lift velocity materially — but the click price rose with it.
+
+### 3a. The deal these seven days sit inside
+
+The promotion running through this window is a **Best Deal**, promotion ID 7993fa1d-3061-4e78-8ecd-dbcf386ad82b. It started **31 August** and ends **13 September at 11:59pm**. It carries all 19 listed products with **all units committed**, at $70 a day plus 1% of sales.
+
+Its own reporting gives us a second, independent read on the same seven days:
+
+| Source | Units | Sales | Average selling price |
+|---|---|---|---|
+| Seller Central deal page, 31 Aug – 7 Sep | 160 | $4,928.67 | **$30.80** |
+| Sellerboard, 31 Aug – 6 Sep | 161 | $4,957.57 | **$30.79** |
+
+Two systems, one cent apart. This closes the pricing question raised in section 14 — the $30 figure is confirmed from a second direction, and the advertising platform's $41.51 was the outlier.
+
+It also shows that **160 of 161 units came through the deal**. Almost nothing is selling at the normal price.
+
+**Two dates matter more than any other number in this report.** The deal ends on **13 September**, six days from now. The Lightning Deal discussed in section 11 is on **18 September**. Between them sits a five-day gap with no promotion, after which prices return to their normal level. Every figure in this report — the $30.08 selling price, the $13.20 ceiling, the 20 units a day — describes the deal period. What happens from 14 September has not yet been decided.
 
 ---
 
@@ -174,6 +197,37 @@ Long-term storage runs **$3.81 per unit per month**. The company's LTSF workbook
 
 The three largest SKUs — Queen Light Grey, King Light Grey and King White — hold 1,142 units between them, half the inventory.
 
+### 7a. Which stock is actually moving
+
+The deal page reports units, glance views and conversion for each product. Set against stock on hand, it shows the clearance is not reaching the stock that needs to clear.
+
+| SKU | Sold in 8 days | Stock left | Days to clear | Glance views | Conversion |
+|---|---|---|---|---|---|
+| Queen Ivory | 47 | 92 | **16** | 1,960 | 2.4% |
+| Queen Sage Green | 15 | 78 | 42 | 636 | 2.4% |
+| King Sage Green | 11 | 56 | 41 | 340 | **3.2%** |
+| King Navy Blue | 9 | 80 | 71 | 393 | 2.3% |
+| Queen Black | 9 | 82 | 73 | 321 | 2.8% |
+| Queen Navy Blue | 8 | 53 | 53 | 481 | 1.7% |
+| Queen Taupe | 8 | 109 | 109 | 582 | 1.4% |
+| Queen White | 6 | 71 | 95 | 395 | 1.5% |
+| King White | 14 | 364 | **208** | 833 | 1.7% |
+| King Light Grey | 10 | 383 | **306** | 1,031 | 1.0% |
+| King Black | 4 | 73 | 146 | 211 | 1.9% |
+| Queen Light Grey | 4 | 395 | **790** | 331 | 1.2% |
+| King Taupe | 3 | 157 | 419 | 308 | 1.0% |
+| Twin Ivory | 2 | 31 | 124 | 55 | 3.6% |
+| Twin Light Grey | 1 | 89 | 712 | 51 | 2.0% |
+| Twin Taupe / Navy / Black | 0 | 43 | never | 135 | 0% |
+
+**The three SKUs holding half the stock sold 28 units of 160.** Queen Light Grey, King Light Grey and King White hold 1,142 units, take 26% of the traffic, and convert at **1.3%** against the 1.9% deal average. At their current rate they clear in **326 days**.
+
+**Queen Ivory is the opposite case.** It sold 47 units and has **92 left — about 16 days**. It is also where the most advertising money goes: $19.37 a unit on 6 September, the single largest loss of the day.
+
+So the money is going hardest at the SKU about to run out, while the SKU with 395 units sells four a week. Whole catalogue at 20 units a day is **114 days to clear**, against a deal with six days left.
+
+This is the clearest thing to fix next, and it is a routing question rather than a bid question: the advertising needs to point at the stock we are holding.
+
 ---
 
 ## 8. Per-SKU economics, 6 September
@@ -235,7 +289,7 @@ Across the 249 live targets that spent anything, blended cost per sale is **$19.
 | 4 | Dayparting — pause 11pm to 3am | — | Applied 7 Sep |
 | 5 | Manual re-optimisation of highest-spending campaigns | — | Applied 7 Sep |
 | 6 | Ceiling correction — 15 pauses, 11 bid cuts | 26 | Built, ready to upload |
-| 7 | Catalogue negative keywords | 196 | Built, ready to upload |
+| 7 | Catalogue negative keywords | 70 | Built, verified, ready to upload |
 | 8 | Two Sponsored Display campaigns | 39 | Built, ready to upload |
 | 9 | Five Sponsored Brands campaigns | — | Build spec ready, console entry |
 | 10 | Three Sponsored Display audience campaigns | — | Build spec ready, console entry |
@@ -244,24 +298,72 @@ Across the 249 live targets that spent anything, blended cost per sale is **$19.
 
 **The stop-loss file built on 7 September has been superseded.** It would have paused 270 product-ad rows across five SKUs. The ceiling correction in row 6 above is a more precise fix built on live data, and does not blanket-pause SKUs that may still be worth selling.
 
+### 10a. How changes are recorded from here
+
+Every change now goes through a **change loader plan** before it is applied, in the format Finance asked for. Each row carries four things: the change itself, the reason for it, a prediction with a date to check it, and the secondary effect expected.
+
+The current plan holds **96 changes in four groups**, all verified against the live account:
+
+| Group | Rows | Prediction |
+|---|---|---|
+| Pause targets that returned nothing | 15 | Spend down $32.54 a day, orders unchanged |
+| Reprice "king size bedspread" | 1 | Cost per sale $39.02 → $17.17 |
+| Bring ten targets to the ceiling | 10 | Cost per sale band near $17.30 |
+| Catalogue negatives | 70 | $24.65 a week of off-catalogue spend removed |
+
+Combined, **$552.90 of weekly spend removed — $78.99 a day.** Blended cost per sale moves from $20.90 to **$16.68** if conversion rate holds, or **$18.17** if orders fall in proportion with the bids. Mechanism checks are set for 14 September, outcome checks for 21 September.
+
+The plan passed **15 of 15 validation checks**, including that every prior value matches the live account, that no negative blocks one of our own keywords, and that no negated root has ever appeared in a converting search term.
+
+The bid cuts target **$17.30**, the economic ceiling, rather than the $13.20 cash ceiling. This is step one of two. Cutting to $13.20 in a single move would take most of these targets out of useful placements at once and lose the volume the deal needs.
+
 ---
 
 ## 11. The 18 September Lightning Deal
 
-A separate Lightning Deal is scheduled for 18 September, 4:25am to 4:25pm, with a fee of **$70 per day plus 1% of sales**. It carries 19 products and **Amazon has flagged 17 of them** with "discount too low".
+This is a **second, separate promotion** from the Best Deal described in section 3a. Both carry $70 a day plus 1%, so it helps to keep them apart:
 
-The cause is visible in the prices: the promotion price equals the current featured offer on almost every product, because the deal now running has already taken prices down. There is no headroom left to discount from.
+| | Running now | Scheduled |
+|---|---|---|
+| Type | Best Deal | **Lightning Deal** |
+| Promotion ID | 7993fa1d | 4c755087 |
+| Dates | 31 Aug – 13 Sep | 18 Sep, 4:25am – 4:25pm |
+| Units committed | All units | **1 unit per product** |
+| Status | Running | **Has issues — 17 of 19** |
 
-| SKU | Promotion price | Current price | Effective discount |
+Amazon has flagged 17 of the 19 products with "discount too low". The cause is visible in the prices: the promotion price equals the current featured offer on almost every product, because the deal now running has already taken prices down. There is no headroom to discount from.
+
+**All nineteen products, as at 7 September:**
+
+| SKU | Promotion price | Featured offer | Status |
 |---|---|---|---|
-| King Light Grey | $33.99 | $33.99 | none |
-| Queen Ivory | $24.64 | $24.64 | none |
-| King White | $29.83 | $29.83 | none |
-| Twin Taupe | $33.14 | $30.59 | promotion is $2.55 higher |
-| King Taupe | $38.24 | $39.98 | 4.4% — eligible |
-| King Ivory | $38.24 | $39.98 | 4.4% — eligible |
+| King Taupe | $38.24 | $39.98 | **eligible — 4.4% off** |
+| King Ivory | $38.24 | $39.98 | **eligible — 4.4% off** |
+| King Light Grey | $33.99 | $33.99 | discount too low |
+| King Navy Blue | $33.99 | $33.99 | discount too low |
+| King Black | $38.24 | $38.24 | discount too low |
+| King Sage Green | $33.14 | $33.14 | discount too low |
+| King White | $29.83 | $29.83 | discount too low |
+| Queen White | $33.29 | $33.29 | discount too low |
+| Queen Taupe | $33.29 | $33.29 | discount too low |
+| Queen Navy Blue | $35.69 | $35.69 | discount too low |
+| Queen Light Grey | $31.44 | $31.44 | discount too low |
+| Queen Black | $31.44 | $31.44 | discount too low |
+| Queen Sage Green | $31.44 | $31.44 | discount too low |
+| Queen Ivory | $24.64 | $24.64 | discount too low |
+| Twin Taupe | $33.14 | $30.59 | promotion is $2.55 **above** the live price |
+| Twin Black | $28.89 | $28.89 | discount too low |
+| Twin Navy Blue | $26.00 | $26.00 | discount too low |
+| Twin Light Grey | $26.00 | $26.00 | discount too low |
+| Twin Ivory | $26.00 | $26.00 | discount too low |
 
-Two products currently qualify, with **one unit committed each**, against a $70 fee for the day. This should be reviewed and either rebuilt with genuine discounts and a real unit commitment, or cancelled.
+Of the 17 flagged, 16 have the promotion price exactly equal to the live price and one is priced above it.
+
+Two products qualify, with **one unit committed each**, against a $70 fee for the day.
+
+**One reason not to rebuild it yet.** Eligibility is measured against the featured offer, and the featured offers above are Best Deal prices that expire on 13 September. If prices return to their normal level on 14 September, several of these flags may clear on their own without any change being made. The position should be re-read after 13 September and before 18 September, and the deal then either rebuilt with real discounts and a real unit commitment, or cancelled.
+
+*Source: Seller Central promotion page, promotion ID 4c755087-9e57-45b0-b79c-31060952f346, read 7 September 2026 at 14:57 UTC. Every figure above is taken from that page; the two discount percentages are calculated from its own numbers.*
 
 ---
 
@@ -289,11 +391,40 @@ All placement modifiers open at 0%. Bidding strategy is Dynamic bids – down on
 
 The build was checked against the live variation family. We sell **Twin, Queen and King** in **black, ivory, light grey, navy blue, sage green, taupe and white**.
 
-Terms outside the catalogue were removed or negated: Twin XL, Full, Full/Queen, California King, Super King, Split King, Crib, Toddler and Daybed sizes; colours we do not stock; and adjacent products including sheets, mattress pads, bed skirts, weighted and heated bedding.
+### The rule now used for every negative
 
-**196 negative keywords** are ready to upload — 14 phrase roots across the 14 Broad, Phrase and Auto campaigns. Exact and product-targeting campaigns are excluded because they do not match loosely.
+A term is only blocked when the evidence supports it:
 
-**Colour roots were deliberately excluded** after testing them against the search-term report. The term "solid charcoal lightweight quilt" produced one order at $0.64 cost per sale — the best-converting search term in the report — despite charcoal not being a colour we stock. Shoppers approximate colour and buy the nearest match, so blocking colour terms would cost real sales. Size is different: a shopper who wants California King cannot be satisfied by a King.
+- A term **outside the catalogue** can be blocked at **one click**
+- A term **inside the catalogue** needs **three or more clicks** before it can be blocked at all
+
+Relevance decides which lever to use; clicks decide whether there is enough evidence to pull it. A relevant term that costs too much gets its bid cut, not a negative.
+
+### What that produced
+
+**70 negative keywords** are ready to upload — 5 phrase roots across the 14 Broad, Phrase and Auto campaigns. Exact and product-targeting campaigns are excluded because they do not match loosely.
+
+| Root | Clicks | Spend | Orders |
+|---|---|---|---|
+| full size | 24 | $10.59 | 0 |
+| cal king | 13 | $6.81 | 0 |
+| california king | 10 | $4.14 | 0 |
+| super king | 4 | $2.53 | 0 |
+| bed skirt | 1 | $0.58 | 0 |
+
+An earlier build had 196 rows across 14 roots. Applying the rule removed 126 of them:
+
+**One root was blocking a sale.** split king was on the list. Checked against the search-term report, "bedspread for split king bed" produced **one order at $0.82** — a Split King is two Twin XL mattresses on a king base, so a King bedspread genuinely fits. It has been removed.
+
+**Eight roots had no evidence at all.** twin xl, crib, toddler, daybed, mattress pad, weighted, heated and sheet set have never taken a single click on the quilt campaigns. They cost nothing today, so blocking them buys nothing and only creates a chance of blocking something that would have worked. They are held rather than dropped.
+
+### The 177 terms that are deliberately not negated
+
+There are **177 search terms with three or more clicks and no orders**, holding **$868.70** of spend. Almost all of them are the product itself — "king size bedspread", "oversized king quilt", "king quilt bedding set". They pass the click test, so the rule permits a negative, but a negative is the wrong tool: blocking them would take the product off its own market. The bid is the lever, which the ceiling changes already apply.
+
+**Colour roots are excluded for the same reason.** "solid charcoal lightweight quilt" produced one order at $0.64 cost per sale — the best-converting term in the report — despite charcoal not being a colour we stock. Shoppers approximate colour and buy the nearest match. Size is different: a shopper who wants California King cannot be satisfied by a King.
+
+Twice now, a root that looked safe to block was making money. That is what the click rule is there to catch.
 
 ---
 
@@ -317,14 +448,20 @@ Recorded for the file, because several changed the conclusions materially.
 
 **Cost of goods was carried as a single line rather than explained.** It was present in the report but not set out, and the two company files that hold it disagree — Sellerboard at $11.49 a unit, the LTSF workbook at $16.50 weighted. Sections 2a and 2b now cover both the reasoning and the gap. This does not change the forward-cash plan; it does change how the product reads on a full-cost basis, and Finance needs to settle which figure is correct.
 
+**The negative keyword list was blocking a term that sold.** The list held 196 rows across 14 roots. One of them, split king, had produced an order at $0.82 — among the cheapest sales in the report. A further eight roots had never taken a single click, so there was no evidence behind them. Applying the click rule set out in section 13 brought the list to **70 rows across 5 roots**. This is the second time a root that looked safe to block turned out to be converting; the first was a colour term.
+
+**The end date of the running deal was not in the report.** Every figure here describes the deal period, and the deal ends on **13 September**. That was established only after the promotion page was read on 7 September. Section 3a now carries it, and it is the most time-sensitive item in this document.
+
+**Section 11 showed six products of nineteen without saying so.** A reader could reasonably have taken it as a six-product deal. The full nineteen-row table is now shown, with the source page and the exact time it was read.
+
 ---
 
 ## 15. Open items
 
 | # | Item | Owner | Note |
 |---|---|---|---|
-| 1 | Upload the ceiling correction — 26 rows | PPC | Blended cost per sale $19.88 to $15.56, about $78 a day |
-| 2 | Upload the catalogue negatives — 196 rows | PPC | Protects 14 Broad, Phrase and Auto campaigns |
+| 1 | Upload the ceiling correction — 26 rows | PPC | Blended cost per sale $20.90 to between $16.68 and $18.17; about $79 a day of spend removed |
+| 2 | Upload the catalogue negatives — 70 rows | PPC | 5 roots across 14 Broad, Phrase and Auto campaigns |
 | 3 | Upload the Sponsored Display bulk — 39 rows | PPC | Two campaigns, $22 a day |
 | 4 | Build the three SD audience campaigns in console | PPC | $20 a day, spec supplied |
 | 5 | Build the five Sponsored Brands campaigns | PPC | Requires logo asset upload first |
@@ -332,6 +469,10 @@ Recorded for the file, because several changed the conclusions materially.
 | 7 | Re-run the LTSF workbook on current stock | Finance | Present totals overstated by roughly 40% |
 | 8 | Reach $8 per unit while holding 25+ units a day | PPC | Requires judging the $420 of spend still below the click line |
 | 9 | Confirm the true landed cost per unit | Finance | Sellerboard $11.49 against LTSF workbook $16.50 — about $11,400 across current stock. Once settled, use the same figure in both files |
+| 10 | **Decide what happens after 13 September** | Deals | The Best Deal ends that night. Extend, replace, or let prices return to normal. 2,283 units still on hand and 114 days of clearance left at the current rate |
+| 11 | **Point the advertising at the stock we hold** | PPC | Queen Ivory has 16 days of stock and takes the most spend; Queen Light Grey has 790 days and takes almost none. A routing change, not a bid change |
+| 12 | Confirm what prices return to on 14 September | Deals | Decides both whether clearance continues and whether the 18 September Lightning Deal becomes eligible without a rebuild |
+| 13 | Re-verify the change plan against a fresh export | PPC | Prior values were checked against the 31 Aug – 6 Sep export; manual changes were made on 7 September |
 
 ---
 
@@ -344,7 +485,9 @@ Recorded for the file, because several changed the conclusions materially.
 | Amazon Sponsored Brands and Display bulk export | 31 Aug – 6 Sep 2026 |
 | FBA inventory report | 7 Sep 2026 |
 | Updated LTSF September workbook | uploaded 3 Sep, internal data 17 Aug |
-| Lightning Deal detail, promotion 4c755087 | scheduled 18 Sep 2026 |
+| Best Deal page, promotion 7993fa1d — running | 31 Aug – 13 Sep 2026, read 7 Sep |
+| Lightning Deal page, promotion 4c755087 — scheduled | 18 Sep 2026, read 7 Sep 14:57 UTC |
+| SP Search Term Report, quilt campaigns only | 31 Aug – 6 Sep 2026 |
 | Helium 10 Xray competitor pull | 4 Sep 2026 |
 | Seller Central variation family | 4 Sep 2026 |
 
