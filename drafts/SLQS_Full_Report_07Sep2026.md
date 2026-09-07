@@ -10,7 +10,7 @@ Continue the deal. Bring advertising to about **$8 per unit sold** and keep volu
 
 The loss recorded over the deal window sits in the advertising rate rather than in the deal itself. At the current deal price the business receives **$13.50 per unit** after Amazon's fees. After the 1% deal commission, the point at which a further sale stops adding cash is **$13.20 per unit in advertising**. On 6 September we paid **$21.31**.
 
-The alternative route for this stock is liquidation, which the company's own LTSF workbook values at **$1.79 per unit** — an 8.3% recovery of COGS. Selling the same stock through Amazon returns **$13.20 per unit** before advertising. Across the 2,283 units on hand that is a difference of roughly **$40,700** in gross terms.
+The alternative route for this stock is liquidation, which the company's own LTSF workbook values at **$1.40 per unit** — an 8.5% recovery of cost. Selling the same stock through Amazon returns **$13.20 per unit** before advertising. Across the **2,283 units** on hand that is a difference of roughly **$26,900** before advertising, or roughly **$4,100** once advertising runs at the $8 target and the deal fee is carried. Either way the Amazon route returns more.
 
 The deal is therefore worth continuing. The advertising rate is what needs correcting, and most of that correction is already built and ready to deploy.
 
@@ -33,6 +33,37 @@ Every figure is 6 September actual rather than modelled. The selling price has h
 Separately, the deal carries a **fixed fee of $70 per day** regardless of volume.
 
 **On the storage credit.** Long-term storage runs $3.81 per unit per month, so a unit sold today also avoids the storage it would otherwise accrue. Counting one month of that avoided cost, the economic ceiling is nearer **$17.01**. The $13.20 figure is the stricter cash test — what actually reaches the bank — and is the measure being managed to. Both are legitimate; the cash test is the more conservative and is the one used throughout this report.
+
+### 2a. Cost of goods, and why the ad ceiling is set without it
+
+The $13.20 ceiling above is a **forward cash** figure. It leaves the cost of goods out on purpose, and that choice needs stating plainly because it is the single biggest reason the numbers in this report look better than the profit line in Sellerboard.
+
+The stock is already bought, already paid for, and already sitting in Amazon's warehouse. That money has gone whether we sell the units or not. The question in front of us is not whether this product was a good purchase — it is what the best way is to turn stock we already own back into cash. For that question only forward cash counts. If we set the ad ceiling after cost of goods, we would stop advertising at around $1.71 a unit, sell very little, and leave the stock sitting and collecting $3.81 a unit a month in storage. That is the worse cash outcome, not the safer one.
+
+For completeness, here is the same unit on a **full-cost** basis:
+
+| Line | Per unit |
+|---|---|
+| Selling price on deal | $30.08 |
+| Amazon fees | −$16.58 |
+| Deal commission — 1% | −$0.30 |
+| Cost of goods | −$11.49 |
+| **Left for advertising on a full-cost basis** | **$1.71** |
+
+So on a full accounting basis this product is close to break-even at the deal price before a single click is paid for. That is the honest position, and it is why this report recommends **clearing** the stock rather than scaling the product. We are recovering cash on stock already committed. We are not building a profitable line at this price.
+
+### 2b. The two cost files disagree — this needs a decision
+
+The company holds two different unit costs for these SKUs, and they do not match.
+
+| Source | Cost per unit | Left for advertising, full-cost |
+|---|---|---|
+| Sellerboard, 6 September actual | $11.49 | $1.71 |
+| LTSF workbook, weighted across the 21 SKUs | $16.50 (range $13.01 – $17.74) | −$3.30 |
+
+The gap is about **$5 a unit**, or roughly **$11,400** across the 2,283 units on hand. It does not change the recommendation — forward cash is the same under both, because cost of goods sits outside it — but it changes how the product reads on a full-cost basis. On the Sellerboard figure the product roughly washes its face at the deal price. On the LTSF figure every unit is about $3.30 behind before any advertising at all.
+
+**This one is for Finance to settle.** Whichever number is the true landed cost, the same figure should then be used in Sellerboard and in the LTSF workbook, so the two files stop telling different stories. The forward-cash plan in this report does not wait on that answer.
 
 ---
 
@@ -88,12 +119,14 @@ This is why reducing advertising by accepting fewer sales would not improve the 
 
 | Route | Cash per unit | Across 2,283 units |
 |---|---|---|
-| Liquidate — the plan in the current LTSF workbook | $1.79 | $4,100 |
+| Liquidate — the plan in the current LTSF workbook | $1.40 | $3,200 |
 | Sell on Amazon, advertising at $8, 35 units a day | $3.20 | $7,300 |
 | Sell on Amazon with no advertising at all | $13.20 | $30,100 |
 | Sell at 6 September advertising levels | −$7.82 | −$17,900 |
 
-Liquidation recovers 8.3% of COGS. Each Amazon route other than the 6 September one compares favourably. The figure the deal decision turns on is the roughly $40,700 difference between clearing this stock through Amazon and liquidating it.
+Every figure in the table is **forward cash** — cost of goods is excluded, for the reason set out in section 2a. All four routes are measured the same way, so they compare like with like.
+
+Liquidation recovers about **8.5%** of what the stock cost. Each Amazon route other than the 6 September one compares favourably. The figure the deal decision turns on is the **$26,900** difference between clearing this stock through Amazon with no advertising and liquidating it — or **$4,100** on the more realistic comparison, where advertising runs at the $8 target and the $70 daily deal fee is carried. The gap narrows a great deal once advertising is priced in, which is exactly why the ad rate is the thing being managed.
 
 ---
 
@@ -280,6 +313,10 @@ Recorded for the file, because several changed the conclusions materially.
 
 **A count was quoted from memory.** The decided file was described as holding 585 changing rows; the correct figure, counted directly, is 892.
 
+**The liquidation comparison was overstated.** An earlier draft of this report valued liquidation at $1.79 a unit and put the gap against the Amazon route at roughly $40,700. Recomputed directly from the LTSF workbook, the weighted exit value is **$1.40 a unit** and the correct gap on the 2,283 units actually on hand is about **$26,900** before advertising. The $40,700 figure had used the workbook's stale count of 3,530 units. The Amazon route still returns more by a wide margin; the size of the advantage was overstated by about half.
+
+**Cost of goods was carried as a single line rather than explained.** It was present in the report but not set out, and the two company files that hold it disagree — Sellerboard at $11.49 a unit, the LTSF workbook at $16.50 weighted. Sections 2a and 2b now cover both the reasoning and the gap. This does not change the forward-cash plan; it does change how the product reads on a full-cost basis, and Finance needs to settle which figure is correct.
+
 ---
 
 ## 15. Open items
@@ -294,6 +331,7 @@ Recorded for the file, because several changed the conclusions materially.
 | 6 | Review or rebuild the 18 September Lightning Deal | Deals | 17 of 19 products currently ineligible |
 | 7 | Re-run the LTSF workbook on current stock | Finance | Present totals overstated by roughly 40% |
 | 8 | Reach $8 per unit while holding 25+ units a day | PPC | Requires judging the $420 of spend still below the click line |
+| 9 | Confirm the true landed cost per unit | Finance | Sellerboard $11.49 against LTSF workbook $16.50 — about $11,400 across current stock. Once settled, use the same figure in both files |
 
 ---
 
