@@ -84,19 +84,28 @@ add(g, 'net-negative pause', 'state', lambda r: 'paused', lambda r: 'enabled',
     'and 3 recorded returns.', camp_name)
 
 # ---- G3  refund-watch budget cuts -------------------------------------------
+# CORRECTED 8 Sep. As decided, all 73 landed at $3.00 against the $5.00 minimum daily budget,
+# with no override stated. The cuts also released nothing: these campaigns spent $51.38 across
+# 30 days, about $0.02/day each, so the cap was never binding. The refund-watch intent is to
+# bound exposure if a FLOOR SKU scales, and $5.00 does that at the floor. So the 12 campaigns
+# at $10 come to $5, and the 61 already at $5 are dropped — their cap already bounds them.
 g = df[(df['Entity'] == 'Campaign') & act.str.startswith('Cut budget') &
-       (df['New Budget'] != df['Daily Budget'])]
-add(g, 'refund watch budget cut', 'daily_budget', lambda r: f"{r['New Budget']:.2f}",
+       (df['Daily Budget'] > 5.00)].copy()
+g['New Budget'] = 5.00
+add(g, 'refund watch budget cut', 'daily_budget', lambda r: '5.00',
     lambda r: f"{r['Daily Budget']:.2f}",
-    'daily_budget', 'campaign', f'{g["New Budget"].sum():.2f}', f'{g["Daily Budget"].sum():.2f}',
-    'daily budget cap across these 73 campaigns falls from '
-    f'${g["Daily Budget"].sum():.0f} to ${g["New Budget"].sum():.0f}; spend follows only where the '
-    'cap was actually binding',
+    'daily_budget', 'campaign', f'{5.00 * len(g):.2f}', f'{g["Daily Budget"].sum():.2f}',
+    f'daily budget cap across these {len(g)} campaigns falls from '
+    f'${g["Daily Budget"].sum():.0f} to ${5.00 * len(g):.0f}, bounding exposure at the $5.00 floor; '
+    'delivered spend does not move, because utilisation was 1.5% and the cap was never binding',
     'if a FLOOR SKU drops below 5 units a week, restore its campaigns to the prior budget rather '
     'than raising bids',
     '18 FLOOR-tier SKUs refund at 25.0-30.0%, an effective $17.21-$17.75 per unit cleared against '
-    'the $19.69 ceiling — marginal rather than loss-making. Kept live at a reduced budget rather '
-    'than paused, and not scaled until the colour fix lands.', camp_name)
+    'the $19.69 ceiling — marginal rather than loss-making. Kept live at a bounded budget rather '
+    'than paused, and not scaled until the colour fix lands. Corrected 8 September: the decided '
+    'file cut all 73 to $3.00, below the $5.00 floor and with no override stated. The 61 campaigns '
+    'already at $5.00 are dropped from the plan — their cap already bounds them and a cut that '
+    'was never reached releases $0.00.', camp_name)
 
 # ---- G4  budget right-size --------------------------------------------------
 g = df[(df['Entity'] == 'Campaign') & act.str.startswith('Set budget') &
@@ -183,7 +192,8 @@ flag = np.where((out.attribute == 'daily_budget') & (nv < 5.00),
 out.insert(1, 'flag', flag)
 
 checks = [
-    ('every changed row in the source appears once in the plan', len(out) == 1206),
+    ('every changed row in the source appears once in the plan, less the corrections below',
+     len(out) == 1206 - 61),
     ('no quilt (SL-QS) campaign in the plan', not out.campaign.astype(str).str.upper()
      .str.contains('SL-QS|QUILT').any()),
     ('new_value differs from prior_value on every row',
@@ -214,12 +224,49 @@ summary = (out.groupby('decision', sort=False)
 summary['spend_30d'] = summary['spend_30d'].round(2)
 summary['upload'] = np.where(summary.flagged > 0, 'HOLD - see flag column', 'upload')
 
+corrections = pd.DataFrame([
+    {'#': 1, 'rows': 73,
+     'defect': 'All 73 refund-watch budget cuts landed at $3.00, below the $5.00 minimum daily '
+               'budget, with no override stated anywhere in the file. At this product\'s $0.90 CPC '
+               'a $3/day cap buys three clicks — below a readable day. The cuts also released '
+               'nothing: the 73 campaigns spent $51.38 across 30 days, about $0.02/day each, so '
+               'the cap was never binding.',
+     'correction': '12 campaigns at $10 come to $5.00, the floor, which still bounds exposure. '
+                   'The 61 already at $5.00 are dropped — their cap already bounds them and '
+                   'cutting a cap the lane never reached saves $0.00.',
+     'net effect on the plan': '73 rows replaced by 12'},
+    {'#': 2, 'rows': 627,
+     'defect': 'The 627 placement changes carry the Action label "Hold at 0%", but they are not '
+               'holds — they move modifiers from an average 129% (max 275%) to 0%. The label '
+               'understates the largest block of change in the file. The decision itself is sound; '
+               'the label is not.',
+     'correction': 'Relabelled "placement modifier reset" in this plan, with the prior percentage '
+                   'carried on every row so the size of the move is visible.',
+     'net effect on the plan': 'no row change; label corrected'},
+    {'#': 3, 'rows': 6,
+     'defect': 'Six keyword rows read Action "No change — campaign paused" while New Bids carries '
+               '$0.53, on rows with a blank campaign name and no prior bid. Uploaded, they would '
+               'deploy a bid on rows explicitly marked as no-change. Same class as the 79 '
+               'contradictory rows caught on the quilt cycle.',
+     'correction': 'Excluded from the plan and held for a decision. They need a campaign named and '
+                   'a prior bid read before any value is written.',
+     'net effect on the plan': 'excluded, listed on the held tab'},
+])
+
+kt_all = df[df['Entity'].isin(['Keyword', 'Product Targeting'])]
+held = kt_all[kt_all['New Bids'].notna() & kt_all['Bid'].isna()][
+    ['Entity', 'Campaign Name (Informational only)', 'Keyword Text', 'Match Type', 'Bid',
+     'New Bids', 'Action', 'Clicks', 'Spend', 'Orders']].copy()
+held['why_held'] = 'Action says no change but a new bid is written; campaign name and prior bid are blank'
+
 cols = ['change_id', 'flag'] + TEMPLATE
 with pd.ExcelWriter(OUT + '.xlsx', engine='openpyxl') as xl:
     out[cols].to_excel(xl, sheet_name='change loader plan', index=False)
     out.to_excel(xl, sheet_name='plan + evidence', index=False)
     summary.to_excel(xl, sheet_name='summary', index=False)
     validation.to_excel(xl, sheet_name='validation', index=False)
+    corrections.to_excel(xl, sheet_name='corrections', index=False)
+    held.to_excel(xl, sheet_name='held for decision', index=False)
 out[cols].to_csv(OUT + '.csv', index=False)
 
 print(summary.to_string(index=False))

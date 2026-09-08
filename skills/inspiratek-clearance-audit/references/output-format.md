@@ -158,6 +158,9 @@ Nothing ships with a failure open that is not a named missing input.
 | charge counted once | The surcharge is in the fees line or added back, not both |
 | columns filled | No decided row returned with an empty decision column; no blank row missing from the No-Action Census |
 | directly executable | Every Action states the change to make, not a suggestion to consider it |
+| label matches effect | No Action reading hold, keep or no change sits on a row whose decided value differs from the live one, and no Action naming a change sits on a row where the value is unmoved. An Action that moves a value names the direction and both numbers |
+| orphan values | No decided value on a row with no campaign named or no prior value read — the prior value is read from the live account before anything is written beside it |
+| re-gated before upload | A decided file built before a rule this gate list now carries is re-run against the current list before it is uploaded, and the plan states the list's date. Nothing is uploaded on the strength of a gate run that predates the rule |
 | reasoning | Every action has a reasoning, and every reasoning carries a number |
 | reversal | Every action has a Reverses If with a read date |
 | negation | No term negated below the click line; no converting row parked by any gate |

@@ -107,6 +107,10 @@ Each exists because something went wrong on a live product.
 
 **The click line for waste.** 15 clicks with no orders at ordinary click prices, 20–25 where clicks cost about $0.15 or less. Below that a term has not had its chance. Reaching the line triggers a review, not an automatic pause.
 
+**The label has to match the effect.** On the linen bulk, 627 placement modifiers moved from an average 129% — one at 275% — down to 0% under an Action that read "Hold at 0%". The decision was sound; the label hid the largest block of change in the file. Six keyword rows in the same file read "No change" while carrying a new bid, on rows with no campaign named and no prior bid read. An Action that moves a value names the direction and both numbers, and an Action that says hold sits on a value that does not move.
+
+**A decided file is only as current as the gate list it was run against.** The linen bulk was decided 1 September and every one of its 73 budget cuts landed at $3.00 — below a floor confirmed on 4 September. The gates caught it; nothing had re-run them. A file built before a rule is re-gated before it is uploaded, and the plan states the gate list's date.
+
 **Prefer the count over the derived field**, and treat staleness as a property of the file, not the field.
 
 **Ask rather than resolve** — a contradiction is a question for whoever prepared the data, not a puzzle. Never silently resolve a vocabulary difference.
@@ -174,6 +178,8 @@ They sit in very different places by product — 7.7% and 26.9% on one, 33.7% an
 Where the computed ceiling falls below $0.25, the floor governs and the gap is logged as accepted over-ceiling spend against the charge it avoids.
 
 **Still open:** the Hanging Closet plan predates the leak audit, the refund gate, the objective re-tag and these floors. Seven of its budget cuts land below $5/day and its bids land at $0.24. It needs re-running.
+
+**Linen, corrected 8 September.** `LIN_Decided_Bulk_v5` (1 September) was extracted to a change loader plan and re-gated. It carries 1,206 changed rows, all linen — the 2,322 quilt rows in the same file are undecided and inert. Three corrections: 73 budget cuts at $3.00 became 12 at the $5.00 floor, the 61 already at $5.00 dropped as a cut that releases nothing; 627 placement rows relabelled from "Hold at 0%" to a reset, with the prior percentage carried; 6 rows reading "No change" while carrying a bid held for a decision. The plan passes 10 of 10 gates at 1,145 rows. Its `Operation` column is blank across all 4,549 rows, so the upload file still has to be cut.
 
 ---
 
