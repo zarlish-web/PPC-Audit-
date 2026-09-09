@@ -12,7 +12,7 @@ Upload the **updates first**, then the **creates** — the updates pause 297 cam
 
 | # | File | Rows | What it does |
 |---|---|---|---|
-| 1 | `LIN_UPLOAD_SP_UPDATES_08Sep2026.xlsx` | 1,144 | 297 campaign pauses, 77 budget changes, 143 bid changes, 627 placement modifiers to 0% |
+| 1 | `LIN_UPLOAD_SP_UPDATES_08Sep2026.xlsx` | 1,139 | 297 campaign pauses, 77 budget changes, 138 bid changes, 627 placement modifiers to 0% |
 | 2 | `LIN_UPLOAD_SP_CREATES_TRANCHE_A_09Sep2026.xlsx` | 374 | Opens 15 new Sponsored Products campaigns at $256/day |
 
 Both are Sponsored Products bulk files, single sheet, already validated — 21 of 21 checks pass on each.
@@ -23,9 +23,9 @@ If Amazon returns an error report, send it over rather than fixing by hand — t
 
 ---
 
-## 2. One change that cannot go through bulk
+## 2. Nothing to do by hand
 
-`LIN_console_only_08Sep2026.csv` — a single bid change on a **keyword-group target**. Bulksheets 2.0 rejects that expression type, so it has to be edited in the console. One row, one bid.
+There is no console edit in this pack. The one change that would have needed it — a bid cut on a keyword-group target — has been dropped, along with five others: all six sat on targets with **zero clicks and zero spend**, so the cut was a verdict on no evidence.
 
 ---
 
@@ -55,7 +55,7 @@ Nothing above should be uploaded yet. Tranche C in particular routes to the same
 
 | File | What it holds |
 |---|---|
-| `LIN_change_loader_plan_JOSEPH_09Sep2026.xlsx` | Every one of the 1,145 updates: prior value, new value, the mechanism check on **16 September**, the outcome check on **23 September**, and the fallback if it goes the wrong way |
+| `LIN_change_loader_plan_JOSEPH_09Sep2026.xlsx` | Every one of the 1,139 updates: prior value, new value, the mechanism check on **16 September**, the outcome check on **23 September**, and the fallback if it goes the wrong way |
 | `LIN_creates_change_loader_plan_JOSEPH_09Sep2026.xlsx` | All 671 create rows, each carrying its gate |
 | `LIN_SB_SD_BUILD_SPEC_09Sep2026.xlsx` | The SB and SD builds, specced for when their gates lift |
 

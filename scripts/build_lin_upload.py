@@ -28,7 +28,7 @@ assert len(HEADER) == 54, len(HEADER)
 
 df = pd.read_pickle(f'{SCRATCH}/LIN_fb.pkl')
 n = lambda s: pd.to_numeric(s, errors='coerce')
-for c in ['Bid', 'New Bids', 'Daily Budget', 'New Budget', 'Percentage', 'New Percentage']:
+for c in ['Bid', 'New Bids', 'Daily Budget', 'New Budget', 'Percentage', 'New Percentage', 'Clicks', 'Spend']:
     df[c] = n(df[c])
 act = df['Action'].fillna('')
 
@@ -60,10 +60,13 @@ take((df.Entity == 'Campaign') & act.str.startswith('Cut budget') & (df['Daily B
 kt = df[df.Entity.isin(['Keyword', 'Product Targeting'])]
 bidmask = (df.index.isin(kt.index) & df['New Bids'].notna() & df['Bid'].notna() &
            (df['New Bids'] != df['Bid']))
-kg = bidmask & df['Product Targeting Expression'].astype(str).str.contains('keyword-group|category')
-if kg.any():
-    console.append(df[kg].copy())
-take(bidmask & ~kg, lambda s: s.__setitem__('Bid', s['New Bids']))
+# Dropped 9 Sep: six ceiling cuts sat on targets with zero clicks and zero spend — a performance
+# verdict on no evidence. One of them was the keyword-group target on D-LC-TESTING-NEW-FEATURE,
+# which Bulksheets rejects whatever the bid says, so nothing is left needing a console edit.
+# Refund watch cuts are a policy hold on FLOOR SKUs, not a performance read, and are untouched.
+dropped = (bidmask & (df['New Bids'] < df['Bid']) & (df['Clicks'] == 0) & (df['Spend'] == 0) &
+           ~df['Action'].astype(str).str.contains('refund watch'))
+take(bidmask & ~dropped, lambda s: s.__setitem__('Bid', s['New Bids']))
 
 # --- placement modifiers (627) -----------------------------------------------
 take((df.Entity == 'Bidding Adjustment') & df['New Percentage'].notna() &

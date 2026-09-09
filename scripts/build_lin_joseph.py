@@ -29,7 +29,7 @@ PLACEMENT = {'Placement Top': 'placementTop',
 df = pd.read_pickle(f'{SCRATCH}/LIN_fb.pkl')
 n = lambda s: pd.to_numeric(s, errors='coerce')
 for c in ['Bid', 'New Bids', 'Daily Budget', 'New Budget', 'Percentage', 'New Percentage',
-          'LW Spend', 'LW Clicks', 'CPC']:
+          'LW Spend', 'LW Clicks', 'CPC', 'Clicks', 'Spend']:
     df[c] = n(df[c])
 act = df['Action'].fillna('')
 
@@ -127,9 +127,17 @@ emit(df[(df.Entity == 'Campaign') & act.str.startswith('Set budget') &
 # 5/6/7 bids ------------------------------------------------------------------
 kt = df[df.Entity.isin(['Keyword', 'Product Targeting'])]
 ch = kt[kt['New Bids'].notna() & kt['Bid'].notna() & (kt['New Bids'] != kt['Bid'])]
+NO_EVIDENCE = (ch['Clicks'] == 0) & (ch['Spend'] == 0)
 ratio = lambda r: r['New Bids'] / r['Bid']
 rw = ch[(ch['New Bids'] < ch['Bid']) & ch['Action'].astype(str).str.contains('refund watch')]
-cz = ch[(ch['New Bids'] < ch['Bid']) & ~ch['Action'].astype(str).str.contains('refund watch')]
+# Ceiling cuts are a performance read, so the sufficiency line binds: a cut on a target with zero
+# clicks and zero spend is judged on no evidence at all. Six are dropped, among them the
+# keyword-group target on D-LC-TESTING-NEW-FEATURE, which could not have been uploaded either —
+# Bulksheets rejects that expression type whatever the bid says. Cuts on targets that have spent
+# real money above the ceiling on 1-5 clicks are kept: thin, but tested. The refund watch cuts
+# below are a policy hold on FLOOR SKUs, not a performance read, so the line does not apply.
+cz = ch[(ch['New Bids'] < ch['Bid']) & ~ch['Action'].astype(str).str.contains('refund watch')
+        & ~NO_EVIDENCE]
 rz = ch[ch['New Bids'] > ch['Bid']]
 
 emit(rw, 'refund watch bid cut', 'bid', lambda r: num(r['New Bids']), lambda r: num(r['Bid']),
@@ -143,11 +151,11 @@ emit(rw, 'refund watch bid cut', 'bid', lambda r: num(r['New Bids']), lambda r: 
 
 emit(cz, 'ceiling bid cut', 'bid', lambda r: num(r['New Bids']), lambda r: num(r['Bid']),
      cpc_scaled(ratio), kw_text,
-     'cost per acquisition on these 22 targets moves toward the 19.69 ceiling; the thin ones are '
+     'cost per acquisition on these 15 targets moves toward the 19.69 ceiling; the thin ones are '
      'cut 40% and re-read rather than paused',
      'pause any target still above $19.69 CPA at the outcome read; re-read the thin ones after the '
      'post-listing-change window rather than judging them now',
-     'These 22 targets convert above the $19.69 ceiling or are too thin to judge (2-5 clicks). Cut '
+     'These 15 targets convert above the $19.69 ceiling or are too thin to judge (1-5 clicks). Cut '
      '40% rather than paused — the converting ones are demonstrated demand and the thin ones have '
      'not had their chance.', match_of=mt)
 
