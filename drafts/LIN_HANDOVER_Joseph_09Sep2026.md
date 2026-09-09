@@ -12,7 +12,7 @@ Upload the **updates first**, then the **creates** — the updates pause 297 cam
 
 | # | File | Rows | What it does |
 |---|---|---|---|
-| 1 | `LIN_UPLOAD_SP_UPDATES_08Sep2026.xlsx` | 1,139 | 297 campaign pauses, 77 budget changes, 138 bid changes, 627 placement modifiers to 0% |
+| 1 | `LIN_UPLOAD_SP_UPDATES_09Sep2026.xlsx` | 1,139 | 297 campaign pauses, 77 budget changes, 138 bid changes, 627 placement modifiers to 0% |
 | 2 | `LIN_UPLOAD_SP_CREATES_TRANCHE_A_09Sep2026.xlsx` | 374 | Opens 15 new Sponsored Products campaigns at $256/day |
 
 Both are Sponsored Products bulk files, single sheet, already validated — 21 of 21 checks pass on each.

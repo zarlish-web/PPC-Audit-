@@ -6,7 +6,7 @@ Operation is set to update; every ID comes from the source export.
 import pandas as pd, numpy as np
 
 SCRATCH = '/tmp/claude-0/-home-user-PPC-Audit-/f01da844-e516-5303-96fa-ec17555f9d55/scratchpad'
-OUT = f'{SCRATCH}/LIN_UPLOAD_SP_UPDATES_08Sep2026.xlsx'
+OUT = f'{SCRATCH}/LIN_UPLOAD_SP_UPDATES_09Sep2026.xlsx'
 SHEET = 'Sponsored Products Campaigns'
 
 HEADER = ("Product, Entity, Operation, Campaign ID, Ad Group ID, Portfolio ID, Ad ID, Keyword ID, "
