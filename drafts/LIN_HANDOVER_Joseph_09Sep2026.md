@@ -53,11 +53,9 @@ Nothing above should be uploaded yet. Tranche C in particular routes to the same
 
 ## 5. The record, if you need to see why any row moved
 
-| File | What it holds |
-|---|---|
-| `LIN_change_loader_plan_JOSEPH_09Sep2026.xlsx` | Every one of the 1,139 updates: prior value, new value, the mechanism check on **16 September**, the outcome check on **23 September**, and the fallback if it goes the wrong way |
-| `LIN_creates_change_loader_plan_JOSEPH_09Sep2026.xlsx` | All 671 create rows, each carrying its gate |
-| `LIN_SB_SD_BUILD_SPEC_09Sep2026.xlsx` | The SB and SD builds, specced for when their gates lift |
+`LIN_change_loader_plan_JOSEPH_ALL_09Sep2026.xlsx` — **one file, all 1,810 rows**, updates and creates together in the standard template. Prior value, new value, the mechanism check on **16 September**, the outcome check on **23 September**, and the fallback if it goes the wrong way. The `decision` column separates the eight update groups from the six create groups, and every gated group names its gate.
+
+`LIN_SB_SD_BUILD_SPEC_09Sep2026.xlsx` carries the SB and SD builds in more detail, for when their gates lift.
 
 ---
 
