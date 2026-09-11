@@ -44,12 +44,16 @@ Three rules that hold across the whole screen:
 - **Profile figures stay product-total** and do not react to the selected sub-tab.
   If they did, TACoS and organic sales would stop being coherent. The per-tab
   subtotal strip carries the tab's own numbers.
-- **Tabs are objective-led.** Objective is assigned from targeting type by the standing
-  rule — Exact = Ranking, auto and broad = Discovery, product/category = Profitable
-  Conversion, brand keyword = Defensive — so the objective tabs land on the targeting
-  types listed above. Where the two diverge, objective wins: a brand-defence Exact
-  campaign is Defensive and is judged as such, not as a ranking push. Keep a Defensive
-  filter chip available inside the Ranking tab for exactly that case.
+- **Tabs are by campaign TYPE. Objective is a filter inside each tab.** The reason is
+  structure: every exact / manual keyword campaign has the same shape — match type, bid,
+  keyword — so they read comparably in one table. Auto has four target types and no
+  keyword at all. Product and Category target an ASIN or a node. SB and SD differ again.
+  Organising by objective instead would put auto, PAT, category and manual rows in one
+  table and leave most columns empty on most rows.
+  Objective still matters for *judgement*, so it sits as a filter chip in every tab — and
+  a tab can hold more than one. An auto campaign may be Discovery or Profitable
+  Conversion; an exact campaign may be Ranking or Defensive, and a brand-defence exact is
+  judged on defence, not on rank gap.
 
 ---
 
@@ -173,7 +177,7 @@ are different views of the same campaigns, not different campaign types.
 
 ## 4 · Tab 1 — Ranking
 
-Objective: **Ranking**. Exact keyword campaigns. This is the full tier; every other tab
+Campaign type: **Exact / manual keyword**. Default objective filter: **Ranking**. This is the full tier; every other tab
 is a reduction of it. Brand-defence exact campaigns sit here under a **Defensive** chip
 and are judged on defence, not on rank gap.
 
@@ -245,7 +249,7 @@ CVR collapsed gets escalated to whoever owns the listing.
 
 ## 5 · Tab 2 — Auto
 
-Objective: **Discovery**. No keywords exist here. Row = campaign, expandable to its four auto target types —
+Campaign type: **Auto**. Objective filter: Discovery, or Profitable Conversion. No keywords exist here. Row = campaign, expandable to its four auto target types —
 bids are set per target type, so that is the real grain underneath.
 
 ```
@@ -268,7 +272,7 @@ DRILL: search terms generated
 
 ## 6 · Tab 3 — Manual (Broad / Phrase)
 
-Objective: **Discovery**. Row = campaign, expandable to all targeted keywords.
+Campaign type: **Broad / phrase**. Objective filter: usually Discovery. Row = campaign, expandable to all targeted keywords.
 
 ```
 Per keyword: keyword · SV · state · bid · clicks · sales · ACoS
@@ -287,7 +291,7 @@ A broad campaign at 80% ACoS feeding three profitable exact campaigns is working
 
 ## 7 · Tab 4 — Product & Category Targeting
 
-Objective: **Profitable Conversion** (Defensive where the target is our own ASIN).
+Campaign type: **Product & Category targeting**. Objective filter: Profitable Conversion, or Defensive where the target is our own ASIN.
 Row = campaign, expandable to each target. Separate from Manual because a PAT row
 targets an ASIN and a Category row targets a category node — neither has a keyword,
 an SV, a CPR or a rank.
@@ -469,6 +473,63 @@ measurements, and a 32%-covered row currently looks identical to a 95%-covered o
 
 ---
 
+## 13 · Proposal workflow — the app recommends, the human decides
+
+Added from team input (Shayan Rana, Shayan Akhtar Taquie). This is the piece that turns
+the tab from a reporting surface into an oversight system, and it supersedes open item 6.
+
+**The flow**
+
+```
+Current value  →  Proposed change + reasoning  →  Approval  →  Deployment
+               →  VERIFICATION  →  Action Log
+```
+
+The verification step is not in the original proposal and should be. It is exactly the
+failure already observed on Sleephoria Cooling Sheets 4pc, where the executed change
+drifted from the original strategy and had to be corrected by hand. Without a step that
+diffs what was deployed against what was approved, that drift is only found a cycle later.
+
+**Editable proposal columns, inline on every row**
+
+| Column | Notes |
+|---|---|
+| New Bid | Blank unless proposing |
+| New TOS % / New PDP % / New ROS % | Placement modifiers |
+| New Budget | |
+| New State | enable / pause / archive |
+| New Targeting | match type, negation, harvest |
+| **Reasoning** | ≤ 25 words, required — no proposal saves without it |
+| **Expected outcome** | Required. This is what the grading step reads two cycles later. |
+| Review date | Auto-set from the observation lock |
+| Status | Proposed → Approved → Deployed → Verified → Graded |
+| Proposed by · Approved by · Deployed on · Verified on | Provenance |
+| **Source** | `app-recommended` or `human` — see below |
+
+**The app recommends, the human decides.** The constraint column already determines which
+lever to pull, so it should pre-fill the proposal with a suggested value — but as a
+*draft*, never a deployment. Nothing leaves this screen without a person accepting,
+editing or rejecting it. Record which, in the Source field: an app-recommended value the
+human accepted unchanged is different evidence from one they overrode, and after a few
+cycles that difference tells you whether the recommendations are worth reading.
+
+**A multi-field change is ONE proposal.** The PDP correction moves the base bid and the
+TOS modifier together, because Amazon placement modifiers only increase and the base bid
+is what wins PDP when the PDP modifier is 0. That is one intent — reallocate clicks from
+PDP to TOS — carrying one reasoning, one expected outcome and one grade. If the row logs
+it as two changes, the grading step scores two half-hypotheses and learns nothing.
+
+**Export.** Proposed changes export as current value / proposed value / reasoning /
+expected outcome, for review. Route this through the existing Data Center tab rather than
+adding a second export surface — two export mechanisms and nobody learns which is current.
+
+**Same columns as the weekly log.** `templates/weekly-change-log.csv` already carries
+from / to / lever / rationale / expected outcome / review date / grade. Use those exact
+fields here so a daily proposal and a weekly decision land in one log and are graded by
+one process — not two parallel records of the same account.
+
+---
+
 ## 12 · Open items
 
 1. **Composite data vintage** on required-clicks and the CPR/DSTR columns — see §11.
@@ -479,6 +540,6 @@ measurements, and a 32%-covered row currently looks identical to a 95%-covered o
 4. **Off-AMZ column** reads 0 on every SP row. Confirm it should move to the SD tab.
 5. **Exception engine** — confirm D1–D7 fire against `config/thresholds.yml` and produce
    a queue, rather than the counts being read off columns by eye.
-6. **Action-log grading** — confirm something reads the log back and scores actions
-   worked / flat / backfired two cycles later. Without that the log is a diary, and the
-   weekly W2 step has no input.
+6. **Action-log grading** — RESOLVED by §13. The proposal workflow supplies the expected
+   outcome the grading step reads. Still to confirm: who owns building the grading pass,
+   and whether the Action Log already exists in a form §13 can write into.
