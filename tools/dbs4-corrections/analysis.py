@@ -26,6 +26,8 @@ def load_pl(label):
 
 
 P90, PRE, DEAL6 = load_pl('d90'), load_pl('pre_deal30'), load_pl('deal6')
+DEAL8 = load_pl('deal8')
+DEAL_SRC, DEAL_DAYS = (DEAL8, 8) if DEAL8 else (DEAL6, 6)
 
 
 def plc(r, key):
@@ -40,12 +42,9 @@ def plc(r, key):
 
 
 def exdeal(cid):
-    """90 days minus the six deal days = 2026-06-23..2026-09-14 (84 days)."""
-    out = {}
-    for k in ('tos', 'detail', 'other', 'off'):
-        a, b = plc(P90.get(cid), k), plc(DEAL6.get(cid), k)
-        out[k] = {x: max(0, a[x] - b[x]) for x in a}
-    return out
+    """The priced window: the audit's own 90 days, 2026-06-23..2026-09-20, deal days INCLUDED
+    (operator 2026-09-23: the Best Deal is the rank lever, its TOS clicks count)."""
+    return {k: plc(P90.get(cid), k) for k in ('tos', 'detail', 'other', 'off')}
 
 
 def window(cid, src):
@@ -84,7 +83,7 @@ def child_contrib(child):
     return dict(price=v[0], be_basis=v[0] * BE, fee_model=v[1], flag=None)
 
 
-# child planning rates by placement, ex-deal, across every SP campaign advertising the child
+# child planning rates by placement, 90 days incl. deal, across every SP campaign advertising the child
 CHILD_RATE = defaultdict(lambda: defaultdict(lambda: [0, 0]))
 for cid, c in CAMPS.items():
     ch = c.get('child')
@@ -152,7 +151,7 @@ def analyse(cid):
     X = exdeal(cid)
     W90 = window(cid, P90)
     WP = window(cid, PRE)
-    WD = window(cid, DEAL6)
+    WD = window(cid, DEAL_SRC)
     tos, pp, ros = X['tos'], X['detail'], X['other']
     tot = tos['c'] + pp['c'] + ros['c']
     share = {k: (X[k]['c'] / tot if tot else None) for k in ('tos', 'detail', 'other')}
@@ -201,13 +200,13 @@ def analyse(cid):
     in_focus = focus.startswith('IN')
     budget = (c or {}).get('budget')
     spend_day = ((c or {}).get('spend_14d') or 0) / 14
-    days = 84
+    days = 90
     tos_wk = tos['c'] / days * 7
     size = size_of(serving)
     st = STOCK.get(size) if size else None
     frozen = cid in FREEZE
 
-    return dict(cid=cid, name=name, obj=obj, child=child, child_after=ca, serving=serving, size=size,
+    return dict(deal_days=DEAL_DAYS, cid=cid, name=name, obj=obj, child=child, child_after=ca, serving=serving, size=size,
                 econ=econ, eng_contrib=eng_contrib, contrib=contrib, X=X, W90=W90, WP=WP, WD=WD, share=share, rate=rate,
                 why_rate=why_rate, ceil=ceil, cpc=cpc, cvr_own=cvr_own, targets=tg, head=head, tos_mod=tos_mod,
                 tos_to=tos_to, pp_mod=pp_mod, ros_mod=ros_mod, pp_to=row_to('pp'), ros_to=row_to('ros'),
@@ -244,7 +243,7 @@ def judge(a):
         sit = 'Rank collapsing >10 positions — never scale; investigate listing, rival, category first (§12)'
     elif tot < FLOOR:
         sit = 'Campaign on, (almost) no clicks arriving — nothing to redistribute: hold the base, move the modifier only (§12)'
-    elif sh['tos'] is not None and sh['tos'] < 0.30 and ranking:
+    elif sh['tos'] is not None and sh['tos'] < 0.30 and ranking and not (sum(a['WD'][k]['c'] for k in ('tos', 'detail', 'other')) >= FLOOR and a['WD']['tos']['c'] / sum(a['WD'][k]['c'] for k in ('tos', 'detail', 'other')) >= 0.70):
         sit = 'Top of search under 30% on a ranking campaign — distribution fix takes precedence: no price climb, no budget move (§12)'
     elif sh['detail'] is not None and sh['detail'] > 0.20:
         sit = 'Product pages over 20% — money leaking to the placement that does not move rank: distribution fix (§12)'
@@ -266,7 +265,7 @@ def judge(a):
     need_budget = req_day * pnow if (req_day and pnow) else None
     funded = None if (need_budget is None or a['budget'] is None) else (a['budget'] >= need_budget)
     push_case = ranking and exact and a['in_focus'] and rank_on_file and not a['frozen'] and not hero_bad
-    conditions = dict(velocity='deal 09-15..09-28 then none on the calendar; engine read no deal',
+    conditions = dict(velocity='met — Best Deal live to 2026-09-28 (the engine did not read it)',
                       ctr=ctr_ok, cvr=cvr_ok, stock=not hero_bad)
 
     # ---- the price at top of search ----
@@ -289,7 +288,9 @@ def judge(a):
     write_price = pnow
     write_kind = []
     below70 = (a['tos_wk'] / 7) < 0.7 * req_day if req_day else True
-    mix_first = (sh['tos'] is not None and sh['tos'] < 0.30 and ranking and tot >= FLOOR)
+    _wd = a['WD']; _dt = sum(_wd[k]['c'] for k in ('tos', 'detail', 'other'))
+    deal_tos_ok = _dt >= FLOOR and _wd['tos']['c'] / _dt >= 0.70
+    mix_first = (sh['tos'] is not None and sh['tos'] < 0.30 and ranking and tot >= FLOOR and not deal_tos_ok)
     if pnow and target:
         if a['frozen']:
             write_price = pnow; write_kind.append('hold (rank collapse)')
@@ -324,6 +325,10 @@ def judge(a):
                 write_kind.append('price held at ceiling')
 
     # ---- the base ----
+    WD = a['WD']
+    deal_tot = sum(WD[k]['c'] for k in ('tos', 'detail', 'other'))
+    deal_pp = WD['detail']['c'] / deal_tot if deal_tot else None
+    deal_ok_mix = ranking and deal_tot >= FLOOR and deal_pp is not None and deal_pp <= 0.20 and (sh['detail'] or 0) > 0.20
     base_new = base
     base_why = None
     if base:
@@ -347,9 +352,11 @@ def judge(a):
             corr['click_ceiling'] = c_ceiling
             if base > c_ceiling * 1.02:
                 base_new = max(c_ceiling, base * (1 - cap))
-                base_why = f"non-ranking objective: base {usd(base)} above what a click affords on the campaign's blended rate ({pct(r_all)} × {usd(a['contrib'])} = {usd(c_ceiling)}; {c_all} clicks / {o_all} orders ex-deal, child {pct(ch_r)}) → toward it, cap {int(cap*100)}%"
+                base_why = f"non-ranking objective: base {usd(base)} above what a click affords on the campaign's blended rate ({pct(r_all)} × {usd(a['contrib'])} = {usd(c_ceiling)}; {c_all} clicks / {o_all} orders 90 days, child {pct(ch_r)}) → toward it, cap {int(cap*100)}%"
             else:
                 base_why = f"non-ranking objective: base inside what a click affords ({pct(r_all)} × {usd(a['contrib'])} = {usd(c_ceiling)}) — held"
+        elif deal_ok_mix:
+            base_why = f"PP {pct(sh['detail'])} over 90 days, but {pct(deal_pp)} on the {deal_tot} deal-day clicks — the mix is already right in the deal; base held for the remaining deal days, re-test on post-deal days (10-06)"
         elif sh['detail'] is not None and sh['detail'] > 0.20:
             tgt_b = ceil['detail']
             if base > tgt_b:
@@ -388,14 +395,22 @@ def judge(a):
     budget_new = a['budget']
     budget_why = None
     pre_spend = sum(a['WP'][k]['s'] for k in a['WP']) / 31 if a['WP'] else None
+    corr['deal_spend'] = sum(a['WD'][k]['s'] for k in a['WD']) / DEAL_DAYS
+    if deal_ok_mix:
+        sit += f" — but on deal days PP is {pct(deal_pp)} of {deal_tot} clicks: the deal has fixed the mix for now"
     if a['budget'] is not None:
         if push_case and funded is False and need_budget:
             budget_why = f"push needs {usd(need_budget)}/day ({req_day:.1f} clicks/day × {usd(pnow)}); budget {usd(a['budget'])} → shortfall {usd(need_budget - a['budget'])}/day — a decision to take, not a rung"
         elif mix_first:
             budget_why = 'no budget move while the mix is below 30% TOS (§12)'
         else:
-            budget_why = 'held — no evidence of exhaustion on ex-deal days' if (pre_spend is not None and pre_spend < 0.9 * a['budget']) else 'review utilisation ex-deal'
-    corr.update(premium_ok=bool(push_case and funded and ctr_ok and cvr_ok), budget=budget_new, budget_why=budget_why, pre_spend=pre_spend, need_budget=need_budget, req_day=req_day,
+            dsp = sum(a['WD'][k]['s'] for k in a['WD']) / DEAL_DAYS
+            corr['deal_spend'] = dsp
+            if dsp >= 0.95 * a['budget'] and a['in_focus']:
+                budget_why = f"deal days average {usd(dsp)}/day against {usd(a['budget'])} — capping in the deal: raise for the remaining deal days (a funding decision above $50/day)"
+            else:
+                budget_why = f"held — deal days average {usd(dsp)}/day against {usd(a['budget'])} ({dsp / a['budget']:.0%}); the campaign is not running out of money" if a['budget'] else 'no budget'
+    corr.update(deal_ok_mix=deal_ok_mix, deal_pp=deal_pp, deal_tot=deal_tot, premium_ok=bool(push_case and funded and ctr_ok and cvr_ok), budget=budget_new, budget_why=budget_why, pre_spend=pre_spend, need_budget=need_budget, req_day=req_day,
                 funded=funded, push_case=push_case, conditions=conditions, hero_bad=hero_bad, situation=sit,
                 below70=below70, mix_first=mix_first)
     return corr

@@ -170,6 +170,21 @@ def placements_total(label):
 PT = {k: placements_total(k) for k in ('d90', 'pre_deal30', 'deal6')}
 DAYS = {'d90': 90, 'pre_deal30': 31, 'deal6': 6}
 
+def camp(sub):
+    return next(a for a in O if a['name'].startswith('DBS4-SP-' + sub))
+
+
+def pps(sub):
+    return pct(camp(sub)['share']['detail'])
+
+
+RK = [a for a in O if a['obj'] == 'Ranking' and 'Exact' in a['name'] and a['tot'] >= 15]
+LEAK = [a for a in RK if a['share']['detail'] > 0.20]
+LEAK_CUT = [a for a in LEAK if any(r['kind'] == 'bid' and fnum(r['to']) is not None and fnum(r['to']) < fnum(r['now']) for r in a['changes'])]
+DD = O[0].get('deal_days', 6)
+DEAL_LABEL = f"09-15 → 09-{14 + DD}"
+
+
 # row verdicts -----------------------------------------------------
 BAD = {'WITHHELD', 'FREEZE', 'NOOP'}
 
@@ -234,7 +249,7 @@ add_runs(para(), 'Every bid, placement, budget and state row of the Command Cent
 table(['Item', 'Value'], [
     ['Product', 'Decolure Bamboo Sheets 4 Piece · product 59 · US · prefix DBS4 · stage Re-Launch (ranking lane)'],
     ['Run reviewed', '20260921-dbcd48b8 · audited 2026-09-21 · exported 2026-09-23 · engine check: 140 passed, **2 failed and unnamed**'],
-    ['Inputs', 'Audit JSON export (444 decisions, 2,396 considered rows, 353 campaigns); audit workbook (11 tabs); the team document; Command Center campaign placement reports for 90 days (2026-06-23 → 09-20), pre-deal 31 days (08-15 → 09-14) and the six deal days read (09-15 → 09-20); Command Center unit economics by SKU'],
+    ['Inputs', 'Audit JSON export (444 decisions, 2,396 considered rows, 353 campaigns); audit workbook (11 tabs); the team document; Command Center campaign placement reports for 90 days (2026-06-23 → 09-20), pre-deal 31 days (08-15 → 09-14), the deal days the audit read (09-15 → 09-20) and the deal to date (09-15 → 09-22); Command Center unit economics by SKU'],
     ['Scope', f'All {len(ch_rows)} numeric/state rows the run proposes (100 top-of-search modifiers, 59 bids, 6 budgets, 3 rest-of-search, 2 product-page, 5 state) on {sum(1 for a in O if a["changes"])} campaigns, plus every enabled Ranking campaign the run held ({len(O)} campaigns judged). Child swaps, retags, renames, structure and builds are outside the document’s scope and are only referenced where they change a price.'],
     ['Prepared', '2026-09-23'],
 ], widths=[4, 22.5], size=9)
@@ -246,19 +261,22 @@ para('What goes wrong, in order of consequence:', bold=True)
 n_pr = sum(1 for a in O for f in a['F'] if f['code'] == 'PLACEMENT-READ')
 bullets = [
     f'**The placement read is not the campaign’s placement.** On {n_pr} of the {sum(1 for a in O if any(r.get("tos_clk90") is not None for r in a["changes"]))} changed campaigns that state one, the engine’s top-of-search click count differs from Amazon’s campaign placement report by more than 20% (median: the engine sees 25% of the real clicks). Mix, top-of-search conversion, every ceiling and whether the distribution fix is owed are computed on the wrong base. Example: King Size Bamboo Sheet Sets — engine “71% TOS / 24% PP on 34 clicks”; Amazon: 122 TOS / 270 PP / 39 ROS of 431 (PP 63%).',
-    '**The run read no deal.** The Best Deal ran 2026-09-15 → 09-28; the brief lists it, but `engine_read` is null and the workbook Summary says “No deal in the window”. Every 14-day rate, the day-4 “eligibility collapsed” read, budget utilisation and rank “now” (2026-09-20) are in-deal readings, and 57 rank checkpoints (09-25, 09-28) grade inside the deal. On deal days product ACoS read 42.1% against 30.3% before it (still filling on 7-day attribution).',
+    f'**The run does not see the Best Deal it should be ranking on.** The Best Deal runs 2026-09-15 → 09-28 and is the velocity window this push depends on (doc §6: velocity “usually means a deal”). The brief lists it, but `engine_read` is null and the workbook Summary says “No deal in the window”, so no step is timed to the remaining deal days, rank claims are checkpointed as if the week were ordinary, and the budget rows read deal-day spend as “exhaustion”. Section 3 shows each focus campaign’s top-of-search delivery in the deal ({DEAL_LABEL}).',
     f'**35 rows the engine itself withholds are exported as changes.** Their RISKS section says “change → HOLD” (rank claim ungradeable); the verdict column says “change”. One of them (seq 529) is a move last week’s review held.',
-    '**The distribution fix is under-applied.** Across Ranking-Exact campaigns product pages took 45% of 90-day clicks; 38 of the 54 enabled Ranking-Exact campaigns with ≥15 ex-deal clicks sit above the 20% line. The run cuts the base on 11 of them and holds it on the flagship “Bamboo Sheets” (PP 29% ex-deal, $198/day) and “Bamboo Sheets Queen” (PP 68%) with “nothing to correct”.',
+    f'**The distribution fix is under-applied.** Across Ranking-Exact campaigns product pages took 45% of 90-day clicks; {len(LEAK)} of the {len(RK)} enabled Ranking-Exact campaigns with ≥15 clicks sit above the 20% line. The run cuts the base on {len(LEAK_CUT)} of them. In the deal the mix has moved sharply toward top of search on several (the flagship “Bamboo Sheets” is 97% TOS on deal days), and those keep their base until the deal ends; others still leak — “Bamboo Sheets Queen” MSV is PP {pps("Bamboo Sheets Queen-[Bamboo|Queen]-(MSV)")} over 90 days and the run holds it with “nothing to correct”.',
     '**Premiums above the ceiling on rows that are not proven pushes.** 67 top-of-search raises; 12 are on out-of-focus (taper) campaigns and many more lack a dollar loss ceiling, a funded budget, or a market CTR/CVR read. None of the 45 rows that state a loss per order states a weekly loss ceiling (doc §11 “Ceilinged”).',
-    '**Budget raises are mis-triggered.** All six budget rows cite “budget exhausted” at 81–91% utilisation on deal-inflated days; two sit on campaigns the same run is tapering; one is sized on 214 clicks/week while its own target section asks 17.',
+    '**Budget raises are mis-triggered.** All six budget rows cite “budget exhausted” at 81–91% utilisation, which is not running out of money even on deal days; two sit on campaigns the same run is tapering; one is sized on 214 clicks/week while its own target section asks 17.',
     f'**The outcome model’s baseline is wrong.** It starts from 29.84 top-of-search clicks/week for the product; Amazon’s placement report shows ~838/week (90 days). The +62% spend ($808.75 → $1,312.30/day) and 40.2% after-ACoS (break-even 33.9%) are therefore not a reliable forecast.',
     '**Contribution is not the serving child’s.** Per-order contribution behind the prices ranges $17.87 → $40.46 across campaigns selling the same children (it is each campaign’s basket × break-even ACoS). The brief says $25.06/unit; the SKU fee model says $30.59 for King White and $30.62 for Queen White; California King White has no price or fees at all.',
 ]
+_f = camp('Bamboo Sheets-(VHSV)-Exact')
+_fd = _f['WD']
+bullets.insert(2, f"**The flagship “Bamboo Sheets” is the deal’s engine and is carrying an unsigned premium.** Top-of-search clicks went from {_f['WP']['tos']['c']/31:.1f}/day before the deal to {_fd['tos']['c']/DD:.1f}/day in it ({_fd['tos']['c']/sum(_fd[k]['c'] for k in ('tos','detail','other')):.0%} of its clicks) at {usd(_fd['tos']['s']/_fd['tos']['c'])} CPC. Its TOS price {usd(_f['price_now'])} is above the {usd(_f['ceil']['tos'])} ceiling (about {usd(_f['price_now']/_f['rate']['tos'] - _f['contrib'])} lost per TOS order) and the plan needs {usd(_f['J']['need_budget'])}/day against a {usd(_f['budget'])} budget. Keep it through the deal; it needs a signed loss ceiling and a fund-or-descend decision for after 09-28.")
 for b in bullets:
     bullet(b)
 para('Row-level outcome of this review (Appendix A lists every row):', bold=True)
 table(['Verdict', 'Rows', 'Meaning'], [
-    ['KEEP', VC.get('KEEP', 0), 'The document supports the engine’s value on this campaign’s own data (it may still need its checkpoint moved out of the deal).'],
+    ['KEEP', VC.get('KEEP', 0), 'The document supports the engine’s value on this campaign’s own data (its checkpoint is re-timed to the deal: read on deal days, rank at the deal’s end).'],
     ['CORRECT', VC.get('CORRECT', 0), 'Direction or size is wrong on this campaign’s data; the corrected value is given.'],
     ['HOLD', VC.get('HOLD', 0), 'Leave at today’s value: withheld by the engine’s own rule, a re-proposed held move, a freeze, or the document gives no reason to move it.'],
     ['DROP', VC.get('DROP', 0), 'No-op or duplicate row — remove from the file.'],
@@ -270,16 +288,16 @@ para('In addition, this review adds distribution-fix base cuts on campaigns the 
 doc.add_heading('2. How each row was judged', 1)
 para('Each campaign was rebuilt from its own data before the engine’s row was compared with it. The rules are the document’s; the numbers are the campaign’s.')
 for b in [
-    '**Placement data** — Amazon’s campaign-grain placement report via Command Center (the grain Amazon actually reports; doc §16 Table 2). Three windows: 90 days to 2026-09-20 (the engine’s window), the six deal days 09-15 → 09-20, and **ex-deal = 90 days minus the deal days (2026-06-23 → 09-14, 84 days)**, which prices every correction. Off-Amazon clicks are shown but excluded from the mix (they are not one of the document’s three placements).',
-    '**Conversion rate per placement (doc §3)** — under 15 clicks at a placement: the serving child’s planning rate (the child’s ex-deal rate at that placement across every campaign advertising it, or the lane rate if the child has <100 clicks there); 15+ clicks with orders: blend, weight = (clicks − 15) ÷ 35 capped at 1; 15+ with no orders: the child’s rate.',
+    f'**Placement data** — Amazon’s campaign-grain placement report via Command Center (the grain Amazon actually reports; doc §16 Table 2). **Every correction is priced on the audit’s own 90 days, 2026-06-23 → 09-20, deal days included** — the Best Deal is the rank lever this cycle, so its top-of-search clicks count. Alongside: the 31 days before the deal (08-15 → 09-14) and the deal to date ({DEAL_LABEL}), to show what the deal is doing to top-of-search delivery campaign by campaign. Off-Amazon clicks are shown but excluded from the mix (they are not one of the document’s three placements).',
+    '**Conversion rate per placement (doc §3)** — under 15 clicks at a placement: the serving child’s planning rate (the child’s 90-day rate at that placement across every campaign advertising it, or the lane rate if the child has <100 clicks there); 15+ clicks with orders: blend, weight = (clicks − 15) ÷ 35 capped at 1; 15+ with no orders: the child’s rate.',
     '**Contribution** — to keep the dispute on logic rather than margin, the engine’s own per-order figure is used where the row states one; otherwise the serving child’s list price × the run’s break-even ACoS (33.87%). The inconsistency of that basis is itself finding S6.',
     '**Ceilings** — contribution × blended rate, per placement. The base target is what product pages afford; the top-of-search ceiling is what top of search affords (doc §2).',
-    '**Situation (doc §12)** — read off the ex-deal mix: TOS <30% on ranking → mix first, no price or budget move; PP >20% → distribution fix; mix right → price/budget/demand question; <15 clicks in 84 days → no clicks arriving, hold the base, modifier only.',
-    '**Base (doc §10)** — cut only when PP >20% (toward what product pages afford; cap 50%, 25% where PP/ROS carry orders; floor $0.50 or TOS ÷ 10); held when PP ≤20% or when the row is not delivering.',
+    '**Situation (doc §12)** — read off the 90-day mix: TOS <30% on ranking → mix first, no price or budget move; PP >20% → distribution fix; mix right → price/budget/demand question; <15 clicks in 90 days → no clicks arriving. Where the deal has already moved the mix (≥15 deal-day clicks at ≥70% TOS or ≤20% PP) the deal-day mix governs the writes for the remaining deal days, hold the base, modifier only.',
+    '**Base (doc §10)** — cut only when PP >20% (toward what product pages afford; cap 50%, 25% where PP/ROS carry orders; floor $0.50 or TOS ÷ 10); held when PP ≤20%, when the row is not delivering, or when the deal-day mix is already ≤20% PP (re-tested post-deal on 10-06).',
     '**Top-of-search price (doc §4, §6, §8, §11, §14)** — a premium above the ceiling only on a Ranking-Exact push in focus with a rank on file, stock to sustain it, a budget that funds required clicks × price, and click-through and conversion above the market; +30% per write max; bounded by the market bound and the unit’s contribution. Otherwise the TOS price is the ceiling: a descent to it if above (a named point), a climb to it if below — except (a) an in-progress premium below 70% of its clicks is not cut (§14): it is held and the fund-or-descend decision is surfaced, and (b) out-of-focus rows are not climbed (the operator’s taper). The modifier is always solved backward: price ÷ base − 1.',
     '**Rest of search / product pages** — ROS modifier zero unless 15+ ROS clicks convert at or above the product-page rate (a switch); PP modifier zero.',
-    '**Budget** — raised only if the campaign ran out of money on ex-deal days; an unfunded push is stated as a $/day shortfall for a person to fund or decline (doc §11).',
-    '**Checkpoints** — moved to post-deal data: writes from 2026-09-29, first read 2026-10-06, rank read 2026-10-13.',
+    '**Budget** — raised only if the campaign is running out of money on deal days (deal-day spend ≥95% of budget) — during the deal that is the one budget question that matters; an unfunded push is stated as a $/day shortfall for a person to fund or decline (doc §11).',
+    '**Checkpoints** — timed to the deal: write 2026-09-24 so the step buys the remaining deal days; mechanism read 2026-09-27 on deal days only (09-24 → 09-27 against 09-15 → 09-23, like for like); rank read 2026-09-29 at the deal’s end; post-deal read 2026-10-06, where any premium bought for the deal is probed back down (§13).',
 ]:
     bullet(b)
 para('Limits of this review: keyword-level placement does not exist (Amazon reports placement per campaign), so a multi-keyword campaign is priced on its head keyword and the same percentage step is applied to its other keywords; the target-level click counts are the engine’s effective-bid pack; SQP market CTR/CVR is only available where the engine’s rationale carried it — where it did not, the four conditions are recorded as “not shown”.', italic=True, color=GREY)
@@ -302,6 +320,21 @@ table(['Window', 'TOS clicks/wk', 'TOS share', 'PP share', 'Spend/day', 'ACoS', 
     ['Engine outcome model “after”', f'{outcome["tos_clicks_wk_after"]}', '—', '—', usd(outcome['spend_day_after']), pct(outcome['acos_after'], 1), '—'],
 ], size=8.5)
 para('Workbook (ppc-audit-DBS4-20260921-dbcd48b8.xlsx): the Summary tab prints “Deal window: No deal in the window” while its own brief block lists the Best Deal 09-15 → 09-28; the Agent review tab is empty (“No agent review is stored for this run yet”), so all 72 “Needs a look” rows — among them 16 riskier bid rows and 9 riskier top-of-search rows — are unreviewed; the Decisions tab carries the 35 withheld rows as changes. The workbook and the JSON agree row for row; every finding below applies to both.')
+doc.add_heading('Top-of-search delivery in the Best Deal — focus campaigns', 2)
+para(f'The deal is the rank lever this cycle, so top-of-search clicks are what matter now. Every in-focus Ranking campaign with top-of-search clicks before or during the deal, sorted by deal-day top-of-search clicks. “Corrected TOS price” is this review’s write for the remaining deal days (Section 5 has the reasoning per campaign).')
+drows = []
+for a in sorted([a for a in O if a['in_focus'] and a['obj'] == 'Ranking' and (a['WD']['tos']['c'] or a['WP']['tos']['c'])], key=lambda a: -a['WD']['tos']['c']):
+    d, pr = a['WD'], a['WP']
+    dtot = sum(d[k]['c'] for k in ('tos', 'detail', 'other'))
+    pre_d, deal_d = pr['tos']['c'] / 31, d['tos']['c'] / DD
+    drows.append([short(a['name'])[:62], f'{pre_d:.1f}', f'{deal_d:.1f}', (f'{deal_d / pre_d - 1:+.0%}' if pre_d else '—'),
+                  pct(d['tos']['c'] / dtot) if dtot else '—', pct(d['tos']['o'] / d['tos']['c'], 1) if d['tos']['c'] else '—',
+                  usd(d['tos']['s'] / d['tos']['c']) if d['tos']['c'] else '—', usd(a['price_now']), usd(a['J']['price']),
+                  (a['J']['write_kind'] or ['—'])[0][:70]])
+table(['Campaign', 'TOS clicks/day pre-deal', f'TOS clicks/day deal', 'Change', 'TOS share in deal', 'TOS CVR in deal', 'TOS CPC in deal', 'TOS price now', 'Corrected TOS price', 'Corrected write'], drows,
+      widths=[6.8, 1.6, 1.6, 1.4, 1.6, 1.6, 1.6, 1.6, 1.8, 6.5], size=7)
+tp_d, td_d = sum(r['WP']['tos']['c'] for r in O if r['in_focus']) / 31, sum(r['WD']['tos']['c'] for r in O if r['in_focus']) / DD
+para(f'Across all in-focus campaigns: {tp_d:.0f} top-of-search clicks/day before the deal, {td_d:.0f}/day in it ({td_d / tp_d - 1:+.0%}).', bold=True)
 para(f'Margin in the brief: break-even ACoS {margin["be_acos"]*100:.2f}% · contribution {usd(margin["contribution_per_unit"])}/unit (profitability, 08-24 → 09-23). Prediction grades over 90 days: 5 HIT, 36 MISS, 1 WRONG_DIRECTION, 62 WITHDRAWN — hit rate 4.8%. Open tuner records: 388 (72 wrong direction, 53 stalled, 39 behind).')
 
 # ============================ 4. systemic findings ============================
@@ -339,11 +372,11 @@ sysf(1, 'The placement read is not the campaign’s placement report', 'Critical
      'Doc §16 Table 2 requires one row per campaign per placement; §5 manages the mix on clicks. The TOS conversion that sets every ceiling (§3), the 20% product-page test (§10) and the <30% mix-first rule (§12) all run on these numbers, so a quarter-size, differently-shaped sample produces different decisions.',
      'Re-derive mix, conversion and ceilings from the campaign placement report (done for every campaign in Section 5). Fix the engine to read placement at campaign grain and to show the term estimate only as context.', ex_placement)
 
-sysf(2, 'The Best Deal is inside every read and checkpoint', 'Critical',
-     'Best Deal 2026-09-15 → 09-28 is on the calendar (brief.deals). The audit ran 2026-09-21, inside it. 14-day spend and utilisation, the day-4 reshape read of 09-15 (seq 12: “428 impressions in the 3 days before, 89 after” — before/after the deal start), rank “now” (09-20) and rank claims checkpointed 2026-09-25 (42 rows) and 2026-09-28 (15 rows) all sit in the deal.',
-     '`deal.engine_read = null`; the workbook Summary prints “Deal window: No deal in the window”. The timeline notes “6 deal day(s) skipped” only for the 30-day-ago rank.',
-     'Doc §12: “a deal week sits inside the window and contaminates every rate. Resolve those first.” Deal days also change price, so contribution per order and CVR both move. The deal is also the one velocity window the four conditions (§6) recognise — the engine neither excludes it from reads nor times any push to it.',
-     'Every correction in this document prices on ex-deal data (06-23 → 09-14). Deploy no rate-graded change before 2026-09-29; checkpoints: mechanism read 2026-10-06 on data from 09-29, rank read 2026-10-13. Record the deal on the run so the loader and grader see it.')
+sysf(2, 'The run does not see the Best Deal it should be ranking on', 'Critical',
+     'Best Deal 2026-09-15 → 09-28 is on the calendar (brief.deals); the audit ran on 09-21, day 7 of it. The deal is the velocity window for this re-launch (Section 3 shows each focus campaign’s top-of-search delivery before and during it). The engine’s rank checkpoints (09-25 on 42 rows, 09-28 on 15) and its day-4 reshape read of 09-15 compare deal days with pre-deal days.',
+     '`deal.engine_read = null`; the workbook Summary prints “Deal window: No deal in the window”. Steps are sized from the plan and the “book” as if the week were ordinary; the budget pass reads deal-day spend as “budget exhausted”.',
+     'Doc §6: velocity in the window — usually a deal — is the first of the four conditions; with it, “distance is not the constraint … run it inside the window where the velocity is available”. Doc §12: a deal changes every rate, so a step is graded like for like; a read that straddles the deal start (seq 12: 3 days before vs 3 days after 09-15) measures the deal, not the step.',
+     'Use the deal: every correction here prices on the 90 days including deal days, and the moves are timed to buy the remaining deal days (write 09-24). Grade mechanism on deal days only (09-24 → 09-27 vs 09-15 → 09-23); read rank at the deal’s end (09-29); read again post-deal (10-06), when TOS clicks and CVR will fall back — any premium bought for the deal is then probed down in 3–5% steps (§13) rather than left in place. Record the deal on the run so the loader and grader see it.')
 
 sysf(3, 'Rows the engine withholds are exported as changes', 'Critical',
      '35 rows on 21 campaigns carry verdict “change” while their RISKS section reads “IF MISSED: n/a — the rank claim is UNGRADEABLE … THEN: change → HOLD”. They are 16 top-of-search modifier raises, 2 modifier cuts, 14 bid cuts, 1 rest-of-search cut and 2 budget raises (seq 85, 92).',
@@ -370,7 +403,7 @@ sysf(6, 'Contribution per order is inherited from each campaign’s basket', 'Hi
      'Publish one contribution per child (reconcile the $25.06 profitability figure with the fee model) and price every campaign on its serving child. Until then, California King rows carry the flag “contribution unknown” and take no premium.')
 
 sysf(7, 'The distribution fix is under-applied — and applied where it is not owed', 'High',
-     'Ranking-Exact product-page share over 90 days is 45% (6,468 of 14,232 clicks). Ex-deal, 38 of the 54 enabled Ranking-Exact campaigns with ≥15 clicks exceed 20%. The run writes base cuts on 11. Held with PP over 20% (ex-deal): Bamboo Sheets VHSV (29%, $198/day), Bamboo Sheets Queen MSV (68%), Purple Bamboo Sheets (88%), Cooling Sheets Queen HSV (48%) and 20 more (Section 5).',
+     f'Ranking-Exact product-page share over 90 days is 45% (6,468 of 14,232 clicks). {len(LEAK)} of the {len(RK)} enabled Ranking-Exact campaigns with ≥15 clicks exceed 20%. The run writes base cuts on {len(LEAK_CUT)}. Held with PP over 20%: Bamboo Sheets VHSV ({pps("Bamboo Sheets-(VHSV)-Exact")}, $198/day), Bamboo Sheets Queen MSV ({pps("Bamboo Sheets Queen-[Bamboo|Queen]-(MSV)")}), Purple Bamboo Sheets ({pps("Purple Bamboo Sheets")}), Cooling Sheets Queen HSV ({pps("Cooling Sheets Queen-(HSV)")}) and more (Section 5).',
      'Hold rows read “Product pages sits flat over a base priced at rest-of-search economics … there is nothing to correct” — i.e. the engine reads the PP modifier (0%) instead of PP click share.',
      'Doc §5/§10: product pages at or under 20% of clicks — always; above it, cut the base whatever the ceiling permits and re-solve the modifier so the TOS price holds. §12: under 30% TOS on a ranking campaign the fix takes precedence over any price or budget move.',
      'Add the base cuts listed per campaign (cap 25% where PP/ROS carry orders, 50% otherwise), TOS price held by re-solving the modifier. Where the engine climbs TOS on a campaign under 30% TOS (6 campaigns), the climb is removed.')
@@ -388,10 +421,10 @@ sysf(9, 'Pushes are not ceilinged, and their size is not settled', 'High',
      'Each campaign section states required clicks, the $/day the push needs at today’s price, the budget and the shortfall.')
 
 sysf(10, 'Budget raises on campaigns that did not run out of money', 'High',
-     'All six budget rows (+30% each) are “CASE 1, BUDGET EXHAUSTED” at 81–91% utilisation measured on deal days; seq 67 and seq 85/92 sit on campaigns the same run tapers or withholds.',
+     'All six budget rows (+30% each) are “CASE 1, BUDGET EXHAUSTED” at 81–91% utilisation; seq 67 and seq 85/92 sit on campaigns the same run tapers or withholds.',
      '“The pack flags the day as budget-capped”.',
      'Doc §6/§12: raise the budget when the campaign ran out of money, not out of auctions. With share at 1–5% the question is price (bid not clearing) or demand, and a campaign cannot be tapered and funded in the same run.',
-     'Hold all six budgets. Re-test utilisation on post-deal days; where a push is funded, raise to the stated $/day as an operator decision.')
+     'Hold all six unless the campaign caps out on the remaining deal days (each campaign section shows deal-day spend against budget); where a push is funded, raise to the stated $/day as an operator decision.')
 
 sysf(11, 'Predictions the step cannot deliver', 'Medium',
      '20 rows carry the book comparison; 16 ask at least twice what steps of that size have bought (median ×3.1). 13 rank claims promise 15+ positions in 14 days (e.g. seq 14: 49 → ≤16).',
@@ -403,7 +436,7 @@ sysf(12, 'The outcome model starts from the wrong baseline', 'High',
      f'Outcome: top-of-search clicks/week {outcome["tos_clicks_wk_before"]} → {outcome["tos_clicks_wk_after"]} (×21.6), spend ${outcome["spend_day_before"]} → ${outcome["spend_day_after"]}/day (+62%), ACoS {outcome["acos_before"]*100:.1f}% → {outcome["acos_after"]*100:.1f}%, TACoS {outcome["tacos_before"]*100:.1f}% → {outcome["tacos_after"]*100:.1f}%. Amazon’s report puts the product at ~{t90["tos"]/90*7:,.0f} TOS clicks/week.',
      'Δ TOS clicks × each campaign’s TOS price, from a 14-day (deal) base.',
      'The after-ACoS (40.2%) is above break-even (33.9%) even on the engine’s own numbers; with a baseline off by a factor of ~28, neither the spend nor the sales delta can be trusted.',
-     'Recompute the outcome from the campaign placement report on ex-deal days, after the corrections in this document.')
+     'Recompute the outcome from the campaign placement report, separating deal days from the post-deal baseline, after the corrections in this document.')
 
 sysf(13, 'Pushes on heroes that cannot ship through the window', 'High',
      '16 campaigns with price moves advertise a hero the stock gate marks UNDER_HORIZON or NO_ROOM (Queen White, Full White, Twin White, Cal King White) with “child_after: hold”.',
@@ -436,14 +469,14 @@ sysf(17, 'The TOS price falls as a residue of taper bid cuts', 'Medium',
      'Either re-solve the modifier to hold TOS, or state the TOS descent and its point (the ceiling).')
 
 sysf(18, 'Non-ranking rows: sound direction, thin reads', 'Medium',
-     'Conversions sweep rows cut bids to “AOV × break-even × CVR” on 24–32 clicks (seq 2160, 2164–2169) and cut TOS modifiers one rung on Conversions/Discovery campaigns, some with zero clicks in 84 days.',
+     'Conversions sweep rows cut bids to “AOV × break-even × CVR” on 24–32 clicks (seq 2160, 2164–2169) and cut TOS modifiers one rung on Conversions/Discovery campaigns, some with zero clicks in 90 days.',
      '“BID DOWN TO PROFITABLE CPC … a single step”.',
      'Doc scope: other objectives are priced inside their ceilings. The ceiling uses the campaign’s own rate on thin clicks without the §3 blend; modifier cuts on zero-click campaigns change nothing measurable.',
      'Keep direction where the price is above its ceiling; size on the blended rate (campaign sections). Zero-click modifier rows are harmless but ungradeable.')
 
 # ============================ 5. campaigns ============================
 doc.add_heading('5. Campaign by campaign', 1)
-para(f'{len(det)} campaigns: every campaign with a numeric/state row in the run, plus every enabled Ranking campaign where this review finds a move owed. Ordered by focus group, then by spend. All placement figures are Amazon’s campaign placement report; “ex-deal” = 2026-06-23 → 09-14 (84 days).')
+para(f'{len(det)} campaigns: every campaign with a numeric/state row in the run, plus every enabled Ranking campaign where this review finds a move owed. Ordered by focus group, then by spend. All placement figures are Amazon’s campaign placement report for the audit’s 90 days (2026-06-23 → 09-20, deal days included); deal-to-date columns show the Best Deal on its own.')
 
 group_order = ['IN · Bamboo', 'IN · Bamboo|King', 'IN · Bamboo|Queen', 'IN · Cooling|King', 'OUT · taper', '']
 
@@ -467,8 +500,8 @@ for a in det:
     # snapshot table
     tot90 = sum(a['W90'][k]['c'] for k in ('tos', 'detail', 'other'))
     snap = [
-        ['Budget / day', usd(a['budget']), 'Spend/day 14d (deal-inflated)', usd(a['spend_day']), 'Spend/day pre-deal', usd(J['pre_spend'])],
-        ['Rank (keyword)', f"{a['rank_now'] or '—'} now → target {a['rank_tgt'] or '—'} ({a['kw'] or '—'}); 30d ago {a['rank_30'] or '—'}", 'Plan PPC clicks/wk', a['plan_wk'] or '—', 'TOS clicks/wk ex-deal', f"{a['tos_wk']:.1f}"],
+        ['Budget / day', usd(a['budget']), 'Spend/day in the deal', usd(J.get('deal_spend')), 'Spend/day pre-deal', usd(J['pre_spend'])],
+        ['Rank (keyword)', f"{a['rank_now'] or '—'} now → target {a['rank_tgt'] or '—'} ({a['kw'] or '—'}); 30d ago {a['rank_30'] or '—'}", 'Plan PPC clicks/wk', a['plan_wk'] or '—', 'TOS clicks', f"{a['tos_wk']:.1f} (90d) · {a['WP']['tos']['c']/31:.1f}/day pre-deal → {a['WD']['tos']['c']/DD:.1f}/day in the deal"],
         ['TOS impression share', f"{a['tos_is']}%" if a['tos_is'] is not None else '—', 'Market CTR / CVR (SQP)', f"{a['mkt_ctr'] or '—'}% / {a['mkt_cvr'] or '—'}%", 'Contribution / order used', usd(a['contrib']) + (' (engine)' if a['eng_contrib'] else ' (child price × BE)')],
         ['Stock (size)', f"{stk.get('size', '—')}: hero {stk.get('hero', '—')} {stk.get('available', '—')} units, {stk.get('shelf_days', '—')} shelf days, hero room {stk.get('hero_room', '—')}" if stk else '—', 'Serving child', f"{stk.get('serving_child', '—')} ({stk.get('serving_available', '—')})" if stk else '—', 'Situation (doc §12)', J['situation']],
     ]
@@ -486,7 +519,7 @@ for a in det:
         mod = {'tos': a['tos_mod'], 'other': a['ros_mod'], 'detail': a['pp_mod'], 'off': None}[k]
         prow.append([lab, x['c'], pct(share), x['o'] if k != 'off' else '—', pct(cvr, 1) if k != 'off' else '—', usd(x['s'] / x['c']) if x['c'] else '—', usd(cpo) if k != 'off' else '—',
                      f"{d['c']} / {pct(d['o']/d['c'], 1) if d['c'] and k!='off' else '—'}", pct(rate, 1) if rate is not None else '—', usd(ceil), f'{mod}%' if mod is not None else '—'])
-    table(['Placement', 'Clicks ex-deal', 'Share', 'Orders', 'CVR', 'CPC', 'Cost/order', 'Deal 6d clicks / CVR', 'Rate used (§3)', 'Ceiling', 'Modifier now'], prow, size=7.5)
+    table(['Placement', 'Clicks 90d (incl. deal)', 'Share', 'Orders', 'CVR', 'CPC', 'Cost/order', f'Deal {DEAL_LABEL} clicks / CVR', 'Rate used (§3)', 'Ceiling', 'Modifier now'], prow, size=7.5)
     para('Rate basis — TOS: ' + a['why_rate']['tos'] + ' · PP: ' + a['why_rate']['detail'], size=7.5, color=GREY)
     # keyword table
     if a['targets']:
@@ -543,16 +576,17 @@ for a in det:
     # checkpoint
     if a['changes'] or any(f['code'] == 'BASE-CUT-MISSING' for f in a['F']):
         pp_s = a['share']['detail']
+        dtd = a['WD']['tos']['c'] / DD
         pred = []
         if J['base'] and a['base'] and J['base'] < a['base'] - 0.005:
-            pred.append(f"product-page share {pct(pp_s)} → ≤ {pct(max(0.20, (pp_s or 0) - 0.10))} with TOS clicks/wk held at {a['tos_wk']:.1f} ± 15%")
+            pred.append(f"product-page share {pct(pp_s)} → ≤ {pct(max(0.20, (pp_s or 0) - 0.10))} with deal-day TOS clicks held at {dtd:.1f}/day ± 15%")
         if J['price'] and a['price_now'] and J['price'] > a['price_now'] * 1.01:
-            pred.append(f"TOS clicks/wk {a['tos_wk']:.1f} → about {a['tos_wk']*1.3:.1f} (the book’s rate for a step this size), mix unchanged")
+            pred.append(f"deal-day TOS clicks {dtd:.1f}/day → about {dtd*1.3:.1f}/day (the book’s rate for a step this size), mix unchanged")
         if J['price'] and a['price_now'] and J['price'] < a['price_now'] * 0.99:
             pred.append(f"TOS cost per order falls from {usd(a['price_now']/a['rate']['tos'])} to about {usd(J['price']/a['rate']['tos'])}; TOS clicks may thin — the intended half of a descent")
         if not pred:
             pred.append('no price moves; re-read the mix and delivery at the checkpoint')
-        labelled('Checkpoint and prediction.', 'Write 2026-09-29 (after the deal). Read 2026-10-06 on data from 09-29: ' + '; '.join(pred) + '. Rank read 2026-10-13.')
+        labelled('Checkpoint and prediction.', 'Write 2026-09-24 (four deal days left). Mechanism read 2026-09-27 on deal days 09-24 → 09-27 against 09-15 → 09-23: ' + '; '.join(pred) + '. Rank read 2026-09-29 (deal end). Post-deal read 2026-10-06: TOS clicks and CVR will fall back with the deal — probe any premium bought for the deal down in 3–5% steps (§13); the base step stays.')
         labelled('Reversal.', 'Base step: if product-page share does not move, the leak is not price-driven — restore the base. Price step: if TOS clicks do not rise, read impression share and suppression before any further price. Descent: if TOS orders fall further than the click reduction explains, restore one step and record the floor.')
 
 # ============================ Appendix A register ============================
@@ -564,18 +598,18 @@ table(['Seq', 'Campaign', 'Kind', 'Entity', 'Now', 'Engine', 'Verdict', 'Deploy'
 
 # ============================ Appendix B clean ============================
 doc.add_heading('Appendix B — Enabled Ranking campaigns reviewed with no correction', 1)
-para('Held by the engine and, on their own ex-deal data, owed no move under the document (mix within the lines, price at or under the ceiling, or too few clicks to act on).')
+para('Held by the engine and, on their own 90-day data, owed no move under the document (mix within the lines, price at or under the ceiling, or too few clicks to act on).')
 rows = []
 for a in sorted(clean, key=lambda a: -(a['spend_day'] or 0)):
     rows.append([short(a['name'])[:80], a['focus'], a['tot'], pct(a['share']['tos']), pct(a['share']['detail']), usd(a['price_now']), usd(a['ceil']['tos']), usd(a['spend_day'])])
-table(['Campaign', 'Focus', 'Clicks ex-deal', 'TOS share', 'PP share', 'TOS price', 'TOS ceiling', 'Spend/day 14d'], rows, widths=[10, 3.4, 2, 1.8, 1.8, 2, 2, 2], size=7)
+table(['Campaign', 'Focus', 'Clicks 90d', 'TOS share', 'PP share', 'TOS price', 'TOS ceiling', 'Spend/day 14d'], rows, widths=[10, 3.4, 2, 1.8, 1.8, 2, 2, 2], size=7)
 
 # ============================ Appendix C codes ============================
 doc.add_heading('Appendix C — Finding codes', 1)
 codes = [
-    ('PLACEMENT-READ', 'S1', 'Engine placement read ≠ campaign placement report'), ('DEAL', 'S2', 'Rates/checkpoints inside the Best Deal'),
+    ('PLACEMENT-READ', 'S1', 'Engine placement read ≠ campaign placement report'), ('DEAL', 'S2', 'Run blind to the Best Deal; moves not timed to it'),
     ('WITHHELD', 'S3', 'Rationale withholds, export changes'), ('FLOOR', 'S5', '100-click floor written as 15'), ('CONTRIB', 'S6', 'Contribution not the serving child’s'),
-    ('BASE-CUT-MISSING', 'S7', 'PP >20% and the base is held'), ('BASE-CUT-NOT-OWED', 'S7', 'Base cut with PP ≤20%'), ('BASE-CUT-NO-DELIVERY', 'S7', 'Base cut on a non-delivering row'),
+    ('BASE-CUT-MISSING', 'S7', 'PP >20% and the base is held'), ('BASE-CUT-NOT-OWED', 'S7', 'Base cut with PP ≤20%'), ('BASE-CUT-NO-DELIVERY', 'S7', 'Base cut on a non-delivering row'), ('PREMIUM-HELD', 'S8', 'Held TOS premium above the ceiling, push unproven'), ('BASE-CUT-DEAL', 'S7', 'Base cut while the deal mix is already ≤20% PP'),
     ('CLIMB-MIX-FIRST', 'S7', 'Price climb with TOS <30%'), ('PREMIUM-UNFUNDED', 'S8', 'Above-ceiling TOS on a non-push row'), ('PUSH-UNPROVEN', 'S8/S9', 'Above-ceiling climb failing a push test'),
     ('CUT-BEFORE-70', 'S8', 'TOS price cut on a push below 70% of its clicks'), ('CEILINGED', 'S9', 'Premium with no dollar loss ceiling'), ('BUDGET', 'S10', 'Budget raise not supported'),
     ('PREDICTION', 'S11', 'Claim larger than the step can buy'), ('STOCK', 'S13', 'Hero cannot ship'), ('STRATEGY', 'S14', 'Up-and-down bidding on a push'),

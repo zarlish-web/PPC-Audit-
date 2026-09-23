@@ -78,7 +78,7 @@ def detect(a):
             f"Row {r['seq']} proposes the top-of-search modifier {r['now']}% → {r['to']}%.",
             f"Previous review (run 20260919-20efcefa): {pv[1]}.",
             'The same lever comes back without the condition that held it having been read (the open tuner record / the deal guard are still running).',
-            'Hold until the open record is graded after the deal (2026-09-28) — or, if re-proposed, apply at most the previous corrected size.', [r])
+            'Apply at most the size last week\'s review allowed, now, so it buys deal-day clicks; grade it on deal days against the open record\'s baseline.', [r])
 
     # --- 4. deal contamination: checkpoints inside the deal, rates including deal days
     dd = a['WD']
@@ -89,12 +89,16 @@ def detect(a):
         share_deal = d_clicks / all90 if all90 else 0
         dd_cvr = (dd['tos']['o'] / dd['tos']['c']) if dd['tos']['c'] else None
         ex_cvr = (tos['o'] / tos['c']) if tos['c'] else None
-        add('DEAL', 'Reads and checkpoints sit inside the Best Deal (2026-09-15 → 09-28)',
-            f"{d_clicks} of this campaign's {all90} ninety-day clicks ({share_deal:.0%}) fell in the six deal days read; TOS CVR in the deal {pct(dd_cvr)} vs {pct(ex_cvr)} ex-deal."
-            + (f" Checkpoints of rows {seqs(in_deal)} fall on dates inside the deal." if in_deal else ''),
-            "The engine read no deal ('engine_read: null'; the workbook Summary says 'No deal in the window').",
-            "Doc §12: a deal week inside the window contaminates every rate and voids the read until resolved. Rank 'now' (2026-09-20) is itself an in-deal reading.",
-            'Price on the ex-deal window (06-23 → 09-14, used throughout this document). Move every checkpoint to data from 2026-09-29 onwards (first read 2026-10-06); grade no step on deal days.',
+        pre = a['WP']
+        pre_tos_d = pre['tos']['c'] / 31
+        d_days = 8 if a.get('deal_days') == 8 else 6
+        deal_tos_d = dd['tos']['c'] / d_days
+        add('DEAL', 'The run does not see the Best Deal it is supposed to be ranking on',
+            f"Best Deal 2026-09-15 → 09-28. On the deal days read this campaign took {dd['tos']['c']} top-of-search clicks ({deal_tos_d:.1f}/day vs {pre_tos_d:.1f}/day in the 31 days before), TOS CVR {pct(dd_cvr)} in the deal vs {pct(ex_cvr)} over 90 days."
+            + (f" Rank checkpoints of rows {seqs(in_deal)} fall inside the deal." if in_deal else ''),
+            "The engine read no deal ('engine_read: null'; the workbook Summary says 'No deal in the window'); its steps are sized and dated as if the week were ordinary.",
+            "Doc §6: sales velocity in the window — 'usually a deal' — is the first of the four conditions that make a wide rank gap climbable; a push is run inside the window where the velocity is available. Doc §12: deal days change every rate, so a step is graded like for like (deal days against deal days), not against a pre-deal baseline.",
+            "Treat the deal as the push window: write the TOS moves now so they buy clicks on the remaining deal days (to 09-28); grade the mechanism on deal days only (09-24 → 09-27 against 09-15 → 09-23), read rank at the deal's end (09-29), and plan the post-deal read (10-06) where any premium bought for the deal is probed back down (§13).",
             ch, 'High')
 
     # --- 5. read-floor misstatement
@@ -103,7 +107,7 @@ def detect(a):
         add('FLOOR', 'Read floor mis-stated: engine uses 100 clicks and calls it "15"',
             f"The rationale says top of search 'carries {a['floor_misstated']} clicks in 90 days, under the 15-click read floor'.",
             "The engine's own floor is 100 clicks ('the read floor is ... 100 clicks ÷ 22 days').",
-            f"Doc §3: 15 clicks is the floor, a blend from 15 to 50, own rate from 50. At {tos['c']} ex-deal TOS clicks this campaign's own rate {'carries full weight' if tos['c'] >= 50 else 'is blended in'}; it is readable.",
+            f"Doc §3: 15 clicks is the floor, a blend from 15 to 50, own rate from 50. At {tos['c']} 90-day TOS clicks this campaign's own rate {'carries full weight' if tos['c'] >= 50 else 'is blended in'}; it is readable.",
             f"Price on the blended rate: {a['why_rate']['tos']} → TOS ceiling {usd(ceil['tos'])}.", ch, 'Medium')
 
     # --- 6. base cut when PP ≤ 20%, or missing when PP > 20%
@@ -112,20 +116,26 @@ def detect(a):
     if ranking and a['tot'] >= 15 and sh['detail'] is not None:
         if sh['detail'] <= 0.20 and cuts and not any('TAPER' in (r.get('engine') or '') for r in cuts):
             add('BASE-CUT-NOT-OWED', 'Base cut on a campaign whose mix is already right',
-                f"Rows {seqs(cuts)} cut the base while product pages take {pct(sh['detail'])} of ex-deal clicks ({pp['c']} of {a['tot']}).",
+                f"Rows {seqs(cuts)} cut the base while product pages take {pct(sh['detail'])} of 90-day clicks ({pp['c']} of {a['tot']}).",
                 'Rationale cites the distribution fix.',
                 'Doc §10: under 20% product pages the base is doing its job — no reason to touch it. A cut here only thins delivery.',
                 f"Hold the base at {usd(a['base'])}; if a price move is owed it is at top of search via the modifier.", cuts)
-        if sh['detail'] > 0.20 and not cuts and not a['frozen']:
+        if J.get('deal_ok_mix') and cuts:
+            add('BASE-CUT-DEAL', 'Base cut while the deal has already fixed the mix',
+                f"Rows {seqs(cuts)} cut the base. Product pages were {pct(sh['detail'])} over 90 days but {pct(J['deal_pp'])} of the {J['deal_tot']} deal-day clicks.",
+                trunc(cuts[0].get('decision'), 250),
+                'Doc §10: with product pages under 20% the base is doing its job. During the deal a base cut only risks the top-of-search clicks the deal is delivering.',
+                f"Hold the base at {usd(a['base'])} to 09-28; re-test the mix on post-deal days (10-06) and cut then if product pages climb back over 20%.", cuts)
+        if sh['detail'] > 0.20 and not cuts and not a['frozen'] and not J.get('deal_ok_mix'):
             add('BASE-CUT-MISSING', 'Product pages over 20% and the base is not cut',
-                f"Product pages take {pct(sh['detail'])} of ex-deal clicks ({pp['c']} of {a['tot']}, {pp['o']} orders at {usd(a['cpc']['detail'])} CPC).",
+                f"Product pages take {pct(sh['detail'])} of 90-day clicks ({pp['c']} of {a['tot']}, {pp['o']} orders at {usd(a['cpc']['detail'])} CPC).",
                 'The engine held the base' + (' (hold rationale: "nothing to correct")' if not bid_rows else '') + '.',
                 'Doc §5/§12: product pages must sit at or under 20% — always; above it, cut the base and re-solve the modifier so the TOS price holds.',
                 f"Base {usd(a['base'])} → {usd(J['base'])} ({J['base_why']}); TOS price held at {usd(J['price'])} with modifier {J['mod']}%.",
                 [], 'High')
     if cuts and a['tot'] < 15 and ranking:
         add('BASE-CUT-NO-DELIVERY', 'Base cut on a row that is not delivering',
-            f"Rows {seqs(cuts)} cut the base; the campaign took {a['tot']} clicks in 84 ex-deal days (TOS {tos['c']}, PP {pp['c']}, ROS {ros['c']}).",
+            f"Rows {seqs(cuts)} cut the base; the campaign took {a['tot']} clicks in 90 days (TOS {tos['c']}, PP {pp['c']}, ROS {ros['c']}).",
             trunc(cuts[0].get('decision'), 250),
             'Doc §10/§12: whether clicks are arriving at all — none arriving means there is no distribution to fix; hold the base and move the modifier only. Cutting the base of a row that is not delivering makes delivery worse.',
             f"Hold the base at {usd(a['base'])}.", cuts)
@@ -143,7 +153,7 @@ def detect(a):
         step = a['price_eng'] / a['price_now'] - 1
         if up and J['mix_first']:
             add('CLIMB-MIX-FIRST', 'Price climb on a campaign whose top of search is under 30% of clicks',
-                f"Row {r['seq']}: TOS {usd(a['price_now'])} → {usd(a['price_eng'])} (+{step:.0%}); TOS carries {pct(sh['tos'])} of ex-deal clicks.",
+                f"Row {r['seq']}: TOS {usd(a['price_now'])} → {usd(a['price_eng'])} (+{step:.0%}); TOS carries {pct(sh['tos'])} of 90-day clicks.",
                 trunc(r.get('decision'), 300),
                 'Doc §12/§14: below 30% at top of search the distribution fix takes precedence — no price climb and no budget move until the mix is corrected.',
                 f"No climb. Base {usd(a['base'])} → {usd(J['base'])}; TOS held at {usd(a['price_now'])} (modifier re-solved to {J['mod']}%).", [r])
@@ -199,6 +209,18 @@ def detect(a):
             'Doc §9/§17: the TOS price never falls as a residue of a base cut. If it comes down, that is its own decision landing on a named point.',
             f"Either re-solve the modifier to hold TOS at {usd(a['price_now'])} ({round((a['price_now'] / fnum(cuts[0]['to']) - 1) * 100)}% on the new base), or name the point it descends to (the TOS ceiling {usd(ceil['tos'])}).", cuts)
 
+    # --- 7b. held premium above the ceiling on an unproven push
+    if not tos_rows and J['push_case'] and not J.get('premium_ok') and a['price_now'] and ceil['tos'] and a['price_now'] > ceil['tos'] * 1.02 and a['tot'] >= 15:
+        c = J['conditions']
+        miss = [n for n, v in (('funded', J['funded']), ('CTR above market', c['ctr']), ('CVR above market', c['cvr'])) if not v]
+        cpo = a['price_now'] / a['rate']['tos']
+        dd = a['WD']
+        add('PREMIUM-HELD', 'Top of search held above its ceiling with the push case unproven',
+            f"TOS price {usd(a['price_now'])} against a ceiling of {usd(ceil['tos'])} ({a['why_rate']['tos']}): {usd(cpo)} per TOS order against {usd(a['contrib'])} contribution, a loss of {usd(cpo - a['contrib'])} per order. In the deal the campaign is taking {dd['tos']['c']} TOS clicks ({dd['tos']['c'] / a['deal_days']:.1f}/day) at {usd(dd['tos']['s'] / dd['tos']['c']) if dd['tos']['c'] else '—'} CPC. Not shown: {', '.join(miss)}.",
+            'The engine holds every lever on the campaign.',
+            'Doc §6/§11: a premium above the ceiling needs all five push properties and all four conditions; the deal supplies velocity, but not a budget that funds the requirement or a market CTR/CVR read. Doc §14: a push below 70% of its clicks is not cut — so the premium stands, but as a decision someone signs, with its dollar loss ceiling.',
+            f"Keep the price through the deal (09-28) — the deal is when this premium can buy rank. Write the decision on the row: {J['budget_why'] or 'no requirement on file'}; loss ceiling {usd((J['req_day'] or 0) * a['price_now'] * 7)}/week at the required clicks. After the deal (10-06), fund it on a dated loss ceiling or descend to the ceiling {usd(ceil['tos'])}.",
+            [], 'High')
     # --- 8. modifiers above caps
     mods = [r for r in tos_rows if fnum(r['to']) and fnum(r['to']) > 500]
     if mods:
@@ -211,7 +233,7 @@ def detect(a):
         earned = ros['c'] >= 15 and ros['c'] and (ros['o'] / ros['c']) >= (a['rate']['detail'] or 0)
         if not earned:
             add('ROS-OK', 'Rest-of-search modifier to zero — agrees with the document',
-                f"Row {r['seq']}: {r['now']}% → {r['to']}%. ROS ex-deal {ros['c']} clicks, {ros['o']} orders ({pct(ros['o'] / ros['c'] if ros['c'] else None)}) vs product-page rate {pct(a['rate']['detail'])}.",
+                f"Row {r['seq']}: {r['now']}% → {r['to']}%. ROS 90-day {ros['c']} clicks, {ros['o']} orders ({pct(ros['o'] / ros['c'] if ros['c'] else None)}) vs product-page rate {pct(a['rate']['detail'])}.",
                 '', 'Doc §8 item 10: ROS sits at zero until 15+ clicks convert at or above the product-page rate (a switch, not a blend).', 'Keep.', [r], 'OK')
     for r in [x for x in ch if x['kind'] == 'pp']:
         add('PP-OK', 'Product-page modifier to zero — agrees with the document',
@@ -225,7 +247,7 @@ def detect(a):
         taper = 'TAPER' in t
         issue = []
         if u is not None and u < 95:
-            issue.append(f'{u}% utilisation is not exhaustion (and it is measured on deal-inflated days)')
+            issue.append(f'{u}% utilisation is not exhaustion ')
         if taper:
             issue.append('the same campaign is on the taper — the engine raises and releases it in one run')
         if J['mix_first']:
@@ -237,16 +259,16 @@ def detect(a):
             issue.append(f"sized on {float(req.group(1)):.1f} clicks/day = {float(req.group(1))*7:.0f}/wk while the TARGET section asks {plan.group(1)}/wk" + (f" (chain {chain.group(1)}/wk)" if chain else ''))
         pre = J['pre_spend']
         add('BUDGET', 'Budget raise not supported by the campaign\'s own read' if issue else 'Budget raise',
-            f"Row {r['seq']}: ${r['now']} → ${r['to']}/day. Pre-deal spend {usd(pre)}/day; 14-day (deal-inflated) {usd(a['spend_day'])}/day.",
+            f"Row {r['seq']}: ${r['now']} → ${r['to']}/day. Deal-day spend {usd(J.get('deal_spend'))}/day; pre-deal {usd(pre)}/day.",
             trunc(r.get('decision'), 250) + ' | ' + trunc(r.get('engine'), 250),
             ('; '.join(issue) + '. Doc §6/§12: budget is raised only when the campaign ran out of money; otherwise the question is price (share low) or demand (share high).') if issue else 'Consistent with doc §12 on its face.',
-            'Hold the budget at $' + r['now'] + ('/day' if issue else '/day unless ex-deal days show the campaign capping out.'),
+            'Hold the budget at $' + r['now'] + ('/day unless it caps out on the remaining deal days.' if issue else '/day.'),
             [r], 'High' if issue else 'OK')
 
     # --- 11. bid strategy
     if a['bid_strategy'] == 'AUTO_FOR_SALES' and ranking:
         add('STRATEGY', 'Up-and-down bidding on a ranking push',
-            f"Bid strategy AUTO_FOR_SALES (dynamic up and down): Amazon may lift the TOS bid by up to 100%, so the {usd(a['price_eng'] or a['price_now'])} written price can clear at up to {usd((a['price_eng'] or a['price_now']) * 2)}. It already does: ex-deal TOS CPC {usd(a['cpc']['tos'])} against today's written TOS price {usd(a['price_now'])}.",
+            f"Bid strategy AUTO_FOR_SALES (dynamic up and down): Amazon may lift the TOS bid by up to 100%, so the {usd(a['price_eng'] or a['price_now'])} written price can clear at up to {usd((a['price_eng'] or a['price_now']) * 2)}. It already does: 90-day TOS CPC {usd(a['cpc']['tos'])} against today's written TOS price {usd(a['price_now'])}.",
             "The engine prices as if the written price were the ceiling ('authorized ceiling $13.39 → $16.23').",
             f"Doc §8: the market bound and the per-unit bound must hold on every click. {usd((a['price_eng'] or a['price_now']) * 2)} is above the TOS ceiling {usd(ceil['tos'])} and the unit's contribution {usd(a['contrib'])}.",
             'Switch to fixed bids (doc §10: fixed while launching/re-launching, or as the last-resort trade) or down-only, then write the TOS price.', [], 'High')
@@ -271,7 +293,7 @@ def detect(a):
                 + (f"Rank claim {rc.group(1)} → ≤{rc.group(2)} in 14 days." if rc else ''),
                 "The engine files the plan's requirement as the step's prediction.",
                 'Doc §11: the prediction is the written expectation of THIS step; account hit rate on graded predictions is 4.8% (5 of 104). A claim sized from the plan grades as a miss even when the step is right, and teaches nothing.',
-                "Predict what the step buys (the book's rate for this size), dated to post-deal data; keep the plan as the destination.", [r], 'Medium')
+                "Predict what the step buys (the book's rate for this size) on deal days; keep the plan as the destination.", [r], 'Medium')
     # --- 14. premium rows with no dollar loss ceiling
     prem = [r for r in tos_rows if r.get('loss')]
     if prem and not any('loss ceiling' in (r.get('text') or '') for r in prem):
@@ -318,7 +340,7 @@ def detect(a):
         r = tos_rows[0]
         if fnum(r['to']) is not None and fnum(r['now']) is not None and fnum(r['to']) < fnum(r['now']):
             add('NONRANK-TOS-CUT', 'TOS modifier cut on a campaign whose top of search pays',
-                f"Row {r['seq']}: {r['now']}% → {r['to']}%. Ex-deal top of search: {tos['c']} clicks, {tos['o']} orders, cost per order {usd(tcpo)} against {usd(a['contrib'])} contribution.",
+                f"Row {r['seq']}: {r['now']}% → {r['to']}%. 90-day top of search: {tos['c']} clicks, {tos['o']} orders, cost per order {usd(tcpo)} against {usd(a['contrib'])} contribution.",
                 trunc(r.get('decision'), 220),
                 'Doc scope: other objectives are priced inside their ceilings. Top of search here costs less per order than the order earns — it is inside its ceiling; “the premium buys rank” is not a pricing reason.',
                 'Hold the modifier.', [r], 'Medium')
@@ -349,7 +371,7 @@ def detect_extra(a):
                      f". Amazon's campaign placement report (Command Center, same 90 days) shows TOS {cc}, product pages {a['W90']['detail']['c']}, rest of search {a['W90']['other']['c']} of {cc_tot} clicks — PP {a['W90']['detail']['c']/cc_tot:.0%}.",
                 why='The engine prices and grades on a term-level estimate of placement (the keyword grain, which Amazon never reports by placement).',
                 issue='Doc §16 Table 2: placement is read per campaign per placement — the grain Amazon reports. A term estimate at a fraction of the real clicks mis-states the mix, the TOS conversion, the ceiling and whether the distribution fix is owed.',
-                fix=f"Re-derive on the campaign report: ex-deal TOS {X['tos']['c']} clicks / {X['tos']['o']} orders, PP {X['detail']['c']} / {X['detail']['o']}, ROS {X['other']['c']} / {X['other']['o']}; ceilings TOS {usd(a['ceil']['tos'])}, PP {usd(a['ceil']['detail'])}.",
+                fix=f"Re-derive on the campaign report: 90-day TOS {X['tos']['c']} clicks / {X['tos']['o']} orders, PP {X['detail']['c']} / {X['detail']['o']}, ROS {X['other']['c']} / {X['other']['o']}; ceilings TOS {usd(a['ceil']['tos'])}, PP {usd(a['ceil']['detail'])}.",
                 rows=[eng]))
     ec = a.get('eng_contrib')
     econ = a['econ']
