@@ -109,10 +109,10 @@ lead('Reading it.', 'Every Bamboo group meets its CTR and CVR bars at top of sea
 
 # ---------------------------------------------------------------- D5 keywords
 section('The main ranking keywords — one call each')
-lead('What the columns say.', 'Every main ranking keyword (the rank-tracked terms plus the top spenders); the full verdict and recommendation for each is in Appendix B. Plan = the plan’s weekly PPC-click requirement for the keyword (B4 brief). TOS/wk = top-of-search clicks a week over 30 days, and in the deal. IS = Amazon’s top-of-search impression share on the exact target, at the effective top-of-search bid shown. Org / SP = organic and sponsored position (ASINsight, 17 Sep). Rank = our tracked rank 24 Jun → 14 Sep → 22 Sep.')
+lead('What the columns say.', 'The main ranking keywords (rank-tracked terms and top spenders with 20+ clicks in 30 days). Plan = the plan’s weekly PPC-click requirement for the keyword (B4 brief). TOS/wk = top-of-search clicks a week over 30 days, and in the deal. IS = Amazon’s top-of-search impression share on the exact target, at the effective top-of-search bid shown. Org / SP = organic and sponsored position (ASINsight, 17 Sep). Rank = our tracked rank 24 Jun → 14 Sep → 22 Sep.')
 for prod, lab, KW in (('b4', 'B4', KW4),):
     rows = []
-    for r in KW:
+    for r in [r for r in KW if (r['clicks'] or 0) >= 20][:16]:
         pl = PLAN.get(r['kw']) if prod == 'b4' else None
         wk = r['tos_clicks'] / 30 * 7
         rows.append([r['kw'][:30], pl['ppc_clicks_target'] if pl else '—', f"{wk:.0f} / {r['deal_tos_day'] * 7:.0f}",
