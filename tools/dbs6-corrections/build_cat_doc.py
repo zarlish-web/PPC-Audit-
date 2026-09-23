@@ -212,9 +212,9 @@ def dark_extra(c):
     mods = [f"top-of-search modifier {bf}% → {af}%" for lab, bf, af in c['restore'] if lab == 'TOS modifier']
     p = c.get('push') or {}
     if cuts and p.get('price1'):
-        b0 = float(cuts[0][0]); m = (p['price1'] / b0 - 1) * 100
+        b0 = max(float(cuts[0][0]), p['price1'] / 10); m = (p['price1'] / b0 - 1) * 100
         return (f"; restore first: the 11 September round cut its base ${float(cuts[0][0]):.2f} → ${float(cuts[0][1]):.2f}" + (f" (base now {usd(c['base'])})" if c.get('base') else '') + (f" and moved the {mods[0]}" if mods else '') +
-                f" — write the base back to ${b0:.2f} and solve the modifier at the new price: {m:.0f}% (instead of the modifier above)")
+                f" — write the base back to ${b0:.2f}" + (" (above the pre-cut value: at the new price the 900% wall needs it)" if b0 > float(cuts[0][0]) + 0.004 else "") + f" and solve the modifier at the new price: {m:.0f}% (instead of the modifier above)")
     return '; the 11 September round changed it (' + '; '.join(mods) + ') — read it the day after the push'
 
 
@@ -283,13 +283,13 @@ doc.add_heading('Part A — In-focus exact ranking campaigns: push top of search
 lead('The rule.', 'From 09-24 every in-focus exact ranking campaign is pushed on the top-of-search modifier, every day, until its required top-of-search clicks arrive. Nothing is held for being thin, for having no clicks yet, or for review — a campaign that is not getting clicks is not in the auction, and only the top-of-search price can put it there.')
 lead('How big each day’s step is.', 'Sized by the delivery gap — top-of-search clicks a day over the last 8 days against the requirement: under 30% delivered +30%; 30–70% +20%; over 70% +10%; at or over the requirement, no step. Where the last raise (16 September) did not lift impression share, the step is halved: price that bought no share buys no more by being repeated. Rank distance only breaks ties. A campaign with no click requirement on file takes +20% — a stated departure from the logic document, which would hold it at the ceiling with no premium; these are low-volume terms, and the push doubles as the eligibility check.')
 lead('What stops it.', 'Four things, each written on the row. (1) The loss stop: the top-of-search price may not pass the point where a top-of-search order costs more than 3× contribution — 3 × contribution (the advertised child’s; $26.46 on average) × the campaign’s top-of-search conversion rate (its own when it has 15 or more top-of-search clicks in 90 days; under 15, the product’s average across all exact ranking campaigns, 19.4%). Every pushed row carries its cost and loss per order at the new price. Contribution is the advertised child’s at today’s price. B6 has no deal, so there is no deal velocity to lean on: the stop is the same 3× as B4 (operator 2026-09-23), and it is the stop — not a deal — that bounds the push. (2) The share stop: impression share at 40% or more and not rising after the last step — the requirement is overstated, not the price; it is re-based from actual volume. (3) The reachability check: delivered clicks ÷ impression share is what winning the whole auction would buy; where the requirement is above that, the campaign is pushed toward share and graded on share, not on an unbuyable click count. (4) The envelope: the push runs inside 1.5× today’s daily spend on these campaigns for 09-24 → 09-28; when it is spent, every row holds.')
-lead('What every write covers.', 'The base is held unless product pages are over 20% (then it comes down in the same write). The top-of-search modifier applies to every target in the campaign; a base cut is applied as the same percentage to every enabled target, and the price quoted is the plan keyword’s. Where 80% or more of the budget was used in the last 7 days, the budget goes up 30% in the same write.')
+lead('What every write covers.', 'The base is held unless product pages are over 20% (then it comes down in the same write). The top-of-search modifier applies to every target in the campaign; a base cut is applied as the same percentage to every enabled target, and the price quoted is the plan keyword’s. Amazon caps the modifier at 900%: where a step would pass it — common on B6 after the 11 September round left rows at 400–860% — the base carries the rest of the raise (base = price ÷ 10, modifier 900%) and product-page share is read the next day. Every row is priced from live values on the morning of the write (two rows here were moved on 22 September, after the audit, and are priced from those). Where 80% or more of the budget was used in the last 7 days, the budget goes up 30% in the same write.')
 lead('The daily read.', 'Each morning to 09-28, per campaign: top-of-search clicks yesterday, impression share, where the clicks landed, budget use and hours out of budget. The two levers are graded separately: the price step on impression share (rose → keep stepping; flat → halve the next step), the budget raise on hours out of budget. Clicks at the requirement — stop stepping. Clicks landing on product pages — cut the base, don’t stop the top-of-search push. Still zero after two steps — check the ad is live, the child it serves, and the listing, while the push continues.')
 lead('After the first push window (from 09-29).', 'The window closes and every row is read. A campaign that reached its requirement moves to cost-per-click evaluation: probe down 3–5% a step while click share holds. One that did not reach it does not keep stepping: its top-of-search price steps down to break-even (contribution × its top-of-search conversion rate) over two writes four days apart, unless its 7-day rank has moved into the target range, in which case it holds one week at the push price and is read again. The decision is written on the row.')
 nup = sum(1 for c in IN if c['push'] and c['em'].get('price_dir') == 'up')
 nheld = sum(1 for c in IN if c['push'] and not moved(c))
 ncut = sum(1 for c in IN if c['push'] and c['em'].get('price_dir') == 'down')
-lead('What the run did.', f"Of the {len(PUSHED)} in-focus campaigns that should be pushed, the run raised the top-of-search price on {nup}, cut it on {ncut} and held {nheld}. It held rows for being thin, for no rank read, for a rank collapse, for sitting at its market bound, and on budget.")
+lead('What the run did.', f"Of the {len(PUSHED)} in-focus campaigns that should be pushed, the run raised the top-of-search price on {nup}, cut it on {ncut} and left it where it was on {len(PUSHED) - nup - ncut} ({nheld} untouched, {len(PUSHED) - nup - ncut - nheld} with other moves that leave the top-of-search price unchanged). It held rows for being thin, for no rank read, for a rank collapse, for sitting at its market bound, and on budget.")
 
 section(f'The push in numbers ({sum(1 for c in PUSHED if c["push"]["step"] > 0)} stepped, {sum(1 for c in PUSHED if c["push"].get("at_req"))} at requirement, {len(by("IN_PAUSED"))} with its keyword paused)')
 lead('What the correction writes.', 'Every in-focus campaign short of its clicks gets a top-of-search step sized by its delivery gap, in the same write as any base cut or budget raise it needs, inside the loss stop. The sections below take each situation in turn with the campaigns where the run got it most wrong; every campaign follows the same rule.')
@@ -304,7 +304,7 @@ for lo, hi, lab in ((0.25, 1, '+30% — under 30% of required clicks delivered')
 table(['Step', 'Campaigns', 'Run raised TOS', 'Run cut or held', 'At the loss stop', 'Requirement above what the auction holds', 'Median loss per order at new price', 'Budget +30%'], rows, widths=[5.0, 1.4, 1.5, 1.5, 1.4, 2.2, 2.0, 1.4], size=7.5)
 _dsp = sum(c['R']['deal8']['spend'] for c in PUSHED) / 8
 _proj = sum(c['R']['deal8']['spend'] / 8 * ((c['push']['price1'] or 0) / c['push']['price0']) for c in PUSHED if c['push']['price0'])
-lead('The envelope.', f"These campaigns spent ${_dsp:,.0f} a day over the last 8 days. The push runs inside 1.5× that for 09-24 → 09-28: **${1.5 * _dsp * 5:,.0f}** in total (${1.5 * _dsp:,.0f} a day). At the new prices with clicks unchanged they would spend about ${_proj:,.0f} a day; every click the push adds comes on top, so the envelope — not a price cap — is what ends an over-running push. The loss per order is computed on the full top-of-search price; what Amazon charges is at or below it, so it is an upper bound.")
+lead('The envelope.', f"These campaigns spent ${_dsp:,.0f} a day over the last 8 days; B6’s whole ad account ran $349 a day over 14 days. The push is funded at the engine’s own plan for this run — **$619 a day** (the audit workbook’s after-audit ad spend, $618.71), **$3,094** for 09-24 → 09-28 (operator 2026-09-23). At the new prices with clicks unchanged these campaigns would spend about ${_proj:,.0f} a day; the rest of the $619 is room for the clicks the push buys. Rows keep stepping daily while impression share rises, inside the loss stop, until the envelope is spent. Buying the whole plan requirement at the new prices would cost about $1,050 a day — the level the 20 September review endorsed; that is the next funding question, after this week’s read.")
 para('TOS price = base × (1 + TOS modifier); the modifier is solved from the price decided and the base.', size=8.5, color=GREY)
 
 
@@ -358,12 +358,16 @@ if ont:
     lead('The rule.', 'A campaign already delivering its required top-of-search clicks is not pushed further. If it is at its rank target and converting poorly, that is the one case to evaluate lowering cost per click; after the deal, probe the price down 3–5% and watch click share.')
     for c in ont:
         example(c, 'Correction: hold the price' + (f"; keep the budget raise (it used {pct(c['util7'])} of its budget in the last 7 days)" if (c['util7'] or 0) >= 0.8 else '') + '; after 09-28, evaluate cost per click.')
-pz = by('IN_PAUSED')
+pz = by('IN_PAUSED') + [c for c in PUSHED if not c['push']['price0']]
 if pz:
-    section(f'{len(pz)} in-focus campaign{"s" if len(pz) != 1 else ""} whose only keyword is paused — not a push')
+    section(f'{len(pz)} in-focus campaign{"s" if len(pz) != 1 else ""} that cannot serve — keyword paused or no bid on file')
     lead('The rule.', 'A campaign whose keywords are all paused cannot serve at any price. If the term is owned by another exact campaign, the pause is right — two instances of the same exact term split the read. If no other campaign carries it, the pause has taken an in-focus term out of ranking and needs a decision.')
     for c in pz:
-        example(c, 'Its only keyword is paused and no other enabled exact campaign carries the term, so the term has left the ranking programme without a decision. Correction: re-enable the keyword at its last serving values and put it in the push — or, if the pause was deliberate, take the campaign out of focus and say why.')
+        if c['cat'] == 'IN_PAUSED':
+            example(c, 'Its only keyword is paused and no other enabled exact campaign carries the term, so the term has left the ranking programme without a decision. Correction: re-enable the keyword at its last serving values and put it in the push — or, if the pause was deliberate, take the campaign out of focus and say why.')
+        else:
+            _m = c['tos_mod'] or 0
+            example(c, f"It is enabled with an enabled target but carries no bid on file, so it cannot serve and the push has nothing to step. Correction: set its bid so the top-of-search price sits at its market bound ({usd(c['limit'][1])}) at the current {_m:.0f}% modifier — a base of {usd(c['limit'][1] / (1 + _m / 100))} — then it joins the push on the next day’s read.")
 hb = [c for c in PUSHED if c['push']['hero_bad']]
 if hb:
     section(f'{len(hb)} in-focus campaigns advertising a hero that can’t ship — re-point the ad the same day')
@@ -379,6 +383,7 @@ cs = by('OUT_TEST')
 if cs:
     section(f'{len(cs)} out-of-focus campaigns that convert at the top — a two-week test')
     lead('The rule.', 'Focus stays as the plan sets it on every syntax (operator 2026-09-23): Bamboo|Queen and the cooling groups stay out of focus. But an out-of-focus term that already converts at top of search above the bar — 3× the market CVR of its group, on 15 or more top-of-search clicks in 90 days — is tested rather than held: top-of-search price +10% for two weeks (09-24 → 10-07), inside the same loss stop (3× contribution per top-of-search order), on a child that can ship. A campaign that went dark gets its pre-cut base back first; one whose rank collapsed gets the cause check the same day.')
+    lead('The test budget.', f"Each test runs on a budget sized to about 15 top-of-search clicks over the two weeks at its test price (price × 15 ÷ 14 a day, at least $5): {usd(sum(c['test']['budget1'] for c in cs), 0)} a day across the {len(cs)}, in place of the {usd(sum(c['budget'] or 0 for c in cs), 0)} a day their current budgets allow. Out of focus takes no new money beyond this.")
     lead('The read on 10-07.', 'Keep the test price where top-of-search clicks rose and top-of-search conversion stayed above the bar; put it back where they did not. The result is evidence for the next focus decision on Queen and Cooling, not a change of focus.')
     _pri = Counter(c['test']['prior'] for c in cs); _grp = Counter(c['group'] for c in cs)
     lead('What the run did.', f"Raised the top-of-search price on {sum(1 for c in cs if pdir(c) == 'up')}, cut it on {sum(1 for c in cs if pdir(c) == 'down')}, held {sum(1 for c in cs if not moved(c))}. By group: " + ', '.join(f'{g} {n}' for g, n in _grp.most_common()) + '. Their situation otherwise: ' + ', '.join(f"{names.get(k, k).split(' — ')[0].split(', ')[-1]} {n}" for k, n in _pri.most_common()) + '.')
@@ -389,6 +394,7 @@ if cs:
                     f"({('a loss of ' + usd(t['loss'], 0)) if t['loss'] >= 0 else ('still a profit of ' + usd(-t['loss'], 0))} against {usd(t['contrib'])} contribution; stop at {usd(t['stop'])})")
         else:
             corr = (f"Converts {t['ord90']} of {t['tos90']} top-of-search clicks ({t['rate']:.0%}) against a bar of {t['bar']:.1f}%. It has no enabled priced target on file today. Correction: re-enable its keyword and set the top-of-search price at its group’s market bound ({usd(c['limit'][1])}), inside the stop ({usd(t['stop'])}), as the test")
+        corr += f"; budget {usd(t['budget0'])} → {usd(t['budget1'])} (about 15 top-of-search clicks in two weeks)"
         if t['repoint']:
             corr += f"; advertise {t['repoint']} — the hero {c['serving']} is short"
         if t['prior'] in ('DARK', 'FADED'):
@@ -526,11 +532,11 @@ doc.add_heading('In order, starting 09-24', 1)
 for i, b in enumerate([
     'Pull the rows in section C.3 (withheld, overtaken, no-op, duplicate) and drop the budget raises on campaigns not using their budget.',
     'Same day: decide the two in-focus campaigns whose only keyword is paused (re-enable and push, or take out of focus); confirm the rank tracker reads the child each ad serves.',
-    f"Write the push: {sum(1 for c in PUSHED if c['push']['step'] > 0)} in-focus campaigns stepped on top of search by delivery gap, inside the loss stop and the ${1.5 * _dsp * 5:,.0f} envelope; base cut on the in-focus leakers; budget +30% where 80%+ is used.",
+    f"Write the push: {sum(1 for c in PUSHED if c['push']['step'] > 0)} in-focus campaigns stepped on top of search by delivery gap, inside the loss stop and the $3,094 envelope ($619 a day); base cut on the in-focus leakers; budget +30% where 80%+ is used.",
     'Every morning to 09-28: top-of-search clicks, impression share, placement, budget use and hours out of budget per in-focus campaign; step again where clicks are short and share rose; halve the step where share was flat; stop at the loss stop, the share stop or the envelope; cut the base where clicks land on product pages; check eligibility where a campaign is still at zero after two steps.',
     'Same day as the push: start the cause checks on the in-focus rank collapses.',
     f"Out of focus: hold the {len(by(['THIN_OUT','THIN_ZERO_OUT']))} thin rows and the ones that work; cut the base on the {len(by('LEAK'))} leakers with top of search held; restore or check the {len(by(['DARK','FADED']))} that went dark or faded; freeze the {len(by('COLLAPSE'))} collapses.",
-    f"Out of focus, converting: test the {len(by('OUT_TEST'))} campaigns in section B.1 at +10% top of search for two weeks (Queen ones on the olive child); read on 10-07. Focus itself does not change.",
+    f"Out of focus, converting: test the {len(by('OUT_TEST'))} campaigns in section B.1 at +10% top of search for two weeks on budgets sized to ~15 top-of-search clicks each ({usd(sum(c['test']['budget1'] for c in by('OUT_TEST')), 0)} a day in total; Queen ones on the olive child); read on 10-07. Focus itself does not change.",
     'Other campaign types: bring the ones over their ceiling down on the base; leave the rest.',
     'B6 keeps its terms during B4’s deal (operator 2026-09-23): push them like any other in-focus term and read B6’s impression share on the shared terms daily beside B4’s — if both fall, one listing is taking the other’s auctions.',
     'Grade the price step and the budget raise separately: price on impression share, budget on hours out of budget.',
@@ -586,7 +592,7 @@ def action(c):
         return 'Hold; keep budget raise if capping; probe −3–5% from 09-29'
     if k == 'OUT_TEST':
         t = c['test']
-        return (f"Out of focus but converts ({t['rate']:.0%} at top of search vs bar {t['bar']:.1f}%): test TOS +10% {usd(t['price0'])} → {usd(t['price1'])} to 10-07" if t['price0'] else f"Out of focus but converts ({t['rate']:.0%} vs bar {t['bar']:.1f}%): no priced target on file — re-enable and set TOS at {usd(c['limit'][1])} as the test, to 10-07") + (f"; advertise {t['repoint']}" if t['repoint'] else '') + ('; restore the pre-cut base first' if t['prior'] in ('DARK', 'FADED') else '')
+        return (f"Out of focus but converts ({t['rate']:.0%} at top of search vs bar {t['bar']:.1f}%): test TOS +10% {usd(t['price0'])} → {usd(t['price1'])} to 10-07; budget {usd(t['budget1'])}/day" if t['price0'] else f"Out of focus but converts ({t['rate']:.0%} vs bar {t['bar']:.1f}%): no priced target on file — re-enable and set TOS at {usd(c['limit'][1])} as the test, to 10-07") + (f"; advertise {t['repoint']}" if t['repoint'] else '') + ('; restore the pre-cut base first' if t['prior'] in ('DARK', 'FADED') else '')
     if k == 'ROS_HEAVY':
         return 'ROS modifier to 0%; else treat as leak'
     return ''

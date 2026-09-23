@@ -287,6 +287,12 @@ def classify(c):
             rate_src = 'own top of search, 90 days' if tos90 >= 15 else 'product planning rate'
             stop_price = HARD_STOP_X * contrib * rate
             p0, b0 = em.get('price_now'), an.get('base')
+            live_mod = None
+            for h in sorted(last, key=lambda h: h['decided']):
+                if h['decided'] >= '2026-09-21' and h['field'] == 'placement_multiplier' and h.get('placement') == 'placementTop':
+                    live_mod = fnum(h['after'])
+            if live_mod is not None and b0:
+                p0 = b0 * (1 + live_mod / 100)
             b1 = b0
             base_why = 'base held'
             leak = mixw in ('d14', 'deal8') and (mix['pp_sh'] or 0) > 0.20
@@ -312,14 +318,14 @@ def classify(c):
             m1 = (p1 / b1 - 1) * 100 if (p1 and b1) else None
             if m1 is not None and m1 > 900:
                 b1 = p1 / 10; m1 = 900.0
-                base_why += '; modifier would pass the 900% wall — base lifted as a stated trade'
+                base_why += f'; the modifier would pass the 900% wall, so the base carries the raise ({b0:.2f} → {b1:.2f}) at 900% — watch product-page share the next day'
             bud1 = round(budget * 1.3, 2) if (util7 is not None and util7 >= 0.8) else budget
             cpo = (p1 / rate) if (p1 and rate) else None
             push = dict(step=step, step_why=step_why, price0=p0, price1=p1, base0=b0, base1=b1, base_why=base_why, mod0=an.get('tos_mod'),
                         mod1=m1, budget0=budget, budget1=bud1, over_limit=bool(p1 and p1 > lim[1]), cpo=cpo,
                         loss=(cpo - contrib) if cpo else None, zero=(n90['t3'] == 0 and dl['t3'] == 0), rate=rate, rate_src=rate_src, stop_price=stop_price, stopped=stopped,
                         share_stop=share_stop, is30=is30, isd=isd, reach_day=reach_day, unreachable=unreachable, deliv=deliv, udp=udp,
-                        n_targets=sum(1 for t in tg if t.get('state') in ('ENABLED', None)), at_req=at_req, contrib=contrib,
+                        n_targets=sum(1 for t in tg if t.get('state') in ('ENABLED', None)), at_req=at_req, contrib=contrib, live_mod=live_mod,
                         ud=(c.get('bid_strategy') == 'AUTO_FOR_SALES'), hero_bad=hero_bad, leak=(cat == 'IN_LEAK' or leak))
 
     restore = []
@@ -371,7 +377,8 @@ for c in out:
     p1 = min(p0 * 1.10, stop) if p0 else None
     st = c['stock'] or {}
     repoint = st.get('serving_child') if (st.get('hero_room') in ('UNDER_HORIZON', 'NO_ROOM', 'ROOM_ON_INBOUND') and st.get('serving_child') and st.get('serving_child') != c['serving']) else None
-    c['test'] = dict(prior=c['cat'], rate=rate, mkt=mk, bar=3 * mk, price0=p0, price1=p1, stop=stop, cpo=(p1 / rate) if p1 else None,
+    _tp = p1 or c['limit'][1]
+    c['test'] = dict(budget0=c['budget'], budget1=max(5.0, round(_tp * 15 / 14, 2)), prior=c['cat'], rate=rate, mkt=mk, bar=3 * mk, price0=p0, price1=p1, stop=stop, cpo=(p1 / rate) if p1 else None,
                      loss=((p1 / rate) - contrib) if p1 else None, contrib=contrib, repoint=repoint, tos90=t['c'], ord90=t['o'])
     c['cat'] = 'OUT_TEST'
 json.dump(out, open(f'{S}/cats.json', 'w'), default=str)
