@@ -1,0 +1,164 @@
+{
+  "window": {
+    "startDate": "2026-09-15",
+    "endDate": "2026-09-22"
+  },
+  "productId": 30,
+  "marketplaceId": "ATVPDKIKX0DER",
+  "campaignId": "482466705246472",
+  "keyword": null,
+  "campaign": {
+    "campaignId": "482466705246472",
+    "campaignName": null,
+    "keyword": null
+  },
+  "reconciliation": {
+    "campaignSpend": 0,
+    "termSpend": null,
+    "termShare": null,
+    "partition": false,
+    "note": "Opened on the campaign itself rather than by drilling one of its search terms, so the Term columns have nothing to report and refuse rather than reading zero."
+  },
+  "page": null,
+  "sort": {
+    "key": "spend",
+    "dir": "desc",
+    "appliedBy": "client",
+    "paged": false
+  },
+  "placements": {
+    "on": true,
+    "keys": [
+      {
+        "key": "tos",
+        "label": "TOS",
+        "name": "Top of Search on-Amazon",
+        "rates": true
+      },
+      {
+        "key": "detail",
+        "label": "PDP",
+        "name": "Detail Page on-Amazon",
+        "rates": true
+      },
+      {
+        "key": "other",
+        "label": "ROS",
+        "name": "Other on-Amazon",
+        "rates": true
+      },
+      {
+        "key": "off",
+        "label": "Off-AMZ",
+        "name": "Off Amazon",
+        "rates": false
+      }
+    ],
+    "measuredShares": true,
+    "sharesConstant": true,
+    "note": "Every target here sits in ONE campaign, and Amazon reports placement per campaign — so the share percentages are that campaign's own measured split and are IDENTICAL on every row. Compare targets on the COUNT columns, which really do differ, and read the shares across a row rather than down a column. What the counts are worth reading against is the effective bid for the same slot, three columns to the left: what we bid there, and what we got for it."
+  },
+  "notInMatrix": {
+    "realAcos": "Real ACOS (waste-adjusted) has no field in the metric matrix at syntax grain yet.",
+    "clickShare": "SQP click share has no field in the metric matrix at syntax grain yet.",
+    "placementUnits": "Units at placement are an ESTIMATE built from two: the estimated clicks there (a dense fold) times the estimated units-per-click, which is an index on this row's own rate in the CVR's construction. A direct split is impossible — units appear in only 711 of 2,564 Top-of-Search campaign-placement cells, the SAME 711 that carry sales. On this account units and orders are near-identical (8,653 of 8,803 cells have them equal, 1.03 units per order), so this tracks clicks x the estimated CVR closely; it is here because units are the unit you act on.",
+    "placementOffRate": "Off Amazon is withheld from the estimated CTR, CVR and ACOS by the ruling of 2026-08-30: of 117 campaigns with an Off Amazon placement row, 101 had ZERO orders there, and it recorded sales in 52 of 603 placement cells. Rendered as a number it would read as a claim about how Off Amazon converts, which the data cannot support either way. Its impressions, clicks, spend and CPC are shown — those legs are well evidenced."
+  },
+  "contract": "campaign x target x day: what the campaign BIDS ON, which is not a partition of the search term above it — these rows carry the campaign's whole traffic on each target, while the campaign row carries one term's slice of the campaign. The Term columns are the bridge between the two.",
+  "total": 1,
+  "limit": 200,
+  "offset": 0,
+  "returned": 1,
+  "rows": [
+    {
+      "entityKey": "product:30|target:sheet set bamboo|marketplace:ATVPDKIKX0DER",
+      "target": "sheet set bamboo",
+      "targetType": "Keyword — Exact",
+      "bid": 1.49,
+      "bidNote": "A SNAPSHOT, not a window figure: the bid as of 2026-09-23, which is the latest the collector stamped onto this target inside the selected days. It does not move with the date range the way every measure beside it does, and a target whose bid changed mid-window shows only where it ended.",
+      "effBidTos": 5.215,
+      "effBidTosNote": "$1.49 base x 3.50 (+250% at Top of Search on-Amazon), the modifier as of 2026-09-22. Under Dynamic — down only Amazon may bid less than this and never more, so it is a true ceiling.",
+      "effBidRos": 1.49,
+      "effBidRosNote": "$1.49 base x 1.00 (+0% at Other on-Amazon (rest of search)), the modifier as of 2026-09-22. Under Dynamic — down only Amazon may bid less than this and never more, so it is a true ceiling.",
+      "effBidPdp": 1.49,
+      "effBidPdpNote": "$1.49 base x 1.00 (+0% at Detail Page on-Amazon), the modifier as of 2026-09-22. Under Dynamic — down only Amazon may bid less than this and never more, so it is a true ceiling.",
+      "tosImpressionShareReason": "Top-of-search impression share is published in the KEYWORD report only, and this target has no row there — auto and product targets never do.",
+      "placements": {
+        "tos": {
+          "notes": {},
+          "impressions": null,
+          "impressionsShare": null,
+          "clicks": null,
+          "clicksShare": null,
+          "ctr": null,
+          "cvr": null,
+          "cpc": null,
+          "spend": null,
+          "spendShare": null,
+          "acos": null,
+          "units": null,
+          "unitsShare": null
+        },
+        "detail": {
+          "notes": {},
+          "impressions": null,
+          "impressionsShare": null,
+          "clicks": null,
+          "clicksShare": null,
+          "ctr": null,
+          "cvr": null,
+          "cpc": null,
+          "spend": null,
+          "spendShare": null,
+          "acos": null,
+          "units": null,
+          "unitsShare": null
+        },
+        "other": {
+          "notes": {},
+          "impressions": null,
+          "impressionsShare": null,
+          "clicks": null,
+          "clicksShare": null,
+          "ctr": null,
+          "cvr": null,
+          "cpc": null,
+          "spend": null,
+          "spendShare": null,
+          "acos": null,
+          "units": null,
+          "unitsShare": null
+        },
+        "off": {
+          "notes": {},
+          "impressions": null,
+          "impressionsShare": null,
+          "clicks": null,
+          "clicksShare": null,
+          "ctr": null,
+          "cvr": null,
+          "cpc": null,
+          "spend": null,
+          "spendShare": null,
+          "acos": null,
+          "units": null,
+          "unitsShare": null
+        }
+      },
+      "impressions": 0,
+      "clicks": 0,
+      "orders": 0,
+      "spend": 0,
+      "sales": 0,
+      "units": 0,
+      "reasons": {},
+      "termSpendReason": "No search term is in scope: this level was opened on the campaign itself, not by drilling one of its terms.",
+      "belowGate": false
+    }
+  ],
+  "notes": [
+    "Every rate is BLENDED — the window's total over its total (spend over sales, clicks over impressions) — never the mean of daily or per-row rates.",
+    "Sales, orders and every rate built on them carry 7-day attribution: the trailing seven days are still filling in and read LOW. The newest day is also a partial day. Compare settled windows with settled windows.",
+    "Targets are what we BID ON (keywords, ASINs, auto groups). Bids are read from the daily bid snapshots, not the report's own bid column, which is stamped at report time."
+  ]
+}
