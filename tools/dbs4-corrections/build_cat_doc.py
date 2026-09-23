@@ -394,8 +394,8 @@ lead('Correction.', 'Grade every change against its own campaign before the next
 section('Other campaign types — priced against their own ceiling, on recent numbers')
 lead('The rule.', 'Conversions, discovery, defensive and liquidation campaigns are priced inside their ceiling: what a click can cost = contribution × that campaign’s conversion rate, equivalently an ad cost of sale at or under break-even (33.9%). Read it on 14 days (drift shows there without being noise) against 90 days. Over the ceiling, the bid comes down; inside it, nothing moves — a top-of-search modifier on a campaign whose top of search pays is not cut because “the premium buys rank”.')
 rows = []
-for n in NR[:18]:
-    rows.append([n['short'][:55], n['obj'][:11], f"{n['c14']} / {n['o14']}", pct(n['acos14'], 0) if n['acos14'] is not None else '—', pct(n['acos90'], 0) if n['acos90'] is not None else '—', n['eng'][:40], n['verdict']])
+for n in NR:
+    rows.append([n['short'], n['obj'], f"{n['c14']} / {n['o14']}", pct(n['acos14'], 0) if n['acos14'] is not None else '—', pct(n['acos90'], 0) if n['acos90'] is not None else '—', n['eng'], n['verdict']])
 table(['Campaign', 'Objective', 'Clicks / orders 14d', 'ACoS 14d', 'ACoS 90d', 'The run', 'Correction'], rows, widths=[4.8, 1.8, 1.8, 1.3, 1.3, 3.2, 3.8], size=7.5)
 
 # ---- 12. file / engine defects
@@ -448,21 +448,6 @@ for i, b in enumerate([
 ], 1):
     para(f'{i}. {b}')
 
-# ---- appendix
-doc.add_heading('Appendix — every ranking campaign by situation', 1)
-names = {'IN_PAUSED': 'A · In focus — keyword paused (duplicate)', 'IN_PUSH': 'A · In focus — push top of search', 'IN_LEAK': 'A · In focus — base cut + push', 'IN_DARK': 'A · In focus — restore + push', 'IN_COLLAPSE': 'A · In focus — push + investigate', 'IN_ONTARGET': 'A · In focus — delivering, hold', 'THIN_PUSH': '1 · Thin, in focus, volume — push', 'THIN_ZERO_IN': '1 · Thin (zero), in focus — push', 'THIN_TINY': '2 · Thin, in focus, low volume — hold',
-         'THIN_OUT': 'B · Out of focus, thin — hold', 'THIN_ZERO_OUT': 'B · Out of focus, zero — hold', 'LEAK': 'B · Out of focus, leak — base cut',
-         'SHORT_PRICE': '5 · Mix right, short — raise modifier', 'SHORT_BUDGET': '5 · Mix right, short — raise budget', 'SHORT_ATLIMIT': '5 · At limit — check eligibility',
-         'OUT_WORKING': 'B · Out of focus, working — hold flat', 'OUT_WEAK': 'B · Out of focus, weak — taper', 'DARK': 'B · Out of focus, went dark — restore', 'FADED': 'B · Out of focus, faded — investigate',
-         'COLLAPSE': 'B · Out of focus, rank collapse — freeze', 'ROS_HEAVY': '9 · Rest-of-search heavy', 'ON_TARGET': '9 · On target — hold'}
-rows = []
-for c in sorted(CATS, key=lambda c: (names[c['cat']], c['short'])):
-    rows.append([names[c['cat']], c['short'][:62], c['R']['d90']['t3'], c['R']['d14']['t3'], c['R']['deal8']['tos']['c'], pct(c['R'][c['mixw']]['pp_sh']), eng_short(c)])
-table(['Situation', 'Campaign', 'Clicks 90d', 'Clicks 14d', 'TOS clicks deal', 'PP share', 'The run'], rows, widths=[3.4, 5.4, 1.2, 1.2, 1.3, 1.2, 3.6], size=7)
-doc.save(OUT)
-print('saved', OUT)
-
-
 # ---------------- register of every ranking campaign's situation and write ----------------
 def action(c):
     k = c['cat']; p = c['em'].get('price_now')
@@ -511,6 +496,48 @@ def action(c):
     if k == 'ROS_HEAVY':
         return 'ROS modifier to 0%; else treat as leak'
     return ''
+
+
+
+# ---- appendix
+doc.add_heading('Appendix — every ranking campaign by situation', 1)
+names = {'IN_PAUSED': 'A · In focus — keyword paused (duplicate)', 'IN_PUSH': 'A · In focus — push top of search', 'IN_LEAK': 'A · In focus — base cut + push', 'IN_DARK': 'A · In focus — restore + push', 'IN_COLLAPSE': 'A · In focus — push + investigate', 'IN_ONTARGET': 'A · In focus — delivering, hold', 'THIN_PUSH': '1 · Thin, in focus, volume — push', 'THIN_ZERO_IN': '1 · Thin (zero), in focus — push', 'THIN_TINY': '2 · Thin, in focus, low volume — hold',
+         'THIN_OUT': 'B · Out of focus, thin — hold', 'THIN_ZERO_OUT': 'B · Out of focus, zero — hold', 'LEAK': 'B · Out of focus, leak — base cut',
+         'SHORT_PRICE': '5 · Mix right, short — raise modifier', 'SHORT_BUDGET': '5 · Mix right, short — raise budget', 'SHORT_ATLIMIT': '5 · At limit — check eligibility',
+         'OUT_WORKING': 'B · Out of focus, working — hold flat', 'OUT_WEAK': 'B · Out of focus, weak — taper', 'DARK': 'B · Out of focus, went dark — restore', 'FADED': 'B · Out of focus, faded — investigate',
+         'COLLAPSE': 'B · Out of focus, rank collapse — freeze', 'ROS_HEAVY': '9 · Rest-of-search heavy', 'ON_TARGET': '9 · On target — hold'}
+from docx.enum.section import WD_SECTION
+_ls = doc.add_section(WD_SECTION.NEW_PAGE); _ls.orientation = WD_ORIENT.LANDSCAPE
+_ls.page_width, _ls.page_height = _ls.page_height, _ls.page_width
+for m in ('left_margin', 'right_margin'):
+    setattr(_ls, m, Cm(1.5))
+doc.add_heading('Appendix A — every ranking campaign: situation, numbers and correction', 1)
+para('One row per enabled exact ranking campaign (the register). Clicks are all placements; top-of-search (TOS) clicks per day are the 31 days before the deal and the deal to date; product-page (PP) share is on the campaign’s read window; TOS price is base × (1 + TOS modifier) today, against the syntax group’s market limit.', size=8.5, color=GREY)
+rows = []
+for c in sorted(CATS, key=lambda c: (names[c['cat']], c['short'])):
+    pn = c['em'].get('price_now')
+    rows.append([names[c['cat']], c['short'], f"{c['focus']} · {c['tier'] or '—'}",
+                 f"{c['R']['d90']['t3']} / {c['R']['d14']['t3']} / {c['R']['d3']['t3']}", f"{c['pre_tos_day']:.1f} → {c['deal_tos_day']:.1f}", pct(c['R'][c['mixw']]['pp_sh']),
+                 f"{c['rank_30'] or '—'} → {c['rank_now'] or '—'} → {c['rank_tgt'] or '—'}",
+                 f"${c['budget']:.0f} ({c['util7']:.0%})" if c['budget'] and c['util7'] is not None else (f"${c['budget']:.0f}" if c['budget'] else '—'),
+                 f"{usd(pn)} / {usd(c['limit'][1])}" if pn else f"— / {usd(c['limit'][1])}", eng_short(c), action(c)])
+table(['Situation', 'Campaign', 'Focus (group) · tier', 'Clicks 90d / 14d / 3d', 'TOS clicks/day pre-deal → deal', 'PP share', 'Rank 30d → now → target', 'Budget (7-day use)', 'TOS price now / group limit', 'The run', 'Correction'], rows,
+      widths=[2.6, 4.2, 1.3, 1.6, 1.5, 1.0, 1.6, 1.5, 1.6, 3.2, 5.0], size=6.5)
+if 'KW4' in globals():
+    doc.add_heading('Appendix B — every B4 keyword diagnosed: verdict and recommendation', 1)
+    para('The keyword rows behind Part D (D5), with the full verdict and what to do on each. Plan = the brief’s weekly PPC-click requirement; bars are 1.1× market CTR and 3× market CVR for the keyword’s syntax group; IS = measured top-of-search impression share on the exact target.', size=8.5, color=GREY)
+    rows = []
+    for r in KW4:
+        pl = PLAN.get(r['kw'])
+        rv = list(r['ranks'].values())
+        rows.append([r['kw'], r['syntax'] or '—', pl['ppc_clicks_target'] if pl else '—', r['wsv'] or '—', r['clicks'], f"{r['tos_clicks']:.0f} ({f1(r['tos_share'], 0)}%)",
+                     f"{f1(r['pre_tos_day'])} → {f1(r['deal_tos_day'])}", f"{f1(r['tos_ctr'])} / {f1(r['tctr'])}", f"{f1(r['tos_cvr'])} / {f1(r['tcvr'])}",
+                     f1(r['is_'], 1, '%') if r['is_'] is not None else '—', f"${r['eff']:.2f}" if r['eff'] else '—', f"{r['org'] or '—'} / {r['sp'] or '—'}",
+                     ' → '.join('—' if x is None else str(x) for x in (rv[0], rv[2], rv[3])), r['verdict'], _dg.reco(r)])
+    table(['Keyword', 'Syntax', 'Plan clicks/wk', 'Weekly search volume', 'Clicks 30d', 'TOS clicks 30d (share)', 'TOS clicks/day pre → deal', 'TOS CTR / bar', 'TOS CVR / bar', 'TOS IS', 'Eff. TOS bid', 'Organic / sponsored', 'Rank Jun → 14 Sep → 22 Sep', 'Verdict', 'Recommendation'], rows,
+          widths=[3.0, 1.6, 1.0, 1.2, 1.0, 1.4, 1.4, 1.2, 1.2, 0.9, 1.0, 1.2, 1.7, 2.6, 4.6], size=6.5)
+doc.save(OUT)
+print('saved', OUT)
 
 
 import openpyxl

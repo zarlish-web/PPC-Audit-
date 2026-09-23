@@ -97,23 +97,22 @@ section('Syntax groups')
 for prod, lab, G, GIS in (('b4', 'B4', GR4, GIS4),):
     rows = []
     for g in sorted(G, key=lambda r: -(r['spend'] or 0)):
-        if g['group'] == 'Organic & Natural' or (g['clicks'] or 0) < 20: continue
+        if not g['clicks']: continue
         is_ = GIS.get(g['group'])
         v = _dg.verdict(g['tos_impr'], g['tos_clicks'], g['tos_ctr'], g['tos_cvr'], g['mctr'], g['mcvr'], is_=is_)
-        rows.append([g['group'], f"${g['spend']:,.0f}", f"{g['tos_clicks']:.0f} ({f1(g['tos_share'], 0)}%)", f"{f1(g['tos_ctr'])} / {f1(v['tctr'])}", f"{f1(g['tos_cvr'])} / {f1(v['tcvr'])}", f1(is_, 1, '%') if is_ is not None else '—',
-                     f"{f1(g['tos_cpc'], 2)}", '—' if g['group'].startswith('Size') else rk(g), verdict_short(v['verdict'])])
+        rows.append([g['group'], f"${g['spend']:,.0f} / {g['clicks']:,}", f"{g['tos_clicks']:.0f} ({f1(g['tos_share'], 0)}%)", f"{f1(g['tos_ctr'])} / {f1(v['tctr'])}", f"{f1(g['tos_cvr'])} / {f1(v['tcvr'])}", f1(is_, 1, '%') if is_ is not None else '—',
+                     f"{f1(g['tos_cpc'], 2)}", '—' if g['group'].startswith('Size') else ' → '.join('—' if x is None else str(x) for x in g['ranks'].values()), v['verdict']])
     doc.add_heading(f'{lab} — 30 days to 22 Sep', 3)
-    table(['Group', 'Spend', 'TOS clicks (share)', 'TOS CTR / bar', 'TOS CVR / bar', 'TOS impr. share', 'TOS CPC', 'Rank 24 Jun → 14 Sep → 22 Sep', 'Verdict'], rows, widths=[3, 1.4, 2, 1.7, 1.7, 1.5, 1.2, 2.4, 2.2], size=7)
+    table(['Group', 'Spend / clicks 30d', 'TOS clicks (share)', 'TOS CTR / bar', 'TOS CVR / bar', 'TOS impr. share', 'TOS CPC', 'Rank 24 Jun → 15 Aug → 14 Sep → 22 Sep', 'Verdict'], rows, widths=[2.4, 1.5, 1.8, 1.5, 1.5, 1.3, 1.1, 2.2, 3.4], size=7)
 para('Size groups (“Size: King” etc.) are cross-cutting: a keyword is in its primary group and in its size group, so the size rows re-count traffic already shown above. Impression share for a group is the impression-weighted mean of its member targets’ measured share.', size=8.5, color=GREY)
 lead('Reading it.', 'Every Bamboo group meets its CTR and CVR bars at top of search and sits at low single-digit impression share — a traffic gap. Cooling is the exception on CVR (8.0% vs an 8.7% bar), carried by the head term “cooling sheets”; the size-qualified cooling groups meet the bars and are short of traffic. The one group read as “Both” (Size: California King) is on 62 top-of-search clicks and a 7.8% CVR — small, out of focus, not a place for new money.')
 
 # ---------------------------------------------------------------- D5 keywords
 section('The main ranking keywords — one call each')
-lead('What the columns say.', 'Plan = the plan’s weekly PPC-click requirement for the keyword (B4 brief). TOS/wk = top-of-search clicks a week over 30 days, and in the deal. IS = Amazon’s top-of-search impression share on the exact target, at the effective top-of-search bid shown. Org / SP = organic and sponsored position (ASINsight, 17 Sep). Rank = our tracked rank 24 Jun → 14 Sep → 22 Sep.')
+lead('What the columns say.', 'Every main ranking keyword (the rank-tracked terms plus the top spenders); the full verdict and recommendation for each is in Appendix B. Plan = the plan’s weekly PPC-click requirement for the keyword (B4 brief). TOS/wk = top-of-search clicks a week over 30 days, and in the deal. IS = Amazon’s top-of-search impression share on the exact target, at the effective top-of-search bid shown. Org / SP = organic and sponsored position (ASINsight, 17 Sep). Rank = our tracked rank 24 Jun → 14 Sep → 22 Sep.')
 for prod, lab, KW in (('b4', 'B4', KW4),):
     rows = []
-    for r in KW[:24]:
-        if (r['clicks'] or 0) < 10: continue
+    for r in KW:
         pl = PLAN.get(r['kw']) if prod == 'b4' else None
         wk = r['tos_clicks'] / 30 * 7
         rows.append([r['kw'][:30], pl['ppc_clicks_target'] if pl else '—', f"{wk:.0f} / {r['deal_tos_day'] * 7:.0f}",
