@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "ecotero-command-center": {
+      "type": "http",
+      "url": "https://ecotero-command-center-production.up.railway.app/mcp",
+      "headers": {
+        "x-agent-key": "${ECOTERO_AGENT_KEY:-}"
+      }
+    }
+  }
+}
