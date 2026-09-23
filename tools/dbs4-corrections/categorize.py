@@ -26,6 +26,42 @@ DAYS = {'d90': 90, 'pre_deal30': 31, 'deal8': 8, 'd14': 14, 'd7': 7, 'd3': 3, 'p
 GROUP_LIMIT = {'LANE': (5.38, 6.19), 'Bamboo|Twin': (5.27, 6.06), 'Cooling|King': (4.50, 5.18), 'Bamboo|Full': (6.28, 7.22),
                'Bamboo|King': (5.62, 6.47), 'Bamboo|Cooling': (4.93, 5.68), 'Bamboo|Queen': (5.55, 6.39), 'Bamboo': (5.50, 6.32),
                'Cooling': (3.14, 3.61)}
+HARD_STOP_X = 3.0      # top-of-search ad cost per order may not exceed 3 x contribution (operator 2026-09-23)
+SHARE_STOP = 40.0      # impression share at/above this and not rising after the last step -> stop stepping
+
+
+def _median(xs):
+    xs = sorted(xs); n = len(xs)
+    return None if not n else (xs[n // 2] if n % 2 else (xs[n // 2 - 1] + xs[n // 2]) / 2)
+
+
+# one rank source: the tracker, 7-day median (a single day swings 16 -> 44 on the head term)
+TRACK = {}
+_tk = f'{S}/data/b46/b4_ranks_keywords.json'
+if os.path.exists(_tk):
+    for r in json.load(open(_tk)).get('rows', []):
+        TRACK[r['keyword']] = {c['date']: c.get('rank') for c in r.get('cells', []) if c.get('state') == 'ranked' and c.get('rank')}
+
+
+def rank7(kw, end):
+    from datetime import date, timedelta
+    ser = TRACK.get(kw)
+    if not ser:
+        return None
+    d0 = date.fromisoformat(end)
+    v = [ser[(d0 - timedelta(days=i)).isoformat()] for i in range(7) if (d0 - timedelta(days=i)).isoformat() in ser]
+    return round(_median(v)) if v else None
+
+
+def target_is(cid, kw, win):
+    p = f'{S}/data/b46/b4_targets_{win}_{cid}.json'
+    if not os.path.exists(p):
+        return None
+    rows = [r for r in (json.load(open(p)).get('rows') or []) if 'Exact' in (r.get('targetType') or '')]
+    r = next((r for r in rows if r.get('target') == kw), None) or (max(rows, key=lambda r: r.get('spend') or 0) if rows else None)
+    return None if r is None else r.get('tosImpressionShare')
+
+
 TIER_RANK = {'VHSV': 5, 'HSV': 4, 'MSV': 3, 'LSV': 2, 'VLSV': 1, 'NOSV': 0}
 
 
@@ -132,6 +168,9 @@ def classify(c):
     util7 = (d7['spend'] / 7 / budget) if budget else None
     util14 = (d14['spend'] / 14 / budget) if budget else None
     rank_now, rank_30, rank_tgt = an.get('rank_now'), an.get('rank_30'), an.get('rank_tgt')
+    rank_src = 'engine'
+    if an.get('kw') in TRACK:
+        rank_now, rank_30, rank_src = rank7(an['kw'], '2026-09-22') or rank_now, rank7(an['kw'], '2026-08-23') or rank_30, 'tracker, 7-day median'
     plan_wk = an.get('plan_wk')
     tos_is = an.get('tos_is')
     contrib = an.get('contrib') or 25.06
@@ -199,21 +238,39 @@ def classify(c):
             cat = 'IN_COLLAPSE'
         elif cat in ('DARK', 'FADED'):
             cat = 'IN_DARK'
-        elif cat == 'ON_TARGET':
+        elif cat == 'ON_TARGET' and need_day and deal_tos_day >= need_day:
             cat = 'IN_ONTARGET'
         elif (cat == 'LEAK' and mixw != 'd90') or (mixw != 'd90' and mix['tos_sh'] is not None and mix['tos_sh'] < 0.30):
             cat = 'IN_LEAK'
         else:
             cat = 'IN_PUSH'
         if cat != 'IN_ONTARGET':
-            # step sized by the rank gap
-            if rank_now and rank_tgt:
-                gap_pos = rank_now - rank_tgt
-                ratio = rank_now / rank_tgt
-                step = 0.10 if gap_pos <= 5 else (0.20 if ratio <= 2 else 0.30)
-                step_why = f"rank {rank_now} vs target {rank_tgt}: " + ('within 5 positions → +10%' if gap_pos <= 5 else ('up to 2× the target → +20%' if ratio <= 2 else 'more than 2× the target → +30%'))
+            # step sized by the delivery gap (operator 2026-09-23), halved where share did not answer the last raise
+            is30, isd = target_is(cid, an.get('kw'), '30d'), target_is(cid, an.get('kw'), 'deal')
+            is_now = isd if isd is not None else is30
+            raised_0915 = any(h['decided'] >= '2026-09-15' and h['field'] == 'placement_multiplier' and h.get('placement') == 'placementTop' and fnum(h['after']) and fnum(h['before']) is not None and fnum(h['after']) > fnum(h['before']) for h in last)
+            share_flat = (is30 is not None and isd is not None and isd <= is30)
+            reach_day = (deal_tos_day / (is_now / 100)) if (is_now and deal_tos_day) else None
+            need_eff = min(need_day, reach_day) if (need_day and reach_day) else need_day
+            unreachable = bool(need_day and reach_day and reach_day < need_day)
+            deliv = (deal_tos_day / need_eff) if need_eff else None
+            if deliv is not None:
+                step = 0.30 if deliv < 0.30 else 0.20 if deliv < 0.70 else 0.10
+                step_why = f"{deliv:.0%} of required top-of-search clicks delivered → +{step:.0%}"
             else:
-                step, step_why = 0.25, 'no rank read on file → +25%'
+                step, step_why = 0.20, 'no click requirement on file → +20% (a stated departure: the logic document would hold at the ceiling)'
+            at_req = deliv is not None and deliv >= 1
+            if at_req:
+                step, step_why = 0.0, f"{deliv:.0%} of required top-of-search clicks delivered — at requirement, no step; evaluate cost per click after the deal"
+            if raised_0915 and share_flat and not at_req:
+                step /= 2; step_why += f"; halved — impression share did not rise after the 15 Sep raise ({is30:.1f}% → {isd:.1f}%)"
+            share_stop = bool(is_now is not None and is_now >= SHARE_STOP and (share_flat or not raised_0915))
+            if share_stop:
+                step, step_why = 0.0, f"share stop — {is_now:.0f}% impression share and not rising: the requirement is re-based from actual volume, not bought"
+            # conversion rate for the loss stop: own top of search with 30+ clicks, else the product's planning rate
+            rate = (n90['tos']['o'] / tos90) if tos90 >= 30 else PLAN_RATE
+            rate_src = 'own top of search, 90 days' if tos90 >= 30 else 'product planning rate'
+            stop_price = HARD_STOP_X * contrib * rate
             p0, b0 = em.get('price_now'), an.get('base')
             b1 = b0
             base_why = 'base held'
@@ -225,16 +282,27 @@ def classify(c):
                 cut = min(cut, 0.25 if ords else 0.50)
                 b1 = max(0.50, b0 * (1 - cut))
                 base_why = f"base −{cut:.0%} for product pages at {pct(pp)} ({mixw})"
+            udp = (dl['tos']['s'] / dl['tos']['c']) if (c.get('bid_strategy') == 'AUTO_FOR_SALES' and dl['tos']['c']) else None
             p1 = p0 * (1 + step) if p0 else None
+            if udp and p0:
+                p1 = max(p1, udp); step_why += f"; fixed bidding starts near what dynamic paid in the deal ({udp:.2f})"
+            stopped = False
+            if p1 and p1 > stop_price:
+                if p0 >= stop_price:
+                    p1, stopped = p0, True; step_why = f"loss stop reached — at {p0:.2f} a top-of-search order already costs {p0 / rate:.0f} (stop {HARD_STOP_X:.0f}× contribution = {HARD_STOP_X * contrib:.0f})"
+                else:
+                    p1 = stop_price; step_why += f"; stopped at the loss stop {stop_price:.2f}"
             m1 = (p1 / b1 - 1) * 100 if (p1 and b1) else None
             if m1 is not None and m1 > 900:
                 b1 = p1 / 10; m1 = 900.0
                 base_why += '; modifier would pass the 900% wall — base lifted as a stated trade'
             bud1 = round(budget * 1.3, 2) if (util7 is not None and util7 >= 0.8) else budget
-            cpo = (p1 / tos_rate) if (p1 and tos_rate) else None
+            cpo = (p1 / rate) if (p1 and rate) else None
             push = dict(step=step, step_why=step_why, price0=p0, price1=p1, base0=b0, base1=b1, base_why=base_why, mod0=an.get('tos_mod'),
                         mod1=m1, budget0=budget, budget1=bud1, over_limit=bool(p1 and p1 > lim[1]), cpo=cpo,
-                        loss=(cpo - contrib) if cpo else None, zero=(n90['t3'] == 0 and dl['t3'] == 0),
+                        loss=(cpo - contrib) if cpo else None, zero=(n90['t3'] == 0 and dl['t3'] == 0), rate=rate, rate_src=rate_src, stop_price=stop_price, stopped=stopped,
+                        share_stop=share_stop, is30=is30, isd=isd, reach_day=reach_day, unreachable=unreachable, deliv=deliv, udp=udp,
+                        n_targets=sum(1 for t in tg if t.get('state') in ('ENABLED', None)), at_req=at_req, contrib=contrib,
                         ud=(c.get('bid_strategy') == 'AUTO_FOR_SALES'), hero_bad=hero_bad, leak=(cat == 'IN_LEAK' or leak))
 
     restore = []
@@ -250,9 +318,14 @@ def classify(c):
                 serving=an.get('serving'), child_after=c.get('child_after'), em=em, base=an.get('base'), tos_mod=an.get('tos_mod'),
                 last=[(h['decided'], h['field'], h['placement'], h['before'], h['after'], h['entityLabel']) for h in last[-4:]],
                 last_date=last_date, stale=[(h['decided'], h['field'], h['placement'], h['before'], h['after']) for h in stale],
-                tuner=TUNER.get(cid, {}).get('by_trajectory'), kw=an.get('kw'), bid_strategy=c.get('bid_strategy'))
+                tuner=TUNER.get(cid, {}).get('by_trajectory'), kw=an.get('kw'), bid_strategy=c.get('bid_strategy'), rank_src=rank_src)
 
 
+_tc = _to = 0
+for c in A['campaigns']:
+    if c.get('status') == 'ENABLED' and c['objective'] == 'Ranking' and 'Exact' in c['campaign']:
+        r = read(c['campaign_id'], 'd90'); _tc += r['tos']['c']; _to += r['tos']['o']
+PLAN_RATE = _to / _tc if _tc else 0.10
 out = []
 for c in A['campaigns']:
     if c.get('status') != 'ENABLED':

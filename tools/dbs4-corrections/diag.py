@@ -53,15 +53,14 @@ def rank_grid(prod):
 
 
 def at(series, date, back=6):
-    """rank on the date, or the nearest ranked day within `back` days before it"""
+    """rank as the median of the ranked days in the 7 days ending on the date (one reading swings too much)"""
     from datetime import date as D, timedelta
-    y, m, dd = map(int, date.split('-'))
-    d0 = D(y, m, dd)
-    for i in range(back + 1):
-        s = (d0 - timedelta(days=i)).isoformat()
-        if series.get(s) is not None:
-            return series[s]
-    return None
+    d0 = D.fromisoformat(date)
+    v = sorted(series[(d0 - timedelta(days=i)).isoformat()] for i in range(7) if series.get((d0 - timedelta(days=i)).isoformat()) is not None)
+    if not v:
+        return None
+    n = len(v)
+    return round(v[n // 2] if n % 2 else (v[n // 2 - 1] + v[n // 2]) / 2)
 
 
 def kw_rows(prod, win):
