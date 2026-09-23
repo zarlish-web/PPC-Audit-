@@ -12,3 +12,13 @@ Scripts that produced `docs/DBS4_Bids_Placements_Corrections_20260921-dbcd48b8.d
 
 The scripts expect the audit JSON export as `a.json` and write intermediates next to themselves
 (the JSON export is not committed: it is 8.9 MB and lives in Command Center).
+
+## Situation-based version (current)
+
+`categorize.py` sorts every enabled ranking-exact campaign into one situation (thin, leaking,
+short of clicks, went dark, rank collapse, out of focus…) using 90-day, 14-day, 7-day, 3-day and
+deal-to-date windows plus the change record; `nonrank_defects.py` reads the other campaign types
+and lists the rows that should not load; `build_cat_doc.py` writes
+`docs/DBS4_Corrections_by_Situation_20260921-dbcd48b8.docx` and its `.xlsx` register.
+Extra data: `placements_d14/d7/d3/pre0910/post0910.jsonl`, `decisions_hist.jsonl` (the change
+record since 2026-08-15) and `impact.json` (before/after of the 10 and 15 September rounds).

@@ -15,7 +15,7 @@ MKT_REF = None
 
 
 def load_pl(label):
-    p = f'{S}/data/placements_{label}.jsonl'
+    p = f'{S}/placements_{label}.jsonl'
     out = {}
     if not os.path.exists(p):
         return out
