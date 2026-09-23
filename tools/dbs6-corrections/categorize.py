@@ -355,6 +355,25 @@ for c in A['campaigns']:
         continue
     if c['objective'] == 'Ranking' and 'Exact' in c['campaign']:
         out.append(classify(c))
+# ---- out of focus, converting at top of search: a two-week test push (operator 2026-09-23: focus unchanged on every syntax)
+_syn = {r['groupName']: (r.get('market') or {}).get('marketCvr') for r in json.load(open(f'{S}/b46/b6_syntax_30d.json'))['rows']}
+for c in out:
+    if c['focus_in']:
+        continue
+    t = c['R']['d90']['tos']
+    mk = c.get('mkt_cvr') or _syn.get(c['group']) or _syn.get(c['group'].split('|')[0])
+    if not (t['c'] >= 15 and mk and t['o'] / t['c'] * 100 >= 3 * mk):
+        continue
+    rate = t['o'] / t['c']
+    contrib = c['contrib'] or 26.46
+    stop = HARD_STOP_X * contrib * rate
+    p0 = c['em'].get('price_now')
+    p1 = min(p0 * 1.10, stop) if p0 else None
+    st = c['stock'] or {}
+    repoint = st.get('serving_child') if (st.get('hero_room') in ('UNDER_HORIZON', 'NO_ROOM', 'ROOM_ON_INBOUND') and st.get('serving_child') and st.get('serving_child') != c['serving']) else None
+    c['test'] = dict(prior=c['cat'], rate=rate, mkt=mk, bar=3 * mk, price0=p0, price1=p1, stop=stop, cpo=(p1 / rate) if p1 else None,
+                     loss=((p1 / rate) - contrib) if p1 else None, contrib=contrib, repoint=repoint, tos90=t['c'], ord90=t['o'])
+    c['cat'] = 'OUT_TEST'
 json.dump(out, open(f'{S}/cats.json', 'w'), default=str)
 if __name__ == '__main__':
     from collections import Counter

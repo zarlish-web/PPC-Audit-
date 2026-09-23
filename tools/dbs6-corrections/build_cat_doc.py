@@ -274,6 +274,11 @@ def section(title):
     doc.add_heading(f'{part[0]}.{sec_no[0]} {title}', 1)
 
 
+names = {'OUT_TEST': 'B · Out of focus, converts — two-week test', 'IN_PAUSED': 'A · In focus — keyword paused (duplicate)', 'IN_PUSH': 'A · In focus — push top of search', 'IN_LEAK': 'A · In focus — base cut + push', 'IN_DARK': 'A · In focus — restore + push', 'IN_COLLAPSE': 'A · In focus — push + investigate', 'IN_ONTARGET': 'A · In focus — delivering, hold', 'THIN_PUSH': '1 · Thin, in focus, volume — push', 'THIN_ZERO_IN': '1 · Thin (zero), in focus — push', 'THIN_TINY': '2 · Thin, in focus, low volume — hold',
+         'THIN_OUT': 'B · Out of focus, thin — hold', 'THIN_ZERO_OUT': 'B · Out of focus, zero — hold', 'LEAK': 'B · Out of focus, leak — base cut',
+         'SHORT_PRICE': '5 · Mix right, short — raise modifier', 'SHORT_BUDGET': '5 · Mix right, short — raise budget', 'SHORT_ATLIMIT': '5 · At limit — check eligibility',
+         'OUT_WORKING': 'B · Out of focus, working — hold flat', 'OUT_WEAK': 'B · Out of focus, weak — taper', 'DARK': 'B · Out of focus, went dark — restore', 'FADED': 'B · Out of focus, faded — investigate',
+         'COLLAPSE': 'B · Out of focus, rank collapse — freeze', 'ROS_HEAVY': '9 · Rest-of-search heavy', 'ON_TARGET': '9 · On target — hold'}
 doc.add_heading('Part A — In-focus exact ranking campaigns: push top of search every day', 1)
 lead('The rule.', 'From 09-24 every in-focus exact ranking campaign is pushed on the top-of-search modifier, every day, until its required top-of-search clicks arrive. Nothing is held for being thin, for having no clicks yet, or for review — a campaign that is not getting clicks is not in the auction, and only the top-of-search price can put it there.')
 lead('How big each day’s step is.', 'Sized by the delivery gap — top-of-search clicks a day over the last 8 days against the requirement: under 30% delivered +30%; 30–70% +20%; over 70% +10%; at or over the requirement, no step. Where the last raise (16 September) did not lift impression share, the step is halved: price that bought no share buys no more by being repeated. Rank distance only breaks ties. A campaign with no click requirement on file takes +20% — a stated departure from the logic document, which would hold it at the ceiling with no premium; these are low-volume terms, and the push doubles as the eligibility check.')
@@ -370,6 +375,29 @@ if hb:
 # ================= Part B — out of focus =================
 part[0] = 'B'; sec_no[0] = 0
 doc.add_heading('Part B — Out-of-focus exact ranking campaigns: no new money, judged on their own numbers', 1)
+cs = by('OUT_TEST')
+if cs:
+    section(f'{len(cs)} out-of-focus campaigns that convert at the top — a two-week test')
+    lead('The rule.', 'Focus stays as the plan sets it on every syntax (operator 2026-09-23): Bamboo|Queen and the cooling groups stay out of focus. But an out-of-focus term that already converts at top of search above the bar — 3× the market CVR of its group, on 15 or more top-of-search clicks in 90 days — is tested rather than held: top-of-search price +10% for two weeks (09-24 → 10-07), inside the same loss stop (3× contribution per top-of-search order), on a child that can ship. A campaign that went dark gets its pre-cut base back first; one whose rank collapsed gets the cause check the same day.')
+    lead('The read on 10-07.', 'Keep the test price where top-of-search clicks rose and top-of-search conversion stayed above the bar; put it back where they did not. The result is evidence for the next focus decision on Queen and Cooling, not a change of focus.')
+    _pri = Counter(c['test']['prior'] for c in cs); _grp = Counter(c['group'] for c in cs)
+    lead('What the run did.', f"Raised the top-of-search price on {sum(1 for c in cs if pdir(c) == 'up')}, cut it on {sum(1 for c in cs if pdir(c) == 'down')}, held {sum(1 for c in cs if not moved(c))}. By group: " + ', '.join(f'{g} {n}' for g, n in _grp.most_common()) + '. Their situation otherwise: ' + ', '.join(f"{names.get(k, k).split(' — ')[0].split(', ')[-1]} {n}" for k, n in _pri.most_common()) + '.')
+    for c in top(cs, 3, key=lambda c: -c['R']['d90']['tos']['c']):
+        t = c['test']
+        if t['price0']:
+            corr = (f"Converts {t['ord90']} of {t['tos90']} top-of-search clicks ({t['rate']:.0%}) against a bar of {t['bar']:.1f}%. Correction: test +10% — TOS {usd(t['price0'])} → {usd(t['price1'])}; a top-of-search order then costs up to {usd(t['cpo'], 0)} "
+                    f"({('a loss of ' + usd(t['loss'], 0)) if t['loss'] >= 0 else ('still a profit of ' + usd(-t['loss'], 0))} against {usd(t['contrib'])} contribution; stop at {usd(t['stop'])})")
+        else:
+            corr = (f"Converts {t['ord90']} of {t['tos90']} top-of-search clicks ({t['rate']:.0%}) against a bar of {t['bar']:.1f}%. It has no enabled priced target on file today. Correction: re-enable its keyword and set the top-of-search price at its group’s market bound ({usd(c['limit'][1])}), inside the stop ({usd(t['stop'])}), as the test")
+        if t['repoint']:
+            corr += f"; advertise {t['repoint']} — the hero {c['serving']} is short"
+        if t['prior'] in ('DARK', 'FADED'):
+            corr += dark_extra(dict(c, push=dict(price1=t['price1'])))
+        if t['prior'] == 'COLLAPSE':
+            corr += '; its rank collapsed — run the cause check the same day'
+        example(c, corr + '; read on 10-07')
+    lead('Correction.', f'Test all {len(cs)} for two weeks; do not cut any of them in the meantime.')
+
 cs = by(['THIN_OUT', 'THIN_ZERO_OUT'])
 section(f'{len(cs)} out-of-focus campaigns under 15 clicks — hold them flat')
 lead('The rule.', 'A campaign under 15 clicks has no readable conversion rate; out of focus means no new money, not a cut. A cut on a row spending nothing releases nothing to the focus — it only leaves the row a rung lower for whenever its group comes back into focus.')
@@ -502,6 +530,7 @@ for i, b in enumerate([
     'Every morning to 09-28: top-of-search clicks, impression share, placement, budget use and hours out of budget per in-focus campaign; step again where clicks are short and share rose; halve the step where share was flat; stop at the loss stop, the share stop or the envelope; cut the base where clicks land on product pages; check eligibility where a campaign is still at zero after two steps.',
     'Same day as the push: start the cause checks on the in-focus rank collapses.',
     f"Out of focus: hold the {len(by(['THIN_OUT','THIN_ZERO_OUT']))} thin rows and the ones that work; cut the base on the {len(by('LEAK'))} leakers with top of search held; restore or check the {len(by(['DARK','FADED']))} that went dark or faded; freeze the {len(by('COLLAPSE'))} collapses.",
+    f"Out of focus, converting: test the {len(by('OUT_TEST'))} campaigns in section B.1 at +10% top of search for two weeks (Queen ones on the olive child); read on 10-07. Focus itself does not change.",
     'Other campaign types: bring the ones over their ceiling down on the base; leave the rest.',
     'B6 keeps its terms during B4’s deal (operator 2026-09-23): push them like any other in-focus term and read B6’s impression share on the shared terms daily beside B4’s — if both fall, one listing is taking the other’s auctions.',
     'Grade the price step and the budget raise separately: price on impression share, budget on hours out of budget.',
@@ -555,17 +584,15 @@ def action(c):
         return 'Freeze price and budget; investigate the rank loss'
     if k == 'ON_TARGET':
         return 'Hold; keep budget raise if capping; probe −3–5% from 09-29'
+    if k == 'OUT_TEST':
+        t = c['test']
+        return (f"Out of focus but converts ({t['rate']:.0%} at top of search vs bar {t['bar']:.1f}%): test TOS +10% {usd(t['price0'])} → {usd(t['price1'])} to 10-07" if t['price0'] else f"Out of focus but converts ({t['rate']:.0%} vs bar {t['bar']:.1f}%): no priced target on file — re-enable and set TOS at {usd(c['limit'][1])} as the test, to 10-07") + (f"; advertise {t['repoint']}" if t['repoint'] else '') + ('; restore the pre-cut base first' if t['prior'] in ('DARK', 'FADED') else '')
     if k == 'ROS_HEAVY':
         return 'ROS modifier to 0%; else treat as leak'
     return ''
 
 
 
-names = {'IN_PAUSED': 'A · In focus — keyword paused (duplicate)', 'IN_PUSH': 'A · In focus — push top of search', 'IN_LEAK': 'A · In focus — base cut + push', 'IN_DARK': 'A · In focus — restore + push', 'IN_COLLAPSE': 'A · In focus — push + investigate', 'IN_ONTARGET': 'A · In focus — delivering, hold', 'THIN_PUSH': '1 · Thin, in focus, volume — push', 'THIN_ZERO_IN': '1 · Thin (zero), in focus — push', 'THIN_TINY': '2 · Thin, in focus, low volume — hold',
-         'THIN_OUT': 'B · Out of focus, thin — hold', 'THIN_ZERO_OUT': 'B · Out of focus, zero — hold', 'LEAK': 'B · Out of focus, leak — base cut',
-         'SHORT_PRICE': '5 · Mix right, short — raise modifier', 'SHORT_BUDGET': '5 · Mix right, short — raise budget', 'SHORT_ATLIMIT': '5 · At limit — check eligibility',
-         'OUT_WORKING': 'B · Out of focus, working — hold flat', 'OUT_WEAK': 'B · Out of focus, weak — taper', 'DARK': 'B · Out of focus, went dark — restore', 'FADED': 'B · Out of focus, faded — investigate',
-         'COLLAPSE': 'B · Out of focus, rank collapse — freeze', 'ROS_HEAVY': '9 · Rest-of-search heavy', 'ON_TARGET': '9 · On target — hold'}
 doc.save(OUT)
 print('saved', OUT)
 
