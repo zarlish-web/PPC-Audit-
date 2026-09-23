@@ -23,13 +23,13 @@ and lists the rows that should not load; `build_cat_doc.py` writes
 Extra data: `placements_d14/d7/d3/pre0910/post0910.jsonl`, `decisions_hist.jsonl` (the change
 record since 2026-08-15) and `impact.json` (before/after of the 10 and 15 September rounds).
 
-## Part D — B4 and B6 diagnosis (traffic gap vs performance gap)
+## Part D — B4 diagnosis (traffic gap vs performance gap)
 
-`diag.py` reads Command Center pulls for B4 (product 59) and B6 (product 30) — syntax groups,
-keyword rows with placement split, target-level top-of-search impression share, rank grids,
-ASINsight our-keywords — into a per-group and per-keyword verdict (traffic gap / performance gap /
-both / not present / on track) against the app's bars (CTR 1.1× market, CVR 3× market) and the
-plan's weekly click requirement. `charts46.py` draws the performance-vs-tuning timelines;
-`part_d.py` is executed by `build_cat_doc.py` to write Part D. The raw pulls (~128 MB, `b46/`) are
-not committed; `data/b46_diag.json` holds the computed keyword and group tables and
-`data/chart_b4.png` / `chart_b6.png` the charts.
+`diag.py` reads Command Center pulls for B4 (product 59) — syntax groups, keyword rows with
+placement split, target-level top-of-search impression share, rank grids, ASINsight
+our-keywords — into a per-group and per-keyword verdict (traffic gap / performance gap / both /
+not present / on track) against the app's bars (CTR 1.1× market, CVR 3× market) and the plan's
+weekly click requirement. The 6-piece (product 30) keyword rows are read only to show where it
+bids in B4's auctions. `charts46.py` draws the performance-vs-tuning timeline; `part_d.py` is
+executed by `build_cat_doc.py` to write Part D. The raw pulls (~128 MB) are not committed;
+`data/b46_diag.json` holds the computed B4 keyword and group tables and `data/chart_b4.png` the chart.

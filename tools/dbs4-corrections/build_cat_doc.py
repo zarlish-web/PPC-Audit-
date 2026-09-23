@@ -191,7 +191,7 @@ def push_price(c):
 # ================================== document ==================================
 t = doc.add_paragraph(); runs(t, 'Corrections to the 21 September run — Decolure Bamboo Sheets 4-Piece', bold=True, size=18, color=NAVY)
 para('The goal this cycle is to climb the in-focus keywords inside the Best Deal (15–28 September). Every day of the deal counts, so every in-focus exact ranking campaign is pushed on top of search, every day, until its top-of-search clicks arrive — none is held for being thin or for review. The target for where clicks land is top of search above 70% and product pages under 20%. Cost per click is re-evaluated once the clicks are arriving, not before. Out-of-focus campaigns take no new money and are judged on their own numbers.')
-para('Each section gives the rule, what the run did, named campaigns as evidence, and the correction. Every in-focus campaign’s write is in one table (section A1); the rest of Part A explains the situations inside it. The full list of which campaign sits where is at the end, and in the companion spreadsheet. Part D answers Erik’s question for B4 and B6 — are we short of top-of-search traffic, or short of CTR/CVR at the top — by syntax group and by keyword, with the performance-vs-tuning history, competitors, B4/B6 overlap, the campaign types that should also be running and the metrics the app should read.')
+para('Each section gives the rule, what the run did, named campaigns as evidence, and the correction. Every in-focus campaign’s write is in one table (section A1); the rest of Part A explains the situations inside it. The full list of which campaign sits where is at the end, and in the companion spreadsheet. Part D answers Erik’s question for B4 — are we short of top-of-search traffic, or short of CTR/CVR at the top — by syntax group and by keyword, with the performance-vs-tuning history, competitors, the 6-piece listing bidding in the same auctions, the campaign types that should also be running and the metrics the app should read.')
 
 IN = [c for c in CATS if c['focus_in']]
 OUTC = [c for c in CATS if not c['focus_in']]
@@ -420,13 +420,13 @@ for b in [
     '**Write predictions the step can deliver** — the book’s rate for the step size, on the window it runs in — not the plan’s requirement. The account’s hit rate is 4.8%.',
     '**Read top-of-search impression share beside the effective bid on every ranking target** and grade each push on whether share rose; compare delivered top-of-search clicks with the plan’s weekly requirement every run (Part D).',
     '**Tell a traffic gap from a performance gap before choosing the lever:** under the CTR/CVR bars on a real sample → fix the offer, hold the price; above the bars with low share or short clicks → buy the traffic. Today the run treats both as a price question.',
-    '**Check sibling ASINs before writing a bid** — B4 and B6 share 1,242 search terms — and give each shared ranking keyword one owner in the plan.',
-    '**Grade rounds on top-of-search clicks and rank before ACoS;** a round that improves ACoS by removing in-focus top-of-search volume is a rank loss (B6).',
+    '**Check sibling ASINs before writing a bid** — the 6-piece bids on 1,242 of B4’s search terms — and give each shared ranking keyword one owner in the plan.',
+    '**Grade rounds on top-of-search clicks and rank before ACoS;** a round that improves ACoS by removing in-focus top-of-search volume is a rank loss (B4’s August rounds).',
     '**Give non-SP builds a way to happen** (a task with an owner and a date), sized to a readable click count, and read budget hours-out, sponsored rank, paid share of traffic, and price/reviews against the reference rival per keyword.',
 ]:
     bullet(b)
 
-# ---- Part D: B4/B6 diagnosis for Erik
+# ---- Part D: B4 diagnosis for Erik
 import sys as _sys; _sys.path.insert(0, S)
 exec(open(f'{S}/part_d.py').read())
 
@@ -440,9 +440,9 @@ for i, b in enumerate([
     'Same day as the push: start the cause checks on the in-focus rank collapses.',
     f"Out of focus: hold the {len(by(['THIN_OUT','THIN_ZERO_OUT']))} thin rows and the ones that work; cut the base on the {len(by('LEAK'))} leakers with top of search held; freeze the {len(by('COLLAPSE'))} collapses.",
     'Other campaign types: bring the ones over their ceiling down on the base; leave the rest.',
-    'B4/B6 (Part D): set owners on the shared hero terms — B6’s top-of-search modifier to 0% on the terms B4 owns during the deal; B6 restores top-of-search volume on the terms it keeps. Switch Queen Size to fixed bids; reset “bamboo sheets queen” and “queen bamboo sheet set” to the group clearing price before stepping.',
+    'Part D: the 6-piece’s top-of-search modifier to 0% on the terms B4 is ranking, for the deal. Switch Queen Size to fixed bids; reset “bamboo sheets queen” and “queen bamboo sheet set” to the group clearing price before stepping.',
     'Every morning, beside clicks: top-of-search impression share per hero target. Share rising with price — keep stepping; flat — check budget hours out, the sibling ASIN, eligibility.',
-    'This week: build the Sponsored Brands headline (3), Sponsored Brands Video (2), Sponsored Display defence and the conquest campaign from the run’s builds, at readable budgets; one phrase discovery per in-focus root. Pull the Amazon change history for B6, 26 Aug–5 Sep.',
+    'This week: build the Sponsored Brands headline (3), Sponsored Brands Video (2), Sponsored Display defence and the conquest campaign from the run’s builds, at readable budgets; one phrase discovery per in-focus root.',
     'Cooling: no added bid on the head term “cooling sheets” until the listing and price answer the cooling query; the cooling terms that meet the bars (“bamboo cooling sheets”, “cooling sheets queen”, “king cooling sheets”) are pushed.',
     'From 09-29: re-evaluate cost per click on every campaign now receiving its top-of-search clicks — probe down 3–5% a step while click share holds — and grade every write in this list.',
 ], 1):
@@ -536,7 +536,7 @@ for col, wd in zip('ABCDEFGHIJKLMNOPQ', [30, 60, 16, 7, 9, 9, 9, 10, 10, 10, 9, 
     ws.column_dimensions[col].width = wd
 for col, wd in zip('ABCDEFGH', [60, 12, 9, 9, 9, 9, 40, 70]):
     ws2.column_dimensions[col].width = wd
-for prod, lab, KW in (('b4', 'B4', KW4), ('b6', 'B6', KW6)):
+for prod, lab, KW in (('b4', 'B4', KW4),):
     w = wb.create_sheet(f'{lab} keyword diagnosis')
     w.append(['Keyword', 'Syntax', 'Plan clicks/wk', 'Weekly SV', 'Clicks 30d', 'TOS clicks 30d', 'TOS clicks/day pre-deal', 'TOS clicks/day deal', 'TOS share', 'TOS CTR', 'CTR bar', 'TOS CVR', 'CVR bar', 'TOS impr. share', 'Eff. TOS bid', 'Organic', 'Sponsored', 'Rank 24 Jun', 'Rank 14 Sep', 'Rank 22 Sep', 'Verdict', 'Recommendation'])
     for r in KW:
@@ -549,7 +549,7 @@ for prod, lab, KW in (('b4', 'B4', KW4), ('b6', 'B6', KW6)):
     w.freeze_panes = 'B2'; w.column_dimensions['A'].width = 34; w.column_dimensions['U'].width = 40; w.column_dimensions['V'].width = 80
 w = wb.create_sheet('Syntax groups')
 w.append(['Product', 'Group', 'Spend 30d', 'Clicks', 'TOS clicks', 'TOS share', 'TOS CTR', 'CTR bar', 'TOS CVR', 'CVR bar', 'TOS impr. share', 'TOS CPC', 'Rank 24 Jun', 'Rank 15 Aug', 'Rank 14 Sep', 'Rank 22 Sep', 'Verdict'])
-for lab, G, GIS in (('B4', GR4, GIS4), ('B6', GR6, GIS6)):
+for lab, G, GIS in (('B4', GR4, GIS4),):
     for g in G:
         v = _dg.verdict(g['tos_impr'], g['tos_clicks'], g['tos_ctr'], g['tos_cvr'], g['mctr'], g['mcvr'], is_=GIS.get(g['group']))
         R2 = lambda x, n=2: None if x is None else round(x, n)
