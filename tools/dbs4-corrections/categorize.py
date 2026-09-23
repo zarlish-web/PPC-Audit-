@@ -15,6 +15,10 @@ def load(label):
     return {json.loads(l)['campaignId']: json.loads(l) for l in open(p)} if os.path.exists(p) else {}
 
 
+def pct(x):
+    return '—' if x is None else f'{x*100:.0f}%'
+
+
 W = {k: load(k) for k in ('d90', 'pre_deal30', 'deal8', 'd14', 'd7', 'd3', 'pre0910', 'post0910')}
 DAYS = {'d90': 90, 'pre_deal30': 31, 'deal8': 8, 'd14': 14, 'd7': 7, 'd3': 3, 'pre0910': 3, 'post0910': 4}
 
@@ -184,12 +188,61 @@ def classify(c):
     else:
         cat = 'ROS_HEAVY'
 
+    # ---- in focus: every campaign is pushed on top of search during the deal (operator 2026-09-23) ----
+    push = None
+    tg = c.get('targets') or []
+    all_paused = bool(tg) and not any(t['state'] in ('ENABLED', None) for t in tg)
+    if focus_in and all_paused:
+        cat = 'IN_PAUSED'
+    elif focus_in:
+        if cat == 'COLLAPSE':
+            cat = 'IN_COLLAPSE'
+        elif cat in ('DARK', 'FADED'):
+            cat = 'IN_DARK'
+        elif cat == 'ON_TARGET':
+            cat = 'IN_ONTARGET'
+        elif (cat == 'LEAK' and mixw != 'd90') or (mixw != 'd90' and mix['tos_sh'] is not None and mix['tos_sh'] < 0.30):
+            cat = 'IN_LEAK'
+        else:
+            cat = 'IN_PUSH'
+        if cat != 'IN_ONTARGET':
+            # step sized by the rank gap
+            if rank_now and rank_tgt:
+                gap_pos = rank_now - rank_tgt
+                ratio = rank_now / rank_tgt
+                step = 0.10 if gap_pos <= 5 else (0.20 if ratio <= 2 else 0.30)
+                step_why = f"rank {rank_now} vs target {rank_tgt}: " + ('within 5 positions → +10%' if gap_pos <= 5 else ('up to 2× the target → +20%' if ratio <= 2 else 'more than 2× the target → +30%'))
+            else:
+                step, step_why = 0.25, 'no rank read on file → +25%'
+            p0, b0 = em.get('price_now'), an.get('base')
+            b1 = b0
+            base_why = 'base held'
+            leak = mixw in ('d14', 'deal8') and (mix['pp_sh'] or 0) > 0.20
+            if (cat == 'IN_LEAK' or leak) and b0:
+                pp = mix['pp_sh'] or 0
+                ords = mix['detail']['o'] + mix['other']['o']
+                cut = 0.10 if pp < 0.30 else 0.20 if pp < 0.50 else 0.35
+                cut = min(cut, 0.25 if ords else 0.50)
+                b1 = max(0.50, b0 * (1 - cut))
+                base_why = f"base −{cut:.0%} for product pages at {pct(pp)} ({mixw})"
+            p1 = p0 * (1 + step) if p0 else None
+            m1 = (p1 / b1 - 1) * 100 if (p1 and b1) else None
+            if m1 is not None and m1 > 900:
+                b1 = p1 / 10; m1 = 900.0
+                base_why += '; modifier would pass the 900% wall — base lifted as a stated trade'
+            bud1 = round(budget * 1.3, 2) if (util7 is not None and util7 >= 0.8) else budget
+            cpo = (p1 / tos_rate) if (p1 and tos_rate) else None
+            push = dict(step=step, step_why=step_why, price0=p0, price1=p1, base0=b0, base1=b1, base_why=base_why, mod0=an.get('tos_mod'),
+                        mod1=m1, budget0=budget, budget1=bud1, over_limit=bool(p1 and p1 > lim[1]), cpo=cpo,
+                        loss=(cpo - contrib) if cpo else None, zero=(n90['t3'] == 0 and dl['t3'] == 0),
+                        ud=(c.get('bid_strategy') == 'AUTO_FOR_SALES'), hero_bad=hero_bad, leak=(cat == 'IN_LEAK' or leak))
+
     restore = []
     for h in last:
         if h['decided'] == '2026-09-10' and h['field'] in ('bid', 'placement_multiplier'):
             restore.append((h['entityLabel'] if h['field'] == 'bid' else ('TOS modifier' if h['placement'] == 'placementTop' else 'ROS modifier' if h['placement'] == 'placementRestOfSearch' else 'PP modifier'), h['before'], h['after']))
     later = [(h['decided'], h['field'], h['placement'], h['before'], h['after']) for h in last if h['decided'] > '2026-09-10']
-    return dict(restore=restore, later=later, cid=cid, name=c['campaign'], short=c['campaign'].replace('DBS4-SP-', ''), obj=c['objective'], focus=c.get('focus'),
+    return dict(push=push, restore=restore, later=later, cid=cid, name=c['campaign'], short=c['campaign'].replace('DBS4-SP-', ''), obj=c['objective'], focus=c.get('focus'),
                 focus_in=focus_in, tier=tr, group=grp, limit=lim, cat=cat, R=R, mixw=mixw, tos90=tos90, budget=budget,
                 util7=util7, util14=util14, rank_now=rank_now, rank_30=rank_30, rank_tgt=rank_tgt, lost=lost, plan_wk=plan_wk,
                 need_day=need_day, deal_tos_day=deal_tos_day, pre_tos_day=pre_tos_day, tos_is=tos_is, contrib=contrib,
