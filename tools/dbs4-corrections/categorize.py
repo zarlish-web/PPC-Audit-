@@ -268,8 +268,8 @@ def classify(c):
             if share_stop:
                 step, step_why = 0.0, f"share stop — {is_now:.0f}% impression share and not rising: the requirement is re-based from actual volume, not bought"
             # conversion rate for the loss stop: own top of search with 30+ clicks, else the product's planning rate
-            rate = (n90['tos']['o'] / tos90) if tos90 >= 30 else PLAN_RATE
-            rate_src = 'own top of search, 90 days' if tos90 >= 30 else 'product planning rate'
+            rate = (n90['tos']['o'] / tos90) if tos90 >= 15 else PLAN_RATE
+            rate_src = 'own top of search, 90 days' if tos90 >= 15 else 'product planning rate'
             stop_price = HARD_STOP_X * contrib * rate
             p0, b0 = em.get('price_now'), an.get('base')
             b1 = b0
