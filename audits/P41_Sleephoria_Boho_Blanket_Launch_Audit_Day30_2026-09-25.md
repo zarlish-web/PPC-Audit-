@@ -325,7 +325,7 @@ ROS = rest of search. PDP = product pages. Eff. bid = CC spend-weighted effectiv
   - boho throw blanket 59 → 92
   - boho blanket 85 → > 100
   - boho blankets and throws 82 → > 100
-- **Gains were on long-tail cotton terms that bought little PPC:** boho cotton blanket, rustic floral, cotton throw terms. This is consistent with organic relevance for "cotton", not PPC velocity [I].
+- **Gains were on long-tail boho terms that include "cotton" and bought little PPC:** boho cotton blanket, boho scandinavian cotton blanket, rustic floral. This looks more like organic relevance than PPC velocity [I].
 - **Nine Batch 1 terms did not rank on any crawled day:** the king/queen size terms, picnic, heated, beach and blue. These are the terms S7 flags as a weaker fit.
 
 ---
@@ -469,7 +469,7 @@ Caveats:
 
 Reading [I]:
 - **Core** (61% of spend) is the losing quadrant: a click-winner that converts below market. That is a listing, price or review problem, not a bid problem. The SOP-23 conversion clause ("Brand CVR ≥ Market CVR") isn't met for the syntax that carries most of the budget.
-- **Material** (cotton) is the only quadrant where we out-convert the market. It is also where organic rank improved (S2). It is the one segment that deserves any residual attention, but S9 still applies to it.
+- **Material** shows a higher CVR than market (1.83% vs 0.95%), but on a very thin sample: 2 orders from 109 clicks. The terms in it are boho + cotton combinations, and the team's view is that generic cotton terms are too broad for this product. So this group is noted but not proposed as a focus.
 
 ---
 
@@ -487,7 +487,7 @@ Reading [I]:
 | Branded rows | MKL types them Halo/**Ranking**; CS types them **Defensive**; live is "Branded" | WB, CC [M] |
 | Workbook integrity | Orphan truncated row **"d flower and butterfly throw blanket"** (Ranking/Exact, no batch). CS Batch 2 subtotal and "TOTAL" rows are **duplicated** (118 kw vs 123 kw). CS $414/day ≠ MKL $407.90/day. "boho blanket queen" routed to two different sizes | WB [M] |
 | Catalogue identity | **B0GGTMTB4Y is both the "parent ASIN" in the brief and the Bloom 50x60 child SKU** in SB and CC. SB lists it with price $0, no image and a different title ("SLEEPHORIA Throw Blanket 50x60 Inches…"). It has had no stock so far | SB-PROD, SB-INV, CC [M] |
-| Omitted high-intent material terms | "cotton throw blanket" (DD SV 31,206; SQP 4,256 market clicks in 7 days) and "100% cotton throw blanket" (7,232) sit in Batch 2, although Material is the one quadrant that out-converts (S6) | DD, WB [M] |
+| Generic material terms | "cotton throw blanket" (DD SV 31,206) and "100% cotton throw blanket" (7,232) are in Batch 2. They carry high volume but broad intent, and the team's view is that they are too generic to test for this product | DD, WB [M] |
 | Competitor set | DD niche nUARjsKofz (21 Sep, 17 competitors): **none of our 16 ASINs** in it. Niche benchmark price **$29.99**, 781 reviews, 1,034 units/month. Only niche mlBooc4oU0 includes B0GGT3PZ8K (ranking juice 356,598, highest in that 9-ASIN niche; median 270,951) | DD-N [M] |
 | CC competitor mapping | Product 41 has **no mapped competitors** (`traffic_market_keywords`: unknown_product) | CC [M] |
 
@@ -502,7 +502,7 @@ Reading [I]:
 | Were enough clicks bought to judge CVR? | Blended: **2,638 clicks, 29 orders; CVR 1.10% (95% CI 0.70–1.50%)**. On-Amazon: 949 clicks, 13 orders; 1.37% (CI 0.63–2.11%). **Sufficient to reject** every CVR above 2.1%, and so every CVR that S9 shows would be needed (≥ 9%) [M] |
 | Per term | 16 of 49 terms reached ≥ 20 clicks; **6 reached ≥ 100** (the SOP-22 validated-CVR line): boho king size blanket 1,031; boho throw blankets for couch 446; boho blanket 185; boho throw 125; boho blanket king 108; bohemian throw blanket 104. Best of these: 2.9% |
 | Were enough clicks bought to judge rank? | On the two head terms, **TOS share stayed at or below 2.1%**, so the push did not test rank-for-velocity. It tested whether a new listing can win top of search, and it could not at 2–5× the clearing CPC (S1) |
-| Is Batch 1, as a roster, sufficient? | No. 14/49 terms are disqualified or irrelevant (S7), 13/49 were not indexed, and 26/49 are not rank-tracked in DD. The strongest segment (Material/cotton) is under-weighted (6 terms, $96.75) |
+| Is Batch 1, as a roster, sufficient? | No. 14/49 terms are disqualified or irrelevant (S7), 13/49 were not indexed, and 26/49 are not rank-tracked in DD. The best-fit boho terms carry a relatively small share of spend |
 | Should Batch 2 proceed? | **No.** Batch 2 is planned at $550/day across 55 campaigns, with the same model (Daily Target 1, click-share CVR) and the same THIN margin. The S9 gate isn't met, even before sizing |
 
 ---
@@ -631,7 +631,7 @@ This product has only been advertised for 30 days, so some loss is expected. The
 |---|---|---|
 | Organic units per week | Encouraging | 3 → 5 → 11 → 20 (calendar weeks 26 Aug–21 Sep; SB-P&L). 43 organic units in 30 days against 11 PPC units |
 | TACoS | Encouraging | 81% (26–31 Aug) → 44% (15–21 Sep), 35% on 22–24 Sep (partial) |
-| Rank on cotton / material terms | Encouraging | boho cotton blanket → 29, boho scandinavian cotton blanket → 11, rustic floral → 23 (DD-RR, 25 Sep) |
+| Rank on long-tail boho terms | Encouraging | boho cotton blanket → 29, boho scandinavian cotton blanket → 11, rustic floral → 23 (DD-RR, 25 Sep) |
 | Rank on head boho terms | Less encouraging | boho throw blanket 59 → 92, boho blanket 85 → > 100 (S2) |
 | Top-of-search presence | Less encouraging | About 1–2% share on the head terms, even at 2–5× the clearing CPC (S1) |
 | Conversion | Less encouraging | 1.10% overall, 1.37% on-Amazon, against a 1.71% SQP market rate (S9.2) |
@@ -657,7 +657,7 @@ Spend to date is $1,184.93. The number of extra organic units needed to recover 
 
 - **Sequence.** Make the listing and offer changes first (images, A+, price test; A3), because conversion and relevance appear to be the main limits (S1, S6).
 - **Budget.** Then run a focused 3-week test (the SOP-23 default review horizon) at about **$20/day ($140/week, $420 cap)**.
-- **Keywords.** Focus on the cotton / material terms and the best-relevance boho terms, where top-of-search share is already 20–26%. On current figures for cotton terms ($0.90 CPC, 1.75% CVR; SB-PPC), that buys about 155 clicks a week and roughly 8 orders over 3 weeks. The expected net cost is about $385.
+- **Keywords.** Focus on boho-intent terms with the better relevance signals so far (top-of-search share of about 9–14%): bohemian throw blanket, boho throw, bohemian blanket, boho blankets and throws, throw blanket for couch boho, boho throw blanket for bed, throw blanket boho. Generic cotton terms are left out. On current figures for these terms ($0.74 CPC, 1.45% CVR; SB-PPC), $140 a week buys about 189 clicks, roughly 8 orders over 3 weeks, at an expected net cost of about $384.
 - **Modifiers.** Use moderate TOS modifiers rather than +300–900% (S1).
 
 **Checkpoints at the end of the 3 weeks**
