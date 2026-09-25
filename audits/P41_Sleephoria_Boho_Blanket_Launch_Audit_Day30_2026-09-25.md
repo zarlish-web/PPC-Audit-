@@ -41,7 +41,7 @@ Five further findings sit on top of that:
 
 **Launch context.** This is a new launch (30 days of ads), so some loss is expected. S9.7 looks at the numbers as a launch investment. Organic units are rising (3 → 20 a week) and TACoS is easing (81% → 44%). The paid push hasn't yet produced rank progress on the head terms, and the plan had no loss ceiling.
 
-**Recommendation in one line:** we suggest pausing the broad paid rank push for now and holding Batch 2. The price and COGS question could go to the brand owner with the arithmetic in S9. After listing and offer improvements, a capped 3-week launch test (about $420, with the checkpoints in S9.7) could follow, with the MKL model rebuilt on measured inputs.
+**Recommendation in one line:** we suggest scaling back the current Batch 1 ranking campaigns (all Exact match, still running at about $12/day since 23 Sep) and holding Batch 2. The price and COGS question could go to the brand owner with the arithmetic in S9. After listing and offer improvements, a capped 3-week launch test (about $420, with the checkpoints in S9.7) could follow, with the MKL model rebuilt on measured inputs.
 
 ---
 
@@ -127,7 +127,7 @@ Five further findings sit on top of that:
 | 27 Aug | Budgets first recorded (= plan, rounded) | 40 campaigns |
 | 28 Aug | Keyword bids first recorded, all at plan value; budgets raised on boho blanket ($6 → $25) and boho throw blanket ($8 → $30) | 45 kw, 2 campaigns |
 | 29 Aug | boho throw $0.50 → $0.60; boho throw blanket $0.50 → $0.65 | 2 |
-| 2 Sep | Broad bid raise, typically +30% (e.g. $0.99 → $1.29, $0.52 → $0.75) | 44 |
+| 2 Sep | Bid raise across most keywords, typically +30% (e.g. $0.99 → $1.29, $0.52 → $0.75) | 44 |
 | 4 Sep | boho blanket budget $25 → $40 | 1 |
 | 6 Sep | Trim, typically −10% (e.g. $1.29 → $1.16) | 15 |
 | 13 Sep | Cuts: boho throw $0.65 → $0.32; bohemian throw blanket $0.79 → $0.52; throw blanket boho $0.75 → $0.38 | 3 |
@@ -491,7 +491,7 @@ Reading [I]:
 | Competitor set | DD niche nUARjsKofz (21 Sep, 17 competitors): **none of our 16 ASINs** in it. Niche benchmark price **$29.99**, 781 reviews, 1,034 units/month. Only niche mlBooc4oU0 includes B0GGT3PZ8K (ranking juice 356,598, highest in that 9-ASIN niche; median 270,951) | DD-N [M] |
 | CC competitor mapping | Product 41 has **no mapped competitors** (`traffic_market_keywords`: unknown_product) | CC [M] |
 
-**Verdict.** The MKL is broad, but it looks less reliable at the three points the launch depended on: rank, volume and relevancy. The Batch 1 selection admitted terms the list itself disqualifies.
+**Verdict.** The MKL is large, but it looks less reliable at the three points the launch depended on: rank, volume and relevancy. The Batch 1 selection admitted terms the list itself disqualifies.
 
 ---
 
@@ -685,7 +685,7 @@ Spend to date is $1,184.93. The number of extra organic units needed to recover 
 | A3 | P1 | **Escalate the S9 verdict to the brand owner** as the headline: "unlikely to be advertised profitably at current price and cost". Options with arithmetic: (a) 60x80 price test to about **$39.52**, which clears break-even at blended CPC and 3× market CVR, supported by competitors at $43.99–$52.99; (b) COGS/FBA reduction worth about $4.78 per 50x60 unit; (c) the capped launch budget in S9.7 (about $420 over 3 weeks, after listing fixes, with rank, conversion and organic checkpoints); (d) organic-only operation | Brand | S9.3–S9.6 |
 | A4 | P2 | **Load economics into the system.** Create the `product_targets` / ceiling row. Complete CC fee snapshots for price, referral and fulfilment on all 16 SKUs. Set break-even ACoS 14.7% / 14.0% and max CPC per SKU | Data + Lead | S0.1: CC economics null on 16/16. SOP-41 G9 is PROVISIONAL until every active row carries contribution |
 | A5 | P2 | **Rebuild the MKL model.** Populate DSTR (SQP or competitor velocity). Replace "click share × 1.5" with a measured CVR (1.37% on-Amazon, 1.71% market). Recompute Daily Target, required clicks, budgets and the SOP-23 loss ceiling. Add the dated honeymoon exit | Lead | S3.1: 7,795 empty DSTR; Daily Target = 1 on 49/49; model CVR 9–16× reality |
-| A6 | P2 | **Before any re-enable, reset TOS modifiers** to a value that satisfies SOP-28 M4 (effective TOS ≤ max profitable CPC). Today that means **TOS 0% and base bids ≤ $0.25**, which will not win top of search. So we'd suggest holding off on a broad rank push until A3 improves contribution. A focused test within the S9.7 cap is the exception | Spec | S1.1: live +300% to +900%, effective $2.60–$7.10 against a $0.20–$0.25 ceiling |
+| A6 | P2 | **Before scaling spend back up, reset TOS modifiers** to a value that satisfies SOP-28 M4 (effective TOS ≤ max profitable CPC). Today that means **TOS 0% and base bids ≤ $0.25**, which will not win top of search. So we'd suggest keeping the Batch 1 ranking campaigns scaled back until A3 improves contribution. A focused test within the S9.7 cap is the exception | Spec | S1.1: live +300% to +900%, effective $2.60–$7.10 against a $0.20–$0.25 ceiling |
 | A7 | P2 | **Consider retiring the weaker-fit, zero-order Batch 1 terms:** boho heated blanket, boho picnic blanket, boho beach blanket, beach blanket boho, king size boho blanket, boho blanket king size, boho king blanket, boho blanket queen, boho cotton blankets queen size. They could be negated in future discovery campaigns. **We'd suggest reviewing rather than retiring** "boho king size blanket" and "boho blanket king": they converted (9 and 3 orders), but mostly via Off-Amazon traffic that builds no rank | Spec | S7: 0% relevancy / disqualifier override. S2: not ranked in the window. S4: $94.41 at 0 orders |
 | A8 | P2 | **Register objectives** for the 20 undeclared campaigns in the CC Campaign Registry. Rename to the plan convention, or document the live convention as the standard | Spec + Data | S0.1: 20/40 "not declared" ($341.48, 28.8% of spend invisible to objective reporting) |
 | A9 | P2 | **Keep a close eye on the Off-Amazon placement**, which has no bid modifier. If any campaign is re-enabled, check whether the console exposes an Off-Amazon placement control. If not, keep such campaigns off, or budget-cap them and measure separately | Lead | S1.4: 64% of clicks, $336.34, no modifier lever. Conversion is unmeasurable by CC rule |
