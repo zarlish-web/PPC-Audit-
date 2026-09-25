@@ -39,7 +39,9 @@ Five further findings sit on top of that:
 4. **64% of all clicks (1,686 of 2,638) went Off-Amazon** at $0.20 each, between 4 and 18 Sep (S1). That traffic is what makes the blended CPC look cheap. It builds no search rank.
 5. **SellerBoard's campaign and ad-group status fields do not match delivery** (S0). They show every campaign with either the campaign or its ad group Paused, but command-center delivery data shows **38 campaigns receiving impressions on 22–24 Sep** ($64.48 spend). Spend did fall to about $12/day on 23–24 Sep.
 
-**Recommendation in one line:** we suggest pausing paid rank-building for now and holding Batch 2. The price and COGS question could go to the brand owner with the arithmetic in S9, and the MKL model could be rebuilt with measured inputs before spend is increased again.
+**Launch context.** This is a new launch (30 days of ads), so some loss is expected. S9.7 looks at the numbers as a launch investment. Organic units are rising (3 → 20 a week) and TACoS is easing (81% → 44%). The paid push hasn't yet produced rank progress on the head terms, and the plan had no loss ceiling.
+
+**Recommendation in one line:** we suggest pausing the broad paid rank push for now and holding Batch 2. The price and COGS question could go to the brand owner with the arithmetic in S9. After listing and offer improvements, a capped 3-week launch test (about $420, with the checkpoints in S9.7) could follow, with the MKL model rebuilt on measured inputs.
 
 ---
 
@@ -618,6 +620,57 @@ These nets exclude storage and returns (9.5), so they flatter the result.
 > - The system holds no ceiling to stop this: no `product_targets` row [S], a null CC break-even, and an MKL without economics columns.
 > - In line with SOP-23 X5, the gap is economic, so pricing, COGS and inventory are the more promising levers than bids.
 
+
+### 9.7 Launch-stage view
+
+This product has only been advertised for 30 days, so some loss is expected. The plan itself describes launch spend as "deliberately unprofitable." The S9 gate above tests steady-state profitability. For a launch, the more useful question is whether the loss is buying rank, reviews and organic sales that pay it back later.
+
+**Signals so far** [M]
+
+| Signal | Direction | Evidence |
+|---|---|---|
+| Organic units per week | Encouraging | 3 → 5 → 11 → 20 (calendar weeks 26 Aug–21 Sep; SB-P&L). 43 organic units in 30 days against 11 PPC units |
+| TACoS | Encouraging | 81% (26–31 Aug) → 44% (15–21 Sep), 35% on 22–24 Sep (partial) |
+| Rank on cotton / material terms | Encouraging | boho cotton blanket → 29, boho scandinavian cotton blanket → 11, rustic floral → 23 (DD-RR, 25 Sep) |
+| Rank on head boho terms | Less encouraging | boho throw blanket 59 → 92, boho blanket 85 → > 100 (S2) |
+| Top-of-search presence | Less encouraging | About 1–2% share on the head terms, even at 2–5× the clearing CPC (S1) |
+| Conversion | Less encouraging | 1.10% overall, 1.37% on-Amazon, against a 1.71% SQP market rate (S9.2) |
+
+It's too early to credit the organic lift to ads with confidence. It sits mostly outside the head terms, and partly in SKUs that weren't advertised (S5.4).
+
+**Payback arithmetic (illustrative)** [I]
+
+Spend to date is $1,184.93. The number of extra organic units needed to recover it depends on the contribution per unit:
+
+| Contribution per unit | Units to recover spend | Weeks at 20 organic units/wk (all credited to ads) | Weeks if half the lift is from ads |
+|---|---|---|---|
+| $3.74 (realised, before storage) | 317 | 15.8 | 31.7 |
+| $4.40 (blend of sizes) | 269 | 13.5 | 26.9 |
+| $4.89 (60x80) | 242 | 12.1 | 24.2 |
+
+- **Payback horizon.** On today's run-rate, payback is likely to take roughly 3–7 months, and it depends on the organic lift continuing.
+- **Monthly storage** (about $830) is a separate cost the launch would also need to outpace.
+
+**A loss ceiling for the launch.** The plan did not set one (SOP-23 M2). At the current run-rate the implied ceiling is (130.8% − 14.3% break-even) × $211.33 weekly ad sales ≈ **$246 per week**, which matches the weekly loss in S9.3. A ceiling this high with no end date makes a long launch costly on a THIN margin.
+
+**A suggested capped launch budget** (for brand-owner decision) [I]
+
+- **Sequence.** Make the listing and offer changes first (images, A+, price test; A3), because conversion and relevance appear to be the main limits (S1, S6).
+- **Budget.** Then run a focused 3-week test (the SOP-23 default review horizon) at about **$20/day ($140/week, $420 cap)**.
+- **Keywords.** Focus on the cotton / material terms and the best-relevance boho terms, where top-of-search share is already 20–26%. On current figures for cotton terms ($0.90 CPC, 1.75% CVR; SB-PPC), that buys about 155 clicks a week and roughly 8 orders over 3 weeks. The expected net cost is about $385.
+- **Modifiers.** Use moderate TOS modifiers rather than +300–900% (S1).
+
+**Checkpoints at the end of the 3 weeks**
+
+| Checkpoint | Continue if | Otherwise |
+|---|---|---|
+| Rank | At least two focus terms move into the top 50 (in line with Erik's 4 Sep success criterion) | Move to maintenance spend |
+| Conversion | On-Amazon CVR at or above the 1.71% market rate after ~100 clicks per focus term | Revisit listing and price before further spend |
+| Organic momentum | Organic units hold at about 20+/week and TACoS stays at or below ~40% | Reduce to maintenance spend |
+| Budget | Total loss within the $420 cap | Pause and review |
+
+**How this changes the reading of S9.** The S9 gate still describes the long-run position: at today's price and cost, paid traffic is unlikely to be profitable at the conversion rates we see. As a launch, though, a limited and time-boxed investment can still make sense. It needs a set cap, clear checkpoints, and listing and offer improvements first. The main concern is that the current spend isn't yet producing the rank progress a launch investment is meant to buy.
+
 ---
 
 ## S10: Actions (prioritised, each with owner and evidence)
@@ -629,10 +682,10 @@ These nets exclude storage and returns (9.5), so they flatter the result.
 |---|---|---|---|---|
 | A1 | P1 | **Double-check serving state in the Amazon console**, since SellerBoard's status fields don't match delivery, and confirm the live state of all 40 campaigns and 37 ad groups in the Amazon console. Then take the S9 decision deliberately: if spend is to stop, pause at campaign level and record the date and reason ("S9 gate not met") in the change log | Spec | S0.2: SellerBoard shows 0 of 37 fully Active, yet command-center shows 38 campaigns delivering impressions on 22–24 Sep. Every order costs $40.86 against $3.96–$4.89 contribution |
 | A2 | P1 | **Hold Batch 2 for now.** Keep it out of the queue until A4 and A5 are resolved | Lead | CS: $550/day = $3,850/week. Same uncomputed model (S3) and same THIN margin (S9.1). At the blended CPC of $0.449 and 3× market CVR (5.14%), a 50x60-routed Batch 2 would buy 8,575 clicks and 441 orders a week. That is $1,746 of contribution against $3,850 of spend: **−$2,105/week** |
-| A3 | P1 | **Escalate the S9 verdict to the brand owner** as the headline: "unlikely to be advertised profitably at current price and cost". Options with arithmetic: (a) 60x80 price test to about **$39.52**, which clears break-even at blended CPC and 3× market CVR, supported by competitors at $43.99–$52.99; (b) COGS/FBA reduction worth about $4.78 per 50x60 unit; (c) an explicit, capped investment budget with a written loss ceiling (SOP-23 M2) and end date; (d) organic-only operation | Brand | S9.3–S9.6 |
+| A3 | P1 | **Escalate the S9 verdict to the brand owner** as the headline: "unlikely to be advertised profitably at current price and cost". Options with arithmetic: (a) 60x80 price test to about **$39.52**, which clears break-even at blended CPC and 3× market CVR, supported by competitors at $43.99–$52.99; (b) COGS/FBA reduction worth about $4.78 per 50x60 unit; (c) the capped launch budget in S9.7 (about $420 over 3 weeks, after listing fixes, with rank, conversion and organic checkpoints); (d) organic-only operation | Brand | S9.3–S9.6 |
 | A4 | P2 | **Load economics into the system.** Create the `product_targets` / ceiling row. Complete CC fee snapshots for price, referral and fulfilment on all 16 SKUs. Set break-even ACoS 14.7% / 14.0% and max CPC per SKU | Data + Lead | S0.1: CC economics null on 16/16. SOP-41 G9 is PROVISIONAL until every active row carries contribution |
 | A5 | P2 | **Rebuild the MKL model.** Populate DSTR (SQP or competitor velocity). Replace "click share × 1.5" with a measured CVR (1.37% on-Amazon, 1.71% market). Recompute Daily Target, required clicks, budgets and the SOP-23 loss ceiling. Add the dated honeymoon exit | Lead | S3.1: 7,795 empty DSTR; Daily Target = 1 on 49/49; model CVR 9–16× reality |
-| A6 | P2 | **Before any re-enable, reset TOS modifiers** to a value that satisfies SOP-28 M4 (effective TOS ≤ max profitable CPC). Today that means **TOS 0% and base bids ≤ $0.25**, which will not win top of search. So we'd suggest holding off on re-enabling a rank push until A3 improves contribution | Spec | S1.1: live +300% to +900%, effective $2.60–$7.10 against a $0.20–$0.25 ceiling |
+| A6 | P2 | **Before any re-enable, reset TOS modifiers** to a value that satisfies SOP-28 M4 (effective TOS ≤ max profitable CPC). Today that means **TOS 0% and base bids ≤ $0.25**, which will not win top of search. So we'd suggest holding off on a broad rank push until A3 improves contribution. A focused test within the S9.7 cap is the exception | Spec | S1.1: live +300% to +900%, effective $2.60–$7.10 against a $0.20–$0.25 ceiling |
 | A7 | P2 | **Consider retiring the weaker-fit, zero-order Batch 1 terms:** boho heated blanket, boho picnic blanket, boho beach blanket, beach blanket boho, king size boho blanket, boho blanket king size, boho king blanket, boho blanket queen, boho cotton blankets queen size. They could be negated in future discovery campaigns. **We'd suggest reviewing rather than retiring** "boho king size blanket" and "boho blanket king": they converted (9 and 3 orders), but mostly via Off-Amazon traffic that builds no rank | Spec | S7: 0% relevancy / disqualifier override. S2: not ranked in the window. S4: $94.41 at 0 orders |
 | A8 | P2 | **Register objectives** for the 20 undeclared campaigns in the CC Campaign Registry. Rename to the plan convention, or document the live convention as the standard | Spec + Data | S0.1: 20/40 "not declared" ($341.48, 28.8% of spend invisible to objective reporting) |
 | A9 | P2 | **Keep a close eye on the Off-Amazon placement**, which has no bid modifier. If any campaign is re-enabled, check whether the console exposes an Off-Amazon placement control. If not, keep such campaigns off, or budget-cap them and measure separately | Lead | S1.4: 64% of clicks, $336.34, no modifier lever. Conversion is unmeasurable by CC rule |
