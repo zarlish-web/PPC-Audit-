@@ -22,6 +22,8 @@ Command Center's last-14-day campaign report gives the ad orders each campaign c
 | **At risk** | Not out, but flag = SOON, days left < 30, or FBA ÷ velocity < 14; **and** inbound does not cover another 30 days (inbound ÷ velocity < 30) |
 | **In stock** | Everything else |
 
+Where the run itself dates a hero's next arrival (its inventory context), that date wins: the hero is **at risk** when its planner days left end before the arrival. This first applied on DBS4, where Queen White has 22 days and its next 678 units land in 33.
+
 Size is read from the SKU name (KING / QUEEN / FULL / TWIN). Pack is read the same way: 3PC is a different pack from 4PC. Colour comes from the catalogue's colour field. GRAY is read as GREY, and STRIPE is kept as its own pattern.
 
 ## 2. A swap (child re-point) passes only when all of these hold
@@ -32,6 +34,8 @@ Size is read from the SKU name (KING / QUEEN / FULL / TWIN). Pack is read the sa
 4. **The target can carry the traffic.** Compute cover after the move = target FBA ÷ (target's own velocity + ad orders a day of every live campaign moving onto it). That counts this row's group and every other swap onto the same target from a child that has to move. It must stay at **30 days or more**.
    - Ad orders a day = the moving campaigns' 14-day orders ÷ 14. This replaces the stock addendum's worst case, which assumed the source's whole sales velocity would follow the ads.
 5. **A much stronger target does not exist.** If another same-size child sells 3× the target's velocity and holds 3× its stock, the swap still passes, but the review names that child as the preferred target.
+
+One exception to rule 1: a move off an in-stock child passes when the target is plainly the stronger seller. It must sell at least 2 a day and at least 1.5× the source, and keep 30 days once the moved traffic lands, counting its reserved units. It is still a manual task. On the satin runs no swap met this test; on DBS4 it passes King Creme → King White (9.8 a day against 5.0).
 
 A swap that passes is a **manual task**, because the loader skips every swap today. A rename that stamps a passing swap's target ships **after the swap**. Any other rename that stamps a child the ad does not serve is held.
 
