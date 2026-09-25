@@ -37,7 +37,7 @@ Five further findings sit on top of that:
 2. **Rank went backwards, not forwards** (S2). "boho throw blanket" moved **#59 → #92** in Data Dive and **#68 → #104** in the command-center crawl. On 25 Sep, **0 of the 23 tracked Batch 1 terms were in the top 10**. The plan had assumed 52 of the tracked terms were already at rank 10 or better.
 3. **The TOS modifier drifted** (S1). It went from the planned +100% to about +300% to +900% in live campaigns (spend-weighted 5.8× on 24 Sep). The top-of-search share bought stayed under 1% on the two largest terms.
 4. **64% of all clicks (1,686 of 2,638) went Off-Amazon** at $0.20 each, between 4 and 18 Sep (S1). That traffic is what makes the blended CPC look cheap. It builds no search rank.
-5. **SellerBoard shows no campaign serving today** (S0). On every one of the 37 visible campaigns, either the campaign or its ad group is Paused. SellerBoard records no status history, so when and by whom this happened is unknown.
+5. **Campaign and ad-group status fields in SellerBoard are unreliable** (S0). They show every campaign with either the campaign or its ad group Paused, but command-center delivery data shows **38 campaigns receiving impressions on 22–24 Sep** ($64.48 spend). Spend did fall to about $12/day on 23–24 Sep.
 
 **Recommendation in one line:** keep paid rank-building stopped. Do not launch Batch 2. Send the price and COGS decision to the brand owner with the arithmetic in S9. Rebuild the MKL model with real inputs before any money is re-committed.
 
@@ -101,21 +101,22 @@ Five further findings sit on top of that:
 | Dated honeymoon exit (SOP-22 P2) | MKL "Reasoning" text says tightening is withheld "through the honeymoon window" | No date anywhere in WB [M] | ❌ Required field missing |
 | Naming | `S-BB-SP-RAN-{tier}-FIX-{SKU}-[Segment]-{kw}` | `SL-BB-SP-{kw}-{syntax}-{tier}-Exact-Rank-Fixed-{SKU}` | ⚠️ Different convention; plan-to-live joins need keyword matching |
 
-### 0.2 What is serving today
+### 0.2 What is serving today (corrected 2026-09-25)
 
-SB-PPC status fields, read 2026-09-25 [M]. Serving requires both the campaign and its ad group to be Active.
+**SellerBoard status fields (read 25 Sep).** Every one of the 37 visible campaigns shows either the campaign or its ad group as Paused: 26 are campaign Active / ad group Paused, and 11 the reverse. Taken at face value, that means nothing can serve.
 
-| | Campaign Active, ad group Paused | Campaign Paused, ad group Active | Both Active |
+**Command-center delivery data contradicts this** (`ppc_campaigns`, 22–24 Sep; `ppc_daily`) [M]:
+- **38 campaigns** received impressions in that window, and 23 of them spent ($64.48 in total). They include campaigns SellerBoard lists as paused at campaign level (boho blankets and throws $11.03, boho heated blanket $4.63, throw blanket for couch boho $3.69, throw blanket boho $2.50) and ones it lists as paused at ad-group level (bohemian throw blanket $15.11, boho throw blankets for couch $6.08).
+- **Product-level delivery:**
+
+| Date | Impressions | Clicks | Spend |
 |---|---|---|---|
-| Count (37 SB-visible campaigns) | 26 | 11 | **0** |
-| 30-day spend in that group | $579.14 | $601.38 | $0 |
+| 22 Sep | 4,309 | 41 | $40.08 |
+| 23 Sep | 2,066 | 14 | $12.14 |
+| 24 Sep | 1,721 | 17 | $12.26 |
+| 25 Sep | 0 | 0 | $0 (today's report has not arrived; not evidence of a pause) |
 
-- All 45 keyword rows read Active. The block is at campaign or ad-group level.
-- **Nothing is serving**, if the SB status fields are current.
-- **Paused campaigns** include the largest single-keyword terms: boho blanket, boho throw blanket, boho throw, throw blanket boho, boho blankets and throws, boho cotton blanket and boho blanket throw. The heated and colorful campaigns are also paused.
-- **Paused ad groups** include the 60x80 halo (boho king size blanket, the #1 spender), the couch, bohemian throw, king and queen terms, and all PAT.
-- **Timing [I].** SB returns no status history. CC daily spend fell to **$12.14 (23 Sep) and $12.26 (24 Sep)**, from a $39.50/day average. The Off-Amazon series went to zero from 19 Sep, consistent with the 60x80 halo ad group being paused around 18–19 Sep. At least some serving continued into 24 Sep. So either the last pauses happened on 24–25 Sep, or one of the status fields is stale.
-- **Verify in the Amazon console before acting** (Action A1).
+**Conclusion.** The SellerBoard status fields cannot be trusted for serving state. The exact campaign-vs-ad-group mismatch on all 37 campaigns looks like a mapping artifact [I]. Ads were serving through at least 24 Sep, at a lower level from 23 Sep. Neither tool provides status history, so the cause of that drop is not established.
 
 ### 0.3 Changes made during the window (SB-BID) [M]
 
@@ -130,7 +131,7 @@ SB-PPC status fields, read 2026-09-25 [M]. Serving requires both the campaign an
 | 13 Sep | Cuts: boho throw $0.65 → $0.32; bohemian throw blanket $0.79 → $0.52; throw blanket boho $0.75 → $0.38 | 3 |
 | 18 Sep | boho blanket throw $0.68 → $0.50 | 1 |
 | 31 Aug → 17 Sep | **TOS modifier increases**: not in SB history, inferred from CC effective-bid ratios (S1) [I] | all keyword campaigns |
-| ~18 Sep → 25 Sep | Campaign and ad-group pauses (0.2) [I] | 37 |
+| 23 Sep → | Spend steps down from ~$40/day to ~$12/day; cause not recorded in either tool (0.2) | – |
 
 - SB reports no actor (`who` = not stated).
 - SellerBoard bid automation is **off** on all 40 campaigns. `automation_status` = off, `autobiding_enabled` = false. So every change was manual or came from another tool.
@@ -624,7 +625,7 @@ These nets exclude storage and returns (9.5), so they flatter the result.
 
 | # | P | Action | Owner | Evidence and arithmetic |
 |---|---|---|---|---|
-| A1 | P1 | **Confirm the serving state in the Amazon console** for all 40 campaigns and 37 ad groups. Then **hold everything paused on purpose**: record the date and reason ("S9 gate fail") in the change log, so the pause is a decision, not an accident | Spec | S0.2: SB shows 0 of 37 campaigns with both levels Active. Spend fell to $12/day on 23–24 Sep. Every order costs $40.86 against $3.96–$4.89 contribution |
+| A1 | P1 | **Treat SellerBoard status fields as unreliable** and confirm the live state of all 40 campaigns and 37 ad groups in the Amazon console. Then take the S9 decision deliberately: if spend is to stop, pause at campaign level and record the date and reason ("S9 gate fail") in the change log | Spec | S0.2: SellerBoard shows 0 of 37 fully Active, yet command-center shows 38 campaigns delivering impressions on 22–24 Sep. Every order costs $40.86 against $3.96–$4.89 contribution |
 | A2 | P1 | **Do not launch Batch 2.** Remove it from the queue until A4 and A5 are resolved | Lead | CS: $550/day = $3,850/week. Same uncomputed model (S3) and same THIN margin (S9.1). At the blended CPC of $0.449 and 3× market CVR (5.14%), a 50x60-routed Batch 2 would buy 8,575 clicks and 441 orders a week. That is $1,746 of contribution against $3,850 of spend: **−$2,105/week** |
 | A3 | P1 | **Escalate the S9 verdict to the brand owner** as the headline: "cannot be advertised profitably at current price and cost". Options with arithmetic: (a) 60x80 price test to about **$39.52**, which clears break-even at blended CPC and 3× market CVR, supported by competitors at $43.99–$52.99; (b) COGS/FBA reduction worth about $4.78 per 50x60 unit; (c) an explicit, capped investment budget with a written loss ceiling (SOP-23 M2) and end date; (d) organic-only operation | Brand | S9.3–S9.6 |
 | A4 | P2 | **Load economics into the system.** Create the `product_targets` / ceiling row. Complete CC fee snapshots for price, referral and fulfilment on all 16 SKUs. Set break-even ACoS 14.7% / 14.0% and max CPC per SKU | Data + Lead | S0.1: CC economics null on 16/16. SOP-41 G9 is PROVISIONAL until every active row carries contribution |
@@ -655,7 +656,7 @@ These nets exclude storage and returns (9.5), so they flatter the result.
 - **Not available in this session:**
   - the V4.1.1 template, and the Day 5 and Day 10 audits
   - a direct read of the `product_targets` table
-  - SellerBoard status and placement-modifier history
+  - SellerBoard status and placement-modifier history (and SellerBoard's current status fields contradict the delivery data, S0.2)
   - CC syntax groups and SQP market CVR for product 41 (DD-SQP used instead)
   - DD rank before 1 Sep, and DD rank on the routed 50x60 child
   - CC competitor mapping
