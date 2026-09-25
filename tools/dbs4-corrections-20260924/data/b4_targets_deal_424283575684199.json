@@ -1,0 +1,169 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-09-15",
+  "endDate": "2026-09-24"
+ },
+ "productId": 59,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "424283575684199",
+ "reconciliation": {
+  "campaignSpend": 0
+ },
+ "total": 2,
+ "limit": 200,
+ "offset": 0,
+ "returned": 2,
+ "rows": [
+  {
+   "target": "cal king bamboo sheets",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.02,
+   "effBidTos": 3.8352,
+   "effBidRos": 1.02,
+   "effBidPdp": 1.02,
+   "tosImpressionShare": 2.0825,
+   "placements": {
+    "tos": {
+     "impressions": 1.7142857142857142,
+     "impressionsShare": 42.857142857142854,
+     "clicks": null,
+     "clicksShare": null,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": null,
+     "spendShare": null,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 2.285714285714286,
+     "impressionsShare": 57.142857142857146,
+     "clicks": null,
+     "clicksShare": null,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": null,
+     "spendShare": null,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": null,
+     "clicksShare": null,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": null,
+     "spendShare": null,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": null,
+     "clicksShare": null,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": null,
+     "spendShare": null,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 4,
+   "clicks": 0,
+   "ctr": 0,
+   "orders": 0,
+   "spend": 0,
+   "sales": 0,
+   "units": 0,
+   "belowGate": false
+  },
+  {
+   "target": "california king bamboo sheets",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.02,
+   "effBidTos": 3.8352,
+   "effBidRos": 1.02,
+   "effBidPdp": 1.02,
+   "tosImpressionShare": 1.3346666666666667,
+   "placements": {
+    "tos": {
+     "impressions": 6.428571428571428,
+     "impressionsShare": 42.857142857142854,
+     "clicks": null,
+     "clicksShare": null,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": null,
+     "spendShare": null,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 8.571428571428573,
+     "impressionsShare": 57.142857142857146,
+     "clicks": null,
+     "clicksShare": null,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": null,
+     "spendShare": null,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": null,
+     "clicksShare": null,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": null,
+     "spendShare": null,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": null,
+     "clicksShare": null,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": null,
+     "spendShare": null,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 15,
+   "clicks": 0,
+   "ctr": 0,
+   "orders": 0,
+   "spend": 0,
+   "sales": 0,
+   "units": 0,
+   "belowGate": false
+  }
+ ]
+}

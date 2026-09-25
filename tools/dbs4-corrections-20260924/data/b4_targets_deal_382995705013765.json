@@ -1,0 +1,92 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-09-15",
+  "endDate": "2026-09-24"
+ },
+ "productId": 59,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "382995705013765",
+ "reconciliation": {
+  "campaignSpend": 502.7
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "bamboo sheets queen size",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.87,
+   "effBidTos": 6.6946,
+   "effBidRos": 1.87,
+   "effBidPdp": 1.87,
+   "tosImpressionShare": 4.130553516819572,
+   "placements": {
+    "tos": {
+     "impressions": 1146,
+     "impressionsShare": 17.522935779816514,
+     "clicks": 40.00000000000001,
+     "clicksShare": 78.43137254901961,
+     "ctr": 3.4904013961605593,
+     "cvr": null,
+     "cpc": 11.832999999999998,
+     "spend": 473.32000000000005,
+     "spendShare": 94.15555997612891,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 5178,
+     "impressionsShare": 79.1743119266055,
+     "clicks": 11,
+     "clicksShare": 21.568627450980394,
+     "ctr": 0.21243723445345694,
+     "cvr": null,
+     "cpc": 2.670909090909091,
+     "spend": 29.38,
+     "spendShare": 5.844440023871096,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 216,
+     "impressionsShare": 3.302752293577982,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": 0,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "clicks": 51,
+   "orders": 9,
+   "spend": 502.7,
+   "sales": 668.64,
+   "impressions": 6540,
+   "units": 9
+  }
+ ]
+}

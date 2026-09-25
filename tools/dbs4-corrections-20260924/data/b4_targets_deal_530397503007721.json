@@ -1,0 +1,108 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-09-15",
+  "endDate": "2026-09-24"
+ },
+ "productId": 59,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "530397503007721",
+ "reconciliation": {
+  "campaignSpend": 13.11
+ },
+ "total": 2,
+ "limit": 200,
+ "offset": 0,
+ "returned": 2,
+ "rows": [
+  {
+   "target": "cooling sheets full",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.07,
+   "effBidTos": 2.033,
+   "effBidRos": 1.07,
+   "effBidPdp": 1.07,
+   "tosImpressionShare": 0.0008098159509202454,
+   "placements": {
+    "tos": {
+     "impressions": 1,
+     "impressionsShare": 0.06134969325153374,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 1152,
+     "impressionsShare": 70.67484662576688,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": 0,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 10,
+     "impressionsShare": 0.6134969325153374,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 467,
+     "impressionsShare": 28.650306748466257,
+     "clicks": 19,
+     "clicksShare": 100,
+     "ctr": null,
+     "cvr": null,
+     "cpc": 0.69,
+     "spend": 13.11,
+     "spendShare": 100,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 1630,
+   "clicks": 19,
+   "orders": 1,
+   "spend": 13.11,
+   "sales": 49.49,
+   "units": 1
+  },
+  {
+   "target": "cooling sheets full size",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 3,
+   "effBidTos": 5.699999999999999,
+   "effBidRos": 3,
+   "effBidPdp": 3,
+   "tosImpressionShare": null,
+   "placements": {},
+   "impressions": 0,
+   "clicks": 0,
+   "orders": 0,
+   "spend": 0,
+   "sales": 0,
+   "units": 0
+  }
+ ]
+}

@@ -1,0 +1,92 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-08-26",
+  "endDate": "2026-09-24"
+ },
+ "productId": 59,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "414683323809338",
+ "reconciliation": {
+  "campaignSpend": 23.400000000000002
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "king size sheets set bamboo",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.52,
+   "effBidTos": 4.9248,
+   "effBidRos": 1.52,
+   "effBidPdp": 1.52,
+   "tosImpressionShare": 0.3622048611111111,
+   "placements": {
+    "tos": {
+     "impressions": 17,
+     "impressionsShare": 2.9259896729776247,
+     "clicks": 2,
+     "clicksShare": 40,
+     "ctr": null,
+     "cvr": null,
+     "cpc": 4.8999999999999995,
+     "spend": 9.799999999999999,
+     "spendShare": 41.88034188034188,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 30,
+     "impressionsShare": 5.163511187607573,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 533.9999999999999,
+     "impressionsShare": 91.9104991394148,
+     "clicks": 3,
+     "clicksShare": 60,
+     "ctr": 0.5617977528089889,
+     "cvr": null,
+     "cpc": 4.533333333333333,
+     "spend": 13.6,
+     "spendShare": 58.119658119658126,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 581,
+   "clicks": 5,
+   "orders": 0,
+   "spend": 23.400000000000002,
+   "sales": 0,
+   "units": 0
+  }
+ ]
+}

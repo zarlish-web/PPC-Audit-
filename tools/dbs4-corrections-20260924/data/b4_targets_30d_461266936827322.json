@@ -1,0 +1,92 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-08-26",
+  "endDate": "2026-09-24"
+ },
+ "productId": 59,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "461266936827322",
+ "reconciliation": {
+  "campaignSpend": 354.52000000000004
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "cool sheets queen",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 2.7,
+   "effBidTos": 7.452,
+   "effBidRos": 2.7,
+   "effBidPdp": 2.7,
+   "tosImpressionShare": 1.6052533248891705,
+   "placements": {
+    "tos": {
+     "impressions": 1472.932826362484,
+     "impressionsShare": 23.32065906210393,
+     "clicks": 48,
+     "clicksShare": 85.71428571428571,
+     "ctr": 3.2588044166643724,
+     "cvr": null,
+     "cpc": 6.901875,
+     "spend": 331.29,
+     "spendShare": 93.44747828049194,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 3492.2116603295312,
+     "impressionsShare": 55.2915082382763,
+     "clicks": 7,
+     "clicksShare": 12.5,
+     "ctr": 0.20044604052835294,
+     "cvr": null,
+     "cpc": 2.8899999999999997,
+     "spend": 20.229999999999997,
+     "spendShare": 5.706307119485501,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 1350.8555133079847,
+     "impressionsShare": 21.38783269961977,
+     "clicks": 1.0000000000000002,
+     "clicksShare": 1.7857142857142858,
+     "ctr": 0.07402716205756107,
+     "cvr": null,
+     "cpc": 2.9999999999999996,
+     "spend": 3,
+     "spendShare": 0.8462146000225658,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "clicks": 56,
+   "orders": 8,
+   "spend": 354.52000000000004,
+   "sales": 606.17,
+   "impressions": 6316,
+   "units": 8
+  }
+ ]
+}

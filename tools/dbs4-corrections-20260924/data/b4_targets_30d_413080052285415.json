@@ -1,0 +1,98 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-08-26",
+  "endDate": "2026-09-24"
+ },
+ "productId": 59,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "413080052285415",
+ "reconciliation": {
+  "campaignSpend": 38.43
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "bamboo sheets california king",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.36,
+   "effBidTos": 4.5968,
+   "effBidRos": 1.36,
+   "effBidPdp": 1.36,
+   "tosImpressionShare": 2.6142079207920794,
+   "placements": {
+    "tos": {
+     "impressions": 93,
+     "impressionsShare": 46.039603960396036,
+     "clicks": 9,
+     "clicksShare": 100,
+     "ctr": null,
+     "cvr": null,
+     "cpc": 4.27,
+     "spend": 38.43,
+     "spendShare": 100,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 51,
+     "impressionsShare": 25.247524752475247,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 58.00000000000001,
+     "impressionsShare": 28.712871287128714,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 202,
+   "clicks": 9,
+   "ctr": 4.46,
+   "orders": 0,
+   "cvr": 0,
+   "spend": 38.43,
+   "sales": 0,
+   "roas": 0,
+   "cpc": 4.27,
+   "units": 0,
+   "spendShare": 100,
+   "belowGate": false
+  }
+ ]
+}

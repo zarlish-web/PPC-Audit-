@@ -1,0 +1,91 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-08-26",
+  "endDate": "2026-09-24"
+ },
+ "productId": 59,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "542027633205988",
+ "reconciliation": {
+  "campaignSpend": 3.8
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "queen bamboo sheet set",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.43,
+   "effBidTos": 3.8038,
+   "effBidRos": 1.43,
+   "effBidPdp": 1.43,
+   "tosImpressionShare": 0.546054732041049,
+   "placements": {
+    "tos": {
+     "impressions": 18.311239193083573,
+     "impressionsShare": 1.037463976945245,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 1360.1181556195966,
+     "impressionsShare": 77.06051873198847,
+     "clicks": 2,
+     "clicksShare": 100,
+     "ctr": 0.14704604829636347,
+     "cvr": null,
+     "cpc": 1.9,
+     "spend": 3.8,
+     "spendShare": 100,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 386.5706051873199,
+     "impressionsShare": 21.902017291066283,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": 0,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "clicks": 2,
+   "orders": 0,
+   "spend": 3.8,
+   "sales": 0,
+   "impressions": 1765
+  }
+ ]
+}

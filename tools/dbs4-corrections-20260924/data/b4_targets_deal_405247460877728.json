@@ -1,0 +1,99 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-09-15",
+  "endDate": "2026-09-24"
+ },
+ "productId": 59,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "405247460877728",
+ "reconciliation": {
+  "campaignSpend": 331.79
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "bamboo cooling sheets",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 0.93,
+   "effBidTos": 7.6074,
+   "effBidRos": 0.93,
+   "effBidPdp": 0.93,
+   "tosImpressionShare": 14.337673231218089,
+   "placements": {
+    "tos": {
+     "impressions": 1336,
+     "impressionsShare": 97.4471188913202,
+     "clicks": 45,
+     "clicksShare": 100,
+     "ctr": 3.3682634730538923,
+     "cvr": null,
+     "cpc": 7.373111111111111,
+     "spend": 331.79,
+     "spendShare": 100,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 34,
+     "impressionsShare": 2.4799416484318018,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 1,
+     "impressionsShare": 0.07293946024799416,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 1371,
+   "clicks": 45,
+   "ctr": 3.28,
+   "orders": 4,
+   "cvr": 8.89,
+   "spend": 331.79,
+   "sales": 306.96,
+   "acos": 108.1,
+   "roas": 0.93,
+   "cpc": 7.37,
+   "units": 4,
+   "spendShare": 100,
+   "belowGate": false
+  }
+ ]
+}

@@ -1,0 +1,92 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-08-26",
+  "endDate": "2026-09-24"
+ },
+ "productId": 59,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "369952566354344",
+ "reconciliation": {
+  "campaignSpend": 23.06
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "decolure bamboo sheets king size",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 2.04,
+   "effBidTos": 2.4072,
+   "effBidRos": 2.04,
+   "effBidPdp": 2.04,
+   "tosImpressionShare": 11.099888785912883,
+   "placements": {
+    "tos": {
+     "impressions": 86.75878003696857,
+     "impressionsShare": 8.040665434380776,
+     "clicks": 15,
+     "clicksShare": 88.23529411764706,
+     "ctr": null,
+     "cvr": null,
+     "cpc": 1.2686666666666666,
+     "spend": 19.029999999999998,
+     "spendShare": 82.52385082393755,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 882.5462107208872,
+     "impressionsShare": 81.79297597042513,
+     "clicks": 2,
+     "clicksShare": 11.764705882352942,
+     "ctr": 0.226617028740778,
+     "cvr": null,
+     "cpc": 2.015,
+     "spend": 4.03,
+     "spendShare": 17.476149176062446,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 105.70609981515712,
+     "impressionsShare": 9.796672828096119,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": 0,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 3.988909426987061,
+     "impressionsShare": 0.36968576709796674,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "clicks": 17,
+   "orders": 3,
+   "spend": 23.06,
+   "sales": 227.21999999999997,
+   "impressions": 1079,
+   "units": 3
+  }
+ ]
+}

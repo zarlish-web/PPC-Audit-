@@ -1,0 +1,92 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-08-26",
+  "endDate": "2026-09-24"
+ },
+ "productId": 59,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "437377543082803",
+ "reconciliation": {
+  "campaignSpend": 7.15
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "decolure",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.33,
+   "effBidTos": 3.7239999999999998,
+   "effBidRos": 1.33,
+   "effBidPdp": 1.33,
+   "tosImpressionShare": 21.92644182124789,
+   "placements": {
+    "tos": {
+     "impressions": 291.49155405405406,
+     "impressionsShare": 49.1554054054054,
+     "clicks": 12,
+     "clicksShare": 100,
+     "ctr": 4.116757358182229,
+     "cvr": null,
+     "cpc": 0.5958333333333333,
+     "spend": 7.15,
+     "spendShare": 100,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 122.20608108108108,
+     "impressionsShare": 20.60810810810811,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": 0,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 179.30236486486487,
+     "impressionsShare": 30.236486486486488,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": 0,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "clicks": 12,
+   "orders": 1,
+   "spend": 7.15,
+   "sales": 66.49,
+   "impressions": 593,
+   "units": 1
+  }
+ ]
+}

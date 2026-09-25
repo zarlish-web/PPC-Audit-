@@ -1,0 +1,35 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-09-15",
+  "endDate": "2026-09-24"
+ },
+ "productId": 59,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "332920248336882",
+ "reconciliation": {
+  "campaignSpend": 0
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "bamboo cooling sheets king",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.27,
+   "effBidTos": 2.5526999999999997,
+   "effBidRos": 1.27,
+   "effBidPdp": 1.27,
+   "tosImpressionShare": null,
+   "placements": {},
+   "clicks": 0,
+   "orders": 0,
+   "spend": 0,
+   "sales": 0,
+   "impressions": 0,
+   "units": 0
+  }
+ ]
+}

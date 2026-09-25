@@ -1,0 +1,92 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-08-26",
+  "endDate": "2026-09-24"
+ },
+ "productId": 59,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "356090673934622",
+ "reconciliation": {
+  "campaignSpend": 7.39
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "luxury king sheets",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.9,
+   "effBidTos": 3.61,
+   "effBidRos": 1.9,
+   "effBidPdp": 1.9,
+   "tosImpressionShare": 1.5716981132075472,
+   "placements": {
+    "tos": {
+     "impressions": 31.999999999999996,
+     "impressionsShare": 20.12578616352201,
+     "clicks": 2,
+     "clicksShare": 100,
+     "ctr": null,
+     "cvr": null,
+     "cpc": 3.695,
+     "spend": 7.39,
+     "spendShare": 100,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 65,
+     "impressionsShare": 40.880503144654085,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 62.00000000000001,
+     "impressionsShare": 38.9937106918239,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 159,
+   "clicks": 2,
+   "orders": 0,
+   "spend": 7.39,
+   "sales": 0,
+   "units": 0
+  }
+ ]
+}

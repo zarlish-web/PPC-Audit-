@@ -1,0 +1,92 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-08-26",
+  "endDate": "2026-09-24"
+ },
+ "productId": 59,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "366420104020561",
+ "reconciliation": {
+  "campaignSpend": 1.9
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "white bamboo sheets queen",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.71,
+   "effBidTos": 4.001399999999999,
+   "effBidRos": 1.71,
+   "effBidPdp": 1.71,
+   "tosImpressionShare": 0,
+   "placements": {
+    "tos": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 311.86746987951807,
+     "impressionsShare": 93.37349397590361,
+     "clicks": 1,
+     "clicksShare": 100,
+     "ctr": 0.320649024531582,
+     "cvr": null,
+     "cpc": 1.9,
+     "spend": 1.9,
+     "spendShare": 100,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 22.13253012048193,
+     "impressionsShare": 6.626506024096386,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 334,
+   "clicks": 1,
+   "orders": 0,
+   "spend": 1.9,
+   "sales": 0,
+   "units": 0
+  }
+ ]
+}

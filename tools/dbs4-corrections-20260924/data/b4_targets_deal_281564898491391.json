@@ -1,0 +1,96 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-09-15",
+  "endDate": "2026-09-24"
+ },
+ "productId": 59,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "281564898491391",
+ "reconciliation": {
+  "campaignSpend": 3.6
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "bamboo sheets cal king deep pocket",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.9,
+   "effBidTos": 4.465,
+   "effBidRos": 1.9,
+   "effBidPdp": 1.9,
+   "tosImpressionShare": 8.429230769230768,
+   "placements": {
+    "tos": {
+     "impressions": 8,
+     "impressionsShare": 61.53846153846154,
+     "clicks": 1,
+     "clicksShare": 100,
+     "ctr": null,
+     "cvr": null,
+     "cpc": 3.6,
+     "spend": 3.6,
+     "spendShare": 100,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 5,
+     "impressionsShare": 38.46153846153846,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 13,
+   "clicks": 1,
+   "ctr": 7.69,
+   "orders": 0,
+   "cvr": 0,
+   "spend": 3.6,
+   "sales": 0,
+   "roas": 0,
+   "cpc": 3.6,
+   "units": 0
+  }
+ ]
+}

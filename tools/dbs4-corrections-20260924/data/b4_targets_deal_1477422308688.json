@@ -1,0 +1,97 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-09-15",
+  "endDate": "2026-09-24"
+ },
+ "productId": 59,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "1477422308688",
+ "reconciliation": {
+  "campaignSpend": 21.400000000000002
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "king size sheets set bamboo cooling",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 2.8,
+   "effBidTos": 7.9799999999999995,
+   "effBidRos": 2.8,
+   "effBidPdp": 2.8,
+   "tosImpressionShare": 18.339015486725664,
+   "placements": {
+    "tos": {
+     "impressions": 76,
+     "impressionsShare": 8.4070796460177,
+     "clicks": 3,
+     "clicksShare": 75,
+     "ctr": null,
+     "cvr": null,
+     "cpc": 6.199999999999999,
+     "spend": 18.599999999999998,
+     "spendShare": 86.91588785046729,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 735.9999999999999,
+     "impressionsShare": 81.41592920353982,
+     "clicks": 1,
+     "clicksShare": 25,
+     "ctr": 0.13586956521739132,
+     "cvr": null,
+     "cpc": 2.8000000000000003,
+     "spend": 2.8000000000000003,
+     "spendShare": 13.08411214953271,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 91.99999999999999,
+     "impressionsShare": 10.176991150442477,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "clicks": 4,
+   "orders": 1,
+   "spend": 21.400000000000002,
+   "sales": 75.99,
+   "impressions": 904,
+   "units": 1,
+   "ctr": 0.44,
+   "cvr": 25,
+   "acos": 28.2,
+   "roas": 3.55,
+   "cpc": 5.35
+  }
+ ]
+}

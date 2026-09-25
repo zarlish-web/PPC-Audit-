@@ -1,0 +1,92 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-08-26",
+  "endDate": "2026-09-24"
+ },
+ "productId": 59,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "551025616192839",
+ "reconciliation": {
+  "campaignSpend": 494.61999999999995
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "cooling sheets queen",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.64,
+   "effBidTos": 2.0008,
+   "effBidRos": 2.296,
+   "effBidPdp": 1.64,
+   "tosImpressionShare": 0.18269646133872944,
+   "placements": {
+    "tos": {
+     "impressions": 125.59447775347006,
+     "impressionsShare": 0.09109168153750812,
+     "clicks": 8.053691275167786,
+     "clicksShare": 5.369127516778524,
+     "ctr": 6.4124565181730455,
+     "cvr": null,
+     "cpc": 4.4972771652902646,
+     "spend": 36.21968186810952,
+     "spendShare": 7.322728936983849,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 103775.01090113567,
+     "impressionsShare": 75.26636850318448,
+     "clicks": 74.496644295302,
+     "clicksShare": 49.66442953020134,
+     "ctr": 0.07178668896144316,
+     "cvr": 5.36936936936937,
+     "cpc": 2.6756773332952175,
+     "spend": 199.32898254749605,
+     "spendShare": 40.299418249867784,
+     "acos": 57.78321618375928,
+     "units": 4,
+     "unitsShare": 30.76923076923077
+    },
+    "other": {
+     "impressions": 33976.39462111087,
+     "impressionsShare": 24.642539815278017,
+     "clicks": 67.4496644295302,
+     "clicksShare": 44.966442953020135,
+     "ctr": 0.19851919305063953,
+     "cvr": 11.860696517412936,
+     "cpc": 3.840958109659181,
+     "spend": 259.07133558439443,
+     "spendShare": 52.377852813148365,
+     "acos": 39.0803318023886,
+     "units": 8,
+     "unitsShare": 61.53846153846154
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "clicks": 150,
+   "orders": 13,
+   "spend": 494.61999999999995,
+   "sales": 1082.87,
+   "impressions": 137877,
+   "units": 13
+  }
+ ]
+}

@@ -1,0 +1,92 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-08-26",
+  "endDate": "2026-09-24"
+ },
+ "productId": 59,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "375035361344082",
+ "reconciliation": {
+  "campaignSpend": 23.560000000000002
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "bamboo sheets queen size deep pocket",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.47,
+   "effBidTos": 5.4831,
+   "effBidRos": 1.47,
+   "effBidPdp": 1.47,
+   "tosImpressionShare": 4.527547015535568,
+   "placements": {
+    "tos": {
+     "impressions": 64.4231096006797,
+     "impressionsShare": 5.267629566694987,
+     "clicks": 5,
+     "clicksShare": 100,
+     "ctr": null,
+     "cvr": null,
+     "cpc": 4.712,
+     "spend": 23.56,
+     "spendShare": 100,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 1048.4341546304163,
+     "impressionsShare": 85.72642310960067,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": 0,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 110.14273576890399,
+     "impressionsShare": 9.005947323704333,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": 0,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "clicks": 5,
+   "orders": 0,
+   "spend": 23.560000000000002,
+   "sales": 0,
+   "impressions": 1223,
+   "units": 0
+  }
+ ]
+}

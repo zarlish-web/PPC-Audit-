@@ -1,0 +1,92 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-09-15",
+  "endDate": "2026-09-24"
+ },
+ "productId": 59,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "461266936827322",
+ "reconciliation": {
+  "campaignSpend": 216.14999999999998
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "cool sheets queen",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 2.7,
+   "effBidTos": 7.452,
+   "effBidRos": 2.7,
+   "effBidPdp": 2.7,
+   "tosImpressionShare": 1.6578031634446397,
+   "placements": {
+    "tos": {
+     "impressions": 802,
+     "impressionsShare": 28.18980667838313,
+     "clicks": 29,
+     "clicksShare": 90.625,
+     "ctr": 3.6159600997506236,
+     "cvr": null,
+     "cpc": 7.164137931034483,
+     "spend": 207.76,
+     "spendShare": 96.11843627110802,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 1736,
+     "impressionsShare": 61.01933216168717,
+     "clicks": 2,
+     "clicksShare": 6.25,
+     "ctr": 0.1152073732718894,
+     "cvr": null,
+     "cpc": 2.695,
+     "spend": 5.39,
+     "spendShare": 2.4936386768447836,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 307,
+     "impressionsShare": 10.790861159929701,
+     "clicks": 1,
+     "clicksShare": 3.125,
+     "ctr": 0.32573289902280134,
+     "cvr": null,
+     "cpc": 3.0000000000000004,
+     "spend": 3.0000000000000004,
+     "spendShare": 1.3879250520471895,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "clicks": 32,
+   "orders": 3,
+   "spend": 216.14999999999998,
+   "sales": 231.21999999999997,
+   "impressions": 2845,
+   "units": 3
+  }
+ ]
+}

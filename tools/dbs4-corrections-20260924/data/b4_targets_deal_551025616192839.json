@@ -1,0 +1,92 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-09-15",
+  "endDate": "2026-09-24"
+ },
+ "productId": 59,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "551025616192839",
+ "reconciliation": {
+  "campaignSpend": 9.69
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "cooling sheets queen",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.64,
+   "effBidTos": 2.0008,
+   "effBidRos": 2.296,
+   "effBidPdp": 1.64,
+   "tosImpressionShare": 0.00046276211135213305,
+   "placements": {
+    "tos": {
+     "impressions": 0.9989998333055509,
+     "impressionsShare": 0.005556481635828193,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 17478.50108351392,
+     "impressionsShare": 97.21620270045007,
+     "clicks": 6,
+     "clicksShare": 100,
+     "ctr": 0.034327886420760206,
+     "cvr": null,
+     "cpc": 1.615,
+     "spend": 9.69,
+     "spendShare": 100,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 499.4999166527754,
+     "impressionsShare": 2.7782408179140967,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": 0,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "clicks": 6,
+   "orders": 0,
+   "spend": 9.69,
+   "sales": 0,
+   "impressions": 17979,
+   "units": 0
+  }
+ ]
+}

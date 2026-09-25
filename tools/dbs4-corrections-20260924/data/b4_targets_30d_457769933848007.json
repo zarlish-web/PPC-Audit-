@@ -1,0 +1,93 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-08-26",
+  "endDate": "2026-09-24"
+ },
+ "productId": 59,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "457769933848007",
+ "reconciliation": {
+  "campaignSpend": 0
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "white bamboo sheets",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.9,
+   "effBidTos": 3.5719999999999996,
+   "effBidRos": 1.9,
+   "effBidPdp": 1.9,
+   "tosImpressionShare": 0.035606936416184974,
+   "placements": {
+    "tos": {
+     "impressions": 1.0028985507246377,
+     "impressionsShare": 0.2898550724637681,
+     "clicks": null,
+     "clicksShare": null,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": null,
+     "spendShare": null,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 256.74202898550726,
+     "impressionsShare": 74.20289855072464,
+     "clicks": null,
+     "clicksShare": null,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": null,
+     "spendShare": null,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 88.25507246376812,
+     "impressionsShare": 25.507246376811594,
+     "clicks": null,
+     "clicksShare": null,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": null,
+     "spendShare": null,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": null,
+     "clicksShare": null,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": null,
+     "spendShare": null,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 346,
+   "clicks": 0,
+   "ctr": 0,
+   "orders": 0,
+   "spend": 0,
+   "sales": 0,
+   "units": 0
+  }
+ ]
+}

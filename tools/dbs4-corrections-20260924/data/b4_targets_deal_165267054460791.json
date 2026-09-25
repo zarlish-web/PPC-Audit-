@@ -1,0 +1,18 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-09-15",
+  "endDate": "2026-09-24"
+ },
+ "productId": 59,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "165267054460791",
+ "reconciliation": {
+  "campaignSpend": 0
+ },
+ "total": 0,
+ "limit": 200,
+ "offset": 0,
+ "returned": 0,
+ "rows": []
+}

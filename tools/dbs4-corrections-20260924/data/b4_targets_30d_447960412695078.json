@@ -1,0 +1,99 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-08-26",
+  "endDate": "2026-09-24"
+ },
+ "productId": 59,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "447960412695078",
+ "reconciliation": {
+  "campaignSpend": 28.270000000000003
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "bamboo sheets cal king",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.36,
+   "effBidTos": 5.712000000000001,
+   "effBidRos": 1.36,
+   "effBidPdp": 1.36,
+   "tosImpressionShare": 9.456712328767123,
+   "placements": {
+    "tos": {
+     "impressions": 60,
+     "impressionsShare": 82.1917808219178,
+     "clicks": 5,
+     "clicksShare": 100,
+     "ctr": null,
+     "cvr": null,
+     "cpc": 5.654,
+     "spend": 28.27,
+     "spendShare": 100,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 9,
+     "impressionsShare": 12.32876712328767,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 4,
+     "impressionsShare": 5.47945205479452,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 73,
+   "clicks": 5,
+   "ctr": 6.85,
+   "orders": 2,
+   "cvr": 40,
+   "spend": 28.270000000000003,
+   "sales": 159.96,
+   "acos": 17.7,
+   "roas": 5.66,
+   "cpc": 5.65,
+   "units": 2,
+   "spendShare": 100,
+   "belowGate": false
+  }
+ ]
+}

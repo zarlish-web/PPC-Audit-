@@ -1,0 +1,92 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-09-15",
+  "endDate": "2026-09-24"
+ },
+ "productId": 59,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "382575122533704",
+ "reconciliation": {
+  "campaignSpend": 10.99
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "purple bamboo sheets",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.43,
+   "effBidTos": 2.6597999999999997,
+   "effBidRos": 1.43,
+   "effBidPdp": 1.43,
+   "tosImpressionShare": 3.5822146969183883,
+   "placements": {
+    "tos": {
+     "impressions": 15.00508130081301,
+     "impressionsShare": 0.508130081300813,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 2728.9241192411923,
+     "impressionsShare": 92.41192411924119,
+     "clicks": 8,
+     "clicksShare": 100,
+     "ctr": 0.29315582443620636,
+     "cvr": null,
+     "cpc": 1.37375,
+     "spend": 10.99,
+     "spendShare": 100,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 209.07079945799458,
+     "impressionsShare": 7.079945799457994,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": 0,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "clicks": 8,
+   "orders": 1,
+   "spend": 10.99,
+   "sales": 79.99,
+   "impressions": 2953,
+   "units": 1
+  }
+ ]
+}

@@ -1,0 +1,97 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-08-26",
+  "endDate": "2026-09-24"
+ },
+ "productId": 59,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "427817666014555",
+ "reconciliation": {
+  "campaignSpend": 18.62
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "bamboo bed sheets queen size",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.72,
+   "effBidTos": 2.666,
+   "effBidRos": 1.72,
+   "effBidPdp": 1.72,
+   "tosImpressionShare": 0,
+   "placements": {
+    "tos": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 24.02985074626866,
+     "impressionsShare": 2.985074626865672,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 780.9701492537314,
+     "impressionsShare": 97.01492537313433,
+     "clicks": 7,
+     "clicksShare": 100,
+     "ctr": 0.8963210702341136,
+     "cvr": null,
+     "cpc": 2.66,
+     "spend": 18.62,
+     "spendShare": 100,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 805,
+   "clicks": 7,
+   "ctr": 0.87,
+   "orders": 1,
+   "cvr": 14.29,
+   "spend": 18.62,
+   "sales": 79.99,
+   "acos": 23.3,
+   "roas": 4.3,
+   "cpc": 2.66,
+   "units": 1
+  }
+ ]
+}

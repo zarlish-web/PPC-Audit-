@@ -1,0 +1,97 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-08-26",
+  "endDate": "2026-09-24"
+ },
+ "productId": 59,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "44511268175976",
+ "reconciliation": {
+  "campaignSpend": 40.040000000000006
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "california king cooling sheets",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.36,
+   "effBidTos": 4.9504,
+   "effBidRos": 1.36,
+   "effBidPdp": 1.36,
+   "tosImpressionShare": 6.05594470046083,
+   "placements": {
+    "tos": {
+     "impressions": 124.14418604651163,
+     "impressionsShare": 57.209302325581405,
+     "clicks": 8,
+     "clicksShare": 88.88888888888889,
+     "ctr": 6.444119740736578,
+     "cvr": null,
+     "cpc": 4.63,
+     "spend": 37.04,
+     "spendShare": 92.5074925074925,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 40.372093023255815,
+     "impressionsShare": 18.6046511627907,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 49.455813953488374,
+     "impressionsShare": 22.790697674418606,
+     "clicks": 1,
+     "clicksShare": 11.11111111111111,
+     "ctr": null,
+     "cvr": null,
+     "cpc": 3,
+     "spend": 3,
+     "spendShare": 7.492507492507492,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 3.027906976744186,
+     "impressionsShare": 1.3953488372093024,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 217,
+   "clicks": 9,
+   "ctr": 4.15,
+   "orders": 2,
+   "cvr": 22.22,
+   "spend": 40.040000000000006,
+   "sales": 159.98,
+   "acos": 25,
+   "roas": 4,
+   "cpc": 4.45,
+   "units": 2
+  }
+ ]
+}
