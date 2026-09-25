@@ -114,7 +114,7 @@ Five further findings sit on top of that:
 | 22 Sep | 4,309 | 41 | $40.08 |
 | 23 Sep | 2,066 | 14 | $12.14 |
 | 24 Sep | 1,721 | 17 | $12.26 |
-| 25 Sep | 0 | 0 | $0 (today's report has not arrived; not evidence of a pause) |
+| 25 Sep | 0 | 0 | $0 (the US day had only just begun when the data was pulled; not evidence of a pause) |
 
 **Conclusion.** The SellerBoard status fields cannot be trusted for serving state. The exact campaign-vs-ad-group mismatch on all 37 campaigns looks like a mapping artifact [I]. Ads were serving through at least 24 Sep, at a lower level from 23 Sep. Neither tool provides status history, so the cause of that drop is not established.
 
