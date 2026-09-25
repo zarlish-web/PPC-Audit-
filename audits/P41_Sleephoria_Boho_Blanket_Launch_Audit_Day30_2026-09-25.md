@@ -6,7 +6,7 @@
 
 ---
 
-## Headline finding: this product cannot be advertised profitably at its current price and cost base, at any conversion rate the category produces
+## Headline finding: at its current price and cost base, this product is unlikely to be advertised profitably at the conversion rates we see in the category
 
 - **Contribution per unit** (SellerBoard products grid, 2026-09-25):
   - 50x60: **$3.96**, break-even ACoS **14.7%**
@@ -25,21 +25,21 @@
 - **Weekly loss at current spend ($276/week):**
   - at measured CVR: **−$250 / −$243**
   - at the framework's 5.14%: still **−$151 / −$122**
-- **No bid fixes this.** SOP-23 WE-3 describes the same situation: "The failure is economic and routes to pricing and product, not to a bid." At the blended CPC and 3× market CVR, break-even needs **$8.74 contribution**, which means a price of **$32.61 (50x60)** and **$39.52 (60x80)**. That is **+$5.62 and +$4.53** on today's $26.99 / $34.99, with fees and COGS unchanged. At top-of-search CPC, the break-even prices are **$55.00 / $61.91**.
+- **Bid changes alone are unlikely to close this gap.** SOP-23 WE-3 describes a similar situation, where the issue is economic and is best addressed through pricing and product rather than bids. At the blended CPC and 3× market CVR, break-even needs **$8.74 contribution**, which means a price of **$32.61 (50x60)** and **$39.52 (60x80)**. That is **+$5.62 and +$4.53** on today's $26.99 / $34.99, with fees and COGS unchanged. At top-of-search CPC, the break-even prices are **$55.00 / $61.91**.
 - **The whole-business P&L confirms it.** SellerBoard, 30 days: sales **$1,686.47**, ad spend **$1,181.70**, net **−$1,809.69**. That includes an **$829.86 storage charge** in the week of 1 Sep. Before ads and storage, realised contribution was **$201.87 on 54 units ($3.74/unit)**, which cross-checks the $3.96 and $4.89 list-price figures.
 
 Five further findings sit on top of that:
 
-1. **The launch model was never computed** (S3):
+1. **The launch model appears not to have been fully calculated** (S3):
    - DSTR is empty on all 7,795 MKL rows.
    - Daily Target is 1 on all 49 Batch 1 rows.
    - The model's "Adjusted PPC CVR" (12.0–17.7%) is **SQP click share × 1.5**, not a conversion rate. It overstates the realised 1.10% by 11–16×.
-2. **Rank went backwards, not forwards** (S2). "boho throw blanket" moved **#59 → #92** in Data Dive and **#68 → #104** in the command-center crawl. On 25 Sep, **0 of the 23 tracked Batch 1 terms were in the top 10**. The plan had assumed 52 of the tracked terms were already at rank 10 or better.
+2. **Rank has not improved yet, and has slipped on the head terms** (S2). "boho throw blanket" moved **#59 → #92** in Data Dive and **#68 → #104** in the command-center crawl. On 25 Sep, **0 of the 23 tracked Batch 1 terms were in the top 10**. The plan had assumed 52 of the tracked terms were already at rank 10 or better.
 3. **The TOS modifier drifted** (S1). It went from the planned +100% to about +300% to +900% in live campaigns (spend-weighted 5.8× on 24 Sep). The top-of-search share bought stayed under 1% on the two largest terms.
 4. **64% of all clicks (1,686 of 2,638) went Off-Amazon** at $0.20 each, between 4 and 18 Sep (S1). That traffic is what makes the blended CPC look cheap. It builds no search rank.
-5. **Campaign and ad-group status fields in SellerBoard are unreliable** (S0). They show every campaign with either the campaign or its ad group Paused, but command-center delivery data shows **38 campaigns receiving impressions on 22–24 Sep** ($64.48 spend). Spend did fall to about $12/day on 23–24 Sep.
+5. **SellerBoard's campaign and ad-group status fields do not match delivery** (S0). They show every campaign with either the campaign or its ad group Paused, but command-center delivery data shows **38 campaigns receiving impressions on 22–24 Sep** ($64.48 spend). Spend did fall to about $12/day on 23–24 Sep.
 
-**Recommendation in one line:** keep paid rank-building stopped. Do not launch Batch 2. Send the price and COGS decision to the brand owner with the arithmetic in S9. Rebuild the MKL model with real inputs before any money is re-committed.
+**Recommendation in one line:** we suggest pausing paid rank-building for now and holding Batch 2. The price and COGS question could go to the brand owner with the arithmetic in S9, and the MKL model could be rebuilt with measured inputs before spend is increased again.
 
 ---
 
@@ -94,11 +94,11 @@ Five further findings sit on top of that:
 | Match type | Exact only | Exact only, 45 keyword rows all EXACT [M] | ✅ |
 | Bidding strategy | Fixed | Campaign names carry "Fixed". SB entry settings do not expose the Amazon bidding strategy [I] | Not verified |
 | Base bids | ExpCPC × 0.5 ($0.50–$0.99) | First SB bid point on **28 Aug = plan value on all 45 rows** [M] | ✅ at launch, then changed (0.3) |
-| TOS modifier | **+100%** on all 49 | **+300% to +900%** on all 49 keyword targets; +380% on 1 of 7 PAT (S1) [M] | ❌ Drift |
+| TOS modifier | **+100%** on all 49 | **+300% to +900%** on all 49 keyword targets; +380% on 1 of 7 PAT (S1) [M] | ⚠️ Drift |
 | Budgets | MKL Σ $407.90/day; CS subtotal $414/day | Deployed at plan values rounded (e.g. boho throw blanket $8.30 → $8). Two raises: boho blanket $6 → $25 (28 Aug) → $40 (4 Sep); boho throw blanket $8 → $30 (28 Aug) [M] | ⚠️ MKL and CS totals differ by $6.10 |
-| Objective registry | CS: Ranking (27), Defensive (1); PAT: conquest | CC registry: 19 Ranking, 1 Conquesting, **20 not declared** [M] | ❌ Half the campaigns are invisible to objective-level reporting |
-| Economics ceiling | – | CC economics block has **price, referral and fulfilment missing for all 16 SKUs**; break-even ACoS null [M]. No `product_targets` row [S]: I cannot query that table in this session, but the null ceiling is consistent with it | ❌ No ceiling exists in the system |
-| Dated honeymoon exit (SOP-22 P2) | MKL "Reasoning" text says tightening is withheld "through the honeymoon window" | No date anywhere in WB [M] | ❌ Required field missing |
+| Objective registry | CS: Ranking (27), Defensive (1); PAT: conquest | CC registry: 19 Ranking, 1 Conquesting, **20 not declared** [M] | ⚠️ Half the campaigns are invisible to objective-level reporting |
+| Economics ceiling | – | CC economics block has **price, referral and fulfilment missing for all 16 SKUs**; break-even ACoS null [M]. No `product_targets` row [S]: I wasn't able to query that table in this session, but the null ceiling is consistent with it | ⚠️ No ceiling in the system yet |
+| Dated honeymoon exit (SOP-22 P2) | MKL "Reasoning" text says tightening is withheld "through the honeymoon window" | No date anywhere in WB [M] | ⚠️ Required field not yet set |
 | Naming | `S-BB-SP-RAN-{tier}-FIX-{SKU}-[Segment]-{kw}` | `SL-BB-SP-{kw}-{syntax}-{tier}-Exact-Rank-Fixed-{SKU}` | ⚠️ Different convention; plan-to-live joins need keyword matching |
 
 ### 0.2 What is serving today (corrected 2026-09-25)
@@ -116,7 +116,7 @@ Five further findings sit on top of that:
 | 24 Sep | 1,721 | 17 | $12.26 |
 | 25 Sep | 0 | 0 | $0 (the US day had only just begun when the data was pulled; not evidence of a pause) |
 
-**Conclusion.** The SellerBoard status fields cannot be trusted for serving state. The exact campaign-vs-ad-group mismatch on all 37 campaigns looks like a mapping artifact [I]. Ads were serving through at least 24 Sep, at a lower level from 23 Sep. Neither tool provides status history, so the cause of that drop is not established.
+**Conclusion.** The SellerBoard status fields don't seem to reflect serving state reliably. The exact campaign-vs-ad-group mismatch on all 37 campaigns looks like a mapping artifact [I]. Ads were serving through at least 24 Sep, at a lower level from 23 Sep. Neither tool provides status history, so the cause of that drop is not established.
 
 ### 0.3 Changes made during the window (SB-BID) [M]
 
@@ -193,7 +193,7 @@ Remaining single-keyword campaigns and PAT (CC `ppc_campaign_targets`; bid note 
 | PAT ×6 other ASINs | $0.45 (no TOS) | $0.59–$0.82 | +0% | $0.59–$0.82 | n/a |
 
 - **Coverage.** All 49 Batch 1 keyword targets carry a TOS modifier of **+300% to +900%**. The plan was **+100%**. The spend-weighted average implied on 24 Sep is +480% (1.2).
-- **PAT inconsistency.** One PAT campaign carries +380% while its six siblings carry 0%. It is an un-planned setting, and a TOS modifier on a product-page conquest target is a structural error.
+- **PAT inconsistency.** One PAT campaign carries +380% while its six siblings carry 0%. It is an un-planned setting, and a TOS modifier on a product-page conquest target is likely unintended.
 
 Reading:
 - **The bid is not what limits top-of-search presence** [I]. Effective TOS bids are **2–5× the CPC actually cleared** ($1.42 on average). Yet TOS impression share on the two largest terms stayed under 1% (boho blanket) and at 2.1% (boho throw blanket). SB's own campaign `topOfSearch` field reads 0.40% and 0.64%.
@@ -268,7 +268,7 @@ ROS = rest of search. PDP = product pages. Eff. bid = CC spend-weighted effectiv
 
 - **Off-Amazon orders are inferred.** They are total orders minus the measured on-Amazon orders. CC withholds an Off-Amazon CVR by rule (sales "too sparse to rate").
 - **Almost all of it came from one campaign.** The 60x80 halo "boho king size blanket" (SV 94) produced 1,027 of the 1,686 Off-Amazon clicks and 15,936 of its 17,339 impressions. All 9 of its orders were outside TOS and product pages. That is inferred from its placement rows, which show 0 orders on 9 on-Amazon clicks.
-- **Off-Amazon has no bid lever.** Sponsored Products carries no modifier for it (CC). It is a placement the plan never contemplated, and it cannot build search rank.
+- **Off-Amazon has no bid lever.** Sponsored Products carries no modifier for it (CC). The plan didn't anticipate this placement, and it is unlikely to help search rank.
 - **On-Amazon CVR is 1.37%** (13/949; 95% CI 0.63–2.11%). That is the relevant figure for a ranking push.
 
 ---
@@ -294,24 +294,24 @@ ROS = rest of search. PDP = product pages. Eff. bid = CC spend-weighted effectiv
 | throw blanket boho | 7 | 4 | > 100 | > 100 | 94 (14 Sep) | |
 | boho blanket throw | 5 | 4 | > 100 | > 100 | 49 (18 Sep) | |
 | bohemian throw blanket | 11 | 4 | > 100 | 59 | 59 (25 Sep) | |
-| boho beach blanket | 44 | 3 | > 100 | > 100 | – | never ranked |
+| boho beach blanket | 44 | 3 | > 100 | > 100 | – | not ranked in window |
 | boho throw blanket for bed | 13 | 4 | > 100 | > 100 | 18 (8 Sep) | |
 | bohemian blanket | 16 | 4 | > 100 | 87 | 70 (15 Sep) | |
 | boho blanket queen | 43 | 4 | > 100 | > 100 | 40 (6 Sep) | |
 | boho throw blankets for couch | 20 | 4 | > 100 | 80 | 49 (15 Sep) | |
 | throw blankets for bed boho | 11 | 4 | > 100 | > 100 | 73 (7 Sep) | |
 | boho cotton blanket | 2 | 4 | > 100 | **29** | 14 (6 Sep) | |
-| boho blanket king size | 5 | 3 | > 100 | > 100 | – | never ranked |
+| boho blanket king size | 5 | 3 | > 100 | > 100 | – | not ranked in window |
 | boho blankets and throws | 8 | 4 | 82 | > 100 | 82 (2 Sep) | |
-| king size boho blanket | 21 | 3 | > 100 | > 100 | – | never ranked |
-| boho blanket king | 21 | 3 | > 100 | > 100 | – | never ranked |
+| king size boho blanket | 21 | 3 | > 100 | > 100 | – | not ranked in window |
+| boho blanket king | 21 | 3 | > 100 | > 100 | – | not ranked in window |
 | throw blanket for couch boho | 14 | 4 | > 100 | > 100 | 41 (12 Sep) | |
 | blanket boho | 4 | 4 | > 100 | > 100 | 95 (14 Sep) | |
 | rustic floral boho blanket | 89 | 4 | > 100 | **23** | 23 (19 Sep) | |
 | boho scandinavian cotton blanket | not indexed | 4 | 6 | **11** | 3 (11 Sep) | |
 | cotton boho blanket | 1 | 4 | 34 | 39 | 25 (11 Sep) | |
 | boho cotton throw blanket | 7 | 4 | 41 | 26 | 26 (24 Sep) | |
-| boho picnic / king / heated blanket | 44 / 2 / 41 | 5 / 3 / 3 | not tracked by DD | | | CC: **never ranked** on any of 25 crawled days |
+| boho picnic / king / heated blanket | 44 / 2 / 41 | 5 / 3 / 3 | not tracked by DD | | | CC: not ranked on any of the 25 crawled days |
 
 ### 2.3 Findings
 
@@ -319,12 +319,12 @@ ROS = rest of search. PDP = product pages. Eff. bid = CC spend-weighted effectiv
   - 52 DD-tracked terms carry an MKL organic rank of 10 or better. **None** of them is at 10 or better today.
   - The radar summary reads **top-10 keywords: 0**, top-50 keywords: 15.
   - The largest assumed gaps, e.g. boho blanket assumed #4 against #85 or worse, mean the "climb of 1 position" stated in the MKL Reasoning was in fact a climb from page 2–3 or beyond [M].
-- **Rank moved the wrong way on the head terms during the push** [M]:
+- **Rank on the head terms moved down during the push** [M]:
   - boho throw blanket 59 → 92
   - boho blanket 85 → > 100
   - boho blankets and throws 82 → > 100
 - **Gains were on long-tail cotton terms that bought little PPC:** boho cotton blanket, rustic floral, cotton throw terms. This is consistent with organic relevance for "cotton", not PPC velocity [I].
-- **Nine Batch 1 terms were never ranked on any crawled day:** the king/queen size terms, picnic, heated, beach and blue. These are the terms S7 flags as mis-specified.
+- **Nine Batch 1 terms did not rank on any crawled day:** the king/queen size terms, picnic, heated, beach and blue. These are the terms S7 flags as a weaker fit.
 
 ---
 
@@ -346,7 +346,7 @@ Proposed Bid      = Expected CPC × 0.5            with TOS% = 1.0 (+100%)
 | **DSTR / DSTR (30 Days)** | **Empty on all 7,795 rows** | Daily sales at target rank (from competitor or SQP velocity) | No sales requirement exists, so there is nothing to size |
 | **Daily Target** | **1 on all 49 Batch 1 rows** | DSTR − organic contribution, floor 1 | Every term is sized to 1 order/day, regardless of whether it is 9,420 or 1 SV |
 | Keyword Clicks / Sales / Conversion L4W, Conversion Share, Seller Benchmarked, Competitor, Expected Conversion Rate | **Empty** | Measured inputs | Target Rank has no benchmark behind it |
-| Adjusted PPC CVR | 12.0–17.7% (mean 15.8%) = **click share × 1.5** | A conversion rate | **Unit error.** A share of clicks is not a probability of purchase. Measured: **1.10%** blended, 1.37% on-Amazon, **1.71% market (SQP)** |
+| Adjusted PPC CVR | 12.0–17.7% (mean 15.8%) = **click share × 1.5** | A conversion rate | **Likely unit mix-up.** A share of clicks is different from a probability of purchase. Measured: **1.10%** blended, 1.37% on-Amazon, **1.71% market (SQP)** |
 | Expected CPC | $1.00–$1.98 (mean $1.30) | Measured clearing CPC | Measured TOS CPC $1.42: close for TOS, but the model has no placement dimension |
 | No of Click Required | 5.7–8.3 per term per day (Σ 313.7/day) | Daily Target ÷ real CVR | At 1.71% market CVR, **58.5 clicks/day per term for 1 order** (7–10× the model) |
 | PPC Daily Budget | Σ **$407.90/day** (CS says $414) | Clicks × CPC | Actual spend averaged **$39.50/day** (9.7% of plan) because bids, not budget, bound (S1) |
@@ -354,14 +354,14 @@ Proposed Bid      = Expected CPC × 0.5            with TOS% = 1.0 (+100%)
 | Search Volume | MKL | DD | DD is a median 2.36× MKL |
 | Economics | **No margin, contribution or ceiling column** | Contribution $ and max profitable CPC per SKU (SOP-41) | No row can be tested against SOP-23 O3 or SOP-28 M4 |
 
-### 3.2 What the empty DSTR and Daily Target = 1 invalidate
+### 3.2 What the empty DSTR and Daily Target = 1 affect
 
 1. **Every budget, click requirement and bid in Batch 1.** They were derived from Daily Target = 1 and a CVR 9–16× too high. None of them sizes a rank climb.
    - At honest inputs (1 order/day at 1.71% market CVR, TOS CPC $1.42), one term needs about **$83/day**.
    - Batch 1's 49 terms would need about **$4,070/day**, before any DSTR above 1.
-2. **The Reasoning column's stop rule.** "Stop when the term delivers its required clicks and rank does not move" uses required clicks of about 6/day. Almost every term cleared that threshold within days without moving rank. The stop condition was therefore met early and never actioned, or it is meaningless [I].
-3. **Target Rank values** (3–5 on every term). With no DSTR, competitor or seller benchmark, the targets are assertions, not model outputs.
-4. **The SOP-23 M2 loss ceiling.** Push ACoS minus break-even, times projected sales, cannot be computed without DSTR. So no push on this product has had a loss ceiling.
+2. **The Reasoning column's stop rule.** "Stop when the term delivers its required clicks and rank does not move" uses required clicks of about 6/day. Almost every term cleared that threshold within days without moving rank. So the stop condition was likely met early without being acted on, or it may not be a useful test at these values [I].
+3. **Target Rank values** (3–5 on every term). With no DSTR, competitor or seller benchmark, the targets read more as working assumptions than model outputs.
+4. **The SOP-23 M2 loss ceiling.** Push ACoS minus break-even, times projected sales, isn't computable without DSTR, so pushes on this product have run without a loss ceiling so far.
 5. **The MKL's claim "launch spend here is deliberately unprofitable and priced that way"** has no price attached. Nothing in the workbook states the planned loss.
 
 ### 3.3 Planned vs realised, Batch 1 aggregate (30 days) [M]
@@ -395,7 +395,7 @@ Irrelevant-intent exact terms were bought as launched (S7). The zero-order ones:
 
 Two king-size terms did convert: the 60x80 halo "boho king size blanket" (9 orders) and "boho blanket king" (3). All 9 halo orders fall outside TOS and product pages, i.e. they came from Off-Amazon traffic [I].
 
-**Verdict.** Exact-only is correct for a rank push. But with no Auto/Broad research lane, the listing's real converting queries were never discovered. The search-term report only contains the terms the plan chose.
+**Verdict.** Exact-only is correct for a rank push. But with no Auto/Broad research lane, the listing's best converting queries haven't been discovered yet. The search-term report only contains the terms the plan chose.
 
 ---
 
@@ -424,7 +424,7 @@ Two king-size terms did convert: the 60x80 halo "boho king size blanket" (9 orde
 - **All 10 PAT campaigns.** $18.30, 29 clicks, 4,559 impressions, 0 orders; 2 had zero clicks.
 - **Halos:** couch, patterned, no-fringe, rustic floral, queen size.
 - **Single-keyword:** king size boho blanket, beach, throws-for-bed, boho king blanket, branded.
-- **Reading:** 20 campaigns × one observation each is 20 campaigns that the Launch-stage cadence cannot read.
+- **Reading:** 20 campaigns × one observation each is 20 campaigns that are hard to read within the Launch-stage cadence.
 
 ### 5.4 Weekly trend (SB-PPC; buckets as resolved by SellerBoard) [M]
 
@@ -440,7 +440,7 @@ Two king-size terms did convert: the 60x80 halo "boho king size blanket" (9 orde
 
 - **Business side** (SB-P&L, calendar weeks): organic units rose **3 → 5 → 11 → 20** (26 Aug–21 Sep).
 - **TACoS** was **81%** in week 1, 168% on 1–7 Sep and **44%** on 15–21 Sep (SB `RealACOS`).
-- Organic lift is real but **cannot be attributed to PPC** [I]:
+- Organic lift is real, but **it is hard to attribute it to PPC** [I]:
   - head-term rank fell in the same weeks (S2)
   - the growth sits in children not advertised (Sunflower and Bloom 60x80: 11 organic units)
 
@@ -466,7 +466,7 @@ Caveats:
 - Our CTR includes product-page and Off-Amazon impressions, while SQP market CTR is search-results only. **The CTR axis is not like-for-like**; the CVR axis is. The daggers mark groups dominated by Off-Amazon.
 
 Reading [I]:
-- **Core** (61% of spend) is the losing quadrant: a click-winner that converts below market. That is a listing, price or review problem, not a bid problem. The SOP-23 conversion clause ("Brand CVR ≥ Market CVR") fails for the syntax that carries the budget.
+- **Core** (61% of spend) is the losing quadrant: a click-winner that converts below market. That is a listing, price or review problem, not a bid problem. The SOP-23 conversion clause ("Brand CVR ≥ Market CVR") isn't met for the syntax that carries most of the budget.
 - **Material** (cotton) is the only quadrant where we out-convert the market. It is also where organic rank improved (S2). It is the one segment that deserves any residual attention, but S9 still applies to it.
 
 ---
@@ -484,12 +484,12 @@ Reading [I]:
 | SV scale | MKL SV ≈ 1/2.4 of Data Dive SV (median, 81 terms); the head term is 9,420 vs 25,418 | DD-RR [M] |
 | Branded rows | MKL types them Halo/**Ranking**; CS types them **Defensive**; live is "Branded" | WB, CC [M] |
 | Workbook integrity | Orphan truncated row **"d flower and butterfly throw blanket"** (Ranking/Exact, no batch). CS Batch 2 subtotal and "TOTAL" rows are **duplicated** (118 kw vs 123 kw). CS $414/day ≠ MKL $407.90/day. "boho blanket queen" routed to two different sizes | WB [M] |
-| Catalogue identity | **B0GGTMTB4Y is both the "parent ASIN" in the brief and the Bloom 50x60 child SKU** in SB and CC. SB lists it with price $0, no image and a different title ("SLEEPHORIA Throw Blanket 50x60 Inches…"). It has never had stock | SB-PROD, SB-INV, CC [M] |
+| Catalogue identity | **B0GGTMTB4Y is both the "parent ASIN" in the brief and the Bloom 50x60 child SKU** in SB and CC. SB lists it with price $0, no image and a different title ("SLEEPHORIA Throw Blanket 50x60 Inches…"). It has had no stock so far | SB-PROD, SB-INV, CC [M] |
 | Omitted high-intent material terms | "cotton throw blanket" (DD SV 31,206; SQP 4,256 market clicks in 7 days) and "100% cotton throw blanket" (7,232) sit in Batch 2, although Material is the one quadrant that out-converts (S6) | DD, WB [M] |
 | Competitor set | DD niche nUARjsKofz (21 Sep, 17 competitors): **none of our 16 ASINs** in it. Niche benchmark price **$29.99**, 781 reviews, 1,034 units/month. Only niche mlBooc4oU0 includes B0GGT3PZ8K (ranking juice 356,598, highest in that 9-ASIN niche; median 270,951) | DD-N [M] |
 | CC competitor mapping | Product 41 has **no mapped competitors** (`traffic_market_keywords`: unknown_product) | CC [M] |
 
-**Verdict.** The MKL is broad but unreliable at the three points the launch depended on: rank, volume and relevancy. The Batch 1 selection admitted terms the list itself disqualifies.
+**Verdict.** The MKL is broad, but it looks less reliable at the three points the launch depended on: rank, volume and relevancy. The Batch 1 selection admitted terms the list itself disqualifies.
 
 ---
 
@@ -499,9 +499,9 @@ Reading [I]:
 |---|---|
 | Were enough clicks bought to judge CVR? | Blended: **2,638 clicks, 29 orders; CVR 1.10% (95% CI 0.70–1.50%)**. On-Amazon: 949 clicks, 13 orders; 1.37% (CI 0.63–2.11%). **Sufficient to reject** every CVR above 2.1%, and so every CVR that S9 shows would be needed (≥ 9%) [M] |
 | Per term | 16 of 49 terms reached ≥ 20 clicks; **6 reached ≥ 100** (the SOP-22 validated-CVR line): boho king size blanket 1,031; boho throw blankets for couch 446; boho blanket 185; boho throw 125; boho blanket king 108; bohemian throw blanket 104. Best of these: 2.9% |
-| Were enough clicks bought to judge rank? | On the two head terms, **TOS share never exceeded 2.1%**, so the push did not test rank-for-velocity. It tested whether a new listing can win top of search, and it could not at 2–5× the clearing CPC (S1) |
+| Were enough clicks bought to judge rank? | On the two head terms, **TOS share stayed at or below 2.1%**, so the push did not test rank-for-velocity. It tested whether a new listing can win top of search, and it could not at 2–5× the clearing CPC (S1) |
 | Is Batch 1, as a roster, sufficient? | No. 14/49 terms are disqualified or irrelevant (S7), 13/49 were not indexed, and 26/49 are not rank-tracked in DD. The strongest segment (Material/cotton) is under-weighted (6 terms, $96.75) |
-| Should Batch 2 proceed? | **No.** Batch 2 is planned at $550/day across 55 campaigns, with the same model (Daily Target 1, click-share CVR) and the same THIN margin. The S9 gate fails before sizing |
+| Should Batch 2 proceed? | **No.** Batch 2 is planned at $550/day across 55 campaigns, with the same model (Daily Target 1, click-share CVR) and the same THIN margin. The S9 gate isn't met, even before sizing |
 
 ---
 
@@ -548,8 +548,8 @@ Known figures verified:
 
 | Size (contribution) | Blended CPC $0.45 | On-Amazon CPC $0.89 | TOS CPC $1.43 | Live effective TOS bid (range $2.60–$7.10) |
 |---|---|---|---|---|
-| 50x60 ($3.96) | **11.3%** (6.6× market) | 22.6% (13.2×) | **36.0%** (21×) | 66%–179%: impossible |
-| 60x80 ($4.89) | **9.2%** (5.4× market) | 18.3% (10.7×) | **29.2%** (17×) | 53%–145%: impossible |
+| 50x60 ($3.96) | **11.3%** (6.6× market) | 22.6% (13.2×) | **36.0%** (21×) | 66%–179%: not realistic |
+| 60x80 ($4.89) | **9.2%** (5.4× market) | 18.3% (10.7×) | **29.2%** (17×) | 53%–145%: not realistic |
 
 **Highest CVR the category produces.** SQP market CVR is 1.71% across the Batch 1 terms and 1.59% across all 40 SQP terms. The best single term is 3.92% ("throw blanket for couch decorative", 73 clicks). The best Batch 1 term is 3.68% ("throw blanket for couch boho", 148 clicks). **No observed term reaches even the lowest requirement (9.2%).**
 
@@ -595,7 +595,7 @@ These nets exclude storage and returns (9.5), so they flatter the result.
 | **Net profit** | **−1,809.69** | **−33.51** |
 
 - **Storage alone** ($829.86 for the month, on about 4,225 units on hand; stock at cost $59,109) **exceeds the product's total monthly contribution 4×** at current velocity [M].
-- The product is loss-making before any advertising. That is a price and inventory problem PPC cannot solve.
+- The product is running at a loss before advertising. That points to price and inventory, which PPC on its own is unlikely to resolve.
 - **Price that would clear the gate** [I, arithmetic], with fees and COGS held:
 
 | Case | Contribution needed | 50x60 price | 60x80 price |
@@ -609,12 +609,12 @@ These nets exclude storage and returns (9.5), so they flatter the result.
 
 ### 9.6 Gate verdict
 
-> **FAIL: at the current price ($26.99 / $34.99) and cost base, Product 41 cannot be advertised profitably at any conversion rate the category produces.**
+> **Gate not met: at the current price ($26.99 / $34.99) and cost base, Product 41 is unlikely to be advertised profitably at the conversion rates we observe in the category.**
 >
 > - The CVR required at the CPC actually paid (9.2–11.3% blended; 29–36% at top of search) is 5–21× the SQP market rate. It is 2.5–7× the best single term observed (3.9%).
 > - Even at the framework target of 3× market, every size loses $122–$151 per week at current spend.
 > - The system holds no ceiling to stop this: no `product_targets` row [S], a null CC break-even, and an MKL without economics columns.
-> - Per SOP-23 X5, the failure is economic and routes to pricing, COGS and inventory, not to a bid.
+> - In line with SOP-23 X5, the gap is economic, so pricing, COGS and inventory are the more promising levers than bids.
 
 ---
 
@@ -625,18 +625,18 @@ These nets exclude storage and returns (9.5), so they flatter the result.
 
 | # | P | Action | Owner | Evidence and arithmetic |
 |---|---|---|---|---|
-| A1 | P1 | **Treat SellerBoard status fields as unreliable** and confirm the live state of all 40 campaigns and 37 ad groups in the Amazon console. Then take the S9 decision deliberately: if spend is to stop, pause at campaign level and record the date and reason ("S9 gate fail") in the change log | Spec | S0.2: SellerBoard shows 0 of 37 fully Active, yet command-center shows 38 campaigns delivering impressions on 22–24 Sep. Every order costs $40.86 against $3.96–$4.89 contribution |
-| A2 | P1 | **Do not launch Batch 2.** Remove it from the queue until A4 and A5 are resolved | Lead | CS: $550/day = $3,850/week. Same uncomputed model (S3) and same THIN margin (S9.1). At the blended CPC of $0.449 and 3× market CVR (5.14%), a 50x60-routed Batch 2 would buy 8,575 clicks and 441 orders a week. That is $1,746 of contribution against $3,850 of spend: **−$2,105/week** |
-| A3 | P1 | **Escalate the S9 verdict to the brand owner** as the headline: "cannot be advertised profitably at current price and cost". Options with arithmetic: (a) 60x80 price test to about **$39.52**, which clears break-even at blended CPC and 3× market CVR, supported by competitors at $43.99–$52.99; (b) COGS/FBA reduction worth about $4.78 per 50x60 unit; (c) an explicit, capped investment budget with a written loss ceiling (SOP-23 M2) and end date; (d) organic-only operation | Brand | S9.3–S9.6 |
+| A1 | P1 | **Double-check serving state in the Amazon console**, since SellerBoard's status fields don't match delivery, and confirm the live state of all 40 campaigns and 37 ad groups in the Amazon console. Then take the S9 decision deliberately: if spend is to stop, pause at campaign level and record the date and reason ("S9 gate not met") in the change log | Spec | S0.2: SellerBoard shows 0 of 37 fully Active, yet command-center shows 38 campaigns delivering impressions on 22–24 Sep. Every order costs $40.86 against $3.96–$4.89 contribution |
+| A2 | P1 | **Hold Batch 2 for now.** Keep it out of the queue until A4 and A5 are resolved | Lead | CS: $550/day = $3,850/week. Same uncomputed model (S3) and same THIN margin (S9.1). At the blended CPC of $0.449 and 3× market CVR (5.14%), a 50x60-routed Batch 2 would buy 8,575 clicks and 441 orders a week. That is $1,746 of contribution against $3,850 of spend: **−$2,105/week** |
+| A3 | P1 | **Escalate the S9 verdict to the brand owner** as the headline: "unlikely to be advertised profitably at current price and cost". Options with arithmetic: (a) 60x80 price test to about **$39.52**, which clears break-even at blended CPC and 3× market CVR, supported by competitors at $43.99–$52.99; (b) COGS/FBA reduction worth about $4.78 per 50x60 unit; (c) an explicit, capped investment budget with a written loss ceiling (SOP-23 M2) and end date; (d) organic-only operation | Brand | S9.3–S9.6 |
 | A4 | P2 | **Load economics into the system.** Create the `product_targets` / ceiling row. Complete CC fee snapshots for price, referral and fulfilment on all 16 SKUs. Set break-even ACoS 14.7% / 14.0% and max CPC per SKU | Data + Lead | S0.1: CC economics null on 16/16. SOP-41 G9 is PROVISIONAL until every active row carries contribution |
 | A5 | P2 | **Rebuild the MKL model.** Populate DSTR (SQP or competitor velocity). Replace "click share × 1.5" with a measured CVR (1.37% on-Amazon, 1.71% market). Recompute Daily Target, required clicks, budgets and the SOP-23 loss ceiling. Add the dated honeymoon exit | Lead | S3.1: 7,795 empty DSTR; Daily Target = 1 on 49/49; model CVR 9–16× reality |
-| A6 | P2 | **Before any re-enable, reset TOS modifiers** to a value that satisfies SOP-28 M4 (effective TOS ≤ max profitable CPC). Today that means **TOS 0% and base bids ≤ $0.25**, which will not win top of search. So re-enabling a rank push is **not recommended** until A3 changes contribution | Spec | S1.1: live +300% to +900%, effective $2.60–$7.10 against a $0.20–$0.25 ceiling |
-| A7 | P2 | **Permanently retire the mis-specified, zero-order Batch 1 terms:** boho heated blanket, boho picnic blanket, boho beach blanket, beach blanket boho, king size boho blanket, boho blanket king size, boho king blanket, boho blanket queen, boho cotton blankets queen size. Negate them in any future discovery campaign. **Review, don't retire,** "boho king size blanket" and "boho blanket king": they converted (9 and 3 orders), but mostly via Off-Amazon traffic that builds no rank | Spec | S7: 0% relevancy / disqualifier override. S2: never ranked. S4: $94.41 at 0 orders |
+| A6 | P2 | **Before any re-enable, reset TOS modifiers** to a value that satisfies SOP-28 M4 (effective TOS ≤ max profitable CPC). Today that means **TOS 0% and base bids ≤ $0.25**, which will not win top of search. So we'd suggest holding off on re-enabling a rank push until A3 improves contribution | Spec | S1.1: live +300% to +900%, effective $2.60–$7.10 against a $0.20–$0.25 ceiling |
+| A7 | P2 | **Consider retiring the weaker-fit, zero-order Batch 1 terms:** boho heated blanket, boho picnic blanket, boho beach blanket, beach blanket boho, king size boho blanket, boho blanket king size, boho king blanket, boho blanket queen, boho cotton blankets queen size. They could be negated in future discovery campaigns. **We'd suggest reviewing rather than retiring** "boho king size blanket" and "boho blanket king": they converted (9 and 3 orders), but mostly via Off-Amazon traffic that builds no rank | Spec | S7: 0% relevancy / disqualifier override. S2: not ranked in the window. S4: $94.41 at 0 orders |
 | A8 | P2 | **Register objectives** for the 20 undeclared campaigns in the CC Campaign Registry. Rename to the plan convention, or document the live convention as the standard | Spec + Data | S0.1: 20/40 "not declared" ($341.48, 28.8% of spend invisible to objective reporting) |
-| A9 | P2 | **Treat Off-Amazon as an ungoverned placement.** If any campaign is re-enabled, check whether the console exposes an Off-Amazon placement control. If not, keep such campaigns off, or budget-cap them and measure separately | Lead | S1.4: 64% of clicks, $336.34, no modifier lever. Conversion is unmeasurable by CC rule |
-| A10 | P2 | **Fix the catalogue collision on B0GGTMTB4Y**: it is both the brief's parent ASIN and the Bloom 50x60 child, with $0 price, no image, a different title and never stocked. Correct the parent/child mapping in SB, CC and the workbook | Ops + Data | S7 |
+| A9 | P2 | **Keep a close eye on the Off-Amazon placement**, which has no bid modifier. If any campaign is re-enabled, check whether the console exposes an Off-Amazon placement control. If not, keep such campaigns off, or budget-cap them and measure separately | Lead | S1.4: 64% of clicks, $336.34, no modifier lever. Conversion is unmeasurable by CC rule |
+| A10 | P2 | **Review the catalogue setup for B0GGTMTB4Y**: it is both the brief's parent ASIN and the Bloom 50x60 child, with $0 price, no image, a different title and no stock so far. Correct the parent/child mapping in SB, CC and the workbook | Ops + Data | S7 |
 | A11 | P3 | **Inventory decision for the 3,954 units** in Butterfly 50x60 (1,044), Butterfly 60x80 (904), Bouquet 50x60 (1,041) and Bouquet 60x80 (965), selling at 0.01–0.94 units/day. Storage cost $829.86 for the month. These units were first stocked 20–21 May, so they reach 181 days of age around **17 Nov 2026**. Check the current aged-inventory surcharge rates (not pulled here) and run the SOP-27 / LTSF decision: price, removal or liquidation | Ops + Brand | SB-INV; S9.5. **[I]** The aged-surcharge date is derived from first-stock dates. Rates are not verified |
-| A12 | P3 | **Replenishment only where it pays.** Sunflower 60x80 (22 units, reorder flag YES, reorder date 25 Sep, qty 45) and Bloom 60x80 (19 units) are the two SKUs with organic sell-through and no ad spend. 10 SKUs are at 0 stock (6 since 22–25 Jul, Mosaic 60x80 since 1 Aug, Mosaic 50x60 since 5 Sep, Sunflower 50x60 since 24 Aug, and Bloom 50x60 never stocked). Do not reorder 50x60 until A3 resolves price | Ops | SB-INV, SB-P&L: Sunflower 60x80 +$28.92 and Bloom 60x80 +$39.41 net, the only profitable SKUs |
+| A12 | P3 | **Replenishment only where it pays.** Sunflower 60x80 (22 units, reorder flag YES, reorder date 25 Sep, qty 45) and Bloom 60x80 (19 units) are the two SKUs with organic sell-through and no ad spend. 10 SKUs are at 0 stock (6 since 22–25 Jul, Mosaic 60x80 since 1 Aug, Mosaic 50x60 since 5 Sep, Sunflower 50x60 since 24 Aug, and Bloom 50x60 not yet stocked). We'd suggest holding 50x60 reorders until A3 settles price | Ops | SB-INV, SB-P&L: Sunflower 60x80 +$28.92 and Bloom 60x80 +$39.41 net, the only profitable SKUs |
 | A13 | P3 | **Rank tracking on the routed ASIN.** Add B0GGT7NYJ6 and the 26 untracked Batch 1 terms to a Data Dive rank radar, but only if a paid programme resumes. **Cost before spending:** RANK_RADAR_KEYWORDS 6,100 / 9,200 used (3,100 headroom); 26 terms would use about 26 if billed per keyword (billing unit not confirmed by the API). No quota was spent in this audit. No niche dive is needed: niche nUARjsKofz is 4 days old. Adding our ASIN to it would use DIVED_ASINS (765 / 2,500 used; refresh 9 Oct), and the per-dive consumption is not exposed | Lead | S2.1; DD quota read 25 Sep |
 | A14 | P3 | **Workbook hygiene**: resolve "boho blanket queen" routing (MKL 50x60 vs CS 60x80); remove the orphan "d flower and butterfly throw blanket" row; de-duplicate the CS Batch 2 subtotal and TOTAL rows; reconcile $414 vs $407.90; align Branded objective (Defensive, not Ranking); add or drop "white boho throw blanket" | Lead | S0.1, S7 |
 | A15 | P3 | **Close internal overlap** if any campaign is re-enabled: negate "boho blanket throw" in the "boho blankets and throws" campaign, and "boho blanket king" in "boho blanket king size" | Spec | S4: $56.42 + $8.95 at 0 orders |
