@@ -24,6 +24,8 @@ Command Center's last-14-day campaign report gives the ad orders each campaign c
 
 Where the run itself dates a hero's next arrival (its inventory context), that date wins: the hero is **at risk** when its planner days left end before the arrival. This first applied on DBS4, where Queen White has 22 days and its next 678 units land in 33.
 
+When the run dates no arrival at all and says none lands inside 45 days, as on SCS4, undated inbound does not count as cover: the hero is at risk when its planner days left are under 30. This made Full White (9 units, 25 days, 30 inbound undated) at risk on SCS4.
+
 Size is read from the SKU name (KING / QUEEN / FULL / TWIN). Pack is read the same way: 3PC is a different pack from 4PC. Colour comes from the catalogue's colour field. GRAY is read as GREY, and STRIPE is kept as its own pattern.
 
 ## 2. A swap (child re-point) passes only when all of these hold
@@ -35,9 +37,11 @@ Size is read from the SKU name (KING / QUEEN / FULL / TWIN). Pack is read the sa
    - Ad orders a day = the moving campaigns' 14-day orders ÷ 14. This replaces the stock addendum's worst case, which assumed the source's whole sales velocity would follow the ads.
 5. **A much stronger target does not exist.** If another same-size child sells 3× the target's velocity and holds 3× its stock, the swap still passes, but the review names that child as the preferred target.
 
+One exception to rule 2: a **size fix** passes. The campaign buys a term that names a size (King, say) but advertises a child of another size (a Queen). A move onto a child of the size the term names passes, provided that child keeps 30 days. On SCS4 six King-term campaigns on Queen Graphite move to King White this way.
+
 One exception to rule 1: a move off an in-stock child passes when the target is plainly the stronger seller. It must sell at least 2 a day and at least 1.5× the source, and keep 30 days once the moved traffic lands, counting its reserved units. It is still a manual task. On the satin runs no swap met this test; on DBS4 it passes King Creme → King White (9.8 a day against 5.0).
 
-A swap that passes is a **manual task**, because the loader skips every swap today. A rename that stamps a passing swap's target ships **after the swap**. Any other rename that stamps a child the ad does not serve is held.
+A swap that passes is a **manual task**, because the loader skips every swap today. A rename that stamps a passing swap's target ships **after the swap**. Any other rename that stamps a child the ad does not serve is held. The rename check reads every SKU family in the planner. Until 25 September it read only SATIN SKUs, so the bamboo reviews (DBS4, DBS6) held no renames; they were re-issued with the check in place.
 
 ## 3. When the source must move and the engine's target fails
 
