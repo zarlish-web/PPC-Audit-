@@ -551,7 +551,9 @@ Known figures verified:
 | 50x60 ($3.96) | **11.3%** (6.6× market) | 22.6% (13.2×) | **36.0%** (21×) | 66%–179%: not realistic |
 | 60x80 ($4.89) | **9.2%** (5.4× market) | 18.3% (10.7×) | **29.2%** (17×) | 53%–145%: not realistic |
 
-**Highest CVR the category produces.** SQP market CVR is 1.71% across the Batch 1 terms and 1.59% across all 40 SQP terms. The best single term is 3.92% ("throw blanket for couch decorative", 73 clicks). The best Batch 1 term is 3.68% ("throw blanket for couch boho", 148 clicks). **No observed term reaches even the lowest requirement (9.2%).**
+**Highest CVR the category produces.** SQP market CVR is 1.71% across the Batch 1 terms and 1.59% across all 40 SQP terms. Computed as purchases ÷ clicks, the best single term is 4.11% ("throw blanket for couch decorative", 3 of 73 clicks) and the best Batch 1 term is 3.38% ("throw blanket for couch boho", 5 of 148 clicks). These are lower than the lowest requirement above (9.2%).
+
+*A second benchmark to be aware of:* on 15 Sep Ali quoted Brand Metrics at "1% against a category median of 6%". I haven't been able to verify that figure, and Brand Metrics likely measures conversion differently from SQP. If 6% were used, 3× market would be 18% and the maximum profitable CPC would be about $0.71 (50x60) / $0.88 (60x80). That would cover the $0.45 blended CPC on paper, but not the $1.43 top-of-search CPC, and our measured CVR (1.10%) would still leave the product short of break-even.
 
 ### 9.3 Net profit / loss per week at current spend, by CVR scenario
 
@@ -611,7 +613,7 @@ These nets exclude storage and returns (9.5), so they flatter the result.
 
 > **Gate not met: at the current price ($26.99 / $34.99) and cost base, Product 41 is unlikely to be advertised profitably at the conversion rates we observe in the category.**
 >
-> - The CVR required at the CPC actually paid (9.2–11.3% blended; 29–36% at top of search) is 5–21× the SQP market rate. It is 2.5–7× the best single term observed (3.9%).
+> - The CVR required at the CPC actually paid (9.2–11.3% blended; 29–36% at top of search) is 5–21× the SQP market rate. It is 2.2–8.8× the best single term observed (4.11%).
 > - Even at the framework target of 3× market, every size loses $122–$151 per week at current spend.
 > - The system holds no ceiling to stop this: no `product_targets` row [S], a null CC break-even, and an MKL without economics columns.
 > - In line with SOP-23 X5, the gap is economic, so pricing, COGS and inventory are the more promising levers than bids.
