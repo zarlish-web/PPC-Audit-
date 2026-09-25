@@ -1,0 +1,98 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-09-15",
+  "endDate": "2026-09-24"
+ },
+ "productId": 30,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "535474942363283",
+ "reconciliation": {
+  "campaignSpend": 20.72
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "cooling bedsheets",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.9,
+   "effBidTos": 5.434,
+   "effBidRos": 1.9,
+   "effBidPdp": 1.9,
+   "tosImpressionShare": 2.398497409326425,
+   "placements": {
+    "tos": {
+     "impressions": 180.00000000000003,
+     "impressionsShare": 93.26424870466322,
+     "clicks": 4,
+     "clicksShare": 100,
+     "ctr": 2.222222222222222,
+     "cvr": null,
+     "cpc": 5.18,
+     "spend": 20.72,
+     "spendShare": 100,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 1.9999999999999998,
+     "impressionsShare": 1.0362694300518134,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 11,
+     "impressionsShare": 5.699481865284974,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 193,
+   "clicks": 4,
+   "ctr": 2.07,
+   "orders": 1,
+   "cvr": 25,
+   "spend": 20.72,
+   "sales": 69.99,
+   "acos": 29.6,
+   "roas": 3.38,
+   "cpc": 5.18,
+   "units": 1,
+   "spendShare": 100
+  }
+ ]
+}

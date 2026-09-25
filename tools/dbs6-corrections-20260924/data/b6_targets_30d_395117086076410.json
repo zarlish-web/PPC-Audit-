@@ -1,0 +1,97 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-08-26",
+  "endDate": "2026-09-24"
+ },
+ "productId": 30,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "395117086076410",
+ "reconciliation": {
+  "campaignSpend": 22.169999999999998
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "bamboo bed sheets king",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.49,
+   "effBidTos": 2.384,
+   "effBidRos": 1.49,
+   "effBidPdp": 1.49,
+   "tosImpressionShare": 10.146862745098039,
+   "placements": {
+    "tos": {
+     "impressions": 32,
+     "impressionsShare": 62.745098039215684,
+     "clicks": 4,
+     "clicksShare": 100,
+     "ctr": null,
+     "cvr": null,
+     "cpc": 5.5424999999999995,
+     "spend": 22.169999999999998,
+     "spendShare": 99.99999999999999,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 11,
+     "impressionsShare": 21.568627450980394,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 8,
+     "impressionsShare": 15.686274509803921,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 51,
+   "clicks": 4,
+   "ctr": 7.84,
+   "orders": 0,
+   "cvr": 0,
+   "spend": 22.169999999999998,
+   "sales": 0,
+   "roas": 0,
+   "cpc": 5.54,
+   "units": 0,
+   "spendShare": 100
+  }
+ ]
+}

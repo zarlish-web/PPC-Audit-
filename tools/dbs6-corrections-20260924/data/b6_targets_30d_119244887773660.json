@@ -1,0 +1,97 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-08-26",
+  "endDate": "2026-09-24"
+ },
+ "productId": 30,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "119244887773660",
+ "reconciliation": {
+  "campaignSpend": 8.54
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "queen size sheets cooling",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.9,
+   "effBidTos": 4.047,
+   "effBidRos": 1.9,
+   "effBidPdp": 1.9,
+   "tosImpressionShare": 2.631885245901639,
+   "placements": {
+    "tos": {
+     "impressions": 34,
+     "impressionsShare": 9.289617486338798,
+     "clicks": 2,
+     "clicksShare": 100,
+     "ctr": null,
+     "cvr": null,
+     "cpc": 4.27,
+     "spend": 8.54,
+     "spendShare": 100,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 217,
+     "impressionsShare": 59.2896174863388,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": 0,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 115,
+     "impressionsShare": 31.420765027322403,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": 0,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 366,
+   "clicks": 2,
+   "ctr": 0.55,
+   "orders": 0,
+   "cvr": 0,
+   "spend": 8.54,
+   "sales": 0,
+   "roas": 0,
+   "cpc": 4.27,
+   "units": 0,
+   "spendShare": 100
+  }
+ ]
+}

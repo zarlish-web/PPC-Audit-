@@ -1,0 +1,96 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-08-26",
+  "endDate": "2026-09-24"
+ },
+ "productId": 30,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "49805873278644",
+ "reconciliation": {
+  "campaignSpend": 10.760000000000002
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "cooling bamboo sheets",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.47,
+   "effBidTos": 5.4536999999999995,
+   "effBidRos": 1.47,
+   "effBidPdp": 1.47,
+   "tosImpressionShare": 2.042159090909091,
+   "placements": {
+    "tos": {
+     "impressions": 32,
+     "impressionsShare": 36.36363636363637,
+     "clicks": 2,
+     "clicksShare": 66.66666666666667,
+     "ctr": null,
+     "cvr": null,
+     "cpc": 4.74,
+     "spend": 9.48,
+     "spendShare": 88.10408921933086,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 46,
+     "impressionsShare": 52.27272727272727,
+     "clicks": 1,
+     "clicksShare": 33.333333333333336,
+     "ctr": null,
+     "cvr": null,
+     "cpc": 1.2799999999999998,
+     "spend": 1.2799999999999998,
+     "spendShare": 11.895910780669144,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 10,
+     "impressionsShare": 11.363636363636363,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 88,
+   "clicks": 3,
+   "ctr": 3.41,
+   "orders": 0,
+   "cvr": 0,
+   "spend": 10.760000000000002,
+   "sales": 0,
+   "roas": 0,
+   "cpc": 3.59,
+   "units": 0
+  }
+ ]
+}

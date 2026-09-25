@@ -1,0 +1,96 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-08-26",
+  "endDate": "2026-09-24"
+ },
+ "productId": 30,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "347642391483868",
+ "reconciliation": {
+  "campaignSpend": 10.540000000000003
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "white bamboo sheets queen",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.41,
+   "effBidTos": 5.780999999999999,
+   "effBidRos": 1.41,
+   "effBidPdp": 1.41,
+   "tosImpressionShare": 1.7896756756756755,
+   "placements": {
+    "tos": {
+     "impressions": 13.186110265001522,
+     "impressionsShare": 0.395979287237283,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 3246.826073713067,
+     "impressionsShare": 97.5022844958879,
+     "clicks": 5,
+     "clicksShare": 100,
+     "ctr": 0.15399654574912308,
+     "cvr": null,
+     "cpc": 2.108,
+     "spend": 10.540000000000001,
+     "spendShare": 100.00000000000001,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 69.98781602193117,
+     "impressionsShare": 2.1017362168748095,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 3330,
+   "clicks": 5,
+   "ctr": 0.15,
+   "orders": 0,
+   "cvr": 0,
+   "spend": 10.540000000000003,
+   "sales": 0,
+   "roas": 0,
+   "cpc": 2.11,
+   "units": 0
+  }
+ ]
+}

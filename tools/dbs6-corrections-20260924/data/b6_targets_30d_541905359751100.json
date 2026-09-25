@@ -1,0 +1,97 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-08-26",
+  "endDate": "2026-09-24"
+ },
+ "productId": 30,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "541905359751100",
+ "reconciliation": {
+  "campaignSpend": 103.17999999999998
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "bamboo sheets king size",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 0.5,
+   "effBidTos": 4.8,
+   "effBidRos": 0.5,
+   "effBidPdp": 0.5,
+   "tosImpressionShare": 0.7839483096803969,
+   "placements": {
+    "tos": {
+     "impressions": 342.3046735640385,
+     "impressionsShare": 3.9481507908193603,
+     "clicks": 15,
+     "clicksShare": 46.875,
+     "ctr": 4.382061116438071,
+     "cvr": null,
+     "cpc": 4.404000000000001,
+     "spend": 66.06000000000002,
+     "spendShare": 64.02403566582672,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 7659.582590082055,
+     "impressionsShare": 88.34581995481032,
+     "clicks": 17,
+     "clicksShare": 53.125,
+     "ctr": 0.22194420910105866,
+     "cvr": null,
+     "cpc": 2.183529411764706,
+     "spend": 37.120000000000005,
+     "spendShare": 35.97596433417329,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 668.1127363539066,
+     "impressionsShare": 7.706029254370318,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": 0,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 8670,
+   "clicks": 32,
+   "ctr": 0.37,
+   "orders": 8,
+   "cvr": 25,
+   "spend": 103.17999999999998,
+   "sales": 725.91,
+   "acos": 14.2,
+   "roas": 7.04,
+   "cpc": 3.22,
+   "units": 9
+  }
+ ]
+}

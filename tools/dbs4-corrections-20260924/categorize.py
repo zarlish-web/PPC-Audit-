@@ -284,8 +284,7 @@ def classify(c):
             if share_stop:
                 step, step_why = 0.0, f"share stop — {is_now:.0f}% impression share and not rising: the requirement is re-based from actual volume, not bought"
             # conversion rate for the loss stop: own top of search with 30+ clicks, else the product's planning rate
-            rate = (n90['tos']['o'] / tos90) if tos90 >= 15 else PLAN_RATE
-            rate_src = 'own top of search, 90 days' if tos90 >= 15 else 'product planning rate'
+            rate, rate_src = blend_rate(tos90, n90['tos']['o'], grp)
             stop_price = HARD_STOP_X * contrib * rate
             p0, b0 = em.get('price_now'), an.get('base')
             live_mod = None
@@ -316,10 +315,10 @@ def classify(c):
                 p1 = max(p1, udp); step_why += f"; fixed bidding starts near what dynamic paid in the deal ({udp:.2f})"
             stopped = False
             if rate == 0 and p0:
-                p1, stopped, step = p0, True, 0.0; step_why = f"loss stop — no top-of-search order on its {tos90} top-of-search clicks in 90 days: no step until it converts"
+                p1, stopped, step = p0, True, 0.0; step_why = f"ceiling zero — {tos90} top-of-search clicks in 90 days and no order: the framework stops pricing this placement (modifier to 0%) until the campaign converts"
             elif p1 and p1 > stop_price:
                 if p0 >= stop_price:
-                    p1, stopped = p0, True; step_why = f"loss stop reached — at {p0:.2f} a top-of-search order already costs {p0 / rate:.0f} (stop {HARD_STOP_X:.0f}× contribution = {HARD_STOP_X * contrib:.0f})"
+                    p1, stopped, step = p0, True, 0.0; step_why = f"loss stop reached — at {p0:.2f} a top-of-search order already costs {p0 / rate:.0f} (stop {HARD_STOP_X:.0f}× contribution = {HARD_STOP_X * contrib:.0f})"
                 else:
                     p1 = stop_price; step_why += f"; stopped at the loss stop {stop_price:.2f}"
             m1 = (p1 / b1 - 1) * 100 if (p1 and b1) else None
@@ -362,6 +361,29 @@ for c in A['campaigns']:
     if c.get('status') == 'ENABLED' and c['objective'] == 'Ranking' and 'Exact' in c['campaign']:
         r = read(c['campaign_id'], 'd90'); _tc += r['tos']['c']; _to += r['tos']['o']
 PLAN_RATE = _to / _tc if _tc else 0.10
+# the child's planning rate (framework 3): no per-child rate exists on this account (the engine says so), so the
+# campaign's syntax group's top-of-search rate across enabled exact ranking campaigns stands in (50+ clicks), else the product's
+_gc, _go = defaultdict(int), defaultdict(int)
+for c in A['campaigns']:
+    if c.get('status') == 'ENABLED' and c['objective'] == 'Ranking' and 'Exact' in c['campaign']:
+        r = read(c['campaign_id'], 'd90'); g = group(c); _gc[g] += r['tos']['c']; _go[g] += r['tos']['o']
+GROUP_RATE = {g: _go[g] / _gc[g] for g in _gc if _gc[g] >= 50}
+
+
+def blend_rate(clicks, orders, grp):
+    """framework 3 (25 Sep version): under 15 the child's rate; 15-49 blended by clicks, or the child's rate if no order yet;
+    50+ the campaign's own, including zero"""
+    child = GROUP_RATE.get(grp) or PLAN_RATE
+    csrc = f'{grp} planning rate' if grp in GROUP_RATE else 'product planning rate'
+    if clicks < 15:
+        return child, csrc
+    if clicks < 50:
+        if not orders:
+            return child, csrc + f' (no order yet on {clicks} clicks)'
+        w = (clicks - 15) / 35
+        own = orders / clicks
+        return child + (own - child) * w, f'blend: own {own:.1%} on {clicks} clicks at weight {w:.0%} with the {csrc} {child:.1%}'
+    return orders / clicks, f'own top of search, {clicks} clicks in 90 days'
 out = []
 for c in A['campaigns']:
     if c.get('status') != 'ENABLED':
@@ -369,6 +391,7 @@ for c in A['campaigns']:
     if c['objective'] == 'Ranking' and 'Exact' in c['campaign']:
         out.append(classify(c))
 # ---- out of focus, converting at top of search: a two-week test push (operator 2026-09-23: focus unchanged on every syntax)
+_FLAG = max((x for x in out if not x['focus_in'] and x['tier'] == 'VHSV'), key=lambda x: x['budget'] or 0, default={}).get('cid')
 _syn = {r['groupName']: (r.get('market') or {}).get('marketCvr') for r in json.load(open(f'{S}/b46/b4_syntax_30d.json'))['rows']}
 for c in out:
     if c['focus_in'] or c['cat'] == 'COLLAPSE':
@@ -377,7 +400,7 @@ for c in out:
     mk = c.get('mkt_cvr') or _syn.get(c['group']) or _syn.get(c['group'].split('|')[0])
     if not (t['c'] >= 15 and mk and t['o'] / t['c'] * 100 >= 3 * mk):
         continue
-    rate = t['o'] / t['c']
+    rate, _rs = blend_rate(t['c'], t['o'], c['group'])
     contrib = c['contrib'] or 24.96
     stop = HARD_STOP_X * contrib * rate
     p0 = c['em'].get('price_now')
@@ -387,13 +410,14 @@ for c in out:
     _tp = p1 or c['limit'][1]
     c['test'] = dict(budget0=c['budget'], budget1=max(c['budget'] or 0, 5.0, round(_tp * 15 / 14, 2)), prior=c['cat'], rate=rate, mkt=mk, bar=3 * mk, price0=p0, price1=p1, stop=stop, cpo=(p1 / rate) if p1 else None,
                      loss=((p1 / rate) - contrib) if p1 else None, contrib=contrib, repoint=repoint, tos90=t['c'], ord90=t['o'])
-    if c['tier'] == 'VHSV' and (c['budget'] or 0) >= 100:
+    if c['cid'] == _FLAG:
         # operator 2026-09-25: the flagship holds flat, no test money on it
         c['cat'] = 'OUT_FLAGSHIP'
         continue
     c['test']['repoint'] = None  # operator 2026-09-25: only the in-focus campaign is re-pointed; out-of-focus tests stay on their child
     c['cat'] = 'OUT_TEST'
 json.dump(out, open(f'{S}/cats.json', 'w'), default=str)
+json.dump(dict(plan_rate=PLAN_RATE, group_rate=GROUP_RATE), open(f'{S}/meta.json', 'w'))
 if __name__ == '__main__':
     from collections import Counter
     print(len(out), Counter(x['cat'] for x in out))

@@ -1,0 +1,97 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-08-26",
+  "endDate": "2026-09-24"
+ },
+ "productId": 30,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "307432730794107",
+ "reconciliation": {
+  "campaignSpend": 26.73
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "full size bed sheets bamboo",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.48,
+   "effBidTos": 7.5036000000000005,
+   "effBidRos": 1.48,
+   "effBidPdp": 1.48,
+   "tosImpressionShare": 10.141549295774647,
+   "placements": {
+    "tos": {
+     "impressions": 87,
+     "impressionsShare": 61.267605633802816,
+     "clicks": 4,
+     "clicksShare": 80,
+     "ctr": null,
+     "cvr": null,
+     "cpc": 6.3125,
+     "spend": 25.25,
+     "spendShare": 94.46315001870558,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 41,
+     "impressionsShare": 28.87323943661972,
+     "clicks": 1,
+     "clicksShare": 20,
+     "ctr": null,
+     "cvr": null,
+     "cpc": 1.48,
+     "spend": 1.48,
+     "spendShare": 5.536849981294425,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 13.999999999999998,
+     "impressionsShare": 9.859154929577464,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 142,
+   "clicks": 5,
+   "ctr": 3.52,
+   "orders": 0,
+   "cvr": 0,
+   "spend": 26.73,
+   "sales": 0,
+   "roas": 0,
+   "cpc": 5.35,
+   "units": 0,
+   "spendShare": 100
+  }
+ ]
+}

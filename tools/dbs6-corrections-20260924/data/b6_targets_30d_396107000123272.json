@@ -1,0 +1,97 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-08-26",
+  "endDate": "2026-09-24"
+ },
+ "productId": 30,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "396107000123272",
+ "reconciliation": {
+  "campaignSpend": 4.95
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "bamboo bedding set queen",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.48,
+   "effBidTos": 4.958,
+   "effBidRos": 1.48,
+   "effBidPdp": 1.48,
+   "tosImpressionShare": 22.190408163265303,
+   "placements": {
+    "tos": {
+     "impressions": 23,
+     "impressionsShare": 46,
+     "clicks": 1,
+     "clicksShare": 100,
+     "ctr": null,
+     "cvr": null,
+     "cpc": 4.95,
+     "spend": 4.95,
+     "spendShare": 100,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 23,
+     "impressionsShare": 46,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 4,
+     "impressionsShare": 8,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 50,
+   "clicks": 1,
+   "ctr": 2,
+   "orders": 0,
+   "cvr": 0,
+   "spend": 4.95,
+   "sales": 0,
+   "roas": 0,
+   "cpc": 4.95,
+   "units": 0,
+   "spendShare": 100
+  }
+ ]
+}

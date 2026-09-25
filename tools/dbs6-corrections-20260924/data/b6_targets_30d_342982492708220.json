@@ -1,0 +1,98 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-08-26",
+  "endDate": "2026-09-24"
+ },
+ "productId": 30,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "342982492708220",
+ "reconciliation": {
+  "campaignSpend": 1.49
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "bed sheets bamboo king",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.49,
+   "effBidTos": 5.0362,
+   "effBidRos": 1.49,
+   "effBidPdp": 1.49,
+   "tosImpressionShare": 19.267692307692307,
+   "placements": {
+    "tos": {
+     "impressions": 12,
+     "impressionsShare": 92.3076923076923,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 1,
+     "impressionsShare": 7.6923076923076925,
+     "clicks": 1,
+     "clicksShare": 100,
+     "ctr": null,
+     "cvr": null,
+     "cpc": 1.49,
+     "spend": 1.49,
+     "spendShare": 100,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 13,
+   "clicks": 1,
+   "ctr": 7.69,
+   "orders": 1,
+   "cvr": 100,
+   "spend": 1.49,
+   "sales": 75.99,
+   "acos": 2,
+   "roas": 51,
+   "cpc": 1.49,
+   "units": 1,
+   "spendShare": 100
+  }
+ ]
+}

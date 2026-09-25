@@ -1,0 +1,93 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-09-15",
+  "endDate": "2026-09-24"
+ },
+ "productId": 30,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "462634303869049",
+ "reconciliation": {
+  "campaignSpend": 0
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "sheets full size bed bamboo",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.48,
+   "effBidTos": 4.958,
+   "effBidRos": 1.48,
+   "effBidPdp": 1.48,
+   "tosImpressionShare": 0.1455813953488372,
+   "placements": {
+    "tos": {
+     "impressions": 1,
+     "impressionsShare": 2.3255813953488373,
+     "clicks": null,
+     "clicksShare": null,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": null,
+     "spendShare": null,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 41,
+     "impressionsShare": 95.34883720930233,
+     "clicks": null,
+     "clicksShare": null,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": null,
+     "spendShare": null,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 1,
+     "impressionsShare": 2.3255813953488373,
+     "clicks": null,
+     "clicksShare": null,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": null,
+     "spendShare": null,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": null,
+     "clicksShare": null,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": null,
+     "spendShare": null,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 43,
+   "clicks": 0,
+   "ctr": 0,
+   "orders": 0,
+   "spend": 0,
+   "sales": 0,
+   "units": 0
+  }
+ ]
+}

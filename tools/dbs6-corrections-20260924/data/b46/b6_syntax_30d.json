@@ -1,0 +1,673 @@
+{
+  "window": {
+    "startDate": "2026-08-26",
+    "endDate": "2026-09-24"
+  },
+  "productId": 30,
+  "marketplaceId": "ATVPDKIKX0DER",
+  "rows": [
+    {
+      "entityKey": "product:30|syntax:37|marketplace:ATVPDKIKX0DER",
+      "syntaxGroupId": 37,
+      "groupName": "Bamboo",
+      "impressions": 733044,
+      "clicks": 3478,
+      "ctr": 0.47,
+      "orders": 559,
+      "cvr": 16.07,
+      "spend": 11028.770000000002,
+      "sales": 44677.70999999998,
+      "acos": 24.7,
+      "roas": 4.05,
+      "cpc": 3.17,
+      "units": 580,
+      "reasons": {},
+      "searchVolume": 850087,
+      "searchVolumeNote": "Summed over the 25,535 keywords this segment claims in the MKL (23,976 of them carry a volume), each counted once. A property of the LIBRARY, not of the selected days, so it does not move with the range above. It does NOT equal the sum of the keyword rows inside this segment: those are only the terms that took ad traffic in the window. Mixed units, deliberately disclosed — share OF THIS TOTAL by source: helium10 74%, sqp 26%, asinsight 0%, datadive 0%. sqp volumes are WEEKLY true counts and the rest are MONTHLY estimates, and nothing in the source records a period to convert them — so read this as a size ORDER, not a count.",
+      "spendShare": 85.03252876239588,
+      "belowGate": false,
+      "market": {
+        "marketCtr": 1.74,
+        "marketCvr": 2.77,
+        "clickShare": null,
+        "note": null,
+        "reasons": {
+          "marketCtr": null,
+          "marketCvr": null
+        }
+      }
+    },
+    {
+      "entityKey": "product:30|syntax:2072|marketplace:ATVPDKIKX0DER",
+      "syntaxGroupId": 2072,
+      "groupName": "Bamboo|King",
+      "impressions": 54483,
+      "clicks": 389,
+      "ctr": 0.71,
+      "orders": 66,
+      "cvr": 16.97,
+      "spend": 1595.7099999999994,
+      "sales": 5490.579999999995,
+      "acos": 29.1,
+      "roas": 3.44,
+      "cpc": 4.1,
+      "units": 67,
+      "reasons": {},
+      "searchVolume": 82254,
+      "searchVolumeNote": "Summed over the 82 keywords this segment claims in the MKL (82 of them carry a volume), each counted once. A property of the LIBRARY, not of the selected days, so it does not move with the range above. It does NOT equal the sum of the keyword rows inside this segment: those are only the terms that took ad traffic in the window. Mixed units, deliberately disclosed — share OF THIS TOTAL by source: helium10 99%, sqp 1%. sqp volumes are WEEKLY true counts and the rest are MONTHLY estimates, and nothing in the source records a period to convert them — so read this as a size ORDER, not a count.",
+      "spendShare": 12.303027125549146,
+      "belowGate": false,
+      "market": {
+        "marketCtr": 1.77,
+        "marketCvr": 3.6,
+        "clickShare": null,
+        "note": null,
+        "reasons": {
+          "marketCtr": null,
+          "marketCvr": null
+        }
+      }
+    },
+    {
+      "entityKey": "product:30|syntax:2073|marketplace:ATVPDKIKX0DER",
+      "syntaxGroupId": 2073,
+      "groupName": "Bamboo|Queen",
+      "impressions": 98723,
+      "clicks": 410,
+      "ctr": 0.42,
+      "orders": 51,
+      "cvr": 12.44,
+      "spend": 1186.4,
+      "sales": 3847.739999999998,
+      "acos": 30.8,
+      "roas": 3.24,
+      "cpc": 2.89,
+      "units": 52,
+      "reasons": {},
+      "searchVolume": 91804,
+      "searchVolumeNote": "Summed over the 87 keywords this segment claims in the MKL (87 of them carry a volume), each counted once. A property of the LIBRARY, not of the selected days, so it does not move with the range above. It does NOT equal the sum of the keyword rows inside this segment: those are only the terms that took ad traffic in the window. Mixed units, deliberately disclosed — share OF THIS TOTAL by source: helium10 100%. sqp volumes are WEEKLY true counts and the rest are MONTHLY estimates, and nothing in the source records a period to convert them — so read this as a size ORDER, not a count.",
+      "spendShare": 9.147220598825296,
+      "belowGate": false,
+      "market": {
+        "marketCtr": 1.65,
+        "marketCvr": 4.44,
+        "clickShare": null,
+        "note": null,
+        "reasons": {
+          "marketCtr": null,
+          "marketCvr": null
+        }
+      }
+    },
+    {
+      "entityKey": "product:30|syntax:31|marketplace:ATVPDKIKX0DER",
+      "syntaxGroupId": 31,
+      "groupName": "Cooling",
+      "impressions": 30598,
+      "clicks": 293,
+      "ctr": 0.96,
+      "orders": 34,
+      "cvr": 11.6,
+      "spend": 805.9299999999998,
+      "sales": 2679.3999999999996,
+      "acos": 30.1,
+      "roas": 3.32,
+      "cpc": 2.75,
+      "units": 35,
+      "reasons": {},
+      "searchVolume": 752876,
+      "searchVolumeNote": "Summed over the 6,430 keywords this segment claims in the MKL (5,660 of them carry a volume), each counted once. A property of the LIBRARY, not of the selected days, so it does not move with the range above. It does NOT equal the sum of the keyword rows inside this segment: those are only the terms that took ad traffic in the window. Mixed units, deliberately disclosed — share OF THIS TOTAL by source: helium10 67%, sqp 30%, asinsight 3%. sqp volumes are WEEKLY true counts and the rest are MONTHLY estimates, and nothing in the source records a period to convert them — so read this as a size ORDER, not a count.",
+      "spendShare": 6.213772334129526,
+      "belowGate": false,
+      "market": {
+        "marketCtr": 1.89,
+        "marketCvr": 2.8,
+        "clickShare": null,
+        "note": null,
+        "reasons": {
+          "marketCtr": null,
+          "marketCvr": null
+        }
+      }
+    },
+    {
+      "entityKey": "product:30|syntax:2071|marketplace:ATVPDKIKX0DER",
+      "syntaxGroupId": 2071,
+      "groupName": "Bamboo|Full",
+      "impressions": 10751,
+      "clicks": 127,
+      "ctr": 1.18,
+      "orders": 16,
+      "cvr": 12.6,
+      "spend": 567.1999999999999,
+      "sales": 1292.31,
+      "acos": 43.9,
+      "roas": 2.28,
+      "cpc": 4.47,
+      "units": 19,
+      "reasons": {},
+      "searchVolume": 22507,
+      "searchVolumeNote": "Summed over the 26 keywords this segment claims in the MKL (26 of them carry a volume), each counted once. A property of the LIBRARY, not of the selected days, so it does not move with the range above. It does NOT equal the sum of the keyword rows inside this segment: those are only the terms that took ad traffic in the window. Mixed units, deliberately disclosed — share OF THIS TOTAL by source: helium10 100%. sqp volumes are WEEKLY true counts and the rest are MONTHLY estimates, and nothing in the source records a period to convert them — so read this as a size ORDER, not a count.",
+      "spendShare": 4.373148620746551,
+      "belowGate": false,
+      "market": {
+        "marketCtr": 1.87,
+        "marketCvr": 4.06,
+        "clickShare": null,
+        "note": null,
+        "reasons": {
+          "marketCtr": null,
+          "marketCvr": null
+        }
+      }
+    },
+    {
+      "entityKey": "product:30|syntax:33|marketplace:ATVPDKIKX0DER",
+      "syntaxGroupId": 33,
+      "groupName": "Size: Queen",
+      "impressions": 39968,
+      "clicks": 285,
+      "ctr": 0.71,
+      "orders": 36,
+      "cvr": 12.63,
+      "spend": 534.1800000000001,
+      "sales": 2880.789999999999,
+      "acos": 18.5,
+      "roas": 5.39,
+      "cpc": 1.87,
+      "units": 38,
+      "reasons": {},
+      "searchVolume": 2177986,
+      "searchVolumeNote": "Summed over the 10,449 keywords this segment claims in the MKL (8,615 of them carry a volume), each counted once. A property of the LIBRARY, not of the selected days, so it does not move with the range above. It does NOT equal the sum of the keyword rows inside this segment: those are only the terms that took ad traffic in the window. Mixed units, deliberately disclosed — share OF THIS TOTAL by source: helium10 66%, sqp 25%, asinsight 8%. sqp volumes are WEEKLY true counts and the rest are MONTHLY estimates, and nothing in the source records a period to convert them — so read this as a size ORDER, not a count.",
+      "spendShare": 4.118562288840608,
+      "belowGate": false,
+      "market": {
+        "marketCtr": 1.69,
+        "marketCvr": 5.84,
+        "clickShare": null,
+        "note": null,
+        "reasons": {
+          "marketCtr": null,
+          "marketCvr": null
+        }
+      }
+    },
+    {
+      "entityKey": "product:30|syntax:32|marketplace:ATVPDKIKX0DER",
+      "syntaxGroupId": 32,
+      "groupName": "Size: King",
+      "impressions": 8143,
+      "clicks": 231,
+      "ctr": 2.84,
+      "orders": 46,
+      "cvr": 19.91,
+      "spend": 477.50000000000006,
+      "sales": 3504.8999999999983,
+      "acos": 13.6,
+      "roas": 7.34,
+      "cpc": 2.07,
+      "units": 47,
+      "reasons": {},
+      "searchVolume": 1547642,
+      "searchVolumeNote": "Summed over the 12,551 keywords this segment claims in the MKL (10,887 of them carry a volume), each counted once. A property of the LIBRARY, not of the selected days, so it does not move with the range above. It does NOT equal the sum of the keyword rows inside this segment: those are only the terms that took ad traffic in the window. Mixed units, deliberately disclosed — share OF THIS TOTAL by source: helium10 76%, sqp 20%, asinsight 4%. sqp volumes are WEEKLY true counts and the rest are MONTHLY estimates, and nothing in the source records a period to convert them — so read this as a size ORDER, not a count.",
+      "spendShare": 3.681555829348516,
+      "belowGate": false,
+      "market": {
+        "marketCtr": 1.84,
+        "marketCvr": 4.41,
+        "clickShare": null,
+        "note": null,
+        "reasons": {
+          "marketCtr": null,
+          "marketCvr": null
+        }
+      }
+    },
+    {
+      "entityKey": "product:30|syntax:40|marketplace:ATVPDKIKX0DER",
+      "syntaxGroupId": 40,
+      "groupName": "Size: Full",
+      "impressions": 679,
+      "clicks": 122,
+      "ctr": 17.97,
+      "orders": 15,
+      "cvr": 12.3,
+      "spend": 256.71,
+      "sales": 870.2800000000001,
+      "acos": 29.5,
+      "roas": 3.39,
+      "cpc": 2.1,
+      "units": 15,
+      "reasons": {},
+      "searchVolume": 611825,
+      "searchVolumeNote": "Summed over the 3,488 keywords this segment claims in the MKL (2,697 of them carry a volume), each counted once. A property of the LIBRARY, not of the selected days, so it does not move with the range above. It does NOT equal the sum of the keyword rows inside this segment: those are only the terms that took ad traffic in the window. Mixed units, deliberately disclosed — share OF THIS TOTAL by source: helium10 84%, sqp 9%, asinsight 7%. sqp volumes are WEEKLY true counts and the rest are MONTHLY estimates, and nothing in the source records a period to convert them — so read this as a size ORDER, not a count.",
+      "spendShare": 1.9792506742451463,
+      "belowGate": false,
+      "market": {
+        "marketCtr": 1.64,
+        "marketCvr": 6.3,
+        "clickShare": null,
+        "note": null,
+        "reasons": {
+          "marketCtr": null,
+          "marketCvr": null
+        }
+      }
+    },
+    {
+      "entityKey": "product:30|syntax:2069|marketplace:ATVPDKIKX0DER",
+      "syntaxGroupId": 2069,
+      "groupName": "Bamboo|Cooling",
+      "impressions": 18801,
+      "clicks": 82,
+      "ctr": 0.44,
+      "orders": 9,
+      "cvr": 10.98,
+      "spend": 245.96,
+      "sales": 731.4,
+      "acos": 33.6,
+      "roas": 2.97,
+      "cpc": 3,
+      "units": 10,
+      "reasons": {},
+      "searchVolume": 36568,
+      "searchVolumeNote": "Summed over the 52 keywords this segment claims in the MKL (52 of them carry a volume), each counted once. A property of the LIBRARY, not of the selected days, so it does not move with the range above. It does NOT equal the sum of the keyword rows inside this segment: those are only the terms that took ad traffic in the window. Mixed units, deliberately disclosed — share OF THIS TOTAL by source: helium10 100%. sqp volumes are WEEKLY true counts and the rest are MONTHLY estimates, and nothing in the source records a period to convert them — so read this as a size ORDER, not a count.",
+      "spendShare": 1.8963674801812793,
+      "belowGate": false,
+      "market": {
+        "marketCtr": 1.88,
+        "marketCvr": 2.57,
+        "clickShare": null,
+        "note": null,
+        "reasons": {
+          "marketCtr": null,
+          "marketCvr": null
+        }
+      }
+    },
+    {
+      "entityKey": "product:30|syntax:2074|marketplace:ATVPDKIKX0DER",
+      "syntaxGroupId": 2074,
+      "groupName": "Bamboo|Twin",
+      "impressions": 11170,
+      "clicks": 57,
+      "ctr": 0.51,
+      "orders": 6,
+      "cvr": 10.53,
+      "spend": 149.08,
+      "sales": 522.66,
+      "acos": 28.5,
+      "roas": 3.51,
+      "cpc": 2.62,
+      "units": 8,
+      "reasons": {},
+      "searchVolume": 12826,
+      "searchVolumeNote": "Summed over the 16 keywords this segment claims in the MKL (16 of them carry a volume), each counted once. A property of the LIBRARY, not of the selected days, so it does not move with the range above. It does NOT equal the sum of the keyword rows inside this segment: those are only the terms that took ad traffic in the window. Mixed units, deliberately disclosed — share OF THIS TOTAL by source: helium10 100%. sqp volumes are WEEKLY true counts and the rest are MONTHLY estimates, and nothing in the source records a period to convert them — so read this as a size ORDER, not a count.",
+      "spendShare": 1.1494164252131451,
+      "belowGate": false,
+      "market": {
+        "marketCtr": 1.88,
+        "marketCvr": 3.65,
+        "clickShare": null,
+        "note": null,
+        "reasons": {
+          "marketCtr": null,
+          "marketCvr": null
+        }
+      }
+    },
+    {
+      "entityKey": "product:30|syntax:2079|marketplace:ATVPDKIKX0DER",
+      "syntaxGroupId": 2079,
+      "groupName": "Cooling|Queen",
+      "impressions": 4970,
+      "clicks": 39,
+      "ctr": 0.78,
+      "orders": 4,
+      "cvr": 10.26,
+      "spend": 133.79000000000002,
+      "sales": 300.96,
+      "acos": 44.5,
+      "roas": 2.25,
+      "cpc": 3.43,
+      "units": 4,
+      "reasons": {},
+      "searchVolume": 98303,
+      "searchVolumeNote": "Summed over the 88 keywords this segment claims in the MKL (88 of them carry a volume), each counted once. A property of the LIBRARY, not of the selected days, so it does not move with the range above. It does NOT equal the sum of the keyword rows inside this segment: those are only the terms that took ad traffic in the window. Mixed units, deliberately disclosed — share OF THIS TOTAL by source: helium10 100%. sqp volumes are WEEKLY true counts and the rest are MONTHLY estimates, and nothing in the source records a period to convert them — so read this as a size ORDER, not a count.",
+      "spendShare": 1.0315295380283518,
+      "belowGate": false,
+      "market": {
+        "marketCtr": 1.99,
+        "marketCvr": 4.1,
+        "clickShare": null,
+        "note": null,
+        "reasons": {
+          "marketCtr": null,
+          "marketCvr": null
+        }
+      }
+    },
+    {
+      "entityKey": "product:30|syntax:2078|marketplace:ATVPDKIKX0DER",
+      "syntaxGroupId": 2078,
+      "groupName": "Cooling|King",
+      "impressions": 1921,
+      "clicks": 37,
+      "ctr": 1.93,
+      "orders": 4,
+      "cvr": 10.81,
+      "spend": 112.88999999999999,
+      "sales": 326.71,
+      "acos": 34.6,
+      "roas": 2.89,
+      "cpc": 3.05,
+      "units": 4,
+      "reasons": {},
+      "searchVolume": 83772,
+      "searchVolumeNote": "Summed over the 85 keywords this segment claims in the MKL (85 of them carry a volume), each counted once. A property of the LIBRARY, not of the selected days, so it does not move with the range above. It does NOT equal the sum of the keyword rows inside this segment: those are only the terms that took ad traffic in the window. Mixed units, deliberately disclosed — share OF THIS TOTAL by source: helium10 100%. sqp volumes are WEEKLY true counts and the rest are MONTHLY estimates, and nothing in the source records a period to convert them — so read this as a size ORDER, not a count.",
+      "spendShare": 0.8703891886390657,
+      "belowGate": false,
+      "market": {
+        "marketCtr": 1.96,
+        "marketCvr": 3.51,
+        "clickShare": null,
+        "note": null,
+        "reasons": {
+          "marketCtr": null,
+          "marketCvr": null
+        }
+      }
+    },
+    {
+      "entityKey": "product:30|syntax:2070|marketplace:ATVPDKIKX0DER",
+      "syntaxGroupId": 2070,
+      "groupName": "Bamboo|California King",
+      "impressions": 6079,
+      "clicks": 29,
+      "ctr": 0.48,
+      "orders": 6,
+      "cvr": 20.69,
+      "spend": 78,
+      "sales": 486.43999999999994,
+      "acos": 16,
+      "roas": 6.24,
+      "cpc": 2.69,
+      "units": 6,
+      "reasons": {},
+      "searchVolume": 7877,
+      "searchVolumeNote": "Summed over the 14 keywords this segment claims in the MKL (14 of them carry a volume), each counted once. A property of the LIBRARY, not of the selected days, so it does not move with the range above. It does NOT equal the sum of the keyword rows inside this segment: those are only the terms that took ad traffic in the window. Mixed units, deliberately disclosed — share OF THIS TOTAL by source: helium10 100%. sqp volumes are WEEKLY true counts and the rest are MONTHLY estimates, and nothing in the source records a period to convert them — so read this as a size ORDER, not a count.",
+      "spendShare": 0.6013850359982915,
+      "belowGate": false,
+      "market": {
+        "marketCtr": 1.88,
+        "marketCvr": 2.95,
+        "clickShare": null,
+        "note": null,
+        "reasons": {
+          "marketCtr": null,
+          "marketCvr": null
+        }
+      }
+    },
+    {
+      "entityKey": "product:30|syntax:2077|marketplace:ATVPDKIKX0DER",
+      "syntaxGroupId": 2077,
+      "groupName": "Cooling|Full",
+      "impressions": 1936,
+      "clicks": 19,
+      "ctr": 0.98,
+      "orders": 1,
+      "cvr": 5.26,
+      "spend": 71.82,
+      "sales": 139.98,
+      "acos": 51.3,
+      "roas": 1.95,
+      "cpc": 3.78,
+      "units": 2,
+      "reasons": {},
+      "searchVolume": 22441,
+      "searchVolumeNote": "Summed over the 24 keywords this segment claims in the MKL (24 of them carry a volume), each counted once. A property of the LIBRARY, not of the selected days, so it does not move with the range above. It does NOT equal the sum of the keyword rows inside this segment: those are only the terms that took ad traffic in the window. Mixed units, deliberately disclosed — share OF THIS TOTAL by source: helium10 100%. sqp volumes are WEEKLY true counts and the rest are MONTHLY estimates, and nothing in the source records a period to convert them — so read this as a size ORDER, not a count.",
+      "spendShare": 0.553736836992273,
+      "belowGate": false,
+      "market": {
+        "marketCtr": 1.98,
+        "marketCvr": 4.14,
+        "clickShare": null,
+        "note": null,
+        "reasons": {
+          "marketCtr": null,
+          "marketCvr": null
+        }
+      }
+    },
+    {
+      "entityKey": "product:30|syntax:42|marketplace:ATVPDKIKX0DER",
+      "syntaxGroupId": 42,
+      "groupName": "Size: California King",
+      "impressions": 528,
+      "clicks": 27,
+      "ctr": 5.11,
+      "orders": 4,
+      "cvr": 14.81,
+      "spend": 60.94000000000002,
+      "sales": 324.96,
+      "acos": 18.8,
+      "roas": 5.33,
+      "cpc": 2.26,
+      "units": 4,
+      "reasons": {},
+      "searchVolume": 163232,
+      "searchVolumeNote": "Summed over the 2,561 keywords this segment claims in the MKL (2,328 of them carry a volume), each counted once. A property of the LIBRARY, not of the selected days, so it does not move with the range above. It does NOT equal the sum of the keyword rows inside this segment: those are only the terms that took ad traffic in the window. Mixed units, deliberately disclosed — share OF THIS TOTAL by source: helium10 81%, sqp 18%, asinsight 0%. sqp volumes are WEEKLY true counts and the rest are MONTHLY estimates, and nothing in the source records a period to convert them — so read this as a size ORDER, not a count.",
+      "spendShare": 0.46985133453507566,
+      "belowGate": false,
+      "market": {
+        "marketCtr": 1.76,
+        "marketCvr": 5.26,
+        "clickShare": null,
+        "note": null,
+        "reasons": {
+          "marketCtr": null,
+          "marketCvr": null
+        }
+      }
+    },
+    {
+      "entityKey": "product:30|syntax:41|marketplace:ATVPDKIKX0DER",
+      "syntaxGroupId": 41,
+      "groupName": "Size: Twin",
+      "impressions": 58,
+      "clicks": 18,
+      "ctr": 31.03,
+      "orders": 3,
+      "cvr": 16.67,
+      "spend": 39.809999999999995,
+      "sales": 167.47,
+      "acos": 23.8,
+      "roas": 4.21,
+      "cpc": 2.21,
+      "units": 3,
+      "reasons": {},
+      "searchVolume": 289678,
+      "searchVolumeNote": "Summed over the 2,714 keywords this segment claims in the MKL (2,102 of them carry a volume), each counted once. A property of the LIBRARY, not of the selected days, so it does not move with the range above. It does NOT equal the sum of the keyword rows inside this segment: those are only the terms that took ad traffic in the window. Mixed units, deliberately disclosed — share OF THIS TOTAL by source: helium10 69%, sqp 28%, asinsight 3%. sqp volumes are WEEKLY true counts and the rest are MONTHLY estimates, and nothing in the source records a period to convert them — so read this as a size ORDER, not a count.",
+      "spendShare": 0.30693767029605107,
+      "belowGate": false,
+      "market": {
+        "marketCtr": 1.63,
+        "marketCvr": 7.01,
+        "clickShare": null,
+        "note": null,
+        "reasons": {
+          "marketCtr": null,
+          "marketCvr": null
+        }
+      }
+    },
+    {
+      "entityKey": "product:30|syntax:2080|marketplace:ATVPDKIKX0DER",
+      "syntaxGroupId": 2080,
+      "groupName": "Cooling|Twin",
+      "impressions": 68,
+      "clicks": 8,
+      "ctr": 11.76,
+      "orders": 1,
+      "cvr": 12.5,
+      "spend": 39.760000000000005,
+      "sales": 59.99,
+      "acos": 66.3,
+      "roas": 1.51,
+      "cpc": 4.97,
+      "units": 1,
+      "reasons": {},
+      "searchVolume": 9624,
+      "searchVolumeNote": "Summed over the 13 keywords this segment claims in the MKL (13 of them carry a volume), each counted once. A property of the LIBRARY, not of the selected days, so it does not move with the range above. It does NOT equal the sum of the keyword rows inside this segment: those are only the terms that took ad traffic in the window. Mixed units, deliberately disclosed — share OF THIS TOTAL by source: helium10 100%. sqp volumes are WEEKLY true counts and the rest are MONTHLY estimates, and nothing in the source records a period to convert them — so read this as a size ORDER, not a count.",
+      "spendShare": 0.30655216706784716,
+      "belowGate": true,
+      "market": {
+        "marketCtr": 2.04,
+        "marketCvr": 4.65,
+        "clickShare": null,
+        "note": null,
+        "reasons": {
+          "marketCtr": null,
+          "marketCvr": null
+        }
+      }
+    },
+    {
+      "entityKey": "product:30|syntax:2076|marketplace:ATVPDKIKX0DER",
+      "syntaxGroupId": 2076,
+      "groupName": "Cooling|California King",
+      "impressions": 1,
+      "clicks": 1,
+      "ctr": 100,
+      "orders": 0,
+      "cvr": 0,
+      "spend": 0.9,
+      "sales": 0,
+      "roas": 0,
+      "cpc": 0.9,
+      "units": 0,
+      "reasons": {},
+      "searchVolume": 6345,
+      "searchVolumeNote": "Summed over the 11 keywords this segment claims in the MKL (11 of them carry a volume), each counted once. A property of the LIBRARY, not of the selected days, so it does not move with the range above. It does NOT equal the sum of the keyword rows inside this segment: those are only the terms that took ad traffic in the window. Mixed units, deliberately disclosed — share OF THIS TOTAL by source: helium10 100%. sqp volumes are WEEKLY true counts and the rest are MONTHLY estimates, and nothing in the source records a period to convert them — so read this as a size ORDER, not a count.",
+      "spendShare": 0.0069390581076725945,
+      "belowGate": true,
+      "market": {
+        "marketCtr": 1.91,
+        "marketCvr": 3.35,
+        "clickShare": null,
+        "note": null,
+        "reasons": {
+          "marketCtr": null,
+          "marketCvr": null
+        }
+      }
+    }
+  ],
+  "product": {
+    "impressions": {
+      "value": 1626442,
+      "reason": null
+    },
+    "clicks": {
+      "value": 4625,
+      "reason": null
+    },
+    "ctr": {
+      "value": 0.28,
+      "reason": null
+    },
+    "orders": {
+      "value": 669,
+      "reason": null
+    },
+    "cvr": {
+      "value": 14.46,
+      "reason": null
+    },
+    "spend": {
+      "value": 12970.059999999998,
+      "reason": null
+    },
+    "sales": {
+      "value": 52864.05,
+      "reason": null
+    },
+    "acos": {
+      "value": 24.5,
+      "reason": null
+    },
+    "roas": {
+      "value": 4.08,
+      "reason": null
+    },
+    "cpc": {
+      "value": 2.8,
+      "reason": null
+    },
+    "tacos": {
+      "value": 7.742047396153182,
+      "reason": null
+    },
+    "units": {
+      "value": 691,
+      "reason": null
+    }
+  },
+  "market": {
+    "requested": true,
+    "view": "ppc-daily-syntax-week",
+    "fields": {
+      "marketCtr": "PPC-0485",
+      "marketCvr": "PPC-0488"
+    },
+    "period": {
+      "from": "2026-08-26",
+      "to": "2026-09-24",
+      "endDate": "2026-09-30",
+      "label": "2026-08-26 to 2026-09-24",
+      "mode": "week"
+    },
+    "sqpWeeks": [
+      {
+        "weekStart": "2026-08-30",
+        "weekEnd": "2026-09-05"
+      },
+      {
+        "weekStart": "2026-09-06",
+        "weekEnd": "2026-09-12"
+      },
+      {
+        "weekStart": "2026-09-13",
+        "weekEnd": "2026-09-19"
+      }
+    ],
+    "coverage": "Market CTR / CVR read by the syntax-week view over 2026-08-26 → 2026-09-30; 3 published SQP weeks inside it (2026-08-30 → 2026-09-19).",
+    "note": null,
+    "error": null
+  },
+  "notInMatrix": {
+    "realAcos": "Real ACOS (waste-adjusted) has no field in the metric matrix at syntax grain yet.",
+    "clickShare": "SQP click share has no field in the metric matrix at syntax grain yet.",
+    "placementUnits": "Units at placement are an ESTIMATE built from two: the estimated clicks there (a dense fold) times the estimated units-per-click, which is an index on this row's own rate in the CVR's construction. A direct split is impossible — units appear in only 711 of 2,564 Top-of-Search campaign-placement cells, the SAME 711 that carry sales. On this account units and orders are near-identical (8,653 of 8,803 cells have them equal, 1.03 units per order), so this tracks clicks x the estimated CVR closely; it is here because units are the unit you act on.",
+    "placementOffRate": "Off Amazon is withheld from the estimated CTR, CVR and ACOS by the ruling of 2026-08-30: of 117 campaigns with an Off Amazon placement row, 101 had ZERO orders there, and it recorded sales in 52 of 603 placement cells. Rendered as a number it would read as a claim about how Off Amazon converts, which the data cannot support either way. Its impressions, clicks, spend and CPC are shown — those legs are well evidenced."
+  },
+  "contract": "syntax x day: segments are FACETS, not a partition — a term counts in every group it matches, so segment rows over-sum the product",
+  "searchVolume": {
+    "windowScoped": false,
+    "source": "data_hub.mkl_build_keywords.search_volume, newest active MKL build",
+    "note": "Search Volume is the keyword library's figure, not a measurement over the selected days — it does not move when the date range does. At segment level it sums every MKL keyword the segment claims, each once; at keyword level it is that term's own figure. The two do not reconcile: a segment claims thousands of library keywords, while the rows beneath it are only the terms that took ad traffic in this window.",
+    "unitWarning": "The volumes come from a first-non-zero vendor cascade that reconciles no units — an sqp figure is a WEEKLY true count and a helium10 / asinsight / datadive one is a MONTHLY estimate. Hover any cell for its own source. Read the column as a size ORDER, not a count."
+  },
+  "sort": {
+    "key": "spend",
+    "dir": "desc",
+    "appliedBy": "client",
+    "paged": false
+  },
+  "notes": [
+    "Every rate is BLENDED — the window's total over its total (spend over sales, clicks over impressions) — never the mean of daily or per-row rates.",
+    "Sales, orders and every rate built on them carry 7-day attribution: the trailing seven days are still filling in and read LOW. The newest day is also a partial day. Compare settled windows with settled windows.",
+    "A search term counts in EVERY group it matches, so group rows overlap and their spend shares over-sum 100% on purpose. They cannot be added or subtracted; use ppc_summary for the product total. TACoS does not exist at group grain."
+  ]
+}

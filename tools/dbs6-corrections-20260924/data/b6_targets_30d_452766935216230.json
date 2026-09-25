@@ -1,0 +1,98 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-08-26",
+  "endDate": "2026-09-24"
+ },
+ "productId": 30,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "452766935216230",
+ "reconciliation": {
+  "campaignSpend": 6.06
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "bamboo queen bed sheets",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.48,
+   "effBidTos": 6.068,
+   "effBidRos": 1.48,
+   "effBidPdp": 1.48,
+   "tosImpressionShare": 1.3132,
+   "placements": {
+    "tos": {
+     "impressions": 27,
+     "impressionsShare": 15.428571428571429,
+     "clicks": 1,
+     "clicksShare": 100,
+     "ctr": null,
+     "cvr": null,
+     "cpc": 6.06,
+     "spend": 6.06,
+     "spendShare": 100,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 138,
+     "impressionsShare": 78.85714285714286,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": 0,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 10,
+     "impressionsShare": 5.714285714285714,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 175,
+   "clicks": 1,
+   "ctr": 0.57,
+   "orders": 1,
+   "cvr": 100,
+   "spend": 6.06,
+   "sales": 79.99,
+   "acos": 7.6,
+   "roas": 13.2,
+   "cpc": 6.06,
+   "units": 1,
+   "spendShare": 100
+  }
+ ]
+}

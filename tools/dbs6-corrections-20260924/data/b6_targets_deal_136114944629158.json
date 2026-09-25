@@ -1,0 +1,93 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-09-15",
+  "endDate": "2026-09-24"
+ },
+ "productId": 30,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "136114944629158",
+ "reconciliation": {
+  "campaignSpend": 0
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "bamboo sheets twin size",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.35,
+   "effBidTos": 1.35,
+   "effBidRos": 1.35,
+   "effBidPdp": 1.35,
+   "tosImpressionShare": 0,
+   "placements": {
+    "tos": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": null,
+     "clicksShare": null,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": null,
+     "spendShare": null,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 405.99999999999994,
+     "impressionsShare": 88.45315904139433,
+     "clicks": null,
+     "clicksShare": null,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": null,
+     "spendShare": null,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 53,
+     "impressionsShare": 11.546840958605664,
+     "clicks": null,
+     "clicksShare": null,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": null,
+     "spendShare": null,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": null,
+     "clicksShare": null,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": null,
+     "spendShare": null,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 459,
+   "clicks": 0,
+   "ctr": 0,
+   "orders": 0,
+   "spend": 0,
+   "sales": 0,
+   "units": 0
+  }
+ ]
+}

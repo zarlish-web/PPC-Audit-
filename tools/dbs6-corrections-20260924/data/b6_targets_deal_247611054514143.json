@@ -1,0 +1,97 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-09-15",
+  "endDate": "2026-09-24"
+ },
+ "productId": 30,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "247611054514143",
+ "reconciliation": {
+  "campaignSpend": 4.62
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "bamboo twin sheets",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 0.88,
+   "effBidTos": 4.6288,
+   "effBidRos": 0.88,
+   "effBidPdp": 0.88,
+   "tosImpressionShare": 1.505125,
+   "placements": {
+    "tos": {
+     "impressions": 17,
+     "impressionsShare": 20.238095238095237,
+     "clicks": 1,
+     "clicksShare": 100,
+     "ctr": null,
+     "cvr": null,
+     "cpc": 4.62,
+     "spend": 4.62,
+     "spendShare": 100,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 54.00000000000001,
+     "impressionsShare": 64.28571428571429,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 13,
+     "impressionsShare": 15.476190476190476,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 84,
+   "clicks": 1,
+   "ctr": 1.19,
+   "orders": 0,
+   "cvr": 0,
+   "spend": 4.62,
+   "sales": 0,
+   "roas": 0,
+   "cpc": 4.62,
+   "units": 0,
+   "spendShare": 100
+  }
+ ]
+}

@@ -1,0 +1,96 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-08-26",
+  "endDate": "2026-09-24"
+ },
+ "productId": 30,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "519733575039753",
+ "reconciliation": {
+  "campaignSpend": 9.9
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "bamboo sheet set queen size",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.48,
+   "effBidTos": 4.958,
+   "effBidRos": 1.48,
+   "effBidPdp": 1.48,
+   "tosImpressionShare": 8.093846153846155,
+   "placements": {
+    "tos": {
+     "impressions": 163,
+     "impressionsShare": 52.243589743589745,
+     "clicks": 2,
+     "clicksShare": 100,
+     "ctr": 1.2269938650306749,
+     "cvr": null,
+     "cpc": 4.95,
+     "spend": 9.9,
+     "spendShare": 100,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 124.00000000000001,
+     "impressionsShare": 39.743589743589745,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": 0,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 24.999999999999996,
+     "impressionsShare": 8.012820512820513,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 312,
+   "clicks": 2,
+   "ctr": 0.64,
+   "orders": 0,
+   "cvr": 0,
+   "spend": 9.9,
+   "sales": 0,
+   "roas": 0,
+   "cpc": 4.95,
+   "units": 0
+  }
+ ]
+}

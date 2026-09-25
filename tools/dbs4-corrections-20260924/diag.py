@@ -101,6 +101,8 @@ def verdict(tos_impr, tos_clicks, tos_ctr, tos_cvr, mctr, mcvr, is_=None, tos_sh
         v = 'PERFORMANCE GAP — shown, but ' + ' and '.join(x for x, ok in (('CTR', ctr_ok), ('CVR', cvr_ok)) if ok is False) + ' under target'
     elif traffic_bad:
         v = 'TRAFFIC GAP — converts when shown, not shown/clicked enough'
+    elif is_ is None:
+        v = 'MEETS THE BARS — impression share not read'
     else:
         v = 'ON TRACK'
     return dict(verdict=v, tctr=tctr, tcvr=tcvr, ctr_ok=ctr_ok, cvr_ok=cvr_ok, thin=thin, low_is=low_is, short=short)
@@ -152,7 +154,9 @@ def group_table(prod, win='30d'):
             a = agg[g]
             for f in ('tos_impr', 'tos_clicks', 'pp_clicks', 'ros_clicks'):
                 a[f] += r.get(f) or 0
-            a['tos_orders'] += (r.get('tos_clicks') or 0) * (r.get('tos_cvr') or 0) / 100
+            if r.get('tos_cvr') is not None:
+                a['tos_orders'] += (r.get('tos_clicks') or 0) * r['tos_cvr'] / 100
+                a['cvr_clicks'] += r.get('tos_clicks') or 0
             a['tos_spend'] += (r.get('tos_clicks') or 0) * (r.get('tos_cpc') or 0)
     gr, _ = rank_grid(prod)
     out = []
@@ -160,8 +164,8 @@ def group_table(prod, win='30d'):
         a = agg.get(g, {})
         ti, tc = a.get('tos_impr', 0), a.get('tos_clicks', 0)
         allc = tc + a.get('pp_clicks', 0) + a.get('ros_clicks', 0)
-        tctr = tc / ti * 100 if ti else None
-        tcvr = a.get('tos_orders', 0) / tc * 100 if tc else None
+        tctr = tc / ti * 100 if ti >= 100 else None
+        tcvr = a.get('tos_orders', 0) / a['cvr_clicks'] * 100 if a.get('cvr_clicks') else None
         v = verdict(ti, tc, tctr, tcvr, s['mctr'], s['mcvr'])
         ser = gr.get(g, {})
         ranks = {d: at(ser, d) for d in ('2026-06-24', '2026-08-15', '2026-09-14', '2026-09-24')}

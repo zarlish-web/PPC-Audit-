@@ -1,0 +1,98 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-08-26",
+  "endDate": "2026-09-24"
+ },
+ "productId": 30,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "344974594825079",
+ "reconciliation": {
+  "campaignSpend": 55.88
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "bamboo viscose sheets queen size",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.39,
+   "effBidTos": 7.311399999999999,
+   "effBidRos": 1.39,
+   "effBidPdp": 1.39,
+   "tosImpressionShare": 16.454971098265897,
+   "placements": {
+    "tos": {
+     "impressions": 246.42441860465118,
+     "impressionsShare": 17.805232558139537,
+     "clicks": 9,
+     "clicksShare": 69.23076923076923,
+     "ctr": 3.652235460658251,
+     "cvr": null,
+     "cpc": 4.892222222222222,
+     "spend": 44.03,
+     "spendShare": 78.79384395132426,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 1076.220930232558,
+     "impressionsShare": 77.76162790697674,
+     "clicks": 4,
+     "clicksShare": 30.76923076923077,
+     "ctr": 0.37167089838474426,
+     "cvr": null,
+     "cpc": 2.9625000000000004,
+     "spend": 11.850000000000001,
+     "spendShare": 21.206156048675734,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 61.3546511627907,
+     "impressionsShare": 4.433139534883721,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 1384,
+   "clicks": 13,
+   "ctr": 0.94,
+   "orders": 4,
+   "cvr": 30.77,
+   "spend": 55.88,
+   "sales": 227.46999999999997,
+   "acos": 24.6,
+   "roas": 4.07,
+   "cpc": 4.3,
+   "units": 4,
+   "spendShare": 100
+  }
+ ]
+}

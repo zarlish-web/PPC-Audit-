@@ -1,0 +1,98 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-09-15",
+  "endDate": "2026-09-24"
+ },
+ "productId": 30,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "443100112078771",
+ "reconciliation": {
+  "campaignSpend": 19.92
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "decolure bamboo sheets king size",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.35,
+   "effBidTos": 3.5370000000000004,
+   "effBidRos": 1.35,
+   "effBidPdp": 1.35,
+   "tosImpressionShare": 31.604529702970297,
+   "placements": {
+    "tos": {
+     "impressions": 96,
+     "impressionsShare": 23.762376237623762,
+     "clicks": 11,
+     "clicksShare": 78.57142857142857,
+     "ctr": null,
+     "cvr": null,
+     "cpc": 1.4654545454545456,
+     "spend": 16.12,
+     "spendShare": 80.92369477911646,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 52,
+     "impressionsShare": 12.871287128712872,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 143,
+     "impressionsShare": 35.396039603960396,
+     "clicks": 2.0000000000000004,
+     "clicksShare": 14.285714285714286,
+     "ctr": 1.398601398601399,
+     "cvr": null,
+     "cpc": 1.5,
+     "spend": 3.0000000000000004,
+     "spendShare": 15.060240963855422,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 112.99999999999999,
+     "impressionsShare": 27.97029702970297,
+     "clicks": 1.0000000000000002,
+     "clicksShare": 7.142857142857143,
+     "ctr": null,
+     "cvr": null,
+     "cpc": 0.7999999999999998,
+     "spend": 0.8,
+     "spendShare": 4.016064257028113,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 404,
+   "clicks": 14,
+   "ctr": 3.47,
+   "orders": 5,
+   "cvr": 35.71,
+   "spend": 19.92,
+   "sales": 326.21,
+   "acos": 6.1,
+   "roas": 16.38,
+   "cpc": 1.42,
+   "units": 5,
+   "spendShare": 100
+  }
+ ]
+}

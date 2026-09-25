@@ -1,0 +1,97 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-08-26",
+  "endDate": "2026-09-24"
+ },
+ "productId": 30,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "347833356361210",
+ "reconciliation": {
+  "campaignSpend": 9.45
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "bamboo queen sheets deep pocket",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.48,
+   "effBidTos": 7.192799999999999,
+   "effBidRos": 1.48,
+   "effBidPdp": 1.48,
+   "tosImpressionShare": 10.260225806451613,
+   "placements": {
+    "tos": {
+     "impressions": 102.65573770491802,
+     "impressionsShare": 33.114754098360656,
+     "clicks": 2,
+     "clicksShare": 100,
+     "ctr": 1.9482593420632386,
+     "cvr": null,
+     "cpc": 4.725,
+     "spend": 9.45,
+     "spendShare": 100,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 191.08196721311475,
+     "impressionsShare": 61.63934426229508,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": 0,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 16.26229508196721,
+     "impressionsShare": 5.245901639344262,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 310,
+   "clicks": 2,
+   "ctr": 0.65,
+   "orders": 0,
+   "cvr": 0,
+   "spend": 9.45,
+   "sales": 0,
+   "roas": 0,
+   "cpc": 4.72,
+   "units": 0,
+   "spendShare": 100
+  }
+ ]
+}

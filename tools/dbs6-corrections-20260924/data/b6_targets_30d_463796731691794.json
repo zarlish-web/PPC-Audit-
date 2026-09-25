@@ -1,0 +1,167 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-08-26",
+  "endDate": "2026-09-24"
+ },
+ "productId": 30,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "463796731691794",
+ "reconciliation": {
+  "campaignSpend": 0
+ },
+ "total": 2,
+ "limit": 200,
+ "offset": 0,
+ "returned": 2,
+ "rows": [
+  {
+   "target": "full sheet set bamboo",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.48,
+   "effBidTos": 6.201199999999999,
+   "effBidRos": 1.48,
+   "effBidPdp": 1.48,
+   "tosImpressionShare": 16.933333333333334,
+   "placements": {
+    "tos": {
+     "impressions": 28.928571428571427,
+     "impressionsShare": 53.57142857142857,
+     "clicks": null,
+     "clicksShare": null,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": null,
+     "spendShare": null,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 15.910714285714286,
+     "impressionsShare": 29.464285714285715,
+     "clicks": null,
+     "clicksShare": null,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": null,
+     "spendShare": null,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 9.160714285714286,
+     "impressionsShare": 16.964285714285715,
+     "clicks": null,
+     "clicksShare": null,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": null,
+     "spendShare": null,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": null,
+     "clicksShare": null,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": null,
+     "spendShare": null,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "clicks": 0,
+   "ctr": 0,
+   "orders": 0,
+   "spend": 0,
+   "sales": 0,
+   "units": 0,
+   "impressions": 54
+  },
+  {
+   "target": "full size sheets set bamboo",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.48,
+   "effBidTos": 6.201199999999999,
+   "effBidRos": 1.48,
+   "effBidPdp": 1.48,
+   "tosImpressionShare": 8.570689655172414,
+   "placements": {
+    "tos": {
+     "impressions": 31.07142857142857,
+     "impressionsShare": 53.57142857142857,
+     "clicks": null,
+     "clicksShare": null,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": null,
+     "spendShare": null,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 17.089285714285715,
+     "impressionsShare": 29.464285714285715,
+     "clicks": null,
+     "clicksShare": null,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": null,
+     "spendShare": null,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 9.839285714285715,
+     "impressionsShare": 16.964285714285715,
+     "clicks": null,
+     "clicksShare": null,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": null,
+     "spendShare": null,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": null,
+     "clicksShare": null,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": null,
+     "spendShare": null,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "clicks": 0,
+   "ctr": 0,
+   "orders": 0,
+   "spend": 0,
+   "sales": 0,
+   "units": 0,
+   "impressions": 58
+  }
+ ]
+}

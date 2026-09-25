@@ -1,0 +1,97 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-08-26",
+  "endDate": "2026-09-24"
+ },
+ "productId": 30,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "419686709834874",
+ "reconciliation": {
+  "campaignSpend": 3.74
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "burgundy bed sheets queen",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.2,
+   "effBidTos": 3.2880000000000003,
+   "effBidRos": 1.2,
+   "effBidPdp": 1.2,
+   "tosImpressionShare": 8.734423913043479,
+   "placements": {
+    "tos": {
+     "impressions": 13.393057110862262,
+     "impressionsShare": 1.4557670772676372,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 834.4904815229564,
+     "impressionsShare": 90.70548712206048,
+     "clicks": 1,
+     "clicksShare": 50,
+     "ctr": 0.11983360171765967,
+     "cvr": null,
+     "cpc": 1.3300000000000003,
+     "spend": 1.3300000000000003,
+     "spendShare": 35.56149732620321,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 72.11646136618141,
+     "impressionsShare": 7.838745800671893,
+     "clicks": 1,
+     "clicksShare": 50,
+     "ctr": null,
+     "cvr": null,
+     "cpc": 2.41,
+     "spend": 2.41,
+     "spendShare": 64.43850267379679,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 920,
+   "clicks": 2,
+   "ctr": 0.22,
+   "orders": 0,
+   "cvr": 0,
+   "spend": 3.74,
+   "sales": 0,
+   "roas": 0,
+   "cpc": 1.87,
+   "units": 0,
+   "spendShare": 100
+  }
+ ]
+}

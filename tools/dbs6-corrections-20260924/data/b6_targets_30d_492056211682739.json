@@ -1,0 +1,97 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-08-26",
+  "endDate": "2026-09-24"
+ },
+ "productId": 30,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "492056211682739",
+ "reconciliation": {
+  "campaignSpend": 4.84
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "cooling sheets king size deep pocket",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.9,
+   "effBidTos": 3.344,
+   "effBidRos": 1.9,
+   "effBidPdp": 1.9,
+   "tosImpressionShare": 1.4325,
+   "placements": {
+    "tos": {
+     "impressions": 4,
+     "impressionsShare": 5.2631578947368425,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 11,
+     "impressionsShare": 14.473684210526315,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 60.99999999999999,
+     "impressionsShare": 80.26315789473684,
+     "clicks": 2,
+     "clicksShare": 100,
+     "ctr": null,
+     "cvr": null,
+     "cpc": 2.42,
+     "spend": 4.84,
+     "spendShare": 100,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 76,
+   "clicks": 2,
+   "ctr": 2.63,
+   "orders": 0,
+   "cvr": 0,
+   "spend": 4.84,
+   "sales": 0,
+   "roas": 0,
+   "cpc": 2.42,
+   "units": 0,
+   "spendShare": 100
+  }
+ ]
+}

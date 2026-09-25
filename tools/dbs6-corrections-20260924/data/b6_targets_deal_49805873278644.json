@@ -1,0 +1,96 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-09-15",
+  "endDate": "2026-09-24"
+ },
+ "productId": 30,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "49805873278644",
+ "reconciliation": {
+  "campaignSpend": 9.48
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "cooling bamboo sheets",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.47,
+   "effBidTos": 5.4536999999999995,
+   "effBidRos": 1.47,
+   "effBidPdp": 1.47,
+   "tosImpressionShare": 2.595217391304348,
+   "placements": {
+    "tos": {
+     "impressions": 31,
+     "impressionsShare": 44.927536231884055,
+     "clicks": 2,
+     "clicksShare": 100,
+     "ctr": null,
+     "cvr": null,
+     "cpc": 4.74,
+     "spend": 9.48,
+     "spendShare": 100,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 32,
+     "impressionsShare": 46.3768115942029,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 6,
+     "impressionsShare": 8.695652173913043,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 69,
+   "clicks": 2,
+   "ctr": 2.9,
+   "orders": 0,
+   "cvr": 0,
+   "spend": 9.48,
+   "sales": 0,
+   "roas": 0,
+   "cpc": 4.74,
+   "units": 0
+  }
+ ]
+}

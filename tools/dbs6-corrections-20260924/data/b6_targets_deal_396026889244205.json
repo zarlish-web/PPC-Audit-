@@ -1,0 +1,97 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-09-15",
+  "endDate": "2026-09-24"
+ },
+ "productId": 30,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "396026889244205",
+ "reconciliation": {
+  "campaignSpend": 12.65
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "queen sheets set bamboo",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.65,
+   "effBidTos": 4.719,
+   "effBidRos": 1.65,
+   "effBidPdp": 1.65,
+   "tosImpressionShare": 0.1901983002832861,
+   "placements": {
+    "tos": {
+     "impressions": 3.000772797527048,
+     "impressionsShare": 0.07727975270479134,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 3725.959556929418,
+     "impressionsShare": 95.95569294178259,
+     "clicks": 7,
+     "clicksShare": 100,
+     "ctr": 0.18787106765508574,
+     "cvr": null,
+     "cpc": 1.8071428571428572,
+     "spend": 12.65,
+     "spendShare": 100,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 154.03967027305512,
+     "impressionsShare": 3.967027305512622,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": 0,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 3883,
+   "clicks": 7,
+   "ctr": 0.18,
+   "orders": 1,
+   "cvr": 14.29,
+   "spend": 12.65,
+   "sales": 79.99,
+   "acos": 15.8,
+   "roas": 6.32,
+   "cpc": 1.81,
+   "units": 1
+  }
+ ]
+}

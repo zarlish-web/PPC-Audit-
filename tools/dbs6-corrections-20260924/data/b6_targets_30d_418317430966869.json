@@ -1,0 +1,97 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-08-26",
+  "endDate": "2026-09-24"
+ },
+ "productId": 30,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "418317430966869",
+ "reconciliation": {
+  "campaignSpend": 25.85
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "cooling bed sheets",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.64,
+   "effBidTos": 4.1,
+   "effBidRos": 1.64,
+   "effBidPdp": 1.64,
+   "tosImpressionShare": 0.033451973888716194,
+   "placements": {
+    "tos": {
+     "impressions": 40.439974858579504,
+     "impressionsShare": 0.6285355122564424,
+     "clicks": 4,
+     "clicksShare": 44.44444444444444,
+     "ctr": null,
+     "cvr": null,
+     "cpc": 4.2,
+     "spend": 16.8,
+     "spendShare": 64.99032882011605,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 5527.133563796356,
+     "impressionsShare": 85.9050911376493,
+     "clicks": 5,
+     "clicksShare": 55.55555555555556,
+     "ctr": 0.09046280395232045,
+     "cvr": null,
+     "cpc": 1.81,
+     "spend": 9.05,
+     "spendShare": 35.009671179883945,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 866.426461345066,
+     "impressionsShare": 13.46637335009428,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": 0,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 6434,
+   "clicks": 9,
+   "ctr": 0.14,
+   "orders": 0,
+   "cvr": 0,
+   "spend": 25.85,
+   "sales": 0,
+   "roas": 0,
+   "cpc": 2.87,
+   "units": 0,
+   "spendShare": 100
+  }
+ ]
+}

@@ -1,0 +1,97 @@
+{
+ "_note": "Compact transcription of an inline tool result (harness did not persist it); all numeric fields kept, explanatory notes text dropped.",
+ "window": {
+  "startDate": "2026-09-15",
+  "endDate": "2026-09-24"
+ },
+ "productId": 30,
+ "marketplaceId": "ATVPDKIKX0DER",
+ "campaignId": "371968563756189",
+ "reconciliation": {
+  "campaignSpend": 12.46
+ },
+ "total": 1,
+ "limit": 200,
+ "offset": 0,
+ "returned": 1,
+ "rows": [
+  {
+   "target": "bamboo full size sheet sets",
+   "targetType": "Keyword \u2014 Exact",
+   "bid": 1.33,
+   "effBidTos": 6.4372,
+   "effBidRos": 1.33,
+   "effBidPdp": 1.33,
+   "tosImpressionShare": 20.177021276595745,
+   "placements": {
+    "tos": {
+     "impressions": 60,
+     "impressionsShare": 60.60606060606061,
+     "clicks": 2,
+     "clicksShare": 100,
+     "ctr": null,
+     "cvr": null,
+     "cpc": 6.23,
+     "spend": 12.46,
+     "spendShare": 100,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "detail": {
+     "impressions": 36,
+     "impressionsShare": 36.36363636363637,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "other": {
+     "impressions": 3,
+     "impressionsShare": 3.0303030303030303,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    },
+    "off": {
+     "impressions": 0,
+     "impressionsShare": 0,
+     "clicks": 0,
+     "clicksShare": 0,
+     "ctr": null,
+     "cvr": null,
+     "cpc": null,
+     "spend": 0,
+     "spendShare": 0,
+     "acos": null,
+     "units": null,
+     "unitsShare": null
+    }
+   },
+   "impressions": 99,
+   "clicks": 2,
+   "ctr": 2.02,
+   "orders": 0,
+   "cvr": 0,
+   "spend": 12.46,
+   "sales": 0,
+   "roas": 0,
+   "cpc": 6.23,
+   "units": 0,
+   "spendShare": 100
+  }
+ ]
+}
