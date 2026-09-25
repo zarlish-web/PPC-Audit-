@@ -42,7 +42,7 @@ Pick an alternative in this order:
 - same size and pack;
 - the keyword's colour, if it names one;
 - FBA above 0 and flag not YES or SOON;
-- at least **45 days** of cover after the move, counting load already moving onto it;
+- at least **45 days** of cover after the move: (FBA + inbound) ÷ (its own velocity + load already moving onto it + this campaign's ad orders);
 - the highest velocity among those that qualify.
 
 If none qualifies:
