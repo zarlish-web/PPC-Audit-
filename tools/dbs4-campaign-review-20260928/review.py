@@ -212,17 +212,16 @@ def stock_of(sku):
     r = INV.get(sku or '')
     if not r:
         return None
-    return dict(avail=r.get('fba_available'), inbound=r.get('inbound'), vel=r.get('velocity_day'), days=r.get('days_of_stock'))
+    return dict(avail=r.get('fba_available'), reserved=r.get('reserved'), sellable=(r.get('fba_available') or 0) + (r.get('reserved') or 0), inbound=r.get('inbound'), vel=r.get('velocity_day'), days=r.get('days_of_stock'))
 
 
 HERO = {r['size']: r for r in A['context']['inventory']}
 # the ranking SKU per size (operator 2026-09-28): White, unless White cannot carry the push — then the highest-selling variation with
 # healthy stock, until White lands. Read on Sellerboard units (30 days), FBA stock and cover, 2026-09-28.
 PREFERRED = {'KING': 'BAMBOO-KING-WHITE', 'CALIFKING': 'BAMBOO-CALIFKING-WHITE', 'QUEEN': 'BAMBOO-QUEEN-LIGHTBLUE',
-             'FULL': 'BAMBOO-FULL-OLIVE', 'TWIN': 'BAMBOO-TWIN-NAVYBLUE'}
+             'FULL': 'BAMBOO-FULL-OLIVE', 'TWIN': 'BAMBOO-TWIN-WHITE'}
 PREF_WHY = {'QUEEN': 'Queen White has 23 days of cover against a 27 Oct arrival and sells on its own; Light Blue is the next seller with 70 days',
-            'FULL': 'Full White is out until 27 Oct; Olive is the size’s top seller with 75 days',
-            'TWIN': 'Twin White has none available until 16 Oct; Navy Blue is the next seller with healthy stock (81 days)'}
+            'FULL': 'Full White is out until 27 Oct; Olive is the size’s top seller with 75 days'}
 SIZE_NAME = {'CALIFKING': 'California King', 'KING': 'King', 'QUEEN': 'Queen', 'FULL': 'Full', 'TWIN': 'Twin'}
 
 DEAL_ON = False          # the Best Deal ran 09-15 -> 09-28; next dated deal 10-26 (placeholder)
