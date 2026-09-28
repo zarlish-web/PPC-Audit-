@@ -14,7 +14,10 @@ BE_RUN = A['brief']['sections']['margin']['be_acos']
 BE = sum(x['margin_before_ads'] for x in _T) / sum(x['sales'] for x in _T)   # redline §1: realised margin before ads ÷ sales, 30 days outside any deal
 SKU = json.load(open(f'{S}/skus.json'))
 INV = {r['sku']: r for r in json.load(open(f'{S}/inventory_children.json'))}
-LTSF = set(json.load(open(f'{S}/ltsf_skus.json'))) if os.path.exists(f'{S}/ltsf_skus.json') else None
+LTSF = set(json.load(open(f'{S}/ltsf_skus.json')))
+_LD = json.load(open(f'{S}/ltsf_detail.json'))
+LTSF_PICK = _LD['pick']
+LTSF_WHY = {x['sku']: f"{x['units30']} sold in 30 days, {x['available']} Available, {x['days'] or 'no sales —'} days" for x in _LD['rows']}
 DAYS = dict(d90=90, pre_deal30=31, post_deal=45, deal=13, d30=30, d14=14, d7=7)   # B6: conversion rates on post_deal (08-14 → 09-27), after the July Best Deal (07-31 → 08-13); holds the one-day 08-16 Lightning Deal
 
 
@@ -333,13 +336,17 @@ def review(c):
     elif ranking and ch and pref and ch != pref:
         issues.append(f"SKU: ranking campaign advertises {ch}; the size’s ranking SKU is {pref}" + (f" ({PREF_WHY[sz_ch or sz_t]})" if PREF_WHY.get(sz_ch or sz_t) else ''))
         fixes.append(f"advertise {pref}")
-    if mt in ('Auto', 'Broad', 'Phrase') and obj != 'Defensive':
-        if LTSF is None:
-            if ch and 'WHITE' in ch:
-                issues.append(f"SKU: {mt} campaign advertises the White ranking SKU {ch}; it should advertise an LTSF SKU (list pending)")
-        elif ch not in LTSF:
-            issues.append(f"SKU: {mt} campaign advertises {ch}, not an LTSF SKU")
-            fixes.append('advertise the size’s LTSF SKU')
+    if mt in ('Auto', 'Broad', 'Phrase') and obj not in ('Defensive', 'Liquidation') and exp != 'Defensive':
+        # operator 28 Sep: Auto/Broad/Phrase advertise the size's LTSF SKU (a low-selling child with high stock), never White
+        zs = sz_t or sz_ch
+        lp = LTSF_PICK.get(zs) if zs else None
+        row['ltsf_pick'] = lp
+        if ch and ch not in LTSF:
+            if lp:
+                issues.append(f"SKU: {mt} campaign advertises {ch}; the {SIZE_NAME.get(zs, zs)} LTSF SKU is {lp} ({LTSF_WHY[lp]})")
+                fixes.append(f'advertise {lp}')
+            elif 'WHITE' in ch:
+                issues.append(f"SKU: {mt} campaign advertises the White ranking SKU {ch}; {SIZE_NAME.get(zs, 'this size')} has no LTSF child today — advertise a non-White child")
     if sz_ch and sz_t and sz_ch != sz_t and mt in ('Exact', 'Phrase', 'Broad'):
         issues.append(f"SKU: the campaign’s term is {SIZE_NAME[sz_t]} but it advertises a {SIZE_NAME[sz_ch]} child ({ch})")
     row['stock'] = stock_of(ch)
