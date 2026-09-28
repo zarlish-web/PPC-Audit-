@@ -9,7 +9,9 @@ S = os.path.dirname(os.path.abspath(__file__))
 A = json.load(open(f'{S}/a.json'))
 END = '2026-09-27'
 CONTRIB_DEFAULT = A['brief']['sections']['margin']['contribution_per_unit']
-BE = A['brief']['sections']['margin']['be_acos']
+_T = json.load(open(f'{S}/child_margin.json'))['base']
+BE_RUN = A['brief']['sections']['margin']['be_acos']
+BE = sum(x['margin_before_ads'] for x in _T) / sum(x['sales'] for x in _T)   # redline §1: realised margin before ads ÷ sales, 30 days outside any deal
 SKU = json.load(open(f'{S}/skus.json'))
 INV = {r['sku']: r for r in json.load(open(f'{S}/inventory_children.json'))}
 LTSF = set(json.load(open(f'{S}/ltsf_skus.json'))) if os.path.exists(f'{S}/ltsf_skus.json') else None
@@ -75,7 +77,7 @@ KT = {}
 for f in glob.glob(f'{S}/b46/b4_keywords_30d_p*.json'):
     for r in json.load(open(f))['rows']:
         t = r.get('targets') or {}
-        KT[r['keyword']] = dict(rank=t.get('rank'), units30=t.get('units'), clicks30=t.get('clicks'), ctr=r.get('ctr'), cvr=r.get('cvr'),
+        KT[r['keyword']] = dict(rank=t.get('rank'), units30=t.get('units'), paid30=r.get('units') or 0, clicks30=t.get('clicks'), ctr=r.get('ctr'), cvr=r.get('cvr'),
                                 tos=(r.get('placements') or {}).get('tos') or {}, syntax=r.get('syntax'), sv=r.get('searchVolume'))
 
 # ---- market CTR/CVR by syntax group (SQP, 30 days)
@@ -185,12 +187,35 @@ PLAN_PP = _all[3] / _all[2] if _all[2] else 0.10
 GR = {k: (v[1] / v[0] if v[0] >= 50 else PLAN_TOS, v[3] / v[2] if v[2] >= 50 else PLAN_PP) for k, v in _g.items()}
 
 
+_ch = defaultdict(lambda: [0, 0, 0, 0]); _sz = defaultdict(lambda: [0, 0, 0, 0])
+for c in ENABLED:
+    r = read(c['campaign_id'], 'd90'); ch = c.get('child'); sz = child_size(ch)
+    for g in ([_ch[ch]] if ch else []) + ([_sz[sz]] if sz else []):
+        g[0] += r['tos']['c']; g[1] += r['tos']['o']; g[2] += r['pp']['c']; g[3] += r['pp']['o']
+
+
+def plan_rate(c, which):
+    """(rate, basis) — the child's own 90-day rate at the placement where it has 50+ clicks there; otherwise the rate across the
+    children of the same size in this product (same pack); never a rate borrowed from another size or pack."""
+    i = 0 if which == 'tos' else 2
+    ch = c.get('child'); sz = child_size(ch) or term_size(term_text(c))
+    a = _ch.get(ch)
+    if a and a[i] >= 50:
+        return a[i + 1] / a[i], f"{(ch or '').replace('BAMBOO-', '').lower()} own 90d ({a[i + 1]}/{a[i]})"
+    b = _sz.get(sz)
+    if b and b[i] >= 15:
+        return b[i + 1] / b[i], f"{SIZE_NAME.get(sz, sz)} size 90d ({b[i + 1]}/{b[i]})"
+    return (PLAN_TOS if which == 'tos' else PLAN_PP), 'product 90d (size too thin)'
+
+
 def blend(clicks, orders, child):
+    # redline §2: under 15 clicks the planning rate; a zero is evidence once the clicks would have produced 3 orders at the
+    # planning rate (clicks × rate ≥ 3) — from there it blends toward the campaign's own rate by click count like any other read
     if clicks < 15:
-        return child, 'child rate (under 15 clicks)'
+        return child, 'planning rate (under 15 clicks)'
+    if not orders and clicks * child < 3:
+        return child, f'planning rate (0 orders on {clicks} clicks, under 3 expected)'
     if clicks < 50:
-        if not orders:
-            return child, f'child rate (no order on {clicks} clicks)'
         w = (clicks - 15) / 35
         return child + (orders / clicks - child) * w, f'blend {w:.0%} own on {clicks} clicks'
     return orders / clicks, f'own, {clicks} clicks'
@@ -200,21 +225,28 @@ _CS = json.load(open(f'{S}/child_sales.json'))['d30']
 ASP = {x['sku']: x['sales'] / x['units'] for x in _CS if x.get('units')}
 
 
+_CM = json.load(open(f'{S}/child_margin.json'))
+CM = {x['sku']: x for x in _CM['base']}
+_szm = defaultdict(lambda: [0.0, 0])
+for x in _CM['base']:
+    z = child_size(x['sku'])
+    if z and x.get('units'):
+        _szm[z][0] += x['margin_before_ads']; _szm[z][1] += x['units']
+_pm = sum(v[0] for v in _szm.values()) / max(1, sum(v[1] for v in _szm.values()))
+CM_WINDOW = _CM.get('meta', {}).get('base', {}).get('window') if isinstance(_CM.get('meta', {}).get('base'), dict) else None
+
+
 def contrib_of(c):
-    for x in DEC.get(c['campaign_id'], []) + HOLDS.get(c['campaign_id'], []):
-        t = ' '.join(r['text'] for r in (x.get('rationale') or []))
-        m = re.search(r'against \$([\d.]+) contribution per order', t)
-        if m:
-            return float(m.group(1)), 'run'
-    s = SKU.get(c.get('child') or '')
-    if s and s[1]:
-        # the child's economics are at list price; re-price to what it actually sold for in 30 days (Sellerboard), the 15%
-        # referral fee moving with the price — a child that sells below list earns less per unit than its list contribution
-        a = ASP.get(c.get('child'))
-        if s[0] and a and a < s[0]:
-            return s[1] - (s[0] - a) * 0.85, f'child economics at the 30-day selling price ${a:.2f} (list ${s[0]:.2f})'
-        return s[1], 'child economics'
-    return CONTRIB_DEFAULT, 'product margin'
+    """Redline §1: contribution is the realised margin before ads on the serving child — Sellerboard sales minus product cost, every
+    Amazon fee (storage and LTSF included), refunds and promotions, over 30 days outside any deal; never a list-price figure."""
+    ch = c.get('child'); x = CM.get(ch or '')
+    if x and (x.get('units') or 0) >= 10:
+        return x['margin_before_ads'] / x['units'], f"realised, {ch.replace('BAMBOO-', '').lower()} ({x['units']} units)"
+    z = child_size(ch) or term_size(term_text(c))
+    if z and _szm[z][1] >= 10:
+        return _szm[z][0] / _szm[z][1], f"realised, {SIZE_NAME.get(z, z)} size ({_szm[z][1]} units; the child has under 10)"
+    return _pm, 'realised, product'
+
 
 
 def stock_of(sku):
@@ -300,9 +332,13 @@ def review(c):
     # ---------- 3. ranking economics and the framework's reads
     if ranking:
         kw = c.get('plan_keyword'); kt = KT.get(kw) or {}; grp = group_of(c)
-        ctos, cpp = GR.get(grp, (PLAN_TOS, PLAN_PP))
+        ctos, tsrc0 = plan_rate(c, 'tos'); cpp, psrc0 = plan_rate(c, 'pp')
         tos_rate, tos_src = blend(r90['tos']['c'], r90['tos']['o'], ctos)
         pp_rate, pp_src = blend(r90['pp']['c'], r90['pp']['o'], cpp)
+        if tos_src.startswith('planning'):
+            tos_src += f' = {tsrc0}'
+        if pp_src.startswith('planning'):
+            pp_src += f' = {psrc0}'
         contrib, csrc = contrib_of(c)
         ceil_tos, ceil_pp = contrib * tos_rate, contrib * pp_rate
         tg = targets(cid, '30d'); tgd = targets(cid, 'deal')
@@ -314,7 +350,7 @@ def review(c):
         tos_price = eff or (base * (1 + (c.get('tos') or 0) / 100) if base else None)
         is30 = (main or {}).get('tosImpressionShare'); isd = (maind or {}).get('tosImpressionShare')
         # required clicks/day = target units/day ÷ top-of-search conversion (framework §7)
-        units_day = (kt.get('units30') or 0) / 30 if kt.get('units30') else None
+        units_day = max(0.0, ((kt.get('units30') or 0) - (kt.get('paid30') or 0)) / 30) if kt.get('units30') else None   # target units − units the term already sells (paid; organic per term is not in the data, so this is an upper bound)
         n_camp = sum(1 for x in ENABLED if x.get('plan_keyword') == kw and x['objective'] == 'Ranking') or 1
         req = (units_day / tos_rate / n_camp) if (units_day and tos_rate) else None
         deliv_pre = pre['tos']['c'] / 31; deliv_14 = r14['tos']['c'] / 14; deliv_deal = dl['tos']['c'] / 13 if dl['have'] else None
@@ -357,7 +393,7 @@ def review(c):
             act.append('hold the base, move the modifier only (cutting the base of a row that is not delivering makes it worse)')
         elif rank_now and tgt_rank and rank_now <= tgt_rank:
             sit = f'AT TARGET RANK ({rank_now} vs {tgt_rank})'
-            act.append('price probe: top of search −3–5%, watch click share, absolute clicks and rank; restore on any miss' + ('; organic top 3 → 15% incrementality step' if rank_now <= 3 else ''))
+            act.append('price probe: top of search −3–5%, watch click share, absolute clicks and rank; restore on any miss' + ('; organic top 5 → 15% incrementality step' if rank_now <= 5 else ''))
         elif rank_now is None:
             sit = 'NO RANK ON FILE'
             act.append('not a push (framework §6): top of search at the ceiling, no premium; becomes a push candidate once a rank read exists')
@@ -495,39 +531,41 @@ def apply_king_push(r):
     k = KING_PUSH.get(r['cid'])
     if not k:
         return r
-    rank_gap = r['rank_now'] / r['rank_tgt']
+    # redline §6: rank gap in positions; delivery gap as a ratio on the re-based requirement, priced only with budget intact and share low
+    pos = r['rank_now'] - r['rank_tgt']
+    rank_lift = 0 if pos <= 0 else 0.25 if pos <= 2 else 0.25 + 0.08 * (pos - 2)
     deliv_gap = (r['req_day'] / r['deliv_14']) if r.get('deliv_14') else None
-    priced_deliv = deliv_gap if (k['stage'] == 'push now' and (r.get('util7') or 0) < 0.8 and (r.get('is30') or 100) < 20) else None   # a mix problem is not priced
-    g = max(rank_gap, priced_deliv or 0)
-    lift = 0 if g <= 1 else 0.25 if g <= 1.5 else (g - 1) * 0.5
+    priced = deliv_gap if (k['stage'] == 'push now' and (r.get('util7') or 0) < 0.8 and (r.get('is30') or 100) < 20) else None
+    deliv_lift = 0 if not priced or priced <= 1 else 0.25 if priced <= 1.5 else (priced - 1) * 0.5
+    lift = max(rank_lift, deliv_lift)
     wants = r['ceil_tos'] * (1 + lift)
-    bound = k['term_cpc'] * (1 + MARKET_TOL)
-    target = min(wants, bound, r['contrib'])
-    binds = 'market bound' if bound <= min(wants, r['contrib']) else 'gap' if wants <= r['contrib'] else 'per-unit bound'
-    now = r['tos_price']
-    cvr = r['tos_rate']
-    push = dict(stage=k['stage'], rank_gap=round(rank_gap, 2), deliv_gap=round(deliv_gap, 2) if deliv_gap else None, lift=round(lift, 3),
-                gap_wants=round(wants, 2), bound=round(bound, 2), target=round(target, 2), binds=binds,
-                cpo=round(target / cvr, 2), loss_per_order=round(target / cvr - r['contrib'], 2), predict=k['predict'],
-                read=PUSH_READ, checkpoint=PUSH_CHECK)
+    bound = REF_BOUND
+    cap = min(wants, bound, r['contrib'])
+    target = max(r['ceil_tos'], cap)          # a bound below the ceiling stops the premium; it never pushes the price under the ceiling
+    binds = ('market reference $3.22 — below the ceiling, so no premium (no per-term clearing price exists)' if bound <= r['ceil_tos']
+             else 'market reference' if bound <= min(wants, r['contrib']) else 'gap' if wants <= r['contrib'] else 'per-unit bound')
+    if r.get('sibling'):
+        target = r['ceil_tos']; binds += f"; {r['sibling']} also bids the term — no premium until the family owner is named (SOP-33)"
+    now, cvr, base = r['tos_price'], r['tos_rate'], r['base']
+    push = dict(stage=k['stage'], positions=pos, rank_lift=round(rank_lift, 3), deliv_gap=round(deliv_gap, 2) if deliv_gap else None, lift=round(lift, 3),
+                gap_wants=round(wants, 2), bound=round(bound, 2), target=round(target, 2), binds=binds, premium=target > r['ceil_tos'] + 0.005,
+                cpo=round(target / cvr, 2), loss_per_order=round(target / cvr - r['contrib'], 2), predict=k['predict'], read=PUSH_READ, checkpoint=PUSH_CHECK,
+                req=round(r['req_day'], 1), req_raw=round(r.get('req_raw') or r['req_day'], 1), req_basis=r.get('req_basis'))
     if k['stage'] == 'push now':
-        this = min(target, now * 1.30) if target > now else target
-        base_to = r['base']
-        other = (r['d30']['clicks'] - r['d30']['tos_c']) / 30 * r['base'] if r['d30']['clicks'] else 0
-        day = r['req_day'] * this + other
+        this = min(target, now * 1.30) if target > now else max(target, now * 0.5)
+        other = r['req_day'] * 3 / 7          # §7: at the 70% mix every 7 top-of-search clicks bring about 3 more at the base
+        need = r['req_day'] * this + other * base
+        day = max(need, r['budget'] or 0)      # the budget covers the requirement; a budget that is not capping is not cut
+        push['budget_need_day'] = round(need)
         push.update(this_write=round(this, 2), budget_day=round(day), budget_week=round(day * 7), loss_ceiling_week=round(day * 7),
                     expected_loss_week=round(r['req_day'] * cvr * 7 * max(0, this / cvr - r['contrib'])))
-        r['situation'] = f"KING WHITE PUSH — funded ({r['rank_now']} → {r['rank_tgt']})"
-        r['action'] = [f"top of search {now:.2f} → {this:.2f} this write (target {target:.2f}, {binds}); base {base_to:.2f} held; budget ${r['budget']:.0f} → ${day:.0f}/day; read {PUSH_READ}, checkpoint {PUSH_CHECK}"]
-        r.update(price_to=round(this, 2), base_to=base_to, mod_to=round((this / base_to - 1) * 100), descent_final=None)
+        r['situation'] = f"KING WHITE — funded volume at the ceiling ({r['rank_now']} → {r['rank_tgt']})" if not push['premium'] else f"KING WHITE PUSH — funded ({r['rank_now']} → {r['rank_tgt']})"
+        r['action'] = [f"top of search {now:.2f} → {this:.2f} ({'the ceiling — ' if not push['premium'] else ''}{binds}); base {base:.2f} held; budget ${r['budget']:.0f} → ${day:.0f}/day (the requirement, {r['req_day']:.1f} top-of-search clicks a day, needs ${need:.0f}); read {PUSH_READ}, checkpoint {PUSH_CHECK}"]
+        r.update(price_to=round(this, 2), base_to=base, mod_to=round((this / base - 1) * 100), descent_final=None)
     else:
-        # mix first (framework §12: TOS under 30% → distribution fix takes precedence); the TOS price is held, not descended, because the
-        # term is queued for the push — it never falls as a residue of the base cut
-        base_to = r['base_to']
-        this = now
-        day = r['req_day'] * target
-        push.update(this_write=round(this, 2), budget_day_at_target=round(day), entry='top of search ≥70% of clicks for 7 days')
-        r['action'] = [f"distribution fix first: base {r['base']:.2f} → {base_to:.2f}, top of search held at {now:.2f} (queued for the King push, so not descended); push entry when top of search carries ≥70% of clicks for 7 days"]
+        base_to = r['base_to']; this = now if push['premium'] else min(now, max(r['ceil_tos'], now * 0.5))
+        push.update(this_write=round(this, 2), budget_day_at_target=round(r['req_day'] * target + r['req_day'] * 3 / 7 * base_to), entry='top of search ≥70% of clicks for 7 days')
+        r['action'] = [f"distribution fix first: base {r['base']:.2f} → {base_to:.2f}, top of search {now:.2f} → {this:.2f}; push entry when top of search carries ≥70% of clicks for 7 days"]
         r.update(price_to=round(this, 2), base_to=base_to, mod_to=round((this / base_to - 1) * 100), descent_final=None)
     r['push'] = push
     r['issues'] = [i for i in r['issues'] if not i.startswith('RUN PRICE')]
@@ -566,8 +604,48 @@ def apply_stock_rule(r):
     r['issues'] = [i for i in r['issues'] if not i.startswith('RUN PRICE')]
     return r
 
+# ---------- redline (28 Sep) post-pass: requirement checks, sibling terms, product posture
+REF_BOUND = 2.80 * 1.15   # §8: the account-wide market reference + 15% tolerance; never a campaign's own paid CPC + a tolerance
+_O = json.load(open(f'{S}/../b6v3/a.json'))
+SIB = {(t.get('label') or '').lower() for c in _O['campaigns'] if c.get('status') == 'ENABLED'
+       for t in (c.get('targets') or []) if t.get('state') == 'ENABLED' and (t.get('match') or '').upper() == 'EXACT'}
+SIB_NAME = 'B6'
+_TOT_UNITS_DAY = sum(x['units'] for x in _CS) / 30
+
+
+def post_pass(out):
+    # §7 reachability: a requirement above what winning every auction would buy is re-based to it
+    for r in out:
+        if r.get('req_day'):
+            r['req_raw'] = r['req_day']
+            if r.get('reach_day') is not None and r['reach_day'] < r['req_day']:
+                r['req_day'] = r['reach_day']; r['req_basis'] = 're-based to reach'
+    # §7 sum: the terms' incremental units may not add to more than the product sells in total
+    terms = {}
+    for r in out:
+        if r.get('req_day') and r.get('kw'):
+            terms[r['kw']] = max(terms.get(r['kw'], 0), (r['units_day'] or 0))
+    tot = sum(terms.values())
+    f = min(1.0, _TOT_UNITS_DAY / tot) if tot else 1.0
+    for r in out:
+        if r.get('req_day') and f < 1:
+            r['req_day'] *= f; r['req_basis'] = (r.get('req_basis', '') + f'; scaled ×{f:.2f} (sum check)').strip('; ')
+        if r.get('deliv_14') is not None and r.get('req_day'):
+            r['deliv_ratio'] = r['deliv_14'] / r['req_day']
+    # §6 sibling: another of the brand's products bids the term exact → the family owner prices it; the others hold at the ceiling
+    for r in out:
+        if r.get('kw') and r['kw'].lower() in SIB and r.get('ceil_tos') is not None:
+            r['sibling'] = SIB_NAME
+            r['issues'].append(f"SIBLING: {SIB_NAME} also bids “{r['kw']}” exact — the family owner (SOP-33) prices it and the other holds at its ceiling with no top-of-search premium; no owner is named yet")
+    return dict(units_day=_TOT_UNITS_DAY, terms_units_day=tot, scale=f, n_terms=len(terms))
+
+
 if __name__ == '__main__':
-    out = [apply_stock_rule(apply_king_push(review(c))) for c in ENABLED]
+    out = [review(c) for c in ENABLED]
+    PP = post_pass(out)
+    out = [apply_stock_rule(apply_king_push(r)) for r in out]
+    json.dump(PP, open(f'{S}/postpass.json', 'w'))
+    print('post-pass', PP)
     json.dump(out, open(f'{S}/review.json', 'w'), default=str)
     print(len(out), Counter(r.get('situation', '').split(' (')[0].split(' —')[0] for r in out if r.get('situation')))
     print('issues:', Counter(i.split(':')[0] for r in out for i in r['issues']))

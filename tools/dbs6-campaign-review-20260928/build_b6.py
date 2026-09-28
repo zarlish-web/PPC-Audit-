@@ -16,7 +16,9 @@ SALES = json.load(open(f'{S}/child_sales.json'))
 INV = {r['sku']: r for r in json.load(open(f'{S}/inventory_children.json'))}
 OUT = os.environ.get('OUT', '/home/user/PPC-Audit-/docs/DBS6_Campaign_Review_20260928-535a4eef.docx')
 NAVY = RGBColor(0x1F, 0x3A, 0x5F); GREY = RGBColor(0x55, 0x55, 0x55)
-BE = A['brief']['sections']['margin']['be_acos']
+_T = json.load(open(f'{S}/child_margin.json'))['base']
+BE_RUN = A['brief']['sections']['margin']['be_acos']
+BE = sum(x['margin_before_ads'] for x in _T) / sum(x['sales'] for x in _T)   # redline §1: realised margin before ads ÷ sales, 30 days outside any deal
 
 doc = Document()
 st = doc.styles['Normal']; st.font.name = 'Calibri'; st.font.size = Pt(10)
@@ -124,32 +126,38 @@ OUTC = A['run']['outcome']
 
 # ================================================================ title
 t = doc.add_paragraph(); runs(t, 'B6 — campaign-by-campaign review of the 28 September run', bold=True, size=17, color=NAVY)
-para('Decolure Bamboo Sheets 6 Piece · run 20260928-535a4eef · reviewed against “Bids and Placements on Exact Campaigns” (25 September revision) · data to 27 September', size=9, color=GREY)
+para('Decolure Bamboo Sheets 6 Piece · run 20260928-535a4eef · reviewed against “Bids and Placements on Exact Campaigns” (25 September revision, with the 28 September redline) · data to 27 September', size=9, color=GREY)
 para(f"Every live campaign the run touches — {len(RV)} of them, including {sum(1 for r in RV if r.get('not_in_export'))} “FIX” campaigns the run writes to but its campaign list leaves out — was re-read on its own numbers: objective, advertised SKU, clicks, impressions, CTR, CVR, spend, CPC and orders over 90, 45, 30, 14 and 7 days; top-of-search clicks and share, product-page share, top-of-search impression share on its keyword, the required clicks for its target rank, the 7-day median rank against target; and the bid, modifier, budget, placement and SKU the run proposes. B6 is judged on its own data only — its own stock, sales, conversion, ranks and deal calendar; nothing is carried over from B4. Where the run, or the 25 September corrections, got a decision wrong, it is flagged and corrected here rather than carried forward.")
-lead('B6’s situation.', 'No deal is running and none ran in September: the last Best Deal was 31 July → 13 August, a Lightning Deal ran on 16 August, and the next dated event is a one-day Lightning Deal on 26 October. Conversion rates here are read on the 45 days from 14 August, after the July deal, so the deal does not inflate the ceilings. Contribution is each child’s at what it actually sold for in the last 30 days, not at list price — B6 children sell well below list (Queen Creme lists at $109.99 and sold at $75.67). Stock is read on Available units only (reserved-inventory guideline, 28 September). Every size’s White has 7+ days of Available stock except Twin.')
+_CMB = json.load(open(f'{S}/child_margin.json'))
+_pu = lambda rows: sum(x['margin_before_ads'] for x in rows) / sum(x['units'] for x in rows)
+lead('B6’s situation.', f"A Best Deal is running on B6 from 26 to 30 September (Seller Central: 98 units and $6,912 in its first days, 4.7% conversion). The run file records no deal (its deal field is empty), so it reads B6 as if none were on; the jump in B6 spend on 26 September is the deal starting. Before it, the last Best Deal was 31 July → 13 August and a Lightning Deal ran on 16 August; the next event is a one-day Lightning Deal on 26 October. Conversion rates are read on the 45 days from 14 August, after the July deal (two of them are deal days). Contribution is the realised margin before ads from Sellerboard (redline, 28 September): ${_pu(_CMB['base']):.2f} a unit across B6 over 27 Aug → 25 Sep, and ${_pu(_CMB['deal']):.2f} at the deal price — well under the ${A['brief']['sections']['margin']['contribution_per_unit']:.2f} the run priced on — so break-even ACoS is {pct(BE, 1)}, not the run’s {pct(BE_RUN, 1)}. Stock is read on Available units only. Every size’s White has 7+ days of Available stock except Twin.")
 
 doc.add_heading('Part A — What the run (and the earlier corrections) got wrong', 1)
 
 # ---------------------------------------------------------------- A.1 pricing
-section('Ranking prices — no velocity window, so maintenance')
+_DP = {p['date']: p for p in json.load(open(f'{S}/b46/b6_daily.json'))['points']}
+_tk = [k for k in _DP if '2026-08-29' <= k <= '2026-09-27' and _DP[k].get('tacos')]
+_tac30 = sum(_DP[k]['spend'] for k in _tk) / sum(_DP[k]['spend'] / (_DP[k]['tacos'] / 100) for k in _tk) * 100
+section('Ranking prices — the deal ends 30 September; after it, maintenance')
 above = [r for r in RK if r.get('tos_price') and r['tos_price'] > r['ceil_tos'] * 1.005]
 run_up = [r for r in RK if r.get('run_price') and r.get('tos_price') and r['run_price'] > r['tos_price'] + 0.01]
 run_up_above = [r for r in run_up if r['run_price'] > r['ceil_tos']]
 a1, c1 = davg('2026-09-15', '2026-09-21'); a2, c2 = davg('2026-09-22', '2026-09-25'); a3, c3 = davg('2026-09-26', '2026-09-27')
 dk = Counter(x.get('field') for x in DEP)
 lead('The rule.', 'Top of search may sit above its ceiling (contribution × the campaign’s blended top-of-search conversion) only on a funded push — sized, dated, ceilinged, predicted and funded — and a push needs all four conditions: a velocity window, CTR above market, CVR above market, and stock to hold the position. Without a velocity window a ranking campaign is in maintenance: top of search at its ceiling, no premium, the 70/20 mix. A price above the ceiling comes down to it — straight there on a row with no top-of-search clicks, in steps of at most 50% on a row that has them.')
-lead('What the 25 September corrections put live — wrong for B6.', f"Their daily top-of-search push (step by the delivery gap, bounded by a loss stop of 3× contribution per order) has been deploying since 22 September: {dk.get('placement_multiplier', 0)} top-of-search modifier raises, {dk.get('budget', 0)} budget raises (most doubled) and {dk.get('bid', 0)} base-bid raises. B6 has no deal, so that push has no velocity window behind it. Daily spend went from ${a1:,.0f} (15–21 Sep, ACoS {pct(c1)}) to ${a2:,.0f} (22–25 Sep, {pct(c2)}) to ${a3:,.0f} on 26–27 September (ACoS {pct(c3)} on sales still attributing — it will settle lower, but not to break-even {pct(BE)}). Stop the daily push; every row it raised is re-priced below.")
+lead('What the 25 September corrections put live.', f"Their daily top-of-search push (step by the delivery gap, bounded by a loss stop of 3× contribution per order), funded by the operator’s ruling of 23 September at the engine’s plan through 29 September, has been deploying since 22 September: {dk.get('placement_multiplier', 0)} top-of-search modifier raises, {dk.get('budget', 0)} budget raises (most doubled) and {dk.get('bid', 0)} base-bid raises. Daily spend went from ${a1:,.0f} (15–21 Sep, ACoS {pct(c1)}) to ${a2:,.0f} (22–25 Sep, {pct(c2)}) to ${a3:,.0f} on the deal’s first two days (ACoS {pct(c3)} on sales still attributing). The redline allows a push to step daily inside a deal window, so the steps from 26 September had a window; the four days before it did not. But under the redline the push has no basis for a premium on B6 at all: its loss stop and bound were built on the run’s contribution (${A['brief']['sections']['margin']['contribution_per_unit']:.2f}, against a realised ${_pu(_CMB['base']):.2f}), its market bound was each campaign’s own CPC (no longer allowed), and most of its terms are also bid by B4 with no family owner named (A.9).")
+lead('Posture.', f"B6 ran a TACoS of about {_tac30:.0f}% over the last 30 days against an 18% ranking-band ceiling (the 25 September ruling; confirm SOP-26’s band) — within band, so posture itself does not forbid a premium. The redline’s other conditions do.")
 lead('What the run does.', f"It extends the push: the run’s own outcome takes spend from ${OUTC['spend_day_before']:,.0f} to ${OUTC['spend_day_after']:,.0f} a day, ACoS from {pct(OUTC['acos_before'])} to {pct(OUTC['acos_after'])} (break-even {pct(BE)}) and TACoS from {pct(OUTC['tacos_before'], 1)} to {pct(OUTC['tacos_after'], 1)}, on {OUTC['tos_clicks_wk_before']:.0f} → {OUTC['tos_clicks_wk_after']:.0f} top-of-search clicks a week. Of {len(RK)} ranking campaigns read, {len(above)} already sit above their ceiling and the run raises top of search on {len(run_up)} — {len(run_up_above)} of them to a price above the ceiling.")
 ex = sorted(run_up, key=lambda r: -r['d30']['spend'])[:6]
 table(['Campaign', 'ACoS 30d', 'Ceiling (rate basis)', 'TOS price now', 'Run writes', 'Corrected (this write → end point)'],
       [[short(r['campaign'])[:52], pct(r['d30']['acos'] / 100 if r['d30']['acos'] is not None else None), f"{usd(r['ceil_tos'])} ({pct(r['tos_rate'], 1)}, {r['tos_src'][:22]})", usd(r['tos_price']), usd(r.get('run_price')), f"{usd(r.get('price_to'))} → {usd(r.get('descent_final') or r.get('price_to'))}" + (' (collapsing: frozen)' if 'COLLAPS' in r['situation'] else '')] for r in ex],
       widths=[5.6, 1.4, 4, 1.8, 1.8, 3.6], size=7.5)
-lead('Correction.', 'Every ranking campaign at its ceiling, no premium, until a push is funded and dated. Where top of search today is below the ceiling and the mix is right, it climbs toward the ceiling at most 30% a write; where product pages take over 20% of clicks, the base comes down and the modifier is re-solved so top of search holds. Budgets the push doubled go back to what the ceiling-priced requirement needs. The one real velocity window on the calendar is the 26 October Lightning Deal — a single day, too short to carry a ranking push on its own.')
+lead('Correction.', 'Stop the daily steps now — no new raise on any ranking row. Hold today’s prices through the deal’s last day, 30 September, so the deal is not cut mid-flight (the operator funded this window); on 1 October every ranking campaign descends to its ceiling — straight there with no top-of-search clicks, at most 50% a step with them — and the budgets the push doubled go back to what the ceiling-priced requirement needs. Where product pages take over 20% of clicks, the base comes down and the modifier is re-solved so top of search holds at the ceiling. If you would rather not carry two more days above the realised ceiling, the same descent writes today; that is your call (see the reply).')
 
 # ---------------------------------------------------------------- A.2 push candidates
 section('Push candidates — B6’s own terms that pass three of the four conditions')
 PC = [r for r in RK if r['conds']['ctr'] and r['conds']['cvr'] and r['conds']['stock'] and r.get('rank_now') and r.get('rank_tgt') and r['rank_now'] > r['rank_tgt']]
-lead('What they are.', f"{len(PC)} ranking campaigns beat the market on top-of-search click-through and conversion, have 7+ days of Available stock, and sit short of their target rank. Only the velocity window is missing. None is funded in this review — whether B6 funds a push, and on which terms, is the operator’s decision. What each would need is below; most must fix their placement mix first, because a push on a campaign leaking to product pages pays for the wrong placement.")
+lead('What they are.', f"{len(PC)} ranking campaigns beat the market on top-of-search click-through and conversion, have 7+ days of Available stock, and sit short of their target rank. The deal supplies the velocity window until 30 September; after that only the window is missing. Under the redline none of them can carry a premium today: the market reference ($3.22) is the only bound allowed and no per-term clearing price exists, and every one of these terms except the colour term is also bid by B4 with no family owner named. What each would need is below; most must fix their placement mix first, because a push on a campaign leaking to product pages pays for the wrong placement.")
 rows = []
 for r in sorted(PC, key=lambda r: -((KWR.get(r['kw']) or {}).get('impressions') or 0)):
     k = KWR.get(r['kw']) or {}
@@ -158,7 +166,7 @@ for r in sorted(PC, key=lambda r: -((KWR.get(r['kw']) or {}).get('impressions') 
 table(['Term', 'SKU', 'Impr. 30d', 'Rank 08-28 → now · target', 'TOS CVR vs market', 'Req / del TOS/day', 'Ceiling / TOS now', 'Status'], rows, widths=[3.4, 2.2, 1.4, 2.2, 1.8, 1.6, 2, 3.4], size=7)
 fl = next((r for r in PC if r['kw'] == 'bamboo sheets'), None)
 if fl:
-    lead('The flagship, “bamboo sheets” (King White).', f"The biggest term B6 has ({(KWR['bamboo sheets'].get('searchVolume') or 0):,} searches a month by the library). Rank {fl['rank_30']} → {fl['rank_now']} against a target of {fl['rank_tgt']}; it needs {f1(fl['req_day'])} top-of-search clicks a day and takes {f1(fl['deliv_14'])} — at {f1(fl['is30'])}% impression share, so price is what limits it. At the ceiling {usd(fl['ceil_tos'])} the requirement costs about ${fl['req_day'] * fl['ceil_tos']:,.0f} a day; any premium above that is money lost on every order. It is the natural head of a funded B6 push — but the size of that commitment is the operator’s call, not something to run as a daily step.")
+    lead('The flagship, “bamboo sheets” (King White).', f"The biggest term B6 has ({(KWR['bamboo sheets'].get('searchVolume') or 0):,} searches a month by the library). Rank {fl['rank_30']} → {fl['rank_now']} against a target of {fl['rank_tgt']}; after the reach and sum checks it needs {f1(fl['req_day'])} top-of-search clicks a day and takes {f1(fl['deliv_14'])}, at {f1(fl['is30'])}% impression share. On realised contribution its ceiling is {usd(fl['ceil_tos'])} against {usd(fl['tos_price'])} today. B4 bids the same term on its own King White flagship. This is the term where the family-owner ruling matters most: two Decolure products raising against each other on B6’s and B4’s largest term.")
 
 # ---------------------------------------------------------------- A.3 SKU
 section('Ranking SKU — White where it has the stock')
@@ -210,6 +218,8 @@ section('Required clicks and whether the traffic exists')
 tr = [r for r in RK if iss(r, 'TRAFFIC')]
 withreq = [r for r in RK if r.get('req_day')]
 lead('The rule.', 'Required top-of-search clicks a day = the units a day the market sells at the target rank ÷ the campaign’s top-of-search conversion, split across the campaigns on the same term. It sets volume and budget, never price. A shortfall is priced only when the budget is intact and impression share is low; where winning every auction at today’s volume still falls short, the requirement is above what the auction holds.')
+_PPS = json.load(open(f'{S}/postpass.json'))
+lead('What the redline changes.', f"The requirement now counts only the units a term does not already sell (target units less the paid units it sells today; organic units per term are not in the data, so the figure is still an upper bound), is re-based to what winning every auction would buy, and must not add up past the product. On this product the terms’ incremental units add to {_PPS['terms_units_day']:.0f} a day against {_PPS['units_day']:.0f} sold in total, so every requirement is scaled by {_PPS['scale']:.2f}. The budget is the requirement at this write’s top-of-search price plus the product-page clicks it brings (about 3 for every 7) at the base.")
 lead('What the data shows.', f"{len(withreq)} ranking campaigns carry a term with a target rank and units. {sum(1 for r in withreq if r['deliv_14'] >= 0.7 * r['req_day'])} deliver 70% or more of their requirement; {len(tr)} have a requirement above what the whole auction holds at today’s volume.")
 ex = sorted(tr, key=lambda r: -(r['d30']['spend'] or 0))[:6]
 table(['Campaign', 'Target rank · now', 'Required TOS/day', 'Delivered (14d)', 'TOS impr. share', 'Most the auction holds'],
@@ -236,6 +246,29 @@ lead('What the data shows.', f"{len(st_r)} ranking terms are also bought by broa
 table(['Campaign', 'What it buys (30 days)'], [[short(r['campaign'])[:55], iss(r, 'SEARCH TERM')[0].split(' — ', 1)[-1][:150]] for r in sorted(st_b, key=lambda r: -(r['d30']['spend'] or 0))], widths=[6.5, 11], size=7.5)
 lead('The FIX campaigns the export leaves out.', f"The run writes {sum(1 for x in A['decisions'] if x['verdict'] == 'change' and x.get('campaign_id') in {r['cid'] for r in ne})} changes to {len(ne)} “FIX” exact campaigns that are not in its campaign list (${sum(r['d30']['spend'] for r in ne):,.0f} spend in 30 days). They are reviewed in the register from Amazon’s placement report: {sum(1 for r in ne if 'LEAK' in (r.get('situation') or '') or 'NOT A RANKING' in (r.get('situation') or ''))} leak to product pages and {sum(1 for r in ne if (r.get('situation') or '').startswith('NO CLICKS'))} take no clicks. Confirm each one’s status, child and targets before any of those changes loads.")
 lead('Correction.', 'Negative-exact every ranking term in the Broad, Phrase and Auto campaigns that buy it (the register lists each); keep one exact owner per term — the campaign on the ranking SKU with the clicks — and pause the duplicate.')
+
+ME, OTHER, OTHER_DIR = 'B6', 'B4', 'b4v3'
+# shared-term section, inserted into both builders; ME / OTHER are 'B4' / 'B6'
+section('Terms B4 and B6 both bid — one family owner per term')
+_other = json.load(open(f'{S}/../{OTHER_DIR}/review.json'))
+def _best(rows, kw):
+    xs = [r for r in rows if r.get('kw') == kw and r.get('ceil_tos') is not None]
+    return max(xs, key=lambda r: r['d30']['spend']) if xs else None
+_sh = sorted({r['kw'] for r in RV if r.get('sibling') and r.get('kw')})
+_rows = []
+for kw in _sh:
+    m, o = _best(RV, kw), _best(_other, kw)
+    if not (m and o):
+        continue
+    mo, oo = m['d30']['tos_o'], o['d30']['tos_o']
+    mc, oc = m['d30']['tos_c'], o['d30']['tos_c']
+    sug = ME if (mo, m['d30']['spend']) >= (oo, o['d30']['spend']) else OTHER
+    _rows.append((m['d30']['spend'] + o['d30']['spend'], [kw, f"{m.get('rank_now') or '—'} / {o.get('rank_now') or '—'}", f"${m['d30']['spend']:,.0f} · {mc} → {mo}", f"${o['d30']['spend']:,.0f} · {oc} → {oo}", sug]))
+_rows.sort(key=lambda t: -t[0])
+lead('The rule (redline, 28 September).', 'Where another Decolure product bids the same term, the family owner prices it (SOP-33) and the others hold at their ceiling with no top-of-search premium. A ceiling computed as if the sibling were not in the auction is too high for both, and each one’s raise is a bid against the other.')
+lead('What the data shows.', f"{ME} and {OTHER} both run enabled exact campaigns on {len(_sh)} of {ME}’s ranking terms ({sum(1 for r in RV if r.get('sibling'))} {ME} ranking campaigns). No owner is named for any of them, so no premium is allowed on either side until one is. The suggestion below gives each term to the product that took more top-of-search orders on it in the last 30 days — a starting point for the operator’s ruling, not the ruling.")
+table(['Term', f'Rank {ME} / {OTHER}', f'{ME}: spend · TOS clicks → orders', f'{OTHER}: spend · TOS clicks → orders', 'Suggested owner'], [r for _, r in _rows[:18]], widths=[4.4, 2.2, 3.8, 3.8, 2.2], size=7.5)
+lead('Correction.', f"Name an owner per shared term. The non-owner keeps its campaign at its ceiling (it still sells), takes no premium, and is not raised against the owner; where the owner is the other product and this product’s campaign adds nothing, pause it. All {len(_rows)} shared terms are in the register (“SIBLING”).")
 
 # ---------------------------------------------------------------- A.9 other types
 section('Other campaign types — inside their own ceilings')
@@ -269,7 +302,7 @@ for m in ('left_margin', 'right_margin'):
     setattr(new, m, Cm(1.2))
 part[0] = 'B'; sec_no[0] = 0
 doc.add_heading('Part B — Every campaign, one row each', 1)
-para('Sorted by objective, then 30-day spend. Clicks/CTR/CVR/ACoS are 30 days (08-29 → 09-27); TOS/PP are the share of clicks at top of search and on product pages; Req/Del are required vs delivered top-of-search clicks a day (14 days); IS is top-of-search impression share on the campaign’s keyword (30 days). Price = the top-of-search price (base × (1 + modifier)); “now → corrected” is this write. The last column is the corrected decision; “!” marks what the run or the earlier corrections got wrong.', size=8, color=GREY)
+para('Sorted by objective, then 30-day spend. Clicks/CTR/CVR/ACoS are 30 days (08-29 → 09-27); TOS/PP are the share of clicks at top of search and on product pages; Req/Del are required vs delivered top-of-search clicks a day (14 days); IS is top-of-search impression share on the campaign’s keyword (30 days). Price = the top-of-search price (base × (1 + modifier)); “now → corrected” is the write for 1 October, after the deal. The last column is the corrected decision; “!” marks what the run or the earlier corrections got wrong.', size=8, color=GREY)
 order = {'Ranking': 0, 'Conversions': 1, 'Discovery': 2, 'Defensive': 3, 'Liquidation': 4}
 
 
