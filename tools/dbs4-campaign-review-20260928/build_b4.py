@@ -107,7 +107,7 @@ iss = lambda r, k: [i for i in r['issues'] if i.startswith(k)]
 t = doc.add_paragraph(); runs(t, 'B4 — campaign-by-campaign review of the 28 September run', bold=True, size=17, color=NAVY)
 para('Decolure Bamboo Sheets 4-Piece · run 20260928-9e6e6bb5 · reviewed against “Bids and Placements on Exact Campaigns” (25 September revision) · data to 27 September', size=9, color=GREY)
 para(f"Every enabled campaign in the run — {len(RV)} of them — was re-read on its own numbers: objective, advertised SKU, clicks, impressions, CTR, CVR, spend, CPC and orders over 90, 30, 14 and 7 days and the month before the deal; top-of-search clicks and share, product-page share, top-of-search impression share on its keyword, the required clicks for its target rank, the 7-day median rank against target; and the bid, modifier, budget, placement and SKU the run proposes. B4 is judged on its own data only. Where the run, or the 25 September corrections, got a decision wrong, it is flagged and corrected here rather than carried forward.")
-lead('Decisions applied (operator, 28 September).', '(1) The Best Deal ended on 28 September and the next dated deal is 26 October, so no ranking campaign has the velocity window a funded push needs: every ranking campaign is priced in maintenance — top of search at its own ceiling, no premium — until a push is funded again. (2) Ranking campaigns advertise White; where White cannot carry the traffic, the size’s highest-selling variation with healthy stock carries it until White lands. (3) Queen: White already sells well without its own ads and has 23 days of cover against a 27 October arrival, so Queen ranking moves to the next seller with healthy stock. (4) Auto, Broad and Phrase campaigns advertise the size’s LTSF SKU, never White — the LTSF list is still to come (the tools reachable here carry no inventory age); every Auto/Broad/Phrase campaign on White is flagged now and the SKU is named once the list is in.')
+lead('Decisions applied (operator, 28 September).', '(1) The Best Deal ended on 28 September and the next dated deal is 26 October, so no ranking campaign has the velocity window a funded push needs: every ranking campaign is priced in maintenance — top of search at its own ceiling, no premium — until a push is funded again. (2) Ranking campaigns advertise White; where White cannot carry the traffic, the size’s highest-selling variation with healthy stock carries it until White lands. (3) Queen: White already sells well without its own ads and has 23 days of cover against a 27 October arrival, so Queen ranking moves to the next seller with healthy stock. (4) Auto, Broad and Phrase campaigns advertise the size’s LTSF SKU, never White — the LTSF list is still to come (the tools reachable here carry no inventory age); every Auto/Broad/Phrase campaign on White is flagged now and the SKU is named once the list is in. (5) King joins B4’s focus for a King White push — but only on the King terms the push actually needs and can carry (A.2); every other King campaign stays in maintenance.')
 
 # ================================================================ Part A — logic errors
 doc.add_heading('Part A — What the run (and the earlier corrections) got wrong', 1)
@@ -124,9 +124,52 @@ ex = sorted([r for r in above if r['d30']['spend']], key=lambda r: -r['d30']['sp
 table(['Campaign', 'Focus', 'Ceiling (rate basis)', 'TOS price now', 'Run writes', 'Corrected (this write → end point)'],
       [[short(r['campaign'])[:55], 'in' if r['focus'].startswith('IN') else 'out', f"{usd(r['ceil_tos'])} ({pct(r['tos_rate'], 1)}, {r['tos_src']})", usd(r['tos_price']), usd(r.get('run_price')), f"{usd(r.get('price_to'))} → {usd(r.get('descent_final') or r.get('price_to'))}"] for r in ex],
       widths=[6.2, 1.2, 4.2, 2, 2, 3.4], size=7.5)
-lead('Correction.', 'Price every ranking campaign at its ceiling until a push is funded and dated (the 26 October deal is the next window). The base carries product pages; where product pages take more than 20% of clicks the base comes down toward what product pages afford and the modifier is re-solved to hold top of search. Re-open the push case for the in-focus terms that meet the other three conditions when the deal is confirmed — today that is “bamboo cooling sheets” and “king sheets bamboo cooling”; the Cal King terms do not yet show CVR above the market on a readable sample.')
+lead('Correction.', 'Price every ranking campaign at its ceiling until a push is funded and dated (the 26 October deal is the next window). The base carries product pages; where product pages take more than 20% of clicks the base comes down toward what product pages afford and the modifier is re-solved to hold top of search. Re-open the push case for the in-focus terms that meet the other three conditions when the deal is confirmed — today that is “bamboo cooling sheets” and “king sheets bamboo cooling”; the Cal King terms do not yet show CVR above the market on a readable sample. The one exception now is the funded King White push in A.2.')
 
-# A.2 SKU
+# A.2 King White push
+section('King White push — only the terms that need it')
+RC = {r['cid']: r for r in RV}
+KP = [r for r in RV if r.get('push')]
+lead('The decision.', 'King White is B4’s best-selling King child (220 units in 30 days) with 298 available, 1,461 reserved and 948 inbound (172 days of cover) and it beats the market on click-through and conversion on its main King terms. It is added to the focus for a funded push — not across all 108 King ranking campaigns, but only where the push is needed and can pay for itself: the term advertises King White; CTR ≥ 1.1× and CVR ≥ 3× the market on a readable sample; rank short of target; real demand behind it; the required clicks exist in the auction; and the loss per order is one the unit can carry. The velocity window is the push itself — budget and stock — until the 26 October deal adds a deal.')
+a = next(r for r in KP if r['push']['stage'] == 'push now'); b = next(r for r in KP if r['push']['stage'] != 'push now')
+pa, pb = a['push'], b['push']
+table(['', short(a['campaign'])[:48], short(b['campaign'])[:48]], [
+    ['Stage', 'Push now', 'Fix the mix first, then push'],
+    ['Rank 08-28 → 09-14 → now · target', f"{a['rank_30']} → {a['rank_pre']} → {a['rank_now']} · {a['rank_tgt']}", f"{b['rank_30']} → {b['rank_pre']} → {b['rank_now']} · {b['rank_tgt']}"],
+    ['TOS CTR vs market · TOS CVR vs market', f"{f1(a['tos_ctr'], 2)}% vs {a['mctr']}% · {f1(a['tos_cvr'])}% vs {a['mcvr']}%", f"{f1(b['tos_ctr'], 2)}% vs {b['mctr']}% · {f1(b['tos_cvr'])}% vs {b['mcvr']}%"],
+    ['Mix (30 days) TOS / PP', f"{pct(a['d30']['tos_sh'])} / {pct(a['d30']['pp_sh'])}", f"{pct(b['d30']['tos_sh'])} / {pct(b['d30']['pp_sh'])} (14 days: 7% TOS)"],
+    ['Required TOS clicks/day · delivered (14d) · TOS impr. share', f"{f1(a['req_day'])} · {f1(a['deliv_14'])} · {f1(a['is30'])}%", f"{f1(b['req_day'])} · {f1(b['deliv_14'])} · {f1(b['is30'])}%"],
+    ['Binding gap → lift', f"rank {pa['rank_gap']}× (delivery {pa['deliv_gap']}×, priced: budget intact, share low) → {pa['lift']}", f"rank {pb['rank_gap']}× → {pb['lift']} (the delivery gap is a mix problem, not priced)"],
+    ['Ceiling → gap wants → market bound', f"{usd(a['ceil_tos'])} → {usd(pa['gap_wants'])} → {usd(pa['bound'])} (term TOS CPC $6.16 + 15%)", f"{usd(b['ceil_tos'])} → {usd(pb['gap_wants'])} → {usd(pb['bound'])} (term TOS CPC $4.76 + 15%)"],
+    ['Target TOS price · binds on · loss per order', f"{usd(pa['target'])} · {pa['binds']} · {usd(pa['loss_per_order'])} (cost per order {usd(pa['cpo'])} vs {usd(a['contrib'])} contribution)", f"{usd(pb['target'])} · {pb['binds']} · {usd(pb['loss_per_order'])} (cost per order {usd(pb['cpo'])} vs {usd(b['contrib'])})"],
+    ['This write', f"TOS {usd(a['tos_price'])} → {usd(pa['this_write'])} (+{(pa['this_write'] / a['tos_price'] - 1) * 100:.0f}%, one write reaches the bound); base {usd(a['base'])} held; modifier {a['tos_mod']}% → {a['mod_to']}%", f"base {usd(b['base'])} → {usd(b['base_to'])} (−25%, product pages carry orders); TOS held at {usd(b['tos_price'])} — modifier {b['tos_mod']}% → {b['mod_to']}%"],
+    ['Budget', f"${a['budget']:.0f} → ${pa['budget_day']}/day (${pa['budget_week']}/week)", f"unchanged until entry; at target the requirement costs ${pb['budget_day_at_target']}/day"],
+    ['Loss ceiling', f"${pa['loss_ceiling_week']}/week spend at risk; expected loss about ${pa['expected_loss_week']}/week at the requirement", 'set at entry'],
+    ['Prediction', pa['predict'], pb['predict']],
+    ['Dated', f"read 5 Oct; checkpoint 12 Oct", 'read 5 Oct: mix; entry once TOS ≥ 70% for 7 days'],
+    ['What reverses it', 'at 12 Oct: delivery under 70% of 10.1/day → fix delivery (budget, bid-strategy suppression), never a price cut; delivery met and rank no better than 22 → stop, back to the $6.03 ceiling', 'mix does not reach 70% TOS after the base cut → second base step, then fixed bidding; the push is not entered'],
+], widths=[4.2, 6.8, 6.8], size=7.5)
+lead('Also on “bamboo sheets king”.', 'Negative-exact the term in “LTSF-ALL-Broad-(Clearance)” (10 of its 50 clicks) and the VHSV Broad (1) so the exact row earns the rank credit, and check the down-only bid strategy is not pulling top of search back on the funded row (framework §10) before any second raise.')
+lead('“Bamboo sheets king size” — a funding decision at the 5 October read.', f"It is the King term with the most traffic after the flagship (42,636 impressions in 30 days), but it takes 63% of its clicks on product pages, so a push would pay for the wrong placement. Fix the mix first. At entry the requirement is {f1(b['req_day'])} top-of-search clicks a day — ${pb['budget_day_at_target']}/day at {usd(pb['target'])}. If that cannot be funded, it runs at the budget that can be, with the shortfall stated — not at a budget that cannot deliver it.")
+KW_REASON = [
+    ('bamboo sheets', 'Not pushed — maintenance at the ceiling. Head term: 66 top-of-search clicks a day at the $7.39 market bound is about $490/day, losing about $28 an order — nearly a whole unit’s contribution. The deal already paid for it: $4,309 in 13 days at 81% ACoS moved it 38 → 30. Push it again with the 26 October deal, when a deal carries the velocity.'),
+    ('cooling sheets king', 'Not pushed. Half its clicks go to product pages, the requirement (16.2/day) is above the 13.5 the auction holds, and at the $6.10 bound it would lose about $22 an order on a 12.4% conversion. Fix the mix at maintenance.'),
+    ('king size cooling sheets', 'Not pushed. Passes CTR and CVR, but the demand is small (48 searches a month) and it sits at 42 against 11 — little rank value for the money.'),
+    ('bamboo king size sheets set', 'Not pushed. Passes CTR and CVR, but 21 searches a month — not needed for King ranking.'),
+    ('king bed bamboo sheets', 'Not pushed. Under 15 top-of-search clicks in 90 days, so conversion against the market is not read yet.'),
+    ('king size bamboo sheets', 'Not pushed. 11 clicks, no orders — conversion not read.'),
+    ('cooling sheets', 'Not pushed. The King child takes under 30% of its clicks at top of search, and CTR/CVR are not readable on it.'),
+]
+rows = []
+for kw, why in KW_REASON:
+    r = next((x for x in RV if x.get('kw') == kw and x.get('preferred_child') == 'BAMBOO-KING-WHITE'), None)
+    if r:
+        rows.append([kw, f"{r.get('rank_now') or '—'} / {r.get('rank_tgt') or '—'}", 'yes' if r['conds']['ctr'] else '—', 'yes' if r['conds']['cvr'] else '—', usd(r['d30']['spend'], 0), why])
+lead('The King terms that were considered and left out.', 'Everything else on King White — the terms collapsing, with no rank on file, dead or thin — stays in maintenance as the register shows.')
+table(['Term', 'Rank / target', 'CTR ok', 'CVR ok', 'Spend 30d', 'Why not in the push'], rows, widths=[3.4, 1.8, 1.2, 1.2, 1.6, 8.6], size=7.5)
+lead('Stock and the engine flag.', 'The push adds about two King White units a day. The engine counts King White at 228 units and marks the 26 King campaigns “held on a RED hero”; on Sellerboard’s count the stock is there (298 available, 1,461 reserved, 948 inbound). Confirm the reserved units are FC transfers, then override the flag on these two campaigns — otherwise the engine will hold the push.')
+
+# A.3 SKU
 section('Ranking SKU — White, and the backup where White cannot carry it')
 lead('The rule.', 'Ranking campaigns advertise White. Where White cannot carry the traffic — out of stock, or cover shorter than the time to the next arrival — the size’s highest-selling variation with healthy stock carries it until White lands, and the ads go back on arrival. Colour-specific terms (“black bamboo sheets”, “moss green sheets king”) advertise their own colour.')
 size_rows = []
@@ -213,8 +256,8 @@ bullet(f"**{len(wh)} rows the engine itself withholds** (their text says “chan
 bullet(f"**{len(pz)} writes on campaigns paused at the audit**: seq {', '.join(map(str, pz))}.")
 bullet(f"**{len(ms)} rows on {len({x['campaign_id'] for x in ms})} campaigns the export does not carry** (they appear in Amazon’s placement report with 83 clicks in 90 days between them): hold every raise until each campaign’s status, child and targets are confirmed; the cuts stand, flagged.")
 bullet(f"**{len(wl)} negative walls on clearance campaigns outside the DBS4 set** (seq {', '.join(str(x['seq']) for x in wl)}) — send to the LTSF owner.")
-bullet('**All 64 SKU swaps skip at load** (the loader has no product-ad roster) — the SKU corrections in A.2 are manual.')
-bullet('**Engine check, 2 failures**: the 26 King campaigns “on a RED hero” (see A.2 — King White is not short on Sellerboard’s count), and a video probe placed beside a Sponsored Brands probe on the same group (R14) — hold that build.')
+bullet('**All 64 SKU swaps skip at load** (the loader has no product-ad roster) — the SKU corrections in A.3 are manual.')
+bullet('**Engine check, 2 failures**: the 26 King campaigns “on a RED hero” (see A.2 and A.3 — King White is not short on Sellerboard’s count), and a video probe placed beside a Sponsored Brands probe on the same group (R14) — hold that build.')
 
 # ================================================================ Part B — register
 new = doc.add_section(); new.orientation = WD_ORIENT.LANDSCAPE

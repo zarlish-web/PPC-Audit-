@@ -469,8 +469,62 @@ def review(c):
     return row
 
 
+# ---------- King White push (operator, 28 Sep): King joins B4's focus, but only on the King terms the push actually needs.
+# Selection: the term advertises King White; CTR ≥ 1.1× and CVR ≥ 3× market on a readable sample; stock holds; rank short of
+# target; real demand (search volume / impressions); the requirement is reachable and fundable at a loss per order the unit can carry.
+MARKET_TOL = 0.15          # framework §8: what top of search clears at on the term (its own 30-day TOS CPC) + 15%
+PUSH_READ, PUSH_CHECK = '2026-10-05', '2026-10-12'
+KING_PUSH = {
+    '528754073143175': dict(stage='push now', term_cpc=6.16, predict='rank 22 → 15 by 12 Oct; 8 by the end of the 26 Oct deal'),
+    '49275908512250': dict(stage='push after the mix is fixed', term_cpc=4.76, predict='rank 25 → 10 once top of search carries ≥70% of clicks'),
+}
+
+
+def apply_king_push(r):
+    k = KING_PUSH.get(r['cid'])
+    if not k:
+        return r
+    rank_gap = r['rank_now'] / r['rank_tgt']
+    deliv_gap = (r['req_day'] / r['deliv_14']) if r.get('deliv_14') else None
+    priced_deliv = deliv_gap if (k['stage'] == 'push now' and (r.get('util7') or 0) < 0.8 and (r.get('is30') or 100) < 20) else None   # a mix problem is not priced
+    g = max(rank_gap, priced_deliv or 0)
+    lift = 0 if g <= 1 else 0.25 if g <= 1.5 else (g - 1) * 0.5
+    wants = r['ceil_tos'] * (1 + lift)
+    bound = k['term_cpc'] * (1 + MARKET_TOL)
+    target = min(wants, bound, r['contrib'])
+    binds = 'market bound' if bound <= min(wants, r['contrib']) else 'gap' if wants <= r['contrib'] else 'per-unit bound'
+    now = r['tos_price']
+    cvr = r['tos_rate']
+    push = dict(stage=k['stage'], rank_gap=round(rank_gap, 2), deliv_gap=round(deliv_gap, 2) if deliv_gap else None, lift=round(lift, 3),
+                gap_wants=round(wants, 2), bound=round(bound, 2), target=round(target, 2), binds=binds,
+                cpo=round(target / cvr, 2), loss_per_order=round(target / cvr - r['contrib'], 2), predict=k['predict'],
+                read=PUSH_READ, checkpoint=PUSH_CHECK)
+    if k['stage'] == 'push now':
+        this = min(target, now * 1.30) if target > now else target
+        base_to = r['base']
+        other = (r['d30']['clicks'] - r['d30']['tos_c']) / 30 * r['base'] if r['d30']['clicks'] else 0
+        day = r['req_day'] * this + other
+        push.update(this_write=round(this, 2), budget_day=round(day), budget_week=round(day * 7), loss_ceiling_week=round(day * 7),
+                    expected_loss_week=round(r['req_day'] * cvr * 7 * max(0, this / cvr - r['contrib'])))
+        r['situation'] = f"KING WHITE PUSH — funded ({r['rank_now']} → {r['rank_tgt']})"
+        r['action'] = [f"top of search {now:.2f} → {this:.2f} this write (target {target:.2f}, {binds}); base {base_to:.2f} held; budget ${r['budget']:.0f} → ${day:.0f}/day; read {PUSH_READ}, checkpoint {PUSH_CHECK}"]
+        r.update(price_to=round(this, 2), base_to=base_to, mod_to=round((this / base_to - 1) * 100), descent_final=None)
+    else:
+        # mix first (framework §12: TOS under 30% → distribution fix takes precedence); the TOS price is held, not descended, because the
+        # term is queued for the push — it never falls as a residue of the base cut
+        base_to = r['base_to']
+        this = now
+        day = r['req_day'] * target
+        push.update(this_write=round(this, 2), budget_day_at_target=round(day), entry='top of search ≥70% of clicks for 7 days')
+        r['action'] = [f"distribution fix first: base {r['base']:.2f} → {base_to:.2f}, top of search held at {now:.2f} (queued for the King push, so not descended); push entry when top of search carries ≥70% of clicks for 7 days"]
+        r.update(price_to=round(this, 2), base_to=base_to, mod_to=round((this / base_to - 1) * 100), descent_final=None)
+    r['push'] = push
+    r['issues'] = [i for i in r['issues'] if not i.startswith('RUN PRICE')]
+    return r
+
+
 if __name__ == '__main__':
-    out = [review(c) for c in ENABLED]
+    out = [apply_king_push(review(c)) for c in ENABLED]
     json.dump(out, open(f'{S}/review.json', 'w'), default=str)
     print(len(out), Counter(r.get('situation', '').split(' (')[0].split(' —')[0] for r in out if r.get('situation')))
     print('issues:', Counter(i.split(':')[0] for r in out for i in r['issues']))
