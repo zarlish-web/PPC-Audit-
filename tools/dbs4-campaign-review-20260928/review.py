@@ -196,6 +196,10 @@ def blend(clicks, orders, child):
     return orders / clicks, f'own, {clicks} clicks'
 
 
+_CS = json.load(open(f'{S}/child_sales.json'))['d30']
+ASP = {x['sku']: x['sales'] / x['units'] for x in _CS if x.get('units')}
+
+
 def contrib_of(c):
     for x in DEC.get(c['campaign_id'], []) + HOLDS.get(c['campaign_id'], []):
         t = ' '.join(r['text'] for r in (x.get('rationale') or []))
@@ -204,6 +208,11 @@ def contrib_of(c):
             return float(m.group(1)), 'run'
     s = SKU.get(c.get('child') or '')
     if s and s[1]:
+        # the child's economics are at list price; re-price to what it actually sold for in 30 days (Sellerboard), the 15%
+        # referral fee moving with the price — a child that sells below list earns less per unit than its list contribution
+        a = ASP.get(c.get('child'))
+        if s[0] and a and a < s[0]:
+            return s[1] - (s[0] - a) * 0.85, f'child economics at the 30-day selling price ${a:.2f} (list ${s[0]:.2f})'
         return s[1], 'child economics'
     return CONTRIB_DEFAULT, 'product margin'
 
