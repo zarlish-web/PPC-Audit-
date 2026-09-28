@@ -212,16 +212,19 @@ def stock_of(sku):
     r = INV.get(sku or '')
     if not r:
         return None
-    return dict(avail=r.get('fba_available'), reserved=r.get('reserved'), sellable=(r.get('fba_available') or 0) + (r.get('reserved') or 0), inbound=r.get('inbound'), vel=r.get('velocity_day'), days=r.get('days_of_stock'))
+    b = r.get('reserved_breakdown') or {}
+    v = r.get('velocity_day') or 0
+    return dict(avail=r.get('fba_available'), avail_days=((r.get('fba_available') or 0) / v) if v else None, res_orders=b.get('customer_orders'), res_transfer=b.get('fc_transfers'), res_processing=b.get('fc_processing'), inbound=r.get('inbound'), vel=r.get('velocity_day'), days=r.get('days_of_stock'))
 
 
 HERO = {r['size']: r for r in A['context']['inventory']}
 # the ranking SKU per size (operator 2026-09-28): White, unless White cannot carry the push — then the highest-selling variation with
 # healthy stock, until White lands. Read on Sellerboard units (30 days), FBA stock and cover, 2026-09-28.
 PREFERRED = {'KING': 'BAMBOO-KING-WHITE', 'CALIFKING': 'BAMBOO-CALIFKING-WHITE', 'QUEEN': 'BAMBOO-QUEEN-LIGHTBLUE',
-             'FULL': 'BAMBOO-FULL-OLIVE', 'TWIN': 'BAMBOO-TWIN-WHITE'}
-PREF_WHY = {'QUEEN': 'Queen White has 23 days of cover against a 27 Oct arrival and sells on its own; Light Blue is the next seller with 70 days',
-            'FULL': 'Full White is out until 27 Oct; Olive is the size’s top seller with 75 days'}
+             'FULL': 'BAMBOO-FULL-OLIVE', 'TWIN': 'BAMBOO-TWIN-NAVYBLUE'}
+PREF_WHY = {'QUEEN': 'Queen White has 15 days Available against a 27 Oct arrival and sells on its own; Light Blue is the next seller with 57 days Available',
+            'FULL': 'Full White has 0 available; Olive is the size’s top seller with 70 days available',
+            'TWIN': 'Twin White has 0 available — its 154 reserved are FC transfers, sellable in about 3–10 days; Navy Blue carries it (80 days available) until they show as Available, then back to White'}
 SIZE_NAME = {'CALIFKING': 'California King', 'KING': 'King', 'QUEEN': 'Queen', 'FULL': 'Full', 'TWIN': 'Twin'}
 
 DEAL_ON = False          # the Best Deal ran 09-15 -> 09-28; next dated deal 10-26 (placeholder)
@@ -316,7 +319,7 @@ def review(c):
         cvr_ok = None if (tos_cvr is None or not mcvr) else tos_cvr >= 3 * mcvr
         hero = HERO.get(SIZE_NAME.get(sz_ch or sz_t or '', ''), {})
         st = row['stock'] or {}
-        stock_ok = (st.get('days') or 0) >= 30 or (st.get('inbound') or 0) > 0 and (st.get('days') or 0) >= 14
+        stock_ok = (st.get('avail_days') or 0) >= 7          # reserved-inventory guideline (28 Sep): PPC intensity on Available only
         conds = dict(velocity=DEAL_ON or FUNDED_PUSH, ctr=ctr_ok, cvr=cvr_ok, stock=stock_ok)
         row.update(kw=kw, group=grp, contrib=round(contrib, 2), contrib_src=csrc, tos_rate=tos_rate, tos_src=tos_src, pp_rate=pp_rate, pp_src=pp_src,
                    ceil_tos=round(ceil_tos, 2), ceil_pp=round(ceil_pp, 2), base=base, tos_price=round(tos_price, 2) if tos_price else None,
@@ -522,8 +525,40 @@ def apply_king_push(r):
     return r
 
 
+
+# ---------- reserved-inventory guideline (28 Sep): PPC intensity is judged on Available stock only. Customer orders are never stock;
+# FC transfers become available in ~3–10 days; FC processing mostly returns but with no date.
+def apply_stock_rule(r):
+    st = r.get('stock') or {}
+    d = st.get('avail_days')
+    if d is None or d >= 7 or r['objective'] in ('Sponsored Brands', 'Sponsored Display'):
+        return r
+    tr, co = st.get('res_transfer') or 0, st.get('res_orders') or 0
+    aggressive = r.get('ceil_tos') is not None or r['match'] in ('Broad', 'Auto', 'Phrase')
+    ch, pref = r.get('child'), r.get('preferred_child')
+    alt = pref if (pref and pref != ch and not r.get('term_colour')) else None
+    if d < 5 and tr > co and tr > 0:
+        sit = f"STOCK THROTTLE — {st['avail']} available ({d:.1f} days); {tr} reserved are FC transfers"
+        if not aggressive:
+            act = 'keep on a lower budget (branded / proven exact only)'
+        elif alt:
+            act = f"stop advertising {ch} here; re-point to {alt}, which has Available stock; back to {ch} once the transfers show as Available"
+        else:
+            act = 'pause until the transfers show as Available'
+    elif d < 5:
+        sit = f"STOCKOUT RISK — {st['avail']} available ({d:.1f} days); reserved is customer orders or nothing"
+        act = 'branded defence only, lower budget' if r['objective'] == 'Defensive' else (f"cut hard: stop advertising {ch}; re-point to {alt}" if alt else 'cut hard: pause')
+    else:
+        sit = f"LOW STOCK — {st['avail']} available ({d:.1f} days, under 7)"
+        act = 'no raises; hold bids and budget until cover is back over 7 days'
+    r['situation'] = sit; r['action'] = [act]
+    for k in ('price_to', 'base_to', 'mod_to', 'descent_final'):
+        r[k] = None
+    r['issues'] = [i for i in r['issues'] if not i.startswith('RUN PRICE')]
+    return r
+
 if __name__ == '__main__':
-    out = [apply_king_push(review(c)) for c in ENABLED]
+    out = [apply_stock_rule(apply_king_push(review(c))) for c in ENABLED]
     json.dump(out, open(f'{S}/review.json', 'w'), default=str)
     print(len(out), Counter(r.get('situation', '').split(' (')[0].split(' —')[0] for r in out if r.get('situation')))
     print('issues:', Counter(i.split(':')[0] for r in out for i in r['issues']))
