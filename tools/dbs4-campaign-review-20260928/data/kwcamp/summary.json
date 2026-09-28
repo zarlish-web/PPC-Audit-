@@ -1,0 +1,814 @@
+{
+  "bamboo sheets": [
+    {
+      "campaign": "DBS4-SP-Bamboo Sheets-(VHSV)-Exact-(Ranking)-DO-BAMBOO-KING-WHITE",
+      "campaignId": "333865346729447",
+      "matchType": "Exact",
+      "clicks": 1205,
+      "orders": 140,
+      "spend": 7123.25
+    },
+    {
+      "campaign": "DBS6-SP-LTSF-ALL-Broad-(Clearance)-DO-AGED-ALL",
+      "campaignId": "39362978301776",
+      "matchType": "Broad",
+      "clicks": 164,
+      "orders": 16,
+      "spend": 408.96
+    },
+    {
+      "campaign": "DBS4-SP-bamboo sheets queen size-[Bamboo|Queen]-(HSV)-Broad-(DISC)-DO-BAMBOO-QUEEN-WHITE",
+      "campaignId": "217202192519686",
+      "matchType": "Broad",
+      "clicks": 9,
+      "orders": 2,
+      "spend": 24.49
+    },
+    {
+      "campaign": "DBS4-SP-100 Bamboo-(VLSV)-Broad-(Discovery)-DO-BAMBOO-QUEEN-WHITE",
+      "campaignId": "332114561773037",
+      "matchType": "Broad",
+      "clicks": 13,
+      "orders": 0,
+      "spend": 21.59
+    },
+    {
+      "campaign": "DBS4-SP-Bamboo Sheets-[Bamboo]-(VHSV)-Exact-(Ranking)-DO-BAMBOO-KING-CREME",
+      "campaignId": "165267054460791",
+      "matchType": "Exact",
+      "clicks": 5,
+      "orders": 1,
+      "spend": 12.26
+    },
+    {
+      "campaign": "DBS4-SP-bamboo sheets california king-[Bamboo|California King]-(LSV)-Broad-(DISC)-DO-BAMBOO-CALIFKING-WHITE",
+      "campaignId": "87932013445748",
+      "matchType": "Broad",
+      "clicks": 2,
+      "orders": 0,
+      "spend": 4.37
+    }
+  ],
+  "bamboo sheets queen size": [
+    {
+      "campaign": "DBS4-SP-Bamboo Sheets Queen Size-[Bamboo|Queen]-(HSV)-Exact-(Ranking)-UD-BAMBOO-QUEEN-WHITE",
+      "campaignId": "382995705013765",
+      "matchType": "Exact",
+      "clicks": 132,
+      "orders": 29,
+      "spend": 1094.59
+    },
+    {
+      "campaign": "DBS6-SP-LTSF-ALL-Broad-(Clearance)-DO-AGED-ALL",
+      "campaignId": "39362978301776",
+      "matchType": "Broad",
+      "clicks": 25,
+      "orders": 2,
+      "spend": 63.19
+    },
+    {
+      "campaign": "DBS4-SP-bamboo sheets queen size-[Bamboo|Queen]-(HSV)-Broad-(DISC)-DO-BAMBOO-QUEEN-WHITE",
+      "campaignId": "217202192519686",
+      "matchType": "Broad",
+      "clicks": 19,
+      "orders": 4,
+      "spend": 53.41
+    },
+    {
+      "campaign": "DBS4-SP-Bamboo Sheets Queen-[Bamboo|Queen]-(MSV)-Exact-(Ranking)-DO-BAMBOO-QUEEN-WHITE",
+      "campaignId": "435654690515168",
+      "matchType": "Exact",
+      "clicks": 10,
+      "orders": 0,
+      "spend": 32.85
+    },
+    {
+      "campaign": "DBS4-SP-100 Bamboo-(VLSV)-Broad-(Discovery)-DO-BAMBOO-QUEEN-WHITE",
+      "campaignId": "332114561773037",
+      "matchType": "Broad",
+      "clicks": 5,
+      "orders": 0,
+      "spend": 10.28
+    },
+    {
+      "campaign": "DBS4-SP-Bamboo Sheets King Size-(HSV)-Broad-(DISC)-DO-BAMBOO-KING-WHITE",
+      "campaignId": "71013618427797",
+      "matchType": "Broad",
+      "clicks": 3,
+      "orders": 1,
+      "spend": 5.7
+    }
+  ],
+  "bamboo sheets queen": [
+    {
+      "campaign": "DBS4-SP-Bamboo Sheets Queen-[Bamboo|Queen]-(MSV)-Exact-(Ranking)-DO-BAMBOO-QUEEN-WHITE",
+      "campaignId": "435654690515168",
+      "matchType": "Exact",
+      "clicks": 207,
+      "orders": 34,
+      "spend": 563.85
+    },
+    {
+      "campaign": "DBS6-SP-LTSF-ALL-Broad-(Clearance)-DO-AGED-ALL",
+      "campaignId": "39362978301776",
+      "matchType": "Broad",
+      "clicks": 7,
+      "orders": 0,
+      "spend": 17.92
+    },
+    {
+      "campaign": "DBS4-SP-Bamboo Sheets Queen Size-[Bamboo|Queen]-(HSV)-Exact-(Ranking)-UD-BAMBOO-QUEEN-WHITE",
+      "campaignId": "382995705013765",
+      "matchType": "Exact",
+      "clicks": 1,
+      "orders": 0,
+      "spend": 10.46
+    }
+  ],
+  "bamboo cooling sheets": [
+    {
+      "campaign": "DBS4-SP-Bamboo Cooling Sheets-(MSV)-Exact-(Ranking)-DO-BAMBOO-QUEEN-WHITE",
+      "campaignId": "405247460877728",
+      "matchType": "Exact",
+      "clicks": 91,
+      "orders": 12,
+      "spend": 491.77
+    },
+    {
+      "campaign": "DBS6-SP-LTSF-ALL-Broad-(Clearance)-DO-AGED-ALL",
+      "campaignId": "39362978301776",
+      "matchType": "Broad",
+      "clicks": 16,
+      "orders": 1,
+      "spend": 40.42
+    },
+    {
+      "campaign": "DBS4-SP-bamboo sheets queen size-[Bamboo|Queen]-(HSV)-Broad-(DISC)-DO-BAMBOO-QUEEN-WHITE",
+      "campaignId": "217202192519686",
+      "matchType": "Broad",
+      "clicks": 2,
+      "orders": 0,
+      "spend": 5.56
+    }
+  ],
+  "bamboo sheets full size": [
+    {
+      "campaign": "DBS4-SP-Bamboo Sheets Full Size-[Bamboo|Full]-(MSV)-Exact-(Ranking)-DO-BAMBOO-FULL-OLIVE",
+      "campaignId": "277530760303786",
+      "matchType": "Exact",
+      "clicks": 147,
+      "orders": 14,
+      "spend": 251.97
+    },
+    {
+      "campaign": "DBS6-SP-LTSF-ALL-Broad-(Clearance)-DO-AGED-ALL",
+      "campaignId": "39362978301776",
+      "matchType": "Broad",
+      "clicks": 7,
+      "orders": 0,
+      "spend": 17.66
+    }
+  ],
+  "bamboo sheets king": [
+    {
+      "campaign": "DBS4-SP-Bamboo Sheets King-[Bamboo|King]-(MSV)-Exact-(Ranking)-DO-BAMBOO-KING-WHITE",
+      "campaignId": "528754073143175",
+      "matchType": "Exact",
+      "clicks": 35,
+      "orders": 6,
+      "spend": 177.59
+    },
+    {
+      "campaign": "DBS6-SP-LTSF-ALL-Broad-(Clearance)-DO-AGED-ALL",
+      "campaignId": "39362978301776",
+      "matchType": "Broad",
+      "clicks": 10,
+      "orders": 0,
+      "spend": 25.13
+    },
+    {
+      "campaign": "DBS4-SP-Bamboo Sheet King Size Deep Pocket-(NOSV)-Exact-(Ranking)-DO-BAMBOO-KING-WHITE",
+      "campaignId": "220156467954864",
+      "matchType": "Exact",
+      "clicks": 2,
+      "orders": 0,
+      "spend": 9.72
+    },
+    {
+      "campaign": "DBS4-SP-Decolure Bamboo Sheets-(LSV)-Broad-(Defensive)-DO-BAMBOO-KING-WHITE",
+      "campaignId": "389142860904839",
+      "matchType": "Broad",
+      "clicks": 2,
+      "orders": 0,
+      "spend": 6.4
+    },
+    {
+      "campaign": "DBS4-SP-Bamboo Sheets-(VHSV)-Broad-(DISC)-DO-BAMBOO-KING-WHITE",
+      "campaignId": "102747157073163",
+      "matchType": "Broad",
+      "clicks": 1,
+      "orders": 0,
+      "spend": 1.72
+    }
+  ],
+  "cool sheets queen": [
+    {
+      "campaign": "DBS4-SP-Cooling Sheets Queen-(HSV)-Exact-(Ranking)-DO-BAMBOO-QUEEN-WHITE",
+      "campaignId": "551025616192839",
+      "matchType": "Exact",
+      "clicks": 1,
+      "orders": 0,
+      "spend": 4.2
+    },
+    {
+      "campaign": "DBS4-SP-Cool Sheets Queen-[Cooling|Queen]-(LSV)-Exact-(Ranking)-DO-BAMBOO-QUEEN-WHITE",
+      "campaignId": "461266936827322",
+      "matchType": "Exact",
+      "clicks": 1,
+      "orders": 0,
+      "spend": 2.84
+    }
+  ],
+  "bamboo sheets king size": [
+    {
+      "campaign": "DBS4-SP-Bamboo Sheets King Size-(HSV)-Exact-(Ranking)-DO-BAMBOO-KING-WHITE",
+      "campaignId": "49275908512250",
+      "matchType": "Exact",
+      "clicks": 103,
+      "orders": 15,
+      "spend": 354.95
+    },
+    {
+      "campaign": "DBS4-SP-Bamboo Sheets King-[Bamboo|King]-(MSV)-Exact-(Ranking)-DO-BAMBOO-KING-WHITE",
+      "campaignId": "528754073143175",
+      "matchType": "Exact",
+      "clicks": 47,
+      "orders": 8,
+      "spend": 280.24
+    },
+    {
+      "campaign": "DBS6-SP-LTSF-ALL-Broad-(Clearance)-DO-AGED-ALL",
+      "campaignId": "39362978301776",
+      "matchType": "Broad",
+      "clicks": 10,
+      "orders": 0,
+      "spend": 25.6
+    },
+    {
+      "campaign": "DBS4-SP-bamboo sheets california king-[Bamboo|California King]-(LSV)-Broad-(DISC)-DO-BAMBOO-CALIFKING-WHITE",
+      "campaignId": "87932013445748",
+      "matchType": "Broad",
+      "clicks": 1,
+      "orders": 0,
+      "spend": 2.07
+    },
+    {
+      "campaign": "DBS4-SP-Bamboo Sheets-(VHSV)-Broad-(DISC)-DO-BAMBOO-KING-WHITE",
+      "campaignId": "102747157073163",
+      "matchType": "Broad",
+      "clicks": 1,
+      "orders": 0,
+      "spend": 1.7
+    }
+  ],
+  "cooling sheets queen": [
+    {
+      "campaign": "DBS4-SP-Cool Sheets Queen-[Cooling|Queen]-(LSV)-Exact-(Ranking)-DO-BAMBOO-QUEEN-WHITE",
+      "campaignId": "461266936827322",
+      "matchType": "Exact",
+      "clicks": 63,
+      "orders": 12,
+      "spend": 408.89
+    },
+    {
+      "campaign": "DBS4-SP-Cooling Sheets Queen-(HSV)-Exact-(Ranking)-DO-BAMBOO-QUEEN-WHITE",
+      "campaignId": "551025616192839",
+      "matchType": "Exact",
+      "clicks": 95,
+      "orders": 8,
+      "spend": 306.58
+    },
+    {
+      "campaign": "DBS6-SP-LTSF-ALL-Broad-(Clearance)-DO-AGED-ALL",
+      "campaignId": "39362978301776",
+      "matchType": "Broad",
+      "clicks": 10,
+      "orders": 1,
+      "spend": 17.58
+    },
+    {
+      "campaign": "DBS4-SP-100 Bamboo-(VLSV)-Broad-(Discovery)-DO-BAMBOO-QUEEN-WHITE",
+      "campaignId": "332114561773037",
+      "matchType": "Broad",
+      "clicks": 2,
+      "orders": 0,
+      "spend": 4.2
+    },
+    {
+      "campaign": "DBS4-SP-Cooling Sheets-[Cooling]-(VHSV)-Broad-(Ranking)-DO-BAMBOO-KING-WHITE",
+      "campaignId": "191809923571642",
+      "matchType": "Broad",
+      "clicks": 1,
+      "orders": 0,
+      "spend": 3
+    }
+  ],
+  "king size cooling sheets": [
+    {
+      "campaign": "DBS4-SP-King Cooling Sheets-[Cooling|King]-(MSV)-Exact-(Ranking)-DO-BAMBOO-KING-WHITE",
+      "campaignId": "401714964075898",
+      "matchType": "Exact",
+      "clicks": 23,
+      "orders": 5,
+      "spend": 128.54
+    },
+    {
+      "campaign": "DBS6-SP-LTSF-ALL-Broad-(Clearance)-DO-AGED-ALL",
+      "campaignId": "39362978301776",
+      "matchType": "Broad",
+      "clicks": 3,
+      "orders": 0,
+      "spend": 7.68
+    }
+  ],
+  "king sheets bamboo cooling": [
+    {
+      "campaign": "DBS4-SP-King Sheets Cooling-[Cooling|King]-(MSV)-Exact-(Ranking)-DO-BAMBOO-KING-WHITE",
+      "campaignId": "259190194236672",
+      "matchType": "Exact",
+      "clicks": 7,
+      "orders": 5,
+      "spend": 53.78
+    },
+    {
+      "campaign": "DBS4-SP-King Size Sheets With Deep Pockets Bamboo-(NOSV)-Exact-(Ranking)-DO-BAMBOO-KING-WHITE",
+      "campaignId": "87038130582671",
+      "matchType": "Exact",
+      "clicks": 1,
+      "orders": 0,
+      "spend": 8.2
+    },
+    {
+      "campaign": "DBS6-SP-LTSF-ALL-Broad-(Clearance)-DO-AGED-ALL",
+      "campaignId": "39362978301776",
+      "matchType": "Broad",
+      "clicks": 1,
+      "orders": 0,
+      "spend": 2.56
+    }
+  ],
+  "full size sheets bamboo": [
+    {
+      "campaign": "DBS4-SP-Full Size Sheets Bamboo-[Bamboo|Full]-(LSV)-Exact-(Ranking)-DO-BAMBOO-FULL-OLIVE",
+      "campaignId": "154013546760957",
+      "matchType": "Exact",
+      "clicks": 17,
+      "orders": 4,
+      "spend": 90.54
+    }
+  ],
+  "decolure bamboo sheets": [
+    {
+      "campaign": "DBS4-SP-Decolure Bamboo Sheets-(MSV)-Exact-(Ranking)-DO-BAMBOO-KING-WHITE",
+      "campaignId": "133572104497162",
+      "matchType": "Exact",
+      "clicks": 100,
+      "orders": 19,
+      "spend": 149.9
+    },
+    {
+      "campaign": "DBS4-SP-Decolure Bamboo Sheets-(LSV)-Broad-(Defensive)-DO-BAMBOO-KING-WHITE",
+      "campaignId": "389142860904839",
+      "matchType": "Broad",
+      "clicks": 25,
+      "orders": 6,
+      "spend": 54.33
+    },
+    {
+      "campaign": "DBS4-SP-B08KQHRDDG-(PAT)-Targeting-(Conversion)-DO-BAMBOO-KING-WHITE",
+      "campaignId": "526089960409455",
+      "matchType": "Product Targeting",
+      "clicks": 47,
+      "orders": 11,
+      "spend": 52.67
+    },
+    {
+      "campaign": "DBS4-SP-100 Bamboo-(VLSV)-Broad-(Discovery)-DO-BAMBOO-QUEEN-WHITE",
+      "campaignId": "332114561773037",
+      "matchType": "Broad",
+      "clicks": 2,
+      "orders": 0,
+      "spend": 1.79
+    },
+    {
+      "campaign": "BAMBOO-KING-WHITE-6PCS_SP_Exact_PAT_Defensive",
+      "campaignId": "302124675724544",
+      "matchType": "Product Targeting",
+      "clicks": 1,
+      "orders": 0,
+      "spend": 0.77
+    }
+  ],
+  "king size sheets with deep pockets bamboo": [],
+  "bamboo king size sheets set": [
+    {
+      "campaign": "DBS4-SP-Bamboo King Size Sheets Set-[Bamboo|King]-(LSV)-Exact-(Ranking)-DO-BAMBOO-KING-WHITE",
+      "campaignId": "478160121979340",
+      "matchType": "Exact",
+      "clicks": 12,
+      "orders": 1,
+      "spend": 91.1
+    },
+    {
+      "campaign": "DBS6-SP-LTSF-ALL-Broad-(Clearance)-DO-AGED-ALL",
+      "campaignId": "39362978301776",
+      "matchType": "Broad",
+      "clicks": 1,
+      "orders": 0,
+      "spend": 2.56
+    }
+  ],
+  "cooling sheets king": [
+    {
+      "campaign": "DBS4-SP-Cooling Sheets King-[Cooling|King]-(MSV)-Exact-(Ranking)-DO-BAMBOO-KING-WHITE",
+      "campaignId": "562604829151641",
+      "matchType": "Exact",
+      "clicks": 31,
+      "orders": 4,
+      "spend": 107.88
+    }
+  ],
+  "full size bamboo sheets": [
+    {
+      "campaign": "DBS4-SP-Full Size Bamboo Sheets-(VLSV)-Exact-(Ranking)-DO-BAMBOO-FULL-WHITE",
+      "campaignId": "397484697042506",
+      "matchType": "Exact",
+      "clicks": 22,
+      "orders": 2,
+      "spend": 117.34
+    },
+    {
+      "campaign": "DBS6-SP-LTSF-ALL-Broad-(Clearance)-DO-AGED-ALL",
+      "campaignId": "39362978301776",
+      "matchType": "Broad",
+      "clicks": 3,
+      "orders": 0,
+      "spend": 7.58
+    }
+  ],
+  "100 bamboo sheets queen": [],
+  "purple bamboo sheets": [
+    {
+      "campaign": "DBS4-SP-Purple Bamboo Sheets-(VLSV)-Exact-(Ranking)-DO-BAMBOO-QUEEN-PURPLE",
+      "campaignId": "382575122533704",
+      "matchType": "Exact",
+      "clicks": 53,
+      "orders": 5,
+      "spend": 96.51
+    }
+  ],
+  "bamboo twin sheets": [
+    {
+      "campaign": "DBS4-SP-Bamboo Twin Sheets-[Bamboo|Twin]-(LSV)-Exact-(Ranking)-DO-BAMBOO-TWIN-BURGUNDY-NEW",
+      "campaignId": "143443584538583",
+      "matchType": "Exact",
+      "clicks": 50,
+      "orders": 5,
+      "spend": 95.29
+    }
+  ],
+  "king bed bamboo sheets": [
+    {
+      "campaign": "DBS4-SP-King Bed Bamboo Sheets-(MSV)-Exact-(Ranking)-DO-BAMBOO-KING-WHITE",
+      "campaignId": "295070443513518",
+      "matchType": "Exact",
+      "clicks": 12,
+      "orders": 2,
+      "spend": 87.51
+    },
+    {
+      "campaign": "DBS6-SP-LTSF-ALL-Broad-(Clearance)-DO-AGED-ALL",
+      "campaignId": "39362978301776",
+      "matchType": "Broad",
+      "clicks": 1,
+      "orders": 0,
+      "spend": 2.56
+    }
+  ],
+  "cal king bamboo sheet set": [
+    {
+      "campaign": "DBS4-SP-Cal King Bamboo Sheet Set-(LSV)-Exact-(Ranking)-FIX-BAMBOO-CALIFKING-WHITE",
+      "campaignId": "69897997930521",
+      "matchType": "Exact",
+      "clicks": 7,
+      "orders": 0,
+      "spend": 35.25
+    },
+    {
+      "campaign": "DBS6-SP-LTSF-ALL-Broad-(Clearance)-DO-AGED-ALL",
+      "campaignId": "39362978301776",
+      "matchType": "Broad",
+      "clicks": 2,
+      "orders": 0,
+      "spend": 4.92
+    }
+  ],
+  "cooling sheets full": [
+    {
+      "campaign": "DBS4-SP-Cooling Sheets Full Size-[Cooling|Full]-(MSV)-Exact-(Ranking)-DO-BAMBOO-FULL-OLIVE",
+      "campaignId": "530397503007721",
+      "matchType": "Exact",
+      "clicks": 19,
+      "orders": 1,
+      "spend": 13.11
+    },
+    {
+      "campaign": "DBS6-SP-LTSF-ALL-Broad-(Clearance)-DO-AGED-ALL",
+      "campaignId": "39362978301776",
+      "matchType": "Broad",
+      "clicks": 1,
+      "orders": 0,
+      "spend": 2.56
+    },
+    {
+      "campaign": "DECOLURE - B4 - QUEEN OLIVE - PRIME CAMPAIGN 2 (LTSF)",
+      "campaignId": "562907116323646",
+      "matchType": "Auto",
+      "clicks": 1,
+      "orders": 0,
+      "spend": 0.9
+    }
+  ],
+  "twin cooling sheets": [
+    {
+      "campaign": "DBS4-SP-Twin Cooling Sheets-[Cooling|Twin]-(LSV)-Exact-(Ranking)-DO-BAMBOO-TWIN-LIGHTBLUE",
+      "campaignId": "174550981641091",
+      "matchType": "Exact",
+      "clicks": 17,
+      "orders": 2,
+      "spend": 72.23
+    },
+    {
+      "campaign": "DBS6-SP-LTSF-ALL-Broad-(Clearance)-DO-AGED-ALL",
+      "campaignId": "39362978301776",
+      "matchType": "Broad",
+      "clicks": 7,
+      "orders": 0,
+      "spend": 6.25
+    }
+  ],
+  "king size bamboo sheets": [
+    {
+      "campaign": "DBS4-SP-King Size Bamboo Sheets-[Bamboo|King]-(LSV)-Exact-(Ranking)-DO-BAMBOO-KING-WHITE",
+      "campaignId": "165309921728170",
+      "matchType": "Exact",
+      "clicks": 5,
+      "orders": 0,
+      "spend": 30.9
+    },
+    {
+      "campaign": "DBS4-SP-King Bed Sheets Bamboo-(VLSV)-Exact-(Ranking)-DO-BAMBOO-KING-WHITE",
+      "campaignId": "240260992817362",
+      "matchType": "Exact",
+      "clicks": 1,
+      "orders": 2,
+      "spend": 5.3
+    }
+  ],
+  "king sheet set bamboo": [],
+  "bamboo sheets twin": [
+    {
+      "campaign": "DBS4-SP-Bamboo Sheets Twin-(MSV)-Exact-(Ranking)-DO-BAMBOO-TWIN-WHITE",
+      "campaignId": "173753122670008",
+      "matchType": "Exact",
+      "clicks": 20,
+      "orders": 5,
+      "spend": 66.59
+    },
+    {
+      "campaign": "DBS6-SP-LTSF-ALL-Broad-(Clearance)-DO-AGED-ALL",
+      "campaignId": "39362978301776",
+      "matchType": "Broad",
+      "clicks": 4,
+      "orders": 0,
+      "spend": 10.24
+    },
+    {
+      "campaign": "DBS4-SP-Bamboo Sheets Twin Size-[Bamboo|Twin]-(MSV)-Exact-(Ranking)-DO-BAMBOO-TWIN-BURGUNDY-NEW",
+      "campaignId": "99023725891341",
+      "matchType": "Exact",
+      "clicks": 1,
+      "orders": 0,
+      "spend": 1.46
+    }
+  ],
+  "deep pocket bamboo sheets": [
+    {
+      "campaign": "DBS4-SP-Deep Pocket Bamboo Sheets-[Bamboo]-(LSV)-Exact-(Ranking)-DO-BAMBOO-KING-WHITE",
+      "campaignId": "545380913542311",
+      "matchType": "Exact",
+      "clicks": 14,
+      "orders": 1,
+      "spend": 58.38
+    },
+    {
+      "campaign": "DBS6-SP-LTSF-ALL-Broad-(Clearance)-DO-AGED-ALL",
+      "campaignId": "39362978301776",
+      "matchType": "Broad",
+      "clicks": 2,
+      "orders": 1,
+      "spend": 5.12
+    }
+  ],
+  "twin bamboo sheets": [
+    {
+      "campaign": "DBS4-SP-Twin Bamboo Sheets-[Bamboo|Twin]-(LSV)-Exact-(Ranking)-DO-BAMBOO-TWIN-BURGUNDY-NEW",
+      "campaignId": "462304093247311",
+      "matchType": "Exact",
+      "clicks": 38,
+      "orders": 0,
+      "spend": 55.6
+    },
+    {
+      "campaign": "DBS6-SP-LTSF-ALL-Broad-(Clearance)-DO-AGED-ALL",
+      "campaignId": "39362978301776",
+      "matchType": "Broad",
+      "clicks": 3,
+      "orders": 0,
+      "spend": 7.68
+    }
+  ],
+  "bamboo deep pocket queen sheets": [
+    {
+      "campaign": "DBS4-SP-Bamboo Deep Pocket Queen Sheets-(LSV)-Exact-(Ranking)-FIX-BAMBOO-QUEEN-TAUPE",
+      "campaignId": "44956486638458",
+      "matchType": "Exact",
+      "clicks": 11,
+      "orders": 1,
+      "spend": 53.18
+    },
+    {
+      "campaign": "DBS6-SP-LTSF-ALL-Broad-(Clearance)-DO-AGED-ALL",
+      "campaignId": "39362978301776",
+      "matchType": "Broad",
+      "clicks": 1,
+      "orders": 0,
+      "spend": 2.56
+    }
+  ],
+  "sheets full size bed bamboo": [
+    {
+      "campaign": "DBS4-SP-Sheets Full Size Bed Bamboo-(VLSV)-Exact-(Ranking)-DO-BAMBOO-FULL-WHITE",
+      "campaignId": "468904898254533",
+      "matchType": "Exact",
+      "clicks": 17,
+      "orders": 2,
+      "spend": 52.96
+    }
+  ],
+  "bamboo sheets deep pocket": [
+    {
+      "campaign": "DBS4-SP-Bamboo Sheets Deep Pocket-[Bamboo]-(LSV)-Exact-(Ranking)-DO-BAMBOO-KING-WHITE",
+      "campaignId": "397684703699700",
+      "matchType": "Exact",
+      "clicks": 6,
+      "orders": 0,
+      "spend": 28.04
+    },
+    {
+      "campaign": "DBS4-SP-bamboo sheets queen size-[Bamboo|Queen]-(HSV)-Broad-(DISC)-DO-BAMBOO-QUEEN-WHITE",
+      "campaignId": "217202192519686",
+      "matchType": "Broad",
+      "clicks": 1,
+      "orders": 1,
+      "spend": 2.78
+    }
+  ],
+  "green bamboo sheets": [
+    {
+      "campaign": "DBS4-SP-Green Bamboo Sheets-[Bamboo]-(LSV)-Exact-(Ranking)-DO-BAMBOO-KING-OLIVE",
+      "campaignId": "350787567817408",
+      "matchType": "Exact",
+      "clicks": 15,
+      "orders": 1,
+      "spend": 30.11
+    },
+    {
+      "campaign": "DBS6-SP-LTSF-ALL-Broad-(Clearance)-DO-AGED-ALL",
+      "campaignId": "39362978301776",
+      "matchType": "Broad",
+      "clicks": 3,
+      "orders": 0,
+      "spend": 7.47
+    },
+    {
+      "campaign": "DECOLURE - B4 - QUEEN OLIVE - PRIME CAMPAIGN 2 (LTSF)",
+      "campaignId": "562907116323646",
+      "matchType": "Auto",
+      "clicks": 4,
+      "orders": 0,
+      "spend": 3.6
+    }
+  ],
+  "king bed sheets cooling": [
+    {
+      "campaign": "DBS4-SP-King Bed Sheets Cooling-[Cooling|King]-(LSV)-Exact-(Ranking)-DO-BAMBOO-KING-WHITE",
+      "campaignId": "431399869291200",
+      "matchType": "Exact",
+      "clicks": 8,
+      "orders": 0,
+      "spend": 25.09
+    }
+  ],
+  "california king bamboo sheet sets": [
+    {
+      "campaign": "DBS4-SP-Cal King Bamboo Sheet Set-(LSV)-Exact-(Ranking)-FIX-BAMBOO-CALIFKING-WHITE",
+      "campaignId": "69897997930521",
+      "matchType": "Exact",
+      "clicks": 8,
+      "orders": 0,
+      "spend": 50.63
+    },
+    {
+      "campaign": "DBS4-SP-California King Bamboo Sheet Sets-(LSV)-Exact-(Ranking)-FIX-BAMBOO-CALIFKING-WHITE",
+      "campaignId": "177778227443313",
+      "matchType": "Exact",
+      "clicks": 13,
+      "orders": 0,
+      "spend": 40.81
+    }
+  ],
+  "cooling king bed sheets": [
+    {
+      "campaign": "DBS4-SP-Cooling King Bed Sheets-[Cooling|King]-(LSV)-Exact-(Ranking)-DO-BAMBOO-KING-WHITE",
+      "campaignId": "6072077389058",
+      "matchType": "Exact",
+      "clicks": 6,
+      "orders": 1,
+      "spend": 28.04
+    }
+  ],
+  "bamboo sheets california king": [
+    {
+      "campaign": "DBS4-SP-Bamboo Sheets California King-(LSV)-Exact-(Ranking)-DO-BAMBOO-CALIFKING-WHITE",
+      "campaignId": "413080052285415",
+      "matchType": "Exact",
+      "clicks": 7,
+      "orders": 0,
+      "spend": 31.09
+    },
+    {
+      "campaign": "DBS6-SP-LTSF-ALL-Broad-(Clearance)-DO-AGED-ALL",
+      "campaignId": "39362978301776",
+      "matchType": "Broad",
+      "clicks": 1,
+      "orders": 0,
+      "spend": 2.56
+    },
+    {
+      "campaign": "DBS4-SP-King Sheets Bamboo-(MSV)-Broad-(DISC)-DO-BAMBOO-KING-WHITE",
+      "campaignId": "211288192866770",
+      "matchType": "Broad",
+      "clicks": 1,
+      "orders": 1,
+      "spend": 2.4
+    }
+  ],
+  "california king bamboo sheets": [
+    {
+      "campaign": "DBS4-SP-Cal King Bamboo Sheets-[Bamboo|California King]-(VLSV)-Exact-(Ranking)-DO-BAMBOO-CALIFKING-WHITE",
+      "campaignId": "424283575684199",
+      "matchType": "Exact",
+      "clicks": 7,
+      "orders": 1,
+      "spend": 22.15
+    },
+    {
+      "campaign": "DBS4-SP-bamboo sheets california king-[Bamboo|California King]-(LSV)-Broad-(DISC)-DO-BAMBOO-CALIFKING-WHITE",
+      "campaignId": "87932013445748",
+      "matchType": "Broad",
+      "clicks": 2,
+      "orders": 1,
+      "spend": 4.14
+    }
+  ],
+  "cooling sheet deep pockets": [],
+  "bamboo sheet set king": [
+    {
+      "campaign": "DBS4-SP-Bamboo Sheet Set King-[Bamboo|King]-(LSV)-Exact-(Ranking)-DO-BAMBOO-KING-WHITE",
+      "campaignId": "85849883467185",
+      "matchType": "Exact",
+      "clicks": 3,
+      "orders": 2,
+      "spend": 20.64
+    },
+    {
+      "campaign": "DBS6-SP-LTSF-ALL-Broad-(Clearance)-DO-AGED-ALL",
+      "campaignId": "39362978301776",
+      "matchType": "Broad",
+      "clicks": 2,
+      "orders": 0,
+      "spend": 5.12
+    }
+  ]
+}

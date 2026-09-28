@@ -1,0 +1,114 @@
+{
+  "window": {
+    "startDate": "2026-08-29",
+    "endDate": "2026-09-27"
+  },
+  "productId": 59,
+  "marketplaceId": "ATVPDKIKX0DER",
+  "keyword": {
+    "term": "purple bamboo sheets",
+    "cells": {
+      "impressions": {
+        "value": null,
+        "reason": "no segment in scope to read the keyword row from"
+      },
+      "clicks": {
+        "value": null,
+        "reason": "no segment in scope to read the keyword row from"
+      },
+      "ctr": {
+        "value": null,
+        "reason": "no segment in scope to read the keyword row from"
+      },
+      "orders": {
+        "value": null,
+        "reason": "no segment in scope to read the keyword row from"
+      },
+      "cvr": {
+        "value": null,
+        "reason": "no segment in scope to read the keyword row from"
+      },
+      "spend": {
+        "value": null,
+        "reason": "no segment in scope to read the keyword row from"
+      },
+      "sales": {
+        "value": null,
+        "reason": "no segment in scope to read the keyword row from"
+      },
+      "acos": {
+        "value": null,
+        "reason": "no segment in scope to read the keyword row from"
+      },
+      "roas": {
+        "value": null,
+        "reason": "no segment in scope to read the keyword row from"
+      },
+      "cpc": {
+        "value": null,
+        "reason": "no segment in scope to read the keyword row from"
+      },
+      "units": {
+        "value": null,
+        "reason": "no segment in scope to read the keyword row from"
+      }
+    },
+    "syntaxGroupId": null
+  },
+  "reconciliation": {
+    "keywordSpend": 0,
+    "listedSpend": 96.51000000000003,
+    "unlistedSpend": -96.51,
+    "partition": true,
+    "note": "Campaigns PARTITION the keyword: a click was served by exactly one of them, so these rows add up to the keyword row above and Share % reaches 100%. These are this term's numbers inside each campaign, NOT the campaigns' own totals — a campaign that spent $1.56 on this term can have spent $681 overall, and the figure here is the $1.56."
+  },
+  "notInMatrix": {
+    "realAcos": "Real ACOS (waste-adjusted) has no field in the metric matrix at syntax grain yet.",
+    "clickShare": "SQP click share has no field in the metric matrix at syntax grain yet.",
+    "placementUnits": "Units at placement are an ESTIMATE built from two: the estimated clicks there (a dense fold) times the estimated units-per-click, which is an index on this row's own rate in the CVR's construction. A direct split is impossible — units appear in only 711 of 2,564 Top-of-Search campaign-placement cells, the SAME 711 that carry sales. On this account units and orders are near-identical (8,653 of 8,803 cells have them equal, 1.03 units per order), so this tracks clicks x the estimated CVR closely; it is here because units are the unit you act on.",
+    "placementOffRate": "Off Amazon is withheld from the estimated CTR, CVR and ACOS by the ruling of 2026-08-30: of 117 campaigns with an Off Amazon placement row, 101 had ZERO orders there, and it recorded sales in 52 of 603 placement cells. Rendered as a number it would read as a claim about how Off Amazon converts, which the data cannot support either way. Its impressions, clicks, spend and CPC are shown — those legs are well evidenced."
+  },
+  "total": 1,
+  "limit": 200,
+  "offset": 0,
+  "returned": 1,
+  "rows": [
+    {
+      "entityKey": "product:59|campaign:382575122533704|marketplace:ATVPDKIKX0DER",
+      "campaignId": "382575122533704",
+      "campaignName": "DBS4-SP-Purple Bamboo Sheets-(VLSV)-Exact-(Ranking)-DO-BAMBOO-QUEEN-PURPLE",
+      "objective": "Ranking",
+      "matchType": "Exact",
+      "modifiers": {
+        "notes": {
+          "tos": "The setting as of 2026-09-27 — a SNAPSHOT, so it does not move with the date range beside it. This campaign bids 1.86x its base bid at Top of Search on-Amazon, and under LEGACY_FOR_SALES that is a true ceiling.",
+          "ros": "The setting as of 2026-09-27 — a SNAPSHOT, so it does not move with the date range beside it. This campaign bids 1.00x its base bid at Other on-Amazon (rest of search), and under LEGACY_FOR_SALES that is a true ceiling.",
+          "pdp": "The setting as of 2026-09-27 — a SNAPSHOT, so it does not move with the date range beside it. This campaign bids 1.00x its base bid at Detail Page on-Amazon, and under LEGACY_FOR_SALES that is a true ceiling."
+        },
+        "reasons": {},
+        "tos": 86,
+        "ros": 0,
+        "pdp": 0,
+        "bidStrategy": "Dynamic — down only"
+      },
+      "impressions": 13025,
+      "clicks": 53,
+      "ctr": 0.41,
+      "orders": 5,
+      "cvr": 9.43,
+      "spend": 96.51000000000003,
+      "sales": 367.95,
+      "acos": 26.2,
+      "roas": 3.81,
+      "cpc": 1.82,
+      "units": 5,
+      "reasons": {},
+      "belowGate": false
+    }
+  ],
+  "notes": [
+    "Every rate is BLENDED — the window's total over its total (spend over sales, clicks over impressions) — never the mean of daily or per-row rates.",
+    "Sales, orders and every rate built on them carry 7-day attribution: the trailing seven days are still filling in and read LOW. The newest day is also a partial day. Compare settled windows with settled windows.",
+    "Placement modifiers are a SNAPSHOT of the setting as of the latest bid snapshot, not the window's history."
+  ]
+}

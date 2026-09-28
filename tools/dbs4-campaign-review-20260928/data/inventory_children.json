@@ -1,0 +1,2319 @@
+[
+ {
+  "sku": "BAMBOO-CALIFKING-BLACK",
+  "size": "California King",
+  "colour": "Black",
+  "asin": "B0BZQ1G5B8",
+  "fba_available": 20,
+  "reserved": 1,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 0,
+   "fc_processing": 1
+  },
+  "inbound": 48,
+  "inbound_dates": [
+   "FBA19LP4SKXM READY_TO_SHIP inbound=30 (shipped 30, recv 0, FC YYZ7) name='FBA STA (08/13/2026 09:08)-YYZ7'",
+   "FBA19P55072C READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MEM1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P570K3X READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC IWA6) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P57BDB6 READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MDW2) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P57J59L READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC IPA1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P58DHV4 READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC ITX3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'"
+  ],
+  "velocity_day": 0.49,
+  "days_of_stock": 43,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-CALIFKING-BURGUNDY-NEW",
+  "size": "California King",
+  "colour": "Burgundy",
+  "asin": "B0CRHYHS4X",
+  "fba_available": 76,
+  "reserved": 6,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 0,
+   "fc_processing": 6
+  },
+  "inbound": 0,
+  "inbound_dates": [
+   "FBA19MV0YVFX READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC YYZ7) name='DL(B4/B6/S4/S6/SF) - NJ - 08/25/2026 (F)'"
+  ],
+  "velocity_day": 0.61,
+  "days_of_stock": 135,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-CALIFKING-CHARCOAL",
+  "size": "California King",
+  "colour": "Charcoal",
+  "asin": "B0BZPZQCBL",
+  "fba_available": 18,
+  "reserved": 6,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 6,
+   "fc_processing": 0
+  },
+  "inbound": 30,
+  "inbound_dates": [
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'",
+   "FBA19QLVD3FK READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC YVR4) name='FBA STA (09/21/2026 07:01)-YVR4'"
+  ],
+  "velocity_day": 0.36,
+  "days_of_stock": 67,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-CALIFKING-CREME",
+  "size": "California King",
+  "colour": "Creme",
+  "asin": "B08KQLQ7RG",
+  "fba_available": 45,
+  "reserved": 0,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 0,
+   "fc_processing": 0
+  },
+  "inbound": 60,
+  "inbound_dates": [
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'"
+  ],
+  "velocity_day": 0.81,
+  "days_of_stock": 56,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-CALIFKING-GREY",
+  "size": "California King",
+  "colour": "Grey",
+  "asin": "B08KQJBFFY",
+  "fba_available": 56,
+  "reserved": 1,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 0,
+   "fc_processing": 1
+  },
+  "inbound": 0,
+  "inbound_dates": [
+   "FBA19GG7KG8K RECEIVING inbound=6 (shipped 6, recv 0, FC YYZ7) name='DL(B4/B6/S4/S6/SF), SL(S4) - NJ - 06/18/2026 (F)'",
+   "FBA19LP4SKXM READY_TO_SHIP inbound=30 (shipped 30, recv 0, FC YYZ7) name='FBA STA (08/13/2026 09:08)-YYZ7'"
+  ],
+  "velocity_day": 0.36,
+  "days_of_stock": 159,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-CALIFKING-LIGHT PINK",
+  "size": "California King",
+  "colour": "Light Pink",
+  "asin": "B0CLKD23ZH",
+  "fba_available": 53,
+  "reserved": 12,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 0,
+   "fc_processing": 12
+  },
+  "inbound": 30,
+  "inbound_dates": [
+   "FBA19QLVD3FK READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC YVR4) name='FBA STA (09/21/2026 07:01)-YVR4'",
+   "FBA19R0JWHRK READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC LAX9) name='FBA STA (09/24/2026 06:24)-LAX9'",
+   "FBA19R0NKHD4 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC SBD1) name='FBA STA (09/24/2026 06:24)-SBD1'",
+   "FBA19R0QX242 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQY2) name='FBA STA (09/24/2026 06:24)-MQY2'",
+   "FBA19R0RR6GQ READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC TOL3) name='FBA STA (09/24/2026 06:24)-TOL3'",
+   "FBA19R0S76HV READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC IND9) name='FBA STA (09/24/2026 06:24)-IND9'"
+  ],
+  "velocity_day": 0.14,
+  "days_of_stock": 465,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-CALIFKING-LIGHTBLUE",
+  "size": "California King",
+  "colour": "Light Blue",
+  "asin": "B08KQHSWSJ",
+  "fba_available": 10,
+  "reserved": 0,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 0,
+   "fc_processing": 0
+  },
+  "inbound": 48,
+  "inbound_dates": [
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'",
+   "FBA19QLVD3FK READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC YVR4) name='FBA STA (09/21/2026 07:01)-YVR4'"
+  ],
+  "velocity_day": 0.92,
+  "days_of_stock": 11,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-CALIFKING-LIGHTGREY",
+  "size": "California King",
+  "colour": "Light Grey",
+  "asin": "B08KQLFRVR",
+  "fba_available": 18,
+  "reserved": 2,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 0,
+   "fc_processing": 2
+  },
+  "inbound": 84,
+  "inbound_dates": [
+   "FBA19N7RP6W7 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC IND9) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7RQF4Q READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC ITX3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VGQ1C READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC BJC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VTCHW READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC TOL3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7WSG18 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MCC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'"
+  ],
+  "velocity_day": 0.49,
+  "days_of_stock": 41,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-CALIFKING-LIGHTOLIVE",
+  "size": "California King",
+  "colour": "Light Olive",
+  "asin": "B0BZQ19Z47",
+  "fba_available": 20,
+  "reserved": 0,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 0,
+   "fc_processing": 0
+  },
+  "inbound": 60,
+  "inbound_dates": [
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'",
+   "FBA19R0JWHRK READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC LAX9) name='FBA STA (09/24/2026 06:24)-LAX9'",
+   "FBA19R0NKHD4 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC SBD1) name='FBA STA (09/24/2026 06:24)-SBD1'",
+   "FBA19R0QX242 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQY2) name='FBA STA (09/24/2026 06:24)-MQY2'",
+   "FBA19R0RR6GQ READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC TOL3) name='FBA STA (09/24/2026 06:24)-TOL3'",
+   "FBA19R0S76HV READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC IND9) name='FBA STA (09/24/2026 06:24)-IND9'"
+  ],
+  "velocity_day": 0.29,
+  "days_of_stock": 69,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-CALIFKING-MIDGREY",
+  "size": "California King",
+  "colour": "Midgrey",
+  "asin": "B0BZPY841G",
+  "fba_available": 25,
+  "reserved": 86,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 85,
+   "fc_processing": 1
+  },
+  "inbound": 24,
+  "inbound_dates": [
+   "FBA19MRBDTTW READY_TO_SHIP inbound=24 (shipped 24, recv 0, FC MQJ1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/CLG-SHTs/S4) - NJ - 08/24/2026 (F)'"
+  ],
+  "velocity_day": 0.33,
+  "days_of_stock": 337,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-CALIFKING-NAVYBLUE",
+  "size": "California King",
+  "colour": "Navy Blue",
+  "asin": "B08KQ3C8BX",
+  "fba_available": 0,
+  "reserved": 42,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 42,
+   "fc_processing": 0
+  },
+  "inbound": 6,
+  "inbound_dates": [
+   "FBA19MRBDTTW READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQJ1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/CLG-SHTs/S4) - NJ - 08/24/2026 (F)'",
+   "FBA19R0S5YYC READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC YHM1) name='FBA STA (09/24/2026 07:06)-YHM1'"
+  ],
+  "velocity_day": 0,
+  "days_of_stock": 999,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-CALIFKING-OLIVE",
+  "size": "California King",
+  "colour": "Olive",
+  "asin": "B08KQJZHGC",
+  "fba_available": 61,
+  "reserved": 18,
+  "reserved_breakdown": {
+   "customer_orders": 2,
+   "fc_transfers": 18,
+   "fc_processing": 0
+  },
+  "inbound": 30,
+  "inbound_dates": [
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'"
+  ],
+  "velocity_day": 0.55,
+  "days_of_stock": 144,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-CALIFKING-PURPLE",
+  "size": "California King",
+  "colour": "Purple",
+  "asin": "B0BZQ5SDNS",
+  "fba_available": 16,
+  "reserved": 0,
+  "reserved_breakdown": {
+   "customer_orders": 1,
+   "fc_transfers": 0,
+   "fc_processing": 0
+  },
+  "inbound": 30,
+  "inbound_dates": [
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'"
+  ],
+  "velocity_day": 0.25,
+  "days_of_stock": 64,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-CALIFKING-SAGE GREEN",
+  "size": "California King",
+  "colour": "Sage Green",
+  "asin": "B0CLKCVLRG",
+  "fba_available": 0,
+  "reserved": 1,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 0,
+   "fc_processing": 1
+  },
+  "inbound": 60,
+  "inbound_dates": [
+   "FBA19N7RP6W7 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC IND9) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7RQF4Q READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC ITX3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VGQ1C READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC BJC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VTCHW READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC TOL3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7WSG18 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MCC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'"
+  ],
+  "velocity_day": 0,
+  "days_of_stock": 999,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-CALIFKING-TAUPE",
+  "size": "California King",
+  "colour": "Taupe",
+  "asin": "B08KQJTLZP",
+  "fba_available": 43,
+  "reserved": 4,
+  "reserved_breakdown": {
+   "customer_orders": 1,
+   "fc_transfers": 0,
+   "fc_processing": 4
+  },
+  "inbound": 60,
+  "inbound_dates": [
+   "FBA19LP4SKXM READY_TO_SHIP inbound=42 (shipped 42, recv 0, FC YYZ7) name='FBA STA (08/13/2026 09:08)-YYZ7'",
+   "FBA19MV0YVFX READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC YYZ7) name='DL(B4/B6/S4/S6/SF) - NJ - 08/25/2026 (F)'",
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'"
+  ],
+  "velocity_day": 1.77,
+  "days_of_stock": 27,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-CALIFKING-WHITE",
+  "size": "California King",
+  "colour": "White",
+  "asin": "B08KQKQ44M",
+  "fba_available": 43,
+  "reserved": 2,
+  "reserved_breakdown": {
+   "customer_orders": 1,
+   "fc_transfers": 0,
+   "fc_processing": 2
+  },
+  "inbound": 120,
+  "inbound_dates": [
+   "FBA19LP4SKXM READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC YYZ7) name='FBA STA (08/13/2026 09:08)-YYZ7'",
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=30 (shipped 30, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=36 (shipped 36, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=24 (shipped 24, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'"
+  ],
+  "velocity_day": 1.55,
+  "days_of_stock": 30,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-FULL-4PCS-LIGHTBLUE",
+  "size": "Full",
+  "colour": "Light Blue",
+  "asin": "B0HJP3MMMJ",
+  "fba_available": 0,
+  "reserved": 0,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 0,
+   "fc_processing": 0
+  },
+  "inbound": 0,
+  "inbound_dates": null,
+  "velocity_day": 0,
+  "days_of_stock": 0,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-FULL-BLACK",
+  "size": "Full",
+  "colour": "Black",
+  "asin": "B0BZPYZ1XY",
+  "fba_available": 31,
+  "reserved": 6,
+  "reserved_breakdown": {
+   "customer_orders": 1,
+   "fc_transfers": 4,
+   "fc_processing": 2
+  },
+  "inbound": 30,
+  "inbound_dates": [
+   "FBA19LP4SKXM READY_TO_SHIP inbound=72 (shipped 72, recv 0, FC YYZ7) name='FBA STA (08/13/2026 09:08)-YYZ7'",
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'"
+  ],
+  "velocity_day": 0.8,
+  "days_of_stock": 47,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-FULL-BURGUNDY-NEW",
+  "size": "Full",
+  "colour": "Burgundy",
+  "asin": "B0CRHYS5KT",
+  "fba_available": 0,
+  "reserved": 1,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 0,
+   "fc_processing": 1
+  },
+  "inbound": 60,
+  "inbound_dates": [
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'",
+   "FBA19QLVD3FK READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC YVR4) name='FBA STA (09/21/2026 07:01)-YVR4'"
+  ],
+  "velocity_day": 0.28,
+  "days_of_stock": 4,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-FULL-CHARCOAL",
+  "size": "Full",
+  "colour": "Charcoal",
+  "asin": "B0BZQ19QT6",
+  "fba_available": 6,
+  "reserved": 6,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 0,
+   "fc_processing": 6
+  },
+  "inbound": 114,
+  "inbound_dates": [
+   "FBA19N7RP6W7 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC IND9) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7RQF4Q READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC ITX3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VGQ1C READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC BJC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VTCHW READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC TOL3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7WSG18 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MCC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19P55072C READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MEM1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P570K3X READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC IWA6) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P57BDB6 READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MDW2) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P57J59L READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC IPA1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P58DHV4 READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC ITX3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'"
+  ],
+  "velocity_day": 0.42,
+  "days_of_stock": 29,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-FULL-CREME",
+  "size": "Full",
+  "colour": "Creme",
+  "asin": "B08KQJ3JSW",
+  "fba_available": 26,
+  "reserved": 1,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 0,
+   "fc_processing": 1
+  },
+  "inbound": 90,
+  "inbound_dates": [
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=24 (shipped 24, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'"
+  ],
+  "velocity_day": 0.71,
+  "days_of_stock": 39,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-FULL-GREY",
+  "size": "Full",
+  "colour": "Grey",
+  "asin": "B08KQJP1K7",
+  "fba_available": 12,
+  "reserved": 12,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 12,
+   "fc_processing": 0
+  },
+  "inbound": 60,
+  "inbound_dates": [
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'"
+  ],
+  "velocity_day": 0.4,
+  "days_of_stock": 60,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-FULL-LIGHT PINK",
+  "size": "Full",
+  "colour": "Light Pink",
+  "asin": "B0CLKDSVCV",
+  "fba_available": 0,
+  "reserved": 3,
+  "reserved_breakdown": {
+   "customer_orders": 2,
+   "fc_transfers": 3,
+   "fc_processing": 0
+  },
+  "inbound": 90,
+  "inbound_dates": [
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=24 (shipped 24, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'",
+   "FBA19QLVD3FK READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC YVR4) name='FBA STA (09/21/2026 07:01)-YVR4'"
+  ],
+  "velocity_day": 0.54,
+  "days_of_stock": 6,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-FULL-LIGHTBLUE",
+  "size": "Full",
+  "colour": "Light Blue",
+  "asin": "B08KQJYDCR",
+  "fba_available": 107,
+  "reserved": 3,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 0,
+   "fc_processing": 3
+  },
+  "inbound": 0,
+  "inbound_dates": null,
+  "velocity_day": 0.26,
+  "days_of_stock": 424,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-FULL-LIGHTGREY",
+  "size": "Full",
+  "colour": "Light Grey",
+  "asin": "B08KQJHKFJ",
+  "fba_available": 6,
+  "reserved": 2,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 2,
+   "fc_processing": 0
+  },
+  "inbound": 72,
+  "inbound_dates": [
+   "FBA19N7RP6W7 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC IND9) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7RQF4Q READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC ITX3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VGQ1C READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC BJC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VTCHW READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC TOL3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7WSG18 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MCC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'"
+  ],
+  "velocity_day": 0.89,
+  "days_of_stock": 9,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-FULL-LIGHTOLIVE",
+  "size": "Full",
+  "colour": "Light Olive",
+  "asin": "B0BZPZPGDC",
+  "fba_available": 105,
+  "reserved": 2,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 1,
+   "fc_processing": 1
+  },
+  "inbound": 0,
+  "inbound_dates": null,
+  "velocity_day": 0.41,
+  "days_of_stock": 261,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-FULL-MIDGREY",
+  "size": "Full",
+  "colour": "Midgrey",
+  "asin": "B0BZQ43D7W",
+  "fba_available": 52,
+  "reserved": 7,
+  "reserved_breakdown": {
+   "customer_orders": 1,
+   "fc_transfers": 6,
+   "fc_processing": 1
+  },
+  "inbound": 66,
+  "inbound_dates": [
+   "FBA19R0JWHRK READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC LAX9) name='FBA STA (09/24/2026 06:24)-LAX9'",
+   "FBA19R0NKHD4 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC SBD1) name='FBA STA (09/24/2026 06:24)-SBD1'",
+   "FBA19R0QX242 READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC MQY2) name='FBA STA (09/24/2026 06:24)-MQY2'",
+   "FBA19R0RR6GQ READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC TOL3) name='FBA STA (09/24/2026 06:24)-TOL3'",
+   "FBA19R0S76HV READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC IND9) name='FBA STA (09/24/2026 06:24)-IND9'"
+  ],
+  "velocity_day": 0.8,
+  "days_of_stock": 74,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-FULL-NAVYBLUE",
+  "size": "Full",
+  "colour": "Navy Blue",
+  "asin": "B08KQL2JT8",
+  "fba_available": 0,
+  "reserved": 0,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 0,
+   "fc_processing": 0
+  },
+  "inbound": 114,
+  "inbound_dates": [
+   "FBA19N7RP6W7 READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC IND9) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7RQF4Q READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC ITX3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VGQ1C READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC BJC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VTCHW READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC TOL3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7WSG18 READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MCC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N82086K READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC XYY4) name='FBA STA (08/28/2026 19:55)-XYY4'",
+   "FBA19P55072C READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MEM1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P570K3X READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC IWA6) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P57BDB6 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MDW2) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P57J59L READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC IPA1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P58DHV4 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC ITX3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P5HJ4RK READY_TO_SHIP inbound=30 (shipped 30, recv 0, FC YHM1) name='DL(B4/B6/S4/S6/SF), SL(S4) - NJ - 09/08/2026 (F)'"
+  ],
+  "velocity_day": 0.6,
+  "days_of_stock": 0,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-FULL-OLIVE",
+  "size": "Full",
+  "colour": "Olive",
+  "asin": "B08KQJTP39",
+  "fba_available": 92,
+  "reserved": 6,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 3,
+   "fc_processing": 3
+  },
+  "inbound": 0,
+  "inbound_dates": null,
+  "velocity_day": 1.32,
+  "days_of_stock": 75,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-FULL-PURPLE",
+  "size": "Full",
+  "colour": "Purple",
+  "asin": "B0BZPY4PXY",
+  "fba_available": 75,
+  "reserved": 22,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 19,
+   "fc_processing": 3
+  },
+  "inbound": 30,
+  "inbound_dates": [
+   "FBA19R0JWHRK READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC LAX9) name='FBA STA (09/24/2026 06:24)-LAX9'",
+   "FBA19R0NKHD4 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC SBD1) name='FBA STA (09/24/2026 06:24)-SBD1'",
+   "FBA19R0QX242 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQY2) name='FBA STA (09/24/2026 06:24)-MQY2'",
+   "FBA19R0RR6GQ READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC TOL3) name='FBA STA (09/24/2026 06:24)-TOL3'",
+   "FBA19R0S76HV READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC IND9) name='FBA STA (09/24/2026 06:24)-IND9'"
+  ],
+  "velocity_day": 0.54,
+  "days_of_stock": 180,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-FULL-SAGE GREEN",
+  "size": "Full",
+  "colour": "Sage Green",
+  "asin": "B0CLKFLJMZ",
+  "fba_available": 64,
+  "reserved": 0,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 0,
+   "fc_processing": 0
+  },
+  "inbound": 30,
+  "inbound_dates": [
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'",
+   "FBA19QLVD3FK READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC YVR4) name='FBA STA (09/21/2026 07:01)-YVR4'"
+  ],
+  "velocity_day": 0.52,
+  "days_of_stock": 124,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-FULL-TAUPE",
+  "size": "Full",
+  "colour": "Taupe",
+  "asin": "B08KQJBRKM",
+  "fba_available": 0,
+  "reserved": 1,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 1,
+   "fc_processing": 0
+  },
+  "inbound": 60,
+  "inbound_dates": [
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'",
+   "FBA19QLVD3FK READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC YVR4) name='FBA STA (09/21/2026 07:01)-YVR4'"
+  ],
+  "velocity_day": 1.25,
+  "days_of_stock": 1,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-FULL-WHITE",
+  "size": "Full",
+  "colour": "White",
+  "asin": "B08KQJV49M",
+  "fba_available": 0,
+  "reserved": 1,
+  "reserved_breakdown": {
+   "customer_orders": 1,
+   "fc_transfers": 0,
+   "fc_processing": 1
+  },
+  "inbound": 210,
+  "inbound_dates": [
+   "FBA19N7RP6W7 READY_TO_SHIP inbound=24 (shipped 24, recv 0, FC IND9) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7RQF4Q READY_TO_SHIP inbound=24 (shipped 24, recv 0, FC ITX3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VGQ1C READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC BJC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VTCHW READY_TO_SHIP inbound=24 (shipped 24, recv 0, FC TOL3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7WSG18 READY_TO_SHIP inbound=24 (shipped 24, recv 0, FC MCC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N82086K READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC XYY4) name='FBA STA (08/28/2026 19:55)-XYY4'",
+   "FBA19P55072C READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MEM1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P570K3X READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC IWA6) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P57BDB6 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MDW2) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P57J59L READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC IPA1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P58DHV4 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC ITX3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'",
+   "FBA19QLVD3FK READY_TO_SHIP inbound=24 (shipped 24, recv 0, FC YVR4) name='FBA STA (09/21/2026 07:01)-YVR4'",
+   "FBA19R0JWHRK READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC LAX9) name='FBA STA (09/24/2026 06:24)-LAX9'",
+   "FBA19R0NKHD4 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC SBD1) name='FBA STA (09/24/2026 06:24)-SBD1'",
+   "FBA19R0QX242 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQY2) name='FBA STA (09/24/2026 06:24)-MQY2'",
+   "FBA19R0RR6GQ READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC TOL3) name='FBA STA (09/24/2026 06:24)-TOL3'",
+   "FBA19R0S5YYC READY_TO_SHIP inbound=36 (shipped 36, recv 0, FC YHM1) name='FBA STA (09/24/2026 07:06)-YHM1'",
+   "FBA19R0S76HV READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC IND9) name='FBA STA (09/24/2026 06:24)-IND9'"
+  ],
+  "velocity_day": 0.69,
+  "days_of_stock": 2,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-KING-BLACK",
+  "size": "King",
+  "colour": "Black",
+  "asin": "B0BZPZ2L1R",
+  "fba_available": 224,
+  "reserved": 7,
+  "reserved_breakdown": {
+   "customer_orders": 3,
+   "fc_transfers": 0,
+   "fc_processing": 7
+  },
+  "inbound": 60,
+  "inbound_dates": [
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'"
+  ],
+  "velocity_day": 2.91,
+  "days_of_stock": 80,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-KING-BURGUNDY-NEW",
+  "size": "King",
+  "colour": "Burgundy",
+  "asin": "B0CRHYYVZQ",
+  "fba_available": 266,
+  "reserved": 3,
+  "reserved_breakdown": {
+   "customer_orders": 1,
+   "fc_transfers": 0,
+   "fc_processing": 3
+  },
+  "inbound": 66,
+  "inbound_dates": [
+   "FBA19N7RP6W7 READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC IND9) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7RQF4Q READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC ITX3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VGQ1C READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC BJC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VTCHW READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC TOL3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7WSG18 READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MCC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19QLVD3FK READY_TO_SHIP inbound=48 (shipped 48, recv 0, FC YVR4) name='FBA STA (09/21/2026 07:01)-YVR4'"
+  ],
+  "velocity_day": 3.31,
+  "days_of_stock": 82,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-KING-CHARCOAL",
+  "size": "King",
+  "colour": "Charcoal",
+  "asin": "B0BZPZ588L",
+  "fba_available": 0,
+  "reserved": 35,
+  "reserved_breakdown": {
+   "customer_orders": 1,
+   "fc_transfers": 35,
+   "fc_processing": 0
+  },
+  "inbound": 72,
+  "inbound_dates": [
+   "FBA19MRBDTTW READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MQJ1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/CLG-SHTs/S4) - NJ - 08/24/2026 (F)'",
+   "FBA19MV0YVFX READY_TO_SHIP inbound=30 (shipped 30, recv 0, FC YYZ7) name='DL(B4/B6/S4/S6/SF) - NJ - 08/25/2026 (F)'",
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'",
+   "FBA19QLVD3FK READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC YVR4) name='FBA STA (09/21/2026 07:01)-YVR4'"
+  ],
+  "velocity_day": 0.12,
+  "days_of_stock": 292,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-KING-CREME",
+  "size": "King",
+  "colour": "Creme",
+  "asin": "B08KQJ62YC",
+  "fba_available": 502,
+  "reserved": 84,
+  "reserved_breakdown": {
+   "customer_orders": 3,
+   "fc_transfers": 12,
+   "fc_processing": 72
+  },
+  "inbound": 54,
+  "inbound_dates": [
+   "FBA19LP4SKXM READY_TO_SHIP inbound=42 (shipped 42, recv 0, FC YYZ7) name='FBA STA (08/13/2026 09:08)-YYZ7'",
+   "FBA19N82086K READY_TO_SHIP inbound=60 (shipped 60, recv 0, FC XYY4) name='FBA STA (08/28/2026 19:55)-XYY4'",
+   "FBA19P55072C READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC MEM1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P570K3X READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC IWA6) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P57BDB6 READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MDW2) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P57J59L READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC IPA1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P58DHV4 READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC ITX3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'"
+  ],
+  "velocity_day": 5.09,
+  "days_of_stock": 116,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-KING-GREY",
+  "size": "King",
+  "colour": "Grey",
+  "asin": "B08KQJQ3C2",
+  "fba_available": 0,
+  "reserved": 1,
+  "reserved_breakdown": {
+   "customer_orders": 1,
+   "fc_transfers": 0,
+   "fc_processing": 1
+  },
+  "inbound": 216,
+  "inbound_dates": [
+   "FBA19N7RP6W7 READY_TO_SHIP inbound=48 (shipped 48, recv 0, FC IND9) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7RQF4Q READY_TO_SHIP inbound=48 (shipped 48, recv 0, FC ITX3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VGQ1C READY_TO_SHIP inbound=60 (shipped 60, recv 0, FC BJC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VTCHW READY_TO_SHIP inbound=36 (shipped 36, recv 0, FC TOL3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7WSG18 READY_TO_SHIP inbound=24 (shipped 24, recv 0, FC MCC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19QLVD3FK READY_TO_SHIP inbound=36 (shipped 36, recv 0, FC YVR4) name='FBA STA (09/21/2026 07:01)-YVR4'"
+  ],
+  "velocity_day": 2.29,
+  "days_of_stock": 1,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-KING-LIGHT PINK",
+  "size": "King",
+  "colour": "Light Pink",
+  "asin": "B0CLK9QXX3",
+  "fba_available": 57,
+  "reserved": 4,
+  "reserved_breakdown": {
+   "customer_orders": 1,
+   "fc_transfers": 1,
+   "fc_processing": 3
+  },
+  "inbound": 90,
+  "inbound_dates": [
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=36 (shipped 36, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=24 (shipped 24, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'",
+   "FBA19QLVD3FK READY_TO_SHIP inbound=42 (shipped 42, recv 0, FC YVR4) name='FBA STA (09/21/2026 07:01)-YVR4'"
+  ],
+  "velocity_day": 1.71,
+  "days_of_stock": 36,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-KING-LIGHTBLUE",
+  "size": "King",
+  "colour": "Light Blue",
+  "asin": "B08KQL6HKG",
+  "fba_available": 384,
+  "reserved": 54,
+  "reserved_breakdown": {
+   "customer_orders": 2,
+   "fc_transfers": 25,
+   "fc_processing": 29
+  },
+  "inbound": 0,
+  "inbound_dates": [
+   "FBA19LP4SKXM READY_TO_SHIP inbound=96 (shipped 96, recv 0, FC YYZ7) name='FBA STA (08/13/2026 09:08)-YYZ7'"
+  ],
+  "velocity_day": 3.95,
+  "days_of_stock": 111,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-KING-LIGHTGREY",
+  "size": "King",
+  "colour": "Light Grey",
+  "asin": "B08KQJ3M9N",
+  "fba_available": 247,
+  "reserved": 12,
+  "reserved_breakdown": {
+   "customer_orders": 2,
+   "fc_transfers": 1,
+   "fc_processing": 11
+  },
+  "inbound": 708,
+  "inbound_dates": [
+   "FBA19LP4SKXM READY_TO_SHIP inbound=30 (shipped 30, recv 0, FC YYZ7) name='FBA STA (08/13/2026 09:08)-YYZ7'",
+   "FBA19P55072C READY_TO_SHIP inbound=180 (shipped 180, recv 0, FC MEM1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P570K3X READY_TO_SHIP inbound=72 (shipped 72, recv 0, FC IWA6) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P57BDB6 READY_TO_SHIP inbound=192 (shipped 192, recv 0, FC MDW2) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P57J59L READY_TO_SHIP inbound=96 (shipped 96, recv 0, FC IPA1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P58DHV4 READY_TO_SHIP inbound=168 (shipped 168, recv 0, FC ITX3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'"
+  ],
+  "velocity_day": 4.72,
+  "days_of_stock": 55,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-KING-LIGHTOLIVE",
+  "size": "King",
+  "colour": "Light Olive",
+  "asin": "B0BZPZP12L",
+  "fba_available": 71,
+  "reserved": 1,
+  "reserved_breakdown": {
+   "customer_orders": 1,
+   "fc_transfers": 0,
+   "fc_processing": 1
+  },
+  "inbound": 30,
+  "inbound_dates": [
+   "FBA19N7RP6W7 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC IND9) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7RQF4Q READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC ITX3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VGQ1C READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC BJC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VTCHW READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC TOL3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7WSG18 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MCC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N82086K READY_TO_SHIP inbound=30 (shipped 30, recv 0, FC XYY4) name='FBA STA (08/28/2026 19:55)-XYY4'"
+  ],
+  "velocity_day": 1.14,
+  "days_of_stock": 64,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-KING-MIDGREY",
+  "size": "King",
+  "colour": "Midgrey",
+  "asin": "B0BZPVXR69",
+  "fba_available": 0,
+  "reserved": 1,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 0,
+   "fc_processing": 1
+  },
+  "inbound": 372,
+  "inbound_dates": [
+   "FBA19N7RP6W7 READY_TO_SHIP inbound=66 (shipped 66, recv 0, FC IND9) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7RQF4Q READY_TO_SHIP inbound=60 (shipped 60, recv 0, FC ITX3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VGQ1C READY_TO_SHIP inbound=60 (shipped 60, recv 0, FC BJC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VTCHW READY_TO_SHIP inbound=42 (shipped 42, recv 0, FC TOL3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7WSG18 READY_TO_SHIP inbound=36 (shipped 36, recv 0, FC MCC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19P58G37R READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC POC3) name='FBA STA (09/08/2026 05:42)-POC3'",
+   "FBA19P5HJ4RK READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC YHM1) name='DL(B4/B6/S4/S6/SF), SL(S4) - NJ - 09/08/2026 (F)'",
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'",
+   "FBA19QLVD3FK READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC YVR4) name='FBA STA (09/21/2026 07:01)-YVR4'",
+   "FBA19R0JWHRK READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC LAX9) name='FBA STA (09/24/2026 06:24)-LAX9'",
+   "FBA19R0NKHD4 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC SBD1) name='FBA STA (09/24/2026 06:24)-SBD1'",
+   "FBA19R0QX242 READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC MQY2) name='FBA STA (09/24/2026 06:24)-MQY2'",
+   "FBA19R0RR6GQ READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC TOL3) name='FBA STA (09/24/2026 06:24)-TOL3'",
+   "FBA19R0S5YYC READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC YHM1) name='FBA STA (09/24/2026 07:06)-YHM1'",
+   "FBA19R0S76HV READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC IND9) name='FBA STA (09/24/2026 06:24)-IND9'"
+  ],
+  "velocity_day": 0.54,
+  "days_of_stock": 2,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-KING-NAVYBLUE",
+  "size": "King",
+  "colour": "Navy Blue",
+  "asin": "B08KQK9WCY",
+  "fba_available": 167,
+  "reserved": 9,
+  "reserved_breakdown": {
+   "customer_orders": 1,
+   "fc_transfers": 6,
+   "fc_processing": 3
+  },
+  "inbound": 492,
+  "inbound_dates": [
+   "FBA19JY3ZHW1 RECEIVING inbound=6 (shipped 78, recv 72, FC GEU2) name='DL(B4/B6/S4/SF), SL(CLG-FTD) - NJ - 07/23/2026 (SF)'",
+   "FBA19LNL8KBZ READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC RFD2) name='DL(B4/BM) - AK - 08/13/2026 (G)'",
+   "FBA19LNNN07V READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQJ1) name='DL(B4/BM) - AK - 08/13/2026 (G)'",
+   "FBA19LNPQH41 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC ABE8) name='DL(B4/BM) - AK - 08/13/2026 (G)'",
+   "FBA19N7RP6W7 READY_TO_SHIP inbound=42 (shipped 42, recv 0, FC IND9) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7RQF4Q READY_TO_SHIP inbound=42 (shipped 42, recv 0, FC ITX3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VGQ1C READY_TO_SHIP inbound=42 (shipped 42, recv 0, FC BJC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VTCHW READY_TO_SHIP inbound=24 (shipped 24, recv 0, FC TOL3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7WSG18 READY_TO_SHIP inbound=24 (shipped 24, recv 0, FC MCC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N82086K READY_TO_SHIP inbound=48 (shipped 48, recv 0, FC XYY4) name='FBA STA (08/28/2026 19:55)-XYY4'",
+   "FBA19P55072C READY_TO_SHIP inbound=78 (shipped 78, recv 0, FC MEM1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P570K3X READY_TO_SHIP inbound=30 (shipped 30, recv 0, FC IWA6) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P57BDB6 READY_TO_SHIP inbound=72 (shipped 72, recv 0, FC MDW2) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P57J59L READY_TO_SHIP inbound=42 (shipped 42, recv 0, FC IPA1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P58DHV4 READY_TO_SHIP inbound=72 (shipped 72, recv 0, FC ITX3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P5HJ4RK READY_TO_SHIP inbound=42 (shipped 42, recv 0, FC YHM1) name='DL(B4/B6/S4/S6/SF), SL(S4) - NJ - 09/08/2026 (F)'"
+  ],
+  "velocity_day": 4.26,
+  "days_of_stock": 42,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-KING-OLIVE",
+  "size": "King",
+  "colour": "Olive",
+  "asin": "B08KQLK2HK",
+  "fba_available": 287,
+  "reserved": 25,
+  "reserved_breakdown": {
+   "customer_orders": 1,
+   "fc_transfers": 16,
+   "fc_processing": 9
+  },
+  "inbound": 0,
+  "inbound_dates": [
+   "FBA19QLVD3FK READY_TO_SHIP inbound=54 (shipped 54, recv 0, FC YVR4) name='FBA STA (09/21/2026 07:01)-YVR4'"
+  ],
+  "velocity_day": 3.62,
+  "days_of_stock": 87,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-KING-PURPLE",
+  "size": "King",
+  "colour": "Purple",
+  "asin": "B0BZQ3F8RQ",
+  "fba_available": 0,
+  "reserved": 0,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 0,
+   "fc_processing": 0
+  },
+  "inbound": 150,
+  "inbound_dates": [
+   "FBA19N7RP6W7 READY_TO_SHIP inbound=24 (shipped 24, recv 0, FC IND9) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7RQF4Q READY_TO_SHIP inbound=30 (shipped 30, recv 0, FC ITX3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VGQ1C READY_TO_SHIP inbound=30 (shipped 30, recv 0, FC BJC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VTCHW READY_TO_SHIP inbound=24 (shipped 24, recv 0, FC TOL3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7WSG18 READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MCC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N82086K READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC XYY4) name='FBA STA (08/28/2026 19:55)-XYY4'",
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'",
+   "FBA19QLVD3FK READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC YVR4) name='FBA STA (09/21/2026 07:01)-YVR4'"
+  ],
+  "velocity_day": 0.24,
+  "days_of_stock": 0,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-KING-SAGE GREEN",
+  "size": "King",
+  "colour": "Sage Green",
+  "asin": "B0CLKCDHHS",
+  "fba_available": 0,
+  "reserved": 2,
+  "reserved_breakdown": {
+   "customer_orders": 1,
+   "fc_transfers": 0,
+   "fc_processing": 2
+  },
+  "inbound": 366,
+  "inbound_dates": [
+   "FBA19N7RP6W7 READY_TO_SHIP inbound=36 (shipped 36, recv 0, FC IND9) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7RQF4Q READY_TO_SHIP inbound=30 (shipped 30, recv 0, FC ITX3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VGQ1C READY_TO_SHIP inbound=30 (shipped 30, recv 0, FC BJC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VTCHW READY_TO_SHIP inbound=24 (shipped 24, recv 0, FC TOL3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7WSG18 READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC MCC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19P55072C READY_TO_SHIP inbound=66 (shipped 66, recv 0, FC MEM1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P570K3X READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC IWA6) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P57BDB6 READY_TO_SHIP inbound=54 (shipped 54, recv 0, FC MDW2) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P57J59L READY_TO_SHIP inbound=36 (shipped 36, recv 0, FC IPA1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P58DHV4 READY_TO_SHIP inbound=54 (shipped 54, recv 0, FC ITX3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19QLVD3FK READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC YVR4) name='FBA STA (09/21/2026 07:01)-YVR4'"
+  ],
+  "velocity_day": 1.02,
+  "days_of_stock": 2,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-KING-TAUPE",
+  "size": "King",
+  "colour": "Taupe",
+  "asin": "B08KQJ61T7",
+  "fba_available": 0,
+  "reserved": 2,
+  "reserved_breakdown": {
+   "customer_orders": 1,
+   "fc_transfers": 0,
+   "fc_processing": 2
+  },
+  "inbound": 360,
+  "inbound_dates": [
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=84 (shipped 84, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=96 (shipped 96, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=30 (shipped 30, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=96 (shipped 96, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=54 (shipped 54, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'",
+   "FBA19QLVD3FK READY_TO_SHIP inbound=198 (shipped 198, recv 0, FC YVR4) name='FBA STA (09/21/2026 07:01)-YVR4'"
+  ],
+  "velocity_day": 0.09,
+  "days_of_stock": 23,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-KING-WHITE",
+  "size": "King",
+  "colour": "White",
+  "asin": "B08KQHRDDG",
+  "fba_available": 298,
+  "reserved": 1461,
+  "reserved_breakdown": {
+   "customer_orders": 6,
+   "fc_transfers": 1448,
+   "fc_processing": 13
+  },
+  "inbound": 948,
+  "inbound_dates": [
+   "FBA19LNL8KBZ READY_TO_SHIP inbound=90 (shipped 90, recv 0, FC RFD2) name='DL(B4/BM) - AK - 08/13/2026 (G)'",
+   "FBA19LNNN07V READY_TO_SHIP inbound=168 (shipped 168, recv 0, FC MQJ1) name='DL(B4/BM) - AK - 08/13/2026 (G)'",
+   "FBA19LNPQH41 READY_TO_SHIP inbound=84 (shipped 84, recv 0, FC ABE8) name='DL(B4/BM) - AK - 08/13/2026 (G)'",
+   "FBA19MRBDTTW READY_TO_SHIP inbound=606 (shipped 606, recv 0, FC MQJ1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/CLG-SHTs/S4) - NJ - 08/24/2026 (F)'"
+  ],
+  "velocity_day": 10.27,
+  "days_of_stock": 172,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-QUEEN-BLACK",
+  "size": "Queen",
+  "colour": "Black",
+  "asin": "B0BZQ1FBJ9",
+  "fba_available": 0,
+  "reserved": 7,
+  "reserved_breakdown": {
+   "customer_orders": 1,
+   "fc_transfers": 0,
+   "fc_processing": 7
+  },
+  "inbound": 186,
+  "inbound_dates": [
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=30 (shipped 30, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=30 (shipped 30, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=24 (shipped 24, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'",
+   "FBA19QLVD3FK READY_TO_SHIP inbound=24 (shipped 24, recv 0, FC YVR4) name='FBA STA (09/21/2026 07:01)-YVR4'",
+   "FBA19R0JWHRK READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC LAX9) name='FBA STA (09/24/2026 06:24)-LAX9'",
+   "FBA19R0NKHD4 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC SBD1) name='FBA STA (09/24/2026 06:24)-SBD1'",
+   "FBA19R0QX242 READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC MQY2) name='FBA STA (09/24/2026 06:24)-MQY2'",
+   "FBA19R0RR6GQ READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC TOL3) name='FBA STA (09/24/2026 06:24)-TOL3'",
+   "FBA19R0S76HV READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC IND9) name='FBA STA (09/24/2026 06:24)-IND9'"
+  ],
+  "velocity_day": 0.44,
+  "days_of_stock": 16,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-QUEEN-BURGUNDY-NEW",
+  "size": "Queen",
+  "colour": "Burgundy",
+  "asin": "B0CRHZ1CK3",
+  "fba_available": 115,
+  "reserved": 0,
+  "reserved_breakdown": {
+   "customer_orders": 1,
+   "fc_transfers": 0,
+   "fc_processing": 0
+  },
+  "inbound": 414,
+  "inbound_dates": [
+   "FBA19N82086K READY_TO_SHIP inbound=36 (shipped 36, recv 0, FC XYY4) name='FBA STA (08/28/2026 19:55)-XYY4'",
+   "FBA19P55072C READY_TO_SHIP inbound=90 (shipped 90, recv 0, FC MEM1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P570K3X READY_TO_SHIP inbound=66 (shipped 66, recv 0, FC IWA6) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P57BDB6 READY_TO_SHIP inbound=84 (shipped 84, recv 0, FC MDW2) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P57J59L READY_TO_SHIP inbound=72 (shipped 72, recv 0, FC IPA1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P58DHV4 READY_TO_SHIP inbound=102 (shipped 102, recv 0, FC ITX3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'"
+  ],
+  "velocity_day": 1.71,
+  "days_of_stock": 68,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-QUEEN-CHARCOAL",
+  "size": "Queen",
+  "colour": "Charcoal",
+  "asin": "B0BZQ1JFM7",
+  "fba_available": 0,
+  "reserved": 108,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 108,
+   "fc_processing": 0
+  },
+  "inbound": 30,
+  "inbound_dates": [
+   "FBA19MRBDTTW READY_TO_SHIP inbound=30 (shipped 30, recv 0, FC MQJ1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/CLG-SHTs/S4) - NJ - 08/24/2026 (F)'"
+  ],
+  "velocity_day": 0,
+  "days_of_stock": 0,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-QUEEN-CREME",
+  "size": "Queen",
+  "colour": "Creme",
+  "asin": "B08KQK91X7",
+  "fba_available": 68,
+  "reserved": 6,
+  "reserved_breakdown": {
+   "customer_orders": 2,
+   "fc_transfers": 4,
+   "fc_processing": 2
+  },
+  "inbound": 360,
+  "inbound_dates": [
+   "FBA19N7RP6W7 READY_TO_SHIP inbound=72 (shipped 72, recv 0, FC IND9) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7RQF4Q READY_TO_SHIP inbound=66 (shipped 66, recv 0, FC ITX3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VGQ1C READY_TO_SHIP inbound=60 (shipped 60, recv 0, FC BJC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VTCHW READY_TO_SHIP inbound=48 (shipped 48, recv 0, FC TOL3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7WSG18 READY_TO_SHIP inbound=42 (shipped 42, recv 0, FC MCC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N82086K READY_TO_SHIP inbound=42 (shipped 42, recv 0, FC XYY4) name='FBA STA (08/28/2026 19:55)-XYY4'",
+   "FBA19P55072C READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC MEM1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P570K3X READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC IWA6) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P57BDB6 READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC MDW2) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P57J59L READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC IPA1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P58DHV4 READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC ITX3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P5HJ4RK READY_TO_SHIP inbound=54 (shipped 54, recv 0, FC YHM1) name='DL(B4/B6/S4/S6/SF), SL(S4) - NJ - 09/08/2026 (F)'"
+  ],
+  "velocity_day": 2.21,
+  "days_of_stock": 34,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-QUEEN-GREY",
+  "size": "Queen",
+  "colour": "Grey",
+  "asin": "B08KQ5VVRV",
+  "fba_available": 73,
+  "reserved": 20,
+  "reserved_breakdown": {
+   "customer_orders": 1,
+   "fc_transfers": 19,
+   "fc_processing": 1
+  },
+  "inbound": 210,
+  "inbound_dates": [
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=36 (shipped 36, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=30 (shipped 30, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=30 (shipped 30, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=24 (shipped 24, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'",
+   "FBA19QLVD3FK READY_TO_SHIP inbound=54 (shipped 54, recv 0, FC YVR4) name='FBA STA (09/21/2026 07:01)-YVR4'",
+   "FBA19R0JWHRK READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC LAX9) name='FBA STA (09/24/2026 06:24)-LAX9'",
+   "FBA19R0NKHD4 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC SBD1) name='FBA STA (09/24/2026 06:24)-SBD1'",
+   "FBA19R0QX242 READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC MQY2) name='FBA STA (09/24/2026 06:24)-MQY2'",
+   "FBA19R0RR6GQ READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC TOL3) name='FBA STA (09/24/2026 06:24)-TOL3'",
+   "FBA19R0S5YYC READY_TO_SHIP inbound=42 (shipped 42, recv 0, FC YHM1) name='FBA STA (09/24/2026 07:06)-YHM1'",
+   "FBA19R0S76HV READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC IND9) name='FBA STA (09/24/2026 06:24)-IND9'"
+  ],
+  "velocity_day": 1.47,
+  "days_of_stock": 64,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-QUEEN-LIGHT PINK",
+  "size": "Queen",
+  "colour": "Light Pink",
+  "asin": "B0CLKCT674",
+  "fba_available": 0,
+  "reserved": 1,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 0,
+   "fc_processing": 1
+  },
+  "inbound": 216,
+  "inbound_dates": [
+   "FBA19N7RP6W7 READY_TO_SHIP inbound=24 (shipped 24, recv 0, FC IND9) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7RQF4Q READY_TO_SHIP inbound=24 (shipped 24, recv 0, FC ITX3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VGQ1C READY_TO_SHIP inbound=24 (shipped 24, recv 0, FC BJC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VTCHW READY_TO_SHIP inbound=24 (shipped 24, recv 0, FC TOL3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7WSG18 READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC MCC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N82086K READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC XYY4) name='FBA STA (08/28/2026 19:55)-XYY4'",
+   "FBA19P5HJ4RK READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC YHM1) name='DL(B4/B6/S4/S6/SF), SL(S4) - NJ - 09/08/2026 (F)'",
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'",
+   "FBA19QLVD3FK READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC YVR4) name='FBA STA (09/21/2026 07:01)-YVR4'",
+   "FBA19R0JWHRK READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC LAX9) name='FBA STA (09/24/2026 06:24)-LAX9'",
+   "FBA19R0NKHD4 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC SBD1) name='FBA STA (09/24/2026 06:24)-SBD1'",
+   "FBA19R0QX242 READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC MQY2) name='FBA STA (09/24/2026 06:24)-MQY2'",
+   "FBA19R0RR6GQ READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC TOL3) name='FBA STA (09/24/2026 06:24)-TOL3'",
+   "FBA19R0S5YYC READY_TO_SHIP inbound=36 (shipped 36, recv 0, FC YHM1) name='FBA STA (09/24/2026 07:06)-YHM1'",
+   "FBA19R0S76HV READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC IND9) name='FBA STA (09/24/2026 06:24)-IND9'"
+  ],
+  "velocity_day": 0.08,
+  "days_of_stock": 13,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-QUEEN-LIGHTBLUE",
+  "size": "Queen",
+  "colour": "Light Blue",
+  "asin": "B08KQKXQLS",
+  "fba_available": 202,
+  "reserved": 45,
+  "reserved_breakdown": {
+   "customer_orders": 1,
+   "fc_transfers": 38,
+   "fc_processing": 7
+  },
+  "inbound": 102,
+  "inbound_dates": [
+   "FBA19LNL8KBZ READY_TO_SHIP inbound=30 (shipped 30, recv 0, FC RFD2) name='DL(B4/BM) - AK - 08/13/2026 (G)'",
+   "FBA19LNNN07V READY_TO_SHIP inbound=42 (shipped 42, recv 0, FC MQJ1) name='DL(B4/BM) - AK - 08/13/2026 (G)'",
+   "FBA19LNPQH41 READY_TO_SHIP inbound=30 (shipped 30, recv 0, FC ABE8) name='DL(B4/BM) - AK - 08/13/2026 (G)'",
+   "FBA19QLVD3FK READY_TO_SHIP inbound=24 (shipped 24, recv 0, FC YVR4) name='FBA STA (09/21/2026 07:01)-YVR4'",
+   "FBA19R0S5YYC READY_TO_SHIP inbound=48 (shipped 48, recv 0, FC YHM1) name='FBA STA (09/24/2026 07:06)-YHM1'"
+  ],
+  "velocity_day": 3.57,
+  "days_of_stock": 70,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-QUEEN-LIGHTGREY",
+  "size": "Queen",
+  "colour": "Light Grey",
+  "asin": "B08KQJDSVC",
+  "fba_available": 44,
+  "reserved": 1,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 0,
+   "fc_processing": 1
+  },
+  "inbound": 222,
+  "inbound_dates": [
+   "FBA19N7RP6W7 READY_TO_SHIP inbound=48 (shipped 48, recv 0, FC IND9) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7RQF4Q READY_TO_SHIP inbound=42 (shipped 42, recv 0, FC ITX3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VGQ1C READY_TO_SHIP inbound=54 (shipped 54, recv 0, FC BJC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VTCHW READY_TO_SHIP inbound=48 (shipped 48, recv 0, FC TOL3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7WSG18 READY_TO_SHIP inbound=30 (shipped 30, recv 0, FC MCC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N82086K READY_TO_SHIP inbound=30 (shipped 30, recv 0, FC XYY4) name='FBA STA (08/28/2026 19:55)-XYY4'",
+   "FBA19P5HJ4RK READY_TO_SHIP inbound=48 (shipped 48, recv 0, FC YHM1) name='DL(B4/B6/S4/S6/SF), SL(S4) - NJ - 09/08/2026 (F)'"
+  ],
+  "velocity_day": 1.52,
+  "days_of_stock": 30,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-QUEEN-LIGHTOLIVE",
+  "size": "Queen",
+  "colour": "Light Olive",
+  "asin": "B0BZQ19Z44",
+  "fba_available": 113,
+  "reserved": 0,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 0,
+   "fc_processing": 0
+  },
+  "inbound": 0,
+  "inbound_dates": null,
+  "velocity_day": 0.65,
+  "days_of_stock": 174,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-QUEEN-MIDGREY",
+  "size": "Queen",
+  "colour": "Midgrey",
+  "asin": "B0BZQ18QJB",
+  "fba_available": 181,
+  "reserved": 2,
+  "reserved_breakdown": {
+   "customer_orders": 1,
+   "fc_transfers": 0,
+   "fc_processing": 2
+  },
+  "inbound": 0,
+  "inbound_dates": null,
+  "velocity_day": 2.07,
+  "days_of_stock": 89,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-QUEEN-NAVYBLUE",
+  "size": "Queen",
+  "colour": "Navy Blue",
+  "asin": "B08KQKKRNC",
+  "fba_available": 264,
+  "reserved": 2,
+  "reserved_breakdown": {
+   "customer_orders": 4,
+   "fc_transfers": 0,
+   "fc_processing": 2
+  },
+  "inbound": 150,
+  "inbound_dates": [
+   "FBA19LP4SKXM READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC YYZ7) name='FBA STA (08/13/2026 09:08)-YYZ7'",
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=30 (shipped 30, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=24 (shipped 24, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'",
+   "FBA19QLVD3FK READY_TO_SHIP inbound=60 (shipped 60, recv 0, FC YVR4) name='FBA STA (09/21/2026 07:01)-YVR4'",
+   "FBA19R0JWHRK READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC LAX9) name='FBA STA (09/24/2026 06:24)-LAX9'",
+   "FBA19R0NKHD4 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC SBD1) name='FBA STA (09/24/2026 06:24)-SBD1'",
+   "FBA19R0QX242 READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MQY2) name='FBA STA (09/24/2026 06:24)-MQY2'",
+   "FBA19R0RR6GQ READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC TOL3) name='FBA STA (09/24/2026 06:24)-TOL3'",
+   "FBA19R0S76HV READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC IND9) name='FBA STA (09/24/2026 06:24)-IND9'"
+  ],
+  "velocity_day": 2.63,
+  "days_of_stock": 102,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-QUEEN-OLIVE",
+  "size": "Queen",
+  "colour": "Olive",
+  "asin": "B08KQJRSW6",
+  "fba_available": 324,
+  "reserved": 0,
+  "reserved_breakdown": {
+   "customer_orders": 2,
+   "fc_transfers": 0,
+   "fc_processing": 0
+  },
+  "inbound": 0,
+  "inbound_dates": [
+   "FBA19QLVD3FK READY_TO_SHIP inbound=48 (shipped 48, recv 0, FC YVR4) name='FBA STA (09/21/2026 07:01)-YVR4'"
+  ],
+  "velocity_day": 3.14,
+  "days_of_stock": 104,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-QUEEN-PURPLE",
+  "size": "Queen",
+  "colour": "Purple",
+  "asin": "B0BZQ3ZGNG",
+  "fba_available": 0,
+  "reserved": 11,
+  "reserved_breakdown": {
+   "customer_orders": 2,
+   "fc_transfers": 10,
+   "fc_processing": 1
+  },
+  "inbound": 108,
+  "inbound_dates": [
+   "FBA19LNL8KBZ READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC RFD2) name='DL(B4/BM) - AK - 08/13/2026 (G)'",
+   "FBA19LNNN07V READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQJ1) name='DL(B4/BM) - AK - 08/13/2026 (G)'",
+   "FBA19LNPQH41 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC ABE8) name='DL(B4/BM) - AK - 08/13/2026 (G)'",
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=24 (shipped 24, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'"
+  ],
+  "velocity_day": 1.5,
+  "days_of_stock": 8,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-QUEEN-SAGE GREEN",
+  "size": "Queen",
+  "colour": "Sage Green",
+  "asin": "B0CLKJL9KD",
+  "fba_available": 178,
+  "reserved": 28,
+  "reserved_breakdown": {
+   "customer_orders": 2,
+   "fc_transfers": 26,
+   "fc_processing": 2
+  },
+  "inbound": 0,
+  "inbound_dates": [
+   "FBA19MV0YVFX READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC YYZ7) name='DL(B4/B6/S4/S6/SF) - NJ - 08/25/2026 (F)'",
+   "FBA19QLVD3FK READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC YVR4) name='FBA STA (09/21/2026 07:01)-YVR4'"
+  ],
+  "velocity_day": 2.03,
+  "days_of_stock": 102,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-QUEEN-TAUPE",
+  "size": "Queen",
+  "colour": "Taupe",
+  "asin": "B08KQJMZ8Q",
+  "fba_available": 156,
+  "reserved": 2,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 0,
+   "fc_processing": 2
+  },
+  "inbound": 846,
+  "inbound_dates": [
+   "FBA19LP4SKXM READY_TO_SHIP inbound=366 (shipped 366, recv 0, FC YYZ7) name='FBA STA (08/13/2026 09:08)-YYZ7'",
+   "FBA19N7RP6W7 READY_TO_SHIP inbound=114 (shipped 114, recv 0, FC IND9) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7RQF4Q READY_TO_SHIP inbound=132 (shipped 132, recv 0, FC ITX3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VGQ1C READY_TO_SHIP inbound=108 (shipped 108, recv 0, FC BJC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VTCHW READY_TO_SHIP inbound=78 (shipped 78, recv 0, FC TOL3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7WSG18 READY_TO_SHIP inbound=96 (shipped 96, recv 0, FC MCC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19P55072C READY_TO_SHIP inbound=60 (shipped 60, recv 0, FC MEM1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P570K3X READY_TO_SHIP inbound=42 (shipped 42, recv 0, FC IWA6) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P57BDB6 READY_TO_SHIP inbound=78 (shipped 78, recv 0, FC MDW2) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P57J59L READY_TO_SHIP inbound=60 (shipped 60, recv 0, FC IPA1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'",
+   "FBA19P58DHV4 READY_TO_SHIP inbound=78 (shipped 78, recv 0, FC ITX3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 09/08/2026 (F)'"
+  ],
+  "velocity_day": 3.41,
+  "days_of_stock": 47,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-QUEEN-WHITE",
+  "size": "Queen",
+  "colour": "White",
+  "asin": "B08KQJGM74",
+  "fba_available": 82,
+  "reserved": 46,
+  "reserved_breakdown": {
+   "customer_orders": 5,
+   "fc_transfers": 41,
+   "fc_processing": 5
+  },
+  "inbound": 786,
+  "inbound_dates": [
+   "FBA19LNL8KBZ READY_TO_SHIP inbound=30 (shipped 30, recv 0, FC RFD2) name='DL(B4/BM) - AK - 08/13/2026 (G)'",
+   "FBA19LNNN07V READY_TO_SHIP inbound=48 (shipped 48, recv 0, FC MQJ1) name='DL(B4/BM) - AK - 08/13/2026 (G)'",
+   "FBA19LNPQH41 READY_TO_SHIP inbound=30 (shipped 30, recv 0, FC ABE8) name='DL(B4/BM) - AK - 08/13/2026 (G)'",
+   "FBA19N7RP6W7 READY_TO_SHIP inbound=174 (shipped 174, recv 0, FC IND9) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7RQF4Q READY_TO_SHIP inbound=144 (shipped 144, recv 0, FC ITX3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VGQ1C READY_TO_SHIP inbound=120 (shipped 120, recv 0, FC BJC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VTCHW READY_TO_SHIP inbound=120 (shipped 120, recv 0, FC TOL3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7WSG18 READY_TO_SHIP inbound=120 (shipped 120, recv 0, FC MCC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19QLVD3FK READY_TO_SHIP inbound=186 (shipped 186, recv 0, FC YVR4) name='FBA STA (09/21/2026 07:01)-YVR4'"
+  ],
+  "velocity_day": 5.63,
+  "days_of_stock": 23,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-TWIN-BLACK",
+  "size": "Twin",
+  "colour": "Black",
+  "asin": "B0BZPZN1GV",
+  "fba_available": 17,
+  "reserved": 1,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 0,
+   "fc_processing": 1
+  },
+  "inbound": 30,
+  "inbound_dates": [
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'"
+  ],
+  "velocity_day": 0.33,
+  "days_of_stock": 55,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-TWIN-BURGUNDY-NEW",
+  "size": "Twin",
+  "colour": "Burgundy",
+  "asin": "B0CRHX3LKM",
+  "fba_available": 133,
+  "reserved": 0,
+  "reserved_breakdown": {
+   "customer_orders": 1,
+   "fc_transfers": 0,
+   "fc_processing": 0
+  },
+  "inbound": 0,
+  "inbound_dates": [
+   "FBA19LP4SKXM READY_TO_SHIP inbound=132 (shipped 132, recv 0, FC YYZ7) name='FBA STA (08/13/2026 09:08)-YYZ7'"
+  ],
+  "velocity_day": 0.2,
+  "days_of_stock": 665,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-TWIN-CHARCOAL",
+  "size": "Twin",
+  "colour": "Charcoal",
+  "asin": "B0BZQ228PV",
+  "fba_available": 0,
+  "reserved": 30,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 30,
+   "fc_processing": 0
+  },
+  "inbound": 6,
+  "inbound_dates": [
+   "FBA19MRBDTTW READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQJ1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/CLG-SHTs/S4) - NJ - 08/24/2026 (F)'",
+   "FBA19QLVD3FK READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC YVR4) name='FBA STA (09/21/2026 07:01)-YVR4'"
+  ],
+  "velocity_day": 0,
+  "days_of_stock": 0,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-TWIN-CREME",
+  "size": "Twin",
+  "colour": "Creme",
+  "asin": "B08KQKS54Q",
+  "fba_available": 48,
+  "reserved": 0,
+  "reserved_breakdown": {
+   "customer_orders": 1,
+   "fc_transfers": 0,
+   "fc_processing": 0
+  },
+  "inbound": 0,
+  "inbound_dates": [
+   "FBA19LP4SKXM READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC YYZ7) name='FBA STA (08/13/2026 09:08)-YYZ7'"
+  ],
+  "velocity_day": 0.28,
+  "days_of_stock": 172,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-TWIN-GREY",
+  "size": "Twin",
+  "colour": "Grey",
+  "asin": "B08KQKJXDK",
+  "fba_available": 46,
+  "reserved": 0,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 0,
+   "fc_processing": 0
+  },
+  "inbound": 0,
+  "inbound_dates": null,
+  "velocity_day": 0.3,
+  "days_of_stock": 154,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-TWIN-LIGHT PINK",
+  "size": "Twin",
+  "colour": "Light Pink",
+  "asin": "B0CLKDMGHC",
+  "fba_available": 1,
+  "reserved": 3,
+  "reserved_breakdown": {
+   "customer_orders": 1,
+   "fc_transfers": 0,
+   "fc_processing": 3
+  },
+  "inbound": 74,
+  "inbound_dates": [
+   "FBA19J4C00BN READY_TO_SHIP inbound=8 (shipped 8, recv 0, FC RYY2) name='DL(B4,B6) - HD - 07/13/2026 (G)'",
+   "FBA19N7RP6W7 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC IND9) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7RQF4Q READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC ITX3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VGQ1C READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC BJC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7VTCHW READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC TOL3) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19N7WSG18 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MCC1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/S4) - NJ - 08/28/2026 (G)'",
+   "FBA19QLJ0ZP4 READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQY2) name='FBA STA (09/21/2026 05:36)-MQY2'",
+   "FBA19QLJLR1F READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC FTW1) name='FBA STA (09/21/2026 05:36)-FTW1'",
+   "FBA19QLK9CYH READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MCC1) name='FBA STA (09/21/2026 05:36)-MCC1'",
+   "FBA19QLKCVBW READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC MQJ1) name='FBA STA (09/21/2026 05:36)-MQJ1'",
+   "FBA19QLKHC6Q READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC RMN3) name='FBA STA (09/21/2026 05:36)-RMN3'"
+  ],
+  "velocity_day": 0.9,
+  "days_of_stock": 5,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-TWIN-LIGHTBLUE",
+  "size": "Twin",
+  "colour": "Light Blue",
+  "asin": "B08KQJGSW2",
+  "fba_available": 40,
+  "reserved": 5,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 2,
+   "fc_processing": 3
+  },
+  "inbound": 66,
+  "inbound_dates": [
+   "FBA19LP4SKXM READY_TO_SHIP inbound=24 (shipped 24, recv 0, FC YYZ7) name='FBA STA (08/13/2026 09:08)-YYZ7'",
+   "FBA19R0JWHRK READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC LAX9) name='FBA STA (09/24/2026 06:24)-LAX9'",
+   "FBA19R0NKHD4 READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC SBD1) name='FBA STA (09/24/2026 06:24)-SBD1'",
+   "FBA19R0QX242 READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC MQY2) name='FBA STA (09/24/2026 06:24)-MQY2'",
+   "FBA19R0RR6GQ READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC TOL3) name='FBA STA (09/24/2026 06:24)-TOL3'",
+   "FBA19R0S76HV READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC IND9) name='FBA STA (09/24/2026 06:24)-IND9'"
+  ],
+  "velocity_day": 0.61,
+  "days_of_stock": 74,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-TWIN-LIGHTGREY",
+  "size": "Twin",
+  "colour": "Light Grey",
+  "asin": "B08KQK8Z1J",
+  "fba_available": 44,
+  "reserved": 8,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 6,
+   "fc_processing": 2
+  },
+  "inbound": 0,
+  "inbound_dates": null,
+  "velocity_day": 0.06,
+  "days_of_stock": 867,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-TWIN-LIGHTOLIVE",
+  "size": "Twin",
+  "colour": "Light Olive",
+  "asin": "B0BZQ3XM7P",
+  "fba_available": 17,
+  "reserved": 7,
+  "reserved_breakdown": {
+   "customer_orders": 1,
+   "fc_transfers": 0,
+   "fc_processing": 7
+  },
+  "inbound": 48,
+  "inbound_dates": [
+   "FBA19J4C00BN READY_TO_SHIP inbound=48 (shipped 48, recv 0, FC RYY2) name='DL(B4,B6) - HD - 07/13/2026 (G)'"
+  ],
+  "velocity_day": 0.04,
+  "days_of_stock": 600,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-TWIN-MIDGREY",
+  "size": "Twin",
+  "colour": "Midgrey",
+  "asin": "B0BZQ21K22",
+  "fba_available": 69,
+  "reserved": 1,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 0,
+   "fc_processing": 1
+  },
+  "inbound": 0,
+  "inbound_dates": [
+   "FBA19QLVD3FK READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC YVR4) name='FBA STA (09/21/2026 07:01)-YVR4'"
+  ],
+  "velocity_day": 0.26,
+  "days_of_stock": 270,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-TWIN-NAVYBLUE",
+  "size": "Twin",
+  "colour": "Navy Blue",
+  "asin": "B08KQJRL41",
+  "fba_available": 57,
+  "reserved": 0,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 0,
+   "fc_processing": 0
+  },
+  "inbound": 0,
+  "inbound_dates": null,
+  "velocity_day": 0.71,
+  "days_of_stock": 81,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-TWIN-OLIVE",
+  "size": "Twin",
+  "colour": "Olive",
+  "asin": "B08KQKKVSX",
+  "fba_available": 49,
+  "reserved": 0,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 0,
+   "fc_processing": 0
+  },
+  "inbound": 0,
+  "inbound_dates": [
+   "FBA19QLVD3FK READY_TO_SHIP inbound=6 (shipped 6, recv 0, FC YVR4) name='FBA STA (09/21/2026 07:01)-YVR4'"
+  ],
+  "velocity_day": 0.36,
+  "days_of_stock": 137,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-TWIN-PURPLE",
+  "size": "Twin",
+  "colour": "Purple",
+  "asin": "B0BZQ39BTX",
+  "fba_available": 33,
+  "reserved": 1,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 0,
+   "fc_processing": 1
+  },
+  "inbound": 0,
+  "inbound_dates": null,
+  "velocity_day": 0.44,
+  "days_of_stock": 78,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-TWIN-SAGE GREEN",
+  "size": "Twin",
+  "colour": "Sage Green",
+  "asin": "B0CLKBT95K",
+  "fba_available": 20,
+  "reserved": 19,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 6,
+   "fc_processing": 13
+  },
+  "inbound": 0,
+  "inbound_dates": [
+   "FBA19QLVD3FK READY_TO_SHIP inbound=12 (shipped 12, recv 0, FC YVR4) name='FBA STA (09/21/2026 07:01)-YVR4'"
+  ],
+  "velocity_day": 0.59,
+  "days_of_stock": 67,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-TWIN-TAUPE",
+  "size": "Twin",
+  "colour": "Taupe",
+  "asin": "B08KQJBFFZ",
+  "fba_available": 45,
+  "reserved": 2,
+  "reserved_breakdown": {
+   "customer_orders": 0,
+   "fc_transfers": 0,
+   "fc_processing": 2
+  },
+  "inbound": 0,
+  "inbound_dates": null,
+  "velocity_day": 0.52,
+  "days_of_stock": 91,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ },
+ {
+  "sku": "BAMBOO-TWIN-WHITE",
+  "size": "Twin",
+  "colour": "White",
+  "asin": "B08KQKBM4Q",
+  "fba_available": 0,
+  "reserved": 154,
+  "reserved_breakdown": {
+   "customer_orders": 2,
+   "fc_transfers": 154,
+   "fc_processing": 0
+  },
+  "inbound": 48,
+  "inbound_dates": [
+   "FBA19MRBDTTW READY_TO_SHIP inbound=48 (shipped 48, recv 0, FC MQJ1) name='DL(B4/B6/S4/S6/SF), SL(CLG-FTD/CLG-SHTs/S4) - NJ - 08/24/2026 (F)'",
+   "FBA19QLVD3FK READY_TO_SHIP inbound=18 (shipped 18, recv 0, FC YVR4) name='FBA STA (09/21/2026 07:01)-YVR4'"
+  ],
+  "velocity_day": 0.95,
+  "days_of_stock": 163,
+  "aged_181_270": null,
+  "aged_271_365": null,
+  "aged_365_plus": null,
+  "ltsf_flag": null,
+  "source": "Sellerboard inventory (Ecotero acct, Amazon.com, FBA, pulled 2026-09-28); size/colour per Command Center ppc_product_context pid 59; age/LTSF not exposed by any available tool"
+ }
+]
