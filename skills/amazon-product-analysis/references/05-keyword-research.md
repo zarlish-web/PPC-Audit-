@@ -166,7 +166,7 @@ Reference text = live title + all bullets; lowercase; strip ™®©–; keep a-z
 - Indexing proxy when no indexing check exists: crawl rank present = ranking; a rank-targeted term with no crawl rank → "Not ranking — check indexing"; blocks a push until fixed. [B6]
 - **Organic rank** = median over the window, unranked days counted; **NR if half or more of the days are unranked**. 0 / blank in Data Rova = not ranked (store as 101). Match terms exact lowercase/trim only — no fuzzy or reordered matching; untracked → "not tracked". [B6, SR]
 - Name the rank source on every row: two rank tables can disagree by ~7 places (Example (B6)). Ranking verdicts need **≥ 1 month** of rank history (ideally 3); less → out of scope for a ranking verdict. [B6, PB]
-- Rank arc: state overall, 14-day and 7-day separately; exclude stock-out and re-route stretches; deal-state arc kept separate — the clean arc governs. Rank drop > 10 places in 30 days while getting clicks → freeze price moves, find the cause (`09` §4). [PB, B6 E4]
+- Rank arc: state overall, 14-day and 7-day separately; exclude stock-out and re-route stretches; deal-state arc kept separate — the clean arc governs. Rank drop > 10 places in 30 days while getting clicks → freeze price moves, find the cause (`09` §5, `06` §6.3). [PB, B6 E4]
 - Organic rank with no paid support on a relevant term = cheapest coverage (route aged SKUs there). Backend terms close coverage gaps first, free. [LTSF]
 
 ---
@@ -236,7 +236,7 @@ Applies to every search term (and every untargeted universe term through steps 1
 | 1 | **ASIN** | Term matches `^b0[a-z0-9]{8}$` | Judged with product targeting (own → DEFEND / cross-sell; competitor → OFFENSIVE / TEST / AVOID, SCALE / REDUCE / BLOCK) in `08` | [B6 R-X, E] |
 | 2 | **Brand** | Own brand or misspelling | **DEFEND**: owned by brand exact campaign(s) on the hero variation, enough budget, judged on ACoS ≤ break-even. Never blocked. Brand negatives in generic discovery only after the brand exacts are defensive, on the hero and funded | [B6 R-K8, R-N3, R-S4] |
 | 3 | **Funded push** | Term qualifies on every push gate and is funded within the spend limit | **PUSH** — price, base, boost and budget per the push plan (`06`, `07`) | [B6 R-K1, R-P1] |
-| 4 | **Push candidate held** | Rank-targeted core term failing a push gate: listing flag (SQP CTR or CVR < market on ≥ 30 clicks), ceiling < our TOS CPC, hero stock < 7 days or < days to next arrival, keyword not live, not indexed | **WAIT** — name the failing gate; runs at break-even meanwhile; ceiling-below-cost needs an owner decision on a time-limited ceiling raise | [B6 R-P1, E14, E15, F25, F26] |
+| 4 | **Push candidate held** | Rank-targeted core term failing a push gate: listing flag (SQP CTR or CVR < market on ≥ 30 clicks), ceiling < our TOS CPC, hero stock not Green (< 60 days, stock-out before the next inbound, cover < days to next arrival + 7, or projected cover leaving Green before the checkpoint), keyword not live, not indexed | **WAIT** — name the failing gate; runs at break-even meanwhile; ceiling-below-cost needs an owner decision on a time-limited ceiling raise | [B6 R-P1, E14, E15, F25, F26, #9, #42, #50] |
 | 5 | **At target** | Rank-targeted, organic rank ≤ target | **HOLD RANK** — keep today's price, no raise; rejoins the push if it slips past target; taper only after 2 clean weeks at target (`06`) | [B6 R-P8, #26] |
 | 6 | **Too far** | Rank-targeted, current rank more than **~30 places** from target | **MONITOR (too far)** — discovery / break-even only; revisit when within ~30 places | [B6 R-P1 reach] |
 | 7 | **Irrelevant / other product type** | Other product type, Not relevant (< 35% / "Not Relevant") or no relevancy signal, **≥ 5 clicks, 0 orders**; or moderate (35–60%) ≥ 5 clicks, 0 orders, not a rank target; or structurally off-target (competitor brand without a conquest owner, foreign ASIN, other category) | **BLOCK** — negative exact (or phrase, §11.1) in every discovery campaign that serves it. > 10 clicks & 0 orders listed first | [STR, PB, B6 R-K2, #12, #21] |
@@ -297,7 +297,7 @@ Example (B6, 841 terms): MONITOR 430 · ASIN → competitor tab 198 · DEFEND 94
 - Relevant non-converters go to the **fix queue**, never the negative list. [PB, SR]
 - Auto own-ASIN matches: negated unless a stated defensive decision exists (`08`). [WB, DR]
 
-Example (B6): only 3 terms met BLOCK ($105 / 90 d) — "silk sheets" (other product type, 14 clicks, 0 orders), "full xl bamboo sheets" (Not Relevant, 10 clicks), "cooling sheets twin" (25 clicks, 0 orders, owner paused).
+Example (B6): only 3 terms met BLOCK ($105 / 90 d) — "silk sheets" (other product type, 14 clicks, 0 orders), "full xl bamboo sheets" (Not Relevant, 10 clicks), "cooling sheets twin" (25 clicks, 0 orders, owner paused — labelled Relevant, so under #38 it is REVIEW, not BLOCK).
 
 ---
 
@@ -318,12 +318,12 @@ Example (B6): only 3 terms met BLOCK ($105 / 90 d) — "silk sheets" (other prod
 | > 30% | > BE | Broad / phrase discovery; improve efficiency first (not a harvest) | Broad |
 | none | — | Standard exact | Exact |
 
-5. Objective suggestion (STR), then apply resolution #15: ACoS ≤ 15% → Profitable Conversion; SV ≥ 5,000 and (no rank or organic > 20) → Market Share **only if the owner declared Market Share**, else Profitable Conversion; rank target and (no rank or organic − target > 10) → Ranking (subject to the goal gate); ACoS > 30% → Discovery; else Profitable Conversion. Harvested exacts start at **break-even** on the right variation (colour-named → that colour; generic → size's best seller). [STR, B6 R-K4, #15]
+5. Objective: decided from targeting and term class per `06` §1 (resolutions #15, #36) — a harvested generic-niche exact is tagged Ranking and runs non-push at break-even until it qualifies for the push (goal gate applies); colour / competitor-brand / language / misspelling / adjacent-generic exacts → Profitable Conversion; Market Share **only if the owner declared it**. STR's ACoS-based objective suggestion (≤ 15% → PC; ACoS > 30% → Discovery; etc.) is reference only. Harvested exacts start at **break-even** on the right variation (colour-named → that colour; generic → size's best seller). [STR, B6 R-K4, #15]
 6. Override: a decided ranking head carried by auto close-match graduates below 3 orders (say which case). [PB]
 7. Auto terms are read split by close / loose / substitutes / complements; an untagged converting term is classified before harvest. [PB]
-8. No harvest builds on deal days; queue for the post-deal audit. Harvest is a provisional rule in the plan-builder source — confirm with the owner before it first drives a build on a product, then it holds. [B6, PB]
+8. No harvest builds on deal days; queue for the post-deal audit. The harvest rule is the resolved default (#22); an owner override is recorded if given. [B6, PB, #22]
 
-Example (B6): "king size sheets with corner straps" — no exact owner, 3 orders on 9 clicks at 3% ACoS → exact Conversions campaign at break-even on 1 Oct, then negative exact in the discovery source.
+Example (B6): "king size sheets with corner straps" — no exact owner, 3 orders on 9 clicks at 3% ACoS → exact campaign at break-even on 1 Oct (built as Conversions in B6; under #15 a generic-niche exact is tagged Ranking, non-push), then negative exact in the discovery source.
 
 ---
 
@@ -331,7 +331,7 @@ Example (B6): "king size sheets with corner straps" — no exact owner, 3 orders
 
 - **Reactive path:** a term needs **≥ 100 qualified clicks on its own exact history** before a broad / phrase / SB / SBV layer is built. **Proactive path:** a syntax coverage gap (e.g. primary root at 0% phrase), judged on closing the gap. State which path. [PB, #23]
 - < 100 clicks → ineligible, **no pricing**; near-miss = within ~20. Keyword vs root-cluster count basis → ask the owner. Singular/plural share one count; word-order variants don't. Check for an existing broad / phrase / auto instance before building. [PB]
-- **Price below exact, no placement modifier at launch: Broad ~60%, Phrase ~80% of the exact ceiling**; relevancy tier sets position (highly → upper end, semi → lower end). [PB]
+- **Price below exact, no placement modifier at launch: Broad ~60%, Phrase ~80% of the exact ceiling** — here the exact term's **break-even** CPC, never the 2× push ceiling (#47); relevancy tier sets position (highly → upper end, semi → lower end). [PB, #47]
 - Judge discovery from **15 clicks**, on converting terms per $100 and graduation into exact — not on CPA in its first 30 days. Four auto groups reported separately. Utilisation floor 70%+. [PB, DR]
 - Discovery campaigns advertise the size's **clearance variation** (≥ 180 days cover, or ≥ 90 days while selling ≤ size median); ranking stock is reserved for exact. [B6 R-C2, #29]
 - Alternative (PF, not default): build phrase/broad only when non-branded cost/order < exact average — record if the owner prefers it. [PF]
@@ -348,7 +348,7 @@ Example (B6): "king size sheets with corner straps" — no exact owner, 3 orders
 
 ### 14.2 Match type and objective
 - **Default SP Exact for every keyword, every phase, every tier.** Never broad/phrase by default. Single override: the MKL flags the term already running in another match type → surface that type; precedence SP Phrase → SP Broad → SB Exact → SB Phrase → SB Broad. [PH]
-- Hero (VHSV) or rank-targeted → Ranking; other exact → Profitable Conversion; existing non-exact → inherit. Class constraints (§3) override: colour / competitor / language / misspelling / adjacent generic are never Ranking. **Bidding strategy for every new campaign: dynamic bids – down only.** [PH, B6 R-O1, #8]
+- Objective from targeting and class (`06` §1, #15, #36): generic-niche exact (core / attribute / size) → Ranking (push only when it qualifies; otherwise non-push at break-even); colour / competitor / language / misspelling / adjacent generic exact → Profitable Conversion, never Ranking; existing non-exact → per `06` §1 (Broad / Phrase → Discovery, #35). **Bidding strategy for every new campaign: dynamic bids – down only.** [PH, B6 R-O1, #8]
 - Variation routing (colour-aware): term contains a colour and a matching colour SKU exists → that SKU; else the syntax's preferred SKU (ranking → the size's best seller; discovery → clearance variation); **size never changes**; routed SKU needs ≥ 21 days of cover to launch (not the 60-day push gate). [PH, PB, B6, #29]
 
 ### 14.3 Launch selection by goal and relevancy tier
@@ -361,10 +361,10 @@ Example (B6): "king size sheets with corner straps" — no exact owner, 3 orders
 [PB]
 
 - Order within the set: **tightest rank target first**; SV floor ~250 (confirm). Singular/plural = one identity; word-order variants stay separate. Attribute in the query routes only to a matching SKU; that SKU OOS → hold at bid floor, no substitute; a term failing routing eligibility is never built (not built-then-paused). [PB]
-- **Semi-relevant opens only when all six clear:** (1) rank target reached or closing; (2) five-property gate cleared (sized, dated, ceilinged, predicted, funded — `06`); (3) TACoS within its band; (4) margin holding; (5) spend ≈ plan; (6) minimum data window met. If 2–3 cycles of real lever fixes still fail, semi opens anyway with the reason stated. [PB]
+- **Semi-relevant opens only when all six clear:** (1) rank target reached or closing; (2) five-property gate cleared (sized, dated, ceilinged, predicted, funded — `06`); (3) TACoS within the owner's band, only if the owner set one (otherwise monitored only, #17); (4) margin holding; (5) spend ≈ plan; (6) minimum data window met. If 2–3 cycles of real lever fixes still fail, semi opens anyway with the reason stated. [PB]
 - **Launch price = break-even maths, not Amazon's suggested range** (owner rule): base and TOS modifier solved from the routed SKU's break-even CPC per placement (`07`). The source's placement shape is kept: Growth / Mixed / Profit-First start with a TOS modifier (source: +100%), Clearance with none. [PB, #18, #33]
-- Expected spend per keyword (phasing) = DSTR × CPC ÷ listing CVR, with CPC = the routed SKU's break-even CPC and CVR = own listing CVR (0.20 only as the phasing default when no own rate exists — label it). [PH, #18]
-- No launches, folds or structural builds on deal days. Human confirmation: SV 500+, structural change, budget move > $50/day. [B6 E1, PB]
+- Expected spend per keyword (phasing) = (DSTR − our organic sales on the term, labelled proxy; 0 for a new build) × CPC ÷ CVR, with CPC = the routed SKU's break-even CPC and CVR = own achieved CVR (0.20 only as the phasing default when no own rate exists — label it). Never DSTR ÷ CVR without organic netting (WB D-78). [PH, #18, #19]
+- No launches, folds or structural builds on deal days. Human confirmation: SV 500+, gate failures, structural change, bid moves > 25% outside an approved push plan, budget move > $50/day. [B6 E1, PB, #41]
 
 ---
 
@@ -415,7 +415,7 @@ Summing SQP market columns · reordering words or collapsing word-order variants
 
 ## 18. Open questions for the owner
 
-1. **Relevant zero-order term with no live exact owner.** Resolution #12 routes relevant ≥ 20-click zero-order terms to reduce + fix queue (not negated); B6 blocked "cooling sheets twin" (label "Relevant", 25 clicks, 0 orders, owner paused) in discovery. This file uses REVIEW for high relevancy without a live owner and BLOCK only for moderate / not relevant. Confirm, or set the rule.
+1. **Relevant zero-order term with no live exact owner.** Resolved — see 13 #38: REVIEW (fix queue); BLOCK only when irrelevant or another product type; with a live owner → REDUCE.
 2. **Label mapping.** MKL labels "Relevant", "Lower Relevant" and "Generic" have no tier in any source. This file uses the numeric score (listing scorer if absent). Confirm or give a mapping.
 3. **Head-generic guard threshold.** SV ≥ 50,000 comes from one B6 case ("bed sheets", 56,136). Confirm per product, or set a class-only rule (R-CI1: generic terms never pushed, whatever volume).
 4. **Harvest ACoS tiers and the 45% runaway filter** are stated against a 30% break-even. Confirm scaling them as shares of the product's break-even.

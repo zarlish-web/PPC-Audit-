@@ -53,7 +53,7 @@ Column key for the tables: **Formula** (definition = formula) · **Source / wind
 | Spend | Σ ad cost | Bulk / Command Center; daily/30/90 d | Reconcile bulk vs console (01 C1–C2) | Owner spend limit | Spend limit, budgets | Product tile ≠ Σ campaign rows when campaigns are shared [B6] |
 | CPC | spend ÷ clicks | Same | — | vs break-even CPC and ceiling | Price checks | Down-only bidding lowers realised CPC below the bid [B6] |
 | Sales (ad) | Σ 7-day attributed sales | Bulk / STR `7 Day Total Sales ` | Settle 7 d | — | ACoS, RPC | Includes halo sales on other ASINs [PF] |
-| ACoS | spend ÷ ad sales | Same; 30 and 90 d | Blank with 0 sales (quarantine if stated) | Break-even ACoS; 2 × BE = block line; non-ranking: over BE on both 30 & 90 d → cut ≤ 30% of base; > 2 × BE on ≥ 30 clicks → BLOCK; ≤ 50% BE with orders → scale-eligible (+≤ 25%) | Non-ranking CUT/REDUCE/BLOCK/SCALE; keyword rules | Deal price lowers AOV and raises ACoS [13 #16, B6] |
+| ACoS | spend ÷ ad sales | Same; 30 and 90 d | Blank with 0 sales (quarantine if stated) | Break-even ACoS; 2 × BE = stop line; non-ranking: over BE on both 30 & 90 d → CUT ≤ 30% of base; > 2 × BE on ≥ 30 clicks → stop (proposed for owner confirmation; search term / target: BLOCK); ≤ 50% BE with orders → SCALE-eligible (+≤ 25%) | Non-ranking CUT/BLOCK/SCALE; keyword REDUCE/BLOCK | Deal price lowers AOV and raises ACoS [13 #16, B6] |
 | Real ACoS | spend on rows **with** sales ÷ sales | STR | — | Healthy < BE (STR default 30%) | Match-type/root health | Excludes waste by design — always shown with WAS% [E] |
 | ROAS | ad sales ÷ spend | Bulk | = 1 ÷ ACoS | — | Reported only | — |
 | CPA (cost per order) | spend ÷ orders = CPC ÷ CVR | Derived | — | ≤ margin/unit (non-push); ≤ 2 × margin/unit (push) | Push loss bound; conversion objective judged on CPA vs ceiling | Blank with 0 orders [B6, PB] |
@@ -101,8 +101,8 @@ Column key for the tables: **Formula** (definition = formula) · **Source / wind
 | TOS rebuild (hold TOS price when base changes) | new boost % = (target TOS price ÷ new base − 1) × 100 | Derived | 0–900 | Written in the same row as the base change | Mix fix, base cuts | Letting TOS fall as base-cut residue is a defect [SR, WB] |
 | Clearing CPC (TOS) | TOS spend ÷ TOS clicks per campaign (≥ 3 TOS clicks, else portfolio value) | Placement report; 30 d | — | Effective TOS < clearing → priced out (serves on PDP) | Placement-first diagnosis | Low sample → portfolio fallback, labelled [PF] |
 | TOS CPC | TOS spend ÷ TOS clicks | Placement report | — | Ceiling ≥ TOS CPC to qualify a push | PUSH qualification (else WAIT) | [B6 R-P1] |
-| TOS impression share | our TOS impressions ÷ available TOS impressions | SP Targeting report (required); 14–90 d | Per target | **≥ 30% = holding the top** (push stop/step test); Quick-audit reporting target 22.5% | Daily push step; at ceiling 3 days without top-3 sponsored and ≥ 30% → owner | With ≥ 5 rivals at SP #1–5, not a pass/fail signal alone — judge rank after 7 days [B6, R-CI5] |
-| TOS click share | TOS clicks ÷ campaign clicks | Placement report; 30 d | Campaign grain | < 30% of clicks while clicks ≥ plan → PLACEMENT FIX FIRST | Mix fix | Distinct from impression share [PB] |
+| TOS impression share | our TOS impressions ÷ available TOS impressions | SP Targeting report (required); 14–90 d | Per target | **≥ 30% plus top-3 sponsored = holding the top** (push stop/step test) [13 #40]; Quick-audit 22.5% = reporting reference only | Daily push step; at ceiling 3 days without top-3 sponsored and ≥ 30% → owner | With ≥ 5 rivals at SP #1–5, not a pass/fail signal alone — judge rank after 7 days [B6, R-CI5] |
+| TOS click share | TOS clicks ÷ campaign clicks | Placement report; 30 d | Campaign grain | < 30% of clicks while clicks ≥ plan → MIX FIX before any price raise | Mix fix | Distinct from impression share [PB] |
 | Placement mix (click shares TOS / ROS / PDP) | placement clicks ÷ campaign clicks | Placement report; 30 d | Σ = 100% (excl. off-Amazon) | Ranking: TOS 70–90%, PDP ≤ 20% (on ≥ 15 clicks) | MIX FIX: base −50% (−25% if PDP brings orders), boost raised so TOS price holds, same write; re-check day 7 | Keyword-level mix is an estimate [B6 R-M1] |
 | Placement cost per order | placement spend ÷ placement orders | Placement report | — | — | Efficiency comparison across placements | Needs placement orders [PF] |
 
@@ -153,14 +153,14 @@ SQP rates are recomputed after the parent roll-up (01 §5.4): **brand counts sum
 
 | Metric | Formula | Source / window | Validate | Thresholds | Drives | Pitfalls |
 |---|---|---|---|---|---|---|
-| Available stock | FBA sellable units | Inventory export; snapshot | On-hand − available − reserved gap ≤ 5 units | ≥ 7 days of cover to push; 0 → pause push, ranking ads to backup | Push gates | Transfers and customer orders are not available [B6 R-I6] |
+| Available stock | FBA sellable units | Inventory export; snapshot | On-hand − available − reserved gap ≤ 5 units | < 7 days of cover → Red, no push (push itself needs Green ≥ 60 d and cover ≥ days to next arrival + 7); 0 → pause push, ranking ads to backup | Push gates | Transfers and customer orders are not available [B6 R-I6] |
 | Velocity | units sold ÷ days | Sellerboard; **30-day pace** (7-day as warning) | Correct OOS/deal/suppressed windows with a stated factor | Clearance colour: velocity ≤ size median | Cover, clearance choice | Never the push pace (inflated forecast created a false stock-out in B6 F30) |
 | PPC velocity | Σ 7-day advertised SKU units ÷ window | SP Targeting report | Advertised SKU only | — | Share of velocity bought by ads | [INV] |
 | Days of cover (DOC / DOH) | available ÷ units per day | Derived | Same-day snapshot | **Green ≥ 60 · Yellow 21–59 · Red < 21**; stock-out before inbound arrives = Red regardless | Inventory gate; Yellow = no new push; Red = protect/re-point | High DOC with velocity down 15% WoW for 3 weeks = trajectory problem [13 #9, PB] |
 | Days to next arrival | dated confirmed arrival − today | Inventory inbound | Confirmed dated only; "Not in Horizon" = blank | Gap ≤ 7 days = TIGHT (ease, don't swap); cover < arrival by > 7 days → switch to backup (same size) | Variation routing | Inbound counts only if ETA ≤ DOH [B6, WB] |
-| Push stock test | DOC ≥ days to next arrival + 7 | Derived | — | Fails → no push | PUSH gate | [13 #9] |
+| Push stock test | DOC ≥ days to next arrival + 7 (in addition to Green ≥ 60 d) | Derived | — | Fails → no push | PUSH gate | [13 #9] |
 | Max affordable velocity | stock ÷ lead time; incl. transit: (stock + transit) ÷ lead time | Inventory; lead time default 90 d | — | Velocity > max (stock) → reduce PPC aggression; < max (incl. transit) → scale carefully | Inventory × PPC action | Lead time is an input — confirm per product [INV] |
-| Projected DOC | (stock + dated inbound) burned at baseline velocity + planned order gap, to the checkpoint date | Derived | Same data version as the push sizing | Must stay Green (> 21 d minimum for launch floor) through the checkpoint | Blocks a push that would push the SKU into Yellow/Red | [PB, WB] |
+| Projected DOC | (stock + dated inbound) burned at baseline velocity + planned order gap, to the checkpoint date | Derived | Same data version as the push sizing | Must stay Green (≥ 60 d) through the push checkpoint, or the push is blocked, shrunk or time-boxed [13 #42]; the 21-day figure is only the launch floor for a new campaign (04 §4) | Blocks a push that would push the SKU into Yellow/Red | [PB, WB] |
 | Backup cover | backup stock ÷ **preferred SKU's velocity**; also (stock + transit) ÷ velocity | Inventory + mapping | Only for advertised preferred SKUs | ≥ lead time = covers; ≥ 30 d = partial; else insufficient; stock + transit = 0 = backup also OOS | Backup switch recommendation | Backup already advertised → the swap competes with its own campaign [INV] |
 | LTSF rate | $ per **cubic foot** per month by age: 181–210 d $0.50 · 211–240 $1.00 · 241–270 $1.50 · 271–300 **$5.45 (cliff)** · 301–330 $5.70 · 331–365 $5.90 · 366–455 $6.90 (or $0.30/unit if greater) · 456+ $7.90 (or $0.35/unit if greater); assessed on the 15th | Amazon rate card | Charge reconciles to invoice | Cliff at 271 d | Clearance timing | Rate card may change — confirm current [LTSF] |
 | LTSF per unit | rate × cu ft/unit (≥ 366 d: max with per-unit floor) | Derived | — | — | Floor price | Per-unit reading overstates 1.4–4.8× [LTSF] |
@@ -178,7 +178,7 @@ SQP rates are recomputed after the parent roll-up (01 §5.4): **brand counts sum
 |---|---|---|---|---|---|---|
 | Budget utilisation | spend ÷ daily budget | Console; 7–30 d | — | Floors: Defensive 100% · Ranking 80%+ · Discovery 70%+ | Budget before bids (Defensive) | A budget is a cap, not spend [PB, WB] |
 | In-budget share (truncation) | share of the day the campaign stayed in budget | Console | 0% with $0 spend = missing data | **< 70% = truncated**: all rates unreliable, budget first | Delivery gate | Truncated data isn't bid evidence [PB] |
-| Budget (push) | required TOS clicks × TOS price × 1.05 (+ expected PDP spend) | Derived | Price and budget rows load together | Min $10/day; > $500 → review; cuts > $50/day need approval | Push funding | A capped budget stops a push mid-day (B6 F14) [SR, PB] |
+| Budget (push) | required TOS clicks × TOS price × 1.05 (+ expected PDP spend) | Derived | Price and budget rows load together | Min $10/day; > $500 → review; moves > $50/day (up or down) need owner confirmation [13 #41] | Push funding | A capped budget stops a push mid-day (B6 F14) [SR, PB] |
 | Committed spend | run-rate spend of enabled campaigns (not caps) | Console; 60 d | — | Headroom = spend limit − committed | Funding order | [WB] |
 | Pacing deviation | actual spend pace vs the product's day-of-week curve | Console daily | — | > ~25% swing → flag same day | Event/pacing control | [PB] |
 | Execution status | EXECUTED if \|actual − recommended\| ≤ $0.01; NOT EXECUTED if \|actual − before\| ≤ $0.005; else PARTIAL | Current bulk vs action log | — | — | Grading eligibility | Never grade an unexecuted action [SR] |
@@ -194,7 +194,7 @@ SQP rates are recomputed after the parent roll-up (01 §5.4): **brand counts sum
 | Bid verdict | 15 clicks (product targets 11) | Hold; formula-only correction if over ceiling [13 #11] |
 | CVR verdict | 100 clicks (own TOS CVR usable from 50) | Use the conversion basis blend (§5) |
 | CTR verdict | 1,000 impressions | No CTR verdict |
-| Zero-order rule | ≥ 20 clicks, 0 orders | REDUCE (relevant, owned) / BLOCK (irrelevant); irrelevant negation from 5 clicks |
+| Zero-order rule | ≥ 20 clicks, 0 orders | REDUCE (relevant, live owner) / REVIEW fix queue (relevant, no live owner) / BLOCK (irrelevant or other product); irrelevant negation from 5 clicks; never negate an exact ranking or brand term [13 #12, #38] |
 | Converting rows | Skip the sample gate | — |
 
 **Significance test for two rates** (placement vs placement, period vs period) [PF]:
@@ -214,7 +214,7 @@ Coverage rule: every figure states how many mapped competitors were measured; un
 | 7-day traffic (ASINsight) | Tool's 7-day traffic per keyword/ASIN — **impression-like**, not clicks or sales | ASINsight exports | Exports ≤ 2 days apart to compare | — | Market size, shares | Never add placement scores to it [ASINsight] |
 | Share of tracked traffic | our 7-day traffic ÷ Σ tracked traffic (us + measured rivals) | ASINsight market | Coverage stated | — | "How big are we here" | Excludes unmeasured sellers (B6: 2.1% with 13 of 32 measured) |
 | Addressability | keyword state: **addressable** (fit-tagged/relevant to our product) · **disqualified** (disqualifier term, other brand, wrong size/category) · **unknown** | ASINsight addressability | Disqualifier vs fit-tag conflicts listed | Push candidacy needs addressable | What we can act on | Unknown share is reported, not assumed irrelevant |
-| Rivals present (consensus) | number of measured rivals ranking on the keyword | ASINsight market keywords | Coverage | Push candidate: ≥ 7 of 13 rivals rank on it (B6 scale; restate per roster) + core wording | PUSH candidacy | Scale threshold to roster size — owner decision |
+| Rivals present (consensus) | number of measured rivals ranking on the keyword | ASINsight market keywords | Coverage | Push candidate: a majority of measured rivals rank on it (B6: 7 of 13) + core wording [13 #46] | PUSH candidacy | Stated as a share of the measured roster, never a fixed count |
 | Keyword state | contested (we and rivals rank) · ours only · theirs only | ASINsight | — | — | Gap lists | — |
 | Win rate (contest) | contested keywords we win ÷ contested keywords; "win" = our traffic above the market average on that keyword (tool's contest call) | ASINsight competitor view | Coverage | — | Tier scoreboard | Working definition from the tool output (B6: win 11, lose 1,660 of 1,899) — confirm basis |
 | Contest rate | contested keywords ÷ the rival's keywords | ASINsight competitor view | — | — | Overlap with a rival | No source formula; decide and record |
@@ -228,7 +228,7 @@ Coverage rule: every figure states how many mapped competitors were measured; un
 | Traffic change | latest ÷ earlier export − 1 | ASINsight | Same basis both exports | Rival mover: traffic growth > 50%, price cut > 15%, new discount → hold our price 3 days before reading a CVR drop as a bid problem | Competitor-move hold (R-CI11) | Season moves everyone — compare to the rival median |
 | BSR | Best Sellers Rank of the lead listing (lower = more sales) | Data Dive / Command Center brief | Dated | — | Rival size, trend | Category-specific; deal days distort |
 | Est. units / revenue per 30 d | Data Dive estimate for the best-selling listing | Data Dive | Estimates — label | — | Rival profile, DSTR context | Listing, not whole brand |
-| Rating / reviews | Stars; review count | Data Dive / Xray | Dated | Conquest entry: we win ≥ 2 of price / rating / review count, or target OOS | Conquest gate; Cold gauntlet (reviews ≥ ~50% of top-5 median, rating within 0.3★) | [PB] |
+| Rating / reviews | Stars; review count | Data Dive / Xray | Dated | New conquest target: OFFENSIVE **and** we win ≥ 2 of price / rating / review count, else TEST [13 #44] | Conquest gate; Cold gauntlet (reviews ≥ ~50% of top-5 median, rating within 0.3★) | [PB] |
 | Review velocity | new reviews per week between two dated reads | Command Center brief / Data Dive reads | Blank without a second read | — | Momentum; Fader archetype | Review themes are not in any connected source |
 | Value per piece | price ÷ pieces in the set (or per unit of the offer) | Listing data | Same size compared | OFFENSIVE ASIN: priced above us for fewer pieces, or same price with < 50% of our reviews. AVOID and TEST classes: reference 08 (B6 AVOID examples: cheaper sets with far more reviews; other-material sets) | Competitor ASIN class OFFENSIVE / TEST / AVOID (R-CI7) | Compare same size only |
 | Price position | our price ÷ niche median (or rival price) | Data Dive / SQP | — | Cold gauntlet: ≤ ~1.25 × category median | Offer diagnosis; conquest watch-CPA | Price never set from competitor data [R-CI4] |
@@ -238,8 +238,8 @@ Coverage rule: every figure states how many mapped competitors were measured; un
 
 ## 12. Open questions for the owner
 
-1. **TOS impression-share threshold:** decisions use 30% ("holding the top", B6/SR/PB); the Quick Audit reports against 22.5%. This file keeps 30% for decisions and 22.5% as a reporting reference. Confirm.
-2. **Marginal ACoS:** SR freezes raises above 1.5 × average ACoS; PB unwinds a step above 2 × blended. Applied here as a ladder (freeze at 1.5×, unwind at 2×). Confirm.
+1. **TOS impression-share threshold:** Resolved — see 13 #40: decisions use ≥ 30% TOS impression share + top-3 sponsored; 22.5% stays a reporting reference.
+2. **Marginal ACoS:** Resolved — see 13 #34: freeze raises at > 1.5 × average, unwind one step at > 2 × blended.
 3. **Organic-share benchmark:** PB graduation ~40–50% vs Quick-audit floor 60%. Both are listed as references only; set the product's target.
 4. **Contest rate, win rate and distance** have no formula in any source rulebook; the definitions above are read from the B6 tool outputs. Confirm the basis (total vs contested keywords).
-5. **Rivals-present threshold** for push candidacy (≥ 7 of 13) was set for a 13-rival roster; how should it scale for other roster sizes?
+5. **Rivals-present threshold:** Resolved — see 13 #46: stated as a share of the measured roster ("a majority of measured rivals"), not a fixed count.

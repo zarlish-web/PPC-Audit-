@@ -404,7 +404,7 @@ Example (B6): a microfiber page at $24.99 sat at 21% ACoS in one campaign. It is
 ### 7.5 Conquest entry, ceiling and exit [PB, provisional — confirm with the owner before it first drives a decision]
 
 1. **Already targeted?** Search the account for the ASIN in any conquest campaign first. If it is there, decide from its state and performance (reactivate / adjust / leave). Only new targets go through the gate.
-2. **Entry gate**: our routed SKU wins **≥ 2 of 3** (price, rating, review count) against the target, **or** the target is out of stock. Write it plainly: "we win on price and reviews, lose on rating — two of three." If data is missing, ask before logging a wait. Default here: a **new** target needs OFFENSIVE **and** 2-of-3. An OFFENSIVE ASIN that fails 2-of-3 is run as TEST. See Open questions.
+2. **Entry gate**: our routed SKU wins **≥ 2 of 3** (price, rating, review count) against the target, **or** the target is out of stock. Write it plainly: "we win on price and reviews, lose on rating — two of three." If data is missing, ask before logging a wait. Default here: a **new** target needs OFFENSIVE **and** 2-of-3. An OFFENSIVE ASIN that fails 2-of-3 is run as TEST (register #44).
 3. **Ceiling (watch-CPA)** = the lower of: (a) routed SKU margin × CVR, i.e. the break-even CPC; (b) a price-gap-adjusted figure. State which governs. No source sizes the adjustment, so decide and record it. Either way it never goes above the break-even CPC (non-ranking ceiling, register #3).
 4. **AOV** = the routed SKU's AOV, never the competitor's price.
 5. **Share of target page** = impression or click share on that detail page from PT placement data. Never infer it from account ratios.
@@ -434,7 +434,7 @@ Status: **Standing** = always applies · **Default** = applies unless the owner 
 | R-CI3 | Push order | Beatable rivals between us and the target | When plan budget exceeds room, fund **winnable-ground** terms first and stretch terms second. | Total push budget; scale factor | King and Full core terms before the Queen head term | Default |
 | R-CI4 | Bids | — | Competitor data never sets a bid or price. Push price = break-even × (1 + premium), capped at 2 × break-even. | No competitor CPC, no suggested bid, no "market price" | — | Standing |
 | R-CI5 | Read windows | rivals with brand banners; rivals at SP #1–5 | On push terms with **≥ 5 rivals at SP #1–5**, judge rank after **7 days** (not 3). Top-of-search impression share alone is not a pass/fail signal. | The +30%/day step and the ceiling still apply daily | all 13 funded terms had 5–9 banners | Default |
-| R-CI6 | Defence | rivals advertising on our brand terms; our organic rank there | Brand terms with **≥ 3 rivals advertising** → DEFEND at top of search, funded first, plus own-ASIN product targeting. | Brand campaigns are judged at break-even like any other (defensive allowance per 7.5 / ref 06 only with verified presence) | "decolure bamboo sheets": 10 rivals, our organic #9 | Default |
+| R-CI6 | Defence | rivals advertising on our brand terms; our organic rank there | Brand terms with **≥ 3 rivals advertising** → DEFEND at top of search, funded first, plus own-ASIN product targeting. | Brand campaigns are judged at break-even like any other (defensive allowance per ref 06, only with verified rival presence) | "decolure bamboo sheets": 10 rivals, our organic #9 | Default |
 | R-CI7 | Offence | price, pieces, rating, reviews vs our same-size set | Target **OFFENSIVE** ASINs only (above us on price for fewer pieces, or the same price with < 50% of our reviews). Negate **AVOID** ASINs in auto/PAT. | Each ASIN is judged by R-X3–X5 after 15 clicks | 4 rival heroes OFFENSIVE; 3 AVOID | Default |
 | R-CI8 | Gap seeding | `we_run_none` / no search-term row on addressable core and benefit terms | Addressable core or benefit terms with **≥ 3,000 market traffic** and no search-term row get an **Exact target in the discovery campaign of their size, at break-even**. | No push premium; discovery colour rules; judged by keyword rules after 15 clicks | cooling list; engine-blind core terms | Default |
 | R-CI9 | Block review | rivals advertising on a term we BLOCK or REDUCE | A REDUCE on a term that still sells (**≥ 10 orders / 90 d**) and that rivals buy is a price cut to break-even, **never a block**. A BLOCK on an addressable term with **≥ 10,000 market traffic** that **≥ 5 rivals** advertise on stands, tagged "re-test": it goes back into discovery at break-even after **30 days** or after a listing or price change. | The money rule always wins on the day | a set term with 61 orders, 29.8% ACoS, 11 rivals advertising → reduce to break-even | Default |
@@ -488,7 +488,7 @@ Before calling a cut safe, also check **auction density** (the competitor advert
 | **Protect leads with thin stock** | position "We lead" on terms whose advertised variation is Yellow/Red or short of the next arrival | keep push budgets to the stock plan; reorder; don't hand the ranking campaign to the backup colour | inventory rules (ref 04) |
 | **Stretch head terms** | push terms with verdict "stretch" | no price change; report the first milestone; at 14 days at the ceiling with no rival passed → owner: a time-limited ceiling raise or step back to break-even | R-CI2 |
 | **Competitor pages** | OFFENSIVE ASINs not targeted; spend on AVOID pages | OFFENSIVE into conquest at break-even; AVOID never targeted | R-CI7, R-X* |
-| **Generic terms (deliberately not filled)** | generic kind: traffic, `we_run_none` | Leave to auto/broad discovery at break-even; never push. Exception: pack-match terms we already lead → harvest to exact at 3 orders | R-CI9, harvest |
+| **Generic terms (deliberately not filled)** | generic kind: traffic, `we_run_none` | Leave to auto/broad discovery at break-even; never push. Exception: pack-match terms we already lead → harvest to exact at ≥ 3 orders with ACoS ≤ break-even and no live exact owner (register #22) | R-CI9, harvest |
 | **Visibility loss** | hero organic/ad score Δ vs rival median (2.3) | the push fixes ads; on organic, a listing check on the hero (ref 09) and keep the hero advertised | R-C1, E15 |
 | **Rivals moving** | brief movers, traffic surges | apply the 3-day hold; re-check movers every run | R-CI11 |
 | **Measurement** | unmeasured and unmapped big sellers | exports for Beatable unmeasured rivals first; map the missing sellers; set a coverage target | R-CI12 |
@@ -512,7 +512,7 @@ One row per term, with these columns:
 | **Advertised variation** | discovery rule: the size's clearance colour, or "as the owner" |
 | Verdict | from 6.2 |
 
-- Judge each term with the keyword rules after 15 clicks: CVR ≥ the size rate → exact owner; 20 clicks and 0 orders → negate.
+- Judge each term with the keyword rules after 15 clicks: CVR ≥ the size rate → exact owner; ≥ 20 clicks and 0 orders → REDUCE (live owner) or REVIEW fix queue (no owner); negate only if the term proves irrelevant or another product type (register #12, #38).
 - No builds on deal days (E1).
 
 ### 9.5 Campaign-structure read
@@ -588,7 +588,7 @@ Example (B6): SB-1 was a headline collection on "bamboo sheets". SBV-2 to SBV-4 
 
 ## 13. Open questions for the owner
 
-1. **Conquest entry: B6 class vs PB 2-of-3.** The B6 OFFENSIVE test (we are ≥ 10% cheaper with rating within +0.1, or they have < 50% of our reviews at ≥ 90% of our price) and PB's gate (we win ≥ 2 of price / rating / reviews) can disagree: we can be cheaper yet lose on both rating and reviews. Register #31 adopts the R-CI rules but doesn't rule on PB's gate. Default used here: a new target needs both, and one that fails 2-of-3 runs as TEST. Confirm.
-2. **R-X3 step size.** B6 scales conquest bids by ≤ 30% a step. Register #5 caps non-push raises at ≤ 25% per cycle, and that cap is applied here. Confirm that R-X3 falls under #5.
+1. **Conquest entry.** Resolved — see 13 #44: a new target must be OFFENSIVE **and** win ≥ 2 of price / rating / reviews; otherwise TEST. Existing targets are judged on their own clicks and orders (R-X3–X5).
+2. **R-X3 step size.** Resolved — see 13 #5: non-push raises (incl. conquest SCALE) are capped at ≤ +25% per cycle.
 3. **Absolute thresholds** (500 units, 3,000 / 5,000 / 10,000 / 20,000 traffic, 10,000 reviews, 4,000 keywords, ±$5 / $15 price) are calibrated on one market. Should they scale with market size, and how?
-4. **SB/video ceiling.** B6 priced the test up to 2 × break-even on push and brand terms. For a non-push, non-brand term this file applies 1 × break-even (register #3). Confirm.
+4. **SB/video ceiling.** Resolved — see 13 #45: start at break-even; ceiling 2 × break-even on push terms and on brand terms with verified competitor presence; 1 × elsewhere.

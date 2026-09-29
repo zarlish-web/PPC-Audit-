@@ -111,7 +111,7 @@ Every campaign, keyword and competitor-target row carries this trail (workbook c
 | **Input** | Raw facts with windows: clicks, orders, spend, ACoS (30/90 d), placement split, price (base × (1+boost)), advertised SKU, rank now → target, stock | Every figure has a window and a source |
 | **Metric** | The derived numbers that decide: break-even = margin × CVR (basis stated: own ≥50 / blend 15–50 / size <15), ceiling, push price, ACoS vs BE, PDP share, SQP ratio | Recomputes from Input |
 | **Logic (rule)** | The gate that fired (master decision order) and the rule(s) applied; **rule IDs allowed here only** | First gate that fires is named |
-| **Decision** | One label: PUSH / WAIT / HOLD RANK / BREAK-EVEN / CUT / MIX FIX / DEFEND / HARVEST / REDUCE / BLOCK / DEDUPLICATE / CHECK OWNER / MONITOR / RESTART / KEEP / REVIEW / SCALE (targets: OFFENSIVE / TEST / AVOID) | Exactly one |
+| **Decision** | One label: PUSH / WAIT / HOLD RANK / BREAK-EVEN / CUT / MIX FIX / DEFEND / HARVEST / REDUCE / BLOCK / DEDUPLICATE / CHECK OWNER / MONITOR / RESTART / KEEP / REVIEW / SCALE / MAINTAIN (targets: OFFENSIVE / TEST / AVOID / LOW TRAFFIC) | Exactly one |
 | **Action** | Action string (§2) | Equals the New cells |
 | **Expected outcome** | Metric, direction, magnitude, horizon (a range, §5) | Falsifiable |
 | **Validation** | Date(s), pass condition, fallback if it fails | Has a date and a fallback |
@@ -134,9 +134,9 @@ Full worked set (10 scenarios): `templates/decision-trail-examples.md`.
 |---|---|
 | Input | "red bamboo sheets" exact (colour term), advertises Queen Burgundy; 30 d: 45 clicks, 5 orders, $120.29, ACoS 30.5%; 90 d ACoS 33.2%; base $1.12; tagged Ranking. |
 | Metric | Break-even ACoS 23.8%; over on 30 d AND 90 d; cut = 1 − 23.8 ÷ 30.5 = 22% (≤30% cap). |
-| Logic (rule) | Colour term → Conversions, not Ranking [R-O1, E18]. Over break-even on both windows, ≥15 clicks → base cut ≤30% [R-N1]. Colour-named term keeps its colour [R-C3]. |
-| Decision | CUT (objective retag to Conversions). |
-| Action | `CUT — base $1.12 → $0.87 (−22%); objective Ranking → Conversions`. |
+| Logic (rule) | Colour term → Profitable Conversion, not Ranking [R-O1, E18]. Over break-even on both windows, ≥15 clicks → base cut ≤30% [R-N1]. Colour-named term keeps its colour [R-C3]. |
+| Decision | CUT (objective retag to Profitable Conversion). |
+| Action | `CUT — base $1.12 → $0.87 (−22%); objective Ranking → Profitable Conversion`. |
 | Expected outcome | ACoS toward 23.8% with orders held within about −30%. |
 | Validation | 14 settled days after the cut: ACoS and orders; if orders fall >30%, restore half the cut. |
 
@@ -241,7 +241,7 @@ Use when the competitor pull is large or the reader differs. Tabs: Competitor la
 - One row per (target, lever), sorted by exposure ($/day at stake). Actions copied verbatim from the workbook. [WB]
 - Columns: identity (campaign, target, SKU) · funnel (impr, clicks, orders, spend, window) · placement split · ceiling and price multiple before/after · before / after / Δ · argument (why; why not the alternative; effect + when; reversal) · exposure · **Reviewer decision** (approve / reject / modify) · **Reviewer note** (both blank).
 - Reviewer marks are applied literally and persist through every later regeneration (a reverted mark is a gate failure). [PB 19]
-- Rows that must go to review: any gate failure; structural change (campaign, routing, match type, strategy); bid move >25%; budget move >$50/day; search volume above the owner's hand-off threshold (see §8). State the trade-off in reviewer units. [PB, WB]
+- Rows that must go to review: any gate failure; structural change (campaign, routing, match type, strategy); bid move >25% outside an approved push plan (the plan's own +30%/day steps are covered by its approval); budget move >$50/day; search volume ≥ 500 (register #41, #54). State the trade-off in reviewer units. [PB, WB]
 
 ### 6.5 Upload file
 Only rows that change; true Bulksheets 2.0 layout (one sheet `Sponsored Products Campaigns`, exact 54-column header, State on every row, IDs as text, dates as text `yyyyMMdd`, no formulas/NaN, names ≤128 chars, no symbols in keyword text); price and budget rows of one campaign load together or not at all; withheld rows never exported; colour switches and SB/SD builds listed "by hand". Tell the user to upload directly without re-saving in Excel/Sheets. [CB, B6 F14–F15]
@@ -295,7 +295,7 @@ Run as a separate pass over the finished files, as if reviewing someone else's w
 | # | Check | How to test | Pass | Source |
 |---|---|---|---|---|
 | C1 | Break-even per advertised SKU | Each row's break-even = that SKU's margin × its CVR basis; no blended parent; deal price in deal | 0 mismatches | SKILL, B6 F02 |
-| C2 | No price above its ceiling | Ranking TOS price ≤ 2 × break-even CPC (or owner's time-boxed raise); non-ranking bid and effective price ≤ 1.0 × break-even at every placement | 0 | DR 5–6, PB 5, PF 13–15 |
+| C2 | No price above its ceiling | Ranking TOS price ≤ 2 × break-even CPC (or owner's time-boxed raise); non-ranking bid and effective price ≤ 1.0 × break-even at every placement; Sponsored Brands / video per register #45; LTSF clearance ≤ 1 × forward-cash break-even (#43) | 0 | DR 5–6, PB 5, PF 13–15 |
 | C3 | Above-break-even ranking authorised | Ranking rows above break-even without goal-gate clearance, or past the sufficiency point | 0 | PB 6 |
 | C4 | Over-ceiling cut now | Rows above ceiling left in place or deferred | 0 | B6 F05 |
 | C5 | Arithmetic recomputes | base × (1 + boost) = TOS price ±$0.03; every stated figure recomputed | 0 mismatches | PF 12, DR 13, PB 13 |
@@ -395,7 +395,7 @@ Run as a separate pass over the finished files, as if reviewing someone else's w
 ---
 
 ## 8. Open questions for the owner
-1. **Hand-off search-volume threshold** for the Change Review Sheet: workbook builder uses SV ≥250, plan builder SV ≥500. Not in the conflict register — owner decision; ask and record.
-2. **Push daily steps vs the >25% hand-off rule**: the approved push plan steps prices up to +30% a day; the plan builder sends any bid move >25% to review. Ask whether approving the push plan covers its daily steps (proposed) or each step needs sign-off.
-3. **Which bulk columns may change**: the placement-first method allows only New Bid / New Percentage / New Budget; the workbook builder also writes state and ad operations. Default here: decision columns plus approved state/ad changes, colour switches by hand — confirm.
-4. **Rule-ID scheme**: rule IDs are allowed in workbook rule columns, but the consolidated skill does not fix one ID set; examples use the B6 IDs (R-P1…, E1…). Confirm the IDs the Decision rules tab should carry.
+1. **Hand-off search-volume threshold** for the Change Review Sheet: Resolved — see 13 #54 (and #41): SV ≥ 500, plus gate failures, structural changes, bid moves >25% outside an approved plan, budget moves >$50/day.
+2. **Push daily steps vs the >25% hand-off rule**: Resolved — see 13 #41: an approved push plan covers its own +30%/day steps.
+3. **Which bulk columns may change**: Resolved — see 13 #52: bid, placement %, budget, and explicitly decided state / product-ad rows; structural changes (new campaigns, colour switches, folds) built separately or by hand.
+4. **Rule-ID scheme**: Resolved — see 13 #53: R-P push · R-B break-even · R-M placement mix · R-N non-ranking · R-C colour/variation · R-O objective · R-S structure · R-K keyword · R-X competitor ASIN · R-I inventory · R-F financial · R-CI competitor influence · E exceptions · F failures; extend within a family, never reuse an ID.

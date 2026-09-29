@@ -67,15 +67,15 @@ Source tags: see reference 13. "(seen: B6 Fnn)" = the failure actually occurred 
 | # | Condition | What to do instead | Who decides | Example |
 |---|---|---|---|---|
 | A-20 | Product goal undeclared | Hard stop for a plan; the ranking gate treats it as Profit-First; a suggested goal needs confirmation [PB] | Owner | — |
-| A-21 | Goal is Profit-First or Clearance | Profit-First: no new push, protect won rank only. Clearance: no rank considerations, every row at standard ceiling [PB] | Owner | — |
+| A-21 | Goal is Profit-First or Clearance | Profit-First: no new push, protect won rank only. Clearance: no rank considerations, every row at the clearance ceiling (1 × break-even on forward-cash economics, register #43) [PB] | Owner | — |
 | A-22 | Ceiling below our own top-of-search cost per click | WAIT; owner may raise that term's ceiling for a set time [B6 R-P1] | Owner | Ex (B6): "bamboo sheets king size" waiting |
 | A-23 | 3 days at ceiling without top-3 sponsored and ≥ 30% TOS share | Owner: time-boxed ceiling raise, or swap the term [B6 E5] | Owner | Ex (B6): "bamboo sheets" |
 | A-24 | Boost at 900% and target price unreachable | Review; raise base only to price ÷ (1 + boost), boost set in the same write [B6 E16] | Analyst | Ex (B6): Bamboo Sheets King Size |
-| A-25 | Step too big: raise > 30% or base cut > 50% in one step | BLOCK; split into dated steps [B6 E17] | Analyst | Ex (B6): 12 "dose" rows |
+| A-25 | Step too big: push raise > +30%/day, other raise > +25%/cycle, or base cut > 50% in one step (over-ceiling cuts go straight to the ceiling, register #5) | BLOCK; split into dated steps [B6 E17] | Analyst | Ex (B6): 12 "dose" rows |
 | A-26 | Expected total spend > the limit | Scale push budgets; cut from the bottom of the funded list [B6 E19] | Analyst | Ex (B6): push budgets scaled to 45% on the three biggest |
 | A-27 | Margin ≤ 0 on the advertised SKU; affordable CPC = 0 | Flag and refer pricing to Brand Mgmt (not a bid problem); leave the bid, flag [SR, PB] | Brand Mgmt | — |
 | A-28 | Authorised TOS price (base × (1 + boost) × 2 under up-and-down) > ceiling × 1.05 | Referral with the exact correction; strategy changes are human-only [SR] | Owner | — |
-| A-29 | Realised CPC > 1.5 × governing ceiling | State "unjustifiable"; > 1.0× allowed only on a sized push [SR] | Analyst | — |
+| A-29 | Realised CPC > 1.5 × governing ceiling | State "unjustifiable"; cut the price to the ceiling this run. Above 1 × break-even CPC only on a sized push, up to its 2 × ceiling [SR, register #3] | Analyst | — |
 | A-30 | Weekly loss ceiling reached on a push | Human flag, not auto-stop [PB] | Owner | — |
 | A-31 | TACoS breach (only where the owner set a target): 1.5–2× band, or > 2× / > 1.5× two weeks | Breach → freeze new scale. Code-red → per-row review within 48 h, daily cadence; never a blanket % cut [PB] | Owner | — |
 | A-32 | Budget > $500/day; budget change > $50/day | High-budget review; approval [SR, PB] | Approver | — |
@@ -110,7 +110,7 @@ Source tags: see reference 13. "(seen: B6 Fnn)" = the failure actually occurred 
 | A-51 | New campaign for a term that already has an exact (live or paused, close variants) | BLOCK; restart/reuse [B6 E11] | Analyst | Ex (B6): build 2035 |
 | A-52 | Same term live in > 1 instance of one match type | DEDUPLICATE: coexistence test, else owner by rate; losers withheld (paused), nothing else changed [register #13] | Analyst | — |
 | A-53 | Brand negatives before the receiving brand exacts are defensive, on the hero and funded | BLOCK the negatives [B6 E10] | Analyst | Ex (B6): row 2142 |
-| A-54 | Ranking tag on a colour / competitor / Spanish / misspelled term | BLOCK the tag; Conversions [B6 E18] | Analyst | Ex (B6): 12 retags |
+| A-54 | Ranking tag on a colour / competitor / Spanish / misspelled term | BLOCK the tag; Profitable Conversion [B6 E18, register #36] | Analyst | Ex (B6): 12 retags |
 | A-55 | Exact and broad in one campaign | Ranking + structural flag; fix (pause broad, keep exact) needs confirmation [OC, PB] | Owner | — |
 | A-56 | Rank credit out of scope: auto + broad > ~40% of the term's clicks, or no live exact | No ranking verdict; same-day exact build + steering negatives [PB] | Analyst | — |
 | A-57 | Negation candidate is brand, an exact row, an exact ranking term, relevant but non-converting, or < 5 clicks | Brand/ranking exact: never. Exact rows: manual review. Relevant non-converter: fix queue. < 5 clicks: manual review [STR, PB] | Analyst | — |
@@ -129,7 +129,7 @@ Source tags: see reference 13. "(seen: B6 Fnn)" = the failure actually occurred 
 | A-65 | Syntax in Conversion or Both-failing quadrant | No rank push; fix offer; ≥ 4 weeks = chronic → bids frozen at maintenance [PB, QA] | Brand Mgmt | — |
 | A-66 | Branded CVR collapse | Listing check first (suppression, buy box, review score, variation break) [PB] | Brand Mgmt | — |
 | A-67 | CVR drop coincides with a logged price rise; AOV shift from variation mix | Hold bids; revert price or recompute economics; void and re-run affected verdicts [PB] | Owner | — |
-| A-68 | Competitive shock (CVR ≥ benchmark, rank falling, no own event); rival price cut > 15%, new discount, traffic > +50% | One ladder step inside ceiling, re-read in 1 week; hold our price 3 days after a rival move; over-ceiling cuts still apply [PB, B6 R-CI11] | Analyst | Ex (B6): KRIMANO +123% traffic; Pure Bamboo 19% off |
+| A-68 | Competitive shock (CVR ≥ benchmark, rank falling, no own event); rival price cut > 15%, new discount, traffic > +50% | Investigate before any bid (new entrant, deal, price cut); hold our price 3 days after a rival move; only then one ladder step inside ceiling, re-read in 1 week; over-ceiling cuts still apply [PB, B6 R-CI11] | Analyst | Ex (B6): KRIMANO +123% traffic; Pure Bamboo 19% off |
 | A-69 | Stretch target (only aspirational rivals at/above target) 14 days at ceiling, no rival passed | Owner decision [B6 R-CI2] | Owner | Ex (B6): "bamboo sheets" target #9 held only by two leaders |
 
 ## A.7 Process, approval and the silent-hold list
@@ -137,7 +137,7 @@ Source tags: see reference 13. "(seen: B6 Fnn)" = the failure actually occurred 
 | # | Condition | What to do instead | Who decides | Example |
 |---|---|---|---|---|
 | A-70 | **Silent-hold list (exhaustive):** both quality gates fail; CTR passes and CVR fails; zero delivery; budget truncation; plan exceeds campaign capacity | Hold without asking; route CTR-pass/CVR-fail to Brand Mgmt; escalate capacity. **Any other HOLD → ask first and log the answer** [PB, DR] | Analyst | — |
-| A-71 | Human-confirm thresholds: search volume ≥ 500; any gate failure; structural change (campaign, routing, match type, strategy); bid move > 25%; budget move > $50/day; envelope move > 20% | Change Review Sheet row with the trade-off in reviewer units [PB, WB] | Approver | — |
+| A-71 | Human-confirm thresholds: search volume ≥ 500; any gate failure; structural change (campaign, routing, match type, strategy); bid move > 25% outside an approved push plan (the plan covers its own +30%/day steps); budget move > $50/day [register #41, #54] | Change Review Sheet row with the trade-off in reviewer units [PB, WB] | Approver | — |
 | A-72 | A provisional rule would drive a real decision for the first time on this product (goal-gate mechanics, Defensive/Conquest, harvest, discovery count basis, sufficiency exit, graded push tiers, $0.50 floor) | Ask before use; the answer holds for the product until the owner changes it [PB] | Owner | — |
 | A-73 | Ledger row escalated; manager's action graded ineffective | Hold + refer; structural review (listing, offer, inventory, objective) [SR] | Owner | — |
 | A-74 | Upload before approval | Never; upload file is PREPARED only after zero-failure validation [SR] | Approver | — |
@@ -209,7 +209,7 @@ Columns: **Failure** · **Why it's wrong** · **Correct behaviour** · **Test** 
 
 | # | Failure | Why it's wrong | Correct behaviour | Test |
 |---|---|---|---|---|
-| K-01 | Negating an exact ranking term, a brand term or a relevant term (SR zero-order branch) | Kills rank and the most profitable orders | Brand/ranking exact never; relevant non-converter → fix queue; ≥ 20 clicks 0 orders → REDUCE (owned) / BLOCK (irrelevant) | Brand and push terms never blocked [SR defect, STR, B6] |
+| K-01 | Negating an exact ranking term, a brand term or a relevant term (SR zero-order branch) | Kills rank and the most profitable orders | Brand/ranking exact never; relevant non-converter → fix queue; ≥ 20 clicks 0 orders → REDUCE (relevant, live owner) / REVIEW (relevant, no owner) / BLOCK (irrelevant) [register #38] | Brand and push terms never blocked [SR defect, STR, B6] |
 | K-02 | Negating on spend alone, < 5 clicks, root-wide sweeps, or with no mode stated | Removes demand without evidence | STR tree; cite that occurrence's clicks/spend/orders; mode = pre-load / reactive / steering | Every negative cites its own numbers + mode [STR, PB] |
 | K-03 | Brand variants missing from the brand list | Brand terms flagged for negation | Brand name + misspellings list | Brand-list check before negation pass [STR] |
 | K-04 | Brand negatives added before brand exacts could serve (seen: B6 F18) | Moves profitable brand traffic to campaigns that can't serve it | Gate: receiving exacts defensive, on the hero, funded | Brand negatives only where gate passed [B6] |
@@ -228,7 +228,7 @@ Columns: **Failure** · **Why it's wrong** · **Correct behaviour** · **Test** 
 
 | # | Failure | Why it's wrong | Correct behaviour | Test |
 |---|---|---|---|---|
-| C-01 | Colour, competitor, Spanish, misspelled exacts retagged Ranking (seen: B6 F12) | Nobody builds organic rank on those; unlocks push logic wrongly | Generic niche exact → Ranking; others → Conversions; brand → Defensive | Retags carry a classifier verdict [B6] |
+| C-01 | Colour, competitor, Spanish, misspelled exacts retagged Ranking (seen: B6 F12) | Nobody builds organic rank on those; unlocks push logic wrongly | Generic niche exact → Ranking; others → Profitable Conversion; brand → Defensive [register #36] | Retags carry a classifier verdict [B6] |
 | C-02 | Objective per keyword then mode-averaged; campaign name trusted over targeting; Defensive on a generic term | Objective is a campaign property from targeting | Decide per campaign from targeting | Blocks with > 1 objective = 0; Defensive has a brand keyword [OC, DR] |
 | C-03 | Exact and broad in one campaign; judging on one campaign row; merging exact-ranking with broad-discovery | Mixed loops, wrong metric | Separate; judge the unit across its rows | Mixed-block flag count [OC, SR] |
 | C-04 | Contradictory directions on one term (−20% here, +15% there); label contradicting the written value (seen: B6 F06) | Incoherent; a "taper" that raised price | Term-level reconciliation; notes must match value | One direction per term; label vs value check [DR, B6] |
@@ -282,7 +282,7 @@ Columns: **Failure** · **Why it's wrong** · **Correct behaviour** · **Test** 
 | X-04 | Competitor data setting a bid or price | Owner rule; prices stay break-even-based | Competitor data chooses terms, order, targets, read windows | No competitor rule sets or raises a price [B6 R-CI4] |
 | X-05 | Conclusions about unmeasured competitors | Unknown ≠ absent | Report coverage (e.g. 13 of 32) | Every competitor claim states coverage [B6 R-CI12] |
 | X-06 | Carrying an overturned finding ("2.71× market price, OUTPRICED" after the 74-ASIN pull showed 1.00–1.06×) | Wrong premise drives actions | Withdrawn-findings register | Findings trace to current pull [DR] |
-| X-07 | Generic category terms pushed for volume; blocking a term that still sells and rivals buy | Push should be winnable core terms; block loses sales | Push only addressable core terms (≥ 7 of 13 rivals rank); REDUCE to break-even, not block (≥ 10 orders/90 d) | Push-term classifier; block-review list [B6 R-CI1, R-CI9] |
+| X-07 | Generic category terms pushed for volume; blocking a term that still sells and rivals buy | Push should be winnable core terms; block loses sales | Push only addressable core terms ranked on by a majority of measured rivals (B6: ≥ 7 of 13; register #46); REDUCE to break-even, not block (≥ 10 orders/90 d) | Push-term classifier; block-review list [B6 R-CI1, R-CI9] |
 
 ## B.9 Events and deals
 
@@ -330,5 +330,5 @@ Columns: **Failure** · **Why it's wrong** · **Correct behaviour** · **Test** 
 ## Open questions for the owner
 
 1. **Turn-off thresholds (A-33):** the SR code doubles the objective turn-off level twice; the framework intent listed here (Ranking 100%, Market Share 50%, Discovery 60%, Profitable Conversion 50%, Defensive/PAT 30%) is inferred from the source notes, not stated by register 13. Confirm the levels.
-2. **Zero-order rule vs silent-hold list:** the house rule "≥ 20 clicks, 0 orders → REDUCE (owned)" is not on the PB exhaustive silent-hold list, but it is a REDUCE, not a HOLD, so no ask is triggered. Confirm this reading.
-3. **Conversion deficit (A-34):** SR bids −15% and refers; PB says "CTR pass + CVR fail → no bid". This file follows SR's −15% plus referral. Confirm whether the owner prefers no bid change.
+2. **Zero-order rule vs silent-hold list:** (decision labels per 13 #38: REDUCE with a live owner, REVIEW without.) The house rule "≥ 20 clicks, 0 orders → REDUCE (owned)" is not on the PB exhaustive silent-hold list, but it is a REDUCE, not a HOLD, so no ask is triggered. Confirm this reading.
+3. **Conversion deficit (A-34):** Resolved — see 13 #39: bid −15% and refer to Brand Management; no rank push until the offer is fixed.

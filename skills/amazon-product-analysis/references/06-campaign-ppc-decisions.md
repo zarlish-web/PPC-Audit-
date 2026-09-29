@@ -71,8 +71,8 @@ A Ranking campaign is **push** only while its term is funded in the push plan (p
 | Class | Identify by | Objective | Advertised variation | Price basis / ceiling | Judged by | Notes |
 |---|---|---|---|---|---|---|
 | Auto | Targeting type Auto | Discovery | Clearance colour (≥ 180 d cover, or ≥ 90 d selling ≤ size median) | ≤ 1.0 × BE CPC | Converting terms/$100, harvests, WAS ≤ 40% | 4 auto groups judged separately; own-ASIN matches negated; mature stage keeps a low-budget sentinel [PB, WB, B6 R-C2] |
-| Broad | All broad | Discovery (brand → Defensive) | Clearance colour | Launch ≈ 60% of exact ceiling, no modifier | as Auto | Built after 100 exact clicks or a coverage gap [PB, #23] |
-| Phrase | All phrase | Discovery | Clearance colour | Launch ≈ 80% of exact ceiling, no modifier | as Auto | Primary root at 0% phrase = gap [PB] |
+| Broad | All broad | Discovery (brand → Defensive) | Clearance colour | Launch ≈ 60% of the exact term's BE CPC (#47), no modifier | as Auto | Built after 100 exact clicks or a coverage gap [PB, #23] |
+| Phrase | All phrase | Discovery | Clearance colour | Launch ≈ 80% of the exact term's BE CPC (#47), no modifier | as Auto | Primary root at 0% phrase = gap [PB] |
 | Exact — ranking, push | Generic niche, funded | Ranking | Size's best seller (hero) | Push price, ceiling 2 × BE CPC | Progress test §6 | TOS 70–90% of clicks, PDP ≤ 20% [B6 R-P1–P8, R-C1] |
 | Exact — ranking, non-push | Generic niche, not funded | Ranking | Hero | Toward BE CPC | Rank held at BE | Rejoins push when it qualifies [B6 R-B1–B4] |
 | Exact — non-ranking | Colour / competitor / language / misspelling / adjacent | Profitable Conversion | Colour term → named colour, same size; else hero | ≤ 1.0 × BE CPC | Layered rule §7.1 | [B6 R-O1, R-C3] |
@@ -82,7 +82,7 @@ A Ranking campaign is **push** only while its term is funded in the push plan (p
 | PT — category | category="…" | Profitable Conversion | Routed SKU | ≤ BE | CPA vs ceiling | Category targets can't be bulk-changed — console [CB] |
 | Brand / Defensive | Brand word in keyword | Defensive | Hero | BE CPC; allowance only with verified rival presence | Share + cost; ACoS ≤ BE | Funded first when ≥ 3 rivals advertise [PB, B6 R-N3, R-CI6] |
 | Liquidation | Declared (§1.1) | Targeting objective + flag | Aged SKU | BE on forward-cash economics | Units cleared | No ACoS cuts [B6 R-N2, SR] |
-| SB / SBV / SD | Ad type | Own | — | Same break-even rules | Own metrics | Outside the SP engine: by hand, own budget line, inside the spend limit; one SB format per push term [B6 E12, R-CI10, F17] |
+| SB / SBV / SD | Ad type | Own | — | Start at BE; ceiling 2 × BE on push terms and on brand terms with verified competitor presence, 1 × BE elsewhere (#45) | Own metrics | Outside the SP engine: by hand, own budget line, inside the spend limit; one SB format per push term [B6 E12, R-CI10, F17] |
 | Shared multi-product | Advertises other products | — | — | — | Own product's audit | No colour/price automation; spend = row × (tile ÷ rows) [B6 E13, F29] |
 
 ---
@@ -106,7 +106,7 @@ The first gate that fires ends the row; record which gate fired. Exception: a pr
 | 11 Landscape | Competitor influence rules (file 08): agrees / stretch / reachable / challenge / engine-blind | Changes order, read window or wording — **never a price** | (same label) | [B6 R-CI4] |
 | 12 Log | Trail: input → metric → rule → decision → action → expected outcome → validation date | — | — | [SKILL] |
 
-**Human-confirm before shipping:** structural change (campaign, routing, match type, strategy, pause); bid move > 25%; budget move > $50/day; SV ≥ 500 terms; any gate failure. State the trade-off in reviewer units ("holds ~$180/wk of saving to keep ~66 orders/wk"). [PB §13A, #32]
+**Human-confirm before shipping:** structural change (campaign, routing, match type, strategy, pause); bid move > 25% outside an approved push plan (an approved push plan covers its own +30%/day steps); budget move > $50/day; SV ≥ 500 terms; any gate failure. State the trade-off in reviewer units ("holds ~$180/wk of saving to keep ~66 orders/wk"). [PB §13A, #32, #41, #54]
 
 ---
 
@@ -117,7 +117,7 @@ One label per campaign per cycle. The keyword-level labels (HARVEST, REDUCE, BLO
 | Label | Applies to | Enter when | Action and bounds | Source |
 |---|---|---|---|---|
 | **PUSH** | Ranking, funded | Passes all push gates (§5), goal Growth/Mixed, stock Green | TOS price toward push price = BE × (1 + premium), ≤ +30%/day while not holding top, never above 2 × BE; budget = plan clicks × price; mix 70–90% TOS | [B6 R-P1–P4] |
-| **WAIT** | Ranking, would-be push | A fixable gate fails: listing flag, ceiling < our TOS CPC, rank > ~30 places from target, stock Yellow/TIGHT, missing property of the 5-property gate, event day for a new start | No raise; price ≤ ceiling; blocker named with owner and re-test date; if the owner declines the fix, the row becomes BREAK-EVEN | [B6 R-P1, F25, F26] |
+| **WAIT** | Ranking, would-be push | A fixable gate fails: listing flag, ceiling < our TOS CPC, stock Yellow/TIGHT, missing property of the 5-property gate, event day for a new start. (Rank > ~30 places from target → MONITOR (too far), `05` §10 step 6) | No raise; price ≤ ceiling; blocker named with owner and re-test date; if the owner declines the fix, the row becomes BREAK-EVEN | [B6 R-P1, F25, F26, #50] |
 | **HOLD RANK** | Ranking at/inside target | Organic rank ≤ target | Keep price, no raise; after 2 clean weeks taper −10%/week to a floor 5–10¢ below the delivering placement's blended CPC; restore on slip | [B6 R-P8, PB, #26] |
 | **BREAK-EVEN** | Non-push ranking | Price > BE CPC | 0 TOS clicks in 30 d → straight to BE. TOS clicks > 0 → step down ≤ 50% toward BE; restore one step if rank falls > 10 places. Price ≤ BE → KEEP | [B6 R-B1–B3] |
 | **CUT** | Non-ranking (PC, Discovery, Defensive) | ACoS > BE on both 30 & 90 d, ≥ 15 clicks | Base × (BE ACoS ÷ ACoS), i.e. −(1 − BE/ACoS), max −30% per step | [B6 R-N1, #16] |
@@ -139,7 +139,7 @@ One label per campaign per cycle. The keyword-level labels (HARVEST, REDUCE, BLO
 7. **Push stop on conversion** (TOS CVR below market on ≥ 50 clicks) → back to BREAK-EVEN (price, not state). [B6 R-P7]
 8. **Mixed Exact + Broad block** → pause the broad, keep the exact (post-event). [OC]
 9. **Live keyword off the listing** (product type the listing doesn't sell) → pause. [WB]
-10. **Zero-order terms** are not paused as a campaign action: irrelevant → negate (≥ 5 clicks); relevant ≥ 20 clicks 0 orders → reduce + fix queue; never negate an exact ranking term or a brand term. [#12]
+10. **Zero-order terms** are not paused as a campaign action: irrelevant → negate (≥ 5 clicks); relevant ≥ 20 clicks 0 orders → REDUCE + fix queue with a live exact owner, REVIEW (fix queue) without one; never negate an exact ranking term or a brand term. [#12, #38]
 11. **Never pause a converting row for thin clicks.** [PB, DR]
 
 ---
@@ -151,7 +151,7 @@ One label per campaign per cycle. The keyword-level labels (HARVEST, REDUCE, BLO
 - Spend limit and margin rule stated for the window (no push can be sized without them); a baseline that excludes deal and settling days. [B6 F03, R-F5]
 - Code-red TACoS state freezes all scale (only if the owner set a TACoS target — otherwise TACoS is monitored only). [PB, #17]
 - Concentration: one term > ~25% of product clicks, or top 5 > ~60%, needs a declared head-term push, else a named finding. [PB]
-- Candidate wording: core product wording only; generic category terms outside the core never enter the push, whatever their volume. *Example (B6): "bed sheets" (155k traffic) stays MONITOR; "bamboo sheets" qualifies; B6 also required ≥ 7 of 13 tracked rivals ranking on the term.* [B6 R-CI1]
+- Candidate wording: core product wording only; generic category terms outside the core never enter the push, whatever their volume. *Example (B6): "bed sheets" (155k traffic) stays MONITOR; "bamboo sheets" qualifies; B6 also required ≥ 7 of 13 tracked rivals ranking on the term — state such consensus as a share of the measured roster (a majority of measured rivals), not a fixed count (#46).* [B6 R-CI1, #46]
 
 ### 5.2 Candidacy
 | Type | Definition | Consequence |
@@ -162,7 +162,7 @@ One label per campaign per cycle. The keyword-level labels (HARVEST, REDUCE, BLO
 
 [PB, WB]
 
-### 5.3 The six push gates (all must pass; else WAIT with the failing gate named)
+### 5.3 The six push gates (all must pass; else WAIT with the failing gate named — a reach failure is MONITOR (too far), `05` §10 step 6)
 | # | Gate | Test | Source |
 |---|---|---|---|
 | 1 | Demand / plan | Term has a plan: target rank, DSTR, required units/clicks; core wording | [B6 R-P1, R-CI1] |
@@ -324,7 +324,7 @@ Read campaign ACoS vs the advertised SKU's BE ACoS on **30-day and 90-day** wind
 
 ### 7.5 Conquest (provisional) and competitor PT [PB, B6 R-X3–X6, R-CI7]
 - Same ASIN already targeted → decide from that instance; one owner per ASIN.
-- **Entry:** routed SKU wins ≥ 2 of 3 (price, rating, review count), or target out of stock; missing data → ask. *B6 form: OFFENSIVE = pricier for fewer pieces, or same price with < 50% of our reviews; AVOID negated in auto/PT.*
+- **Entry (new target, #44):** OFFENSIVE (file 08) **and** the routed SKU wins ≥ 2 of 3 (price, rating, review count), or target out of stock; else TEST; missing data → ask. Existing targets are judged on their own clicks and orders (verdicts below). *B6 form: OFFENSIVE = pricier for fewer pieces, or same price with < 50% of our reviews; AVOID negated in auto/PT.*
 - **Ceiling = watch-CPA** = lower of the routed SKU's break-even CPC (margin × CVR) and the price-gap-adjusted figure; state which governs. Product-page lever, no TOS modifier.
 - **Verdicts:** PT floor 11 clicks. SCALE (ACoS ≤ BE, ≥ 15 clicks) ≤ +25%/cycle up to BE CPC; REDUCE when ACoS > BE on ≥ 15 clicks; BLOCK at ≥ 20 clicks 0 orders or > 2 × BE on ≥ 30 clicks; unmapped ASIN → no SCALE.
 - **Exit / rotate:** target delisted; target no longer wins 2-of-3 (hold); CPA > watch-CPA 2 consecutive reads with no page-share gain. Rotate when another ASIN clears the gate and is better (budget and structure carry over).
@@ -429,9 +429,9 @@ Every row carries input → metric → rule → decision → action → expected
 
 ## 11. Open questions for the owner
 
-1. **Phrase-only blocks:** objective-correction script → Profitable Conversion; B6 and workbook builder → Discovery. This file uses Discovery.
-2. **Exact term class:** register #15 adopts "all exact → Ranking"; B6 R-O1 sends colour/competitor/language/misspelling exacts to Profitable Conversion. This file applies R-O1 as a refinement.
-3. **CUT step:** register #16 (≤ 30% of base) vs #5 (gradual cuts ≤ 15%/cycle). This file uses #16 for non-ranking CUT.
-4. **Competitor PT SCALE:** B6 R-X3 +30%/step vs register #5 +25%. This file uses +25%.
-5. **WAIT duration:** no source rule; this file holds until the named re-test date or the owner declines.
-6. **Non-push ranking term below BE outside an event:** no source rule on a raise to BE without push qualification; this file keeps it (KEEP).
+1. **Phrase-only blocks:** Resolved — see 13 #35: Discovery.
+2. **Exact term class:** Resolved — see 13 #36: colour, competitor-brand, other-language and misspelled exacts → Profitable Conversion, on top of #15.
+3. **CUT step:** Resolved — see 13 #37: over BE on both 30 and 90 days → cut up to 30% of base; the 15%/cycle limit applies only to target-chasing trims.
+4. **Competitor PT SCALE:** Resolved — see 13 #5 / #16: raises other than push steps ≤ +25%/cycle.
+5. **WAIT duration:** Resolved — see 13 #50: held until a named re-test date or until the owner declines the fix; then BREAK-EVEN.
+6. **Non-push ranking term below BE outside an event:** Resolved — see 13 #51: KEEP (no raise) unless it qualifies for the push.

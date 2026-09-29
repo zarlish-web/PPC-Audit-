@@ -49,7 +49,7 @@ Source tags: [INV] inventory checkup · [LTSF] LTSF dossier · [PB] plan builder
 | Metric | Formula | Tag |
 |---|---|---|
 | Units/day (gating pace) | Units sold ÷ days, **30-day window**; 7-day pace shown as an early warning | [B6] |
-| Planned velocity | Inventory file's planned daily velocity ("Base SV") — show beside the actual; gate on the 30-day actual | [INV] (see open question 1) |
+| Planned velocity | Inventory file's planned daily velocity ("Base SV") — show beside the actual; gate on the 30-day actual | [INV, 13 #49] |
 | PPC daily velocity | Σ 7-day advertised SKU units ÷ 7 (context: how much the ads move) | [INV] |
 | Days of cover (available) | Available ÷ units/day | [INV, B6] |
 | Total days incl. inbound | (Available + dated inbound in horizon) ÷ units/day | [INV] |
@@ -101,7 +101,7 @@ Rules:
 3. A Red child that is still selling keeps its ad; an ad is paused only at zero stock or on the owner's approved list. Re-pointing = enable/add the next child's ad. [WB]
 4. Every Yellow/Red hold carries its dated re-entry plan; a hold without one fails the quality gate. [PB]
 5. New campaign launch needs the routed SKU ≥ **21 days** of cover (launch floor, not the 60-day push gate); else no campaign. [PB]
-6. Traffic of any kind only while the SKU is Green or Yellow **and** margin > 0. [WB]
+6. New or added traffic (launches, re-points onto the SKU, raises) only while the SKU is Green (Yellow: keep current spend, no raises) **and** margin > 0; Red rows are tapered or re-pointed, not grown (rule 3). [WB, 13 #10]
 7. The engine's 14/30-day bands are superseded (lead times of 60–90 days make them too late). [register #9]
 
 ---
@@ -109,7 +109,7 @@ Rules:
 ## 5. Projected days of cover through checkpoints
 
 - **Projected cover at checkpoint** = (available + dated inbound landing by then − (baseline units/day + the push's extra units/day) × days to checkpoint) ÷ baseline units/day. [PB, WB]
-- A push whose projected cover drops into Yellow or Red before its checkpoint is **blocking**: shrink the rank gap, wait for the inbound, or get an explicit time-boxed owner acceptance. [PB]
+- Projected cover must stay **Green (≥ 60 days) through the push checkpoint** (13 #42). A push whose projected cover drops into Yellow or Red before its checkpoint is **blocking**: shrink the rank gap, wait for the inbound, or get an explicit time-boxed owner acceptance. [PB]
 - Log the conflict to the Supply Chain register: SKU, projected date it leaves Green, the push causing it, fix (expedite, PO date, safety stock). [PB]
 - Events: stage the bid plan against **max-sales-day** days of cover, not average daily cover. [PB]
 
@@ -383,7 +383,7 @@ A failed check is a **finding, not a blocker**: report it prominently, show both
 
 ## 16. Open questions for the owner
 
-1. **Velocity driver:** the inventory checkup defaults to planned velocity (Base SV) on a 7-day window; B6 gates on the 30-day actual pace with 7-day as warning. This file gates on the 30-day actual and shows planned beside it. Confirm.
+1. **Velocity driver:** Resolved — see 13 #49: gate on the 30-day actual pace (deal/stock-out windows corrected and labelled), planned velocity shown beside it.
 2. **TIGHT vs Red re-point:** the register makes any stock-out before arrival Red (re-point same day), while B6's TIGHT rule (shortfall ≤ 7 days) eases without swapping. This file treats TIGHT as Red with the swap waived. Confirm.
-3. **Projected-cover threshold for a push:** plan builder blocks when projected cover drops into Yellow (< 60); workbook builder requires > 21 days through the checkpoint. This file uses the plan builder rule. Confirm.
+3. **Projected-cover threshold for a push:** Resolved — see 13 #42: projected cover must stay Green (≥ 60 days) through the push checkpoint, or the push is blocked, shrunk or time-boxed.
 4. **Cover ceiling** (overstock) for the inbound check, and **"large batch"** size for LTSF YELLOW — no house values.

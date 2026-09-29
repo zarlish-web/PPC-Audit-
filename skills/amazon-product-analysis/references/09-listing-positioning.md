@@ -42,7 +42,7 @@ Needs search-term impression share (IS), TOS impression share and IS rank:
 
 | Reading | Cause | First lever |
 |---|---|---|
-| IS < 5%, TOS IS < 15%, IS rank > 4 | Placement + auction | Price step within ceiling, then TOS modifier, then base below the bleeding placement |
+| IS < 5%, TOS IS < 15%, IS rank > 4 | Placement + auction | Budget-truncation check first, then TOS modifier, then price step within ceiling; base (below the bleeding placement) last (register #7) |
 | TOS IS < 15%, IS rank ≤ 4 | Placement only | TOS modifier up (within ceiling) |
 | TOS IS 15–30% | Moderate gap | TOS modifier up (within ceiling) |
 | TOS IS > 30% | **Listing issue** | Brand Management finding (§6); no CTR bid change |
@@ -108,7 +108,7 @@ Price position among tracked competitors is a **required input before calling a 
 
 How to read positioning against the set:
 1. Place us per rival tier (Aspirational / Beatable / Poor, `08`) — winning on price against an Aspirational rival means something different from winning against a Poor one. [B6]
-2. **Win ≥ 2 of 3 (price, rating, review count)** vs a target → conquest entry is open; the same test answers "is a rival's win explaining our rank loss?" State it plainly: "we win on price and reviews, lose on rating — two of three". [PB]
+2. **Win ≥ 2 of 3 (price, rating, review count)** vs a target → conquest entry is open for a target that is also OFFENSIVE (`08` §7; otherwise TEST — register #44); the same test answers "is a rival's win explaining our rank loss?" State it plainly: "we win on price and reviews, lose on rating — two of three". [PB]
 3. Check whether the field is our product at all: a generic field of lower-priced substitutes means our CVR cannot carry our price there — decline, don't push. Example (B6): generic "sheets" terms were led by $15–$50 microfiber sets; a $72 bamboo set could not convert there at break-even. [B6]
 4. **State coverage on every competitor claim** ("13 of 32 mapped rivals measured"); unmeasured is unknown, not absent. [B6 R-CI12]
 5. **Withdraw overturned findings** into the register with the overturning evidence. Example (B6 source): "2.71× market price, OUTPRICED" was withdrawn after a 74-ASIN pull put the median at $79.99 and ours at 1.00–1.06×. [DR]
@@ -127,7 +127,7 @@ Separate offer, visibility, stock and event causes **before** any bid change.
 | **Rank collapse concentrated in one size or colour family, coinciding with an outage** | **Stock signature** — not demand, not relevance | Inventory (`04`); do not attribute to the listing [LTSF] |
 | CVR drop coinciding with a logged price increase | Price attribution | Hold bids; revert the price, or accept it and recompute break-even, ceilings and targets first [PB] |
 | AOV shift from a variation-mix change | Economics changed | Every verdict on the old AOV is void; re-run the rows [PB] |
-| CVR ≥ benchmark, rank falling, no own event | Competitive shock | Check new entrant / deal / price cut; one ladder step within ceiling; re-read in 1 week; log [PB] |
+| CVR ≥ benchmark, rank falling, no own event | Competitive shock | Investigate before any bid: new entrant / deal / price cut; after a named rival move hold our price 3 days (`08` R-CI11); only then one ladder step within ceiling; re-read in 1 week; log [PB, B6] |
 | Branded-term CVR collapse | Listing health | Check suppression, buy-box loss, review-score drop, variation break — almost always a listing finding, not a bid problem [PB] |
 | Deal days in the window | Distorted | No CVR verdict on deal data; separate deal-state baseline; 2-week guard after the deal [PB, B6 E1] |
 
@@ -185,5 +185,5 @@ Method:
 
 ## 8. Open questions for the owner
 
-1. **Syntax CVR target.** Resolution #20 sets syntax CVR target = Market × 1.10 (quick-audit), while one source (SR) compares syntax to the sheet's keyword-style targets (CVR × 3.0). This file uses × 1.10 at syntax level and × 3.0 at keyword level; confirm.
+1. **Syntax CVR target.** Resolved — see 13 #20: syntax CTR and CVR vs Market × 1.10 (fail below 0.9 × target); keyword CVR target Market × 3.0.
 2. **Review-read sample.** No source defines how many reviews or which window to read; set a house default.

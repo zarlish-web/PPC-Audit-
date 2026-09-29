@@ -237,8 +237,8 @@ Standard set — include every row that applies to the product; replace brackete
 | Weekly | Product | margin after ads vs owner rule | at or above rule | cut the push from the bottom of the list | [B6 R-F6] |
 | Daily | Product | spend pace vs day-of-week curve | within ±25% | flag same day | [PB] |
 | Daily until +7 days after an event | Head terms | organic rank | no term down > 10 places | find the cause before any price change | [B6 E4] |
-| Daily | Stock (hero of each pushed size) | available cover (30-day pace) vs days to next dated arrival | cover ≥ days to arrival | gap ≤ 7 days: ease, no swap; > 7 days: switch to backup colour, same size | [B6 R-I3/R-I4] |
-| Each checkpoint of a push | Projected DOC (stock + dated inbound at baseline burn + order gap) | days of cover | > 21 through the checkpoint | shrink the gap, wait for inbound, or time-boxed acceptance | [WB, PB] |
+| Daily | Stock (hero of each pushed size) | available cover (30-day pace) vs days to next dated arrival | cover ≥ days to arrival + 7 (push allowed) | cover ≥ arrival but < +7: no further push steps; short ≤ 7 days: ease, no swap; short > 7 days: switch to backup colour, same size | [B6 R-I2/R-I3/R-I4] |
+| Each checkpoint of a push | Projected DOC (stock + dated inbound at baseline burn + order gap) | days of cover | ≥ 60 (Green) through the checkpoint | block, shrink or time-box the push; wait for inbound | [WB, PB, register #42] |
 | Day after an event ends | Post-event audit | price back to regular; margin at full price | — | re-price every ceiling on full-price margin; taper event bids over 3–5 days | [B6, SR] |
 | 7 days after each mix fix | Mix-fixed campaigns | product-page share of clicks | ≤ 20% | cut the base again | [B6 R-M1] |
 | First settled week (7 clean days after attribution settle) | Break-even step-downs | ACoS, orders, rank | ACoS toward break-even; rank not down > 10 | restore one step | [B6 R-B2] |
@@ -252,7 +252,7 @@ Standard set — include every row that applies to the product; replace brackete
 | Dated goal checkpoint | Product goal | e.g. top 10 on half the push terms | met | re-plan in the weekly tune | [B6] |
 | Every event on the calendar | Events | no judgement on event days | — | size the push (price, clicks, budget, stock) ≥ 1 week ahead (major events ≥ 3 weeks); reads skip event days | [B6 E1, PB] |
 | Day 7 and day 14 of a price/promo lever | Lever | actual vs predicted uplift | ≥ 50% of prediction | replace the lever | [LTSF] |
-| Daily during an SB/video test | Banners | impressions; bid vs ceiling | showing on each term | +30% bid step, never above 2 × break-even | [B6 R-CI10] |
+| Daily during an SB/video test | Banners | impressions; bid vs ceiling | showing on each term | +30% bid step, never above the SB ceiling (2 × break-even on push terms and on brand terms with verified rival presence; 1 × elsewhere) | [B6 R-CI10, register #45] |
 | End of SB/video test (≥ 15 clicks) | SB/video campaigns | ACoS; same-term SP orders + TOS CVR; organic rank; new-to-brand share | ACoS ≤ break-even; SP orders not down | BE–2×BE: hold at break-even bid; > 2×BE: stop; SP orders fall more than SB adds: stop | [B6 R-CI10] |
 | Next competitor export after a brand-defence change | Brand terms | rivals' share of the brand term | below the baseline share | keep brand exact funded; review | [B6 R-CI6] |
 | Next cycle | Every logged action | execution status | EXECUTED | re-issue; report execution rate | [SR] |
@@ -271,7 +271,7 @@ Example (B6): push window daily 29 Sep–14 Oct; spend limit $1,300/day on deal 
 6. **Windows never straddle a lever change.** A read that crosses a change of lever, price or advertised SKU is CONFOUNDED; use the post-change portion only if it has ≥ 15 clicks. [LTSF, PB]
 7. **Two levers in one window = confounded.** Stage changes so each lever gets its own window. [LTSF]
 8. **Rank trends:** ≥ 1 month of history (ideally 3); state overall, 14-day and 7-day separately (shorter = early warning); exclude stockout/re-route stretches; median over the window with unranked days counted as unranked, not as a rank. [PB, B6]
-9. **Non-ranking judgement** uses 30-day and 90-day windows together; over on 30 but inside on 90 → WATCH. [B6 R-N1]
+9. **Non-ranking judgement** uses 30-day and 90-day windows together; over on 30 but inside on 90 → MONITOR (no change, named re-read date). [B6 R-N1]
 10. **Velocity windows:** 30-day pace for cover; 7-day pace as a warning only; never the inflated push pace; distorted windows (stockout, suppression, deal) are corrected with a stated factor. [B6, LTSF]
 11. **Economics freshness:** margin older than 45 days, or any price/fee/packaging/LTSF change, makes grades PROVISIONAL and ceilings stale until refreshed (within 48 h). [SR, PB]
 12. **Budget-truncated windows** (in-budget < 70% of the day) are not evidence for bids; 0% in-budget with $0 spend = missing data. [PB]
@@ -286,6 +286,6 @@ Verdict counts (by verdict), escalations opened / resolved (RECOVERED) / ineffec
 
 ## 14. Open questions for the owner
 
-1. Marginal read: SR freezes at marginal ACoS > 1.5 × average, PB unwinds at > 2 × blended. This file applies both as a ladder (freeze, then unwind). Confirm. [SR, PB]
+1. Marginal read: Resolved — see 13 #34: freeze at the prior rung when marginal ACoS > 1.5 × average; unwind one step when > 2 × blended (freeze first, unwind second).
 2. No source sets an execution tolerance for placement %, budget or state changes; exact match is used here. Confirm or set one.
 3. No source sets a grading tolerance for defence share, discovery graduation, conquest page share or market-share band. Set per product when the prediction is written, or give house defaults.

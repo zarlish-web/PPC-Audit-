@@ -64,9 +64,9 @@ Fill the `<…>` fields before sending. Delete a group only when the scope rules
 > 9. **Bidding strategies**: leave existing ones as they are; new campaigns dynamic down-only; fixed bids only through a trial you approve? *(Default: yes.)*
 > 10. **Amazon suggested bids**: never used to set prices? *(Default: not used.)*
 > 11. **Stock zones**: Green ≥60 days of cover, Yellow 21–59, Red <21, and "stock-out before the next arrival" counts as Red? *(Default: yes.)*
-> 12. **Zero-order rule**: ≥20 clicks and 0 orders → reduce (relevant) or block (irrelevant); relevant non-converters go to a fix list? *(Default: yes.)*
+> 12. **Zero-order rule**: ≥20 clicks and 0 orders → reduce (relevant, with a live exact owner), fix list (relevant, no live exact owner) or block (irrelevant or another product type); exact ranking and brand terms are never negated? *(Default: yes.)*
 > 13. **Harvest**: ≥3 orders at or below break-even ACoS with no exact owner → build an exact campaign and negate at the source? *(Default: yes.)*
-> 14. **Approvals**: which changes need your sign-off before upload (default: structural changes, bid moves >25%, budget moves >$50/day, any failed check, terms above a search-volume threshold — which one: 250 or 500?).
+> 14. **Approvals**: which changes need your sign-off before upload (default: structural changes, bid moves >25% outside an approved push plan — the plan's own +30%/day steps are covered by approving it — budget moves >$50/day, any failed check, terms with search volume ≥ 500).
 > 15. **Rules that need your confirmation before first use on this product**: defensive-campaign ladder and competitor-presence allowance; conquest entry/exit; harvest bar; discovery count basis (keyword vs root cluster); how a ranking push ends after target is held; graded raise tiers for non-ranking terms; a $0.50 minimum bid.
 > 16. **Portfolios in scope**: this portfolio only, or also a sibling portfolio that buys the same head terms? Marketplace: US or CA (never mixed)?
 >
@@ -122,7 +122,7 @@ Status: **Y** received · **N** missing (named gap) · **N/A** confirmed not app
 | 11 | Stock zones | | | | |
 | 12 | Zero-order rule | | | | |
 | 13 | Harvest rule | | | | |
-| 14 | Approval thresholds (SV 250 or 500) | | | | |
+| 14 | Approval thresholds (default SV ≥ 500) | | | | |
 | 15 | Provisional rules confirmed (list each) | | | | |
 | 16 | Portfolios, marketplace | | | | |
 

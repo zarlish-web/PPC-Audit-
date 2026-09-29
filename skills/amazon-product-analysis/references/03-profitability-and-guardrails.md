@@ -66,7 +66,7 @@ Rank trend (overall, 14 d, 7 d) · revenue WoW and MoM · margin WoW and MoM · 
 | Stage | Expected campaign mix | Graduates when | Notes |
 |---|---|---|---|
 | Launch | Discovery-heavy | Organic sales > ~40–50% of total, sustained (not profitability alone) | Launch floor: routed SKU ≥ 21 days of cover (04) [PB] |
-| Ranking push | Exact concentrated on the primary syntax | Rank targets held 2 clean weeks → HOLD RANK, then taper (06) | Push clock = weeks since *this* push began, restarts with a new push [PB] |
+| Ranking push | Exact concentrated on the primary syntax | Rank target reached → HOLD RANK for 2 clean weeks, then taper (06, 13 #26) | Push clock = weeks since *this* push began, restarts with a new push [PB] |
 | Transition | Push tapering to maintenance | Organic share above target, CVR stable | — |
 | Mature / defend | Defensive layer, brand-format coverage, display retargeting, low-budget auto sentinel; no active push | — | — |
 | Harvest | Minimum spend, defend won positions | — | — |
@@ -197,7 +197,7 @@ Ceiling rules:
 | Defensive | 10–15% | |
 | Brand Defensive | 5–10% | |
 | Competitor / Conquest ASIN | 10–15% | |
-| LTSF clearance | up to 50% | See open question 2 |
+| LTSF clearance | up to 50% | Reference only — the ceiling is 1 × break-even on forward-cash economics (13 #43) |
 | Unknown | 25% | |
 
 - Target ACoS = **50% of break-even**; Max acceptable = **75% of break-even** (house reporting thresholds). [SR, QA]
@@ -208,8 +208,8 @@ Ceiling rules:
 | # | Condition (non-ranking row) | Decision | Tag |
 |---|---|---|---|
 | 1 | < 15 clicks (30 d) | MONITOR — no change | [B6 E3] |
-| 2 | ACoS > **2 × break-even** on ≥ 30 clicks (90 d) | BLOCK / stop (discovery: negative exact; product target: pause / negative ASIN); in the term's exact owner: REDUCE | [B6 R-K3, R-X5] |
-| 3 | ACoS > break-even on **both** 30 and 90 days, ≥ 15 clicks | REDUCE: base × BE/ACoS, i.e. cut −(1 − BE ÷ ACoS), **max −30% of base per step** | [B6 R-N1] |
+| 2 | ACoS > **2 × break-even** on ≥ 30 clicks (90 d) | Stop — proposed for owner confirmation (REVIEW, interim one CUT step; 06 §4.1): discovery term → BLOCK (negative exact); product target → pause / negative ASIN; in the term's exact owner: REDUCE | [B6 R-K3, R-X5] |
+| 3 | ACoS > break-even on **both** 30 and 90 days, ≥ 15 clicks | CUT: base × BE/ACoS, i.e. cut −(1 − BE ÷ ACoS), **max −30% of base per step** | [B6 R-N1] |
 | 4 | ACoS > break-even on 30 d but inside on 90 d | MONITOR (watch) | [B6] |
 | 5 | ACoS ≤ **50% of break-even** with orders | SCALE-eligible: raise ≤ +25%/cycle, never above the 1× ceiling | [register #16, #5] |
 | 6 | Otherwise | KEEP | — |
@@ -310,10 +310,10 @@ Flagged rows are still written in full; they are marked for the reviewer, with t
 
 | Trigger | Tag |
 |---|---|
-| Action on a keyword at ≥ 500 search volume | [PB] (WB change-review uses ≥ 250 — open question 3) |
+| Action on a keyword at ≥ 500 search volume | [PB] (13 #41, #54 — the WB 250 figure is not used) |
 | Any gate failure on the row (inventory, provenance, budget truncation, other) | [PB] |
 | Structural change: new campaign, routing/colour switch, match-type change, bidding-strategy change | [PB, B6 E8] |
-| Bid move > 25% of current | [PB] |
+| Bid move > 25% of current outside an approved push plan (an approved plan covers its own +30%/day steps) | [PB, 13 #41] |
 | Budget move > $50/day; budget > $500/day | [PB, SR] |
 | Spend envelope/limit change > 20% | [PB] |
 | Ceiling raise for a named term (at ceiling 3 days without holding the top) | [B6 R-P6] |
@@ -351,8 +351,8 @@ Flagged rows are still written in full; they are marked for the reviewer, with t
 
 ## 15. Open questions for the owner
 
-1. **Marginal-step thresholds:** SR freezes at marginal ACoS > 1.5 × average; PB unwinds at > 2 × blend. This file layers them (1.5× freeze, 2× unwind). Confirm or pick one.
-2. **LTSF-clearance ceiling:** SR carries a band "up to 50% ACoS", an alternative "~18% product TACoS", and a separate rule "aggressive to break-even (RPC × BE)". This file uses 1 × break-even on forward-cash economics and lists the 50% band as reference. Confirm.
-3. **Search-volume trigger for human review:** PB ≥ 500, WB change-review ≥ 250. This file uses 500 for mandatory confirm. Confirm, or lower to 250.
-4. **Defensive above-ceiling allowance** (PB: only with verified competitor presence on the brand term, withdrawn after 2 reads without it): not adopted by default (brand rows held to ≤ 1 × break-even). Adopt?
+1. **Marginal-step thresholds:** Resolved — see 13 #34: freeze at marginal ACoS > 1.5 × average, then unwind one step at > 2 × blended.
+2. **LTSF-clearance ceiling:** Resolved — see 13 #43: 1 × break-even on forward-cash economics (COGS sunk); the 50% ACoS band is reference only.
+3. **Search-volume trigger for human review:** Resolved — see 13 #41 / #54: SV ≥ 500 for both mandatory confirm and the Change Review Sheet.
+4. **Defensive above-ceiling allowance** (PB: only with verified competitor presence on the brand term, withdrawn after 2 reads without it): partly resolved — 13 #45 allows 2 × break-even for Sponsored Brands / video on brand terms with verified competitor presence. For Sponsored Products brand rows it is not adopted by default (≤ 1 × break-even). Adopt for SP?
 5. Organic-share graduation target and ad-dependency ceiling for demotion: no house default — set per product.
