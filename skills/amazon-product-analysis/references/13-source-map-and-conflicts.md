@@ -80,7 +80,7 @@ This framework consolidates the skills below. Where they disagree, the **resolut
 |---|---|---|
 | 34 | Marginal ACoS on a raise | Freeze the raise at the prior rung when marginal ACoS > 1.5 × average [SR]; unwind one step when > 2 × blended [PB]. Freeze first, unwind second |
 | 35 | Phrase-only campaigns | **Discovery** (B6, WB). OC's script default of Profitable Conversion is not used |
-| 36 | Exact terms that are not generic demand | Colour, competitor-brand, other-language and misspelled exact terms → **Profitable Conversion**, not Ranking [B6 R-O1], applied on top of #15 |
+| 36 | Exact terms that are not generic demand | Colour, competitor-brand, other-language, misspelled and adjacent-generic (no product-defining word, e.g. "king size sheets with corner straps" for a bamboo set) exact terms → **Profitable Conversion**, not Ranking [B6 R-O1], applied on top of #15 |
 | 37 | Size of a non-ranking cut | Over break-even on **both** 30 and 90 days → cut up to **30% of base** in one step (#16). The 15%/cycle limit in #5 applies to target-chasing trims, not to this rule |
 | 38 | Relevant term, ≥20 clicks, 0 orders, no live exact owner | **REVIEW** (fix queue: listing, price, colour, placement). BLOCK only when irrelevant or another product type. With a live owner → REDUCE |
 | 39 | Conversion deficit (CVR far below target on ≥40 clicks) | Bid −15% and refer to Brand Management [SR]; no rank push until the offer is fixed |
@@ -98,6 +98,8 @@ This framework consolidates the skills below. Where they disagree, the **resolut
 | 51 | Non-push ranking term below break-even | KEEP (no raise) unless it qualifies for the push |
 | 52 | What an upload may change | Bid, placement %, budget, and state / product-ad rows that were explicitly decided. Everything else untouched. Structural changes (new campaigns, colour switches, folds) are built separately or by hand [PF, WB, CB] |
 | 53 | Rule-ID scheme | R-P push · R-B break-even · R-M placement mix · R-N non-ranking · R-C colour/variation · R-O objective · R-S structure · R-K keyword · R-X competitor ASIN · R-I inventory · R-F financial · R-CI competitor influence · E exceptions · F failures. Extend within a family; never reuse an ID |
+| 55 | Objective of a harvested exact | By targeting and class: a core term (carries the product-defining word) is tagged Ranking and runs non-push at break-even until it qualifies for the push; colour / competitor / language / misspelling / adjacent-generic terms are Profitable Conversion (#36) |
+| 56 | Label for "at ceiling 3 days without holding the top" | **REVIEW** (owner decision: time-limited ceiling raise or swap). CHECK OWNER is reserved for a paused/duplicate exact owner |
 | 54 | Change Review Sheet threshold | Same as #41 (SV ≥ 500, gate failures, structural changes, bid moves >25% outside an approved plan, budget >$50/day) |
 
 ---

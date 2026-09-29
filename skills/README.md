@@ -8,9 +8,9 @@ It consolidates 18 existing skills (decision engines, plan builder, decision rea
 
 | Where | How |
 |---|---|
-| Claude.ai (web/desktop) | Settings → Capabilities → Skills → upload `amazon-product-analysis.skill` (the zip). Claude loads it automatically when a request matches. |
+| Claude.ai (web/desktop) | Settings → Capabilities → Skills → upload `dist/amazon-product-analysis.skill` (the zip). Claude loads it automatically when a request matches. |
 | Claude Code | Copy the `amazon-product-analysis/` folder to `~/.claude/skills/` (personal) or `.claude/skills/` in a repo. |
-| A Claude Project or a single chat | Upload `AMAZON_PRODUCT_ANALYSIS_FRAMEWORK.md` (everything in one file) as project knowledge or an attachment, and say "follow the framework". |
+| A Claude Project or a single chat | Upload `dist/AMAZON_PRODUCT_ANALYSIS_FRAMEWORK.md` (everything in one file, ~575 KB — best as Project knowledge) or, in a single chat, `dist/AMAZON_PRODUCT_ANALYSIS_QUICK_START.md` (~25 KB), and say "follow the framework". |
 
 Then ask naturally, e.g. *"Run a full analysis of B6 using the attached files"*, *"Audit the engine's decisions for Satin 4PC against the competition"*, *"What should we do with the aged King Grey stock?"* — and attach what you have. Claude will first send the intake request (`templates/intake-request.md`) listing anything missing and the owner settings to confirm.
 

@@ -175,7 +175,7 @@ Ceiling rules:
 1. **Price above ceiling → cut to ceiling now.** Never deferred, never "owned by a later descent". Applies to raises and holds alike. [B6 R-P5]
 2. Row under 15 clicks but over ceiling → formula-only correction to ceiling in one cycle; next cycle check for suppression (clicks collapse → fixed-bid trial, 07). [PB]
 3. **Qualification:** a term is pushable only if its ceiling ≥ our current TOS cost per click; otherwise **WAIT** for an owner decision on a time-limited ceiling raise. [B6 R-P1, F25]
-4. At ceiling **3 days** without top-3 sponsored position and ≥ 30% TOS impression share → **CHECK OWNER**: raise that term's ceiling for a stated period, or swap the term. [B6 R-P6]
+4. At ceiling **3 days** without top-3 sponsored position and ≥ 30% TOS impression share → **REVIEW** (owner decision): raise that term's ceiling for a stated period, or swap the term. [B6 R-P6]
 5. TOS CVR below market on 50+ TOS clicks → stop the push, back to break-even. [B6 R-P7]
 6. Up-and-down bidding doubles the TOS price the auction may charge: authorised TOS CPC = base × (1 + boost) × 2.0; breach if > ceiling × 1.05 → re-solve base = ceiling ÷ ((1 + boost) × 2.0). [SR]
 7. Realised CPC ÷ target price > 1.0 = push-only territory; > 1.5 = unjustifiable, correct this cycle. [SR]
@@ -233,7 +233,7 @@ Exceptions: LTSF/liquidation campaigns are not cut on ACoS — judged on stock c
 ## 8. Weekly loss ceiling for ranking pushes
 
 - **Weekly loss ceiling = (push ACoS − break-even ACoS) × projected ad sales at the required spend**; never less than one day's spend; basis stated on the row. [PB, WB]
-- Hitting it = **CHECK OWNER** flag, not an automatic stop. [PB]
+- Hitting it = **REVIEW** flag to the owner, not an automatic stop. [PB]
 - Margin rule check (weekly): if product margin after ads falls below the owner's margin rule, cut pushes **from the bottom of the funded list** (funding order = revenue potential at target rank ÷ cost to close the gap). [B6 R-F6, PB]
 - Example: push ACoS 38%, break-even 23.8%, projected ad sales $6,000/wk → loss ceiling (0.38 − 0.238) × $6,000 = $852/wk.
 

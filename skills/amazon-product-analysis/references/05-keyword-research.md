@@ -74,7 +74,7 @@ Run the classifier on the term text, first match wins, in this order. Classes dr
 | 9 | **Core** (niche generic) | Root material / form wording ("bamboo sheets") | Where organic rank is built | **Ranking** | Push only via push rules (`06`). [B6 R-O1] |
 | 10 | **Generic head / adjacent** | Category words without the niche root ("bed sheets") | Field priced for another product; CVR can't carry our price | Profitable Conversion | **Never pushed, whatever volume**; guard §10 step 10. [B6 R-CI1] |
 
-- The class decides whether an Exact campaign may carry the Ranking objective: a Ranking tag on a colour / competitor / language / misspelling term is blocked (→ Conversions). Campaign objective itself is decided from targeting at campaign level (`06`). [B6 E18, OC, #15]
+- The class decides whether an Exact campaign may carry the Ranking objective: a Ranking tag on a colour / competitor / language / misspelling / adjacent-generic term is blocked (→ Profitable Conversion). Campaign objective itself is decided from targeting at campaign level (`06`). [B6 E18, OC, #15]
 - Classify against the MKL label too; labels can be wrong (Example (B6): "red bamboo sheets" labelled Not Relevant while converting at 33.6% ACoS). Where classifier and label disagree, show both and use the relevancy score (§6). [B6]
 
 Example (B6): 429 core, 198 ASIN, 94 brand, 34 colour, 33 other product type, 28 adjacent generic, 18 competitor brand, 7 Spanish/misspelling.
@@ -323,7 +323,7 @@ Example (B6): only 3 terms met BLOCK ($105 / 90 d) — "silk sheets" (other prod
 7. Auto terms are read split by close / loose / substitutes / complements; an untagged converting term is classified before harvest. [PB]
 8. No harvest builds on deal days; queue for the post-deal audit. The harvest rule is the resolved default (#22); an owner override is recorded if given. [B6, PB, #22]
 
-Example (B6): "king size sheets with corner straps" — no exact owner, 3 orders on 9 clicks at 3% ACoS → exact campaign at break-even on 1 Oct (built as Conversions in B6; under #15 a generic-niche exact is tagged Ranking, non-push), then negative exact in the discovery source.
+Example (B6): "king size sheets with corner straps" — no exact owner, 3 orders on 9 clicks at 3% ACoS → exact campaign at break-even on 1 Oct (an adjacent-generic term — no product-defining word — so its exact is tagged Profitable Conversion under #36/#55), then negative exact in the discovery source.
 
 ---
 
