@@ -392,15 +392,15 @@ Every term, one row, in this order. Missing = blank, never 0.
 
 | Group | Columns |
 |---|---|
-| Decision | Search term · **Decision** · Rule (id allowed in workbook only) · Why (numbers doing the work) · Action · Expected outcome · Re-read date · Reversal condition |
-| Identity | Normalised key · Sources present (MKL / SQP / STR / bulk / competitor / Cerebro) · Class · Syntax · Root(s) · Hero / Halo · SV tier |
-| Demand | Search volume / month (source) · Weekly SV (source) · SV% · Market traffic (competitor pull) |
-| Relevancy | Original label · Original % · Updated % · Source · Confidence · Decision tier (high / moderate / not) · Launch tier (highly / semi / not / unclassified) |
-| Position | Organic rank (30-day median, source) · Sponsored rank · Target rank · Rank gap · Indexing status |
-| SQP | Market impressions / clicks / purchases · Impression / click / purchase share · Market & brand CTR · Market & brand CVR · Target CTR · Target CVR · CTR ratio · CVR ratio · Listing flag |
-| Ownership | Exact owner(s) with state · Owner status (one live / duplicate / paused / none) · Coexistence reason · Advertised SKU · Correct SKU |
-| Performance | Impressions, clicks, CTR, orders, CVR, CPC, spend, sales, ACoS — 30 d and 90 d · Top-of-search share, TOS CVR, TOS CPC · Product-page share, PDP CVR · Rest-of-search share (keyword placement = estimate, say so) |
-| Economics | Break-even ACoS (routed SKU) · Break-even CPC · Ceiling (ranking terms) |
+| Decision | Search term · **Decision** · Rule (id in workbook only) · Why (numbers doing the work) · Action · Expected outcome · Re-read date · Reversal condition |
+| Identity | Normalised key · Sources present · Class · Syntax · Root(s) · Hero/Halo · SV tier |
+| Demand | SV/month (source) · Weekly SV (source) · SV% · Market traffic |
+| Relevancy | Original label and % · Updated % · Source · Confidence · Decision tier · Launch tier |
+| Position | Organic rank (30-d median, source) · Sponsored rank · Target rank · Rank gap · Indexing |
+| SQP | Market impr / clicks / purchases · Shares · Market & brand CTR, CVR · Target CTR, CVR · Ratios · Listing flag |
+| Ownership | Exact owner(s) + state · Owner status · Coexistence reason · Advertised SKU · Correct SKU |
+| Performance (30 d and 90 d) | Impr, clicks, CTR, orders, CVR, CPC, spend, sales, ACoS · TOS share / CVR / CPC · PDP share / CVR · ROS share (keyword placement = estimate) |
+| Economics | Break-even ACoS and CPC of the routed SKU · Ceiling (ranking terms) |
 | Landscape | Rivals present · Rivals advertising · Our share · Landscape verdict (`08`) |
 
 [B6, KCP, MDB, DR]
