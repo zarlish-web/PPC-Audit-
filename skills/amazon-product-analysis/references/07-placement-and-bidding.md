@@ -94,7 +94,7 @@ Example (B6, "bamboo sheets", 30 days): TOS 19.08% CVR on 306 clicks vs PDP 11.5
 | Condition | Decision | Source |
 |---|---|---|
 | Ranking campaign in-budget < 70% of the day | Fix the budget first (§7.6). Every placement rate from a truncated campaign is invalid. 0% time-in-budget with $0 spend = missing data, not truncation | [PB, register #7] |
-| **TOS-share pre-check**: ranking row with clicks at or above plan but **TOS < 30% of clicks** | **PLACEMENT FIX FIRST**: base down toward PDP break-even, boost up to hold (or reach) the TOS target, ROS re-solved, all in one pass. No price raise is judged until the mix is fixed | [PB, WB] |
+| **TOS-share pre-check**: ranking row with clicks at or above plan but **TOS < 30% of clicks** | **MIX FIX first** (placement fix): base down toward PDP break-even, boost up to hold (or reach) the TOS target, ROS re-solved, all in one pass. No price raise is judged until the mix is fixed | [PB, WB] |
 | Priced out (D2) on a qualified push term | Lever pair: base down (mix fix §4) and TOS price up by the push rules (§3). Target the push price, not `clearing × 1.08` in one write. PF's one-shot jump is replaced by the daily step (register #5) | [PF, B6, register #5] |
 | Clearing CPC > ceiling on a push candidate | WAIT: the term cannot hold the top at a profitable price. Owner decides on a time-limited ceiling raise | [B6 R-P1, F25] |
 | Ranking campaign, PDP > 20% of clicks on ≥15 clicks | MIX FIX (§4), paired in the same write | [B6 R-M1] |
@@ -107,7 +107,7 @@ Example (B6, "bamboo sheets", 30 days): TOS 19.08% CVR on 306 clicks vs PDP 11.5
 
 ## 3. Pricing a push term
 
-A term is pushed only if it passed the push qualification in `06-campaign-ppc-decisions.md`: the product goal allows ranking spend; it converts at or above market at the top; it is within about 30 places of target; the advertised variation is Green with cover ≥ days to next arrival + 7; the keyword and campaign are live; the ceiling ≥ our TOS CPC; and the listing is not flagged. A term that fails any of these is WAIT, not PUSH. [B6 R-P1, register #9]
+A term is pushed only if it passed the push qualification in `06-campaign-ppc-decisions.md`: the product goal allows ranking spend; it converts at or above market at the top; it is within about 30 places of target; the advertised variation is Green with cover ≥ days to next arrival + 7, no stock-out before the next inbound, and projected cover staying Green through the checkpoint; the keyword and campaign are live; the ceiling ≥ our TOS CPC; and the listing is not flagged. A term that fails any of these is WAIT, not PUSH (a reach failure is MONITOR (too far), `05` §10 step 6). [B6 R-P1, register #9, #42]
 
 ### 3.1 Formulas
 
@@ -128,7 +128,7 @@ With the ceiling at 2 × break-even, any premium above +100% is capped. WB's +40
 | P5 | Today's TOS price > ceiling | **Cut to the ceiling now**, in this write. Never deferred | [B6 R-P5, F05] |
 | P8 | Rank ≤ target | **HOLD RANK**: keep today's price, no raise. Rejoin the push if the term slips past target. After 2 clean weeks at target, taper per `06` (about −10%/week to 5–10¢ under the placement's blended CPC; restore on a slip of > 2 places in the top 5, or any slip below target) | [B6 R-P8, register #26] |
 | P7 | TOS CVR < market CVR on **50+ TOS clicks** | **STOP** the push. Back to break-even (§5 path). Extra auctions are worse ones | [B6 R-P7] |
-| P6 | At the ceiling **3 days** without holding the top | **CHECK OWNER**: raise the ceiling for a set time, or swap the term. Money alone is not working at a profitable price | [B6 R-P6, E5] |
+| P6 | At the ceiling **3 days** without holding the top | **REVIEW** (owner decision): raise the ceiling for a set time, or swap the term. Money alone is not working at a profitable price | [B6 R-P6, E5] |
 | P4 | Price < push price, or not holding the top while below the ceiling | Raise **≤ +30% of today's price per day**, never above the ceiling | [B6 R-P4, register #5] |
 | — | Holding the top below the push price | Hold. Do not pay for rank that is already bought | [B6] |
 | — | Rank fell > 10 places in 30 days while getting clicks | Freeze price moves (except P5) and find the cause: colour, listing, keyword state, competitor | [B6 E4, PB state E] |
@@ -149,7 +149,7 @@ Advertised SKU margin $20.00/unit. Own TOS CVR 18.0% on 80 TOS clicks (≥ 50, s
 | Day 1 | $4.00 × 1.30 | $5.20 (boost 225% at base $1.60) |
 | Day 2 (still not holding) | $5.20 × 1.30 | $6.76 (boost 323%) |
 | Day 3 (still not holding) | $6.76 × 1.30 = $8.79 → capped | **$7.20** (boost 350%) |
-| Days 3–5 at $7.20, not holding | P6 | CHECK OWNER: time-limited ceiling raise or swap |
+| Days 3–5 at $7.20, not holding | P6 | REVIEW (owner): time-limited ceiling raise or swap |
 | If holding on day 2 | P4 no longer fires | Hold $6.76 |
 | If, at 50+ TOS clicks, TOS CVR 9% vs market 11% | P7 | STOP. Back to break-even $3.60 (§5) |
 
@@ -173,7 +173,7 @@ Example (B6, "bamboo sheets"): King White margin $15.97 × own TOS CVR 19.1% (1,
 | M6 | **TOS never falls as base-cut residue**: a base cut without a boost re-solve lowers the TOS price. That is forbidden unless the TOS price itself is meant to fall (over ceiling, or the §5 path). Rebuild formula: `boost = (TOS price ÷ new base − 1) × 100` | [WB, SR] |
 | M7 | **PDP only via base.** Do not use a product-page modifier to steer PDP spend | [WB, PB] |
 | M8 | **Boost raise refused** on a ranking campaign with PDP > 20% unless the base cut is in the same write (F07: a boost alone buys nothing if the campaign is not winning the top) | [B6 F07] |
-| M9 | **Re-check after 7 days**: PDP share, TOS share, TOS impression share. Still > 20% → next base step, ≤ 50%. At the base floor with PDP still > 20% → CHECK OWNER: fixed-bid trial candidate (§8.1). A strategy change needs approval | [B6, WB, register #8] |
+| M9 | **Re-check after 7 days**: PDP share, TOS share, TOS impression share. Still > 20% → next base step, ≤ 50%. At the base floor with PDP still > 20% → REVIEW (owner): fixed-bid trial candidate (§8.1). A strategy change needs approval | [B6, WB, register #8] |
 | M10 | Base above the PDP break-even CPC after the step → it keeps stepping down on later cycles (≤ 50% per step) until base ≤ PDP break-even | [WB, E17] |
 
 WB's alternative step sizes (30% if PDP > 30%, else 15%) and its "TOS climbs ≤ 0.5 × new base per write" are not used. The B6 −50%/−25% mix fix and the +30%/day push step apply. [register #5]
@@ -301,7 +301,7 @@ Stated DSTR 6.4 → 7. Organic traffic share 30% → organic 2.1 (PROXY) → pai
 
 - **Loss ceiling** = (push ACoS − break-even ACoS) × projected sales at the required spend, stated weekly with its basis. Push ACoS = TOS price ÷ (TOS CVR × AOV). Cross-check it as (CPA − margin) × paid orders. Hitting it = human flag, not an automatic stop. [PB, WB]
   - Example: price $5.00, CVR 20%, AOV $70 → CPA $25, push ACoS 35.7%. Break-even ACoS 20 ÷ 70 = 28.6%. Sales/day 25 × 20% × $70 = $350 → loss $25/day, which equals ($25 − $20) × 5 orders. **$175/week.**
-- **Projected days of cover** through the checkpoint = (available + dated inbound on its ETA) burned at baseline velocity + the push's order gap. It must stay Green. Dropping into Yellow (< 60) or Red (< 21) blocks the push: shrink the gap, wait for inbound, or get an explicit time-boxed owner acceptance. Red is never accepted. Use the 30-day pace, never the inflated push pace. [PB, WB, B6 F30, register #9]
+- **Projected days of cover** through the checkpoint = (available + dated inbound on its ETA) burned at baseline velocity + the push's order gap. It must stay Green. Dropping into Yellow (< 60) or Red (< 21) blocks the push: shrink the gap, wait for inbound, or get an explicit time-boxed owner acceptance. Red is never accepted. Use the 30-day pace, never the inflated push pace. [PB, WB, B6 F30, register #9, #42]
 
 ### 7.5 Funding order when budget room is short
 
@@ -322,7 +322,7 @@ Example (B6, deal days 29–30 Sep): the full plan was $1,317/day against a $1,3
 | Utilisation targets | Ranking **80%+**, Discovery **70%+**, Defensive **100%** (fix utilisation before touching bids) | [PB, B2] |
 | Clicks above plan with rank improving | Hold price. Budget rises only if the plan's clicks are truncated and the spend limit allows | [register #6] |
 | Minimum budget | Raise any budget < **$10/day** to **$10** | [SR, register #32] |
-| Approval | Any budget change **> $50/day** → owner approval (Change Review Sheet) | [PB, register #32] |
+| Approval | Any budget change **> $50/day** → owner approval (Change Review Sheet) | [PB, register #32, #41, #54] |
 | High budget | Budget > $500/day → refer for review | [SR] |
 | Roster minimums > cap | Pacing plan (release 3–5 campaigns a week inside the cap, highest value first) | [PB check 18] |
 | Pairing | Price and budget rows load together or not at all; a funded push term always has its budget | [B6 F14] |
@@ -358,7 +358,7 @@ Non-ranking ceiling = 1.0 × break-even CPC at every placement. These tiers size
 |---|---|---|
 | Candidacy | Reactive: **≥ 100 exact clicks** on the term's own history (near-miss about 20). Proactive: a syntax coverage gap (e.g. primary root at 0% phrase). State which path | [PB, register #23] |
 | Existing instance | Check for an existing Broad/Phrase/Auto instance before building (restart beats build) | [PB, B6 R-S2] |
-| Price | **Broad ~60%, Phrase ~80% of the exact ceiling.** Here "exact ceiling" = the exact term's break-even CPC (discovery never gets the ranking allowance). Relevancy tier sets the position: highly relevant → upper end, semi-relevant → lower | [PB, register #23, WB] |
+| Price | **Broad ~60%, Phrase ~80% of the exact ceiling.** Here "exact ceiling" = the exact term's break-even CPC (discovery never gets the ranking allowance). Relevancy tier sets the position: highly relevant → upper end, semi-relevant → lower | [PB, register #23, #47, WB] |
 | Modifiers | **No placement modifier at launch.** Modifiers are earned by the §4.2 rule | [PB, WB] |
 | Cheaper-order test | Launch Phrase/Broad on a term only if its proven non-branded cost per order is below the exact average. These layers buy coverage, not rank | [PF] |
 | Variation | Discovery advertises the size's clearance variation | [B6 R-C2, register #29] |
@@ -387,7 +387,7 @@ Forecast from today's spend moved by the new prices. Do not use budget caps, and
 |---|---|
 | Compute deal-state margin, break-even and ceiling from the deal price **before** the event. In-deal CVR never justifies a price above the deal-state ceiling | [PB, register #27] |
 | Deals amplify an already-decided, gated push; they never originate one | [PB] |
-| Any deal-day spend limit is an explicit, dated, time-boxed exception with its margin stated (e.g. B6: $1,300/day on 29–30 Sep at ~7% margin after ads vs the 10% rule). A single event week may run up to +50% over the derived envelope, pre-approved and never retroactive | [B6 R-F5, PB] |
+| Any deal-day spend limit is an explicit, dated, time-boxed exception with its margin stated (e.g. B6: $1,300/day on 29–30 Sep at ~7% margin after ads vs the 10% rule). A single event week may run up to +50% over the owner's spend limit, only as that pre-approved exception and never retroactive (no TACoS-derived envelope, register #17) | [B6 R-F5, PB] |
 | Budget caps are set in advance; dayparting boosts are removed for the window; the plan is staged against max-sales-day cover | [PB event mode] |
 | Pacing is checked the same day against the event's projection. A pace > ~25% off the day-of-week curve is flagged | [PB] |
 | On deal days: no ACoS/CVR verdicts, no launches, no folds or structure; cuts allowed; **no raises on non-push ranking**; bleed stops still run | [B6 E1, R-B3, SR, register #27] |
@@ -418,9 +418,9 @@ Forecast from today's spend moved by the new prices. Do not use budget caps, and
 
 ## 10. Open questions for the owner
 
-1. **Base cut cap vs over-ceiling base.** If the base is more than 2× the PDP break-even, the "over ceiling → straight to ceiling" rule and the "base cut ≤ 50% per step" block (E17) disagree. This file applies the 50% cap and steps down over later cycles (§4.1 M10). Confirm.
-2. **"Exact ceiling" for discovery pricing.** The source prices Broad/Phrase at ~60%/~80% of "the exact ceiling". This file reads that as the exact term's break-even CPC (the non-ranking cap), not the 2× ranking ceiling. With the ranking ceiling, Broad would price at 1.2 × break-even. Confirm.
-3. **Projected-cover threshold for a push.** The plan-builder blocks a push whose projected cover drops into Yellow (< 60 days). The workbook-builder only requires > 21 days. This file blocks on Yellow unless the owner gives an explicit time-boxed acceptance. Confirm.
+1. **Base cut cap vs over-ceiling base.** Resolved — see 13 #48: price over ceiling goes to ceiling this cycle via base + boost together; the 50% base-cut limit still applies, with a second step scheduled if needed.
+2. **"Exact ceiling" for discovery pricing.** Resolved — see 13 #47: the exact term's break-even CPC, not the 2× push ceiling.
+3. **Projected-cover threshold for a push.** Resolved — see 13 #42: projected cover must stay Green (≥ 60 days) through the push checkpoint, or the push is blocked, shrunk or time-boxed.
 4. **Funding order.** B6 funds "in priority order" without defining the order. This file uses the plan-builder's order (revenue at target ÷ cost to close) with the workbook-builder's tie-breaks (DSTR, cover, CVR). Confirm, or give the B6 order.
-5. **Approval for push steps.** The plan-builder requires human confirmation for any bid move > 25%, but the push step is +30%/day. This file treats an approved push plan as confirmation of its daily steps. Confirm.
+5. **Approval for push steps.** Resolved — see 13 #41: an approved push plan covers its own +30%/day steps.
 6. **Terms whose market cannot support 1 sale/day.** One engine routes these out of Ranking, while placement-first says feasibility never strips the objective. This file applies the strip only when the whole market is < 1 purchase/day and applies the re-scope otherwise. Confirm.

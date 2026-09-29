@@ -63,7 +63,7 @@ Fill the `<…>` fields before sending. Delete a group only when the scope rules
 > 8. **TACoS**: do you want a numeric TACoS target, or monitor only? *(Default: monitor only.)*
 > 9. **Bidding strategies**: leave existing ones as they are; new campaigns dynamic down-only; fixed bids only through a trial you approve? *(Default: yes.)*
 > 10. **Amazon suggested bids**: never used to set prices? *(Default: not used.)*
-> 11. **Stock zones**: Green ≥60 days of cover, Yellow 21–59, Red <21, and "stock-out before the next arrival" counts as Red? *(Default: yes.)*
+> 11. **Stock zones**: Green ≥60 days of cover, Yellow 21–59, Red <21, and "stock-out before the next arrival" counts as Red, and a push needs projected cover to stay Green through its checkpoint? *(Default: yes.)*
 > 12. **Zero-order rule**: ≥20 clicks and 0 orders → reduce (relevant, with a live exact owner), fix list (relevant, no live exact owner) or block (irrelevant or another product type); exact ranking and brand terms are never negated? *(Default: yes.)*
 > 13. **Harvest**: ≥3 orders at or below break-even ACoS with no exact owner → build an exact campaign and negate at the source? *(Default: yes.)*
 > 14. **Approvals**: which changes need your sign-off before upload (default: structural changes, bid moves >25% outside an approved push plan — the plan's own +30%/day steps are covered by approving it — budget moves >$50/day, any failed check, terms with search volume ≥ 500).

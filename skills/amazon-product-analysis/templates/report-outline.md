@@ -76,7 +76,7 @@ Negatives to load (and any to hold), duplicate owners, structural folds (decide 
 ## 11. Non-ranking campaigns and keywords
 - Counts: inside break-even / over on both windows / too thin / liquidation / paused; the cuts (≤30% of base) with the largest examples.
 - The most profitable campaign(s) and anything that threatens them (e.g. brand negatives before receiving exacts are ready).
-- Keywords: harvest (build exact at break-even after events, negate at source), block (irrelevant / 0-order evidence), reduce (over break-even, still sells), de-duplicate, check owner — with counts, spend and 2–3 examples each.
+- Keywords: harvest (build exact at break-even after events, negate at source), block (irrelevant / other product type), reduce (over break-even, still sells, or relevant 0-order with a live exact owner), review (relevant 0-order with no live exact owner → fix queue), de-duplicate, check owner — with counts, spend and 2–3 examples each.
 
 ## 12. Required clicks, budgets and the forecast
 Requirements set volume and budget, never price; reconcile to what the product sells; credit steps with what similar steps bought; settled baselines; expected spend vs limit.
@@ -96,7 +96,7 @@ Terms that fell >10 places while getting clicks: cause first (variation, listing
 - Optional **15.4 Listing and offer** (when Phase 5 found issues): four-quadrant per syntax, offer vs rivals, listing checks by quadrant, owner and effect.
 
 ## 16. Tests
-Per test: rationale from the landscape, table (id · format · keyword · advertises · start bid = break-even · ceiling · budget/day), total and budget line, start rule, daily step, re-baseline at 15 clicks, stop rules (20 clicks 0 orders; >2× break-even ACoS on ≥30 clicks), read date (before the next event), halo check on the same-term SP campaign, report metrics, what is not built and why, creative notes.
+Per test: rationale from the landscape, table (id · format · keyword · advertises · start bid = break-even · ceiling — 2 × break-even on push terms and on brand terms with verified competitor presence, 1 × elsewhere · budget/day), total and budget line, start rule, daily step, re-baseline at 15 clicks, stop rules (20 clicks 0 orders; >2× break-even ACoS on ≥30 clicks), read date (before the next event), halo check on the same-term SP campaign, report metrics, what is not built and why, creative notes.
 
 ## 17. Next steps
 Dated list in execution order (protect revenue → stop bleeding → reallocate → expand): today; to end of event; day 1 after; this week (by-hand changes); daily watch window; weekly tune dates; test read date; ≥3 weeks before each peak event. Then **Risks and falsification** (dated checks that would prove the plan wrong) and **Decisions requested** (numbered).
