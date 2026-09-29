@@ -70,7 +70,7 @@ A Ranking campaign is **push** only while its term is funded in the push plan (p
 
 | Class | Identify by | Objective | Advertised variation | Price basis / ceiling | Judged by | Notes |
 |---|---|---|---|---|---|---|
-| Auto | Targeting type Auto | Discovery | Size's clearance colour | ≤ 1.0 × BE CPC every placement | Converting terms/$100, harvests, WAS ≤ 40% | Report and judge the 4 auto groups (close / loose / substitutes / complements) separately; own-ASIN auto matches negated. Mature stage keeps a low-budget auto sentinel [PB, WB, B6 R-C2] |
+| Auto | Targeting type Auto | Discovery | Size's clearance colour (≥ 180 d cover, or ≥ 90 d while selling ≤ size median) | ≤ 1.0 × BE CPC every placement | Converting terms/$100, harvests, WAS ≤ 40% | Report and judge the 4 auto groups (close / loose / substitutes / complements) separately; own-ASIN auto matches negated. Mature stage keeps a low-budget auto sentinel [PB, WB, B6 R-C2] |
 | Broad | All-broad keywords | Discovery (brand broad → Defensive) | Clearance colour | Launch ≈ 60% of the exact ceiling, no modifier | as Auto | Built only after 100 exact clicks or a coverage gap (§7.3) [PB, #23] |
 | Phrase | All-phrase keywords | Discovery | Clearance colour | Launch ≈ 80% of the exact ceiling, no modifier | as Auto | Primary root at 0% phrase = structure gap [PB] |
 | Exact — ranking, push | Generic niche exact, funded push term | Ranking | Size's best seller (hero) | TOS price → push price, ceiling 2 × BE CPC | Progress test §6 | One live owner per term; 70–90% of clicks at TOS, PDP ≤ 20% [B6 R-P1–P8, R-C1] |
@@ -81,8 +81,6 @@ A Ranking campaign is **push** only while its term is funded in the push plan (p
 | PT — own other product | Own brand, other product | Profitable Conversion (cross-sell) | Routed SKU | ≤ BE | Own ACoS | Not a conquest [B6 R-X2] |
 | PT — category | category="…" | Profitable Conversion | Routed SKU | ≤ BE | CPA vs ceiling | Category targets can't be bulk-changed — console [CB] |
 | Brand / Defensive | Brand word in keyword | Defensive | Hero ("keep on White" in B6) | CM2 × CVR; above-ceiling allowance only with verified competitor presence | Share + cost; ACoS ≤ BE | Funded first when ≥ 3 rivals advertise on brand terms [PB, B6 R-N3, R-CI6] |
-| Discovery (generic) | Auto / broad / phrase | Discovery | Clearance colour (≥ 180 d cover, or ≥ 90 d while selling ≤ size median) | ≤ BE | §7.3 | [B6 R-C2] |
-| Conquest | See PT competitor | Conquest | — | — | — | Entry gate 2-of-3 [PB] |
 | Liquidation / clearance | Declared (§1.1) | Targeting objective + Liquidation flag | Aged/clearance SKU | BE on forward-cash economics (file 04) | Units cleared | Never cut on ACoS [B6 R-N2, SR] |
 | SB / SBV / SD | Ad type | Own | — | Same break-even rules | Own metrics | Outside the SP engine: built and priced by hand, own budget line, counted in the spend limit; one SB format per push term [B6 E12, R-CI10, F17] |
 | Shared multi-product | Advertises other products | — | — | — | In its own product's audit | No colour or price automation from this product; spend = row × (product tile ÷ rows) [B6 E13, F29] |
@@ -327,7 +325,6 @@ Read campaign ACoS vs the advertised SKU's BE ACoS on **30-day and 90-day** wind
 - **Verdicts:** PT floor 11 clicks. SCALE (ACoS ≤ BE, ≥ 15 clicks) ≤ +25%/cycle up to BE CPC; REDUCE when ACoS > BE on ≥ 15 clicks; BLOCK at ≥ 20 clicks 0 orders or > 2 × BE on ≥ 30 clicks; unmapped ASIN → no SCALE.
 - **Exit / rotate:** target delisted; target no longer wins 2-of-3 (hold); CPA > watch-CPA 2 consecutive reads with no page-share gain. Rotate when another ASIN clears the gate and is better (budget and structure carry over).
 - CPC > 1.5 × family median on the same term → flag (family-wide = market; our row only = our bid).
-- Archetypes (change watch-CPA, duration, cadence, not entry): Fortress, Investor, Price Leader, Copier, Fader (file 08).
 
 ### 7.6 Market Share (declared only) [PB]
 | State | Condition | Action |
@@ -365,8 +362,7 @@ Marginal ACoS = Δspend ÷ Δad sales; > 2 × blended → unwind the step. [PB]
 A hold at the objective-loop stage is allowed without asking only for: (1) both quality gates fail; (2) CTR passes, CVR fails (brand-management finding); (3) zero delivery; (4) budget truncation; (5) plan exceeds the campaign's capacity (escalate). Any other hold → ask the owner first and log the question and answer. Gate outcomes (quarantine, sample floor, stock, paused, duplicate, event day) are recorded with their gate, not as holds. [PB, DR]
 
 ### 8.4 No bid change when
-- Row is paused, withheld duplicate, or its SKU is below the stock gate. [DR, B6 E6]
-- Budget truncated, zero delivery, both quality gates fail, or CTR passes and CVR fails. [DR]
+- Row paused, withheld duplicate, or SKU below the stock gate; budget truncated; zero delivery; both quality gates fail; CTR passes and CVR fails. [DR, B6 E6]
 - State E (rank collapse) — never a raise. [PB check 9]
 - A rival's brief move in the last 3 days (except over-ceiling cuts). [B6 R-CI11]
 - Rank dropped > 10 places in 30 days while getting clicks, until the cause is found. [B6 E4]
@@ -404,7 +400,7 @@ A hold at the objective-loop stage is allowed without asking only for: (1) both 
 
 ## 10. Decision table (the trail)
 
-Every campaign row carries: input → metric → rule → decision → action → expected outcome → validation date. Expected outcomes are directional unless the row has its own measured step history; name soft coefficients. Grading at the validation date uses ±3 ranks / ±3 ACoS points (file 10).
+Every row carries input → metric → rule → decision → action → expected outcome → validation date. Outcomes are directional unless the row has its own measured step history; name any soft coefficient. Grade at ±3 ranks / ±3 ACoS points (file 10).
 
 | Condition (metric + threshold) | Decision | Action | Expected outcome | Validation |
 |---|---|---|---|---|
