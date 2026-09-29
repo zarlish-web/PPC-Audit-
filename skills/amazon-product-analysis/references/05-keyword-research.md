@@ -28,17 +28,17 @@ Phase 4 of the framework. Output: **every term with class, relevance, demand, po
 
 **Universe = MKL ∪ SQP ∪ search-term report (STR) ∪ bulk targets (live and paused) ∪ competitor keywords ∪ Cerebro / Data Dive pulls.** One row per normalised term (§2). Record on each row which sources it came from — a term only in the STR is a discovery find; a term only in competitor pulls is a gap candidate.
 
-| Source | What it contributes | Rules |
+| Source | Contributes | Rules |
 |---|---|---|
-| MKL (master keyword list) | Search volume, relevancy (numeric `Relevancy`, fallback `Derived Relevancy`; categorical `Categorization`), organic rank, syntax, indexed flag, PPC-targeted flags (per match type) | MKL > ~30 days old = stale (finding). Syntax verified against the account taxonomy before use. Indexed field is unvalidated → ask when it would move money. Dedupe, keep first. [E, PB] |
-| SQP (Brand Analytics) | Market and brand funnel per query (impressions → clicks → cart adds → purchases), market price, query volume | Parent roll-up rules in §8. 13-week window. [SQP, B6] |
-| STR | Customer search terms with spend, clicks, orders, sales per campaign × match type | Filter to the portfolio first (exact `Portfolio name` string, copied), then aggregate per term over the window. Bid keyword = `Targeting`; shopper query = `Customer Search Term`. Bucket from `Targeting` first: close-match / loose-match / substitutes / complements → Auto-*; `asin="…"` → product target; `category="…"` → category; else match type. Read 30 and 90 days. [STR, B6] |
-| Bulk (all states) | Which exact / phrase / broad targets exist, live or paused, on which campaign, advertising which SKU | Needed for ownership (§9). Keyword live = keyword AND campaign enabled. [PB, LP] |
-| Target ranks | Rank target per term (presence = ranking-objective flag); rank gap = organic − target | Filter by portfolio. [STR] |
-| Rank crawl (Data Rova primary, Data Dive gap-fill) | Organic and sponsored rank per term per day | §7. [SR, B6] |
-| ASIN Insights / Data Rova | DSTR (daily sales to target rank), organic vs ad traffic distribution | DSTR never invented; blank = unsized. [E, PF] |
-| Competitor pulls (ASINsight / AdInsight / Data Dive niche / Cerebro multi-ASIN) | Rival organic/sponsored ranks, traffic, ad types, contested terms | Brand-resolved, dated, coverage stated (`08`). Data artefacts (implausible SV, identical odd SV across files) → verify, exclude from totals. [LP, B6] |
-| Cerebro (own ASIN) | Extra terms, SV, own organic rank | Its suggested-bid column is **context only**; it never sets a price (owner rule). [E, conflict #18] |
+| MKL | SV, relevancy (`Relevancy`, fallback `Derived Relevancy`; label `Categorization`), organic rank, syntax, indexed flag, PPC-targeted flags per match type | > ~30 days old = stale (finding). Syntax verified against the account taxonomy. Indexed field unvalidated → ask when it would move money. [E, PB] |
+| SQP | Market and brand funnel per query, market price, query volume | Roll-up §8; 13-week window. [SQP, B6] |
+| STR | Shopper terms (`Customer Search Term`) with spend/clicks/orders/sales per campaign × match type; bid keyword = `Targeting` | Filter to the exact `Portfolio name` string first, then aggregate. Bucket from `Targeting`: close-match / loose-match / substitutes / complements → Auto; `asin="…"` → product target; `category="…"` → category; else match type. Read 30 and 90 days. [STR, B6] |
+| Bulk (all states) | Every exact / phrase / broad target, live or paused, and its advertised SKU | Ownership §9. Live = keyword AND campaign enabled. [PB, LP] |
+| Target ranks | Rank target per term (presence = ranking flag); gap = organic − target | [STR] |
+| Rank crawl (Data Rova, Data Dive gap-fill) | Organic and sponsored rank per day | §7. [SR, B6] |
+| ASIN Insights / Data Rova | DSTR, organic vs ad traffic | Never invented; blank = unsized. [E, PF] |
+| Competitor pulls (ASINsight / AdInsight / Data Dive / Cerebro multi-ASIN) | Rival ranks, traffic, ad types, contested terms | Brand-resolved, dated, coverage stated (`08`). Implausible or identical odd SV across files → verify, exclude from totals. [LP, B6] |
+| Cerebro (own ASIN) | Extra terms, SV, own rank | Suggested-bid column = context only, never a price (owner rule). [E, #18] |
 
 Join rules: key = `strip().lower()` of the term (display the original casing); no match → **blank, never 0**; safe division everywhere (`a/b if b else blank`). [E]
 

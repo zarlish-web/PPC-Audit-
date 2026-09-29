@@ -25,7 +25,7 @@ Amazon reports placements **per campaign**, not per keyword. Every keyword in a 
 | Placement | Where the ad shows | What it does for rank | What it does for profit | How it is priced |
 |---|---|---|---|---|
 | **Top of search (TOS)** | First row of search results for the term | The rank lever: paid sales on the searched term, in the slots shoppers use most. Ranking money belongs here | Usually the highest CVR and the highest CPC; judged on its own break-even CPC | `TOS price = base × (1 + boost)` |
-| **Rest of search (ROS)** | Search results below the first row and later pages | Some rank value (still a search for the term); secondary | CVR usually between TOS and product pages | `base × (1 + ROS modifier)`. The modifier is lifted only when earned (§4.4) |
+| **Rest of search (ROS)** | Search results below the first row and later pages | Some rank value (still a search for the term); secondary | CVR usually between TOS and product pages | `base × (1 + ROS modifier)`. The modifier is lifted only when earned (§4.2) |
 | **Product pages (PDP)** | Other listings' detail pages and our own | Not a rank lever for the term: the shopper is on a detail page, not searching the term | Often the cheapest click with the lowest CVR, and often where a priced-out campaign ends up spending | **Base only.** No PDP modifier is used to steer it |
 
 Why this matters: a campaign that is priced out of the top still spends, but it spends on product pages. Blended CPC, CVR and ACoS hide this. Judge every placement against its own break-even. [PF, WB, PB, B6]
@@ -36,13 +36,12 @@ Example (B6, 30 days): "bamboo sheets" exact had 776 clicks: TOS 39%, ROS 4%, PD
 
 | Item | Rule | Source |
 |---|---|---|
-| TOS price | `TOS price = base × (1 + boost)`. In a keyword campaign, "base" means the keyword's own bid. This is the number every push rule writes and every ceiling check reads | [B6, PF, SR] |
+| TOS price | `TOS price = base × (1 + boost)`. In a keyword campaign, "base" means the keyword's own bid. Every push rule writes this number and every ceiling check reads it (PF calls it the effective TOS bid) | [B6, PF, SR] |
 | Boost range | 0–900%. A boost above 900% cannot be written | [B6, WB, CB] |
 | Maximum TOS price at a given base | `base × 10`, which is the 900% cap | [B6 R-M2] |
 | Base floor | base ≥ **TOS price ÷ 10** (so the price is reachable within 900%) **and** base ≥ **$0.35–0.50**. Below that floor the campaign is suppressed from eligibility: the price stays the same or rises while TOS impression share stays flat or falls. If the break-even CPC or ceiling is below $0.50, the lower number wins | [B6 R-M1, WB, PB — $0.50 is provisional: ask] |
 | Base ceiling | base ≤ **PDP break-even CPC** (margin/unit × PDP CVR). Non-ranking campaigns: every placement ≤ 1.0 × its break-even CPC | [WB, register #3] |
 | TOS ceiling (ranking) | **2 × break-even CPC** of the ranking term at TOS. This is an owner setting; the owner may raise it for a named term for a set time | [B6 R-P3, register #3] |
-| Effective TOS bid (diagnosis) | Same formula as the TOS price. PF calls it `eff_TOS` | [PF] |
 | Rounding | Boost is a whole percent. After rounding, `base × (1 + boost)` must match the target within **±$0.03**. If rounding would put the price above the ceiling, round the boost down | [PF gate 12] |
 
 ### 1.3 Bidding strategy effects
@@ -61,7 +60,7 @@ Read realised CPC against the written price. Under down-only, a realised TOS CPC
 
 ## 2. Placement-first diagnosis
 
-Run this before any price decision on a ranking campaign, and on every campaign with ≥15 clicks in the window. PF's original finding was that "only a few keywords can rank" really meant "their bids were not clearing the top". [PF]
+Run this before any price decision on a ranking campaign, and on every campaign with ≥15 clicks in the window. Why: "only a few keywords can rank" often means "their bids are not clearing the top". [PF]
 
 ### 2.1 Portfolio sweep first
 
@@ -72,7 +71,7 @@ Before looking at any row, build these two tables for the product: [WB, PF]
 
 A product-level roll-up alone is not enough. Keep the re-solve table (§6) beside the campaign table.
 
-Context from the source engagement (observed behaviour, not a rule): moving a boost from 0% to 50% moved TOS click share from 3.8% to 72.7%. Going from 50–99% to 100–199% added about 3 points. Above 100%, extra boost mostly buys auction share. Above 200% was untested. [WB]
+Observed in the source engagement (context, not a rule): a boost of 0% → 50% moved TOS click share from 3.8% to 72.7%; 50–99% → 100–199% added about 3 points; above 100% mostly buys auction share; above 200% was untested. [WB]
 
 ### 2.2 Per-campaign tests
 
