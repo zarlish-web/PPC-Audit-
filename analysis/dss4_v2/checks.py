@@ -126,6 +126,45 @@ tbc = json.load(open(L.RAW + 'sb_ppc/targets_by_campaign_W30.json'))
 cw = json.load(open(L.RAW + 'sb_ppc/campaign_W30.json'))
 chk('Sellerboard targets (30 d) sum to Sellerboard campaign totals (spend)', abs(sum(abs(r['AdSpend']) for r in tbc) - sum(abs(r['AdSpend']) for r in cw)) < 1,
     (round(sum(abs(r['AdSpend']) for r in tbc), 2), round(sum(abs(r['AdSpend']) for r in cw), 2)))
+# ---------------------------------------------------------------- action plan ↔ decisions
+AP = L.ROOT + 'v2/deliver/DSS4_Action_Plan_20260929.xlsx'
+import os
+if os.path.exists(AP):
+    wa = load_workbook(AP, read_only=True)
+    it = list(wa['Action list'].iter_rows(values_only=True))
+    hd = it[2]
+    arows = [dict(zip(hd, r)) for r in it[3:] if r and r[0] is not None]
+    by = collections.defaultdict(list)
+    for r in arows:
+        by[str(r['Campaign ID'])].append(r)
+    bad = []
+    for d in D['decisions']:
+        if d['role'] == 'Other product (out of scope)':
+            continue
+        a, rr = d['action'], by.get(d['campaign_id'], [])
+        if a['budget_to'] and not any(r['Change'] == 'Budget' and r['To'] == a['budget_to'] for r in rr):
+            bad.append((d['campaign_id'], 'budget'))
+        if a['state'] and not any(r['Change'] == 'State' and r['To'] == a['state'] for r in rr):
+            bad.append((d['campaign_id'], 'state'))
+        for k, lab in (('tos', 'Top of search %'), ('ros', 'Rest of search %'), ('pp', 'Product pages %')):
+            if a[k + '_to'] is not None and a[k + '_to'] != d['mods'].get(k) and not any(r['Entity (target / SKU / setting)'] == lab and r['To'] == a[k + '_to'] for r in rr):
+                bad.append((d['campaign_id'], lab))
+        for b in a['bid_changes']:
+            if b.get('bid_to') is not None and not any(r['Change'] == 'Base bid' and r['Entity (target / SKU / setting)'] == b['term'] and r['To'] == b['bid_to'] for r in rr):
+                bad.append((d['campaign_id'], 'bid ' + b['term']))
+        for sku in a.get('ads_add_paused') or []:
+            if not any(r['Change'].startswith('Add back-up') and r['Entity (target / SKU / setting)'] == sku for r in rr):
+                bad.append((d['campaign_id'], 'backup ' + sku))
+        for sku in a['ads_add']:
+            if not any(r['Change'] == 'Add product ad (enabled)' and r['Entity (target / SKU / setting)'] == sku for r in rr):
+                bad.append((d['campaign_id'], 'ad add ' + sku))
+    chk('Action plan: every change in the decision data appears in the Action list with the same value', not bad, bad[:5])
+    extra = [r['Campaign ID'] for r in arows if str(r['Campaign ID']) not in DEC]
+    chk('Action plan: every Action list row belongs to a known campaign', not extra, extra[:5])
+    tp = [r for r in arows if r['Change'] == 'Base bid' and r['Top-of-search price $ (base × 10)'] is not None and abs(r['To'] * 10 - r['Top-of-search price $ (base × 10)']) > 0.011
+          and DEC[str(r['Campaign ID'])]['action']['tos_to'] == 900]
+    chk('Action plan: base bid × 10 = top-of-search price on every TOS-only row', not tp, [(r['Campaign ID'], r['To']) for r in tp[:3]])
+
 # ---------------------------------------------------------------- document ↔ data
 x = zipfile.ZipFile(DOCX).read('word/document.xml').decode()
 txt = re.sub(r'<[^>]+>', ' ', x).replace('&apos;', "'").replace('&quot;', '"').replace('&amp;', '&')
