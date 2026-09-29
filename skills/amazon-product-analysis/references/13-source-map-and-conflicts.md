@@ -96,6 +96,9 @@ This framework consolidates the skills below. Where they disagree, the **resolut
 | 49 | Velocity for zones | 30-day actual pace (deal/stock-out windows corrected and labelled); the inventory file's planned velocity shown beside it |
 | 50 | WAIT duration | Held until a named re-test date or until the owner declines the fix; then BREAK-EVEN |
 | 51 | Non-push ranking term below break-even | KEEP (no raise) unless it qualifies for the push |
+| 52 | What an upload may change | Bid, placement %, budget, and state / product-ad rows that were explicitly decided. Everything else untouched. Structural changes (new campaigns, colour switches, folds) are built separately or by hand [PF, WB, CB] |
+| 53 | Rule-ID scheme | R-P push · R-B break-even · R-M placement mix · R-N non-ranking · R-C colour/variation · R-O objective · R-S structure · R-K keyword · R-X competitor ASIN · R-I inventory · R-F financial · R-CI competitor influence · E exceptions · F failures. Extend within a family; never reuse an ID |
+| 54 | Change Review Sheet threshold | Same as #41 (SV ≥ 500, gate failures, structural changes, bid moves >25% outside an approved plan, budget >$50/day) |
 
 ---
 
