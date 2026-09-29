@@ -110,7 +110,7 @@ for d in D['decisions']:
                  n['tos_clicks'], n['tos_cvr'], n['ros_clicks'], n['ros_cvr'], n['pp_clicks'], n['pp_cvr'], n['clicks90'], n['orders90'], n['spend90'], n['acos90'], n['tos_cvr90'],
                  d['be_acos'] and round(d['be_acos'] * 100, 1),
                  a['state'], a['child_to'], a['budget_to'], a['tos_to'], a['ros_to'], a['pp_to'], a['strategy_to'], bc, len(a['negatives_add']),
-                 ', '.join(a['ads_add']), ', '.join(a['ads_pause']), d['plan']['spend_day'], d['plan']['clicks_day'], d['plan']['orders_day'],
+                 ', '.join(a['ads_add']), ', '.join(a['ads_pause']), ', '.join(a.get('ads_add_paused') or []), a.get('switch_rule'), d['plan']['spend_day'], d['plan']['clicks_day'], d['plan']['orders_day'],
                  d['checks'].get('d_spend_day'), d['checks'].get('d_orders_day'), d['checks'].get('d_sales_day'), d['checks'].get('d_profit_day'), d['checks'].get('d_tacos_pts'),
                  d['checks'].get('placement'), d['checks'].get('rank') or d['checks'].get('rank_risk'), d['checks'].get('stock_child_days'), d['checks'].get('ltsf'),
                  ' | '.join(d['why']), ' | '.join(f"{x['kind']} {x['current']}→{x['suggested']}: {x['verdict']}" for x in ARC.get(d['campaign_id'], []))])
@@ -118,10 +118,10 @@ sheet('Campaigns', ['Campaign ID', 'Campaign', 'Ad type', 'Status', 'Role', 'Adv
                     'Budget used %', 'TOS impr. share %', 'TOS %', 'ROS %', 'PP %', 'Bid strategy', 'Clicks 30d', 'CPC', 'Orders 30d', 'CVR %', 'Spend 30d', 'Sales 30d',
                     'ACoS 30d %', 'TOS clicks', 'TOS CVR %', 'ROS clicks', 'ROS CVR %', 'PP clicks', 'PP CVR %', 'Clicks 90d', 'Orders 90d', 'Spend 90d', 'ACoS 90d %',
                     'TOS CVR 90d %', 'Break-even ACoS %', 'ACTION: state', 'ACTION: child →', 'ACTION: budget →', 'ACTION: TOS % →', 'ACTION: ROS % →', 'ACTION: PP % →',
-                    'ACTION: strategy →', 'ACTION: bids', 'ACTION: negatives (count)', 'ACTION: product ads add', 'ACTION: product ads pause', 'Plan spend/day',
+                    'ACTION: strategy →', 'ACTION: bids', 'ACTION: negatives (count)', 'ACTION: product ads add', 'ACTION: product ads pause', 'ACTION: back-up ad (add PAUSED)', 'Back-up switch rule', 'Plan spend/day',
                     'Plan clicks/day', 'Plan orders/day', 'Δ spend/day', 'Δ orders/day', 'Δ sales/day', 'Δ profit/day', 'Δ TACoS pts', 'Placement check', 'Rank check',
                     'Child days of stock', 'Child LTSF rank', 'Why', 'Audit said → our verdict'], rows,
-      [17, 50, 6, 9, 24, 26, 7, 9, 36, 30] + [9] * 44 + [50, 50, 8, 7, 120, 80])
+      [17, 50, 6, 9, 24, 26, 7, 9, 36, 30] + [9] * 39 + [26, 60] + [9] * 7 + [50, 50, 8, 7, 120, 80])
 
 # ---------------------------------------------------------------- Ranking terms
 own = D['owners']
@@ -152,6 +152,18 @@ for z, v in R['preferred'].items():
 sheet('Preferred variation', ['Size', 'Child', 'Chosen', 'Units 90d', 'Share of size %', 'Profit before ads/unit 90d', 'TOS CVR 90d %', 'TOS CVR basis',
                               'Value per TOS click $', 'Stock (all)', 'Pace/day', 'Push pace/day', 'Days at push pace', 'Q4 need', 'Unit session %', 'Rule'], rows,
       [7, 30, 7] + [10] * 12 + [70])
+BKP = {(b['size'], b['backup']): b for b in INV.get('backups', [])}
+rows = []
+for z, v in R['preferred'].items():
+    for i, b in enumerate(v.get('backups') or []):
+        x = BKP.get((z, b['sku']), {})
+        rows.append([z, v['chosen'], i + 1, b['sku'], b['level'], b['days_at_push_pace'], b['value_per_tos_click'], pct(b['tos_cvr']), b['tos_basis'], pct(b['share']), b['stock'],
+                     x.get('switch_date'), x.get('ranking_orders_moved'), x.get('backup_stockout')])
+sheet('Back-up ranking child', ['Size', 'Preferred child', 'Back-up #', 'Back-up child', 'Can carry', 'Days at push pace', 'Profit per TOS click $', 'TOS CVR %', 'TOS CVR basis',
+                                'Share of size units %', 'Stock', 'Projected switch date', 'Ranking orders/day it takes over', 'Back-up stock-out (after taking over)'], rows,
+      [7, 24, 8, 30, 22] + [11] * 9,
+      note='Rule: other children with positive profit per TOS click and ≥5% of the size\'s units (≥3% if none, flagged); ≥60 days at push pace can carry the push, 30–59 days the maintain level. '
+           'Switch the ranking product ad when the preferred child drops under 14 days of stock or goes out of stock; switch back at ≥30 days. The back-up ad is loaded now, PAUSED, in every ranking campaign.')
 
 # ---------------------------------------------------------------- Keywords
 rows = [[r['keyword'], r['cls'], r['size'], r['colour'], r['action'], r['why'], r['tier'], r['owner'], r['clicks30'], r['orders30'], r['spend30'], r['acos30'], r['cvr30'],
@@ -299,6 +311,8 @@ for d in D['decisions']:
     ags = sorted({(r['Id'].split('|')[0]) for r in TBC.get(cid, [])})
     for sku in a['ads_add']:
         bulk.append(['Sponsored Products', 'Product Ad', 'Create', cid, ags[0] if len(ags) == 1 else '(ad group)', '', '', '', 'enabled', '', '', '', '', '', f"add SKU {sku}"])
+    for sku in a.get('ads_add_paused') or []:
+        bulk.append(['Sponsored Products', 'Product Ad', 'Create', cid, ags[0] if len(ags) == 1 else '(ad group)', '', '', '', 'paused', '', '', '', '', '', f"back-up SKU {sku} — load PAUSED; enable only per the switch rule"])
     for sku in a['ads_pause']:
         bulk.append(['Sponsored Products', 'Product Ad', 'Update', cid, ags[0] if len(ags) == 1 else '(ad group)', '', '', '', 'paused', '', '', '', '', '', f"pause SKU {sku} (Ad ID from the console)"])
 sheet('Bulk upload', ['Product', 'Entity', 'Operation', 'Campaign ID', 'Ad Group ID', 'Keyword ID', 'Keyword Text', 'Match Type', 'State', 'Daily Budget', 'Bid',

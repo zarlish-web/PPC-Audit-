@@ -66,3 +66,46 @@ if __name__ == '__main__':
     for r in OUT['rows']:
         print(r['sku'][:26].ljust(26), 'stock', r['stock_total'], '(sell', r['sellable'], 'trf', r['in_transfer'], 'inb', r['inbound_shipped'], ')', 'u/d', r['units_day_30'],
               'ads now', r['ad_orders_day_now'], 'plan ads', r['plan_ad_orders_day'], 'pace', r['plan_pace_sep_equiv'], '| out now-pace', r['stockout_now_pace'], 'plan', r['stockout_date'], 'short to 31 Jan', r['units_short_to_31jan'])
+
+
+# ---------------------------------------------------------------- back-up switch: when the preferred child falls under SWITCH_DAYS of stock, its ranking
+# ad orders move to the back-up (at the level the back-up can carry). Project the switch date and how long the back-up lasts after it.
+SWITCH_DAYS = 14
+rank_orders = collections.Counter()                  # plan ad orders/day of ranking campaigns, per preferred child
+for d in D['decisions']:
+    if d['role'].startswith('Ranking –'):
+        rank_orders[d['action']['child_to'] or d['child']] += d['plan']['orders_day']
+BK = []
+for size, v in R['preferred'].items():
+    pref, chain = v['chosen'], v.get('backups') or []
+    pr = next((r for r in OUT['rows'] if r['sku'] == pref), None) or run(pref)
+    left, day, sw = pr['stock_total'], TODAY, None
+    while day <= END:
+        use = pr['plan_pace_sep_equiv'] * MON.get(day.month, 1.0)
+        if sw is None and left < SWITCH_DAYS * use:
+            sw = day
+        left = max(0.0, left - use)
+        day += dt.timedelta(days=1)
+    take = sw                                          # back-up 1 takes over at the switch; back-up 2 when back-up 1 runs out
+    for i, b in enumerate(chain):
+        s = SKU[b['sku']]
+        iv = s['inv']
+        stock = (iv['sellable'] or 0) + (iv['res_transfer'] or 0) + (iv['inbound_shipped_open'] or 0)
+        own = run(b['sku'])['plan_pace_sep_equiv']
+        pr_land = pr.get('land_share') or 1.0
+        extra = rank_orders.get(pref, 0) * pr_land * (1.0 if b['level'].startswith('push') else 0.5)   # maintain level ≈ half the push clicks
+        left2, d2, out2 = stock, TODAY, None
+        while d2 <= END:
+            use = (own + (extra if (take and d2 >= take) else 0)) * MON.get(d2.month, 1.0)
+            if left2 < use and out2 is None:
+                out2 = d2
+            left2 = max(0.0, left2 - use)
+            d2 += dt.timedelta(days=1)
+        BK.append(dict(size=size, preferred=pref, backup=b['sku'], order=i + 1, level=b['level'], switch_date=str(take) if take else None, backup_stock=stock,
+                       backup_own_pace=round(own, 2), ranking_orders_moved=round(extra, 2), backup_stockout=str(out2) if out2 else None))
+        take = out2 if (take and out2 and out2 > take) else (take if not take else None)
+OUT['backups'] = BK
+json.dump(OUT, open(L.OUT + 'inventory.json', 'w'), indent=1)
+if __name__ == '__main__':
+    for b in BK:
+        print(b)

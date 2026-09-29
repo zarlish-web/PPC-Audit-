@@ -96,6 +96,14 @@ chk('Every TOS-only campaign also has ROS 0%, PP 0% and a base bid', not bad, ba
 bad = [(d['campaign_id'], b) for d in D['decisions'] for b in d['action']['bid_changes'] if b.get('eff_tos_to') and b.get('bid_to') and d['action']['tos_to'] == 900
        and abs(b['bid_to'] * 10 - b['eff_tos_to']) > 0.011]
 chk('Base bid × (1 + 900%) = top-of-search price on every ranking target', not bad, bad[:3])
+bad = [d['campaign_id'] for d in D['decisions'] if d['role'].startswith('Ranking –') and R['preferred'][OPP[d['owned_terms'][0]]['size'] if OPP[d['owned_terms'][0]]['size'] != '—' else 'Queen'].get('backups')
+       and not d['action'].get('ads_add_paused')]
+chk('Every ranking campaign has its back-up child loaded (paused) with a switch rule', not bad, bad[:5])
+bad = [d['campaign_id'] for d in D['decisions'] if d['match'] == 'Exact' and d['ad_type'] == 'SP' and (d['action']['state'] or d['status']) == 'ENABLED'
+       and not d['role'].startswith(('Duplicate', 'Other product')) and d['action']['tos_to'] is None and ((d['now'].get('clicks90') or 0) > 0)]
+chk('Every enabled exact campaign with 90-day clicks is set to target top-of-search clicks', not bad, bad[:5])
+bad = [d['campaign_id'] for d in D['decisions'] if d['action']['tos_to'] not in (None, 900) and d['match'] == 'Exact' and 'NOT supported' not in (d['checks'].get('placement') or '')]
+chk('Exact campaigns not TOS-only are exactly the significance exceptions', not bad, bad[:5])
 # LTSF: no ranking campaign advertises an LTSF child; LTSF campaigns do not keep non-LTSF SKUs
 ltsf_skus = {r['sku'] for r in LT['rows']}
 bad = [d['campaign_id'] for d in D['decisions'] if d['role'].startswith('Ranking –') and (d['action']['child_to'] or d['child']) in ltsf_skus and (d['action']['child_to'] or d['child']) not in PREF.values()]
@@ -134,7 +142,8 @@ must = {
     'LTSF #1': LT['rows'][0]['sku'],
     'push terms': f"{len(R['ranking_set'])} push terms",
     'audit decisions reviewed': f"({len(AR)};",
-    'TOS-only campaigns': f"{sum(1 for d in D['decisions'] if d['action']['tos_to'] == 900)} ranking campaigns",
+    'TOS-only ranking campaigns': f"{sum(1 for d in D['decisions'] if d['action']['tos_to'] == 900 and d['role'].startswith('Ranking –'))} ranking campaigns and",
+    'TOS-only other exact campaigns': f"{sum(1 for d in D['decisions'] if d['action']['tos_to'] == 900 and not d['role'].startswith('Ranking –'))} other exact campaigns",
 }
 for k, v in must.items():
     chk(f"Document states {k} = {v}", v in txt, '' if v in txt else 'not found')

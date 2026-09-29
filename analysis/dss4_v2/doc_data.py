@@ -90,8 +90,12 @@ ul([
     f"Spend share: today ranking campaigns take {pc(S['now_ranking_spend_share'], 0)} of spend and {pc(S['now_ranking_click_share'], 0)} of clicks. After the plan they take {pc(F['share']['ranking_of_all_spend'], 0)} of all spend, "
     f"or {pc(F['share']['ranking_of_keyword_growth_spend'], 0)} once the LTSF clearance and brand-defence budgets are ring-fenced. Reaching 80% of all spend would need non-ranking cut to ${F['share']['nonranking_cap_for_80pct']:.0f}/day, "
     f"about 60% below plan. That would stop the LTSF clearance, so it is set out as an owner decision rather than done automatically.",
-    f"Top of search: {sum(1 for d in D['decisions'] if d['action']['tos_to'] == 900)} ranking campaigns go top-of-search only: a 900% modifier, the base bid at one tenth of today's top-of-search price, and rest of search and product pages at 0%. "
-    f"This is done only where the campaign's own 90-day placement data shows top of search converting at least as well; the {sum(1 for d in D['decisions'] if d['role'].startswith('Ranking –') and d['action']['tos_to'] not in (None, 900))} where it does not keep the other placements.",
+    f"Top of search, for every exact campaign: {sum(1 for d in D['decisions'] if d['action']['tos_to'] == 900 and d['role'].startswith('Ranking –'))} ranking campaigns and "
+    f"{sum(1 for d in D['decisions'] if d['action']['tos_to'] == 900 and not d['role'].startswith('Ranking –'))} other exact campaigns go top-of-search only: a 900% modifier, the base bid at one tenth of the top-of-search price, and rest of search and product pages at 0%. "
+    "The only exception would be a campaign whose own data shows top of search converting significantly worse; none does.",
+    f"Back-up ranking child: every ranking campaign gets the back-up child's ad loaded PAUSED, and switches to it when the preferred child drops under 14 days of stock. "
+    f"The back-ups are Queen Grey then Stone Grey for Queen, King Red then King Grey for King, Full Grey for Full, and Twin Pink for Twin. "
+    f"At the plan's pace the Queen switch comes around {[b for b in INV.get('backups', []) if b['size'] == 'Queen'][0]['switch_date']} and the Full switch around {[b for b in INV.get('backups', []) if b['size'] == 'Full'][0]['switch_date']}.",
     f"Stock is the binding constraint. At today's pace with last year's Q4 lift, Queen Black runs out around {qb['stockout_now_pace']} and Full Black around {fb['stockout_now_pace']}, with nothing inbound. "
     f"Under the plan: Queen {qb['stockout_date']} ({'the same date' if _dd(qb['stockout_date'], qb['stockout_now_pace']) <= 0 else str(_dd(qb['stockout_date'], qb['stockout_now_pace'])) + ' days earlier'}, because non-ranking Queen traffic moves to Queen Grey and offsets the push) and Full {fb['stockout_date']} ({_dd(fb['stockout_date'], fb['stockout_now_pace'])} days earlier). "
     f"The push only pays if they are restocked. To reach 31 Jan at the plan's pace: Queen Black needs about {qb['units_short_to_31jan']:,} units, Full Black {fb['units_short_to_31jan']:,} and Twin Black {tb['units_short_to_31jan']:,}.",
@@ -222,9 +226,15 @@ table(['Role', 'Campaigns', 'Spend/day now', 'Spend/day plan', 'Orders/day now',
 h1('10. Placements — getting ranking close to 100% top of search')
 p('How it is set: modifier 900% (the maximum), base bid = the top-of-search price ÷ 10, rest of search and product pages 0%, bidding "Dynamic – down only". The top-of-search price is today\'s top-of-search CPC on the term, never cut. '
   'Rest of search and product pages then see only the tiny base bid (e.g. $0.23), so nearly all clicks come from the top row. Where a ranking campaign buys fewer clicks than its target and the budget is not spent, the top-of-search price is raised 10% at a time.')
-p(f"Checked per campaign before applying: top-of-search conversion (90 days) must be at least 90% of the conversion elsewhere. {sum(1 for d in D['decisions'] if d['action']['tos_to'] == 900)} ranking campaigns pass. "
-  f"{sum(1 for d in D['decisions'] if d['role'].startswith('Ranking –') and d['action']['tos_to'] not in (None, 900))} do not. They keep rest of search and product pages open, with top of search weighted at 100% or more. Examples: " +
-  '; '.join(f"{d['name'][:40]} — {d['checks'].get('placement', '')[:90]}" for d in D['decisions'] if d['role'].startswith('Ranking –') and d['action']['tos_to'] not in (None, 900))[:600] + '.')
+ex_all = [d for d in D['decisions'] if d['match'] == 'Exact' and d['ad_type'] == 'SP' and (d['action']['state'] or d['status']) == 'ENABLED' and not d['role'].startswith(('Duplicate', 'Other product'))]
+ex_tos = [d for d in ex_all if d['action']['tos_to'] == 900]
+ex_w = [d for d in ex_all if d['action']['tos_to'] not in (None, 900)]
+ex_none = [d for d in ex_all if d['action']['tos_to'] is None]
+p(f"This applies to every exact campaign, not only ranking. {len(ex_tos)} of the {len(ex_all)} enabled exact campaigns go top-of-search only. Ranking campaigns keep today's top-of-search price; other exact campaigns keep today's effective top-of-search bid, less the −15% step where one applies. "
+  f"The only exception is a campaign whose own 90-day data shows top of search converting significantly worse than the other placements (both at least 20 clicks, a 95% test). "
+  + (f"{len(ex_w)} campaigns meet that exception: they keep the other placements open, with top of search weighted at 100% or more. " if ex_w else "No campaign meets that exception. ") +
+  f"{len(ex_none)} enabled exact campaigns have no clicks in 90 days and no bid in any source, so they have nothing to price; set them the same way when they are next edited. "
+  "Second-order effect: non-ranking exact campaigns lose their rest-of-search and product-page clicks. The plan counts only their top-of-search clicks, at top-of-search conversion, so their orders fall and their conversion rises.")
 
 # ================================================================= 11 preferred variation
 h1('11. Preferred variation')
@@ -233,6 +243,20 @@ p('Rule, from this product\'s data: among children that sell at least 10% of the
 table(['Size', 'Chosen', 'Why', 'Days at push pace', 'Profit per TOS click', 'Ranking child today'],
       [[z, v['chosen'], v['basis'][:70], v['candidates'][0]['days_at_push_pace'] if v['candidates'] else '—', f"${v['candidates'][0]['value_per_tos_click']}" if v['candidates'] else '—', v['current_ranking_child']]
        for z, v in R['preferred'].items()])
+h2('Back-up ranking child — when the preferred child runs low or out')
+p('Every ranking campaign now carries a back-up product ad, loaded PAUSED. When the preferred child drops under 14 days of stock or goes out of stock, the back-up ad is enabled and the preferred ad paused. '
+  'The switch back happens once the preferred child has 30 days or more. Rule for the back-up: another child with positive profit per top-of-search click and at least 5% of the size\'s units. '
+  'One with 60 or more days of stock at push pace can carry the push; one with 30–59 days carries the maintain level only.')
+BKI = INV.get('backups', [])
+table(['Size', 'Preferred', 'Back-up #1 / #2', 'Can carry', 'Projected switch', 'Back-up lasts to'],
+      [[b['size'], b['preferred'], f"#{b['order']} {b['backup']}", b['level'], b['switch_date'] or 'not before 31 Jan', b['backup_stockout'] or 'after 31 Jan'] for b in BKI])
+qbk = [b for b in BKI if b['size'] == 'Queen']
+fbk = [b for b in BKI if b['size'] == 'Full']
+if qbk:
+    p(f"Queen: at the plan's pace Queen Black falls under 14 days around {qbk[0]['switch_date']}. {qbk[0]['backup']} then carries the Queen ranking terms at maintain level until about {qbk[0]['backup_stockout']}"
+      + (f", then {qbk[1]['backup']} until about {qbk[1]['backup_stockout']}" if len(qbk) > 1 else '') + '. After that, no Queen child can carry the ranking terms, so the Queen Black reorder has to land by then. '
+      + (f"Full: Full Black switches to {fbk[0]['backup']} around {fbk[0]['switch_date']}, which lasts to about {fbk[0]['backup_stockout']}. " if fbk else '')
+      + 'King: King Black does not need its back-ups before 31 Jan.')
 p(f"King: King Black is restocked ({kb['sellable']:,} sellable + {kb['in_transfer']:,} in FC transfer; Data Dive still showed 293 on 23 Sep, before the August shipments were received). It becomes the King ranking child, replacing King Grey on every King ranking campaign. "
   f"Twin: Twin Black has {tb['stock_total']} units ({R['preferred']['Twin']['candidates'][0]['days_at_push_pace']} days at push pace), so Twin ranking is held until it is restocked.")
 
@@ -271,12 +295,13 @@ p(F['note'] + ' TACoS is a result of the plan, not its target. Break-even ACoS i
 h1('15. Final action — in this order')
 ul(['1. Stock: place the reorder for Queen Black (~' + f"{qb['units_short_to_31jan']:,}), Full Black (~{fb['units_short_to_31jan']:,}) and Twin Black (~{tb['units_short_to_31jan']:,}), sized to 31 Jan at the plan's pace. Confirm the Queen Black count in Seller Central first.",
     '2. Ranking owners (Campaigns tab, role "Ranking – push/maintain"): move the product ad to the Black child where needed. Then set TOS 900% / ROS 0% / PP 0%, the base bid and the budget shown, and bidding to "down only".',
-    '3. Pause the duplicate exact campaigns listed. Their terms are owned by one campaign on the preferred child.',
+    '3. Pause the duplicate exact campaigns listed. Their terms are owned by one campaign on the preferred child. In every ranking campaign, load the back-up child\'s product ad PAUSED (Back-up ranking child tab).',
+    '3a. Every other enabled exact campaign: TOS 900% / ROS 0% / PP 0% with the base bids shown, unless the Campaigns tab marks it as the exception.',
     '4. LTSF: fix the two LTSF campaigns\' product ads, move non-ranking Queen traffic to Queen Grey, move the colour exact campaigns to their LTSF SKU, and re-enable the paused LTSF colour exacts.',
     '5. Non-ranking: one −15% step where ACoS is above break-even, then re-read after 7 clean days. Stop stepping any term whose organic rank slips 3 places.',
     '6. Add the negative exacts from the Keywords tab to the discovery campaigns.',
     f"When Queen Grey is down to about two weeks of stock (the plan clears it around {INVR['SATIN-QUEEN-GREY']['stockout_date']}), switch the campaigns routed to it to Queen Stone Grey, LTSF #2 (~{LTR['SATIN-4PCS-QUEEN-STONE-GREY']['est_aged_left']} aged units left).",
-    '7. Daily check for two weeks: ranking clicks against target, top-of-search share, rank on each push term (Rank Radar), and Queen/Full Black days of cover.',
+    '7. Daily check for two weeks: ranking clicks against target, top-of-search share, rank on each push term (Rank Radar), and days of cover on every preferred child. Under 14 days, switch to the back-up.',
     'Everything in 2–6 is in the Bulk upload tab, with campaign, ad group and keyword IDs where Sellerboard provides them.'])
 h2('Owner decisions (the data cannot make these)')
 ul([f"The ranking investment: the full push costs about {money(F['components']['Ranking – push']['d_spend_day'] * 30)} more a month (direct profit {money(F['components']['Ranking – push']['d_profit_day'] * 30)}). The top 10 push terms account for {top10_share * 100:.0f}% of the extra push spend. The Push-cost tab lets you drop terms.",

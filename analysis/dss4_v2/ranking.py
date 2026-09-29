@@ -88,6 +88,23 @@ for size in ('Queen', 'King', 'Full', 'Twin'):
                       black_is_chosen=bool(black and black['sku'] == pick['sku']), size_units30=size_units, size_units90=size_units90, basis=pick_basis,
                       viable=[c['sku'] for c in viable], rank_orders_day=round(rank_orders_day[size], 1), current_ranking_child=rank_child_orders[size].most_common(1)[0][0] if rank_child_orders[size] else None)
 
+# ---------------------------------------------------------------- back-up ranking children (used when the preferred child runs low or out)
+# rule: other children with positive profit per top-of-search click and ≥5% of the size's 90-day units; first those with ≥60 days of stock at
+# push pace (by profit per TOS click), then the rest by days at push pace (≥30 days) — the latter can carry the maintain level only
+for size, v in pref.items():
+    others = [c for c in v['candidates'] if c['sku'] != v['chosen'] and (c['value_per_tos_click'] or 0) > 0 and (c['share_units90'] or 0) >= 0.05]
+    full = sorted([c for c in others if (c['days_at_push_pace'] or 0) >= 60], key=lambda c: -c['value_per_tos_click'])
+    part = sorted([c for c in others if 30 <= (c['days_at_push_pace'] or 0) < 60], key=lambda c: -(c['days_at_push_pace'] or 0))
+    chain = [dict(sku=c['sku'], level='push' if c in full else 'maintain only', days_at_push_pace=c['days_at_push_pace'], value_per_tos_click=c['value_per_tos_click'],
+                  tos_cvr=c['tos_cvr90'], tos_basis=c.get('tos_basis'), share=c['share_units90'], stock=c['stock_all']) for c in (full + part)[:2]]
+    if not chain:                      # nothing at ≥5%: allow ≥3% sellers with ≥30 days at push pace, flagged
+        thin = sorted([c for c in v['candidates'] if c['sku'] != v['chosen'] and (c['value_per_tos_click'] or 0) > 0 and (c['share_units90'] or 0) >= 0.03
+                       and (c['days_at_push_pace'] or 0) >= 30], key=lambda c: -(c['days_at_push_pace'] or 0))
+        chain = [dict(sku=c['sku'], level=('push' if (c['days_at_push_pace'] or 0) >= 60 else 'maintain only') + ' (small seller, estimate)',
+                      days_at_push_pace=c['days_at_push_pace'], value_per_tos_click=c['value_per_tos_click'], tos_cvr=c['tos_cvr90'], tos_basis=c.get('tos_basis'),
+                      share=c['share_units90'], stock=c['stock_all']) for c in thin[:1]]
+    v['backups'] = chain
+
 # ---------------------------------------------------------------- rank ↔ purchase-share curve (own data: SQP Q3 × Rank Radar Q3 median)
 pts = []
 for k, r in L.SQP['q3'].items():
@@ -202,6 +219,7 @@ OUT = dict(preferred=pref, curve=curve, curve_points=[dict(rank=m, share=s, keyw
 json.dump(OUT, open(L.OUT + 'ranking.json', 'w'), indent=1, default=str)
 if __name__ == '__main__':
     for z, v in pref.items():
+        print('   backups', [(b['sku'], b['level'], b['days_at_push_pace']) for b in v['backups']])
         print('==', z, 'chosen', v['chosen'], 'black', v['black'], v['black_is_chosen'], v['basis'], 'rank orders/d', v['rank_orders_day'], 'current', v['current_ranking_child'])
         for c in v['candidates'][:6]:
             print('   ', c['sku'], 'days@push', c['days_at_push_pace'], 'u90', c['units90'], 'share', c['share_units90'], 'pba90', c['pba_unit90'], 'tosCVR', c['tos_cvr90'], 'val/click', c['value_per_tos_click'], 'stock_all', c['stock_all'], 'pace', c['pace'], 'q4need', c['q4_need'], 'covers', c['covers_q4'], 'usp', c['usp30'])

@@ -35,6 +35,8 @@ try:
         TBC[str(r.get('_campaign_id'))].append(r)
 except Exception:
     pass
+SWITCH_DAYS = 14                                            # switch the ranking ad to the back-up child below this many days of stock (owner may change)
+BACK_DAYS = 30
 STEP = 0.15                                                 # one step on a non-ranking price: −15 %, re-read after 7 clean days (owner may change)
 MIN_BID = 0.02
 TOS_MAX = 900
@@ -88,6 +90,26 @@ def colour_lt(colour_terms, size, child):
         return None                                   # the ad already shows the colour the shopper searched
     r = CM.ltsf_for_term(colour_terms[0], LT['rows'], SKU)
     return r['sku'] if r and r['sku'] != child else None
+
+
+def tos_support(m9, fallback_cvr=None, label=''):
+    """Top of search is kept exclusive unless the campaign's own 90-day data shows it converting significantly worse than the other placements
+    (both sides ≥20 clicks and a two-proportion test at 95%). Returns (tos_only_ok, text)."""
+    tc, tv = m9.get('tos_clicks') or 0, m9.get('tos_cvr')
+    oth = [(m9.get('ros_clicks') or 0, m9.get('ros_cvr')), (m9.get('pp_clicks') or 0, m9.get('pp_cvr'))]
+    oc = sum(x[0] for x in oth)
+    ov = (sum(x[0] * (x[1] or 0) for x in oth) / oc) if oc else None
+    if tc >= 20 and oc >= 20 and tv is not None and ov is not None:
+        p1, p2 = tv / 100, ov / 100
+        pp_ = (p1 * tc + p2 * oc) / (tc + oc)
+        se = math.sqrt(pp_ * (1 - pp_) * (1 / tc + 1 / oc)) if 0 < pp_ < 1 else 0
+        z = (p1 - p2) / se if se else 0
+        if z < -1.96:
+            return False, f"NOT supported: top-of-search CVR {tv:.1f}% on {tc} clicks vs {ov:.1f}% on {oc} elsewhere — significantly lower (z={z:.1f}); keep other placements open, top of search weighted"
+        return True, f"supported: top-of-search CVR {tv:.1f}% on {tc} clicks vs {ov:.1f}% on {oc} elsewhere (90 d; difference not significantly against top of search, z={z:.1f})"
+    if tc >= 20:
+        return True, f"supported: {tc} top-of-search clicks at {tv:.1f}% CVR; too few clicks elsewhere ({oc}) to show a better placement"
+    return True, f"only {tc} top-of-search clicks in 90 d; judged on {label} top-of-search CVR ({fallback_cvr and round(fallback_cvr * 100, 1)}%)"
 
 
 def terms_of(c):
@@ -169,7 +191,7 @@ for c in C:
                       tos_cvr90=m9.get('tos_cvr'), ros_cvr90=m9.get('ros_cvr'), pp_cvr90=m9.get('pp_cvr'), tos_clicks90=m9.get('tos_clicks'),
                       ros_clicks90=m9.get('ros_clicks'), pp_clicks90=m9.get('pp_clicks')),
              be_acos=be(child), current_bids=bids, audit=[dict(kind=a['kind'], current=a['current'], suggested=a['suggested']) for a in AUD.get(cid, [])])
-    act = dict(state=None, child_to=None, budget_to=None, tos_to=None, ros_to=None, pp_to=None, strategy_to=None, bid_changes=[], negatives_add=[], ads_add=[],
+    act = dict(ads_add_paused=[], switch_rule=None, state=None, child_to=None, budget_to=None, tos_to=None, ros_to=None, pp_to=None, strategy_to=None, bid_changes=[], negatives_add=[], ads_add=[],
                ads_pause=[])
     why, checks = [], {}
     plan_spend = spend_day
@@ -202,21 +224,17 @@ for c in C:
             if child:
                 act['ads_pause'].append(child)
             why.append(f"Advertises {child}; the {sz} ranking child is {pref} ({R['preferred'][sz]['basis']}). Add the {pref} product ad, pause {child}")
-        # placement: top of search only where the campaign's own 90-day placement read supports it
-        tc, tv = m9.get('tos_clicks') or 0, m9.get('tos_cvr')
-        oth = [(m9.get('ros_clicks') or 0, m9.get('ros_cvr')), (m9.get('pp_clicks') or 0, m9.get('pp_cvr'))]
-        oth_cl = sum(x[0] for x in oth)
-        oth_cvr = (sum(x[0] * (x[1] or 0) for x in oth) / oth_cl) if oth_cl else None
-        if tc >= 20 and (oth_cvr is None or tv is None or tv >= 0.9 * oth_cvr):
-            support = f"supported: top-of-search CVR {tv:.1f}% on {tc} clicks vs {oth_cvr:.1f}% elsewhere (90 d)" if (tv is not None and oth_cvr is not None) else f"supported: {tc} top-of-search clicks, no competing placement read"
-            tos_ok = True
-        elif tc < 20:
-            szcvr = R['preferred'][sz]['candidates'][0]['tos_cvr90'] if R['preferred'][sz]['candidates'] else None
-            support = f"campaign has only {tc} top-of-search clicks in 90 d; judged on the {sz} preferred child's top-of-search CVR ({szcvr and round(szcvr * 100, 1)}%)"
-            tos_ok = True
-        else:
-            support = f"NOT supported: top-of-search CVR {tv:.1f}% vs {oth_cvr:.1f}% elsewhere on {tc}/{oth_cl} clicks — keep rest-of-search/product pages open"
-            tos_ok = False
+        # back-up child: loaded now as a PAUSED product ad; switched on when the preferred child runs low
+        bk = R['preferred'][sz].get('backups') or []
+        if bk:
+            act['ads_add_paused'] = [bk[0]['sku']]
+            act['switch_rule'] = (f"If {pref} drops under {SWITCH_DAYS} days of stock (or goes out of stock): enable {bk[0]['sku']}, pause {pref}"
+                                  + (' and set this campaign to maintain level (the back-up cannot carry the push)' if bk[0]['level'].startswith('maintain') else '')
+                                  + f". Switch back when {pref} has ≥{BACK_DAYS} days of stock." + (f" Second back-up: {bk[1]['sku']}." if len(bk) > 1 else ''))
+            why.append('Back-up child: ' + act['switch_rule'])
+        # placement: top of search only unless the campaign's own 90-day data shows top of search significantly worse
+        szcvr = R['preferred'][sz]['candidates'][0]['tos_cvr90'] if R['preferred'][sz]['candidates'] else None
+        tos_ok, support = tos_support(m9, szcvr, f"the {sz} preferred child's")
         checks['placement'] = support
         # prices: keep today's top-of-search clearing price (never cut a ranking term); if it buys fewer clicks than the target, the budget moves first
         tos_now = [OPP[t]['tos_cpc'] for t in rank_owned if OPP[t]['tos_cpc']]
@@ -397,6 +415,10 @@ for c in C:
                        f"today it advertises {child} — move the ad to the aged stock of the same colour")
         elif role == 'Ranking term, size on hold (stock)':
             tb = PREF['Twin']
+            bk = R['preferred']['Twin'].get('backups') or []
+            if bk and c['status'] == 'ENABLED':
+                act['ads_add_paused'] = [bk[0]['sku']]
+                act['switch_rule'] = f"If {tb} drops under {SWITCH_DAYS} days of stock (or goes out of stock): enable {bk[0]['sku']}, pause {tb}; switch back when {tb} has ≥{BACK_DAYS} days"
             why.append(f"Twin ranking term, but Twin's best child {tb} has {R['preferred']['Twin']['candidates'][0]['days_at_push_pace']} days of stock at push pace "
                        f"(needs 60): hold spend flat until it is restocked, then push")
         elif ev_acos is not None and be(child) and ev_acos / 100 > be(child) and ev_orders >= 3:
@@ -424,6 +446,45 @@ for c in C:
         act['ads_pause'].append(child)
         why.append(f"Move off {child} (Queen ranking child, {days_cover(child)} days of stock, nothing inbound) onto {t0} (LTSF #1, ~{LTROW[t0]['est_aged_left']} aged units): "
                    f"not a ranking term, so its orders are better spent clearing aged stock")
+
+    # ---------------- every other exact campaign buys top-of-search clicks too (same structure as ranking; price stays today's, minus a step if one applies)
+    fin_state = act['state'] or c['status']
+    if c['ad_type'] == 'SP' and c['match'] == 'Exact' and c['target_type'] != 'ASIN' and fin_state == 'ENABLED' and not role.startswith(('Ranking –', 'Other product', 'Duplicate')) \
+            and ((m9.get('clicks') or 0) > 0 or any((bids.get(t) or {}).get('bid') for t in ts)):
+        stepping = any(b.get('change') for b in act['bid_changes'])
+        f_ = (1 - STEP) if stepping else 1.0
+        ok_, sup_ = tos_support(m9, (m9.get('tos_cvr') or 0) / 100 or None, 'its own')
+        checks['placement'] = sup_
+        tos_cpc_c = m9.get('tos_cpc') or m3.get('tos_cpc')
+        new_bids = []
+        for t in ts:
+            b = bids.get(t) or {}
+            eff_now = b['bid'] * (1 + (c['mods'].get('tos') or 0) / 100) if b.get('bid') is not None else None
+            k_ = KW.get(t) or {}
+            price = eff_now or tos_cpc_c or ((k_.get('m30') or {}).get('cpc'))
+            if not price:
+                continue
+            price = round(price * f_, 2)
+            if ok_:
+                bb = max(MIN_BID, round(price / (1 + TOS_MAX / 100), 2))
+                new_bids.append(dict(term=t, bid_from=b.get('bid'), bid_to=bb, eff_tos_to=round(bb * (1 + TOS_MAX / 100), 2), src=b.get('src')))
+            else:
+                new_bids.append(dict(term=t, bid_from=b.get('bid'), bid_to=round(price / 2, 2), eff_tos_to=price, src=b.get('src')))
+        if new_bids:
+            act['bid_changes'] = new_bids
+            if ok_:
+                act.update(tos_to=TOS_MAX, ros_to=0, pp_to=0, strategy_to='Dynamic bids - down only')
+                why.append(f"Top-of-search clicks only (all exact campaigns): modifier {TOS_MAX}%, base = top-of-search price ÷ 10, rest of search and product pages 0%; "
+                           f"top-of-search price = today's effective top-of-search bid{' −15% (the step above)' if stepping else ''}")
+            else:
+                act.update(tos_to=max(c['mods'].get('tos') or 0, 100))
+                why.append('Top-of-search weighted (≥100%), other placements kept: ' + sup_)
+            # the plan now buys only the top-of-search clicks (when TOS-only)
+            tcl = (m3.get('tos_clicks') or 0) / 30
+            if ok_ and m3.get('tos_clicks') is not None:
+                plan_clicks = tcl * f_
+                plan_orders = plan_clicks * ((m3.get('tos_cvr') or 0) / 100)
+                plan_spend = plan_clicks * (m3.get('tos_cpc') or ((spend_day / clicks_day) if clicks_day else 0))
 
     # ---------------- second-order checks (all actions)
     d_sp, d_cl, d_or = plan_spend - spend_day, plan_clicks - clicks_day, plan_orders - orders_day
