@@ -106,17 +106,17 @@ Tab-by-tab specification of the decision workbook (xlsx), generalised from the 3
 ### 9. Keyword decisions
 - **Scope**: every search term with spend in 30 or 90 days (plus market terms seeded from gaps).
 - Columns: Search term · Decision · Rule · Why · Action · Class · Relevancy · Search volume/month · Weekly SV (competitor tool) · Organic rank (30 d median) · Sponsored rank · Target rank · Indexing · Exact owner(s) · Impr 30 d · Clicks 30 d · CTR 30 d · Orders 30 d · CVR 30 d · CPC 30 d · Spend 30 d · Sales 30 d · ACoS 30 d · Clicks 90 d · Orders 90 d · CVR 90 d · CPC 90 d · Spend 90 d · Sales 90 d · ACoS 90 d · TOS share · TOS CVR · TOS CPC · PDP share · PDP CVR · ROS share.
-- Decision labels: PUSH / WAIT / HOLD RANK / BREAK-EVEN / REDUCE / BLOCK / HARVEST / DEDUPLICATE / CHECK OWNER / DEFEND / MONITOR / KEEP.
+- Decision labels: PUSH / WAIT / HOLD RANK / BREAK-EVEN / REDUCE / REVIEW / BLOCK / HARVEST / DEDUPLICATE / CHECK OWNER / DEFEND / MONITOR / KEEP (REVIEW = relevant term, ≥20 clicks, 0 orders, no live exact owner → fix queue; register #38).
 - Note in subtitle: placement shares at keyword grain are estimates (placement is reported per campaign).
 
 ### 10. Harvest & negate
-- Sections: Harvest · Block · Reduce · Deduplicate · Check owner — each titled with count and 90-day spend.
+- Sections: Harvest · Block · Reduce · Review (fix queue) · Deduplicate · Check owner — each titled with count and 90-day spend.
 - Columns: Search term · Class · Relevancy · Clicks 90 d · Orders 90 d · ACoS 90 d · Spend 90 d · Owner(s) · Action (with timing and negation mode).
 - Section for negatives proposed by the prior run: Seq · Campaign · Negatives now · After · Terms added · Verdict (Load / Hold, why).
 
 ### 11. Campaign logic
 - Columns: Type · Objective · Purpose · Deciding metrics · Allowed actions · Not allowed · Advertised variation · Placement rule · Rules · Campaigns (count).
-- Rows: Exact × Ranking / Conversions / Defensive; Broad-Phrase × Discovery; brand Broad × Defensive; Auto × Discovery; product targeting × Defensive (own) / Conquest (competitor) / cross-sell (own other product); SB/SBV; SD; Liquidation/LTSF.
+- Rows: Exact × Ranking / Profitable Conversion / Defensive; Broad-Phrase × Discovery; brand Broad × Defensive; Auto × Discovery; product targeting × Defensive (own) / Conquest (competitor) / Profitable Conversion (category) / cross-sell (own other product); SB/SBV; SD; Liquidation/LTSF.
 - Paragraphs: how type is recognised (targeting, not name); how objective is set; what "focus" may and may not do.
 
 ### 12. Campaign decisions
@@ -124,7 +124,7 @@ Tab-by-tab specification of the decision workbook (xlsx), generalised from the 3
 - Identity: Group · Campaign · Campaign ID · In list · Ad type · Match · Size · Main term(s) · Status · Focus · Objective now → correct · Variation now → correct.
 - Trail: INPUT · METRIC · LOGIC (rule) · DECISION · ACTION · EXPECTED OUTCOME · VALIDATION · Why (full reasoning) · Prior-run rows → verdict · When · How it loads.
 - Numbers: Clicks 30 d · Orders 30 d · Spend 30 d · ACoS 30 d · ACoS 90 d · TOS share · PDP share · TOS clicks 90 d · TOS CVR 90 d · Margin/unit · CVR used (basis) · Break-even $ · Ceiling $ · Rank now → target · Base now/new · Boost now/new · TOS price now/new · Budget now/new · State new · Variation new · Objective new · Event-day spend.
-- Sort: group order (push funded, waiting, at target, ranking break-even, conversions, discovery, defensive, liquidation, SB/SD), then spend desc.
+- Sort: group order (push funded, waiting, at target, ranking break-even, profitable conversion, discovery, defensive, liquidation, SB/SD), then spend desc.
 
 ### 13. Push plan
 - Columns: Status (PUSH / WAIT / HOLD RANK) · Term · Campaign · Variation now → correct · Rank now → target · TOS CVR (90 d, basis) · Break-even $ · Push price $ · Ceiling $ · Our TOS CPC (90 d) $ · Price now $ · Price to write $ · Base now → new · Boost now → new · Plan TOS clicks/day · Today TOS clicks/day · Plan orders/day · Budget $ · First milestone · Re-read date · Why.
@@ -198,7 +198,7 @@ All competitor tabs state coverage ("measured N of M mapped") and export dates i
 - Per SKU: SKU · Units 30 d · Margin before ads/unit · Price · Break-even ACoS · Stock · Units/day · Days of stock · Role.
 
 ### 27. Inventory × PPC
-- Steps table: Step · Check · Rule · Rule ID — count sellable units; pace (30 d, 7 d warning, never push pace); cover; minimum (<7 days); against the arrival (ROOM / TIGHT ≤7-day gap / switch); out of stock; discovery colour; events.
+- Steps table: Step · Check · Rule · Rule ID — count sellable units; pace (30 d, 7 d warning, never push pace); cover; zone (Green ≥60 / Yellow 21–59 / Red <21; a push needs projected cover to stay Green through its checkpoint — register #9, #42); minimum (<7 days); against the arrival (ROOM / TIGHT ≤7-day gap / switch); out of stock; discovery colour; events.
 - Where each size stands: Size · Available · Cover · Next arrival · Stock gate · Push allowed?
 
 ### 28. Financial guardrails
