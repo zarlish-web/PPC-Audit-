@@ -74,6 +74,29 @@ This framework consolidates the skills below. Where they disagree, the **resolut
 | 32 | Minimum budget | SR: raise <$10 to $10; PB: budget cuts >$50/day need approval | **Both** | Compatible |
 | 33 | Market/"suggested" price concept | WB/PB launch position "middle of suggested range" | **Replaced** by break-even-based launch price (see #18) | Owner rule |
 
+### 2b. Additional resolutions (settled while writing the references)
+
+| # | Topic | Resolution (default) |
+|---|---|---|
+| 34 | Marginal ACoS on a raise | Freeze the raise at the prior rung when marginal ACoS > 1.5 × average [SR]; unwind one step when > 2 × blended [PB]. Freeze first, unwind second |
+| 35 | Phrase-only campaigns | **Discovery** (B6, WB). OC's script default of Profitable Conversion is not used |
+| 36 | Exact terms that are not generic demand | Colour, competitor-brand, other-language and misspelled exact terms → **Profitable Conversion**, not Ranking [B6 R-O1], applied on top of #15 |
+| 37 | Size of a non-ranking cut | Over break-even on **both** 30 and 90 days → cut up to **30% of base** in one step (#16). The 15%/cycle limit in #5 applies to target-chasing trims, not to this rule |
+| 38 | Relevant term, ≥20 clicks, 0 orders, no live exact owner | **REVIEW** (fix queue: listing, price, colour, placement). BLOCK only when irrelevant or another product type. With a live owner → REDUCE |
+| 39 | Conversion deficit (CVR far below target on ≥40 clicks) | Bid −15% and refer to Brand Management [SR]; no rank push until the offer is fixed |
+| 40 | "Holding the top" | Decisions use **≥30% top-of-search impression share + top-3 sponsored**; the quick-audit 22.5% TOS IS stays a reporting reference |
+| 41 | Human confirmation by search volume | SV ≥ 500, gate failures, structural changes, bid moves >25% outside an approved push plan, budget moves >$50/day. An approved push plan covers its own +30%/day steps |
+| 42 | Stock during a push | Projected cover must stay **Green (≥60 days) through the push checkpoint**, or the push is blocked, shrunk or time-boxed |
+| 43 | LTSF-clearance ceiling | 1 × break-even on forward-cash economics (COGS sunk); the 50% ACoS band is reference only |
+| 44 | New conquest target | Must be OFFENSIVE **and** win ≥2 of price / rating / review count [PB]; else TEST. Existing targets are judged on their own clicks and orders (R-X3–X5) |
+| 45 | Sponsored Brands / video bids | Start at break-even; ceiling 2 × break-even on push terms and on brand terms with verified competitor presence; 1 × elsewhere |
+| 46 | Competitor-consensus thresholds | Stated as a share of the measured roster ("a majority of measured rivals"), not a fixed count |
+| 47 | Discovery price anchor | "Exact ceiling" for Broad ~60% / Phrase ~80% means the exact term's **break-even** CPC, not the 2× push ceiling |
+| 48 | Base far above product-page break-even | Price over ceiling → to ceiling this cycle via base + boost together; the 50% base-cut limit still applies, so a second step is scheduled if needed |
+| 49 | Velocity for zones | 30-day actual pace (deal/stock-out windows corrected and labelled); the inventory file's planned velocity shown beside it |
+| 50 | WAIT duration | Held until a named re-test date or until the owner declines the fix; then BREAK-EVEN |
+| 51 | Non-push ranking term below break-even | KEEP (no raise) unless it qualifies for the push |
+
 ---
 
 ## 3. Known defects in source implementations (do not copy)

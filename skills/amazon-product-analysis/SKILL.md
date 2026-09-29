@@ -50,7 +50,9 @@ It consolidates 18 existing skills and one real engagement (B6 bamboo sheets, Se
 | TACoS | monitored and decomposed; **no numeric TACoS target unless the owner sets one** | B6 owner rule; PB bands as reference |
 | Inventory zones | Green ≥ 60 days of cover · Yellow 21–59 · Red < 21; "stock-out before inbound arrives" overrides all | PB, inventory-checkup |
 | Sample floors | bid verdict 15 clicks · CVR verdict 100 clicks (own TOS CVR usable from 50) · CTR verdict 1,000 impressions · product targets 11 clicks | PB, SR |
-| Zero-order rule | ≥ 20 clicks, 0 orders → reduce (relevant, owned) / block (irrelevant); relevant non-converters go to a fix queue | B6, STR audit |
+| Zero-order rule | ≥ 20 clicks, 0 orders → REDUCE (relevant, live owner) / REVIEW fix queue (relevant, no owner) / BLOCK (irrelevant or other product); never negate exact ranking or brand terms | B6, STR audit |
+| Holding the top | top-3 sponsored and ≥ 30% top-of-search impression share (22.5% TOS IS = reporting reference) | B6, SR, QA |
+| Non-ranking cut | over break-even on both 30 and 90 days → cut ≤ 30% of base; > 2 × break-even on ≥ 30 clicks → stop | B6 |
 | Harvest | ≥ 3 orders at ≤ break-even ACoS, no exact owner → build exact, negate at source | B6, PB, STR |
 | Wasted-spend ceiling | 10% of spend (discovery 40%) | SR, quick audit |
 | Placement mix (ranking) | 70–90% of clicks at top of search, ≤ 20% on product pages | B6 |
