@@ -70,20 +70,20 @@ A Ranking campaign is **push** only while its term is funded in the push plan (p
 
 | Class | Identify by | Objective | Advertised variation | Price basis / ceiling | Judged by | Notes |
 |---|---|---|---|---|---|---|
-| Auto | Targeting type Auto | Discovery | Size's clearance colour (≥ 180 d cover, or ≥ 90 d while selling ≤ size median) | ≤ 1.0 × BE CPC every placement | Converting terms/$100, harvests, WAS ≤ 40% | Report and judge the 4 auto groups (close / loose / substitutes / complements) separately; own-ASIN auto matches negated. Mature stage keeps a low-budget auto sentinel [PB, WB, B6 R-C2] |
-| Broad | All-broad keywords | Discovery (brand broad → Defensive) | Clearance colour | Launch ≈ 60% of the exact ceiling, no modifier | as Auto | Built only after 100 exact clicks or a coverage gap (§7.3) [PB, #23] |
-| Phrase | All-phrase keywords | Discovery | Clearance colour | Launch ≈ 80% of the exact ceiling, no modifier | as Auto | Primary root at 0% phrase = structure gap [PB] |
-| Exact — ranking, push | Generic niche exact, funded push term | Ranking | Size's best seller (hero) | TOS price → push price, ceiling 2 × BE CPC | Progress test §6 | One live owner per term; 70–90% of clicks at TOS, PDP ≤ 20% [B6 R-P1–P8, R-C1] |
-| Exact — ranking, non-push | Generic niche exact, not funded | Ranking | Hero | Toward BE CPC (R-B1–B3) | Rank protection at BE | Rejoins push when it qualifies |
-| Exact — non-ranking | Colour / competitor / language / misspelling / adjacent exact | Profitable Conversion | Colour terms: the named colour in the term's size; others: hero | ≤ 1.0 × BE CPC every placement | Layered rule §7.1 | [B6 R-O1, R-C3] |
-| PT — competitor | Mapped competitor ASIN | Conquest | Routed SKU | Watch-CPA (§7.5); product-page lever, no TOS modifier | CPA + page share | Classified OFFENSIVE / TEST / AVOID (file 08) [WB, B6 R-CI7] |
+| Auto | Targeting type Auto | Discovery | Clearance colour (≥ 180 d cover, or ≥ 90 d selling ≤ size median) | ≤ 1.0 × BE CPC | Converting terms/$100, harvests, WAS ≤ 40% | 4 auto groups judged separately; own-ASIN matches negated; mature stage keeps a low-budget sentinel [PB, WB, B6 R-C2] |
+| Broad | All broad | Discovery (brand → Defensive) | Clearance colour | Launch ≈ 60% of exact ceiling, no modifier | as Auto | Built after 100 exact clicks or a coverage gap [PB, #23] |
+| Phrase | All phrase | Discovery | Clearance colour | Launch ≈ 80% of exact ceiling, no modifier | as Auto | Primary root at 0% phrase = gap [PB] |
+| Exact — ranking, push | Generic niche, funded | Ranking | Size's best seller (hero) | Push price, ceiling 2 × BE CPC | Progress test §6 | TOS 70–90% of clicks, PDP ≤ 20% [B6 R-P1–P8, R-C1] |
+| Exact — ranking, non-push | Generic niche, not funded | Ranking | Hero | Toward BE CPC | Rank held at BE | Rejoins push when it qualifies [B6 R-B1–B4] |
+| Exact — non-ranking | Colour / competitor / language / misspelling / adjacent | Profitable Conversion | Colour term → named colour, same size; else hero | ≤ 1.0 × BE CPC | Layered rule §7.1 | [B6 R-O1, R-C3] |
+| PT — competitor | Mapped competitor ASIN | Conquest | Routed SKU | Watch-CPA; PDP lever, no TOS modifier | CPA + page share | OFFENSIVE / TEST / AVOID (file 08) [WB, B6 R-CI7] |
 | PT — own family | Own ASIN | Defensive | Hero | Low bid; ACoS ≤ BE | ACoS ≤ BE, share | [B6 R-X1] |
 | PT — own other product | Own brand, other product | Profitable Conversion (cross-sell) | Routed SKU | ≤ BE | Own ACoS | Not a conquest [B6 R-X2] |
 | PT — category | category="…" | Profitable Conversion | Routed SKU | ≤ BE | CPA vs ceiling | Category targets can't be bulk-changed — console [CB] |
-| Brand / Defensive | Brand word in keyword | Defensive | Hero ("keep on White" in B6) | CM2 × CVR; above-ceiling allowance only with verified competitor presence | Share + cost; ACoS ≤ BE | Funded first when ≥ 3 rivals advertise on brand terms [PB, B6 R-N3, R-CI6] |
-| Liquidation / clearance | Declared (§1.1) | Targeting objective + Liquidation flag | Aged/clearance SKU | BE on forward-cash economics (file 04) | Units cleared | Never cut on ACoS [B6 R-N2, SR] |
-| SB / SBV / SD | Ad type | Own | — | Same break-even rules | Own metrics | Outside the SP engine: built and priced by hand, own budget line, counted in the spend limit; one SB format per push term [B6 E12, R-CI10, F17] |
-| Shared multi-product | Advertises other products | — | — | — | In its own product's audit | No colour or price automation from this product; spend = row × (product tile ÷ rows) [B6 E13, F29] |
+| Brand / Defensive | Brand word in keyword | Defensive | Hero | CM2 × CVR; allowance only with verified rival presence | Share + cost; ACoS ≤ BE | Funded first when ≥ 3 rivals advertise [PB, B6 R-N3, R-CI6] |
+| Liquidation | Declared (§1.1) | Targeting objective + flag | Aged SKU | BE on forward-cash economics | Units cleared | No ACoS cuts [B6 R-N2, SR] |
+| SB / SBV / SD | Ad type | Own | — | Same break-even rules | Own metrics | Outside the SP engine: by hand, own budget line, inside the spend limit; one SB format per push term [B6 E12, R-CI10, F17] |
+| Shared multi-product | Advertises other products | — | — | — | Own product's audit | No colour/price automation; spend = row × (tile ÷ rows) [B6 E13, F29] |
 
 ---
 
@@ -305,7 +305,7 @@ Read campaign ACoS vs the advertised SKU's BE ACoS on **30-day and 90-day** wind
 - After grace, the campaign runs the layered rule (§7.1). [B6 R-N1]
 
 ### 7.4 Defensive (provisional — confirm before first use) [PB, B6]
-- Pricing: CM2 × CVR on the advertised SKU; above-ceiling allowance only with a competitor or non-brand seller actually seen on the branded term (STR or placement capture), bounded by the ranking ceiling (2 × BE CPC); withdrawn after 2 consecutive reads without presence.
+- Pricing: CM2 × CVR; above-ceiling allowance only with a rival or non-brand seller actually seen on the branded term (STR or placement capture), bounded by 2 × BE CPC; withdrawn after 2 consecutive reads without presence.
 - Share = impression share per branded query vs that query's own prior baseline (blended branded only as a named fallback).
 - Keep on the hero, funded; judged ACoS ≤ BE. Brand terms with ≥ 3 rivals advertising → DEFEND at TOS, funded first, add own-ASIN PT. [B6 R-N3, R-CI6]
 
@@ -319,8 +319,8 @@ Read campaign ACoS vs the advertised SKU's BE ACoS on **30-day and 90-day** wind
 | 6 CVR collapse | Branded CVR falls | Listing first (suppression, buy box, reviews, variation break) |
 
 ### 7.5 Conquest (provisional) and competitor PT [PB, B6 R-X3–X6, R-CI7]
-- Existing instance first (same ASIN elsewhere → decide from its state; one owner per ASIN).
-- **Entry:** routed SKU wins ≥ 2 of 3 (price, rating, review count) vs the target, or the target is out of stock. Missing data → ask before logging a wait. B6 form: OFFENSIVE = above us on price for fewer pieces, or same price with < 50% of our reviews; AVOID ASINs negated in auto/PT.
+- Same ASIN already targeted → decide from that instance; one owner per ASIN.
+- **Entry:** routed SKU wins ≥ 2 of 3 (price, rating, review count), or target out of stock; missing data → ask. *B6 form: OFFENSIVE = pricier for fewer pieces, or same price with < 50% of our reviews; AVOID negated in auto/PT.*
 - **Ceiling = watch-CPA** = lower of routed-SKU CM2 × CVR and the price-gap-adjusted figure; state which governs. Product-page lever, no TOS modifier.
 - **Verdicts:** PT floor 11 clicks. SCALE (ACoS ≤ BE, ≥ 15 clicks) ≤ +25%/cycle up to BE CPC; REDUCE when ACoS > BE on ≥ 15 clicks; BLOCK at ≥ 20 clicks 0 orders or > 2 × BE on ≥ 30 clicks; unmapped ASIN → no SCALE.
 - **Exit / rotate:** target delisted; target no longer wins 2-of-3 (hold); CPA > watch-CPA 2 consecutive reads with no page-share gain. Rotate when another ASIN clears the gate and is better (budget and structure carry over).
