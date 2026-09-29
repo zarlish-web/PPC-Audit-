@@ -221,7 +221,7 @@ Build an **owner map on normalised terms (§2; close variants count)** across ev
 - Different match types on one term are purposeful, not duplicates; word-order variants are not duplicates. [SR, PB]
 - Status rule: an instance is **Paused if keyword state OR campaign state is paused** (ad-group state is reported separately, not used for the duplicate status). A keeper sitting in a paused campaign won't serve — count and state these. [LP]
 - Validate: no group with > 1 enabled instance; no duplicate group with 0 enabled instances; singletons untouched (report dormant count; ask before enabling). [LP]
-- Hygiene priority when several issues hit one term (highest first): 1 negate the variant in discovery (covered by an exact) · 2 turn off duplicate exact, same SKU · 3 turn off a variant covered by a higher-SV normalised keyword · 4 duplicate normalised keyword on the same SKU → manual review · 5 different SKU → no action · 6 keep the primary (highest-SV) normalised keyword. [KCP]
+- Several issues on one term → fix in this order: negate the variant in discovery → turn off same-SKU duplicate exact → turn off variant covered by a higher-SV form → review same-SKU normalised duplicates; different SKU = no action. [KCP]
 
 Example (B6): 8 terms DEDUPLICATE ($748 / 90 days), 23 terms CHECK OWNER ($2,274 / 90 days); "bamboo queen sheet set" was bought by 4 live exact campaigns.
 
