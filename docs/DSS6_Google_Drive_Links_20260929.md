@@ -4,7 +4,7 @@ Folder: https://drive.google.com/drive/folders/1wX_fh2Do6upxSqSsmDWGa5CWVxfXxEi2
 
 Each Google copy was read back from Drive and compared with the local export (CSV: cell by cell; Doc: full text + every key figure the automated checks track). Result: 27/27 identical.
 
-Updated 30 Sep: a ranking term's top-of-search bid is never set below today's effective top-of-search bid. Replaced copies are still in the folder, titled "(superseded …)". The links below are the current ones.
+Updated 30 Sep (pm): base bids are never lowered — pushed terms reach their top-of-search price by raising the top-of-search modifier on today's base; held campaigns are unchanged. Rebuilt on the 30 Sep re-export of audit 20260929-0ed4517e. Replaced copies are still in the folder, titled "(superseded …)". The links below are the current ones.
 
 | File | Rows | Check | Link |
 |---|---|---|---|
