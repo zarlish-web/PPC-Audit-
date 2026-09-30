@@ -2,9 +2,9 @@
 
 Folder: https://drive.google.com/drive/folders/1wX_fh2Do6upxSqSsmDWGa5CWVxfXxEi2
 
-Each Google copy was read back from Drive and compared with the local export (CSV: cell by cell; Doc: full text + every key figure the automated checks track). Result: 26/27 identical.
+Each Google copy was read back from Drive and compared with the local export (CSV: cell by cell; Doc: full text + every key figure the automated checks track). Result: 27/27 identical.
 
-Updated 30 Sep: a ranking term's top-of-search bid is never set below today's effective top-of-search bid. Replaced copies are still in the folder, titled "(superseded …)". The links below are the current ones.
+Updated 30 Sep (late): base bids on ranking terms are never lowered; every push term has a price lever (top-of-search modifier); satin sheets is a trial term; −15% steps only with 30-day spend and ACoS above break-even; Queen back-ups Rosewood then Red Queen; bulk upload carries Match Type. Rebuilt on the 30 Sep re-export of audit 20260929-0ed4517e. Replaced copies are still in the folder, titled "(superseded …)". The links below are the current ones.
 
 | File | Rows | Check | Link |
 |---|---|---|---|
@@ -23,7 +23,7 @@ Updated 30 Sep: a ranking term's top-of-search bid is never set below today's ef
 | DSS6 29 Sep — AP1 Action list (part 2 of 2) | 53 | identical cell by cell | https://docs.google.com/spreadsheets/d/15UDup-vRjuJ2X5Ufg6m8aPdctoSnBJJdx9920sHPPis/edit |
 | DSS6 29 Sep — RW Audit review (237 decisions) | 237 | identical cell by cell (Google hides the leading apostrophe in 13 cells — display rule, text otherwise identical) | https://docs.google.com/spreadsheets/d/1jqxXCKhbaZxT_OfYZ5MTHjf3zlm-Um6z2s1q3NoePOg/edit |
 | DSS6 29 Sep — RW Back-up ranking child | 7 | identical cell by cell | https://docs.google.com/spreadsheets/d/1N3j8-YQfk7OJhrLMMDHDaIMetfmh3AFNIHJExlE8VpM/edit |
-| DSS6 29 Sep — RW Campaigns (all 386) (part 1 of 2) | 324 | 1 rows differ; first: [(310, [98929441283083.0, 'D-S6-satin bed sheets queen - [Satin|Queen] - Exact - Ran -', 'SP', 'ENABLED', 'Ranking – push', 'SATIN-STONEGREY-QUEEN-6PCS', 'satin bed sheets queen', 10.0, 0.6, 0.62, 0.9, 0.9, 1.8, 5.6, -2.6, '', 'SATIN-QUEEN-BLACK-6-PCS', '', 151.0, '', '', 'SATIN-ROSEWOOD-QUEEN-6PCS' | https://docs.google.com/spreadsheets/d/1c2wIvmpIkARCgqjK3jB7wd1lW21YKHDRybNS9J2YFY0/edit |
+| DSS6 29 Sep — RW Campaigns (all 386) (part 1 of 2) | 324 | identical cell by cell | https://docs.google.com/spreadsheets/d/1oXY46deNaAO4zNxOPBljQhhpnx4IpXhI9H3FUjw8DS8/edit |
 | DSS6 29 Sep — RW Campaigns (all 386) (part 2 of 2) | 62 | identical cell by cell | https://docs.google.com/spreadsheets/d/1gMrqEER2315PY6IxfWetDbCrUDOtKL4QM8EeIDbggLo/edit |
 | DSS6 29 Sep — RW Checks | 58 | identical cell by cell | https://docs.google.com/spreadsheets/d/1Ppks-Sz_pyDoDKFQ-Hso1iqXbW6HU7QCHMSCsRYK93E/edit |
 | DSS6 29 Sep — RW Competitors | 44 | identical cell by cell | https://docs.google.com/spreadsheets/d/1kYQEYdIlM1ZTf5pMbISsAwYWL77N0pjvK4yO6ejy7CA/edit |
