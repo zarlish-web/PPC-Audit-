@@ -228,7 +228,7 @@ The re-points load now. Prices hold until 13 Oct: rows 15 and 18 are not cut.
    - If the budget runs out, raise the budget instead.
    - Don't cut the top-of-search price until 70% of the planned clicks arrive.
 7. **Rows above the engine's own market bound are held for Joseph:**
-   - 45, 48, 49 and 50 ("queen size sheet set silk", $3.47 against a $2.89 bound);
+   - 45, 48, 49 and 50, the "queen size sheet set silk" campaign: the engine flags two keywords above its $2.89 bound, "queen sheets set silk" at $3.47 (row 48) and "queen size sheet set silk" at $3.40 (row 49). Row 45 is the campaign's top-of-search boost and row 50 a third keyword at $2.31, held with them;
    - 110 ("satin twin sheets set", $2.48 against $2.30);
    - 8 rows the engine held itself.
 8. **The two top-of-search climbs stay held:**
@@ -431,7 +431,7 @@ After each step, re-export the bulk and diff it.
 | Red King terms to Striped Red King | Red King has 11 units; Striped Red King has 108 FBA units, about 694 days of supply, LTSF risk | Re-point at $0.80, $5–7 a day, read at 20 clicks; treat striped red as red in the colour map | Joseph |
 | Non-hero profit guardrail | Non-hero SKUs −$228 in 30 days; Striped Full Gold $72 of ads, −$204 net | No ads on non-hero SKUs with negative net and no organic lift | Joseph / Erik |
 | "silk sheets" | Biggest term. S6 #58, S4 #28–46; S6 converts slightly better, not significantly; Queen Black margin. | S6 test ($13 a day, 2 weeks after 12 Oct) or leave to S4 | Joseph |
-| Five price rows above the market bound | 45/48/49/50 at $3.47 against a $2.89 bound; 110 at $2.48 against $2.30; plus 8 engine-held | Cut to the bound unless the term is in a funded push | Joseph, before the load |
+| Five price rows above the market bound | 48 at $3.47 and 49 at $3.40 against a $2.89 bound (45 and 50 held with them); 110 at $2.48 against $2.30; plus 8 engine-held | Cut to the bound unless the term is in a funded push | Joseph, before the load |
 | 30 Sep Lightning Deal | Cancellation asked for; not confirmed | Confirm in Seller Central; treat 30 Sep as a deal day if it ran | Joseph / Umair, 1 Oct |
 | Prime PED at about 20% | Queen Black about −$3.48 a unit before ads; King Black about +$2.20 | Only children still in profit at the deal price, or skip | Joseph / Erik, 1 Oct |
 | Queen Black reorder | 563 counted + 300 unshipped; out around early January (this plan) or 29 Nov (a full Queen push) | Ship the 300 now; reorder 300–600 once the goal is set | Ops, this week |
