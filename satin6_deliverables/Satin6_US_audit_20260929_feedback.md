@@ -14,10 +14,10 @@ The audit runs S6 as a mature product in the maintenance lane. Its direction, cu
    - S6 is 2–3 points over its 12% ceiling, not double it.
 2. **The margin is too high.** The engine uses $7.47 a unit (23.4% break-even). Sellerboard, per child, gives Queen Black $1.91 all-in and $4.61 excluding one-offs; the family is about 9% all-in and 18% excluding one-offs.
 3. **The advertised children are wrong, and the colour swaps can't load.**
-   - The engine's "hero" for Queen, Full and Twin is White by rule, although White sells 1, 6 and 0 units a month against Black's 67–74, 24–25 and 12–13.
+   - The engine's "hero" for Queen, Full and Twin is White by rule, although White sells 0, 6 and 1 units a month (the engine’s own stock table) against Black's 67–74, 24–25 and 12–13.
    - 68 of its 86 swaps break the size and colour rule. None of them loads, because the loader can't write product ads. The 323 renames would load.
 4. **The forecast is 96% test artifact.** 122.8 of the 128.3 extra orders a week come from 11 tests spending $15 a day, priced off 2-order histories.
-5. **The deal calendar isn't read.** Lightning Deals fall on 30 Sep, 7 Oct (Prime Big Deal Days), 12, 24 and 30 Oct. 29 predictions grade on 7 Oct.
+5. **The deal calendar isn't read.** Lightning Deals fall on 30 Sep, 7 Oct (Prime Big Deal Days), 12, 24 and 30 Oct. 19 predictions grade on 6 Oct and 29 on 7 Oct, both Prime Big Deal Days.
 6. **Its cuts on ranking terms come from a class setting, not from pricing logic.** They cite the "Maintenance Profit Control" canvas, class HARD (operator 2026-09-24/25, "−25% off the top-of-search price"). So does the budget halving on "king size silk sheet set".
 7. **Its focus list points S6 at S4's terms.** S6's focus is Satin, Satin Queen, Satin Full and Satin Twin, the groups where S4 ranks #3–12 and converts better. It excludes Silk and King, where S6 wins. So every ranking move is a cut, and S6's best syntax is tapered.
 
@@ -119,11 +119,11 @@ The title cut and the September image changes are minor or not supported as caus
 | 1 | Spend base | $173.25 a day in the engine against $81 on S6's own campaigns and $98 attributed in Sellerboard. The engine includes Satin Fitted Sponsored Brands ($24.58 a day), Bamboo campaigns ($5.90) and shared campaigns. It leaves out the S4 LTSF auto ($26.81) and the B082B7J2H9 conquest ($7.09). | Scope spend to S6 ASINs; split shared campaigns by advertised-ASIN spend. The real gap to the 12% ceiling is about $14 a day, not $89. |
 | 2 | Margin | 23.4% for every SKU; Sellerboard per child is 6–24% all-in | Per-child Sellerboard margin, excluding one-offs, for ceilings |
 | 3 | Hero rule | White by rule for Queen, Full and Twin (1, 6, 0 units a month); King falls back to King Red (11–12 units). A zero sales rate reads GREEN. | Hero = the size's best seller with 30 or more days of cover (Black). No rate = UNKNOWN. |
-| 4 | Swaps and renames | None of the 86 swaps loads; the 323 renames would. 192 of the new names would state a wrong child or objective. | Read and write the product-ad roster; rename last, to the final child |
+| 4 | Swaps and renames | None of the 86 swaps loads; the 323 renames would. 192 of the new names would state a wrong child or objective (if the audit loads as written: 86 name a swap target that won’t load, 42 name a SKU that isn’t the campaign’s advertised child, 63 name a child that breaks the size or colour rule, and 1 states the wrong objective). | Read and write the product-ad roster; rename last, to the final child |
 | 5 | Forecast | 96% of the extra orders come from tests priced off 2-order histories (one test: $1.47 a day → 31.5 orders a week) | Price tests at clicks × a shrunk conversion rate; report them on their own line |
-| 6 | Deals | Not read; 29 predictions grade on 7 Oct | Read the deal calendar; keep grades off deal days |
+| 6 | Deals | Not read; 19 predictions grade on 6 Oct and 29 on 7 Oct (Prime Big Deal Days) | Read the deal calendar; keep grades off deal days |
 | 7 | Market bound | The class cut rows 45–50 and 110 although the engine had marked them "human-mandatory" | A class never overrides a human-mandatory read |
-| 8 | Maintenance class | Every ranking-term cut cites "Maintenance Profit Control", class HARD, −25% at the top of search. Targets the run won't fund still trigger cuts ("far from target and not moving"). | Exempt terms at target or inside the top 20 and the owned syntax; cap steps at 25% |
+| 8 | Maintenance class | Every ranking-term cut cites "Maintenance Profit Control", class HARD, −25% at the top of search. Targets the run won't fund still trigger cuts ("far from target and not moving"). Row 90 cuts "silk sheets king size bed set" 25% as "far from target (#11 vs #5) and not moving (— → 11)", with no earlier rank to compare. | Exempt terms at target or inside the top 20 and the owned syntax; cap steps at 25% |
 | 9 | Focus list | S6's focus is S4's groups (Satin, Satin Queen, Satin Full, Satin Twin); Silk and King are excluded | S6 focus = Silk King; S4 focus = Satin and Queen |
 | 10 | Budget cuts | 25 of 26 remove only headroom; the $161 a day of "ceiling" saves $0 | Cut only budgets that bind |
 | 11 | Engine checks | The run failed 3 checks. Two are fixed here: the "RED hero held with no swap row" pair is the red King exacts, and "base fix lowers the top-of-search price" is rows 62/65. | — |
@@ -271,7 +271,7 @@ Back-ups are chosen on:
 | Non-ranking King campaigns on King Red → Ivory King. Ivory King converts 8.3%, and the move clears its aged stock while keeping King Black for ranking. It's capped at what its roughly 47 aged units can absorb, and includes "taupe king sheets". | 10 |
 | The other 53 Stone Grey Queen campaigns → Queen Black; colour-named terms keep their colour. Stone Grey Queen took $51.87 of ad spend for 0 ad units on 15–28 Sep. | 53, console |
 | Other King Red campaigns → King Black | about 15, console |
-| "red satin sheets king", "red satin king size sheet set" → Striped Red King at a $0.80 bid, $5–7 a day, read at 20 clicks. Switch back when plain Red King is restocked. | 2 |
+| "red satin sheets king", "red satin king size sheet set" → Striped Red King at a $0.80 bid, $5–7 a day, pause at 20 clicks with no order. Switch back when plain Red King is restocked. | 2 |
 | "red satin sheets", "red silk bed sheets" → Red Full: it sells more than Red Queen and earns $5.98 against $0.76 a unit. Pause them if this isn't done before King Red runs out. | 2 |
 | "decolure" brand exact (Champagne Queen, 0 stock) → Queen Black; "pink satin sheets queen" → Queen Pink | 2 |
 | LTSF campaigns: add Ivory King, Striped Queen Red and Twin Blue to "DCS-SP-Auto/LTSF-Def-Multi"; pause 5 out-of-stock ads in "DECOLURE-SATIN 6PCS-LTSF" | 2 |
@@ -428,7 +428,7 @@ After each step, re-export the bulk and diff it.
 | Which product owns which terms | Section 3: S6 owns Silk King. Proposed for S6: Satin King and "satin sheet set" (recovery). Contested: "silk sheets" and the top-20 Queen/King terms where S4 ranks better. S4 keeps the Queen and sizeless terms. | Rule per term; the owner bids, the other negates | Joseph, before 13 Oct |
 | Engine focus lists | S6’s focus is Satin, Satin Queen, Satin Full and Satin Twin (S4’s groups); Silk and King (S6’s) are excluded | S6 = Silk King (plus "6 piece"); S4 = Satin and Queen | Joseph, before the next run |
 | Maintenance class HARD | The ranking-term cuts and the "king size silk sheet set" budget halving come from the "Maintenance Profit Control" canvas (operator 2026-09-24/25) | Exempt terms at target or inside the top 20 and the owned syntax; cap steps at 25% | Joseph, before the next run |
-| Red King terms to Striped Red King | Red King has 11 units; Striped Red King has 108 FBA units, about 694 days of supply, LTSF risk | Re-point at $0.80, $5–7 a day, read at 20 clicks; treat striped red as red in the colour map | Joseph |
+| Red King terms to Striped Red King | Red King has 11 units; Striped Red King has 108 FBA units, about 694 days of supply, LTSF risk | Re-point at $0.80, $5–7 a day, pause at 20 clicks with no order; treat striped red as red in the colour map | Joseph |
 | Non-hero profit guardrail | Non-hero SKUs −$228 in 30 days; Striped Full Gold $72 of ads, −$204 net | No ads on non-hero SKUs with negative net and no organic lift | Joseph / Erik |
 | "silk sheets" | Biggest term. S6 #58, S4 #28–46; S6 converts slightly better, not significantly; Queen Black margin. | S6 test ($13 a day, 2 weeks after 12 Oct) or leave to S4 | Joseph |
 | Five price rows above the market bound | 48 at $3.47 and 49 at $3.40 against a $2.89 bound (45 and 50 held with them); 110 at $2.48 against $2.30; plus 8 engine-held | Cut to the bound unless the term is in a funded push | Joseph, before the load |
