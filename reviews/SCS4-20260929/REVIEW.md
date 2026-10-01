@@ -145,7 +145,7 @@ Review 43 held the 7 Twin creates and told the team to rebuild them on **TWIN-CR
 1. **Today, by hand:**
    - Re-enable 1849 ("cooling bed sheets").
    - Fix "cooling sheets queen": fixed bids, $3.35 effective TOS, $18 budget.
-   - Do the 38 child swaps.
+   - Do the 38 child swaps, and pause "cold bed sheets queen" in G32 at the same time.
 2. **Bulk upload:**
    - Every row passed or corrected in `SCS4-20260929-review-verdicts.xlsx`.
    - Leave out every row marked *hold*.
