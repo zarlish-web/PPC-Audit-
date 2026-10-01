@@ -1,5 +1,8 @@
 # SCS4 Cooling Sheets: Final Consolidated PPC Plan
 
+> **Superseded (1 Oct 2026, after review):** see `SCS4_Final_Plan_20261001.docx` (the plan) and `SCS4_Action_Plan_20261001.xlsx` (upload file and evidence tabs). The new pack re-bases spend on the trailing-7-day TACoS (14.0%, amber), re-bases King on King White's break-even (21.4%, one ceiling $2.10), stages one lever per write on held top-20 terms, cuts the base only where product pages lose money or as a stated rank decision, prices the 11 no-bid rows, fixes the overstock / green / Twin pricing bases, and reads every count from one model so the document and workbook agree. The figures below are the previous version.
+
+
 As of 2026-10-01. Live doc: https://claude.ai/code/artifact/b41afb27-a8a4-4ee2-833f-dae01c6f4fa3
 
 ## Bottom line
