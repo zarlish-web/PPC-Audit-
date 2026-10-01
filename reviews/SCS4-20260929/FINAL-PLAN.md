@@ -1,5 +1,7 @@
 # SCS4 final plan: balanced, stock-gated Exact plus a support layer
 
+> Superseded by `FINAL-CONSOLIDATED-PLAN.md` / `SCS4-FINAL-CONSOLIDATED-PLAN.xlsx` (audit reconciliation, gaps and validation added).
+
 As of 2026-10-01. Workbook: `SCS4-FINAL-PLAN.xlsx` (22 sheets).
 
 This plan supersedes any conflicting points in `REVIEW.md`, `INVENTORY.md` and `EXACT-SOP-CHECK.md`.
