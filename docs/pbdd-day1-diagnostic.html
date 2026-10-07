@@ -1,0 +1,487 @@
+<title>PBDD Day-1 Diagnostic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: one reading column for the narrative, tables break out wider; sticky section rail on top. Ops-room report, cool neutrals, teal accent, semantic red/amber/green for status. */
+:root {
+  --bg: #F4F6F8; --surface: #FFFFFF; --ink: #15202A; --muted: #5A6774; --line: #DCE2E8; --soft: #EDF1F4;
+  --accent: #0D6B70; --accent-soft: #DCEFEF;
+  --good: #1D7348; --good-soft: #E1F2E8; --warn: #9A6412; --warn-soft: #FBF0DC; --bad: #B0271B; --bad-soft: #FBE5E2;
+  --neutral-soft: #E9EDF1; --plan: #15202A; --barhi: #3E9C8F; --barlo: #C9873B;
+  --f-display: "Barlow Semi Condensed", "Arial Narrow", Arial, sans-serif;
+  --f-body: "Source Sans 3", "Segoe UI", Helvetica, Arial, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0F151A; --surface: #161E25; --ink: #E5EAEF; --muted: #95A3B0; --line: #27333E; --soft: #1C262E;
+  --accent: #5BBDBE; --accent-soft: #173538;
+  --good: #5DCB94; --good-soft: #15322A; --warn: #E7B455; --warn-soft: #3A2D14; --bad: #F2867B; --bad-soft: #3C1D1A;
+  --neutral-soft: #222D36; --plan: #E5EAEF; --barhi: #3FA595; --barlo: #D59A4E; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0F151A; --surface: #161E25; --ink: #E5EAEF; --muted: #95A3B0; --line: #27333E; --soft: #1C262E;
+  --accent: #5BBDBE; --accent-soft: #173538;
+  --good: #5DCB94; --good-soft: #15322A; --warn: #E7B455; --warn-soft: #3A2D14; --bad: #F2867B; --bad-soft: #3C1D1A;
+  --neutral-soft: #222D36; --plan: #E5EAEF; --barhi: #3FA595; --barlo: #D59A4E; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15.5px; line-height: 1.55; margin: 0; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: 20px; padding-block: 0 64px; }
+nav.rail { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
+nav.rail .in { max-width: 1180px; margin: 0 auto; padding-inline: 20px; padding-block: 8px; display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
+nav.rail a { font-family: var(--f-display); font-weight: 600; font-size: 14px; letter-spacing: .02em; color: var(--muted); text-decoration: none; padding: 5px 10px; border-radius: 6px; white-space: nowrap; }
+nav.rail a:hover, nav.rail a:focus-visible { color: var(--ink); background: var(--soft); outline: none; }
+header.top { padding-block: 34px 18px; display: grid; gap: 10px; }
+.eyebrow { font-family: var(--f-display); font-weight: 600; text-transform: uppercase; letter-spacing: .09em; font-size: 13px; color: var(--accent); }
+h1 { font-family: var(--f-display); font-weight: 700; font-size: clamp(30px, 4.4vw, 44px); line-height: 1.05; margin: 0; text-wrap: balance; }
+h2 { font-family: var(--f-display); font-weight: 700; font-size: 27px; line-height: 1.15; margin: 0; text-wrap: balance; }
+h3 { font-family: var(--f-display); font-weight: 600; font-size: 19px; margin: 0; }
+.lede { font-size: 17.5px; max-width: 72ch; color: var(--ink); }
+.stamp { font-family: var(--f-mono); font-size: 12px; color: var(--muted); }
+section { padding-block: 30px 6px; display: grid; gap: 16px; scroll-margin-top: 56px; }
+section > .head { display: grid; gap: 4px; border-top: 2px solid var(--ink); padding-top: 10px; }
+section > .head .num { font-family: var(--f-mono); font-size: 12px; color: var(--muted); }
+p { margin: 0; max-width: 78ch; }
+.prose { display: grid; gap: 10px; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; }
+.tile { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; display: grid; gap: 2px; }
+.tile .l { font-family: var(--f-display); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.tile .v { font-family: var(--f-mono); font-size: 24px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.tile .s { font-size: 13px; color: var(--muted); }
+.tile.bad { border-left: 4px solid var(--bad); } .tile.good { border-left: 4px solid var(--good); } .tile.warn { border-left: 4px solid var(--warn); }
+.callout { background: var(--accent-soft); border-radius: 8px; padding: 14px 16px; display: grid; gap: 8px; }
+.callout.bad { background: var(--bad-soft); } .callout.warn { background: var(--warn-soft); }
+.tbl { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th { text-align: left; font-family: var(--f-display); font-weight: 600; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); padding: 9px 10px; border-bottom: 1px solid var(--line); background: var(--soft); white-space: nowrap; }
+td { padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:last-child td { border-bottom: none; }
+td.n, th.n { text-align: right; font-family: var(--f-mono); font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.sub { font-family: var(--f-body); font-size: 12px; color: var(--muted); white-space: normal; }
+td.n .sub { font-family: var(--f-mono); font-size: 11.5px; }
+.why { font-size: 13px; color: var(--muted); margin-top: 4px; min-width: 220px; }
+.pill { display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 9px; border-radius: 999px; white-space: nowrap; }
+.pill.good { background: var(--good-soft); color: var(--good); } .pill.bad { background: var(--bad-soft); color: var(--bad); }
+.pill.warn { background: var(--warn-soft); color: var(--warn); } .pill.neutral { background: var(--neutral-soft); color: var(--muted); }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; display: grid; gap: 8px; min-width: 0; }
+.panel h3 { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+ul.plain { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+ul.plain li { max-width: 80ch; }
+svg { width: 100%; height: auto; display: block; }
+svg .grid { stroke: var(--line); stroke-width: 1; }
+svg .ax { fill: var(--muted); font-family: var(--f-mono); font-size: 11px; }
+svg .barhi { fill: var(--barhi); } svg .barlo { fill: var(--barlo); }
+svg .planline { fill: none; stroke: var(--plan); stroke-width: 2; stroke-dasharray: 5 4; }
+svg .cpcline { fill: none; stroke: var(--accent); stroke-width: 2.2; } svg .cpcdot { fill: var(--accent); }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
+.key { display: inline-block; width: 12px; height: 12px; border-radius: 2px; vertical-align: -1px; margin-right: 5px; }
+.key.hi { background: var(--barhi); } .key.lo { background: var(--barlo); } .key.ln { background: transparent; border-top: 2px dashed var(--plan); height: 0; width: 18px; vertical-align: 3px; }
+ol.acts { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; counter-reset: a; }
+li.act { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; display: grid; gap: 6px; counter-increment: a; }
+.acthead { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.acthead::before { content: counter(a); font-family: var(--f-mono); font-size: 12px; color: var(--muted); }
+.tag { font-family: var(--f-display); font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; background: var(--accent-soft); color: var(--accent); }
+.tag.stop { background: var(--bad-soft); color: var(--bad); } .tag.fix { background: var(--warn-soft); color: var(--warn); } .tag.keep { background: var(--good-soft); color: var(--good); }
+.actbody { font-size: 14.5px; max-width: 90ch; }
+.actmeta { font-size: 13px; color: var(--muted); } .actmeta span { font-weight: 600; color: var(--ink); }
+.window { display: grid; gap: 10px; }
+.window > h3 { font-family: var(--f-mono); font-size: 14px; font-weight: 600; color: var(--accent); }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 12px; }
+.pcard { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; display: grid; gap: 8px; min-width: 0; }
+.pcard dl { margin: 0; display: grid; gap: 2px; font-size: 14px; }
+.pcard dt { font-family: var(--f-display); font-weight: 600; color: var(--muted); font-size: 12.5px; letter-spacing: .06em; text-transform: uppercase; margin-top: 6px; }
+.pcard dd { margin: 0; }
+footer { margin-top: 40px; font-size: 13px; color: var(--muted); display: grid; gap: 6px; }
+a { color: var(--accent); }
+@media (max-width: 560px) { body { font-size: 15px; } .tile .v { font-size: 21px; } .cards, .grid2 { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+
+<nav class="rail" aria-label="Sections"><div class="in">
+<a href="#summary">Summary</a><a href="#plan">Plan vs actual</a><a href="#products">Products</a><a href="#campaigns">Campaigns &amp; placements</a><a href="#stock">Stock</a><a href="#waste">Waste</a><a href="#account">Account</a><a href="#day2">Day-2 plan</a><a href="#verify">Artifact check</a>
+</div></nav>
+
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">Prime Big Deal Days · Oct 6–7, 2026 · US + Canada</div>
+  <h1>Day 1 diagnostic and the Day 2 action plan</h1>
+  <p class="lede">Day 1 made money, but the PPC didn't. The 20% bamboo discount and Canada did. Ads cost 2.1× the plan and bought position at 2–6× the normal CPC with no better conversion. They ran the best converters dry before noon and leaked on products with no deal. Day 2 has to keep the volume and stop paying the boost premium.</p>
+  <div class="stamp">Day 1 = Oct 6, Pacific day, closed. Board data file generated 05:44 PT Oct 7; Sellerboard and ecotero pulled 06:20 PT Oct 7. Day-2 figures to the 05:00 PT data cut. Ad orders on 7-day attribution, still settling.</div>
+</header>
+
+<section id="summary">
+  <div class="head"><span class="num">01</span><h2>Bottom line</h2></div>
+  <div class="tiles">
+    <div class="tile good"><span class="l">Units</span><span class="v">1,716</span><span class="s">plan 1,414 · ×1.21</span></div>
+    <div class="tile good"><span class="l">Revenue</span><span class="v">$87,098</span><span class="s">plan $67,116 · +30%</span></div>
+    <div class="tile bad"><span class="l">Ad spend</span><span class="v">$7,682</span><span class="s">plan $3,595 · ×2.14</span></div>
+    <div class="tile warn"><span class="l">TACoS</span><span class="v">8.82%</span><span class="s">plan 5.4% · deal 7.7% · no-deal 17.0%</span></div>
+    <div class="tile good"><span class="l">Profit after reserve</span><span class="v">$9,599</span><span class="s">plan $5,031 · +91% · normal day $2,545</span></div>
+    <div class="tile"><span class="l">Deal fees</span><span class="v">$1,612</span><span class="s">$100 per promotion + 1.5%, not in the go/no-go</span></div>
+  </div>
+  <ul class="plain"><li><b>Volume and profit beat the plan; efficiency missed it.</b> 1,716 units (1.21× plan, 3.3× a normal day) and $87.1K revenue (+30%). Ad spend was $7,682 on the board ($7,821 in Sellerboard, $7,859 in the ad data), 2.1–2.2× plan (deal products 2.4×). Profit after the reserve is $9,599 on the board's basis (+91% vs the $5,031 plan).</li><li><b>The profit beat is mostly a Canada planning error, and Canada's profit isn't confirmed.</b> Canada supplies $3,674 of the +$4,685 beat (78%) because its plan was set at 25–40% of what sold. US deal products beat plan by only $993. Sellerboard puts Canada's Day-1 net profit at $2,483 against the board's $5,569 before reserve. Until that gap is reconciled, a fair account read is +30% to +90%, not +87%.</li><li><b>The discount sold the units; the ads mostly paid for position.</b> 71–79% of bamboo units were organic. Ad-attributed ACoS was 32% on Bamboo 4pc and 25% on Bamboo 6pc, against break-evens of 17.8% and 14.5%. Ad conversion barely moved (US ad CVR 10.7% vs 10.2% on a normal day, CTR 0.58% vs 0.60%) while units tripled, so the discount lifted organic sales, not ad performance. Placement boosts of +200% to +900% bought clicks at 2–6× the normal CPC with no gain in conversion.</li><li><b>Budgets were sized wrong in both directions.</b> Push campaigns were cut to $5 floors and starved. Boosted autos burned their budgets by 06:00–09:30 PT. 142 campaigns hit their budget, including branded defence at 08:15 PT, with 77% of the day's units still to come.</li><li><b>By product:</b> Bamboo 4pc US and every Canada line are ahead of target. Bamboo 6pc US hit its units but missed profit by $408, all of it ad overspend. Satin 4pc US missed its units (0.83×) and sat over its break-even TACoS. Canada S6 lost money on two clearance campaigns.</li><li><b>Day 2 at 05:00 PT:</b> on plan overall (121 units vs 118). Satin 4pc US is at 0.56× pace with TACoS over break-even under a 20% PED that makes its hero (Queen Black) margin-negative after ads. That is the most urgent decision this morning, along with the Cooling push re-enabled at +618% top of search.</li></ul>
+</section>
+
+<section id="plan">
+  <div class="head"><span class="num">02</span><h2>What the plan was, and where it stands</h2></div>
+  <p>The go/no-go plan as written in the artifact, checked against Day 1. "Held" means the assumption survived contact with the day.</p>
+  <div class="tbl"><table><thead><tr><th>Plan element</th><th>What the plan said</th><th>What Day 1 showed</th><th>Status</th></tr></thead><tbody>
+  <tr><td><b>Objective</b></td><td>Most total profit, while buying planned rank on push syntaxes (B4 King/Cooling, B6 King/Queen/Cooling); defend satin page 1.</td><td>Profit beat the plan. Rank: B6 King and B4 Twin gained; B4 Cooling lost 9–31 places; satin held &quot;satin sheets&quot; (#3 → #2) but lost 3 places on the queen terms.</td><td><span class="pill warn">Partly held</span></td></tr>
+<tr><td><b>Units</b></td><td>Day 1: 1,421 units (US 1,198 / CA 223). Day 2 ≈ 0.67× Day 1.</td><td>1,716 (US 1,312 / CA 404). Canada 1.8× its plan. Day-2 forecasts were not re-based on Day 1 (US B4 193 vs 373 sold, CA B4 31 vs 148).</td><td><span class="pill warn">Beaten; Day-2 plan stale</span></td></tr>
+<tr><td><b>Ad spend</b></td><td>$3,595 total ($2,421 on deal products), TACoS caps 2.3–6% (B6 2.3, S4 4.2, B4 6.0).</td><td>$7,682 (deal products $5,914 = 2.4× their plan). Deal TACoS 7.7%, no-deal 17%. The caps assumed ads stay flat while sales rise 4–5×.</td><td><span class="pill bad">Failed</span></td></tr>
+<tr><td><b>Push budgets</b></td><td>1.25× normal spend with a $5 floor.</td><td>Rank pushes that rarely spent fell to $5 and capped after one top-of-search click ($179 → $5). Fixed at 06:05 PT.</td><td><span class="pill bad">Failed</span></td></tr>
+<tr><td><b>Placement boosts</b></td><td>Top of search +25% on push syntaxes (rule board). The event plan as loaded carried TOS up to +900% and rest-of-search up to +692%.</td><td>Boosted ranking exacts paid $5.35 a click vs $2.41, same conversion (16.5% vs 17.2%). The rule board and the loaded plan disagreed.</td><td><span class="pill bad">Failed</span></td></tr>
+<tr><td><b>Timing of event values</b></td><td>Unlock at each deal&#x27;s Pacific start.</td><td>Re-dated and applied Oct 5, 19:00–22:00 PT. US SP ran $361–515/h about 5 hours before any deal was live. This cost is outside every Day-1 number.</td><td><span class="pill bad">Failed</span></td></tr>
+<tr><td><b>Dayparting</b></td><td>Not addressed in the plan.</td><td>Scale Insights kept SP ad groups dark 00:00–03:00 PT on both days (about 4% of a Prime Day&#x27;s units).</td><td><span class="pill warn">Gap</span></td></tr>
+<tr><td><b>Deal economics</b></td><td>Go/no-go priced without deal fees; hero-only enrolment assumed to pull traffic to siblings.</td><td>Fees were $1,612 on Day 1. Left-out siblings ran 0.72–1.37× vs 1.54× for no-deal listings: shoppers switched colour; they didn&#x27;t spill over.</td><td><span class="pill bad">Failed</span></td></tr>
+<tr><td><b>Satin</b></td><td>LD on Oct 6, then PED Oct 7.</td><td>The LD record showed CANCELED; it went live about 07:45 PT, sold 280 of 1,037 committed units, and the discount added about 1.4×. Queen Black at the LD/PED price earns about $0.94 before ads.</td><td><span class="pill bad">Failed</span></td></tr>
+<tr><td><b>Canada</b></td><td>B4 LD 54 units; small BD allocations.</td><td>148 B4 units; 15 SKUs sold past their LD cap; CPCs 30–40% under normal.</td><td><span class="pill warn">Under-planned</span></td></tr>
+<tr><td><b>Inventory guard</b></td><td>30 days of cover after the event (7 for top sellers); no push on children near their cap.</td><td>Held for the heroes. Children short at deal pace: US B4 Queen White (~1.9 days), Queen Creme (~2.1), B6 Queen Navy (~1.1). CA B6 Queen White sat at 0 FBA and still took $199 of ads.</td><td><span class="pill good">Mostly held</span></td></tr>
+  </tbody></table></div>
+  <h3>Where the profit beat came from</h3>
+  <p>Profit after the 7.5% returns reserve and deal fees, against each product's plan (non-deal products: against a normal day). USD; Canada at 0.72.</p>
+  <div class="tbl"><table><thead><tr><th>Source</th><th class="n">Actual</th><th class="n">Plan / normal</th><th class="n">Gap</th><th>Share of the beat</th></tr></thead><tbody>
+  <tr><td>Canada, deal products (B4, B6, S4, S6)</td><td class=n>$3,969</td><td class=n>$295</td><td class=n>+$3,674</td><td>78%</td></tr>
+<tr><td>US Bamboo 4 Piece</td><td class=n>$2,348</td><td class=n>$1,226</td><td class=n>+$1,122</td><td>24%</td></tr>
+<tr><td>US Bamboo 6 Piece</td><td class=n>$2,311</td><td class=n>$2,719</td><td class=n>−$408</td><td>-9%</td></tr>
+<tr><td>US Satin 4 Piece</td><td class=n>$373</td><td class=n>$161</td><td class=n>+$212</td><td>5%</td></tr>
+<tr><td>US Silk Pillowcase</td><td class=n>$67</td><td class=n>$0</td><td class=n>+$67</td><td>1%</td></tr>
+<tr><td>Unplanned deals (US Satin Fitted LD, Cooling Pillowcases LD, Closet BD; CA Satin Fitted BD, Sleep Sanctuary BD)</td><td class=n>−$220</td><td class=n>$134</td><td class=n>−$354</td><td>-8%</td></tr>
+<tr><td>Other products with no deal (US + CA)</td><td class=n>$867</td><td class=n>$495</td><td class=n>+$371</td><td>8%</td></tr>
+<tr><td><b>Total</b></td><td class=n><b>$9,716</b></td><td class=n><b>$5,031</b></td><td class=n><b>+$4,685</b></td><td>100%</td></tr>
+  </tbody></table></div>
+</section>
+
+<section id="products">
+  <div class="head"><span class="num">03</span><h2>Product level: target vs actual</h2></div>
+  <p>Deal products, Oct 6 (Pacific day), closed. Plan = the go/no-go line for the day. TACoS = all ad spend ÷ all revenue; ACoS = SP spend ÷ 1-day attributed SP sales (still filling). Canada rows in C$.</p>
+  <div class="tbl"><table><thead><tr><th>Product</th><th class="n">Units</th><th class="n">Revenue</th><th class="n">Ad spend</th><th class="n">TACoS</th><th class="n">Ad ACoS</th><th class="n">Profit</th><th>Verdict</th></tr></thead><tbody>
+  <tr>
+<td><b>US · Bamboo 4 Piece</b><div class="sub">PED · Push King, Cooling (bamboo sheets = profit)</div></td>
+<td class="n">373<div class="sub">plan 290 · ×1.29</div></td>
+<td class="n">$23,083<div class="sub">plan $17,372</div></td>
+<td class="n">$2,111<div class="sub">plan $1,042 · ×2.03</div></td>
+<td class="n">9.2%<div class="sub">cap 6 · BE 17.8</div></td>
+<td class="n">32%<div class="sub">organic 71%</div></td>
+<td class="n">$2,348<div class="sub">plan $1,226 · normal $662</div></td>
+<td><span class="pill good">Exceeding</span><div class="why">Volume 1.29× plan and profit +$1,122 vs plan, but ads cost 2× plan and the Cooling push lost rank.</div></td></tr>
+<tr>
+<td><b>US · Bamboo 6 Piece</b><div class="sub">PED · Push King, Queen, Cooling</div></td>
+<td class="n">390<div class="sub">plan 379 · ×1.03</div></td>
+<td class="n">$25,379<div class="sub">plan $24,237</div></td>
+<td class="n">$1,344<div class="sub">plan $557 · ×2.41</div></td>
+<td class="n">5.3%<div class="sub">cap 2.3 · BE 14.5</div></td>
+<td class="n">25%<div class="sub">organic 79%</div></td>
+<td class="n">$2,311<div class="sub">plan $2,719 · normal $1,347</div></td>
+<td><span class="pill bad">Missing on profit</span><div class="why">Units on plan (1.03×) but profit −$408 vs plan: every dollar of the miss is ad spend above plan ($1,344 vs $557).</div></td></tr>
+<tr>
+<td><b>US · Satin 4 Piece</b><div class="sub">LD · Defend page 1</div></td>
+<td class="n">294<div class="sub">plan 356 · ×0.83</div></td>
+<td class="n">$8,301<div class="sub">plan $8,523</div></td>
+<td class="n">$902<div class="sub">plan $358 · ×2.52</div></td>
+<td class="n">10.9%<div class="sub">cap 4.2 · BE 10.6</div></td>
+<td class="n">32%<div class="sub">organic 66%</div></td>
+<td class="n">$373<div class="sub">plan $161 · normal $276</div></td>
+<td><span class="pill bad">Missing</span><div class="why">Units 0.83× plan; TACoS 10.9% is over the 10.6% deal break-even; LD sold 27% of its committed units.</div></td></tr>
+<tr>
+<td><b>US · Silk Pillowcase</b><div class="sub">— · Push silk pillowcase (optional)</div></td>
+<td class="n">10<div class="sub">plan 0 · —</div></td>
+<td class="n">$480<div class="sub">plan $234</div></td>
+<td class="n">$77<div class="sub">plan $5 · ×14.33</div></td>
+<td class="n">16.1%<div class="sub">cap 2.3 · BE 20.4</div></td>
+<td class="n">113%<div class="sub">organic 86%</div></td>
+<td class="n">$67<div class="sub">plan $0 · normal $46</div></td>
+<td><span class="pill neutral">No deal Day 1</span><div class="why">$77 spend for 10 units (1-day ACoS 113%). LD runs today.</div></td></tr>
+<tr>
+<td><b>CA · Bamboo 4 Piece</b><div class="sub">LD · Defend + push King</div></td>
+<td class="n">148<div class="sub">plan 54 · ×2.74</div></td>
+<td class="n">C$13,009<div class="sub">plan C$4,356</div></td>
+<td class="n">C$834<div class="sub">plan C$209 · ×3.99</div></td>
+<td class="n">6.4%<div class="sub">cap 4.8 · BE 17.1</div></td>
+<td class="n">15%<div class="sub">organic 57%</div></td>
+<td class="n">C$3,377<div class="sub">plan C$83 · normal C$118</div></td>
+<td><span class="pill good">Far ahead</span><div class="why">2.74× plan; 15 SKUs sold past their LD cap, so the deal ran out of units, not demand.</div></td></tr>
+<tr>
+<td><b>CA · Bamboo 6 Piece</b><div class="sub">BD · Defend + push</div></td>
+<td class="n">121<div class="sub">plan 77 · ×1.57</div></td>
+<td class="n">C$10,262<div class="sub">plan C$6,537</div></td>
+<td class="n">C$575<div class="sub">plan C$242 · ×2.38</div></td>
+<td class="n">5.6%<div class="sub">cap 3.7 · BE 9.5</div></td>
+<td class="n">24%<div class="sub">organic 77%</div></td>
+<td class="n">C$1,814<div class="sub">plan C$186 · normal C$154</div></td>
+<td><span class="pill good">Far ahead</span><div class="why">1.57× plan at 5.6% TACoS; 5 SKUs at or past their BD cap.</div></td></tr>
+<tr>
+<td><b>CA · Satin 4 Piece</b><div class="sub">BD · Defend</div></td>
+<td class="n">62<div class="sub">plan 44 · ×1.41</div></td>
+<td class="n">C$2,646<div class="sub">plan C$1,856</div></td>
+<td class="n">C$364<div class="sub">plan C$130 · ×2.80</div></td>
+<td class="n">13.8%<div class="sub">cap 7 · BE 19.9</div></td>
+<td class="n">26%<div class="sub">organic 48%</div></td>
+<td class="n">C$371<div class="sub">plan C$190 · normal −C$1</div></td>
+<td><span class="pill good">Ahead</span><div class="why">1.41× plan, profit 2× plan; TACoS 13.8% over the 7% cap but inside the 19.9% break-even.</div></td></tr>
+<tr>
+<td><b>CA · Satin 6 Piece</b><div class="sub">BD · Defend (optional)</div></td>
+<td class="n">42<div class="sub">plan 35 · ×1.20</div></td>
+<td class="n">C$1,772<div class="sub">plan C$1,476</div></td>
+<td class="n">C$392<div class="sub">plan C$56 · ×6.98</div></td>
+<td class="n">22.1%<div class="sub">cap 3.8 · BE 11.5</div></td>
+<td class="n">21%<div class="sub">organic 0%</div></td>
+<td class="n">−C$49<div class="sub">plan −C$49 · normal −C$31</div></td>
+<td><span class="pill bad">Losing money</span><div class="why">On plan for units but TACoS 22.1% vs 11.5% break-even; two clearance campaigns took C$205 of the C$392.</div></td></tr>
+  </tbody></table></div>
+  <h3>Each deal product: why, and what to do today</h3>
+  <div class="cards"><div class="pcard"><h3>US Bamboo 4 Piece · PED · <span class="pill good">Exceeding</span></h3><dl><dt>What happened</dt><dd>373 units vs 290 plan (×1.29), profit $2,348 vs $1,226 plan. Ads $2,111 vs $1,042 plan; TACoS 9.2% vs the 6% cap (break-even 17.8%). Twin push earned (bamboo sheets twin 50 → 18). Cooling push lost (cooling bamboo sheets 12 → 43).</dd><dt>Root cause</dt><dd>The PED tripled the enrolled children (6.6× normal) and 71% of units were organic. The overspend sat in two boosted autos: Full Grey at $3.75 CPC (normal $0.58, 53% ACoS) and King White at $4.73 (normal $0.80). The Cooling exact paid $6.51 a click at +288% TOS and was dark from 05:07 PT, so the Cooling terms had no ad support for most of the day while rivals ran deals on them.</dd><dt>Day 2</dt><dd>Keep branded defence, the own-ASIN PAT and the "bamboo sheets queen" exact funded all day (Day-1 run-out math puts branded broad at about $600, not the $200–300 now). Cap the re-enabled Cooling exact at TOS ≤ +100%, or pause the Cooling push and read it after the event. Keep Queen White and Queen Creme off ads: about 2 days of cover at deal pace, with inbound not yet live.</dd></dl></div><div class="pcard"><h3>US Bamboo 6 Piece · PED · <span class="pill bad">Missing on profit</span></h3><dl><dt>What happened</dt><dd>390 units vs 379 plan (×1.03), but profit $2,311 vs $2,719 plan (−$408). Ads $1,344 vs $557 plan (2.4×); TACoS 5.3% vs the 2.3% cap. All five King terms and viscose bamboo sheets gained 1–10 places.</dd><dt>Root cause</dt><dd>The plan's 2.3% cap couldn't fund a rank push and a profit floor at once. Boosts wasted the push money: exact "bamboo sheets king" paid $8.63 a click for 0 orders before 05:09 PT, and the Queen White 6pc auto paid $4.65 for 1 order. King rank rose on deal sales velocity, not on the King exacts, which were dark from 05:09 PT.</dd><dt>Day 2</dt><dd>Keep the King pushes at normal top-of-search (test A) with budgets sized to last to 21:00 PT. Keep the aged-SKU clearance auto (18% ACoS) funded through the evening. Queen Navy 6pc has about 1 day of cover at deal pace and 81% of its allocation used, so keep its ads off. Check whether the B6 PAT on our own B4 hero (B08KQHRDDG) is just moving sales between our own listings.</dd></dl></div><div class="pcard"><h3>US Satin 4 Piece · LD → PED · <span class="pill bad">Missing</span></h3><dl><dt>What happened</dt><dd>294 units vs 356 plan (×0.83). Ads $902 vs $358 plan; TACoS 10.9% over the 10.6% break-even. Profit $373 is $97 above a normal day. The LD sold 280 of 1,037 committed units (27%). "satin sheets" held (#3 → #2); satin sheets queen 6 → 9 and silk sheets queen 7 → 10.</dd><dt>Root cause</dt><dd>Satin doesn't respond much to price (about 1.4× lift vs 3.1× on bamboo). The LD started about 07:45 PT with a promotion record that still read CANCELED, and its hero, Queen Black at $23.75, earned about $0.94 a unit before ads. White Queen exact "satin sheets queen" took $183 at 53% ACoS.</dd><dt>Day 2</dt><dd>Decide the PED this morning: it is live on 65 SKUs, pace is 0.56× and TACoS is 13.4%. If it can't be pulled, stop deal-price ad money on Queen Black, hold the M63 satin-Black ad adds until Oct 8, and defend the two queen terms at full price on in-stock non-hero colours. Re-read at 11:00 PT against the 10.6% break-even.</dd></dl></div><div class="pcard"><h3>US Silk Pillowcase · LD today · <span class="pill neutral">Watch</span></h3><dl><dt>What happened</dt><dd>No deal on Day 1: 10 units, $77 ads, 1-day ACoS 113%. Broad "silk pillowcase" took 36 clicks and 0 orders.</dd><dt>Root cause</dt><dd>The push term had no exact campaign and the LD wasn't booked for Day 1. Units were raised to stock-safe last night and 3 exacts were built (M41).</dd><dt>Day 2</dt><dd>The LD runs 06:05–18:05 PT. Check the deal price is live in the first hour, and that the $40 exact "silk pillowcase" lasts to 18:05. Hold the broad at its bid.</dd></dl></div><div class="pcard"><h3>CA Bamboo 4 Piece · LD → PED · <span class="pill good">Far ahead</span></h3><dl><dt>What happened</dt><dd>148 units vs 54 plan (×2.74). TACoS 6.4%, ACoS 15% (break-even 17.1%). The clearance auto earned 19 orders at 16% ACoS but ran out at 10:09 PT. 15 SKUs sold past their LD cap.</dd><dt>Root cause</dt><dd>The plan sized Canada from a small baseline. Auctions ran 30–40% cheaper than normal (C$1.34 vs C$2.28). The deal ran out of committed units, not demand. King Charcoal is at 0 FBA and King Grey has about 3 days at deal pace.</dd><dt>Day 2</dt><dd>Apply the M45 committed-unit raises now: today's PED commitments are 5–6 units a SKU and most are already used. Set the clearance auto to a whole-day budget (about C$450). Re-base the Day-2 forecast from 31 to roughly 100 units. Keep King Charcoal and King Grey ads off.</dd></dl></div><div class="pcard"><h3>CA Bamboo 6 Piece · BD · <span class="pill good">Far ahead</span></h3><dl><dt>What happened</dt><dd>121 units vs 77 plan (×1.57), TACoS 5.6%. Exact "bamboo sheets" (Queen White) paid C$4.00 a click for 35% ACoS vs a 9.5% break-even, while Queen White 6pc was at 0 FBA.</dd><dt>Root cause</dt><dd>The deal and cheap auctions carried it. The waste was advertising an out-of-stock child, plus 6 loser keywords (C$61).</dd><dt>Day 2</dt><dd>Pause the Queen White 6pc ad and swap to an in-stock child. Apply the M45 raises (King White 6pc is past its cap; 11 children have stock-safe room). Bid −30% on the 6 losers.</dd></dl></div><div class="pcard"><h3>CA Satin 4 Piece · BD · <span class="pill good">Ahead</span></h3><dl><dt>What happened</dt><dd>62 units vs 44 plan (×1.41), profit 2× plan. TACoS 13.8% over the 7% cap, inside the 19.9% break-even.</dd><dt>Root cause</dt><dd>The category-group PAT (9 orders, 11% ACoS) and a cheap broad catch-all worked. Exact "satin sheets" took C$39 for 0 orders.</dd><dt>Day 2</dt><dd>Fund the category PAT and broad catch-all for the whole day. Bid −30% on exact "satin sheets". Watch Queen Black: 15 FBA, about 2.5 days at deal pace.</dd></dl></div><div class="pcard"><h3>CA Satin 6 Piece · BD · <span class="pill bad">Losing money</span></h3><dl><dt>What happened</dt><dd>42 units vs 35 plan, but TACoS 22.1% vs an 11.5% break-even and profit −C$49. Day 2 so far: TACoS 23.8%, ACoS 61%.</dd><dt>Root cause</dt><dd>Two PPC-Audit clearance campaigns took C$205 at 22–35% ACoS (C$21.52 an order vs C$9.02 accepted). The event rule "revert early" would have raised bids here, because the event had cut them.</dd><dt>Day 2</dt><dd>Cut the two clearance campaigns to their accepted cost per unit, or pause them for the rest of the event. Keep only the converting broad "silk sheet" and exact "king size satin sheets".</dd></dl></div></div>
+  <h3>Products with no planned deal</h3>
+  <p>Judged against their own normal day. Five unplanned deals ran (Satin Fitted LD, Sleephoria Cooling Pillowcases LD, Closet Organizer BD in the US; Satin Fitted and Sleep Sanctuary BDs in Canada). Each paid $100 to Amazon and none of them beat a normal day.</p>
+  <div class="tbl"><table><thead><tr><th>Product</th><th class="n">Units</th><th class="n">Ad spend</th><th class="n">TACoS</th><th class="n">Profit</th><th>Read</th></tr></thead><tbody>
+  <tr><td>US · Sleephoria Satin Sheets 4 Piece<div class="sub">no deal</div></td>
+<td class="n">46<div class="sub">normal 32</div></td><td class="n">$500</td>
+<td class="n">33.0%<div class="sub">BE 27.9</div></td><td class="n">−$94<div class="sub">normal $19</div></td><td><span class="pill bad">over break-even</span></td></tr>
+<tr><td>US · Sleephoria Cooling Sheets 4 Piece<div class="sub">no deal</div></td>
+<td class="n">24<div class="sub">normal 17</div></td><td class="n">$263</td>
+<td class="n">13.6%<div class="sub">BE 34.6</div></td><td class="n">$364<div class="sub">normal $214</div></td><td><span class="pill good">ok</span></td></tr>
+<tr><td>US · Sleephoria Cooling Fitted Sheet<div class="sub">no deal</div></td>
+<td class="n">39<div class="sub">normal 24</div></td><td class="n">$180</td>
+<td class="n">11.9%<div class="sub">BE 25.7</div></td><td class="n">$193<div class="sub">normal $118</div></td><td><span class="pill good">ok</span></td></tr>
+<tr><td>US · Satin Fitted Sheet<div class="sub">LD (unplanned)</div></td>
+<td class="n">38<div class="sub">normal 36</div></td><td class="n">$169</td>
+<td class="n">20.5%<div class="sub">BE 29.5</div></td><td class="n">−$20<div class="sub">normal $113</div></td><td><span class="pill warn">below a normal day</span></td></tr>
+<tr><td>US · Satin Sheets 6 Piece<div class="sub">no deal</div></td>
+<td class="n">37<div class="sub">normal 22</div></td><td class="n">$140</td>
+<td class="n">11.7%<div class="sub">BE 17.7</div></td><td class="n">$69<div class="sub">normal $34</div></td><td><span class="pill good">ok</span></td></tr>
+<tr><td>US · Cooling Sheets 4 Piece<div class="sub">no deal</div></td>
+<td class="n">9<div class="sub">normal 5</div></td><td class="n">$53</td>
+<td class="n">14.7%<div class="sub">BE 23.8</div></td><td class="n">$21<div class="sub">normal −$33</div></td><td><span class="pill good">ok</span></td></tr>
+<tr><td>US · CooLinens Cooling Pillowcases 2 Piece<div class="sub">no deal</div></td>
+<td class="n">17<div class="sub">normal 9</div></td><td class="n">$50</td>
+<td class="n">15.9%<div class="sub">BE 22.5</div></td><td class="n">$21<div class="sub">normal $26</div></td><td><span class="pill good">ok</span></td></tr>
+<tr><td>US · Sleephoria Cooling Comforter<div class="sub">no deal</div></td>
+<td class="n">8<div class="sub">normal 4</div></td><td class="n">$48</td>
+<td class="n">8.5%<div class="sub">BE 28.2</div></td><td class="n">$117<div class="sub">normal $28</div></td><td><span class="pill good">ok</span></td></tr>
+<tr><td>US · Sleephoria Bamboo Sheets 6 Piece<div class="sub">no deal</div></td>
+<td class="n">2<div class="sub">normal 5</div></td><td class="n">$43</td>
+<td class="n">33.4%<div class="sub">BE 25.1</div></td><td class="n">−$19<div class="sub">normal $30</div></td><td><span class="pill bad">over break-even</span></td></tr>
+<tr><td>CA · Sleephoria Satin Sheets 4 Piece<div class="sub">BD (unplanned)</div></td>
+<td class="n">1<div class="sub">normal 1</div></td><td class="n">C$23</td>
+<td class="n">53.8%<div class="sub">BE 34</div></td><td class="n">−C$58<div class="sub">normal C$17</div></td><td><span class="pill bad">over break-even</span></td></tr>
+<tr><td>US · Sleephoria Boho Blanket<div class="sub">no deal</div></td>
+<td class="n">4<div class="sub">normal 1</div></td><td class="n">$21</td>
+<td class="n">14.9%<div class="sub">BE 22.5</div></td><td class="n">$11<div class="sub">normal −$6</div></td><td><span class="pill good">ok</span></td></tr>
+<tr><td>US · Sleephoria Quilt Set<div class="sub">no deal</div></td>
+<td class="n">1<div class="sub">normal 1</div></td><td class="n">$20</td>
+<td class="n">47.3%<div class="sub">BE 22.9</div></td><td class="n">−$10<div class="sub">normal −$5</div></td><td><span class="pill bad">over break-even</span></td></tr>
+  </tbody></table></div>
+</section>
+
+<section id="campaigns">
+  <div class="head"><span class="num">04</span><h2>Campaign and strategy level</h2></div>
+  <div class="grid2">
+    <div class="panel"><h3>US units by hour vs plan</h3>
+      <div class="legend"><span><i class="key hi"></i>at or above plan</span><span><i class="key lo"></i>below plan</span><span><i class="key ln"></i>plan (June Prime Day curve)</span></div>
+      <svg viewBox="0 0 760 250" role="img" aria-label="US units by hour versus plan, Oct 6"><line x1="44" x2="748" y1="216.0" y2="216.0" class="grid"/><text x="38" y="220.0" class="ax" text-anchor="end">0</text><line x1="44" x2="748" y1="165.5" y2="165.5" class="grid"/><text x="38" y="169.5" class="ax" text-anchor="end">25</text><line x1="44" x2="748" y1="115.0" y2="115.0" class="grid"/><text x="38" y="119.0" class="ax" text-anchor="end">50</text><line x1="44" x2="748" y1="64.5" y2="64.5" class="grid"/><text x="38" y="68.5" class="ax" text-anchor="end">75</text><line x1="44" x2="748" y1="14.0" y2="14.0" class="grid"/><text x="38" y="18.0" class="ax" text-anchor="end">100</text><rect x="47.0" y="179.6" width="23.3" height="36.4" class="barlo"><title>00:00 PT · 18 units vs plan 19</title></rect><text x="58.7" y="232" class="ax" text-anchor="middle">00</text><rect x="76.3" y="205.9" width="23.3" height="10.1" class="barlo"><title>01:00 PT · 5 units vs plan 11</title></rect><rect x="105.7" y="191.8" width="23.3" height="24.2" class="barlo"><title>02:00 PT · 12 units vs plan 14</title></rect><rect x="135.0" y="100.9" width="23.3" height="115.1" class="barhi"><title>03:00 PT · 57 units vs plan 20</title></rect><text x="146.7" y="232" class="ax" text-anchor="middle">03</text><rect x="164.3" y="137.2" width="23.3" height="78.8" class="barhi"><title>04:00 PT · 39 units vs plan 29</title></rect><rect x="193.7" y="125.1" width="23.3" height="90.9" class="barhi"><title>05:00 PT · 45 units vs plan 37</title></rect><rect x="223.0" y="108.9" width="23.3" height="107.1" class="barlo"><title>06:00 PT · 53 units vs plan 54</title></rect><text x="234.7" y="232" class="ax" text-anchor="middle">06</text><rect x="252.3" y="92.8" width="23.3" height="123.2" class="barhi"><title>07:00 PT · 61 units vs plan 56</title></rect><rect x="281.7" y="54.4" width="23.3" height="161.6" class="barhi"><title>08:00 PT · 80 units vs plan 54</title></rect><rect x="311.0" y="84.7" width="23.3" height="131.3" class="barhi"><title>09:00 PT · 65 units vs plan 59</title></rect><text x="322.7" y="232" class="ax" text-anchor="middle">09</text><rect x="340.3" y="76.6" width="23.3" height="139.4" class="barhi"><title>10:00 PT · 69 units vs plan 62</title></rect><rect x="369.7" y="86.7" width="23.3" height="129.3" class="barhi"><title>11:00 PT · 64 units vs plan 57</title></rect><rect x="399.0" y="88.7" width="23.3" height="127.3" class="barhi"><title>12:00 PT · 63 units vs plan 56</title></rect><text x="410.7" y="232" class="ax" text-anchor="middle">12</text><rect x="428.3" y="76.6" width="23.3" height="139.4" class="barhi"><title>13:00 PT · 69 units vs plan 54</title></rect><rect x="457.7" y="82.7" width="23.3" height="133.3" class="barhi"><title>14:00 PT · 66 units vs plan 59</title></rect><rect x="487.0" y="84.7" width="23.3" height="131.3" class="barhi"><title>15:00 PT · 65 units vs plan 56</title></rect><text x="498.7" y="232" class="ax" text-anchor="middle">15</text><rect x="516.3" y="64.5" width="23.3" height="151.5" class="barhi"><title>16:00 PT · 75 units vs plan 59</title></rect><rect x="545.7" y="92.8" width="23.3" height="123.2" class="barlo"><title>17:00 PT · 61 units vs plan 70</title></rect><rect x="575.0" y="42.3" width="23.3" height="173.7" class="barhi"><title>18:00 PT · 86 units vs plan 76</title></rect><text x="586.7" y="232" class="ax" text-anchor="middle">18</text><rect x="604.3" y="58.4" width="23.3" height="157.6" class="barhi"><title>19:00 PT · 78 units vs plan 76</title></rect><rect x="633.7" y="102.9" width="23.3" height="113.1" class="barlo"><title>20:00 PT · 56 units vs plan 78</title></rect><rect x="663.0" y="108.9" width="23.3" height="107.1" class="barlo"><title>21:00 PT · 53 units vs plan 55</title></rect><text x="674.7" y="232" class="ax" text-anchor="middle">21</text><rect x="692.3" y="133.2" width="23.3" height="82.8" class="barlo"><title>22:00 PT · 41 units vs plan 46</title></rect><rect x="721.7" y="155.4" width="23.3" height="60.6" class="barlo"><title>23:00 PT · 30 units vs plan 34</title></rect><polyline points="58.7,177.6 88.0,194.3 117.3,187.2 146.7,175.1 176.0,158.4 205.3,141.5 234.7,107.8 264.0,103.1 293.3,107.8 322.7,95.9 352.0,91.1 381.3,100.7 410.7,103.1 440.0,107.8 469.3,95.9 498.7,103.1 528.0,95.9 557.3,74.2 586.7,62.3 616.0,62.3 645.3,57.5 674.7,105.5 704.0,122.3 733.3,146.4" class="planline"/><text x="44" y="246" class="ax">hour, Pacific time</text></svg>
+      <p class="sub">The morning ran 1.3–2.9× the plan from 03:00 to 16:00 PT. 17:00–23:00 PT sold 405 units against 435 planned (−7%), the same hours in which 100+ campaigns had run out of budget.</p></div>
+    <div class="panel"><h3>US cost per click by hour</h3>
+      <svg viewBox="0 0 760 220" role="img" aria-label="US cost per click by hour, Oct 6"><line x1="44" x2="748" y1="186.0" y2="186.0" class="grid"/><text x="38" y="190.0" class="ax" text-anchor="end">$0.00</text><line x1="44" x2="748" y1="136.9" y2="136.9" class="grid"/><text x="38" y="140.9" class="ax" text-anchor="end">$1.00</text><line x1="44" x2="748" y1="87.7" y2="87.7" class="grid"/><text x="38" y="91.7" class="ax" text-anchor="end">$2.00</text><line x1="44" x2="748" y1="38.6" y2="38.6" class="grid"/><text x="38" y="42.6" class="ax" text-anchor="end">$3.00</text><text x="58.7" y="202" class="ax" text-anchor="middle">00</text><text x="146.7" y="202" class="ax" text-anchor="middle">03</text><text x="234.7" y="202" class="ax" text-anchor="middle">06</text><text x="322.7" y="202" class="ax" text-anchor="middle">09</text><text x="410.7" y="202" class="ax" text-anchor="middle">12</text><text x="498.7" y="202" class="ax" text-anchor="middle">15</text><text x="586.7" y="202" class="ax" text-anchor="middle">18</text><text x="674.7" y="202" class="ax" text-anchor="middle">21</text><polyline points="58.7,23.5 146.7,44.6 176.0,31.0 205.3,60.8 234.7,50.1 264.0,85.2 293.3,69.0 322.7,75.6 352.0,74.5 381.3,95.5 410.7,92.1 440.0,113.9 469.3,116.6 498.7,103.5 528.0,112.6 557.3,117.7 586.7,114.4 616.0,116.9 645.3,122.1 674.7,121.3 704.0,126.0 733.3,121.3" class="cpcline"/><circle cx="58.7" cy="23.5" r="3.2" class="cpcdot"><title>00:00 PT · CPC $3.31 · 11 clicks · $36</title></circle><circle cx="146.7" cy="44.6" r="3.2" class="cpcdot"><title>03:00 PT · CPC $2.88 · 90 clicks · $259</title></circle><circle cx="176.0" cy="31.0" r="3.2" class="cpcdot"><title>04:00 PT · CPC $3.15 · 93 clicks · $293</title></circle><circle cx="205.3" cy="60.8" r="3.2" class="cpcdot"><title>05:00 PT · CPC $2.55 · 103 clicks · $262</title></circle><circle cx="234.7" cy="50.1" r="3.2" class="cpcdot"><title>06:00 PT · CPC $2.77 · 106 clicks · $293</title></circle><circle cx="264.0" cy="85.2" r="3.2" class="cpcdot"><title>07:00 PT · CPC $2.05 · 122 clicks · $250</title></circle><circle cx="293.3" cy="69.0" r="3.2" class="cpcdot"><title>08:00 PT · CPC $2.38 · 168 clicks · $400</title></circle><circle cx="322.7" cy="75.6" r="3.2" class="cpcdot"><title>09:00 PT · CPC $2.25 · 158 clicks · $355</title></circle><circle cx="352.0" cy="74.5" r="3.2" class="cpcdot"><title>10:00 PT · CPC $2.27 · 140 clicks · $318</title></circle><circle cx="381.3" cy="95.5" r="3.2" class="cpcdot"><title>11:00 PT · CPC $1.84 · 131 clicks · $241</title></circle><circle cx="410.7" cy="92.1" r="3.2" class="cpcdot"><title>12:00 PT · CPC $1.91 · 137 clicks · $262</title></circle><circle cx="440.0" cy="113.9" r="3.2" class="cpcdot"><title>13:00 PT · CPC $1.47 · 136 clicks · $200</title></circle><circle cx="469.3" cy="116.6" r="3.2" class="cpcdot"><title>14:00 PT · CPC $1.41 · 164 clicks · $232</title></circle><circle cx="498.7" cy="103.5" r="3.2" class="cpcdot"><title>15:00 PT · CPC $1.68 · 206 clicks · $346</title></circle><circle cx="528.0" cy="112.6" r="3.2" class="cpcdot"><title>16:00 PT · CPC $1.49 · 238 clicks · $355</title></circle><circle cx="557.3" cy="117.7" r="3.2" class="cpcdot"><title>17:00 PT · CPC $1.39 · 223 clicks · $310</title></circle><circle cx="586.7" cy="114.4" r="3.2" class="cpcdot"><title>18:00 PT · CPC $1.46 · 240 clicks · $350</title></circle><circle cx="616.0" cy="116.9" r="3.2" class="cpcdot"><title>19:00 PT · CPC $1.41 · 241 clicks · $339</title></circle><circle cx="645.3" cy="122.1" r="3.2" class="cpcdot"><title>20:00 PT · CPC $1.30 · 214 clicks · $278</title></circle><circle cx="674.7" cy="121.3" r="3.2" class="cpcdot"><title>21:00 PT · CPC $1.32 · 185 clicks · $244</title></circle><circle cx="704.0" cy="126.0" r="3.2" class="cpcdot"><title>22:00 PT · CPC $1.22 · 155 clicks · $189</title></circle><circle cx="733.3" cy="121.3" r="3.2" class="cpcdot"><title>23:00 PT · CPC $1.32 · 90 clicks · $119</title></circle><text x="44" y="216" class="ax">hour, Pacific time · hours with under 10 clicks hidden</text></svg>
+      <p class="sub">$2.55–3.15 a click at 03:00–06:00 PT, while the placement boosts were live. It fell to $1.22–1.50 after 13:00 PT, once the boosts were cut and the boosted campaigns had capped. The auction didn't get cheaper. Our spend moved to cheaper campaigns.</p></div>
+  </div>
+  <h3>Placements</h3>
+  <div class="tbl"><table><thead><tr><th>Group</th><th>Placement</th><th class="n">Spend</th><th class="n">Clicks</th><th class="n">CPC</th><th class="n">CVR</th><th class="n">ACoS</th><th>Read</th></tr></thead><tbody>
+  <tr><td>US · deal products</td><td class=n>Top of search</td><td class=n>$1,650</td><td class=n>540</td><td class=n>$3.06</td><td class=n>21.7%</td><td class=n>27%</td><td><span class="pill good">best converter</span> Keep TOS as the main placement, at the base bid or ≤ +100%.</td></tr>
+<tr><td>US · deal products</td><td class=n>Rest of search</td><td class=n>$1,719</td><td class=n>891</td><td class=n>$1.93</td><td class=n>9.8%</td><td class=n>~31% *</td><td><span class="pill warn">half the CVR</span> The biggest spend bucket, mostly bought through the ROS boosts (+463–692%) before they were zeroed.</td></tr>
+<tr><td>US · deal products</td><td class=n>Product pages</td><td class=n>$958</td><td class=n>650</td><td class=n>$1.47</td><td class=n>10.2%</td><td class=n>~31% *</td><td><span class="pill neutral">ok</span> Mostly own-ASIN and conquest PATs; keep PP only on PAT campaigns.</td></tr>
+<tr><td>US · no-deal products</td><td class=n>Top of search</td><td class=n>$894</td><td class=n>502</td><td class=n>$1.78</td><td class=n>11.0%</td><td class=n>39%</td><td><span class="pill bad">over break-even</span> Half the deal-product CVR.</td></tr>
+<tr><td>US · no-deal products</td><td class=n>Rest of search + product pages</td><td class=n>$689</td><td class=n>709</td><td class=n>$0.97</td><td class=n>4.4%</td><td class=n>~60% *</td><td><span class="pill bad">waste</span> Zeroed on Day 2 (M60). Keep it that way through the event.</td></tr>
+<tr><td>CA · deal products</td><td class=n>Top of search</td><td class=n>C$826</td><td class=n>510</td><td class=n>C$1.62</td><td class=n>14.9%</td><td class=n>16%</td><td><span class="pill good">best converter</span> 30–40% cheaper than Canada's normal CPC.</td></tr>
+<tr><td>CA · deal products</td><td class=n>Rest of search</td><td class=n>C$584</td><td class=n>511</td><td class=n>C$1.14</td><td class=n>8.4%</td><td class=n>—</td><td><span class="pill warn">half the CVR</span></td></tr>
+<tr><td>CA · deal products</td><td class=n>Product pages</td><td class=n>C$677</td><td class=n>507</td><td class=n>C$1.33</td><td class=n>7.9%</td><td class=n>—</td><td><span class="pill warn">weakest</span> Plus C$115 off-Amazon with 0 orders.</td></tr>
+  </tbody></table></div>
+  <p class="sub">Verified against the ecotero ad data (spend, clicks, CPC and CVR within 1%). * The ad data returns placement sales only for top of search, so rest-of-search and product-page ACoS is shown combined (about 31% on deal products, about 60% on no-deal products). The board's 37% / 26% / 69% / 53% split can't be reproduced.</p>
+  <h3>By campaign type and objective</h3>
+  <div class="tbl"><table><thead><tr><th>Strategy</th><th>What happened</th><th>Evidence</th><th>Working as intended?</th></tr></thead><tbody>
+  <tr><td>Push / ranking exacts</td><td class=n>Starved, then overpriced. The $5 floors capped them after one click; 27 push campaigns capped, 9 before 08:00 PT. Boosted exacts paid $5.35 vs $2.41 a click.</td><td class=n>Rank moved where the deal SKU sold (B6 King, B4 Twin), not where the exact was funded. Cooling, the most-boosted push, lost the most rank.</td><td><span class="pill bad">No</span></td></tr>
+<tr><td>Profit lane (autos, broad discovery)</td><td class=n>Normal budgets on event traffic. B4/B6 autos capped about 05:00 PT; the two boosted autos paid 6× CPC.</td><td class=n>The B4 Full Grey auto: $337, 53% ACoS vs 15.9% normal. Unboosted autos and low-bid clearance autos ran 9–22% ACoS.</td><td><span class="pill warn">Partly</span></td></tr>
+<tr><td>Defend (branded, own-ASIN PAT)</td><td class=n>Best conversion of the day (CVR 20–27%, ACoS 9–21%) and first to run dry.</td><td class=n>Branded broad B4 out at 08:15 PT; CA PAT out 09:26 PT. Part of own-ASIN PAT sales would have happened anyway.</td><td><span class="pill warn">Under-funded</span></td></tr>
+<tr><td>Placement rule (ROS/PP to 0 on deal products)</td><td class=n>Applied midday (13:11 PT per board 13b; the observation log says 11:20).</td><td class=n>Spend −51%, sales −34% over the next 5 hours; ACoS 45% → 34%. No untouched control, and the afternoon fall is part of it.</td><td><span class="pill good">Yes</span></td></tr>
+<tr><td>Clearance / LTSF lane</td><td class=n>Low bids converted; broad target sets at big budgets didn't.</td><td class=n>US B6 aged auto $11.48 an order (18%); US B4 aged auto $501 at 37%; CA S6 C$21.52 an order vs C$9.02 accepted.</td><td><span class="pill warn">Mixed</span></td></tr>
+<tr><td>SB / SBV / SD</td><td class=n>Negligible: US SB $161, SD $8, CA none.</td><td class=n>Satin SB collections 54–167% ACoS. 17 B6 SBV probes underbid (0 clicks), re-priced for Day 2 (M58).</td><td><span class="pill neutral">No</span></td></tr>
+<tr><td>Budget governance</td><td class=n>138–142 campaigns capped; 16 of them "unregistered" (outside the plan registry).</td><td class=n>Converters out between 08:00 and 17:00 PT; 100+ campaigns dark during the evening peak.</td><td><span class="pill bad">No</span></td></tr>
+  </tbody></table></div>
+  <h3>Campaigns: copy, fix, stop</h3>
+  <div class="tbl"><table><thead><tr><th>Campaign</th><th class="n">Spend</th><th class="n">CPC</th><th class="n">Orders</th><th class="n">ACoS / BE</th><th>Read</th></tr></thead><tbody>
+  <tr><td><b>Copy</b> · B4 US branded broad "decolure bamboo sheets"</td><td class=n>$202</td><td class=n>—</td><td class=n>14</td><td class=n>21% / 17.8</td><td><span class="pill good">fund all day</span> CVR 20%, out at 08:15 PT. Slightly over break-even, but it defends the listing.</td></tr>
+<tr><td><b>Copy</b> · B4 US exact "bamboo sheets queen" (normal bid)</td><td class=n>$39</td><td class=n>$3.55</td><td class=n>5</td><td class=n>10% / 17.8</td><td><span class="pill good">fund</span> CVR 45%. Hero size at its normal bid.</td></tr>
+<tr><td><b>Copy</b> · B6 US aged-SKU clearance auto, $1.33 bid</td><td class=n>$253</td><td class=n>$1.33</td><td class=n>22</td><td class=n>18% / 14.5</td><td><span class="pill good">fund</span> $11.48 an aged unit; ran out 17:39 PT.</td></tr>
+<tr><td><b>Copy</b> · CA B4 aged-SKU clearance auto</td><td class=n>C$251</td><td class=n>—</td><td class=n>19</td><td class=n>16% / 17.1</td><td><span class="pill good">fund all day</span> Out at 10:09 PT with 61% of the day left.</td></tr>
+<tr><td><b>Copy</b> · B4/B6 own-ASIN PATs (B08KQHRDDG)</td><td class=n>$48–63</td><td class=n>$0.74–1.91</td><td class=n>6–10</td><td class=n>10–15% / 17.8</td><td><span class="pill warn">keep, measure</span> Strong numbers, but part of it is shoppers already on our page, or B6 ads on our own B4 hero.</td></tr>
+<tr><td><b>Fix</b> · B4 US auto Full Grey (ROS +692%, TOS +441%)</td><td class=n>$337</td><td class=n>$3.75 (normal $0.58)</td><td class=n>11</td><td class=n>48% / 17.8</td><td><span class="pill bad">no boosts</span> 6.5× normal CPC; out at 07:13 PT.</td></tr>
+<tr><td><b>Fix</b> · B4 US auto King White (ROS +463%, TOS +380%)</td><td class=n>$303</td><td class=n>$4.73 (normal $0.80)</td><td class=n>13</td><td class=n>31% / 17.8</td><td><span class="pill bad">no boosts</span> Converted well (20% CVR) at 5.9× the price.</td></tr>
+<tr><td><b>Fix</b> · B4 US exact "cooling bamboo sheets" (TOS +288%)</td><td class=n>$72</td><td class=n>$6.51 (normal $3.43)</td><td class=n>2</td><td class=n>53% / 17.8</td><td><span class="pill bad">cap TOS</span> Out at 05:07 PT; the Cooling terms then fell 9–31 places.</td></tr>
+<tr><td><b>Stop</b> · B6 US exact "bamboo sheets king" (TOS +534%)</td><td class=n>$69</td><td class=n>$8.63 (normal $4.60)</td><td class=n>0</td><td class=n>— / 14.5</td><td><span class="pill bad">stop the boost</span> King rank rose anyway, on deal sales.</td></tr>
+<tr><td><b>Stop</b> · B6 US auto Queen White 6pc (ROS +307%)</td><td class=n>$93</td><td class=n>$4.65 (normal $1.04)</td><td class=n>1</td><td class=n>146% / 14.5</td><td><span class="pill bad">stop the boost</span></td></tr>
+<tr><td><b>Stop</b> · Satin US exact "satin sheets queen" on White Queen</td><td class=n>$183</td><td class=n>$2.73</td><td class=n>11</td><td class=n>53% / 10.6</td><td><span class="pill neutral">rotated off</span> White doesn't sell; rotated at 16:17 PT.</td></tr>
+<tr><td><b>Stop</b> · Satin US Queen Black "satin sheets" push at deal price</td><td class=n>$113</td><td class=n>—</td><td class=n>17</td><td class=n>22% / 10.6</td><td><span class="pill bad">margin ≈ $0</span> The board lists it under "worked". At the LD/PED price Queen Black earns about $0.94 before ads.</td></tr>
+<tr><td><b>Stop</b> · B4 US aged-SKU auto, $500 budget</td><td class=n>$501</td><td class=n>$1.33</td><td class=n>21</td><td class=n>37% / 17.8</td><td><span class="pill bad">trim targets</span> $23.87 an order; target set too broad.</td></tr>
+<tr><td><b>Stop</b> · CA S6 clearance (Prime, all SKUs)</td><td class=n>C$108</td><td class=n>C$0.97</td><td class=n>5</td><td class=n>35% / 11.5</td><td><span class="pill bad">pause</span> C$21.52 an order vs C$9.02 accepted.</td></tr>
+<tr><td><b>Stop</b> · CA B6 exact "bamboo sheets" on Queen White 6pc</td><td class=n>C$188</td><td class=n>C$4.00</td><td class=n>6</td><td class=n>35% / 9.5</td><td><span class="pill bad">pause ad</span> Queen White 6pc is at 0 FBA (Sellerboard).</td></tr>
+  </tbody></table></div>
+  <h3>Budgets: who ran out, and when</h3>
+  <div class="tbl"><table><thead><tr><th>Group</th><th class="n">Capped</th><th class="n">Before 08:00 PT</th><th class="n">Before 12:00 PT</th><th>What it cost</th></tr></thead><tbody>
+  <tr><td>push / ranking</td><td class=n>60</td><td class=n>14</td><td class=n>29</td><td>Rank pushes dark for the hours that sell; Cooling exact dark from 05:07 PT.</td></tr>
+<tr><td>discovery / profit</td><td class=n>39</td><td class=n>10</td><td class=n>15</td><td>Autos capped by 05:00 PT on event traffic; most of the $740 boost premium was spent here before 07:30 PT.</td></tr>
+<tr><td>clearance / LTSF</td><td class=n>19</td><td class=n>3</td><td class=n>11</td><td>CA B4 aged auto out at 10:09 PT (16% ACoS); US B6 aged auto out 17:39 PT (18%).</td></tr>
+<tr><td>unregistered (outside the plan)</td><td class=n>17</td><td class=n>1</td><td class=n>4</td><td>Spent and capped without being governed by the event rules.</td></tr>
+<tr><td>defend</td><td class=n>5</td><td class=n>1</td><td class=n>3</td><td>Branded defence out at 08:15 PT with 77% of units still ahead; the board estimates up to $2.4K of B4 ad sales unbought.</td></tr>
+<tr><td>conquest</td><td class=n>2</td><td class=n>0</td><td class=n>0</td><td>B6 conquest PAT raised twice and still ran out 14:19 PT.</td></tr>
+<tr><td><b>All</b></td><td class=n><b>142</b></td><td class=n><b>29</b></td><td class=n><b>62</b></td><td>Upper bound from the board: about $6.3K of ad sales at or near break-even left unbought by 13 converters that ran dry.</td></tr>
+  </tbody></table></div>
+  <h3>Rank: did the pushes work?</h3>
+  <p>Organic rank (DataRova). "Latest" is the 04:00–05:00 PT Oct 7 snapshot. The Day-1 review board used the 02:00 PT read, which made Satin's head term look lost when it had already recovered.</p>
+  <div class="tbl"><table><thead><tr><th>Product</th><th>Keyword</th><th>Role</th><th class="n">Oct 5</th><th class="n">Oct 6</th><th class="n">Latest</th><th class="n">vs Oct 5</th><th></th></tr></thead><tbody>
+  <tr><td>US · Bamboo 4pc</td><td>bamboo sheets cooling</td><td>push (raised)</td><td class='n'>31</td><td class='n'>19</td><td class='n'>40</td><td class='n'>-9</td><td><span class="pill bad">lost</span></td></tr>
+<tr><td>US · Bamboo 4pc</td><td>cooling bamboo sheets</td><td>push (raised)</td><td class='n'>12</td><td class='n'>18</td><td class='n'>43</td><td class='n'>-31</td><td><span class="pill bad">lost</span></td></tr>
+<tr><td>US · Bamboo 4pc</td><td>bamboo cooling sheets king size</td><td>push</td><td class='n'>25</td><td class='n'>13</td><td class='n'>32</td><td class='n'>-7</td><td><span class="pill bad">lost</span></td></tr>
+<tr><td>US · Bamboo 4pc</td><td>twin bamboo sheets</td><td>push</td><td class='n'>31</td><td class='n'>28</td><td class='n'>21</td><td class='n'>+10</td><td><span class="pill good">gained</span></td></tr>
+<tr><td>US · Bamboo 4pc</td><td>bamboo sheets twin</td><td>push</td><td class='n'>50</td><td class='n'>42</td><td class='n'>18</td><td class='n'>+32</td><td><span class="pill good">gained</span></td></tr>
+<tr><td>US · Bamboo 4pc</td><td>bamboo sheets</td><td>profit</td><td class='n'>30</td><td class='n'>30</td><td class='n'>28</td><td class='n'>+2</td><td><span class="pill neutral">flat</span></td></tr>
+<tr><td>US · Bamboo 6pc</td><td>bamboo sheets king</td><td>push (raised)</td><td class='n'>27</td><td class='n'>24</td><td class='n'>21</td><td class='n'>+6</td><td><span class="pill good">gained</span></td></tr>
+<tr><td>US · Bamboo 6pc</td><td>king bed bamboo sheets</td><td>push (raised)</td><td class='n'>25</td><td class='n'>20</td><td class='n'>17</td><td class='n'>+8</td><td><span class="pill good">gained</span></td></tr>
+<tr><td>US · Bamboo 6pc</td><td>bamboo king size sheets</td><td>push (raised)</td><td class='n'>32</td><td class='n'>26</td><td class='n'>21</td><td class='n'>+11</td><td><span class="pill good">gained</span></td></tr>
+<tr><td>US · Bamboo 6pc</td><td>bamboo sheets king size</td><td>push</td><td class='n'>31</td><td class='n'>27</td><td class='n'>24</td><td class='n'>+7</td><td><span class="pill good">gained</span></td></tr>
+<tr><td>US · Bamboo 6pc</td><td>king size bamboo sheets set</td><td>push</td><td class='n'>38</td><td class='n'>39</td><td class='n'>39</td><td class='n'>-1</td><td><span class="pill neutral">flat</span></td></tr>
+<tr><td>US · Bamboo 6pc</td><td>viscose bamboo sheets</td><td>push</td><td class='n'>19</td><td class='n'>10</td><td class='n'>9</td><td class='n'>+10</td><td><span class="pill good">gained</span></td></tr>
+<tr><td>US · Bamboo 6pc</td><td>bamboo sheets</td><td>profit</td><td class='n'>28</td><td class='n'>27</td><td class='n'>25</td><td class='n'>+3</td><td><span class="pill good">gained</span></td></tr>
+<tr><td>US · Satin 4pc</td><td>satin sheets</td><td>defend</td><td class='n'>3</td><td class='n'>5</td><td class='n'>2</td><td class='n'>+1</td><td><span class="pill neutral">flat</span></td></tr>
+<tr><td>US · Satin 4pc</td><td>satin sheets queen</td><td>defend</td><td class='n'>6</td><td class='n'>3</td><td class='n'>9</td><td class='n'>-3</td><td><span class="pill bad">lost</span></td></tr>
+<tr><td>US · Satin 4pc</td><td>silk sheets queen</td><td>defend</td><td class='n'>7</td><td class='n'>9</td><td class='n'>10</td><td class='n'>-3</td><td><span class="pill bad">lost</span></td></tr>
+<tr><td>US · Satin 4pc</td><td>silk sheets</td><td>defend</td><td class='n'>32</td><td class='n'>32</td><td class='n'>31</td><td class='n'>+1</td><td><span class="pill neutral">flat</span></td></tr>
+<tr><td>US · Silk Pillowcase</td><td>silk pillowcase</td><td>push</td><td class='n'>26</td><td class='n'>25</td><td class='n'>25</td><td class='n'>+1</td><td><span class="pill neutral">flat</span></td></tr>
+<tr><td>CA · Bamboo 4pc</td><td>bamboo sheets</td><td>defend</td><td class='n'>5</td><td class='n'>6</td><td class='n'>8</td><td class='n'>-3</td><td><span class="pill bad">lost</span></td></tr>
+<tr><td>CA · Bamboo 6pc</td><td>bamboo sheets</td><td>push</td><td class='n'>11</td><td class='n'>4</td><td class='n'>16</td><td class='n'>-5</td><td><span class="pill bad">lost</span></td></tr>
+<tr><td>CA · Satin 4pc</td><td>satin sheets</td><td>defend</td><td class='n'>9</td><td class='n'>8</td><td class='n'>7</td><td class='n'>+2</td><td><span class="pill neutral">flat</span></td></tr>
+  </tbody></table></div>
+</section>
+
+<section id="stock">
+  <div class="head"><span class="num">05</span><h2>Inventory and deal allocation</h2></div>
+  <p>Stock rarely limited Day 1. The binding limit was the deal allocation: committed units, mainly in Canada.</p>
+  <div class="tbl"><table><thead><tr><th>Product</th><th class="n">Deal units sold / committed</th><th>Children at or past their cap</th><th>Effect on performance</th><th>Day 2</th></tr></thead><tbody>
+  <tr><td>US Bamboo 4pc · PED</td><td class=n>387 / 3,661</td><td class=n>Queen White 27/29 (93%), Queen Creme 16/16 (100%)</td><td class=n>Little: 34 of 47 children had room past allocation. Queen White/Creme have about 2 days of cover at deal pace (51 and 33 FBA; inbound 732 and 360 not live).</td><td>Keep both off ads; push siblings. Raise King Burgundy 36 → 58 and Twin Light Blue 10 → 15 (M45).</td></tr>
+<tr><td>US Bamboo 6pc · PED</td><td class=n>411 / 2,911</td><td class=n>Queen Navy 17/21 (81%)</td><td class=n>None at the product level. Queen Navy about 1 day of cover at deal pace; King Taupe/Navy about 3.8 days.</td><td>Queen Navy off ads. King Midgrey and Cal King Taupe can't be raised (no stock above the floor).</td></tr>
+<tr><td>US Satin 4pc · LD → PED</td><td class=n>LD 280 / 1,037</td><td class=n>Twin Black (100%), Queen Navy (90%), Queen Blush Pink (80%)</td><td class=n>Allocation wasn't the limit (27% sold); demand was. King Rosewood about 1 day of cover; Queen Red 2 days.</td><td>No raises. Keep King Rosewood and Queen Red off ads.</td></tr>
+<tr><td>CA Bamboo 4pc · LD → PED</td><td class=n>145 / 214 (Day 1)</td><td class=n>15 children at or past their LD cap</td><td class=n>Binding. The deal ran out of units on 15 children; full-price sales after the cap. King Charcoal 0 FBA, King Grey about 3 days.</td><td>Apply the M45 raises; today's PED commitments are 5–6 units a child and mostly used.</td></tr>
+<tr><td>CA Bamboo 6pc · BD</td><td class=n>114 / 306</td><td class=n>King White 6pc 14/11 (past cap), Queen Olive 85%, Queen Taupe 82%</td><td class=n>Partly binding. Queen White 6pc at 0 FBA but still took $199 of ads.</td><td>Apply 11 stock-safe raises (668 units, M45). Pause the Queen White 6pc ad.</td></tr>
+<tr><td>CA Satin 4pc / 6pc · BD</td><td class=n>55 / 228 · 41 / 218</td><td class=n>Queen Pink (S4), Purple set (S6)</td><td class=n>Not binding. CA Queen Black 15 FBA, about 2.5 days.</td><td>Satin 4pc: 4 raises (399 units). Satin 6pc: 2.</td></tr>
+  </tbody></table></div>
+</section>
+
+<section id="waste">
+  <div class="head"><span class="num">06</span><h2>Wasted and inefficient spend</h2></div>
+  <div class="tbl"><table><thead><tr><th>Source</th><th class="n">Day 1 $</th><th>Why it is waste</th><th>Day 2 fix</th></tr></thead><tbody>
+  <tr><td>Placement-boost premium (9 boosted autos/exacts, Oct 6)</td><td class=n>≈ $740</td><td class=n>$1,056 bought 229 clicks worth $318 at their normal CPC; conversion no better (16.5% vs 17.2%).</td><td>TOS ≤ +100%, ROS/PP 0; cancel the pending moves that re-apply boosts.</td></tr>
+<tr><td>Pre-event spend, Oct 5 (event values applied 19:00–22:00 PT)</td><td class=n>+$560 (4 deal products) · +$878 (all US)</td><td class=n>Spend above the normal day with no deal live; ACoS 51.5% vs 40.3% normal on B4, B6, Satin 4pc and Sleep Sanctuary. Not in any Day-1 figure.</td><td>Already past. For BFCM: event values unlock at each deal's start.</td></tr>
+<tr><td>No-deal products: rest of search + product pages</td><td class=n>≈ $690</td><td class=n>CVR 4.4% vs 11% on top of search; about 60% ACoS combined.</td><td>Done on Day 2 (M60). Keep it through the event.</td></tr>
+<tr><td>No-deal products overall</td><td class=n>$1,768 at 17% TACoS</td><td class=n>Twice the deal products' TACoS; Sleep Sanctuary Satin −$94, Satin Fitted (unplanned LD) 95% 1-day ACoS.</td><td>Containment (M60, M62) live; keep branded defence only.</td></tr>
+<tr><td>Keyword losers (8+ clicks, 0 orders)</td><td class=n>≈ $400</td><td class=n>B6 "bamboo sheets king" $69, B6 PATs B01M16WBW1/B0F4873G4H $61, CA B6 queen exacts $61, CA S4 "satin sheets" C$39, Satin Fitted substitutes $25.</td><td>Bid −30% at 11:00 PT; pause at 15 clicks.</td></tr>
+<tr><td>Clearance target sets over the accepted cost</td><td class=n>≈ $430</td><td class=n>US B4 aged auto $501 at 37% (about $230 above break-even), CA S6 clearance C$205, Sleep Sanctuary Satin clearance $71 at 108%.</td><td>Trim targets to deal SKUs; pause CA S6.</td></tr>
+<tr><td>Ads on out-of-stock children</td><td class=n>$199</td><td class=n>CA B6 Queen White 6pc at 0 FBA.</td><td>Hourly out-of-stock check; swap the ad.</td></tr>
+<tr><td>Unplanned deals</td><td class=n>≈ $500 fees</td><td class=n>Five deals outside the plan; together about −$350 vs a normal day.</td><td>No action mid-event; reconcile at T−24h next time.</td></tr>
+<tr><td>Satin White Queen exact</td><td class=n>$183</td><td class=n>53% ACoS on a colour that doesn't sell.</td><td>Rotated off Day 1 (M35).</td></tr>
+  </tbody></table></div>
+</section>
+
+<section id="account">
+  <div class="head"><span class="num">07</span><h2>Account level: is the strategy delivering?</h2></div>
+  <div class="grid2">
+    <div class="panel"><h3>Against the business goals</h3><ul class="plain"><li><b>Profit (primary goal): met.</b> $9.6K vs a $5.0K plan and a $2.5K normal day on the board's basis. US alone +18% vs plan. Sellerboard confirms US profit ($10,410 before reserve vs the board's $10,562) but puts Canada at about half the board's figure.</li><li><b>Rank (push objective): mixed.</b> Gained on B6 King (+6 to +11), viscose bamboo sheets (+10) and B4 Twin (+10, +32). Lost on B4 Cooling (−9 to −31) and the satin queen terms (−3). Best-seller rank in Sheet &amp; Pillowcase Sets barely moved (B4 150 → 145, B6 138 → 159): competitors' deals lifted the category as much as ours lifted us. No share was gained.</li><li><b>Efficiency: missed.</b> Ad spend 2.1× plan. US ad ACoS 32% against break-evens of 10.6–17.8%, so ads lost money on the orders they were credited with. The day paid only because about 75% of units carried no ad cost.</li><li><b>Volume: met.</b> 1.21× plan, 3.3× a normal day. Push products were on or ahead of plan except Satin.</li><li><b>Stock: protected.</b> No hero ran short. Canada's committed deal units were the limit, not FBA stock.</li></ul></div>
+    <div class="panel"><h3>Root causes, ranked by money</h3><ul class="plain"><li><b>1. Canada was planned at a quarter of its demand.</b> It is +$3.7K on the board's numbers, plus deal units lost on 15 B4 children. A planning gap, not a PPC one, and the Day-2 forecast repeats it.</li><li><b>2. Budget sizing.</b> Converters (branded, own-ASIN, clearance autos, Queen exacts) ran dry before noon; pushes were floored at $5. About $6.3K of ad sales near break-even went unbought, roughly $1–1.5K of profit.</li><li><b>3. Placement multipliers.</b> TOS +200–900% and ROS up to +692% on 9 autos/exacts: about $740 of CPC premium on Oct 6, plus the Oct 5 pre-event spend (section 06). No conversion gain.</li><li><b>4. Products with no deal leaked.</b> $1,768 at 17% TACoS. Rest-of-search and product-page clicks ran 53–69% ACoS. Five unplanned deals paid $100 fees and lost about $350 against a normal day.</li><li><b>5. Satin deal economics.</b> A weak price response (about 1.4×) on a hero that earns about $0 at the deal price. The LD sold 27% of its allocation, and today's PED repeats it.</li><li><b>6. The plan's caps.</b> TACoS caps of 2.3–6% assumed ads would hold still while sales quadrupled, so every product "failed" a cap while making money. Decide on profit and break-even TACoS instead.</li></ul></div>
+  </div>
+  <div class="grid2">
+    <div class="panel"><h3>What worked: keep on Day 2</h3><ul class="plain"><li>Bamboo PED on the whole listing: enrolled children 6.6–7.8× normal, organic share 71–79%.</li><li>Branded defence and own-ASIN PATs: CVR 15–27%, ACoS 9–21%. Fund them all day; keep in mind part of it is shoppers already on our page.</li><li>Hero-size exacts at their normal bid: "bamboo sheets queen" 45% CVR, 10% ACoS; "bamboo sheets twin" 9% ACoS.</li><li>Low-bid clearance autos on deal-price aged SKUs: US B6 $11.48 an order, CA B4 16% ACoS.</li><li>Zeroing rest of search and product pages on deal products: ACoS 45% → 34%. Top of search converts 2× rest of search on deal days.</li><li>Canada's cheap auctions: CPC 30–40% under normal, ACoS 15–24% on B4/B6.</li><li>Hourly order pulls and the moves desk: same-day reads matched Sellerboard to the unit.</li></ul></div>
+    <div class="panel"><h3>What didn't: correct now</h3><ul class="plain"><li>Boost multipliers on ranking exacts and autos. Step them to ≤ +100% TOS and 0 on ROS/PP now (89 campaigns still carry TOS ≥ +150%).</li><li>Normal budgets on converters during a deal. Use whole-day budgets from the Day-1 run-out math.</li><li>Advertising children near their cap or out of stock (CA B6 Queen White 6pc: $199 at 0 FBA).</li><li>The satin discount: 1.4× lift on a hero with no margin at the deal price.</li><li>Two CA Satin 6pc clearance campaigns at C$21.52 an order.</li><li>Unplanned deals nobody priced: five deals, $500 of fees, all below a normal day.</li><li>Live TACoS reads: the board's end-of-day projection is wrong for a closed day (it shows 18.8% vs the actual 8.8%).</li></ul></div>
+  </div>
+  <div class="panel"><h3>Missed opportunities to take on Day 2</h3><ul class="plain"><li><b>The morning.</b> Half of US units sold by 12:30 PT and ad conversion was best 03:00–11:00 PT, while converters were capped or dark (dayparting until 03:00). Today: every converter funded from now, with an hourly run-out projection.</li><li><b>Canada.</b> Cheap auctions plus a deal that ran out of units. Apply the committed-unit raises (M45) and give CA converters 1.5–2× budgets now.</li><li><b>Converters that ran dry.</b> B4 branded broad (out 08:15 PT), CA B4 clearance auto (10:09 PT), CA B4 Full Black auto (13:15 PT), B6 own-ASIN PAT (18:46 PT). Together about $6.3K of ad sales at or near break-even (upper bound).</li><li><b>Hero-size exacts.</b> Fund Queen and Twin exacts at their normal bid before head terms. They converted at 30–45%.</li><li><b>Evening peak.</b> US units ran 7% under plan 17:00–23:00 PT while 100+ campaigns were dark. Keep converters alive through 21:00 PT.</li><li><b>Satin full-price defence.</b> "satin sheets" held #2 without the deal; the queen terms need ads on in-stock non-hero colours, not deeper discounts.</li></ul></div>
+</section>
+
+<section id="day2">
+  <div class="head"><span class="num">08</span><h2>Day 2 action plan (Oct 7)</h2></div>
+  <div class="callout warn"><b>Where Day 2 stands at the last data cut (05:00 PT):</b> 121 units vs 118 planned to that hour, $376 ad spend, live TACoS 9.7% (partial hours). Bamboo is on or ahead of pace. US Satin 4pc is at 0.56× pace with TACoS over its break-even.
+    <div class="tbl"><table><thead><tr><th>Product</th><th class="n">Units</th><th class="n">Plan to now</th><th class="n">Pace</th><th class="n">Spend</th><th class="n">TACoS</th><th>Day-2 forecast</th></tr></thead><tbody><tr><td>US · Bamboo 4 Piece</td><td class=n>29</td><td class=n>21</td><td class=n><span class="pill good">1.38</span></td><td class=n>$61</td><td class=n>5.9%</td><td>193 (Day 1 sold 373)</td></tr>
+<tr><td>US · Bamboo 6 Piece</td><td class=n>33</td><td class=n>32</td><td class=n><span class="pill good">1.04</span></td><td class=n>$62</td><td class=n>5.5%</td><td>290</td></tr>
+<tr><td>US · Satin 4 Piece</td><td class=n>16</td><td class=n>29</td><td class=n><span class="pill bad">0.56</span></td><td class=n>$46</td><td class=n>13.4%</td><td>263 (PED on 65 SKUs)</td></tr>
+<tr><td>US · Silk Pillowcase</td><td class=n>3</td><td class=n>3</td><td class=n><span class="pill good">1.15</span></td><td class=n>$0</td><td class=n>—</td><td>24 (LD 06:05–18:05 PT)</td></tr>
+<tr><td>CA · Bamboo 4 Piece</td><td class=n>4</td><td class=n>3</td><td class=n><span class="pill good">1.24</span></td><td class=n>C$42</td><td class=n>11.1%</td><td>31 (Day 1 sold 148) · re-base</td></tr>
+<tr><td>CA · Bamboo 6 Piece</td><td class=n>8</td><td class=n>8</td><td class=n><span class="pill good">1.04</span></td><td class=n>C$32</td><td class=n>6.2%</td><td>74</td></tr>
+<tr><td>CA · Satin 4 Piece</td><td class=n>4</td><td class=n>4</td><td class=n><span class="pill warn">0.92</span></td><td class=n>C$11</td><td class=n>—</td><td>42</td></tr>
+<tr><td>CA · Satin 6 Piece</td><td class=n>4</td><td class=n>4</td><td class=n><span class="pill good">1.13</span></td><td class=n>C$26</td><td class=n>23.8%</td><td>34</td></tr></tbody></table></div>
+  </div>
+  <div class="window"><h3>NOW → 08:00 PT</h3><ol class="acts"><li class="act"><div class="acthead"><span class="tag stop">Decide</span><b>Satin 4pc PED: pull it, or stop paying for it</b></div>
+<div class="actbody">The PED is live on 65 SKUs. Pace 0.56×, TACoS 13.4% vs 10.6% break-even, and Queen Black earns about $0.94 a unit before ads at the deal price. Best option: remove satin from the PED (or set each row&#x27;s minimum discounted price to list so the discount switches itself off). If it stays: return the Queen Black &quot;satin sheets&quot; push to its pre-event budget, hold M63&#x27;s satin-Black ad adds until Oct 8, and put the satin money on in-stock non-hero colours for &quot;satin sheets queen&quot; and &quot;silk sheets queen&quot; (both down 3 places).</div><div class="actmeta"><span>Measure:</span> 11:00 PT: satin projected TACoS ≤ 10.6% on $100+ spend, or revert the satin event moves early (check which way they move first).</div></li>
+<li class="act"><div class="acthead"><span class="tag fix">Fix</span><b>Cooling push: no +618% boost</b></div>
+<div class="actbody">M48 re-enabled exact &quot;bamboo cooling sheets&quot; at +618% top of search. That is the pattern that cost $6.51 a click on Day 1 with the Cooling terms falling 9–31 places. Set TOS to ≤ +100% and size the budget to last to 21:00 PT. If the board would rather not fund Cooling today, pause it and read who took the Cooling slots after the event.</div><div class="actmeta"><span>Measure:</span> TOS CPC ≤ 1.15× plan CPC and CTR at or above normal by 11:00 PT; otherwise pause.</div></li>
+<li class="act"><div class="acthead"><span class="tag fix">Fix</span><b>Step every remaining top-of-search boost of +200% or more down to +100%</b></div>
+<div class="actbody">Test A only touched 3 King exacts. About 89 campaigns still carry TOS ≥ +150%. Boosted exacts paid 2.2× the CPC for the same conversion. Rest of search and product pages stay at 0 on deal products. The Oct 8 reverts restore pre-event values anyway.</div></li>
+<li class="act"><div class="acthead"><span class="tag keep">Fund</span><b>Whole-day budgets on the converters, sized from Day 1</b></div>
+<div class="actbody">Budget = Day-1 spend ÷ share of the day done at run-out × 0.7 (Day-2 volume). B4 branded broad: $202 by 08:15 PT (23% of the day) → about $600 today (M46 put the 9 defence budgets at $337 combined). CA B4 clearance auto: C$249 by 10:09 PT (39%) → about C$450. Same for the B4 own-ASIN PAT, the &quot;bamboo sheets queen&quot; and &quot;twin&quot; exacts, the B6 aged-SKU auto and the CA category PAT.</div><div class="actmeta"><span>Measure:</span> Hourly: projected run-out after 21:00 PT for every converter at ≤ 1.25× break-even ACoS.</div></li>
+<li class="act"><div class="acthead"><span class="tag do">Canada</span><b>Apply M45 and re-base Canada</b></div>
+<div class="actbody">16 committed-unit raises (B6 King White 6pc is past its cap; 11 B6 children with stock-safe room, 668 units), 2 branded budgets (drop the Queen Olive branded raise: its clicks were &quot;duvet cover&quot;). Re-base the CA Day-2 forecast (B4 31 → about 100) so the allocation read raises before children cap. Pause the CA Queen White 6pc ad (0 FBA).</div></li>
+<li class="act"><div class="acthead"><span class="tag stop">Stop</span><b>CA Satin 6pc clearance campaigns</b></div>
+<div class="actbody">C$21.52 an order on Day 1 vs C$9.02 accepted; Day 2 TACoS 23.8%. Pause both for the rest of the event, or cut bids to the accepted cost per unit.</div></li>
+<li class="act"><div class="acthead"><span class="tag do">Watch</span><b>Silk Pillowcase LD (06:05–18:05 PT)</b></div>
+<div class="actbody">Confirm the deal price is live within the first hour (Day 1 had a canceled-record LD on satin). The $40 &quot;silk pillowcase&quot; exact must last to 18:05 PT.</div></li></ol></div>
+  <div class="window"><h3>11:00 PT read (first read with settled attribution)</h3><ol class="acts"><li class="act"><div class="acthead"><span class="tag do">Read</span><b>Product TACoS vs break-even on the projected day, not the live read</b></div>
+<div class="actbody">Use complete ad hours only and pending deal orders at the deal price. Over break-even (B4 17.8%, B6 14.5%, S4 10.6%): revert that product&#x27;s event values early, after checking the reverts lower rather than raise bids.</div></li>
+<li class="act"><div class="acthead"><span class="tag do">Read</span><b>Push earned test</b></div>
+<div class="actbody">Top-of-search clicks at ≤ plan CPC × 1.15 with CTR at or above normal (rank can only be read tomorrow). Earned: keep the budget to 21:00 PT. Not earned: back to 2× spend so far.</div></li>
+<li class="act"><div class="acthead"><span class="tag fix">Trim</span><b>Losers</b></div>
+<div class="actbody">8+ clicks and no order, outside push and defend: bid −30%; pause at 15+ clicks. Day-1 losers to start with: B6 &quot;bamboo sheets king&quot; ($8.63 CPC, 0 orders), PAT B01M16WBW1 and B0F4873G4H on B6, CA B6 exact &quot;bamboo sheets queen&quot; and 3 cheap queen exacts with 0 orders, CA S4 exact &quot;satin sheets&quot;.</div></li>
+<li class="act"><div class="acthead"><span class="tag keep">Raise</span><b>Any converter projected to run out before 17:00 PT</b></div>
+<div class="actbody">1.5× per step, inside each product&#x27;s break-even TACoS. Never on a child within a day of its cap or with under 3 days of cover at deal pace.</div></li></ol></div>
+  <div class="window"><h3>14:00 PT</h3><ol class="acts"><li class="act"><div class="acthead"><span class="tag do">Allocation</span><b>Allocation trajectory per hero child</b></div>
+<div class="actbody">Projected units to the end of the deal vs committed units left. If the deal will sell its allocation organically, no ad raise: shift the money to profit. Watch US B4 King Burgundy and Twin Light Blue (raised), CA B6 King White 6pc, CA B4 children.</div></li>
+<li class="act"><div class="acthead"><span class="tag fix">Satin</span><b>Satin second read</b></div>
+<div class="actbody">If the PED stayed on and TACoS is still over 10.6%, cut satin profit-lane bases −15% and keep only the queen-term defence on non-hero colours.</div></li></ol></div>
+  <div class="window"><h3>17:00–21:00 PT evening peak</h3><ol class="acts"><li class="act"><div class="acthead"><span class="tag keep">Keep alive</span><b>No converter dark during 17:00–21:00 PT</b></div>
+<div class="actbody">About 30% of units land in these hours. On Day 1 US units ran 7% under plan here while 100+ campaigns were capped. Last raises at 17:00 PT for anything projected to cap before 21:00.</div></li>
+<li class="act"><div class="acthead"><span class="tag do">Hold</span><b>No new boosts</b></div>
+<div class="actbody">Late-day CPC falls as rivals cap. Let budget, not multipliers, take the cheap clicks. The low-bid broad catch-all (L7) is the only probe worth enabling, at $25/day and 0.4–0.5× event CPC.</div></li></ol></div>
+  <div class="window"><h3>End of event (Oct 8, 00:00 PT)</h3><ol class="acts"><li class="act"><div class="acthead"><span class="tag stop">Cancel</span><b>Pending moves that re-apply top-of-search boosts</b></div>
+<div class="actbody">The ecotero decision log still holds undeployed moves that would put TOS back on: FULL-GREY 441%, KING-WHITE 380%, QUEEN-WHITE-6PCS 220%, KING-TAUPE-6PCS 297%, Bamboo 4Pcs LTSF 731%, SS-S4 TWIN 900%. Cancel them before the Oct 8 sweep.</div></li>
+<li class="act"><div class="acthead"><span class="tag do">Revert</span><b>Oct 8 reverts (4,084 + intraday)</b></div>
+<div class="actbody">Apply within 2 hours of 00:00 PT, then read back every ad group for an ENABLED ad (two groups were dark for 10 hours on Day 1). Keep the standing rules: ROS/PP 0, non-deal containment, negatives.</div></li>
+<li class="act"><div class="acthead"><span class="tag do">Record</span><b>Fix the board before BFCM</b></div>
+<div class="actbody">Correct the closed-day end-of-day projection, the &quot;earned&quot; baseline (pre-event, not event start), the two plan-profit definitions, and the Canada cost model (Sellerboard Canada profit is about half the board&#x27;s).</div></li></ol></div>
+</section>
+
+<section id="verify">
+  <div class="head"><span class="num">09</span><h2>Artifact check: gaps, inconsistencies and corrections</h2></div>
+  <p>Everything in the Day-1 boards was re-read against the board's own data file (generated 05:44 PT Oct 7), Sellerboard and the ecotero ad data. These are the places where a number, an assumption or a conclusion doesn't hold.</p>
+  <div class="tbl"><table><thead><tr><th>#</th><th>Severity</th><th>Finding</th><th>Correction</th></tr></thead><tbody>
+  <tr><td class='n'>1</td><td><span class="pill bad">High</span></td><td><b>Canada&#x27;s profit is about 2× Sellerboard&#x27;s, and it drives the headline beat</b><div class='why'>Board Canada Day-1 profit before reserve: C$7,735 ($5,569). Sellerboard Canada net profit: $2,483. US agrees ($10,562 board vs $10,410 Sellerboard). Canada supplies about 78% of the &#x27;+87%&#x27; beat (C$5.5K vs a C$441 plan).</div></td><td>Report the beat as a range (+30% on a Sellerboard basis to +91% on the board&#x27;s) and reconcile Canada&#x27;s cost model (COGS, CA referral and FBA fees, landed cost to CA) before it is used for BFCM.</td></tr>
+<tr><td class='n'>2</td><td><span class="pill bad">High</span></td><td><b>The closed day still carries an end-of-day projection</b><div class='why'>In the data file, Oct 6 shows account tacosEod 18.8% vs the actual 8.8%; US B4 28.2% vs 9.2%; projected spend $803K and revenue $4.26M. The Day-2 end-of-day factor is being applied to Day 1.</div></td><td>For a closed day, end-of-day = actual. Only read the projection on the live day.</td></tr>
+<tr><td class='n'>3</td><td><span class="pill bad">High</span></td><td><b>Satin&#x27;s head-term rank verdict uses a stale read</b><div class='why'>Board 13a: &#x27;satin sheets 3 → 9, lost&#x27;. That was the 02:00–03:00 PT Oct 7 snapshot; at 04:00–05:00 PT it reads #2 (sponsored #2). Lesson L6 (&#x27;cutting satin&#x27;s ads cost rank&#x27;) rests on it.</div></td><td>satin sheets: held/gained (#3 → #2). satin sheets queen 6 → 9 and silk sheets queen 7 → 10 still lost. Re-read lesson L6 on tomorrow&#x27;s daily read.</td></tr>
+<tr><td class='n'>4</td><td><span class="pill bad">High</span></td><td><b>The Day-2 forecast wasn&#x27;t re-based on Day 1</b><div class='why'>Day 2 = about 0.67× the Day-1 plan, not Day-1 actuals: US B4 193 (sold 373), CA B4 31 (sold 148), CA B6 74 (sold 121). The allocation read and budgets key off it.</div></td><td>Re-base to about 0.7× Day-1 actuals by product (US B4 ≈ 260, CA B4 ≈ 100, CA B6 ≈ 85) and re-run the allocation read.</td></tr>
+<tr><td class='n'>5</td><td><span class="pill bad">High</span></td><td><b>Day-2 moves contradict the Day-1 lessons</b><div class='why'>M48 re-enabled exact &#x27;bamboo cooling sheets&#x27; at +618% TOS (lesson L1: boosts multiply CPC, not conversion). M63 adds satin Black hero ads while the satin PED makes Queen Black about $0 margin. M46 raised the 9 defence budgets to $337 combined against about $600 needed for B4 branded broad alone.</div></td><td>See the Day-2 plan: cap Cooling TOS at ≤ +100%, hold the satin part of M63 to Oct 8, size defence budgets from the run-out math.</td></tr>
+<tr><td class='n'>6</td><td><span class="pill bad">High</span></td><td><b>Pre-event spend is outside every Day-1 number</b><div class='why'>Event values were re-dated and applied Oct 5 19:00–22:00 PT; US SP spend ran $361–515/h about 5 hours before any deal (board 06). The Day-1 P&amp;L and the $740 boost premium count Oct 6 only.</div></td><td>Add Oct 5 evening to the event P&amp;L (see section 06). Event values should unlock at each deal&#x27;s own start.</td></tr>
+<tr><td class='n'>7</td><td><span class="pill warn">Medium</span></td><td><b>Ad-spend totals differ by source</b><div class='why'>Board: $7,682 (CA SP C$2,204). Sellerboard: $7,821. ecotero: $7,859 (CA SP C$2,242.70, plus C$35 of SB/SD; US SB/SD $294 vs the board&#x27;s $169). Per-product spend matches no single lens for US B6, Satin, CA B4/S4/S6.</div></td><td>Use ecotero (Marketing Stream) as the spend source of record, with one campaign-to-product mapping. Day-1 TACoS on that basis is about 9.0%, not 8.8%.</td></tr>
+<tr><td class='n'>8</td><td><span class="pill neutral">Low</span></td><td><b>Rest-of-search and product-page ACoS can&#x27;t be verified</b><div class='why'>Board 13b shows ROS 37% / PP 26% (deal) and 69% / 53% (no-deal). The ad data returns placement sales only for top of search; ROS + PP combined is about 31% (deal) and about 60% (no-deal).</div></td><td>Quote the combined figure, or show the source of the split.</td></tr>
+<tr><td class='n'>9</td><td><span class="pill warn">Medium</span></td><td><b>&#x27;What worked&#x27; includes campaigns over break-even</b><div class='why'>Board 13b lists Satin Queen Black &#x27;satin sheets&#x27; (ACoS 22% vs 10.6% BE), B4 branded broad (21% vs 17.6%) and the B6 conquest PAT (22% vs 15.4%) as models to copy, while its own rule is ACoS ≤ break-even. Queen Black earns about $0.94 before ads at the deal price.</div></td><td>Branded and conquest: keep, but say they ran above break-even. Satin Queen Black at a deal price: don&#x27;t copy.</td></tr>
+<tr><td class='n'>10</td><td><span class="pill warn">Medium</span></td><td><b>Plan spend mixes plan and normal days, so the overspend looks smaller than it was</b><div class='why'>$3,595 &#x27;plan&#x27; = $2,421 for deal products + $1,174 normal-day spend for products with no deal. Deal products spent $5,914: 2.4× their plan, not 2.1×.</div></td><td>Show deal-product plan vs actual separately.</td></tr>
+<tr><td class='n'>11</td><td><span class="pill warn">Medium</span></td><td><b>Two definitions of the plan&#x27;s profit</b><div class='why'>US B4 Day-1 plan profit is $1,226 (planToNow) on one field and $1,506 (planDay) on another; B6 $2,719 vs $3,100. The account plan is $5,031 one way and about $5,627 the other.</div></td><td>Pick one (the go/no-go day split) and label it.</td></tr>
+<tr><td class='n'>12</td><td><span class="pill warn">Medium</span></td><td><b>Break-even ACoS differs between boards</b><div class='why'>B4: 17.8 / 17.6 / 14.6–23.1 by size. B6: 14.5 / 15.4. CA B6: 9.5 / 9.3. Satin Fitted: 29.5 / 26.1. Verdicts flip near the line.</div></td><td>One break-even per product and size from the unit economics, used on every board.</td></tr>
+<tr><td class='n'>13</td><td><span class="pill warn">Medium</span></td><td><b>The satin deal record is contradictory</b><div class='why'>Lessons: &#x27;LD canceled (Sep 14)&#x27;. Calendar: &#x27;team-confirmed ~07:40 PT&#x27;. Fee list: &#x27;has issues, $0 sales at 08:28 PT&#x27;. Data file: LIVE 07:45–19:45 PT; 280 of 1,037 committed sold. The &#x27;1.4× lift&#x27; compares mixed windows.</div></td><td>Treat the satin lift as low confidence. Confirm deal status by price in the first hour of every deal window.</td></tr>
+<tr><td class='n'>14</td><td><span class="pill warn">Medium</span></td><td><b>The &#x27;earned&#x27; rank flag is measured from event start, not pre-event</b><div class='why'>CA B6 &#x27;bamboo sheets&#x27; is flagged earned (+17 from 33 at event start) but is 11 → 16 vs pre-event. US B6 &#x27;king size bamboo sheets set&#x27; is earned +5 while flat vs Oct 5.</div></td><td>Measure rank change from the pre-event day (Oct 5).</td></tr>
+<tr><td class='n'>15</td><td><span class="pill warn">Medium</span></td><td><b>Ads on out-of-stock children</b><div class='why'>Sellerboard: CA B6 Queen White 6pc at 0 FBA took $199 of ads on Oct 6; it is the &#x27;C$188, C$4.00 CPC&#x27; exact in board 13b. 7 CA SKUs at 0 FBA.</div></td><td>Hourly out-of-stock ad check (D3c): pause the ad and swap to an in-stock child.</td></tr>
+<tr><td class='n'>16</td><td><span class="pill warn">Medium</span></td><td><b>Unplanned deals were never priced</b><div class='why'>US Satin Fitted LD, Cooling Pillowcases LD, Closet Organizer BD; CA Satin Fitted and Sleep Sanctuary BDs. About $500 of fees; together about −$350 against a normal day.</div></td><td>Reconcile every live promotion against the plan at T−24h. Don&#x27;t run a deal whose expected margin doesn&#x27;t clear $100.</td></tr>
+<tr><td class='n'>17</td><td><span class="pill warn">Medium</span></td><td><b>Revenue basis differs from Sellerboard by 3–8% on US lines</b><div class='why'>Units match Sellerboard exactly (1,716). Revenue: board $87.1K vs Sellerboard $89.2K (US B4 +3.9%, B6 +3.3%, Satin +7.9%; Satin nets to $8,461 after $416 promotions). Per-product ad spend differs by ±$140–175 (campaign-to-product mapping).</div></td><td>State the revenue basis (deal price, net of promotions). Map shared campaigns once, with the same rule on every board.</td></tr>
+<tr><td class='n'>18</td><td><span class="pill neutral">Low</span></td><td><b>The &#x27;normal day&#x27; baseline excludes 100%-promotion units without saying so</b><div class='why'>513 units/day matches Sellerboard only when about 400 units sold at 100% promotion (mostly COOLINENS cooling sheets) are left out; the full average is 542.</div></td><td>Label the baseline &#x27;excluding 100%-off units&#x27;.</td></tr>
+<tr><td class='n'>19</td><td><span class="pill neutral">Low</span></td><td><b>The B4 PED&#x27;s excluded SKUs are in the deal data</b><div class='why'>The calendar says Queen White/Creme were excluded from the B4 PED; the data file has both as PED children with 29 and 16 committed units, both at or past their cap.</div></td><td>Check the promotion page. Either way, keep both off ads (about 2 days of cover at deal pace).</td></tr>
+<tr><td class='n'>20</td><td><span class="pill neutral">Low</span></td><td><b>Placement-cut timing disagrees between boards</b><div class='why'>Board 13b: rest of search/product pages to 0 at 15:11 CT (13:11 PT). Observation log: 13:20 &#x27;yours&#x27;. The 5-hour read (spend −51%, sales −34%) has no untouched control.</div></td><td>Use one clock (PT) on every board. Treat the placement read as directional.</td></tr>
+<tr><td class='n'>21</td><td><span class="pill neutral">Low</span></td><td><b>16 &#x27;unregistered&#x27; campaigns capped</b><div class='why'>Campaigns outside the event&#x27;s plan registry spent and ran out of budget. The event rules didn&#x27;t govern them.</div></td><td>Register or pause every campaign that serves a deal product before the event.</td></tr>
+  </tbody></table></div>
+</section>
+
+<footer>
+  <div>Sources: the PBDD board data file (artifact GskBNkwVzoYNkQ4VBj85Xi, generated 2026-10-07 12:44 UTC), boards 01–13c of the same artifact, Sellerboard (Ecotero account), ecotero PPC campaign/placement data and decision log. Day-1 ad orders are on 7-day attribution and still settling; spend, clicks, units and revenue are final.</div>
+  <div>Profit = contribution after a 7.5% returns reserve, minus all ad spend and Amazon deal fees. Canada converted at 0.72 USD/CAD.</div>
+</footer>
+</div>
