@@ -1,0 +1,62 @@
+{
+ "Twin": {
+  "price": 62.99,
+  "cogs": 20.79,
+  "fba": 7.9,
+  "units": 450,
+  "referral": 9.45,
+  "margin": 21.35,
+  "be_acos": 0.3389,
+  "target_acos": 0.1694,
+  "max_acc_acos": 0.2542,
+  "rank_ceiling_acos": 0.5083
+ },
+ "Full": {
+  "price": 67.99,
+  "cogs": 24.73,
+  "fba": 8.31,
+  "units": 672,
+  "referral": 10.2,
+  "margin": 21.25,
+  "be_acos": 0.3125,
+  "target_acos": 0.1562,
+  "max_acc_acos": 0.2344,
+  "rank_ceiling_acos": 0.4688
+ },
+ "Queen": {
+  "price": 79.99,
+  "cogs": 26.2,
+  "fba": 8.5,
+  "units": 2376,
+  "referral": 12.0,
+  "margin": 29.79,
+  "be_acos": 0.3724,
+  "target_acos": 0.1862,
+  "max_acc_acos": 0.2793,
+  "rank_ceiling_acos": 0.5586
+ },
+ "King": {
+  "price": 84.99,
+  "cogs": 30.04,
+  "fba": 8.9,
+  "units": 1398,
+  "referral": 12.75,
+  "margin": 29.8,
+  "be_acos": 0.3506,
+  "target_acos": 0.1753,
+  "max_acc_acos": 0.263,
+  "rank_ceiling_acos": 0.5259
+ },
+ "Cal King": {
+  "price": 86.99,
+  "cogs": 30.9,
+  "fba": 8.73,
+  "units": 450,
+  "referral": 13.05,
+  "margin": 30.81,
+  "be_acos": 0.3542,
+  "target_acos": 0.1771,
+  "max_acc_acos": 0.2656,
+  "rank_ceiling_acos": 0.5313
+ }
+}
