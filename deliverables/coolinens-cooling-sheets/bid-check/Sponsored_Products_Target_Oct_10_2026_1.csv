@@ -1,0 +1,13 @@
+﻿State,Keyword,Target match type,Status,Suggested bid (low)(USD),Suggested bid (median)(USD),Suggested bid (high)(USD),Bid (USD),Impressions,Top-of-search impression share,Total cost (USD),Purchases,Sales (USD),ROAS
+ENABLED,cooling sheets full size,Exact,Paused,1.76,1.96,2.21,0.1,0,0,0,0,0,0
+ENABLED,full size sheets cooling,Exact,Paused,1.67,2.23,2.79,0.1,0,0,0,0,0,0
+ENABLED,cooling sheets full,Exact,Paused,1.63,1.81,2.29,0.1,0,0,0,0,0,0
+ENABLED,cooling full size sheets,Exact,Paused,1.17,1.56,1.95,0.1,0,0,0,0,0,0
+ENABLED,full cooling sheets,Exact,Paused,1.63,2.17,2.71,0.1,0,0,0,0,0,0
+ENABLED,full sheets cooling,Exact,Paused,1.46,1.66,2.16,0.1,0,0,0,0,0,0
+ENABLED,cooling sheets full size bed,Exact,Paused,1.25,1.67,2.09,0.1,0,0,0,0,0,0
+ENABLED,full size cooling sheets,Exact,Paused,1.62,2.16,2.7,0.1,0,0,0,0,0,0
+ENABLED,full size bed sheets cooling,Exact,Paused,1.62,2.16,2.7,0.1,0,0,0,0,0,0
+ENABLED,cooling bed sheets full,Exact,Paused,1.65,2.07,2.39,0.1,0,0,0,0,0,0
+ENABLED,full bed sheets cooling,Exact,Paused,1.5,2,2.5,0.1,0,0,0,0,0,0
+ENABLED,full sheet set cooling,Exact,Paused,2.38,3.69,4.58,0.1,0,0,0,0,0,0
