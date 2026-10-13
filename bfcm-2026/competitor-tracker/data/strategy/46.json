@@ -1,0 +1,95 @@
+{
+ "pid": 46,
+ "our_hero_asins": [
+  [
+   "B0FGZZRZML",
+   1
+  ]
+ ],
+ "our_child_asins_total": 1,
+ "competitors": [
+  {
+   "pid": 46,
+   "cid": 1482,
+   "parent_asin": "B0CRH88PXZ",
+   "brand": "WDCOZY",
+   "import_file": "VariationKeyword_US__20260902.xlsx",
+   "imported_at": "2026-09-02T19:28:24.866Z",
+   "keywords": 4114,
+   "traffic": 691328,
+   "organic_pct": 0.9625961895077294,
+   "ad_pct": 0.03740381049226995,
+   "top10_pct": 0.21651661729309388,
+   "top_kw": "king size comforter set",
+   "top_kw_pct": 0.04153889326050731,
+   "reach": {
+    "OR": 0.9990019209405666,
+    "SP": 0.3829137543973338,
+    "SB": 0.057009118681725604,
+    "AC": 0.02869549620440659,
+    "SOR": 0.35318401684873174
+   },
+   "hero_child_asins": [
+    [
+     "B0DJ6WWZP2",
+     0.24701209140412925
+    ],
+    [
+     "B0B5LF9YXF",
+     0.1932790808805085
+    ],
+    [
+     "B0DJ6XGCFD",
+     0.1726479352952926
+    ],
+    [
+     "B0B5LDJ7CF",
+     0.10488296036537034
+    ],
+    [
+     "B0FCLC6282",
+     0.04865889202961909
+    ],
+    [
+     "B0DJ6XP6NZ",
+     0.04161209176821136
+    ]
+   ],
+   "child_asins_total": 66,
+   "contested": 422,
+   "we_win": 11,
+   "we_lose": 355,
+   "our_zero": 348,
+   "theirs_only_kw": 3692,
+   "theirs_only_share": 0.6278669459359378,
+   "our_share": 0.000897464986581381,
+   "ppc_we_run_none": 225,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 25650.4469,
+   "comparable": false,
+   "days_apart": 24,
+   "owned_buckets": [
+    [
+     "Quilt|Set",
+     0.08322966811701536
+    ],
+    [
+     "Quilt|King",
+     0.06319720885021292
+    ],
+    [
+     "Quilt",
+     0.06309161497870765
+    ],
+    [
+     "Quilt|Queen",
+     0.058846162747639326
+    ],
+    [
+     "Bedspread",
+     0.046875
+    ]
+   ]
+  }
+ ]
+}

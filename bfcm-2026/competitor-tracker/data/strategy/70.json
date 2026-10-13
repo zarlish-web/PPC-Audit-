@@ -1,0 +1,754 @@
+{
+ "pid": 70,
+ "our_hero_asins": [
+  [
+   "B0H5XBSQ71",
+   0.15975644888346552
+  ],
+  [
+   "B0H5WV9RBQ",
+   0.13802826370879576
+  ],
+  [
+   "B0H5X5VGDP",
+   0.12890409191155552
+  ],
+  [
+   "B0H5WWD96B",
+   0.12132536759450424
+  ],
+  [
+   "B0H5WWMPNN",
+   0.10686753413830183
+  ],
+  [
+   "B0H5X6W132",
+   0.1007216732138719
+  ],
+  [
+   "B0H5WQT8YF",
+   0.08088195063833156
+  ]
+ ],
+ "our_child_asins_total": 12,
+ "competitors": [
+  {
+   "pid": 70,
+   "cid": 1874,
+   "parent_asin": "B0HFSJ3HLW",
+   "brand": "Elegear",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T10:22:07.305Z",
+   "keywords": 546,
+   "traffic": 12595,
+   "organic_pct": 0.8238290353314806,
+   "ad_pct": 0.17617096466851923,
+   "top10_pct": 0.6918618499404525,
+   "top_kw": "cooling pillow cases",
+   "top_kw_pct": 0.39904724096863836,
+   "reach": {
+    "OR": 0.9926161175069472,
+    "SP": 0.7178245335450576,
+    "SB": 0.04525605398967844,
+    "SBV": 0.07185391028185788,
+    "SOR": 0.7516474791583961
+   },
+   "hero_child_asins": [
+    [
+     "B086V7TPDQ",
+     0.45826128679137407
+    ],
+    [
+     "B086V2N4QX",
+     0.34975750742156586
+    ]
+   ],
+   "child_asins_total": 19,
+   "contested": 146,
+   "we_win": 76,
+   "we_lose": 55,
+   "our_zero": 30,
+   "theirs_only_kw": 400,
+   "theirs_only_share": 0.1811036125446606,
+   "our_share": 0.7946489712068348,
+   "ppc_we_run_none": 23,
+   "ppc_they_more_aggressive": 7,
+   "ad_gap": 1292.8569999999997,
+   "comparable": false,
+   "days_apart": 8,
+   "owned_buckets": [
+    [
+     "Cooling Pillowcase",
+     0.664073044859071
+    ],
+    [
+     "Cooling Pillowcase|King",
+     0.02016673283048829
+    ],
+    [
+     "Cooling Pillowcase|Queen",
+     0.005160778086542279
+    ],
+    [
+     "Cooling Pillowcase|Standard",
+     0.0003969829297340214
+    ]
+   ]
+  },
+  {
+   "pid": 70,
+   "cid": 1871,
+   "parent_asin": "B0GS2D7MBT",
+   "brand": "Bedsure",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T08:55:25.776Z",
+   "keywords": 2045,
+   "traffic": 38313,
+   "organic_pct": 0.4058418317542347,
+   "ad_pct": 0.5941581682457653,
+   "top10_pct": 0.2983060579959805,
+   "top_kw": "cooling pillow cases",
+   "top_kw_pct": 0.10505572521076396,
+   "reach": {
+    "OR": 0.5835617153446611,
+    "SP": 0.20794508391407615,
+    "SB": 0.6478218881319656,
+    "SOR": 0.23861352543523087
+   },
+   "hero_child_asins": [
+    [
+     "B0CP3NQSTG",
+     0.6220067218669924
+    ],
+    [
+     "B0CP3P1HRF",
+     0.3354490354453336
+    ]
+   ],
+   "child_asins_total": 7,
+   "contested": 211,
+   "we_win": 97,
+   "we_lose": 98,
+   "our_zero": 42,
+   "theirs_only_kw": 1834,
+   "theirs_only_share": 0.611933286351891,
+   "our_share": 0.5598837476450857,
+   "ppc_we_run_none": 780,
+   "ppc_they_more_aggressive": 4,
+   "ad_gap": 22674.968299999997,
+   "comparable": false,
+   "days_apart": 9,
+   "owned_buckets": [
+    [
+     "Cooling Pillowcase",
+     0.18129616579228983
+    ],
+    [
+     "Cooling Pillowcase|King",
+     0.015895387988411246
+    ],
+    [
+     "Cooling Pillowcase|Queen",
+     0.003132096155351969
+    ],
+    [
+     "Cooling Pillowcase|Standard",
+     0.00020880641035679796
+    ]
+   ]
+  },
+  {
+   "pid": 70,
+   "cid": 1859,
+   "parent_asin": "B0F53TNFSX",
+   "brand": "Breescape",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T09:00:25.076Z",
+   "keywords": 1207,
+   "traffic": 25040,
+   "organic_pct": 0.3706715455271565,
+   "ad_pct": 0.6293284544728435,
+   "top10_pct": 0.6414936102236422,
+   "top_kw": "cooling pillow cases",
+   "top_kw_pct": 0.4505191693290735,
+   "reach": {
+    "OR": 0.8664536741214057,
+    "SP": 0.9612220447284345,
+    "SB": 0.6791932907348243,
+    "SBV": 0.6243610223642172,
+    "AC": 0.006869009584664537,
+    "SOR": 0.9081070287539936
+   },
+   "hero_child_asins": [
+    [
+     "B0DSQ112N7",
+     0.5679658812728275
+    ],
+    [
+     "B0DSQ178L4",
+     0.15164222162937518
+    ],
+    [
+     "B0DSQ1KYQ8",
+     0.05437733239850777
+    ],
+    [
+     "B0DSQ26ZYC",
+     0.04709646425022112
+    ]
+   ],
+   "child_asins_total": 13,
+   "contested": 170,
+   "we_win": 81,
+   "we_lose": 68,
+   "our_zero": 38,
+   "theirs_only_kw": 1037,
+   "theirs_only_share": 0.21437699680511182,
+   "our_share": 0.6606080320958538,
+   "ppc_we_run_none": 459,
+   "ppc_they_more_aggressive": 10,
+   "ad_gap": 14808.383900000004,
+   "comparable": false,
+   "days_apart": 9,
+   "owned_buckets": [
+    [
+     "Cooling Pillowcase",
+     0.6357827476038339
+    ],
+    [
+     "Cooling Pillowcase|King",
+     0.03598242811501597
+    ],
+    [
+     "Cooling Pillowcase|Queen",
+     0.0075878594249201275
+    ],
+    [
+     "Cooling Pillowcase|Standard",
+     0.0006789137380191693
+    ]
+   ]
+  },
+  {
+   "pid": 70,
+   "cid": 1873,
+   "parent_asin": "B0B75178W1",
+   "brand": "CHOSHOME",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T09:15:12.282Z",
+   "keywords": 499,
+   "traffic": 17999,
+   "organic_pct": 0.8252617812100672,
+   "ad_pct": 0.1747382187899328,
+   "top10_pct": 0.6135896438691039,
+   "top_kw": "cooling pillow cases",
+   "top_kw_pct": 0.24295794210789487,
+   "reach": {
+    "OR": 0.9953886327018168,
+    "SP": 0.5976443135729763,
+    "SBV": 0.4869714984165787,
+    "AC": 0.010833935218623256,
+    "SOR": 0.6268126007000389
+   },
+   "hero_child_asins": [
+    [
+     "B08X2KBD67",
+     0.8474919068971113
+    ]
+   ],
+   "child_asins_total": 23,
+   "contested": 125,
+   "we_win": 51,
+   "we_lose": 67,
+   "our_zero": 35,
+   "theirs_only_kw": 374,
+   "theirs_only_share": 0.17112061781210067,
+   "our_share": 0.7303035751745632,
+   "ppc_we_run_none": 40,
+   "ppc_they_more_aggressive": 3,
+   "ad_gap": 2343.1083,
+   "comparable": false,
+   "days_apart": 8,
+   "owned_buckets": [
+    [
+     "Cooling Pillowcase",
+     0.3905772542919051
+    ],
+    [
+     "Cooling Pillowcase|King",
+     0.012389577198733263
+    ],
+    [
+     "Cooling Pillowcase|Queen",
+     0.00022223456858714373
+    ],
+    [
+     "Cooling Pillowcase|Standard",
+     0.00011111728429357187
+    ]
+   ]
+  },
+  {
+   "pid": 70,
+   "cid": 1868,
+   "parent_asin": "B0DGH3JKZ5",
+   "brand": "Coop Home Goods",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T09:30:27.720Z",
+   "keywords": 214,
+   "traffic": 26180,
+   "organic_pct": 0.9925127425515661,
+   "ad_pct": 0.00748725744843392,
+   "top10_pct": 0.7299465240641712,
+   "top_kw": "coop pillow",
+   "top_kw_pct": 0.3707028265851795,
+   "reach": {
+    "OR": 1,
+    "SP": 0.0038579067990832695,
+    "SOR": 0.5616501145912911
+   },
+   "hero_child_asins": [
+    [
+     "B0CQBCS63N",
+     0.3378880767418956
+    ],
+    [
+     "B08B448344",
+     0.26678298187649246
+    ],
+    [
+     "B0CQB8LNYY",
+     0.15006743485809212
+    ],
+    [
+     "B0CQB3P54Y",
+     0.10795268822046025
+    ]
+   ],
+   "child_asins_total": 7,
+   "contested": 45,
+   "we_win": 24,
+   "we_lose": 15,
+   "our_zero": 13,
+   "theirs_only_kw": 169,
+   "theirs_only_share": 0.6785332314744079,
+   "our_share": 0.6505559337417745,
+   "ppc_we_run_none": 15,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 196.01640000000003,
+   "comparable": false,
+   "days_apart": 8,
+   "owned_buckets": [
+    [
+     "Cooling Pillowcase",
+     0.20336134453781513
+    ],
+    [
+     "Cooling Pillowcase|King",
+     0.0035141329258976317
+    ],
+    [
+     "Cooling Pillowcase|Queen",
+     0
+    ]
+   ]
+  },
+  {
+   "pid": 70,
+   "cid": 1876,
+   "parent_asin": "B099JMGRBY",
+   "brand": "Fittia",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T09:09:53.401Z",
+   "keywords": 429,
+   "traffic": 16144,
+   "organic_pct": 0.8876912784935578,
+   "ad_pct": 0.11230872150644199,
+   "top10_pct": 0.7029236868186323,
+   "top_kw": "cooling pillow cases",
+   "top_kw_pct": 0.2257804757185332,
+   "reach": {
+    "OR": 0.9964692765113974,
+    "SP": 0.6258052527254707,
+    "SB": 0.5755698711595639,
+    "SOR": 0.6508919722497523
+   },
+   "hero_child_asins": [
+    [
+     "B09DJY94HD",
+     0.47429775183112993
+    ],
+    [
+     "B099J7KMK5",
+     0.302908990413334
+    ],
+    [
+     "B099HV3SX9",
+     0.12864999238229274
+    ]
+   ],
+   "child_asins_total": 13,
+   "contested": 88,
+   "we_win": 37,
+   "we_lose": 44,
+   "our_zero": 28,
+   "theirs_only_kw": 341,
+   "theirs_only_share": 0.347001982160555,
+   "our_share": 0.7511828984479756,
+   "ppc_we_run_none": 20,
+   "ppc_they_more_aggressive": 3,
+   "ad_gap": 1721.0784999999996,
+   "comparable": false,
+   "days_apart": 8,
+   "owned_buckets": [
+    [
+     "Cooling Pillowcase",
+     0.3585232903865213
+    ],
+    [
+     "Cooling Pillowcase|King",
+     0.009724975222993062
+    ],
+    [
+     "Cooling Pillowcase|Queen",
+     0.0013627353815659068
+    ],
+    [
+     "Cooling Pillowcase|Standard",
+     0.0003097125867195243
+    ]
+   ]
+  },
+  {
+   "pid": 70,
+   "cid": 1860,
+   "parent_asin": "B0CN6YFBVJ",
+   "brand": "HOMFINE",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T09:05:07.373Z",
+   "keywords": 741,
+   "traffic": 17008,
+   "organic_pct": 0.9595514640169331,
+   "ad_pct": 0.040453239651928506,
+   "top10_pct": 0.4160395108184384,
+   "top_kw": "cooling pillow cases",
+   "top_kw_pct": 0.13846425211665098,
+   "reach": {
+    "OR": 0.9941792097836313,
+    "SP": 0.23876999059266227,
+    "SB": 0.20896048918156163,
+    "SBV": 0.10871354656632173,
+    "AC": 0.0015286923800564441,
+    "SOR": 0.47142521166509876
+   },
+   "hero_child_asins": [
+    [
+     "B0BLT2MCT6",
+     0.5532656281599034
+    ],
+    [
+     "B0DJ7B3X2K",
+     0.149043120535331
+    ],
+    [
+     "B0FRLJV2B3",
+     0.14663496471044546
+    ]
+   ],
+   "child_asins_total": 22,
+   "contested": 202,
+   "we_win": 102,
+   "we_lose": 82,
+   "our_zero": 44,
+   "theirs_only_kw": 539,
+   "theirs_only_share": 0.3180856067732832,
+   "our_share": 0.7413113906337931,
+   "ppc_we_run_none": 26,
+   "ppc_they_more_aggressive": 2,
+   "ad_gap": 669.0332000000001,
+   "comparable": false,
+   "days_apart": 8,
+   "owned_buckets": [
+    [
+     "Cooling Pillowcase",
+     0.2530573847601129
+    ],
+    [
+     "Cooling Pillowcase|King",
+     0.04192144873000941
+    ],
+    [
+     "Cooling Pillowcase|Queen",
+     0.0055856067732831605
+    ],
+    [
+     "Cooling Pillowcase|Standard",
+     5.8795860771401695e-05
+    ]
+   ]
+  },
+  {
+   "pid": 70,
+   "cid": 1893,
+   "parent_asin": "B0CFY7SVV7",
+   "brand": "Marchpower",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T09:33:13.038Z",
+   "keywords": 205,
+   "traffic": 5423,
+   "organic_pct": 0.9321121519454174,
+   "ad_pct": 0.06788784805458234,
+   "top10_pct": 0.847870182555781,
+   "top_kw": "cooling pillow cases",
+   "top_kw_pct": 0.6680803983035221,
+   "reach": {
+    "OR": 0.9380416743499908,
+    "SP": 0.7855430573483312,
+    "SOR": 0.786833855799373
+   },
+   "hero_child_asins": [
+    [
+     "B0BVB4W16P",
+     0.747709368184586
+    ],
+    [
+     "B08B7VPPND",
+     0.2364316470052304
+    ]
+   ],
+   "child_asins_total": 9,
+   "contested": 82,
+   "we_win": 46,
+   "we_lose": 20,
+   "our_zero": 27,
+   "theirs_only_kw": 123,
+   "theirs_only_share": 0.0850082979900424,
+   "our_share": 0.8998744507219083,
+   "ppc_we_run_none": 41,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 358.9991,
+   "comparable": false,
+   "days_apart": 8,
+   "owned_buckets": [
+    [
+     "Cooling Pillowcase",
+     0.7875714549142541
+    ],
+    [
+     "Cooling Pillowcase|King",
+     0.029135165037801954
+    ],
+    [
+     "Cooling Pillowcase|Queen",
+     0.002028397565922921
+    ],
+    [
+     "Cooling Pillowcase|Standard",
+     0
+    ]
+   ]
+  },
+  {
+   "pid": 70,
+   "cid": 1864,
+   "parent_asin": "B0DL5R7SSB",
+   "brand": "QUTOOL",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T09:25:16.700Z",
+   "keywords": 408,
+   "traffic": 15503,
+   "organic_pct": 0.6025155131264917,
+   "ad_pct": 0.39748448687350835,
+   "top10_pct": 0.8037799135651165,
+   "top_kw": "cooling pillow cases",
+   "top_kw_pct": 0.5164806811584854,
+   "reach": {
+    "OR": 0.9428497710120621,
+    "SP": 0.7854608785396375,
+    "SB": 0.05508611236534864,
+    "SOR": 0.7779784557827517
+   },
+   "hero_child_asins": [
+    [
+     "B0DLB4PQS8",
+     0.41326717193803025
+    ],
+    [
+     "B0FXWZM587",
+     0.16167220673498983
+    ],
+    [
+     "B0DL9Y3JVW",
+     0.13163620193500344
+    ],
+    [
+     "B0DL9ZXKXM",
+     0.11897067572759114
+    ]
+   ],
+   "child_asins_total": 15,
+   "contested": 94,
+   "we_win": 49,
+   "we_lose": 33,
+   "our_zero": 18,
+   "theirs_only_kw": 314,
+   "theirs_only_share": 0.16267819131780945,
+   "our_share": 0.7586781233460975,
+   "ppc_we_run_none": 67,
+   "ppc_they_more_aggressive": 5,
+   "ad_gap": 5291.1868,
+   "comparable": false,
+   "days_apart": 8,
+   "owned_buckets": [
+    [
+     "Cooling Pillowcase",
+     0.7519189834225634
+    ],
+    [
+     "Cooling Pillowcase|King",
+     0.014577823647036057
+    ],
+    [
+     "Cooling Pillowcase|Queen",
+     0.006514868090047088
+    ],
+    [
+     "Cooling Pillowcase|Standard",
+     0
+    ]
+   ]
+  },
+  {
+   "pid": 70,
+   "cid": 483,
+   "parent_asin": "B0C13Y18JW",
+   "brand": "REST",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T08:44:40.394Z",
+   "keywords": 4235,
+   "traffic": 345367,
+   "organic_pct": 0.2641106081356929,
+   "ad_pct": 0.7358896698294859,
+   "top10_pct": 0.41011156248280817,
+   "top_kw": "cooling pillow cases",
+   "top_kw_pct": 0.16496654283704001,
+   "reach": {
+    "OR": 0.8503418103061381,
+    "SP": 0.8527276780931589,
+    "SB": 0.9219902306821439,
+    "SBV": 0.6144159690995376,
+    "AC": 0.015589213792863823,
+    "SOR": 0.8586286472071738
+   },
+   "hero_child_asins": [
+    [
+     "B0C141VGM6",
+     0.29325147177160743
+    ],
+    [
+     "B0C144NQ87",
+     0.21961811398585068
+    ],
+    [
+     "B0C144HZHL",
+     0.10581987632696457
+    ],
+    [
+     "B0D4YFNCW6",
+     0.0875619711528332
+    ],
+    [
+     "B0D4YCZSLY",
+     0.06997001164509598
+    ],
+    [
+     "B0C14212V6",
+     0.061367988979537
+    ]
+   ],
+   "child_asins_total": 12,
+   "contested": 254,
+   "we_win": 59,
+   "we_lose": 179,
+   "our_zero": 57,
+   "theirs_only_kw": 3981,
+   "theirs_only_share": 0.534434384292651,
+   "our_share": 0.123669774121683,
+   "ppc_we_run_none": 1936,
+   "ppc_they_more_aggressive": 11,
+   "ad_gap": 253193.9968,
+   "comparable": false,
+   "days_apart": 9,
+   "owned_buckets": [
+    [
+     "Cooling Pillowcase",
+     0.22764189977618013
+    ],
+    [
+     "Cooling Pillowcase|King",
+     0.011219948634351284
+    ],
+    [
+     "Cooling Pillowcase|Queen",
+     0.00031850176768481064
+    ],
+    [
+     "Cooling Pillowcase|Standard",
+     0.00022874217861000037
+    ]
+   ]
+  },
+  {
+   "pid": 70,
+   "cid": 1888,
+   "parent_asin": "B0DJ933TY2",
+   "brand": "Rifens",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T09:39:32.036Z",
+   "keywords": 164,
+   "traffic": 8663,
+   "organic_pct": 1,
+   "ad_pct": 0,
+   "top10_pct": 0.7840240101581438,
+   "top_kw": "cooling pillow cases",
+   "top_kw_pct": 0.4161375966755166,
+   "reach": {
+    "OR": 1,
+    "AC": 0.022971257070298973
+   },
+   "hero_child_asins": [
+    [
+     "B0DJ933TY2",
+     1
+    ]
+   ],
+   "child_asins_total": 1,
+   "contested": 56,
+   "we_win": 28,
+   "we_lose": 20,
+   "our_zero": 16,
+   "theirs_only_kw": 108,
+   "theirs_only_share": 0.29170033475701257,
+   "our_share": 0.8490819135221769,
+   "ppc_we_run_none": 0,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 0,
+   "comparable": false,
+   "days_apart": 8,
+   "owned_buckets": [
+    [
+     "Cooling Pillowcase",
+     0.6635114856285351
+    ],
+    [
+     "Cooling Pillowcase|King",
+     0.0032321366732078957
+    ],
+    [
+     "Cooling Pillowcase|Standard",
+     0
+    ]
+   ]
+  }
+ ]
+}

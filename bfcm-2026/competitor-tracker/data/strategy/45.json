@@ -1,0 +1,2365 @@
+{
+ "pid": 45,
+ "our_hero_asins": [
+  [
+   "B0F7LY3K8C",
+   0.603254005563278
+  ],
+  [
+   "B0F7M19VYV",
+   0.12266537666298315
+  ],
+  [
+   "B0F7LW9GQN",
+   0.07215509263282947
+  ],
+  [
+   "B0F7LY4DSG",
+   0.04496038566345738
+  ]
+ ],
+ "our_child_asins_total": 22,
+ "competitors": [
+  {
+   "pid": 45,
+   "cid": 27,
+   "parent_asin": "B0G5N99X9R",
+   "brand": "Hotel Sheets Direct",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T03:31:41.962Z",
+   "keywords": 4094,
+   "traffic": 451969,
+   "organic_pct": 0.6071584272372669,
+   "ad_pct": 0.3928415727627336,
+   "top10_pct": 0.5669282627790844,
+   "top_kw": "hotel",
+   "top_kw_pct": 0.26144492210748965,
+   "reach": {
+    "OR": 0.9799632275664923,
+    "SP": 0.9036371963563873,
+    "SB": 0.47678712478068186,
+    "SBV": 0.12640247450599487,
+    "AC": 0.3227168234989568,
+    "SOR": 0.6762145191373745
+   },
+   "hero_child_asins": [
+    [
+     "B01N9L2O9P",
+     0.3000183525380645
+    ],
+    [
+     "B01N0UB2GO",
+     0.20157930598885687
+    ],
+    [
+     "B072WD91XH",
+     0.09612311888365432
+    ],
+    [
+     "B072WV76WK",
+     0.05570462499464581
+    ],
+    [
+     "B07RJBYJ9L",
+     0.045681171197769994
+    ],
+    [
+     "B07Y8TTK9B",
+     0.0407096298316319
+    ],
+    [
+     "B07Y8VNQ4P",
+     0.03852705766501585
+    ],
+    [
+     "B07V49Z6H6",
+     0.037764204605685255
+    ]
+   ],
+   "child_asins_total": 57,
+   "contested": 276,
+   "we_win": 84,
+   "we_lose": 157,
+   "our_zero": 122,
+   "theirs_only_kw": 3818,
+   "theirs_only_share": 0.8990373233562479,
+   "our_share": 0.06414756009433709,
+   "ppc_we_run_none": 945,
+   "ppc_they_more_aggressive": 12,
+   "ad_gap": 173881.32269999993,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Cooling",
+     0.021023565775528854
+    ],
+    [
+     "Cooling|Queen",
+     0.012204376848854679
+    ],
+    [
+     "Cooling|King",
+     0.0029227668269283954
+    ],
+    [
+     "Cooling|Twin",
+     0.0011615840909442905
+    ],
+    [
+     "Cooling|Full",
+     0.0010885702337992207
+    ]
+   ]
+  },
+  {
+   "pid": 45,
+   "cid": 4,
+   "parent_asin": "B0CZQ52MTQ",
+   "brand": "Pure Bamboo",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T03:14:56.937Z",
+   "keywords": 8283,
+   "traffic": 2565055,
+   "organic_pct": 0.4648594811807159,
+   "ad_pct": 0.5351407059497737,
+   "top10_pct": 0.3861983466241465,
+   "top_kw": "bamboo sheets",
+   "top_kw_pct": 0.15879464572884402,
+   "reach": {
+    "OR": 0.922259756613406,
+    "SP": 0.8806310196077667,
+    "SB": 0.8210506207469236,
+    "SBV": 0.8831019217911507,
+    "AC": 0.2663467255088098,
+    "SOR": 0.8832204377683909
+   },
+   "hero_child_asins": [
+    [
+     "B07MZ4GKZH",
+     0.3001745338317679
+    ],
+    [
+     "B079RXWGSD",
+     0.11508431524864907
+    ],
+    [
+     "B07DZTQ4JC",
+     0.10782885520159292
+    ],
+    [
+     "B074CHDX7V",
+     0.09977515288890562
+    ],
+    [
+     "B07DZMB498",
+     0.046341144116899664
+    ],
+    [
+     "B079RW9S26",
+     0.04436401505571401
+    ],
+    [
+     "B07MZ9223H",
+     0.042950415404130575
+    ],
+    [
+     "B07J9YPTTG",
+     0.023053885993541783
+    ],
+    [
+     "B0DNSSYC77",
+     0.018835139743275883
+    ],
+    [
+     "B07MZMHBRN",
+     0.018093669727902755
+    ]
+   ],
+   "child_asins_total": 131,
+   "contested": 303,
+   "we_win": 13,
+   "we_lose": 266,
+   "our_zero": 137,
+   "theirs_only_kw": 7980,
+   "theirs_only_share": 0.9062199446015777,
+   "our_share": 0.011933583329962808,
+   "ppc_we_run_none": 3772,
+   "ppc_they_more_aggressive": 33,
+   "ad_gap": 1360216.664199999,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Cooling",
+     0.030651584468949007
+    ],
+    [
+     "Cooling|King",
+     0.011949061521097988
+    ],
+    [
+     "Cooling|Queen",
+     0.005664985741046488
+    ],
+    [
+     "Cooling|Full",
+     0.0014592279697706286
+    ],
+    [
+     "Cooling|Twin",
+     0.00048303057829169357
+    ]
+   ]
+  },
+  {
+   "pid": 45,
+   "cid": 3,
+   "parent_asin": "B07K6SYX8L",
+   "brand": "Bambaw ",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T00:53:45.260Z",
+   "keywords": 2137,
+   "traffic": 407949,
+   "organic_pct": 0.5037485506766772,
+   "ad_pct": 0.49625152776450027,
+   "top10_pct": 0.5642666117578423,
+   "top_kw": "bamboo sheets",
+   "top_kw_pct": 0.22335635091641357,
+   "reach": {
+    "OR": 0.9466820607477896,
+    "SP": 0.8267479513370544,
+    "SB": 0.000431426477329274,
+    "SBV": 0.36365084851292684,
+    "AC": 0.0034146425165890834,
+    "SOR": 0.8423356841173775
+   },
+   "hero_child_asins": [
+    [
+     "B0DR99Q37Y",
+     0.5472355145658468
+    ],
+    [
+     "B0DR98VW37",
+     0.09917418776979599
+    ],
+    [
+     "B0F2J1742T",
+     0.07385168770034758
+    ],
+    [
+     "B0DR98HVG3",
+     0.05459649956508052
+    ],
+    [
+     "B0H3BQSQ1X",
+     0.05172148616641167
+    ]
+   ],
+   "child_asins_total": 56,
+   "contested": 261,
+   "we_win": 30,
+   "we_lose": 209,
+   "our_zero": 114,
+   "theirs_only_kw": 1876,
+   "theirs_only_share": 0.6768664710539798,
+   "our_share": 0.07058089121475228,
+   "ppc_we_run_none": 578,
+   "ppc_they_more_aggressive": 29,
+   "ad_gap": 195395.95820000005,
+   "comparable": false,
+   "days_apart": 14,
+   "owned_buckets": [
+    [
+     "Cooling",
+     0.1027726505028815
+    ],
+    [
+     "Cooling|Queen",
+     0.06360108739082582
+    ],
+    [
+     "Cooling|King",
+     0.03685019450960782
+    ],
+    [
+     "Cooling|Full",
+     0.005870831893202337
+    ],
+    [
+     "Cooling|Twin",
+     0.0018139522342253565
+    ]
+   ]
+  },
+  {
+   "pid": 45,
+   "cid": 637,
+   "parent_asin": "B0H29V113N",
+   "brand": "BC BELLA COTERIE",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T00:22:20.735Z",
+   "keywords": 5504,
+   "traffic": 591713,
+   "organic_pct": 0.36227025872340163,
+   "ad_pct": 0.6377298332130611,
+   "top10_pct": 0.4410229283453296,
+   "top_kw": "bamboo sheets",
+   "top_kw_pct": 0.17399989521947296,
+   "reach": {
+    "OR": 0.9410389834260866,
+    "SP": 0.9808184035165697,
+    "SB": 0.5730548424658576,
+    "SBV": 0.5581810776508206,
+    "AC": 0.038364882975361364,
+    "SOR": 0.9719914891171902
+   },
+   "hero_child_asins": [
+    [
+     "B0C979FD5Z",
+     0.12259661346912226
+    ],
+    [
+     "B09JTQMF5C",
+     0.11032851289375431
+    ],
+    [
+     "B08L86VLZB",
+     0.0647461818705944
+    ],
+    [
+     "B08L85SV5Z",
+     0.047869659213167146
+    ],
+    [
+     "B09JV1NG9R",
+     0.044803172643697466
+    ],
+    [
+     "B09RKQWND2",
+     0.04425949856740283
+    ],
+    [
+     "B0BW69MDDB",
+     0.031845562006366096
+    ],
+    [
+     "B09JTTQ66V",
+     0.025313095548934787
+    ],
+    [
+     "B0CZVXXJ1N",
+     0.023875494994317237
+    ],
+    [
+     "B09JV6JS2S",
+     0.02264381617713359
+    ],
+    [
+     "B09JTSTR5B",
+     0.021938346703504454
+    ],
+    [
+     "B0C97CQNRK",
+     0.019216045958619424
+    ],
+    [
+     "B09JTRWR1W",
+     0.019020495675513532
+    ],
+    [
+     "B0D375S7G7",
+     0.018149325115762213
+    ],
+    [
+     "B08L86W4T2",
+     0.0175783112179541
+    ],
+    [
+     "B09RKLJMPV",
+     0.017447085313822035
+    ],
+    [
+     "B09RKNM83W",
+     0.016654603482365873
+    ],
+    [
+     "B0DHLVF2LV",
+     0.015383705871210721
+    ],
+    [
+     "B08L87KLRV",
+     0.014804207451801325
+    ],
+    [
+     "B0FR1SCHJG",
+     0.014571445807498437
+    ],
+    [
+     "B09JTYQ2LQ",
+     0.013084770129610604
+    ],
+    [
+     "B08L866W2S",
+     0.012651390609025814
+    ],
+    [
+     "B09RJR94PT",
+     0.011402632726856791
+    ],
+    [
+     "B0FR1SC6WB",
+     0.010041867768662671
+    ],
+    [
+     "B0CZWMKNZB",
+     0.010021443771073007
+    ],
+    [
+     "B0CZPKSYTW",
+     0.009874940218519252
+    ],
+    [
+     "B08L85BQYX",
+     0.008644429051869304
+    ],
+    [
+     "B0BMQT7R8J",
+     0.00807076212495741
+    ],
+    [
+     "B08L87MQTJ",
+     0.007602275346395299
+    ]
+   ],
+   "child_asins_total": 218,
+   "contested": 292,
+   "we_win": 87,
+   "we_lose": 167,
+   "our_zero": 130,
+   "theirs_only_kw": 5212,
+   "theirs_only_share": 0.9304172799989184,
+   "our_share": 0.049751643265622064,
+   "ppc_we_run_none": 2444,
+   "ppc_they_more_aggressive": 20,
+   "ad_gap": 370658.6035,
+   "comparable": false,
+   "days_apart": 14,
+   "owned_buckets": [
+    [
+     "Cooling|King",
+     0.007659118525366182
+    ],
+    [
+     "Cooling",
+     0.0066332833654153284
+    ],
+    [
+     "Cooling|Queen",
+     0.003738298803642982
+    ],
+    [
+     "Cooling|California King",
+     0.000917674615903318
+    ],
+    [
+     "Cooling|Full",
+     0.00029406147912924
+    ]
+   ]
+  },
+  {
+   "pid": 45,
+   "cid": 495,
+   "parent_asin": "B0BZ8T5BJ6",
+   "brand": "Bedsure",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T03:23:46.100Z",
+   "keywords": 6935,
+   "traffic": 2166046,
+   "organic_pct": 0.5902383405984899,
+   "ad_pct": 0.40976180270409857,
+   "top10_pct": 0.2963695138515064,
+   "top_kw": "bamboo sheets",
+   "top_kw_pct": 0.11635348464437044,
+   "reach": {
+    "OR": 0.9689341777598445,
+    "SP": 0.9388327856379781,
+    "SB": 0.9371818511702891,
+    "SBV": 0.6488394059959945,
+    "AC": 0.3206907886536112,
+    "SOR": 0.9237850904366759
+   },
+   "hero_child_asins": [
+    [
+     "B07YKCZHGK",
+     0.2869685630902323
+    ],
+    [
+     "B07YK8VTJV",
+     0.18968553467389995
+    ],
+    [
+     "B07YKCQBBL",
+     0.1350011347403154
+    ],
+    [
+     "B07YKCB6GL",
+     0.09050296304107028
+    ],
+    [
+     "B08CXWHQT2",
+     0.05745488879838315
+    ],
+    [
+     "B08CXWKWVF",
+     0.029817069944506638
+    ],
+    [
+     "B08BRRPZXV",
+     0.029334236309300928
+    ]
+   ],
+   "child_asins_total": 116,
+   "contested": 298,
+   "we_win": 9,
+   "we_lose": 268,
+   "our_zero": 133,
+   "theirs_only_kw": 6637,
+   "theirs_only_share": 0.8280752116991051,
+   "our_share": 0.014100880007792351,
+   "ppc_we_run_none": 3446,
+   "ppc_they_more_aggressive": 30,
+   "ad_gap": 869441.8458000019,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Cooling",
+     0.05046384056478948
+    ],
+    [
+     "Cooling|Queen",
+     0.025141201987400084
+    ],
+    [
+     "Cooling|King",
+     0.01973226792044121
+    ],
+    [
+     "Cooling|Full",
+     0.003129665759637607
+    ],
+    [
+     "Cooling|California King",
+     0.0018222143020046667
+    ]
+   ]
+  },
+  {
+   "pid": 45,
+   "cid": 1498,
+   "parent_asin": "B0H41M1N4B",
+   "brand": "Breescape",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T04:13:45.330Z",
+   "keywords": 1884,
+   "traffic": 107224,
+   "organic_pct": 0.5282540960978878,
+   "ad_pct": 0.47174599343430645,
+   "top10_pct": 0.6554222935163769,
+   "top_kw": "cooling sheets",
+   "top_kw_pct": 0.24118667462508395,
+   "reach": {
+    "OR": 0.9618835335372677,
+    "SP": 0.853279116615683,
+    "SB": 0.6382059986570171,
+    "SBV": 0.7425203312691189,
+    "AC": 0.09657352831455644,
+    "SOR": 0.8344960083563381
+   },
+   "hero_child_asins": [
+    [
+     "B0DSPZJKTB",
+     0.49275766015829786
+    ],
+    [
+     "B0DSPZSVFL",
+     0.26312652815036613
+    ],
+    [
+     "B0DSPZKCCN",
+     0.0574432109861517
+    ]
+   ],
+   "child_asins_total": 26,
+   "contested": 246,
+   "we_win": 48,
+   "we_lose": 160,
+   "our_zero": 98,
+   "theirs_only_kw": 1638,
+   "theirs_only_share": 0.2302376333656644,
+   "our_share": 0.22416138461983734,
+   "ppc_we_run_none": 500,
+   "ppc_they_more_aggressive": 23,
+   "ad_gap": 40891.45500000003,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Cooling",
+     0.32464746698500335
+    ],
+    [
+     "Cooling|King",
+     0.1367604267701261
+    ],
+    [
+     "Cooling|Queen",
+     0.12096172498694323
+    ],
+    [
+     "Cooling|Full",
+     0.019491904797433412
+    ],
+    [
+     "Cooling|Twin",
+     0.005045512198761471
+    ]
+   ]
+  },
+  {
+   "pid": 45,
+   "cid": 1510,
+   "parent_asin": "B0DCZGYVZ9",
+   "brand": "DOZ by SIJO",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T00:38:07.638Z",
+   "keywords": 2682,
+   "traffic": 171534,
+   "organic_pct": 0.5544749851341424,
+   "ad_pct": 0.44552503352105105,
+   "top10_pct": 0.33417281705084706,
+   "top_kw": "bamboo sheets",
+   "top_kw_pct": 0.1494222719694055,
+   "reach": {
+    "OR": 0.8580689542597969,
+    "SP": 0.8981426422750008,
+    "SB": 0.06748516329124256,
+    "SBV": 0.24623106789324564,
+    "AC": 0.0526193057936036,
+    "SOR": 0.8775694614478762
+   },
+   "hero_child_asins": [
+    [
+     "B0B8JLLT45",
+     0.3941030607388322
+    ],
+    [
+     "B0B8JK78HR",
+     0.06464918554444914
+    ],
+    [
+     "B0CS36MKM9",
+     0.05256448477655174
+    ],
+    [
+     "B0BRWD6PRK",
+     0.042679677638538804
+    ],
+    [
+     "B0B9T44SJV",
+     0.038737815527477536
+    ],
+    [
+     "B0BRWDHX7F",
+     0.03784025595566276
+    ],
+    [
+     "B0BRWDS33Q",
+     0.03447405355201482
+    ],
+    [
+     "B0B8JLSV64",
+     0.02904741650394522
+    ],
+    [
+     "B0CB136HW7",
+     0.027731902629959095
+    ],
+    [
+     "B0CS2YT29H",
+     0.017366836128466113
+    ],
+    [
+     "B0CS391TBS",
+     0.01631166384385142
+    ],
+    [
+     "B0CS2ZH94P",
+     0.016051145614165832
+    ],
+    [
+     "B0B8JG8LDB",
+     0.015494669744436583
+    ],
+    [
+     "B0CS3276RH",
+     0.014877084487604395
+    ]
+   ],
+   "child_asins_total": 131,
+   "contested": 255,
+   "we_win": 71,
+   "we_lose": 152,
+   "our_zero": 107,
+   "theirs_only_kw": 2427,
+   "theirs_only_share": 0.8039630627164294,
+   "our_share": 0.1529770781279319,
+   "ppc_we_run_none": 812,
+   "ppc_they_more_aggressive": 14,
+   "ad_gap": 70126.36179999991,
+   "comparable": false,
+   "days_apart": 14,
+   "owned_buckets": [
+    [
+     "Cooling",
+     0.06461109750836569
+    ],
+    [
+     "Cooling|Queen",
+     0.03171965907633472
+    ],
+    [
+     "Cooling|King",
+     0.017063672508074203
+    ],
+    [
+     "Cooling|Full",
+     0.005211794746231068
+    ],
+    [
+     "Cooling|California King",
+     0.002005433325171686
+    ]
+   ]
+  },
+  {
+   "pid": 45,
+   "cid": 33,
+   "parent_asin": "B0FT7L9RSX",
+   "brand": "KRIMANO",
+   "import_file": "VariationKeyword_US__20261012.xlsx",
+   "imported_at": "2026-10-12T17:08:27.041Z",
+   "keywords": 2638,
+   "traffic": 334819,
+   "organic_pct": 0.6137371774003271,
+   "ad_pct": 0.38626285127188126,
+   "top10_pct": 0.45064049531239264,
+   "top_kw": "bamboo sheets",
+   "top_kw_pct": 0.14174524145881806,
+   "reach": {
+    "OR": 0.976569430050266,
+    "SP": 0.9348573408319122,
+    "SB": 0.33043823677867745,
+    "AC": 0.007908750698138397,
+    "SOR": 0.9169760377995275,
+    "OOR": 0.5660043187513254
+   },
+   "hero_child_asins": [
+    [
+     "B0FT7LV7PP",
+     0.4657654166547748
+    ],
+    [
+     "B0FT7LZ2CD",
+     0.42105627928775696
+    ]
+   ],
+   "child_asins_total": 26,
+   "contested": 259,
+   "we_win": 73,
+   "we_lose": 122,
+   "our_zero": 111,
+   "theirs_only_kw": 2379,
+   "theirs_only_share": 0.8772172427490674,
+   "our_share": 0.08469131954980741,
+   "ppc_we_run_none": 502,
+   "ppc_they_more_aggressive": 5,
+   "ad_gap": 124714.00879999998,
+   "comparable": true,
+   "days_apart": 0,
+   "owned_buckets": [
+    [
+     "Cooling",
+     0.032118846302031843
+    ],
+    [
+     "Cooling|King",
+     0.025186742687840297
+    ],
+    [
+     "Cooling|Queen",
+     0.010883492274930634
+    ],
+    [
+     "Cooling|Full",
+     0.002861247420247955
+    ],
+    [
+     "Cooling|California King",
+     0.0003882694829146494
+    ]
+   ]
+  },
+  {
+   "pid": 45,
+   "cid": 1811,
+   "parent_asin": "B0HC6866B7",
+   "brand": "REST",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T04:07:01.787Z",
+   "keywords": 7281,
+   "traffic": 522593,
+   "organic_pct": 0.2234137663535486,
+   "ad_pct": 0.7765862336464519,
+   "top10_pct": 0.3614725034587145,
+   "top_kw": "cooling sheets",
+   "top_kw_pct": 0.11562726634302412,
+   "reach": {
+    "OR": 0.690866506057295,
+    "SP": 0.7800085343661319,
+    "SB": 0.8614600654811679,
+    "SBV": 0.45345613125319323,
+    "AC": 0.11820671153268414,
+    "SOR": 0.7850296502249361
+   },
+   "hero_child_asins": [
+    [
+     "B0C56ZNQVQ",
+     0.164994231530016
+    ],
+    [
+     "B0BLYSGFRW",
+     0.15415320722612885
+    ],
+    [
+     "B0BLYVMGYB",
+     0.06942784883314285
+    ],
+    [
+     "B0BLYW9CJZ",
+     0.06759968726082849
+    ],
+    [
+     "B0C56YLKZW",
+     0.06716085460291848
+    ],
+    [
+     "B0C56YD1B6",
+     0.06250521410175221
+    ],
+    [
+     "B0D24X1MVY",
+     0.04724366849658172
+    ],
+    [
+     "B0C56Y2PS5",
+     0.03139243424759687
+    ],
+    [
+     "B0D25CX6QJ",
+     0.030513354967272668
+    ],
+    [
+     "B0D25LDRPS",
+     0.027773682487853047
+    ],
+    [
+     "B0C56Z36BJ",
+     0.027124696317587058
+    ],
+    [
+     "B0CXCR3MJZ",
+     0.02072840752888561
+    ],
+    [
+     "B0DFHG2YKM",
+     0.020476597271215445
+    ],
+    [
+     "B0D9JJSNC5",
+     0.017687434503246995
+    ]
+   ],
+   "child_asins_total": 69,
+   "contested": 285,
+   "we_win": 31,
+   "we_lose": 217,
+   "our_zero": 126,
+   "theirs_only_kw": 6996,
+   "theirs_only_share": 0.6089595536105535,
+   "our_share": 0.05596371210301081,
+   "ppc_we_run_none": 3266,
+   "ppc_they_more_aggressive": 28,
+   "ad_gap": 396978.0501999999,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Cooling",
+     0.15472078653942933
+    ],
+    [
+     "Cooling|King",
+     0.03542336005266048
+    ],
+    [
+     "Cooling|Queen",
+     0.019799346719148552
+    ],
+    [
+     "Cooling|Full",
+     0.012746056682733983
+    ],
+    [
+     "Cooling|Twin",
+     0.008980219788630924
+    ]
+   ]
+  },
+  {
+   "pid": 45,
+   "cid": 1507,
+   "parent_asin": "B0F4852T9V",
+   "brand": "SONORO KATE",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T01:17:41.672Z",
+   "keywords": 1447,
+   "traffic": 185157,
+   "organic_pct": 0.9776013545261586,
+   "ad_pct": 0.02239928493116653,
+   "top10_pct": 0.403214569257441,
+   "top_kw": "bamboo sheets",
+   "top_kw_pct": 0.12755661411666855,
+   "reach": {
+    "OR": 0.9996489465696679,
+    "SP": 0.4342476924987983,
+    "AC": 0.16399596018514018,
+    "SOR": 0.475488369329812
+   },
+   "hero_child_asins": [
+    [
+     "B0F486MGJ1",
+     0.4635726653707363
+    ],
+    [
+     "B0F4873G4H",
+     0.45100065904658343
+    ]
+   ],
+   "child_asins_total": 33,
+   "contested": 200,
+   "we_win": 47,
+   "we_lose": 135,
+   "our_zero": 85,
+   "theirs_only_kw": 1247,
+   "theirs_only_share": 0.8591951695047987,
+   "our_share": 0.1433350143658883,
+   "ppc_we_run_none": 122,
+   "ppc_they_more_aggressive": 1,
+   "ad_gap": 3996.3131000000017,
+   "comparable": false,
+   "days_apart": 14,
+   "owned_buckets": [
+    [
+     "Cooling|King",
+     0.042812316034500454
+    ],
+    [
+     "Cooling",
+     0.024319901489006628
+    ],
+    [
+     "Cooling|Queen",
+     0.021581684732416274
+    ],
+    [
+     "Cooling|California King",
+     0.0005130780904853718
+    ],
+    [
+     "Cooling|Twin",
+     0.00020523123619414874
+    ]
+   ]
+  },
+  {
+   "pid": 45,
+   "cid": 22,
+   "parent_asin": "B0F29FQLFD",
+   "brand": "SONORO KATE",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T01:25:37.434Z",
+   "keywords": 947,
+   "traffic": 114504,
+   "organic_pct": 0.8792897182631171,
+   "ad_pct": 0.12071028173688254,
+   "top10_pct": 0.5186631034723678,
+   "top_kw": "bamboo sheets",
+   "top_kw_pct": 0.18907636414448403,
+   "reach": {
+    "OR": 0.9982708027667155,
+    "SP": 0.31068783623279533,
+    "AC": 0.035876475930971846,
+    "SOR": 0.3078407741214281
+   },
+   "hero_child_asins": [
+    [
+     "B0F29F1JM5",
+     0.7093193141659259
+    ],
+    [
+     "B0F29HFNNS",
+     0.1932253908452511
+    ]
+   ],
+   "child_asins_total": 24,
+   "contested": 205,
+   "we_win": 53,
+   "we_lose": 138,
+   "our_zero": 81,
+   "theirs_only_kw": 742,
+   "theirs_only_share": 0.6741773213162859,
+   "our_share": 0.21294437876330044,
+   "ppc_we_run_none": 85,
+   "ppc_they_more_aggressive": 2,
+   "ad_gap": 13336.870800000002,
+   "comparable": false,
+   "days_apart": 14,
+   "owned_buckets": [
+    [
+     "Cooling",
+     0.10501816530426884
+    ],
+    [
+     "Cooling|Queen",
+     0.08204953538741004
+    ],
+    [
+     "Cooling|King",
+     0.05457451268077971
+    ],
+    [
+     "Cooling|Full",
+     0.0040784601411304406
+    ],
+    [
+     "Cooling|California King",
+     0.00013973310976035772
+    ]
+   ]
+  },
+  {
+   "pid": 45,
+   "cid": 46,
+   "parent_asin": "B0CPDTJ5NN",
+   "brand": "Bedsure",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T04:31:13.306Z",
+   "keywords": 22,
+   "traffic": 170,
+   "organic_pct": 1,
+   "ad_pct": 0,
+   "top10_pct": 0.9823529411764705,
+   "top_kw": "bedsure cooling sheets",
+   "top_kw_pct": 0.5529411764705883,
+   "reach": {
+    "OR": 1
+   },
+   "hero_child_asins": [
+    [
+     "B0DGWZTTRL",
+     1
+    ]
+   ],
+   "child_asins_total": 1,
+   "contested": 14,
+   "we_win": 12,
+   "we_lose": 1,
+   "our_zero": 2,
+   "theirs_only_kw": 8,
+   "theirs_only_share": 0.19411764705882353,
+   "our_share": 0.9945425361155699,
+   "ppc_we_run_none": 0,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 0,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Cooling",
+     0.16470588235294117
+    ],
+    [
+     "Cooling|Queen",
+     0.023529411764705882
+    ]
+   ]
+  },
+  {
+   "pid": 45,
+   "cid": 9,
+   "parent_asin": "B0H7YWGBW3",
+   "brand": "Elegear",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T04:19:39.216Z",
+   "keywords": 643,
+   "traffic": 15624,
+   "organic_pct": 0.6086269521249359,
+   "ad_pct": 0.39137325268817214,
+   "top10_pct": 0.47055811571940603,
+   "top_kw": "miracle sheets",
+   "top_kw_pct": 0.17613927291346645,
+   "reach": {
+    "OR": 0.7660010240655402,
+    "SP": 0.5840373783922171,
+    "SB": 0.7140296979006656,
+    "SOR": 0.6153993855606759
+   },
+   "hero_child_asins": [
+    [
+     "B0GCHRGYZZ",
+     0.24884379357837264
+    ],
+    [
+     "B0GCHG6VG6",
+     0.21236639166138868
+    ],
+    [
+     "B0GCH7FHV1",
+     0.17780455400999784
+    ],
+    [
+     "B0GCGXW1WT",
+     0.10637142601148414
+    ],
+    [
+     "B0GCGXXC24",
+     0.09767041638100742
+    ]
+   ],
+   "child_asins_total": 8,
+   "contested": 187,
+   "we_win": 98,
+   "we_lose": 58,
+   "our_zero": 67,
+   "theirs_only_kw": 456,
+   "theirs_only_share": 0.5204813108038915,
+   "our_share": 0.6647498068835294,
+   "ppc_we_run_none": 146,
+   "ppc_they_more_aggressive": 12,
+   "ad_gap": 4396.864600000001,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Cooling",
+     0.0822452636968766
+    ],
+    [
+     "Cooling|Twin",
+     0.035842293906810034
+    ],
+    [
+     "Cooling|Full",
+     0.03168202764976959
+    ],
+    [
+     "Cooling|King",
+     0.01561699948796723
+    ],
+    [
+     "Cooling|Queen",
+     0.012416794674859191
+    ]
+   ]
+  },
+  {
+   "pid": 45,
+   "cid": 24,
+   "parent_asin": "B0D4KS4MVX",
+   "brand": "Kickoff Home",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T06:19:19.412Z",
+   "keywords": 1164,
+   "traffic": 58169,
+   "organic_pct": 0.8765498702057799,
+   "ad_pct": 0.12345023981846001,
+   "top10_pct": 0.5264316044628582,
+   "top_kw": "bamboo sheets",
+   "top_kw_pct": 0.23699908886176485,
+   "reach": {
+    "OR": 0.9705341333012429,
+    "SP": 0.6749987106534409,
+    "SBV": 0.08715982739947395,
+    "AC": 0.00037820832402138594,
+    "SOR": 0.578142997129055
+   },
+   "hero_child_asins": [
+    [
+     "B0CHN5ZPFH",
+     0.27050277676938544
+    ],
+    [
+     "B0CHN6N986",
+     0.10872038455653363
+    ],
+    [
+     "B0G84K7MZQ",
+     0.09124870552040526
+    ],
+    [
+     "B0G84MQQX4",
+     0.07618943109370863
+    ],
+    [
+     "B0CHN4BSZP",
+     0.05374393550742529
+    ],
+    [
+     "B0CHN4JGXH",
+     0.04706793122678102
+    ],
+    [
+     "B0CHN63YPY",
+     0.04632896632811998
+    ],
+    [
+     "B0CHN4F2VM",
+     0.041348658566910855
+    ],
+    [
+     "B0CHN5SKC1",
+     0.035996955890190696
+    ],
+    [
+     "B0CHN5NKY9",
+     0.020268558970210498
+    ],
+    [
+     "B0CHN63MT1",
+     0.017980407073643918
+    ]
+   ],
+   "child_asins_total": 106,
+   "contested": 213,
+   "we_win": 88,
+   "we_lose": 86,
+   "our_zero": 91,
+   "theirs_only_kw": 951,
+   "theirs_only_share": 0.8018704120751603,
+   "our_share": 0.3475081044094718,
+   "ppc_we_run_none": 121,
+   "ppc_they_more_aggressive": 2,
+   "ad_gap": 6453.977400000001,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Cooling|King",
+     0.06481115370730114
+    ],
+    [
+     "Cooling|Full",
+     0.019890319586033798
+    ],
+    [
+     "Cooling",
+     0.012790317866905052
+    ],
+    [
+     "Cooling|Twin",
+     0.008028331241726692
+    ],
+    [
+     "Cooling|California King",
+     0.001925424195017965
+    ]
+   ]
+  },
+  {
+   "pid": 45,
+   "cid": 1945,
+   "parent_asin": "B0GT98GVQN",
+   "brand": "BEDELITE",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T02:27:57.168Z",
+   "keywords": 1732,
+   "traffic": 212120,
+   "organic_pct": 0.1115827267584386,
+   "ad_pct": 0.8884172883273614,
+   "top10_pct": 0.569630397887988,
+   "top_kw": "queen sheets",
+   "top_kw_pct": 0.14657740901376579,
+   "reach": {
+    "OR": 0.45403073731849897,
+    "SP": 0.8331840467659816,
+    "SB": 0.23471619837827645,
+    "SBV": 0.26708938336790494,
+    "SOR": 0.9645860833490477
+   },
+   "hero_child_asins": [
+    [
+     "B0GT8Z4X5D",
+     0.866905281660498
+    ]
+   ],
+   "child_asins_total": 8,
+   "contested": 190,
+   "we_win": 69,
+   "we_lose": 98,
+   "our_zero": 79,
+   "theirs_only_kw": 1542,
+   "theirs_only_share": 0.8421459551197436,
+   "our_share": 0.1274372686137392,
+   "ppc_we_run_none": 1159,
+   "ppc_they_more_aggressive": 16,
+   "ad_gap": 184571.74389999997,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Cooling",
+     0.02415142372242127
+    ],
+    [
+     "Cooling|Queen",
+     0.018315104657740902
+    ],
+    [
+     "Cooling|King",
+     0.005680746747124269
+    ],
+    [
+     "Cooling|Full",
+     0.0035781633037903072
+    ],
+    [
+     "Cooling|Twin",
+     4.714312653215162e-06
+    ]
+   ]
+  },
+  {
+   "pid": 45,
+   "cid": 1950,
+   "parent_asin": "B0HFBJPD56",
+   "brand": "California Design Den",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T02:05:07.120Z",
+   "keywords": 2019,
+   "traffic": 103642,
+   "organic_pct": 0.8956907055054905,
+   "ad_pct": 0.10430938712105131,
+   "top10_pct": 0.3625653692518477,
+   "top_kw": "bamboo sheets",
+   "top_kw_pct": 0.1625595800930125,
+   "reach": {
+    "OR": 0.9892321645664884,
+    "SP": 0.6944674938731402,
+    "SOR": 0.06871731537407615
+   },
+   "hero_child_asins": [
+    [
+     "B0GWHFGLVL",
+     0.32350725601547803
+    ],
+    [
+     "B0GWHPJ9SD",
+     0.09747656784215668
+    ],
+    [
+     "B0GWHMSZYL",
+     0.07790406272440606
+    ],
+    [
+     "B0GWHGS5BM",
+     0.050799969121913764
+    ],
+    [
+     "B0GWHCHY3Q",
+     0.047529029539465396
+    ],
+    [
+     "B0GWH8YKZY",
+     0.03555483062247899
+    ],
+    [
+     "B0GWHC3897",
+     0.030837045673576206
+    ],
+    [
+     "B0GWHF1CV9",
+     0.027961251309226803
+    ],
+    [
+     "B0GWHSJ9HX",
+     0.02585886894807906
+    ],
+    [
+     "B0GWH95415",
+     0.02504647531957144
+    ],
+    [
+     "B0GWHQSM6S",
+     0.02217227877635286
+    ],
+    [
+     "B0GWHR48ZK",
+     0.021535155319377466
+    ],
+    [
+     "B0GWH59Z6X",
+     0.02050308733681234
+    ]
+   ],
+   "child_asins_total": 81,
+   "contested": 208,
+   "we_win": 70,
+   "we_lose": 112,
+   "our_zero": 84,
+   "theirs_only_kw": 1811,
+   "theirs_only_share": 0.8328669844271628,
+   "our_share": 0.23012583381616675,
+   "ppc_we_run_none": 290,
+   "ppc_they_more_aggressive": 8,
+   "ad_gap": 7419.519699999999,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Cooling|King",
+     0.03892244456880415
+    ],
+    [
+     "Cooling",
+     0.019615599853341308
+    ],
+    [
+     "Cooling|Queen",
+     0.01920071013681712
+    ],
+    [
+     "Cooling|Full",
+     0.006705775650797939
+    ],
+    [
+     "Cooling|Twin",
+     0.005306728932286139
+    ]
+   ]
+  },
+  {
+   "pid": 45,
+   "cid": 1953,
+   "parent_asin": "B0HJZNMQ5G",
+   "brand": "Davmabcjy",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T01:57:09.088Z",
+   "keywords": 1329,
+   "traffic": 75425,
+   "organic_pct": 0.8470417779250914,
+   "ad_pct": 0.15295987669870734,
+   "top10_pct": 0.3750480609877362,
+   "top_kw": "bamboo sheets",
+   "top_kw_pct": 0.14967185946304276,
+   "reach": {
+    "OR": 0.9445939675174014,
+    "SP": 0.4214782896917468,
+    "AC": 0.01059330460722572,
+    "SOR": 0.4192906861120318
+   },
+   "hero_child_asins": [
+    [
+     "B0GXJYQR7H",
+     0.5538628781222783
+    ],
+    [
+     "B0GXJPP4YQ",
+     0.31473680410448185
+    ]
+   ],
+   "child_asins_total": 7,
+   "contested": 162,
+   "we_win": 54,
+   "we_lose": 87,
+   "our_zero": 68,
+   "theirs_only_kw": 1167,
+   "theirs_only_share": 0.8231885979449785,
+   "our_share": 0.29115173159156055,
+   "ppc_we_run_none": 370,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 11311.016700000004,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Cooling|King",
+     0.040092807424593965
+    ],
+    [
+     "Cooling|Queen",
+     0.019343718926085517
+    ],
+    [
+     "Cooling",
+     0.01598939343718926
+    ],
+    [
+     "Cooling|California King",
+     6.629101756711965e-05
+    ]
+   ]
+  },
+  {
+   "pid": 45,
+   "cid": 1816,
+   "parent_asin": "B0GT172Y8L",
+   "brand": "KARISSA MAE",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T02:57:03.540Z",
+   "keywords": 3715,
+   "traffic": 243610,
+   "organic_pct": 0.13852900004104932,
+   "ad_pct": 0.8614710525019491,
+   "top10_pct": 0.4942202701038545,
+   "top_kw": "bamboo sheets",
+   "top_kw_pct": 0.1887032552029884,
+   "reach": {
+    "OR": 0.7344156643815936,
+    "SP": 0.9938303025327367,
+    "SB": 0.030688395386067897,
+    "SBV": 0.015906571979803785,
+    "SOR": 0.9799679816099504
+   },
+   "hero_child_asins": [
+    [
+     "B0F9X7MV5B",
+     0.13627277438992608
+    ],
+    [
+     "B0G1CSCQTB",
+     0.10124629889883988
+    ],
+    [
+     "B0F9X8BNQB",
+     0.07103980620598725
+    ],
+    [
+     "B0F9X6KTQW",
+     0.06414857012055132
+    ],
+    [
+     "B0GH24C6XY",
+     0.05750997707057144
+    ],
+    [
+     "B0G1CY62FW",
+     0.05219012298352691
+    ],
+    [
+     "B0F9X85K4W",
+     0.045155023473129746
+    ],
+    [
+     "B0GH2JPM8V",
+     0.04466884286831842
+    ],
+    [
+     "B0F9X7HBSS",
+     0.0346583043789276
+    ],
+    [
+     "B0F9X7F6BS",
+     0.02975785679392577
+    ],
+    [
+     "B0GH2GMQ42",
+     0.026263900399052333
+    ],
+    [
+     "B0G1CYT69Y",
+     0.020638606790743738
+    ],
+    [
+     "B0G1D2T9MM",
+     0.01999086856170861
+    ],
+    [
+     "B0GH24XM8M",
+     0.016520835151148425
+    ],
+    [
+     "B0F9X6FS16",
+     0.014129076515020763
+    ],
+    [
+     "B0F9X5WKFW",
+     0.012888397684653972
+    ],
+    [
+     "B0GH2LYGMW",
+     0.009910022466075035
+    ],
+    [
+     "B0F9X618QX",
+     0.009909787665425966
+    ],
+    [
+     "B0GH2CK8PT",
+     0.00949622039281166
+    ],
+    [
+     "B0F9X6NWR3",
+     0.009492945908934668
+    ],
+    [
+     "B0GH2MF5V1",
+     0.009084586120645732
+    ],
+    [
+     "B0GH28L9WH",
+     0.006738779038816868
+    ]
+   ],
+   "child_asins_total": 138,
+   "contested": 264,
+   "we_win": 114,
+   "we_lose": 101,
+   "our_zero": 114,
+   "theirs_only_kw": 3451,
+   "theirs_only_share": 0.9177496818685604,
+   "our_share": 0.1128227539240322,
+   "ppc_we_run_none": 1751,
+   "ppc_they_more_aggressive": 23,
+   "ad_gap": 203133.53729999973,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Cooling|King",
+     0.009761504043347973
+    ],
+    [
+     "Cooling",
+     0.009654776076515742
+    ],
+    [
+     "Cooling|Full",
+     0.0014244078650301711
+    ],
+    [
+     "Cooling|Queen",
+     0.0007224662370181848
+    ],
+    [
+     "Cooling|Twin",
+     0.0005295349123599195
+    ]
+   ]
+  },
+  {
+   "pid": 45,
+   "cid": 696,
+   "parent_asin": "B0DN1GGFL7",
+   "brand": "Love's cabin",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T03:05:56.673Z",
+   "keywords": 4326,
+   "traffic": 906346,
+   "organic_pct": 0.9184238707954808,
+   "ad_pct": 0.08157613626584115,
+   "top10_pct": 0.3992382600022508,
+   "top_kw": "bamboo sheets",
+   "top_kw_pct": 0.20640130810970644,
+   "reach": {
+    "OR": 0.9899354109799128,
+    "SP": 0.888575665364,
+    "SB": 0.05086247415446198,
+    "AC": 0.40890344305596316,
+    "SOR": 0.8224695646033634
+   },
+   "hero_child_asins": [
+    [
+     "B0DN1DVKH5",
+     0.43437284390126113
+    ],
+    [
+     "B0DN1H6C88",
+     0.10119452545855084
+    ],
+    [
+     "B0DN1D4YKB",
+     0.0896631400676537
+    ],
+    [
+     "B0DN1H5PQ6",
+     0.0752814975795533
+    ],
+    [
+     "B0DN1DRRDN",
+     0.07430284976159743
+    ],
+    [
+     "B0DN1FMGQZ",
+     0.04748618963307879
+    ]
+   ],
+   "child_asins_total": 131,
+   "contested": 283,
+   "we_win": 23,
+   "we_lose": 239,
+   "our_zero": 123,
+   "theirs_only_kw": 4043,
+   "theirs_only_share": 0.8400599770948401,
+   "our_share": 0.0330514676857358,
+   "ppc_we_run_none": 1222,
+   "ppc_they_more_aggressive": 2,
+   "ad_gap": 70868.8794,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Cooling",
+     0.03436435974782258
+    ],
+    [
+     "Cooling|Queen",
+     0.026717169822562243
+    ],
+    [
+     "Cooling|King",
+     0.015491876170910447
+    ],
+    [
+     "Cooling|Full",
+     0.007272057249659622
+    ],
+    [
+     "Cooling|California King",
+     0.0007458520256061151
+    ]
+   ]
+  },
+  {
+   "pid": 45,
+   "cid": 1812,
+   "parent_asin": "B0HDC7BMTC",
+   "brand": "OMERAI",
+   "import_file": "VariationKeyword_US__20260918 (17).xlsx",
+   "imported_at": "2026-09-18T11:24:52.530Z",
+   "keywords": 332,
+   "traffic": 13712,
+   "organic_pct": 0.8852072199533255,
+   "ad_pct": 0.11479278004667445,
+   "top10_pct": 0.730965577596266,
+   "top_kw": "cooling sheets queen",
+   "top_kw_pct": 0.31403150525087514,
+   "reach": {
+    "OR": 0.951794049008168,
+    "SP": 0.8668319719953326,
+    "SOR": 0.7773483080513419
+   },
+   "hero_child_asins": [
+    [
+     "B0BM9K24ST",
+     0.4566754546208113
+    ],
+    [
+     "B0BM9GLKYV",
+     0.4281062531320825
+    ]
+   ],
+   "child_asins_total": 10,
+   "contested": 164,
+   "we_win": 77,
+   "we_lose": 75,
+   "our_zero": 60,
+   "theirs_only_kw": 168,
+   "theirs_only_share": 0.042007001166861145,
+   "our_share": 0.6931889376174707,
+   "ppc_we_run_none": 51,
+   "ppc_they_more_aggressive": 3,
+   "ad_gap": 877.0255,
+   "comparable": false,
+   "days_apart": 24,
+   "owned_buckets": [
+    [
+     "Cooling|Queen",
+     0.3733955659276546
+    ],
+    [
+     "Cooling",
+     0.2633459743290548
+    ],
+    [
+     "Cooling|King",
+     0.2066073512252042
+    ],
+    [
+     "Cooling|Twin",
+     0.003500583430571762
+    ],
+    [
+     "Cooling|California King",
+     0.0003646441073512252
+    ]
+   ]
+  },
+  {
+   "pid": 45,
+   "cid": 1948,
+   "parent_asin": "B0HK71WHZW",
+   "brand": "Pillcase",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T02:19:54.039Z",
+   "keywords": 1002,
+   "traffic": 116001,
+   "organic_pct": 0.8987684407893036,
+   "ad_pct": 0.10123293850915084,
+   "top10_pct": 0.5121766191670761,
+   "top_kw": "bamboo sheets",
+   "top_kw_pct": 0.21754122809286128,
+   "reach": {
+    "OR": 0.9782329462677046,
+    "SP": 0.5789691468176998,
+    "AC": 0.012965405470642495,
+    "SOR": 0.5014525736847096
+   },
+   "hero_child_asins": [
+    [
+     "B0HBXCGQM1",
+     0.5707949541768872
+    ],
+    [
+     "B0HF8HHN46",
+     0.0726641941471069
+    ],
+    [
+     "B0HBXK2Y4B",
+     0.05289818307039836
+    ],
+    [
+     "B0H1BWY4MD",
+     0.04769043633747371
+    ],
+    [
+     "B0H28FT5DH",
+     0.04417593334192045
+    ],
+    [
+     "B0HHJK6ZNV",
+     0.03966142821959999
+    ]
+   ],
+   "child_asins_total": 22,
+   "contested": 197,
+   "we_win": 70,
+   "we_lose": 112,
+   "our_zero": 80,
+   "theirs_only_kw": 805,
+   "theirs_only_share": 0.762071016629167,
+   "our_share": 0.2107755424170471,
+   "ppc_we_run_none": 90,
+   "ppc_they_more_aggressive": 6,
+   "ad_gap": 8049.819199999999,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Cooling",
+     0.06212877475194179
+    ],
+    [
+     "Cooling|Queen",
+     0.0389393194886251
+    ],
+    [
+     "Cooling|King",
+     0.020103274971767483
+    ],
+    [
+     "Cooling|Full",
+     0.0098102602563771
+    ],
+    [
+     "Cooling|California King",
+     0.003094800906888734
+    ]
+   ]
+  },
+  {
+   "pid": 45,
+   "cid": 1943,
+   "parent_asin": "B0H1GGHHVN",
+   "brand": "Pillcase",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T02:44:03.782Z",
+   "keywords": 1218,
+   "traffic": 216953,
+   "organic_pct": 0.9703615419007803,
+   "ad_pct": 0.02963845809921965,
+   "top10_pct": 0.4757850778740096,
+   "top_kw": "king size sheets set",
+   "top_kw_pct": 0.1338031739593368,
+   "reach": {
+    "OR": 0.9999953907067429,
+    "SP": 0.18203942789452093,
+    "AC": 0.013021253451208326,
+    "SOR": 0.20165197070333205
+   },
+   "hero_child_asins": [
+    [
+     "B0H9K6WK34",
+     0.26546559907892064
+    ],
+    [
+     "B0H1GVML4Z",
+     0.23794866798953773
+    ],
+    [
+     "B0HFXGSDF1",
+     0.2155669929389249
+    ],
+    [
+     "B0HBX793L8",
+     0.1197949973276707
+    ]
+   ],
+   "child_asins_total": 20,
+   "contested": 202,
+   "we_win": 42,
+   "we_lose": 138,
+   "our_zero": 88,
+   "theirs_only_kw": 1016,
+   "theirs_only_share": 0.7956239369817426,
+   "our_share": 0.12495311233276732,
+   "ppc_we_run_none": 23,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 1579.6672000000003,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Cooling",
+     0.0753388982867257
+    ],
+    [
+     "Cooling|King",
+     0.035330232815402415
+    ],
+    [
+     "Cooling|Queen",
+     0.03310855346549713
+    ],
+    [
+     "Cooling|Full",
+     0.004931943785059437
+    ],
+    [
+     "Cooling|California King",
+     0.0006867846953026692
+    ]
+   ]
+  },
+  {
+   "pid": 45,
+   "cid": 1939,
+   "parent_asin": "B0HJYG8V9Q",
+   "brand": "Pillcase",
+   "import_file": "VariationKeyword_US__20261001.xlsx",
+   "imported_at": "2026-10-01T09:09:20.227Z",
+   "keywords": 90,
+   "traffic": 57075,
+   "organic_pct": 0.9991762628120894,
+   "ad_pct": 0.0008237371879106438,
+   "top10_pct": 0.8074989049496277,
+   "top_kw": "king size sheets set",
+   "top_kw_pct": 0.25469995619798513,
+   "reach": {
+    "OR": 1,
+    "SP": 0.16390713972842752
+   },
+   "hero_child_asins": [
+    [
+     "B0HJYG8V9Q",
+     1
+    ]
+   ],
+   "child_asins_total": 1,
+   "contested": 22,
+   "we_win": 10,
+   "we_lose": 11,
+   "our_zero": 6,
+   "theirs_only_kw": 68,
+   "theirs_only_share": 0.8390363556723609,
+   "our_share": 0.3518255635682244,
+   "ppc_we_run_none": 0,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 0,
+   "comparable": false,
+   "days_apart": 11,
+   "owned_buckets": [
+    [
+     "Cooling|King",
+     0.04865527814279457
+    ],
+    [
+     "Cooling",
+     0.04143670608848007
+    ],
+    [
+     "Cooling|Queen",
+     0.012369689005694262
+    ]
+   ]
+  },
+  {
+   "pid": 45,
+   "cid": 1815,
+   "parent_asin": "B09PYQ2VQL",
+   "brand": "Shilucheng",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T08:29:53.944Z",
+   "keywords": 914,
+   "traffic": 55207,
+   "organic_pct": 0.5098780408281561,
+   "ad_pct": 0.49012195917184387,
+   "top10_pct": 0.5769014798847972,
+   "top_kw": "bamboo sheets",
+   "top_kw_pct": 0.2913760936113174,
+   "reach": {
+    "OR": 0.6845508721720072,
+    "SP": 0.9176553697900629,
+    "SOR": 0.8552900900248157
+   },
+   "hero_child_asins": [
+    [
+     "B09PYKYCCF",
+     0.3808043873241794
+    ],
+    [
+     "B09PXYT59Y",
+     0.2939484950015507
+    ],
+    [
+     "B0DFHF8KC3",
+     0.19573450391475194
+    ]
+   ],
+   "child_asins_total": 47,
+   "contested": 154,
+   "we_win": 68,
+   "we_lose": 72,
+   "our_zero": 56,
+   "theirs_only_kw": 760,
+   "theirs_only_share": 0.8416505153332005,
+   "our_share": 0.3594509612818639,
+   "ppc_we_run_none": 470,
+   "ppc_they_more_aggressive": 18,
+   "ad_gap": 20496.773399999984,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Cooling",
+     0.04477693046171681
+    ],
+    [
+     "Cooling|Queen",
+     0.04446899849656746
+    ],
+    [
+     "Cooling|King",
+     0.005905048272863948
+    ],
+    [
+     "Cooling|California King",
+     5.434093502635535e-05
+    ]
+   ]
+  },
+  {
+   "pid": 45,
+   "cid": 1940,
+   "parent_asin": "B0HJSVWNRS",
+   "brand": "Shilucheng",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T08:11:34.918Z",
+   "keywords": 1187,
+   "traffic": 135323,
+   "organic_pct": 0.7652350080917514,
+   "ad_pct": 0.23476501555537505,
+   "top10_pct": 0.4555470984237713,
+   "top_kw": "bamboo sheets",
+   "top_kw_pct": 0.27185326958462347,
+   "reach": {
+    "OR": 0.9644997524441521,
+    "SP": 0.4715236877692632,
+    "AC": 0.036845177833775486,
+    "SOR": 0.3373927565897889
+   },
+   "hero_child_asins": [
+    [
+     "B0FWY1TGFK",
+     0.6700676010552823
+    ],
+    [
+     "B098JT1RF2",
+     0.22118925924117863
+    ]
+   ],
+   "child_asins_total": 49,
+   "contested": 190,
+   "we_win": 48,
+   "we_lose": 134,
+   "our_zero": 70,
+   "theirs_only_kw": 997,
+   "theirs_only_share": 0.7865403516032012,
+   "our_share": 0.18628647709301696,
+   "ppc_we_run_none": 445,
+   "ppc_they_more_aggressive": 5,
+   "ad_gap": 31081.139400000004,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Cooling|Queen",
+     0.0701211176222815
+    ],
+    [
+     "Cooling|King",
+     0.033076417164857416
+    ],
+    [
+     "Cooling",
+     0.02367668467296764
+    ],
+    [
+     "Cooling|Full",
+     0.0005468397833332102
+    ],
+    [
+     "Cooling|California King",
+     0.00010345617522520192
+    ]
+   ]
+  },
+  {
+   "pid": 45,
+   "cid": 1817,
+   "parent_asin": "B0F2TDDFGJ",
+   "brand": "Shilucheng ",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T08:23:20.908Z",
+   "keywords": 662,
+   "traffic": 41895,
+   "organic_pct": 0.2973701849862752,
+   "ad_pct": 0.7026304260651629,
+   "top10_pct": 0.40852130325814534,
+   "top_kw": "queen sheet set",
+   "top_kw_pct": 0.07380355651032343,
+   "reach": {
+    "OR": 0.7394915861081275,
+    "SP": 0.8649719536937582,
+    "SOR": 0.7246926840911804
+   },
+   "hero_child_asins": [
+    [
+     "B0F2TDDFGJ",
+     0.6412240033982255
+    ],
+    [
+     "B0F2TBWTZR",
+     0.2549491027323088
+    ]
+   ],
+   "child_asins_total": 19,
+   "contested": 132,
+   "we_win": 54,
+   "we_lose": 67,
+   "our_zero": 50,
+   "theirs_only_kw": 530,
+   "theirs_only_share": 0.8018140589569162,
+   "our_share": 0.4251114922813036,
+   "ppc_we_run_none": 321,
+   "ppc_they_more_aggressive": 10,
+   "ad_gap": 28736.767299999992,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Cooling|Queen",
+     0.10342522974101921
+    ],
+    [
+     "Cooling|King",
+     0.031053825038787446
+    ],
+    [
+     "Cooling",
+     0.0040577634562596965
+    ],
+    [
+     "Cooling|California King",
+     0.00011934598400763814
+    ],
+    [
+     "Cooling|Full",
+     0
+    ]
+   ]
+  },
+  {
+   "pid": 45,
+   "cid": 1956,
+   "parent_asin": "B0HHQ97HBL",
+   "brand": "TRUE BAMBOO",
+   "import_file": "VariationKeyword_US__20261012.xlsx",
+   "imported_at": "2026-10-12T17:27:06.914Z",
+   "keywords": 2189,
+   "traffic": 557658,
+   "organic_pct": 0.518044597943542,
+   "ad_pct": 0.48195544222444636,
+   "top10_pct": 0.4538659895491502,
+   "top_kw": "king size sheets set",
+   "top_kw_pct": 0.09774090930283436,
+   "reach": {
+    "OR": 0.9745525035057329,
+    "SP": 0.9807695756180311,
+    "SB": 0.21576665267959932,
+    "SOR": 0.9752877211480871,
+    "OOR": 0.6646959247424048
+   },
+   "hero_child_asins": [
+    [
+     "B0HD7R5L1D",
+     0.45486059718028055
+    ],
+    [
+     "B0H5WYMXJK",
+     0.2787531084628053
+    ],
+    [
+     "B0H7BYKYCD",
+     0.08555732458040115
+    ]
+   ],
+   "child_asins_total": 30,
+   "contested": 249,
+   "we_win": 60,
+   "we_lose": 134,
+   "our_zero": 101,
+   "theirs_only_kw": 1940,
+   "theirs_only_share": 0.900532225844514,
+   "our_share": 0.052629969522864646,
+   "ppc_we_run_none": 974,
+   "ppc_they_more_aggressive": 17,
+   "ad_gap": 265600.0021000001,
+   "comparable": true,
+   "days_apart": 0,
+   "owned_buckets": [
+    [
+     "Cooling|Queen",
+     0.02284375011207586
+    ],
+    [
+     "Cooling",
+     0.017743850173403772
+    ],
+    [
+     "Cooling|King",
+     0.014966162056314085
+    ],
+    [
+     "Cooling|Full",
+     0.0008589493919212134
+    ],
+    [
+     "Cooling|California King",
+     0.0006025198239781372
+    ]
+   ]
+  },
+  {
+   "pid": 45,
+   "cid": 1944,
+   "parent_asin": "B0HHQG3RSW",
+   "brand": "TWK",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T02:35:59.360Z",
+   "keywords": 905,
+   "traffic": 82471,
+   "organic_pct": 0.8861114561482216,
+   "ad_pct": 0.11388854385177827,
+   "top10_pct": 0.5322962010888675,
+   "top_kw": "bamboo sheets",
+   "top_kw_pct": 0.10700731166106874,
+   "reach": {
+    "OR": 0.99329461265172,
+    "SP": 0.5572868038462004,
+    "SOR": 0.5643195790035285
+   },
+   "hero_child_asins": [
+    [
+     "B0G1N23HZ1",
+     0.41480672415776465
+    ],
+    [
+     "B0H35S6VLR",
+     0.3179049050616776
+    ],
+    [
+     "B0G1N8QS55",
+     0.18333844055829457
+    ]
+   ],
+   "child_asins_total": 13,
+   "contested": 208,
+   "we_win": 58,
+   "we_lose": 132,
+   "our_zero": 85,
+   "theirs_only_kw": 697,
+   "theirs_only_share": 0.5000666901092505,
+   "our_share": 0.2730694308556117,
+   "ppc_we_run_none": 85,
+   "ppc_they_more_aggressive": 3,
+   "ad_gap": 8160.858500000004,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Cooling",
+     0.14107989475088212
+    ],
+    [
+     "Cooling|Queen",
+     0.10064143759624596
+    ],
+    [
+     "Cooling|King",
+     0.07894896387821174
+    ],
+    [
+     "Cooling|California King",
+     0.0024129694074280657
+    ],
+    [
+     "Cooling|Full",
+     0.0014793078779207235
+    ]
+   ]
+  }
+ ]
+}

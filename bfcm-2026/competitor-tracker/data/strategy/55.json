@@ -1,0 +1,762 @@
+{
+ "pid": 55,
+ "our_hero_asins": [
+  [
+   "B0DBR5SY67",
+   0.5271841002155423
+  ],
+  [
+   "B0DBR8Y5Y2",
+   0.3390650027457906
+  ]
+ ],
+ "our_child_asins_total": 16,
+ "competitors": [
+  {
+   "pid": 55,
+   "cid": 1743,
+   "parent_asin": "B01KFPFUAE",
+   "brand": "ALASKA BEAR",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T07:57:38.356Z",
+   "keywords": 1071,
+   "traffic": 209497,
+   "organic_pct": 0.5683664338868817,
+   "ad_pct": 0.4316335661131182,
+   "top10_pct": 0.6964873005341365,
+   "top_kw": "silk pillow cases",
+   "top_kw_pct": 0.3441003928457209,
+   "reach": {
+    "OR": 0.8107801066363719,
+    "SP": 0.7398435299789495,
+    "SB": 0.3173840198188996,
+    "AC": 0.010267450130550795,
+    "SOR": 0.759108722320606
+   },
+   "hero_child_asins": [
+    [
+     "B00KDL108M",
+     0.5856827713884207
+    ],
+    [
+     "B07BDD8433",
+     0.19571155648778163
+    ],
+    [
+     "B01CXQZNC8",
+     0.04793862675168232
+    ]
+   ],
+   "child_asins_total": 34,
+   "contested": 255,
+   "we_win": 27,
+   "we_lose": 207,
+   "our_zero": 107,
+   "theirs_only_kw": 816,
+   "theirs_only_share": 0.2518890485305279,
+   "our_share": 0.2318125815867056,
+   "ppc_we_run_none": 388,
+   "ppc_they_more_aggressive": 18,
+   "ad_gap": 72876.80609999997,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Silk Pillowcase",
+     0.4724315861324983
+    ],
+    [
+     "Silk Pillowcase|Mulberry",
+     0.07268839171921317
+    ],
+    [
+     "Silk Pillowcase|King",
+     0.020114846513315226
+    ],
+    [
+     "Silk Pillowcase|Queen",
+     0.005551392144040249
+    ],
+    [
+     "Silk Pillowcase|Standard",
+     0.0009355742564332663
+    ]
+   ]
+  },
+  {
+   "pid": 55,
+   "cid": 1742,
+   "parent_asin": "B0FKC1MD24",
+   "brand": "Fishers Finery",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T07:50:06.822Z",
+   "keywords": 1295,
+   "traffic": 220584,
+   "organic_pct": 0.48104848719762133,
+   "ad_pct": 0.5189515128023787,
+   "top10_pct": 0.6416104522540166,
+   "top_kw": "silk pillow cases",
+   "top_kw_pct": 0.2603951329198854,
+   "reach": {
+    "OR": 0.9427791680266928,
+    "SP": 0.9624270119319625,
+    "SB": 0.9632702281217133,
+    "SBV": 0.7826496935407826,
+    "AC": 0.07744895368657745,
+    "SOR": 0.9700748921045951
+   },
+   "hero_child_asins": [
+    [
+     "B07KWH57X6",
+     0.39833413428758774
+    ],
+    [
+     "B00FWZW55Q",
+     0.22297619543202532
+    ],
+    [
+     "B00FWZVIWW",
+     0.1050269761894253
+    ],
+    [
+     "B0815WT72G",
+     0.0959023789161097
+    ]
+   ],
+   "child_asins_total": 38,
+   "contested": 269,
+   "we_win": 29,
+   "we_lose": 220,
+   "our_zero": 118,
+   "theirs_only_kw": 1026,
+   "theirs_only_share": 0.09569597069597069,
+   "our_share": 0.22275663047959324,
+   "ppc_we_run_none": 505,
+   "ppc_they_more_aggressive": 28,
+   "ad_gap": 91844.92550000004,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Silk Pillowcase",
+     0.4610715192398361
+    ],
+    [
+     "Silk Pillowcase|Mulberry",
+     0.08678326623871178
+    ],
+    [
+     "Silk Pillowcase|King",
+     0.020110252783520112
+    ],
+    [
+     "Silk Pillowcase|Queen",
+     0.0041843470061291846
+    ],
+    [
+     "Silk Pillowcase|Standard",
+     0.001301091647626301
+    ]
+   ]
+  },
+  {
+   "pid": 55,
+   "cid": 551,
+   "parent_asin": "B0D9FCH7Q5",
+   "brand": "INFIIXSO",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T07:33:55.078Z",
+   "keywords": 1631,
+   "traffic": 772937,
+   "organic_pct": 0.5177595494846295,
+   "ad_pct": 0.4822405250363212,
+   "top10_pct": 0.7071093763139816,
+   "top_kw": "silk pillow cases",
+   "top_kw_pct": 0.3297487376073341,
+   "reach": {
+    "OR": 0.9919346596165017,
+    "SP": 0.9705047112507229,
+    "SB": 0.8800005692572616,
+    "SBV": 0.49792544541146305,
+    "AC": 0.24104551858689646,
+    "SOR": 0.9714012914377239
+   },
+   "hero_child_asins": [
+    [
+     "B0BBSSRNHM",
+     0.5053182260595945
+    ],
+    [
+     "B0BFDH1DL4",
+     0.119687906422396
+    ],
+    [
+     "B0BBSTPJDP",
+     0.09596417211967691
+    ],
+    [
+     "B0BFDGWX25",
+     0.0793707932540386
+    ]
+   ],
+   "child_asins_total": 62,
+   "contested": 267,
+   "we_win": 11,
+   "we_lose": 243,
+   "our_zero": 116,
+   "theirs_only_kw": 1364,
+   "theirs_only_share": 0.11226658835066765,
+   "our_share": 0.07560670496892924,
+   "ppc_we_run_none": 682,
+   "ppc_they_more_aggressive": 20,
+   "ad_gap": 328353.73419999925,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Silk Pillowcase",
+     0.4371882831330367
+    ],
+    [
+     "Silk Pillowcase|Mulberry",
+     0.05250751354896971
+    ],
+    [
+     "Silk Pillowcase|King",
+     0.015429459322040477
+    ],
+    [
+     "Silk Pillowcase|Queen",
+     0.001311879234659487
+    ],
+    [
+     "Silk Pillowcase|Standard",
+     0.0005110377689255399
+    ]
+   ]
+  },
+  {
+   "pid": 55,
+   "cid": 1740,
+   "parent_asin": "B0HCMWNG9W",
+   "brand": "PROMEED",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T08:03:33.172Z",
+   "keywords": 570,
+   "traffic": 122186,
+   "organic_pct": 0.8164780989638751,
+   "ad_pct": 0.18352192722570512,
+   "top10_pct": 0.7886664593324931,
+   "top_kw": "silk pillow cases",
+   "top_kw_pct": 0.46201692501595926,
+   "reach": {
+    "OR": 0.9954495605061137,
+    "SP": 0.3059761347453882,
+    "SB": 0.27494966690128164,
+    "SBV": 0.9498305861555334,
+    "AC": 0.01645851406871491,
+    "SOR": 0.692018725549572
+   },
+   "hero_child_asins": [
+    [
+     "B0B4RH938T",
+     0.7714521892898778
+    ],
+    [
+     "B0B4RL1Z8T",
+     0.11230387015076936
+    ]
+   ],
+   "child_asins_total": 27,
+   "contested": 235,
+   "we_win": 30,
+   "we_lose": 191,
+   "our_zero": 93,
+   "theirs_only_kw": 335,
+   "theirs_only_share": 0.016630383186289757,
+   "our_share": 0.3409778592810334,
+   "ppc_we_run_none": 163,
+   "ppc_they_more_aggressive": 12,
+   "ad_gap": 5249.285700000001,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Silk Pillowcase",
+     0.6209222005794445
+    ],
+    [
+     "Silk Pillowcase|Mulberry",
+     0.08084395920972944
+    ],
+    [
+     "Silk Pillowcase|King",
+     0.026042263434436025
+    ],
+    [
+     "Silk Pillowcase|Queen",
+     0.003813857561422749
+    ],
+    [
+     "Silk Pillowcase|Standard",
+     0.002029692436121978
+    ]
+   ]
+  },
+  {
+   "pid": 55,
+   "cid": 553,
+   "parent_asin": "B01LVZC25I",
+   "brand": "ZIMASILK",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T07:41:48.297Z",
+   "keywords": 1490,
+   "traffic": 576174,
+   "organic_pct": 0.6856568015911867,
+   "ad_pct": 0.31434322617820243,
+   "top10_pct": 0.7422497370585969,
+   "top_kw": "silk pillow cases",
+   "top_kw_pct": 0.43689406325172603,
+   "reach": {
+    "OR": 0.9940486727967593,
+    "SP": 0.9619611436822905,
+    "SB": 0.8398383127319178,
+    "SBV": 0.81135733302787,
+    "AC": 0.16885524164575286,
+    "SOR": 0.969302675927758
+   },
+   "hero_child_asins": [
+    [
+     "B01LVU7THF",
+     0.5871355087539019
+    ],
+    [
+     "B01LWAH6B4",
+     0.09330017575439588
+    ],
+    [
+     "B083FH4KF7",
+     0.07428751644614048
+    ],
+    [
+     "B06XF1XMC2",
+     0.05632610836185833
+    ]
+   ],
+   "child_asins_total": 64,
+   "contested": 266,
+   "we_win": 12,
+   "we_lose": 245,
+   "our_zero": 118,
+   "theirs_only_kw": 1224,
+   "theirs_only_share": 0.07488710007740718,
+   "our_share": 0.09887346279987426,
+   "ppc_we_run_none": 504,
+   "ppc_they_more_aggressive": 21,
+   "ad_gap": 160245.1598999997,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Silk Pillowcase",
+     0.6141408671685984
+    ],
+    [
+     "Silk Pillowcase|Mulberry",
+     0.11997764564176794
+    ],
+    [
+     "Silk Pillowcase|King",
+     0.03065046322812206
+    ],
+    [
+     "Silk Pillowcase|Queen",
+     0.005833307299531044
+    ],
+    [
+     "Silk Pillowcase|Standard",
+     0.00112466025888013
+    ]
+   ]
+  },
+  {
+   "pid": 55,
+   "cid": 1759,
+   "parent_asin": "B0CTCZGGHP",
+   "brand": "Colorado Home Co",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T07:15:43.912Z",
+   "keywords": 435,
+   "traffic": 119892,
+   "organic_pct": 0.4231184574450338,
+   "ad_pct": 0.576881542554966,
+   "top10_pct": 0.7975261068294799,
+   "top_kw": "silk pillow cases",
+   "top_kw_pct": 0.4965468922029827,
+   "reach": {
+    "OR": 0.9733676975945017,
+    "SP": 0.9609732092216328,
+    "AC": 0.0017765989390451406,
+    "SOR": 0.9588546358389217
+   },
+   "hero_child_asins": [
+    [
+     "B081CTM1T8",
+     0.8373109403502409
+    ]
+   ],
+   "child_asins_total": 32,
+   "contested": 230,
+   "we_win": 45,
+   "we_lose": 160,
+   "our_zero": 90,
+   "theirs_only_kw": 205,
+   "theirs_only_share": 0.03284622827211157,
+   "our_share": 0.34524960270000166,
+   "ppc_we_run_none": 88,
+   "ppc_they_more_aggressive": 16,
+   "ad_gap": 49625.989,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Silk Pillowcase",
+     0.6480165482267374
+    ],
+    [
+     "Silk Pillowcase|Mulberry",
+     0.0793297300904147
+    ],
+    [
+     "Silk Pillowcase|King",
+     0.03699996663663964
+    ],
+    [
+     "Silk Pillowcase|Queen",
+     0.0012594668535014846
+    ],
+    [
+     "Silk Pillowcase|Standard",
+     0.0004003603242918627
+    ]
+   ]
+  },
+  {
+   "pid": 55,
+   "cid": 1758,
+   "parent_asin": "B01MQIYMW3",
+   "brand": "Fishers Finery",
+   "import_file": "VariationKeyword_US__20260920 (36).xlsx",
+   "imported_at": "2026-09-20T16:16:01.970Z",
+   "keywords": 787,
+   "traffic": 102684,
+   "organic_pct": 0.6705437400179186,
+   "ad_pct": 0.32945625998208095,
+   "top10_pct": 0.7898991079428148,
+   "top_kw": "silk pillow cases",
+   "top_kw_pct": 0.47958786178956797,
+   "reach": {
+    "OR": 0.9625258073312298,
+    "SP": 0.9397861400023373,
+    "SB": 0.9988995364418994,
+    "SOR": 0.9319757703244906
+   },
+   "hero_child_asins": [
+    [
+     "B07VCVFVJM",
+     0.319714523819883
+    ],
+    [
+     "B0815RTY4S",
+     0.2979717758144338
+    ],
+    [
+     "B01LYQUJWD",
+     0.2609136441291293
+    ]
+   ],
+   "child_asins_total": 20,
+   "contested": 257,
+   "we_win": 55,
+   "we_lose": 178,
+   "our_zero": 109,
+   "theirs_only_kw": 530,
+   "theirs_only_share": 0.033374235518678665,
+   "our_share": 0.38106001699788433,
+   "ppc_we_run_none": 325,
+   "ppc_they_more_aggressive": 26,
+   "ad_gap": 22811.661299999992,
+   "comparable": false,
+   "days_apart": 22,
+   "owned_buckets": [
+    [
+     "Silk Pillowcase",
+     0.6288224066066768
+    ],
+    [
+     "Silk Pillowcase|Mulberry",
+     0.08748198356121693
+    ],
+    [
+     "Silk Pillowcase|King",
+     0.01894160726111176
+    ],
+    [
+     "Silk Pillowcase|Queen",
+     0.0019574617272408554
+    ],
+    [
+     "Silk Pillowcase|Standard",
+     0.0011199407892174048
+    ]
+   ]
+  },
+  {
+   "pid": 55,
+   "cid": 1747,
+   "parent_asin": "B09G8P3X6L",
+   "brand": "RENESSY",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T07:28:47.702Z",
+   "keywords": 83,
+   "traffic": 0,
+   "organic_pct": null,
+   "ad_pct": null,
+   "top10_pct": null,
+   "top_kw": "blissy",
+   "top_kw_pct": null,
+   "reach": {
+    "OR": null,
+    "SP": null
+   },
+   "hero_child_asins": [],
+   "child_asins_total": 0,
+   "contested": 71,
+   "we_win": 59,
+   "we_lose": 0,
+   "our_zero": 12,
+   "theirs_only_kw": 12,
+   "theirs_only_share": null,
+   "our_share": 1,
+   "ppc_we_run_none": 0,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 0,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Silk Pillowcase",
+     null
+    ],
+    [
+     "Silk Pillowcase|Queen",
+     null
+    ],
+    [
+     "Silk Pillowcase|Mulberry",
+     null
+    ]
+   ]
+  },
+  {
+   "pid": 55,
+   "cid": 1748,
+   "parent_asin": "B0BXBPNMVW",
+   "brand": "ROSEWARD",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T07:22:26.925Z",
+   "keywords": 388,
+   "traffic": 58241,
+   "organic_pct": 0.36981898490753945,
+   "ad_pct": 0.6301810150924604,
+   "top10_pct": 0.7027523565872839,
+   "top_kw": "blissy silk pillow cases",
+   "top_kw_pct": 0.20054600710839443,
+   "reach": {
+    "OR": 0.9908312013873388,
+    "SP": 0.9105441184045604,
+    "SB": 0.5094692742226267,
+    "SOR": 0.941879432015247
+   },
+   "hero_child_asins": [
+    [
+     "B0BXBN7JMP",
+     0.4674826847949199
+    ],
+    [
+     "B0BXBN73ZZ",
+     0.3247907684652023
+    ],
+    [
+     "B0BXBNSFKG",
+     0.0508929280167828
+    ]
+   ],
+   "child_asins_total": 26,
+   "contested": 230,
+   "we_win": 71,
+   "we_lose": 128,
+   "our_zero": 90,
+   "theirs_only_kw": 158,
+   "theirs_only_share": 0.04155148434951323,
+   "our_share": 0.5204923431582414,
+   "ppc_we_run_none": 100,
+   "ppc_they_more_aggressive": 23,
+   "ad_gap": 19765.997100000004,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Silk Pillowcase",
+     0.3983619786748167
+    ],
+    [
+     "Silk Pillowcase|Mulberry",
+     0.08332617915214367
+    ],
+    [
+     "Silk Pillowcase|King",
+     0.05573393313988428
+    ],
+    [
+     "Silk Pillowcase|Queen",
+     0.006953864116344156
+    ],
+    [
+     "Silk Pillowcase|Standard",
+     0.0001545303136965368
+    ]
+   ]
+  },
+  {
+   "pid": 55,
+   "cid": 1744,
+   "parent_asin": "B0GXDFM5TS",
+   "brand": "ZIMASILK",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T07:04:45.141Z",
+   "keywords": 574,
+   "traffic": 108891,
+   "organic_pct": 0.2928209181658722,
+   "ad_pct": 0.707179228770055,
+   "top10_pct": 0.71713915750613,
+   "top_kw": "silk pillow cases",
+   "top_kw_pct": 0.3834017503742274,
+   "reach": {
+    "OR": 0.9898522375586596,
+    "SP": 0.8487753808854727,
+    "SB": 0.9211413248110496,
+    "SBV": 0.7371959115078381,
+    "AC": 0.008549834237907632,
+    "SOR": 0.8491978216748859
+   },
+   "hero_child_asins": [
+    [
+     "B094XT94FC",
+     0.7489780666900738
+    ],
+    [
+     "B094XQM9R3",
+     0.2270917800085815
+    ]
+   ],
+   "child_asins_total": 15,
+   "contested": 246,
+   "we_win": 28,
+   "we_lose": 200,
+   "our_zero": 100,
+   "theirs_only_kw": 328,
+   "theirs_only_share": 0.027449467816440292,
+   "our_share": 0.36731741328220324,
+   "ppc_we_run_none": 222,
+   "ppc_they_more_aggressive": 25,
+   "ad_gap": 60213.964799999965,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Silk Pillowcase",
+     0.6171676263419382
+    ],
+    [
+     "Silk Pillowcase|Mulberry",
+     0.14407067618076794
+    ],
+    [
+     "Silk Pillowcase|King",
+     0.04965515974690286
+    ],
+    [
+     "Silk Pillowcase|Queen",
+     0.007833521594989484
+    ],
+    [
+     "Silk Pillowcase|Standard",
+     0.002727498140342177
+    ]
+   ]
+  },
+  {
+   "pid": 55,
+   "cid": 1755,
+   "parent_asin": "B09ZRJBNY5",
+   "brand": "ZIMASILK",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T07:10:05.467Z",
+   "keywords": 577,
+   "traffic": 66424,
+   "organic_pct": 0.920330772010117,
+   "ad_pct": 0.07966922798988318,
+   "top10_pct": 0.82203721546429,
+   "top_kw": "silk pillow cases",
+   "top_kw_pct": 0.6037275683487896,
+   "reach": {
+    "OR": 0.982431049018427,
+    "SP": 0.8019691677706853,
+    "SB": 0.030214982536432615,
+    "SOR": 0.7862218475249909
+   },
+   "hero_child_asins": [
+    [
+     "B09NVRZBDJ",
+     0.9640159370735777
+    ]
+   ],
+   "child_asins_total": 18,
+   "contested": 239,
+   "we_win": 75,
+   "we_lose": 144,
+   "our_zero": 94,
+   "theirs_only_kw": 338,
+   "theirs_only_share": 0.04266530169818138,
+   "our_share": 0.4876391320780914,
+   "ppc_we_run_none": 106,
+   "ppc_they_more_aggressive": 5,
+   "ad_gap": 1977.9624999999999,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Silk Pillowcase",
+     0.7288178971456101
+    ],
+    [
+     "Silk Pillowcase|Mulberry",
+     0.06036974587498495
+    ],
+    [
+     "Silk Pillowcase|King",
+     0.012314825966518126
+    ],
+    [
+     "Silk Pillowcase|Queen",
+     0.006172467782729134
+    ],
+    [
+     "Silk Pillowcase|Standard",
+     0.0017011923401180297
+    ]
+   ]
+  }
+ ]
+}

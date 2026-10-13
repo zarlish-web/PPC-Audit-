@@ -111,3 +111,27 @@ Output ca_competitors.csv with columns:
 
 Then run the Keepa history pull (Prompt 1 spec) on Amazon.ca (domain 6) for those child ASINs and output keepa_history_ca.csv.
 ```
+
+## Prompt 10: Competitor variations, with colours, sizes and images (Keepa)
+
+```
+For every competitor parent ASIN in the attached keepa_request.csv (column parent_asin, role = competitor; de-duplicate), list ALL its child variations on Amazon.com using Keepa (product?asin=<parent>&domain=1 returns the variations list; then pull each child).
+
+Output competitor_variations.csv with one row per child ASIN and exactly these columns:
+  parent_asin, child_asin, brand, title, color, size, style_or_pattern, other_attributes, current_buy_box_price, list_price, sales_rank, rating, review_count, bought_past_month, main_image_url, all_image_urls (pipe-separated), in_stock (Y/N)
+
+Rules:
+- color / size / style come from the variation attributes (Keepa "variations" attributes or the listing's dimension values), not guessed from the title.
+- main_image_url must be the full https://m.media-amazon.com/images/I/<id>.jpg URL (Keepa imagesCSV first entry, prefixed with https://m.media-amazon.com/images/I/).
+- Prices in USD as plain numbers. Blank when unknown, never 0.
+Return the CSV plus a count of parents and children pulled and any parent that returned no variations.
+```
+
+## Prompt 11: Download the image files (for the web dashboard)
+
+```
+Download every image listed in the attached image_request.csv (column image_url) and the main_image_url of every row in competitor_variations.csv (from Prompt 10).
+
+Save each file as <asin>.jpg, resized so the longest side is 400 px (JPEG quality 80). Put them all in one folder named product_images/, zip it as product_images.zip, and include a manifest CSV (asin, source_url, file_name, width, height, ok Y/N, error).
+Do not substitute any other image when a download fails; mark ok = N with the error.
+```

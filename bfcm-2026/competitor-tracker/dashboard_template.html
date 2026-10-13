@@ -1,0 +1,261 @@
+<title>BFCM Competitor Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: sticky filter rail on top, our-product panel, KPI strip, competitor grid / table. Thread-count palette: indigo ink, sateen teal accent, linen neutrals. */
+:root{
+  --bg:#f6f7f9; --panel:#ffffff; --ink:#18223a; --muted:#5d6a80; --line:#dde2ea; --accent:#0f7470; --accent-soft:#e1f1ef;
+  --good:#1f7a3d; --good-bg:#e3f4e8; --warn:#9a5b00; --warn-bg:#fdf0d8; --bad:#a3252b; --bad-bg:#fbe5e6; --chip:#eef1f6;
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif; --body:"Public Sans",ui-sans-serif,system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#10151f; --panel:#171e2b; --ink:#e7ebf3; --muted:#9aa6ba; --line:#2a3445; --accent:#4fc1b9; --accent-soft:#163633;
+  --good:#6fd58f; --good-bg:#163322; --warn:#f0b65a; --warn-bg:#3a2b12; --bad:#f08a8f; --bad-bg:#3a1a1d; --chip:#222b3a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#10151f; --panel:#171e2b; --ink:#e7ebf3; --muted:#9aa6ba; --line:#2a3445; --accent:#4fc1b9; --accent-soft:#163633;
+  --good:#6fd58f; --good-bg:#163322; --warn:#f0b65a; --warn-bg:#3a2b12; --bad:#f08a8f; --bad-bg:#3a1a1d; --chip:#222b3a; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:14px;line-height:1.45}
+.wrap{max-width:1440px;margin:0 auto;padding-inline:16px;padding-block:0 48px}
+header.top{display:flex;flex-wrap:wrap;gap:8px 24px;align-items:baseline;justify-content:space-between;padding-block:20px 8px}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(22px,3vw,30px);margin:0;letter-spacing:-.01em;text-wrap:balance}
+.sub{color:var(--muted);font-size:12.5px}
+.filters{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:10px;border-bottom:1px solid var(--line);
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.filters label{display:flex;flex-direction:column;gap:3px;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600;min-width:0}
+select,input[type=search]{font:inherit;font-size:13px;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:7px 8px;width:100%;min-width:0}
+select:focus-visible,input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.ours{display:grid;grid-template-columns:200px minmax(0,1fr);gap:20px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px;margin-top:16px}
+@media (max-width:720px){.ours{grid-template-columns:1fr}}
+.imgbox{aspect-ratio:1/1;width:100%;max-width:100%;border-radius:8px;background:var(--chip);display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid var(--line)}
+.imgbox img{width:100%;height:100%;object-fit:contain;background:#fff}
+.imgbox .pending{font-size:11px;color:var(--muted);text-align:center;padding:8px;line-height:1.35}
+.imgbox .pending b{display:block;color:var(--warn);font-size:11px;margin-bottom:2px}
+.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);font-weight:600}
+.ours h2{font-family:var(--display);font-size:20px;margin:2px 0 6px;line-height:1.25;text-wrap:balance}
+.facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px 18px;margin-top:10px}
+.fact .k{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.fact .v{font-family:var(--mono);font-size:13.5px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.vars{display:flex;gap:8px;overflow-x:auto;padding-block:10px 2px;margin-top:8px}
+.var{flex:0 0 92px;font-size:10.5px;color:var(--muted)}
+.var .imgbox{width:92px}
+.var b{color:var(--ink);font-weight:600;display:block;font-size:11px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:16px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.kpi .k{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.kpi .v{font-family:var(--display);font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}
+.kpi .s{font-size:11.5px;color:var(--muted)}
+.bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-top:22px}
+.bar h3{font-family:var(--display);font-size:18px;margin:0}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.seg button{font:inherit;font-size:12.5px;background:var(--panel);color:var(--ink);border:0;padding:6px 12px;cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--accent);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-top:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.card > .imgbox{aspect-ratio:4/3;max-height:210px}
+.card .head{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.brand{font-weight:600;font-size:14px}
+.title{font-size:12px;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.9em}
+.chip{display:inline-block;font-size:10.5px;font-weight:600;padding:2px 7px;border-radius:999px;background:var(--chip);color:var(--muted);white-space:nowrap}
+.chip.asp{background:var(--accent-soft);color:var(--accent)} .chip.good{background:var(--good-bg);color:var(--good)} .chip.warn{background:var(--warn-bg);color:var(--warn)} .chip.bad{background:var(--bad-bg);color:var(--bad)}
+.nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px 8px}
+.nums .k{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.nums .v{font-family:var(--mono);font-size:13px;font-variant-numeric:tabular-nums}
+.strat{font-size:11.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:6px}
+.strat b{color:var(--ink);font-weight:600}
+.asin{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.asin a{color:var(--accent)}
+.tablewrap{overflow-x:auto;margin-top:12px;border:1px solid var(--line);border-radius:8px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:12.5px;font-variant-numeric:tabular-nums}
+th,td{padding:7px 9px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+th{position:sticky;top:0;background:var(--panel);font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);cursor:pointer}
+td.num{font-family:var(--mono);text-align:right}
+td .thumb{width:44px;height:44px}
+.empty{padding:40px;text-align:center;color:var(--muted)}
+.note{font-size:12px;color:var(--muted);margin-top:18px;max-width:900px}
+@media (prefers-reduced-motion:no-preference){.card{transition:border-color .15s}.card:hover{border-color:var(--accent)}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="eyebrow">BFCM 2026 · competitor research</div>
+      <h1>BFCM Competitor Dashboard</h1>
+    </div>
+    <div class="sub" id="builtline"></div>
+  </header>
+
+  <section class="filters" aria-label="Filters">
+    <label for="f-product">Product<select id="f-product"></select></label>
+    <label for="f-mkt">Marketplace<select id="f-mkt"><option>US</option><option>CA</option></select></label>
+    <label for="f-brand">Competitor brand<select id="f-brand"></select></label>
+    <label for="f-tier">Tier<select id="f-tier"><option value="">All tiers</option><option>Aspirational</option><option>Beatable</option><option>Poor</option><option>Untiered</option></select></label>
+    <label for="f-band">List Price band<select id="f-band"><option value="">Any</option><option value="zone">≤12% over (STR zone)</option><option value="mid">12–25% over</option><option value="high">&gt;25% over</option><option value="none">No List Price</option></select></label>
+    <label for="f-pos">Price vs ours<select id="f-pos"><option value="">Any</option><option value="below">Below our price</option><option value="above">At / above our price</option></select></label>
+    <label for="f-q">Search<input id="f-q" type="search" placeholder="Brand, title or ASIN"></label>
+    <label for="f-sort">Sort<select id="f-sort"><option value="wk">Est weekly units</option><option value="price">Price (low → high)</option><option value="bsr">BSR (best first)</option><option value="reviews">Reviews</option><option value="lose">Keywords we lose</option><option value="tier">Tier</option></select></label>
+  </section>
+
+  <section class="ours" id="ours" aria-live="polite"></section>
+  <section class="kpis" id="kpis"></section>
+
+  <div class="bar">
+    <h3 id="count">Competitors</h3>
+    <div class="seg" role="group" aria-label="View">
+      <button id="v-cards" aria-pressed="true">Cards</button><button id="v-table" aria-pressed="false">Table</button>
+    </div>
+  </div>
+  <section id="list"></section>
+
+  <p class="note">Sources: Command Center (competitor map, price, List Price, BSR, est. weekly units, rating, reviews, ASINsight search strategy, our BFCM 2025 PPC/TACoS), Data Dive (variations, listing date, our catalog). Snapshot Oct 12–13, 2026. Est. units are estimates for ranking competitors. Search-strategy comparisons use exports up to two weeks apart, so read them as direction. BFCM 2025 competitor deal history comes from Keepa and lands in the workbook's yellow columns. Images show when the image file has been downloaded (Prompt 11); until then the card says so instead of showing a stand-in.</p>
+</div>
+
+<script>
+const D = /*__DATA__*/null;
+const $ = s => document.querySelector(s);
+const fmt$ = v => (typeof v === "number") ? "$" + v.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2}) : "—";
+const fmtN = v => (typeof v === "number") ? Math.round(v).toLocaleString("en-US") : "—";
+const fmtP = (v,d=0) => (typeof v === "number") ? (v*100).toFixed(d) + "%" : "—";
+const fmtX = v => (typeof v === "number") ? v.toFixed(2) + "x" : "—";
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const amz = (a,m) => a ? `https://www.amazon.${m === "CA" ? "ca" : "com"}/dp/${a}` : null;
+
+function imgBox(src, asin, cls=""){
+  if (src) return `<div class="imgbox ${cls}"><img loading="lazy" src="${esc(src)}" alt="Product image ${esc(asin||"")}"></div>`;
+  return `<div class="imgbox ${cls}"><div class="pending"><b>Image file pending</b>${esc(asin || "no ASIN")}</div></div>`;
+}
+function lpPct(c){ return (typeof c.lp === "number" && typeof c.price === "number" && c.price > 0) ? c.lp/c.price - 1 : null; }
+function band(c){ const p = lpPct(c); if (p === null) return "none"; if (p <= 0) return "none"; if (p <= .12) return "zone"; if (p <= .25) return "mid"; return "high"; }
+function gap(c){ return (typeof c.price === "number" && typeof c.our_same === "number" && c.our_same > 0) ? c.price/c.our_same - 1 : null; }
+const bandChip = c => ({zone:'<span class="chip good">List ≤12% · STR zone</span>', mid:'<span class="chip warn">List 12–25%</span>', high:'<span class="chip bad">List &gt;25%</span>', none:'<span class="chip">No List Price</span>'})[band(c)];
+const tierChip = t => `<span class="chip ${t === "Aspirational" ? "asp" : ""}">${esc(t)}</span>`;
+
+const products = D.products;
+const pSel = $("#f-product");
+const order = [...new Map(products.map(p => [p.short, p])).values()];
+pSel.innerHTML = order.map(p => `<option value="${esc(p.short)}">${esc(p.family)} · ${esc(p.short)} — ${esc(p.brand)} ${esc(p.name)}</option>`).join("");
+$("#builtline").textContent = `Data built ${D.built} · ${products.length} product tabs · ${D.comps.length} competitor rows · ${D.imagesLoaded} image files loaded`;
+
+let view = "cards";
+try { const s = JSON.parse(localStorage.getItem("bfcm-dash") || "{}"); if (s.product) pSel.value = s.product; if (s.mkt) $("#f-mkt").value = s.mkt; if (s.view) view = s.view; } catch(e) {}
+
+function current(){ const short = pSel.value, mkt = $("#f-mkt").value; return products.find(p => p.short === short && p.mkt === mkt) || null; }
+
+function renderOurs(p){
+  const el = $("#ours");
+  if (!p){ el.innerHTML = `<div style="grid-column:1/-1" class="empty">We do not sell ${esc(pSel.value)} on Amazon.${$("#f-mkt").value === "CA" ? "ca" : "com"}. Switch marketplace.</div>`; return; }
+  const vars = (p.vars || []).slice(0, 60);
+  el.innerHTML = `
+    ${imgBox(p.img, p.best)}
+    <div style="min-width:0">
+      <div class="eyebrow">Our product · ${esc(p.mkt === "US" ? "Amazon.com" : "Amazon.ca")} · ${esc(p.role)}</div>
+      <h2>${esc(p.title || (p.brand + " " + p.name))}</h2>
+      <div class="asin">Parent <a href="${amz(p.parent,p.mkt)}" target="_blank" rel="noopener">${esc(p.parent || "—")}</a> · Best seller ${esc(p.best || "—")} · Stage ${esc(p.stage || "—")}</div>
+      <div class="facts">
+        <div class="fact"><div class="k">Brand</div><div class="v">${esc(p.brand || "—")}</div></div>
+        <div class="fact"><div class="k">Variations (SKUs)</div><div class="v">${fmtN(p.skus)}</div></div>
+        <div class="fact"><div class="k">Sizes</div><div class="v">${esc((p.sizes||[]).join(", ") || "—")}</div></div>
+        <div class="fact"><div class="k">Colours</div><div class="v">${(p.colours||[]).length ? esc(p.colours.length + ": " + p.colours.slice(0,8).join(", ") + (p.colours.length > 8 ? "…" : "")) : "—"}</div></div>
+        <div class="fact"><div class="k">Blended price</div><div class="v">${fmt$(p.price)}</div></div>
+        <div class="fact"><div class="k">Contribution / unit</div><div class="v">${fmt$(p.contrib)}</div></div>
+        <div class="fact"><div class="k">Break-even ACoS</div><div class="v">${fmtP(p.be)}</div></div>
+        <div class="fact"><div class="k">Units, 28 days</div><div class="v">${fmtN(p.u28)}</div></div>
+        <div class="fact"><div class="k">BFCM 2025 lift</div><div class="v">${fmtX(p.lift)}</div></div>
+        <div class="fact"><div class="k">BFCM 2025 TACoS</div><div class="v">${typeof p.tacos === "number" ? p.tacos.toFixed(1) + "%" : "—"}${typeof p.preTacos === "number" ? ` <span class="sub">vs ${p.preTacos.toFixed(1)}% before</span>` : ""}</div></div>
+      </div>
+      ${vars.length ? `<div class="vars" aria-label="Our variations">${vars.map(v => `<div class="var">${imgBox(v.img, v.asin)}<b>${esc([v.size, v.colour].filter(Boolean).join(" · ") || v.asin || "")}</b>${v.price ? fmt$(v.price) : ""}${typeof v.u28 === "number" ? " · " + fmtN(v.u28) + " u" : ""}</div>`).join("")}</div><div class="sub">${p.vars.length} variations${p.vars.length > 60 ? ", first 60 by units shown" : ""}</div>` : `<div class="sub" style="margin-top:8px">Variation list not available yet for this product.</div>`}
+    </div>`;
+}
+
+function filtered(p){
+  const brand = $("#f-brand").value, tier = $("#f-tier").value, b = $("#f-band").value, pos = $("#f-pos").value, q = $("#f-q").value.trim().toLowerCase();
+  let rows = D.comps.filter(c => p && c.pid === p.pid && c.mkt === p.mkt);
+  if (brand) rows = rows.filter(c => c.brand === brand);
+  if (tier) rows = rows.filter(c => c.tier === tier);
+  if (b) rows = rows.filter(c => band(c) === b);
+  if (pos === "below") rows = rows.filter(c => gap(c) !== null && gap(c) < 0);
+  if (pos === "above") rows = rows.filter(c => gap(c) !== null && gap(c) >= 0);
+  if (q) rows = rows.filter(c => [c.brand, c.title, c.child, c.parent].join(" ").toLowerCase().includes(q));
+  const s = $("#f-sort").value, tr = {Aspirational:0, Beatable:1, Poor:2, Untiered:3};
+  const num = v => typeof v === "number" ? v : null;
+  const by = {wk: c => -(num(c.wk) ?? -1), price: c => num(c.price) ?? 1e9, bsr: c => num(c.bsr) ?? 1e12, reviews: c => -(num(c.reviews) ?? -1), lose: c => -(num(c.we_lose) ?? -1), tier: c => (tr[c.tier] ?? 4) * 1e7 - (num(c.wk) ?? 0)}[s];
+  return rows.slice().sort((a,b2) => by(a) - by(b2));
+}
+
+function renderBrands(p){
+  const keep = $("#f-brand").value;
+  const brands = [...new Set(D.comps.filter(c => p && c.pid === p.pid && c.mkt === p.mkt).map(c => c.brand).filter(Boolean))].sort((a,b) => a.localeCompare(b));
+  $("#f-brand").innerHTML = `<option value="">All brands (${brands.length})</option>` + brands.map(b => `<option>${esc(b)}</option>`).join("");
+  if (brands.includes(keep)) $("#f-brand").value = keep;
+}
+
+function renderKpis(p, rows){
+  const prices = rows.map(c => c.price).filter(v => typeof v === "number").sort((a,b) => a-b);
+  const med = prices.length ? prices[Math.floor((prices.length-1)/2)] : null;
+  const below = rows.filter(c => gap(c) !== null && gap(c) < 0).length;
+  const zone = rows.filter(c => band(c) === "zone").length;
+  const lpset = rows.filter(c => band(c) !== "none").length;
+  const wk = rows.reduce((s,c) => s + (typeof c.wk === "number" ? c.wk : 0), 0);
+  const ourwk = p && typeof p.u28 === "number" ? p.u28/4 : null;
+  const lose = rows.reduce((s,c) => s + (c.we_lose || 0), 0), win = rows.reduce((s,c) => s + (c.we_win || 0), 0);
+  const k = [
+    ["Competitors", fmtN(rows.length), "in this view"],
+    ["Median price", fmt$(med), p ? "ours " + fmt$(p.price) + " blended" : ""],
+    ["Priced below us", fmtN(below), "same size, else vs our Queen"],
+    ["List Price set", fmtN(lpset), `${zone} within 12% (STR zone)`],
+    ["Est weekly units", fmtN(wk), ourwk !== null ? `we sell ~${fmtN(ourwk)}/wk (${fmtP(ourwk/(ourwk+wk),1)})` : ""],
+    ["Shared keywords", `${fmtN(win)} / ${fmtN(lose)}`, "we win / we lose (sum over rivals)"],
+  ];
+  $("#kpis").innerHTML = k.map(([a,b,c]) => `<div class="kpi"><div class="k">${a}</div><div class="v">${b}</div><div class="s">${esc(c)}</div></div>`).join("");
+}
+
+function card(c, p){
+  const g = gap(c);
+  const gChip = g === null ? "" : (g < 0 ? `<span class="chip bad">${fmtP(g)} vs ours</span>` : `<span class="chip">+${fmtP(g)} vs ours</span>`);
+  const pd = (typeof c.pd === "number" && typeof c.pd_pre === "number" && c.pd_pre >= 5) ? c.pd / c.pd_pre : null;
+  return `<article class="card">
+    ${imgBox(c.img, c.child)}
+    <div class="head"><div class="brand">${esc(c.brand || "Unknown brand")}</div>${tierChip(c.tier)}</div>
+    <div class="title" title="${esc(c.title)}">${esc(c.title)}</div>
+    <div class="asin">Child <a href="${amz(c.child,c.mkt)}" target="_blank" rel="noopener">${esc(c.child || "—")}</a> · Parent ${esc(c.parent || "—")}</div>
+    <div>${bandChip(c)} ${gChip}</div>
+    <div class="nums">
+      <div><div class="k">Price</div><div class="v">${fmt$(c.price)}</div></div>
+      <div><div class="k">List</div><div class="v">${fmt$(c.lp)}</div></div>
+      <div><div class="k">BSR</div><div class="v">${fmtN(c.bsr)}</div></div>
+      <div><div class="k">Wk units</div><div class="v">${fmtN(c.wk)}</div></div>
+      <div><div class="k">Rating</div><div class="v">${typeof c.rating === "number" ? c.rating.toFixed(1) : "—"} <span class="sub">(${fmtN(c.reviews)})</span></div></div>
+      <div><div class="k">Variations</div><div class="v">${fmtN(c.var)}</div></div>
+    </div>
+    <div class="strat">${c.contested != null ? `Shared keywords <b>${fmtN(c.contested)}</b> · we win <b>${fmtN(c.we_win)}</b>, lose <b>${fmtN(c.we_lose)}</b><br>` : ""}${c.ppc_none != null ? `They advertise on <b>${fmtN(c.ppc_none)}</b> KWs we don't; out-bid us on <b>${fmtN(c.ppc_aggr)}</b><br>` : ""}${c.org_pct != null ? `Traffic ${fmtP(c.org_pct)} organic / ${fmtP(c.ad_pct)} ads · SB ${fmtP(c.r_sb)} · SBV ${fmtP(c.r_sbv)}<br>` : ""}${c.top_kw ? `Top keyword: <b>${esc(c.top_kw)}</b><br>` : ""}${pd !== null ? `Prime Day 2026 organic visibility ${fmtX(pd)}<br>` : ""}${c.hero ? `Hero children: ${esc(c.hero)}` : ""}</div>
+  </article>`;
+}
+
+function table(rows){
+  const cols = [["", c => `<div class="imgbox thumb">${c.img ? `<img loading="lazy" src="${esc(c.img)}" alt="">` : `<div class="pending" style="font-size:9px">pending</div>`}</div>`],
+    ["Brand", c => esc(c.brand)], ["Tier", c => esc(c.tier)], ["Child ASIN", c => esc(c.child)], ["Title", c => `<span title="${esc(c.title)}">${esc((c.title||"").slice(0,60))}</span>`],
+    ["Price", c => fmt$(c.price), 1], ["List", c => fmt$(c.lp), 1], ["List %", c => fmtP(lpPct(c)), 1], ["vs ours", c => fmtP(gap(c)), 1], ["BSR", c => fmtN(c.bsr), 1],
+    ["Wk units", c => fmtN(c.wk), 1], ["Rating", c => typeof c.rating === "number" ? c.rating.toFixed(1) : "—", 1], ["Reviews", c => fmtN(c.reviews), 1],
+    ["Variations", c => fmtN(c.var), 1], ["We win", c => fmtN(c.we_win), 1], ["We lose", c => fmtN(c.we_lose), 1], ["Ad gap KWs", c => fmtN(c.ppc_none), 1]];
+  return `<div class="tablewrap"><table><thead><tr>${cols.map(c => `<th>${c[0]}</th>`).join("")}</tr></thead><tbody>${rows.map(r => `<tr>${cols.map(c => `<td class="${c[2] ? "num" : ""}">${c[1](r)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+}
+
+function render(){
+  const p = current();
+  renderOurs(p);
+  renderBrands(p);
+  const rows = filtered(p);
+  renderKpis(p, rows);
+  $("#count").textContent = `Competitors · ${rows.length}`;
+  $("#list").innerHTML = !p ? "" : rows.length === 0
+    ? `<div class="empty">${p.mkt === "CA" ? "No Amazon.ca competitors are mapped in the Command Center yet (data gap: Canada competitor set)." : "No competitors match these filters."}</div>`
+    : (view === "cards" ? `<div class="grid">${rows.map(c => card(c, p)).join("")}</div>` : table(rows));
+  try { localStorage.setItem("bfcm-dash", JSON.stringify({product: pSel.value, mkt: $("#f-mkt").value, view})); } catch(e) {}
+}
+["#f-product","#f-mkt","#f-brand","#f-tier","#f-band","#f-pos","#f-sort"].forEach(s => $(s).addEventListener("change", () => { if (s === "#f-product" || s === "#f-mkt") $("#f-brand").value = ""; render(); }));
+$("#f-q").addEventListener("input", render);
+$("#v-cards").addEventListener("click", () => { view = "cards"; $("#v-cards").setAttribute("aria-pressed","true"); $("#v-table").setAttribute("aria-pressed","false"); render(); });
+$("#v-table").addEventListener("click", () => { view = "table"; $("#v-table").setAttribute("aria-pressed","true"); $("#v-cards").setAttribute("aria-pressed","false"); render(); });
+if (view === "table"){ $("#v-table").setAttribute("aria-pressed","true"); $("#v-cards").setAttribute("aria-pressed","false"); }
+render();
+</script>

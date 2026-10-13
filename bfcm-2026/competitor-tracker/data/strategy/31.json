@@ -1,0 +1,1619 @@
+{
+ "pid": 31,
+ "our_hero_asins": [
+  [
+   "B0C7FX1GFS",
+   0.3848533113712714
+  ],
+  [
+   "B0C7FXXS6R",
+   0.28876140583775894
+  ],
+  [
+   "B0C7FMM2QN",
+   0.06476853211006747
+  ],
+  [
+   "B0C7FMCXBV",
+   0.05712770507843723
+  ],
+  [
+   "B0C7FTB8MQ",
+   0.024745871345366977
+  ]
+ ],
+ "our_child_asins_total": 71,
+ "competitors": [
+  {
+   "pid": 31,
+   "cid": 144,
+   "parent_asin": "B0FNMNMZ9T",
+   "brand": "BEDELITE",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-28T23:05:23.408Z",
+   "keywords": 3432,
+   "traffic": 997443,
+   "organic_pct": 0.8161266415223724,
+   "ad_pct": 0.18387336810223712,
+   "top10_pct": 0.36518377491245113,
+   "top_kw": "silk sheets",
+   "top_kw_pct": 0.07361523415373109,
+   "reach": {
+    "OR": 0.9973552373418832,
+    "SP": 0.7623814092634867,
+    "SB": 0.2406603685624141,
+    "SBV": 0.18181790839175774,
+    "AC": 0.37186485844303885,
+    "SOR": 0.7384211428622989
+   },
+   "hero_child_asins": [
+    [
+     "B0CSFTRP2X",
+     0.5682003635194013
+    ],
+    [
+     "B0CSFW9QKP",
+     0.14240799447389177
+    ],
+    [
+     "B0CSFTZ5B9",
+     0.1413521499375471
+    ]
+   ],
+   "child_asins_total": 91,
+   "contested": 435,
+   "we_win": 38,
+   "we_lose": 373,
+   "our_zero": 115,
+   "theirs_only_kw": 2997,
+   "theirs_only_share": 0.5083618813305623,
+   "our_share": 0.026932344763670065,
+   "ppc_we_run_none": 393,
+   "ppc_they_more_aggressive": 23,
+   "ad_gap": 150513.28669999982,
+   "comparable": false,
+   "days_apart": 14,
+   "owned_buckets": [
+    [
+     "Silk",
+     0.1302901519184555
+    ],
+    [
+     "Satin",
+     0.08424040270972878
+    ],
+    [
+     "Silk|Queen",
+     0.039023783815215506
+    ],
+    [
+     "Satin|Queen",
+     0.024681109597240142
+    ],
+    [
+     "Silk|King",
+     0.021847864990781427
+    ]
+   ]
+  },
+  {
+   "pid": 31,
+   "cid": 1526,
+   "parent_asin": "B08CQKS3KP",
+   "brand": "CozyLux",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-28T23:18:19.113Z",
+   "keywords": 2031,
+   "traffic": 164434,
+   "organic_pct": 0.724298132381382,
+   "ad_pct": 0.27570190654001037,
+   "top10_pct": 0.3677463298344625,
+   "top_kw": "silk sheets",
+   "top_kw_pct": 0.07696705060997118,
+   "reach": {
+    "OR": 0.9210503910383497,
+    "SP": 0.601335490227082,
+    "SB": 0.5155016602405829,
+    "AC": 0.04596981159614192,
+    "SOR": 0.5701497257258231
+   },
+   "hero_child_asins": [
+    [
+     "B08P16XLP2",
+     0.4279689640009929
+    ],
+    [
+     "B08P164867",
+     0.07998713507944395
+    ],
+    [
+     "B08P17PQ8J",
+     0.0606696736746755
+    ],
+    [
+     "B0CQ8CN4PK",
+     0.05395981033171657
+    ],
+    [
+     "B0BYDSWCJY",
+     0.04051966190136962
+    ],
+    [
+     "B0D9LNCZVQ",
+     0.038174248271619214
+    ],
+    [
+     "B08CQX9HDS",
+     0.03365990550853974
+    ],
+    [
+     "B08CQVGG18",
+     0.029893095895885496
+    ],
+    [
+     "B08P16THT5",
+     0.028356928249725463
+    ],
+    [
+     "B09NW325W7",
+     0.02683528874688485
+    ]
+   ],
+   "child_asins_total": 99,
+   "contested": 396,
+   "we_win": 61,
+   "we_lose": 300,
+   "our_zero": 103,
+   "theirs_only_kw": 1635,
+   "theirs_only_share": 0.2632302321904229,
+   "our_share": 0.14375576048864566,
+   "ppc_we_run_none": 361,
+   "ppc_they_more_aggressive": 29,
+   "ad_gap": 37986.18290000001,
+   "comparable": false,
+   "days_apart": 14,
+   "owned_buckets": [
+    [
+     "Silk",
+     0.20962817908705011
+    ],
+    [
+     "Satin",
+     0.12176313901018038
+    ],
+    [
+     "Silk|Queen",
+     0.09383704100125279
+    ],
+    [
+     "Satin|Queen",
+     0.06402568811802911
+    ],
+    [
+     "Silk|Full",
+     0.0499653356361823
+    ]
+   ]
+  },
+  {
+   "pid": 31,
+   "cid": 1528,
+   "parent_asin": "B0DC3MX1DP",
+   "brand": "Lanest Housing",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-28T23:31:40.054Z",
+   "keywords": 1240,
+   "traffic": 163454,
+   "organic_pct": 0.511816095659941,
+   "ad_pct": 0.488184002226926,
+   "top10_pct": 0.5773245072008026,
+   "top_kw": "silk sheets",
+   "top_kw_pct": 0.16390544128623344,
+   "reach": {
+    "OR": 0.9991434899115348,
+    "SP": 0.9357923330111224,
+    "SB": 0.9225470162859275,
+    "AC": 0.0028509550087486386,
+    "SOR": 0.9115775692243689
+   },
+   "hero_child_asins": [
+    [
+     "B082B5CY3D",
+     0.4125725137650849
+    ],
+    [
+     "B07VWFV7MB",
+     0.20709208872457996
+    ],
+    [
+     "B07VTSWJPH",
+     0.20564779324015983
+    ]
+   ],
+   "child_asins_total": 53,
+   "contested": 356,
+   "we_win": 95,
+   "we_lose": 220,
+   "our_zero": 82,
+   "theirs_only_kw": 884,
+   "theirs_only_share": 0.047242649308062205,
+   "our_share": 0.14449311999832515,
+   "ppc_we_run_none": 98,
+   "ppc_they_more_aggressive": 34,
+   "ad_gap": 72064.59420000004,
+   "comparable": false,
+   "days_apart": 14,
+   "owned_buckets": [
+    [
+     "Silk",
+     0.2994236910690469
+    ],
+    [
+     "Silk|Queen",
+     0.175914936312357
+    ],
+    [
+     "Satin",
+     0.1632630587198845
+    ],
+    [
+     "Satin|Queen",
+     0.09674893242135402
+    ],
+    [
+     "Silk|Full",
+     0.07887234328924346
+    ]
+   ]
+  },
+  {
+   "pid": 31,
+   "cid": 8,
+   "parent_asin": "B08DHTB63X",
+   "brand": "Love's cabin",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T00:13:55.826Z",
+   "keywords": 3599,
+   "traffic": 385363,
+   "organic_pct": 0.8181775938530695,
+   "ad_pct": 0.18182241445079048,
+   "top10_pct": 0.3657356829794246,
+   "top_kw": "silk sheets",
+   "top_kw_pct": 0.1045922934998949,
+   "reach": {
+    "OR": 0.9926796293364957,
+    "SP": 0.8853963665427143,
+    "SB": 0.6095447668821345,
+    "SBV": 0.07642664189348744,
+    "AC": 0.06371395281851137,
+    "SOR": 0.8292389253768525
+   },
+   "hero_child_asins": [
+    [
+     "B0BNMC5G8R",
+     0.445320874535799
+    ],
+    [
+     "B0BNMCRSC6",
+     0.12939521816742006
+    ],
+    [
+     "B0CM5NFXX1",
+     0.08840277557025773
+    ],
+    [
+     "B0BNMVM5VM",
+     0.04737021075867953
+    ],
+    [
+     "B0BNMD8S97",
+     0.0417628069158247
+    ],
+    [
+     "B0CM5NXPHC",
+     0.0373549377052109
+    ],
+    [
+     "B0CM5P14R7",
+     0.03362831417436397
+    ]
+   ],
+   "child_asins_total": 95,
+   "contested": 418,
+   "we_win": 63,
+   "we_lose": 328,
+   "our_zero": 113,
+   "theirs_only_kw": 3181,
+   "theirs_only_share": 0.3163770263362077,
+   "our_share": 0.06684989224398867,
+   "ppc_we_run_none": 478,
+   "ppc_they_more_aggressive": 30,
+   "ad_gap": 55316.989799999974,
+   "comparable": false,
+   "days_apart": 14,
+   "owned_buckets": [
+    [
+     "Silk",
+     0.2037663190290713
+    ],
+    [
+     "Satin",
+     0.12379237238655501
+    ],
+    [
+     "Silk|Queen",
+     0.08334738934459199
+    ],
+    [
+     "Satin|Queen",
+     0.05635984772798634
+    ],
+    [
+     "Silk|Full",
+     0.04953511364609472
+    ]
+   ]
+  },
+  {
+   "pid": 31,
+   "cid": 72,
+   "parent_asin": "B08NQ3W7PG",
+   "brand": "MR&HM",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-28T22:57:15.125Z",
+   "keywords": 3352,
+   "traffic": 356457,
+   "organic_pct": 0.7964633734223203,
+   "ad_pct": 0.20353674328179824,
+   "top10_pct": 0.34265563588315,
+   "top_kw": "silk sheets",
+   "top_kw_pct": 0.08011064448166258,
+   "reach": {
+    "OR": 0.993943168460712,
+    "SP": 0.839254103580516,
+    "AC": 0.13622680996585843,
+    "SOR": 0.8621488706912755
+   },
+   "hero_child_asins": [
+    [
+     "B08HM6WT6X",
+     0.39858265802761134
+    ],
+    [
+     "B0D2CQ6VNT",
+     0.1285141802990793
+    ],
+    [
+     "B08PS3HDFL",
+     0.09801811434262934
+    ],
+    [
+     "B08HM65Z68",
+     0.08483888653146146
+    ],
+    [
+     "B08HLT8R9M",
+     0.05569857356936737
+    ],
+    [
+     "B08PSBYGQM",
+     0.0226898600928681
+    ],
+    [
+     "B0FRMP69VN",
+     0.020556176481110414
+    ]
+   ],
+   "child_asins_total": 135,
+   "contested": 426,
+   "we_win": 65,
+   "we_lose": 314,
+   "our_zero": 120,
+   "theirs_only_kw": 2926,
+   "theirs_only_share": 0.358980185548327,
+   "our_share": 0.07188124895850692,
+   "ppc_we_run_none": 443,
+   "ppc_they_more_aggressive": 34,
+   "ad_gap": 57078.72250000001,
+   "comparable": false,
+   "days_apart": 14,
+   "owned_buckets": [
+    [
+     "Silk",
+     0.18565773711836212
+    ],
+    [
+     "Satin",
+     0.11603082559747739
+    ],
+    [
+     "Silk|Queen",
+     0.057462751467918995
+    ],
+    [
+     "Silk|Full",
+     0.03803544326524658
+    ],
+    [
+     "Satin|Queen",
+     0.03362537416855329
+    ]
+   ]
+  },
+  {
+   "pid": 31,
+   "cid": 1535,
+   "parent_asin": "B0FMPQYB2J",
+   "brand": "Pure Bedding",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T05:47:11.968Z",
+   "keywords": 1524,
+   "traffic": 119531,
+   "organic_pct": 0.6204180681162206,
+   "ad_pct": 0.37958193188377914,
+   "top10_pct": 0.4194225765700948,
+   "top_kw": "satin sheets",
+   "top_kw_pct": 0.11031447908910659,
+   "reach": {
+    "OR": 0.9852506881060143,
+    "SP": 0.7968142155591437,
+    "AC": 0.0014807874107971991,
+    "SOR": 0.7719587387372313
+   },
+   "hero_child_asins": [
+    [
+     "B083G81VSH",
+     0.5275072897962293
+    ],
+    [
+     "B07QVMQHD8",
+     0.2501665808157747
+    ],
+    [
+     "B0FMZWLSSM",
+     0.03595909578791043
+    ]
+   ],
+   "child_asins_total": 50,
+   "contested": 355,
+   "we_win": 95,
+   "we_lose": 225,
+   "our_zero": 87,
+   "theirs_only_kw": 1169,
+   "theirs_only_share": 0.3573466297445851,
+   "our_share": 0.18762658184833286,
+   "ppc_we_run_none": 241,
+   "ppc_they_more_aggressive": 31,
+   "ad_gap": 41100.8326,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Satin",
+     0.15173469643858079
+    ],
+    [
+     "Silk",
+     0.12551555663384395
+    ],
+    [
+     "Silk|Queen",
+     0.0936828103169889
+    ],
+    [
+     "Satin|Queen",
+     0.0736127029808167
+    ],
+    [
+     "Satin|King",
+     0.014506697007470865
+    ]
+   ]
+  },
+  {
+   "pid": 31,
+   "cid": 146,
+   "parent_asin": "B0DCZYNBYS",
+   "brand": "Bedsure",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-28T23:38:23.164Z",
+   "keywords": 1094,
+   "traffic": 89691,
+   "organic_pct": 0.6850140036347012,
+   "ad_pct": 0.3149859963652986,
+   "top10_pct": 0.42714430656364627,
+   "top_kw": "satin sheets",
+   "top_kw_pct": 0.15668238730753364,
+   "reach": {
+    "OR": 0.8778472756463859,
+    "SP": 0.7987311993399561,
+    "SB": 0.4455742493672721,
+    "AC": 0.011428125452943997,
+    "SOR": 0.8792075013100534
+   },
+   "hero_child_asins": [
+    [
+     "B0CJ8SSQ6B",
+     0.36581904428047257
+    ],
+    [
+     "B0CJ8RDYQ7",
+     0.17323057114581022
+    ],
+    [
+     "B0CJ8RYNTS",
+     0.17213586141232123
+    ],
+    [
+     "B0CL4FSC1R",
+     0.08674229075374652
+    ],
+    [
+     "B0CJ8SB44M",
+     0.06726471668101026
+    ]
+   ],
+   "child_asins_total": 32,
+   "contested": 328,
+   "we_win": 79,
+   "we_lose": 220,
+   "our_zero": 69,
+   "theirs_only_kw": 766,
+   "theirs_only_share": 0.26573457760533387,
+   "our_share": 0.23535780661221845,
+   "ppc_we_run_none": 181,
+   "ppc_they_more_aggressive": 29,
+   "ad_gap": 21789.811499999996,
+   "comparable": false,
+   "days_apart": 14,
+   "owned_buckets": [
+    [
+     "Satin",
+     0.22929836884414267
+    ],
+    [
+     "Silk",
+     0.14176450256993456
+    ],
+    [
+     "Silk|Queen",
+     0.08921742426776377
+    ],
+    [
+     "Satin|Queen",
+     0.08878259803101761
+    ],
+    [
+     "Satin|King",
+     0.03775183686211549
+    ]
+   ]
+  },
+  {
+   "pid": 31,
+   "cid": 1536,
+   "parent_asin": "B099PPQ7T3",
+   "brand": "Cobedzy",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T05:28:44.634Z",
+   "keywords": 461,
+   "traffic": 21925,
+   "organic_pct": 0.9295306681870016,
+   "ad_pct": 0.07046991562143676,
+   "top10_pct": 0.46800456100342075,
+   "top_kw": "satin sheets",
+   "top_kw_pct": 0.13719498289623716,
+   "reach": {
+    "OR": 0.9956214367160775,
+    "SP": 0.3978563283922463,
+    "AC": 0.012998859749144812,
+    "SOR": 0.6151425313568986
+   },
+   "hero_child_asins": [
+    [
+     "B087CSJ1FV",
+     0.43858008505911317
+    ],
+    [
+     "B087CSRQQ4",
+     0.2625375066814464
+    ],
+    [
+     "B087CSNV9S",
+     0.079956155408663
+    ],
+    [
+     "B088CX6RW8",
+     0.03785466489105335
+    ]
+   ],
+   "child_asins_total": 18,
+   "contested": 225,
+   "we_win": 114,
+   "we_lose": 96,
+   "our_zero": 38,
+   "theirs_only_kw": 236,
+   "theirs_only_share": 0.11735461801596352,
+   "our_share": 0.5573568602115804,
+   "ppc_we_run_none": 68,
+   "ppc_they_more_aggressive": 9,
+   "ad_gap": 930.9752999999997,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Satin",
+     0.23936145952109464
+    ],
+    [
+     "Silk",
+     0.22157354618015965
+    ],
+    [
+     "Silk|Queen",
+     0.06809578107183581
+    ],
+    [
+     "Satin|Queen",
+     0.06321550741163055
+    ],
+    [
+     "Silk|Full",
+     0.06148232611174458
+    ]
+   ]
+  },
+  {
+   "pid": 31,
+   "cid": 159,
+   "parent_asin": "B0D9B18P6N",
+   "brand": "FreshCulture",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T04:49:05.726Z",
+   "keywords": 1117,
+   "traffic": 99046,
+   "organic_pct": 0.9634387880378817,
+   "ad_pct": 0.0365612119621186,
+   "top10_pct": 0.4244997273993902,
+   "top_kw": "silk sheets",
+   "top_kw_pct": 0.1505664034892878,
+   "reach": {
+    "OR": 0.9991115239383721,
+    "SP": 0.6526159562223613,
+    "AC": 0.054893685762171116,
+    "SOR": 0.5639298911616825
+   },
+   "hero_child_asins": [
+    [
+     "B0D9BD63QH",
+     0.41397267681647254
+    ],
+    [
+     "B0D9BCKF76",
+     0.2341560081541433
+    ],
+    [
+     "B0D9BBSLJ5",
+     0.07767915891788901
+    ],
+    [
+     "B0D9BFR53D",
+     0.05997996387187175
+    ],
+    [
+     "B0D9B9HFLQ",
+     0.04868681968671401
+    ]
+   ],
+   "child_asins_total": 54,
+   "contested": 295,
+   "we_win": 56,
+   "we_lose": 208,
+   "our_zero": 76,
+   "theirs_only_kw": 822,
+   "theirs_only_share": 0.2192718534822204,
+   "our_share": 0.21797351819538424,
+   "ppc_we_run_none": 32,
+   "ppc_they_more_aggressive": 3,
+   "ad_gap": 1695.9769,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Silk",
+     0.26622983260303296
+    ],
+    [
+     "Satin",
+     0.11125133776225188
+    ],
+    [
+     "Silk|Full",
+     0.06613088867798801
+    ],
+    [
+     "Silk|Queen",
+     0.06467701875896048
+    ],
+    [
+     "Silk|King",
+     0.05670092684207338
+    ]
+   ]
+  },
+  {
+   "pid": 31,
+   "cid": 625,
+   "parent_asin": "B0B1Q2JG5X",
+   "brand": "GOLAL",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T05:06:10.498Z",
+   "keywords": 615,
+   "traffic": 48561,
+   "organic_pct": 0.6641788183933609,
+   "ad_pct": 0.3358211816066392,
+   "top10_pct": 0.39780894133152117,
+   "top_kw": "satin sheets queen size",
+   "top_kw_pct": 0.049875414427215256,
+   "reach": {
+    "OR": 1,
+    "SP": 0.6905747410473425,
+    "SB": 0.432960606247812,
+    "AC": 0.005930685117687033,
+    "SOR": 0.6844793146763865
+   },
+   "hero_child_asins": [
+    [
+     "B09G17XZC5",
+     0.3456851683291687
+    ],
+    [
+     "B09G17SQXF",
+     0.2697255874723923
+    ],
+    [
+     "B09G18ZJ9S",
+     0.1020357989886347
+    ],
+    [
+     "B09G18GFJL",
+     0.09933760277868729
+    ]
+   ],
+   "child_asins_total": 45,
+   "contested": 301,
+   "we_win": 103,
+   "we_lose": 172,
+   "our_zero": 60,
+   "theirs_only_kw": 314,
+   "theirs_only_share": 0.06744095055703136,
+   "our_share": 0.3624487973952316,
+   "ppc_we_run_none": 51,
+   "ppc_they_more_aggressive": 23,
+   "ad_gap": 13795.827999999996,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Silk|Queen",
+     0.1752023228516711
+    ],
+    [
+     "Silk",
+     0.12619180000411853
+    ],
+    [
+     "Silk|Full",
+     0.1077407796379811
+    ],
+    [
+     "Satin",
+     0.1074524824447602
+    ],
+    [
+     "Satin|Queen",
+     0.10071868371738638
+    ]
+   ]
+  },
+  {
+   "pid": 31,
+   "cid": 149,
+   "parent_asin": "B07XBR22W1",
+   "brand": "Homiest",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-28T23:43:25.279Z",
+   "keywords": 618,
+   "traffic": 20002,
+   "organic_pct": 1,
+   "ad_pct": 0,
+   "top10_pct": 0.46495350464953505,
+   "top_kw": "satin sheets",
+   "top_kw_pct": 0.19653034696530347,
+   "reach": {
+    "OR": 1,
+    "SP": 0.08344165583441655,
+    "AC": 0.021247875212478753,
+    "SOR": 0.30716928307169283
+   },
+   "hero_child_asins": [
+    [
+     "B07VTMDK79",
+     0.19368761821147298
+    ],
+    [
+     "B0C2824DHT",
+     0.15768870662418816
+    ],
+    [
+     "B07XPVHHP9",
+     0.09039019523845537
+    ],
+    [
+     "B07HN29LH1",
+     0.05998527225171417
+    ],
+    [
+     "B0B2QZ8NKY",
+     0.05164492435980588
+    ],
+    [
+     "B07TD4WVXN",
+     0.04739527824742318
+    ],
+    [
+     "B0B5Z394TW",
+     0.044245668704435824
+    ],
+    [
+     "B09YL5WKBV",
+     0.042144835783536824
+    ],
+    [
+     "B0B5Z3926M",
+     0.037696379267895576
+    ],
+    [
+     "B0C281WMT7",
+     0.03353978398349276
+    ],
+    [
+     "B0C284TJGK",
+     0.029098196790742353
+    ],
+    [
+     "B08131S3Y1",
+     0.026152092188273017
+    ]
+   ],
+   "child_asins_total": 70,
+   "contested": 294,
+   "we_win": 167,
+   "we_lose": 102,
+   "our_zero": 56,
+   "theirs_only_kw": 324,
+   "theirs_only_share": 0.24017598240175983,
+   "our_share": 0.5798693524333635,
+   "ppc_we_run_none": 0,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 0,
+   "comparable": false,
+   "days_apart": 14,
+   "owned_buckets": [
+    [
+     "Satin",
+     0.257024297570243
+    ],
+    [
+     "Satin|Queen",
+     0.11443855614438556
+    ],
+    [
+     "Silk",
+     0.10038996100389962
+    ],
+    [
+     "Silk|Queen",
+     0.0648935106489351
+    ],
+    [
+     "Satin|Full",
+     0.033596640335966405
+    ]
+   ]
+  },
+  {
+   "pid": 31,
+   "cid": 1542,
+   "parent_asin": "B0BJZT93SL",
+   "brand": "HommxJF",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T05:40:22.408Z",
+   "keywords": 357,
+   "traffic": 16567,
+   "organic_pct": 0.8554338745699279,
+   "ad_pct": 0.14456612543007186,
+   "top10_pct": 0.5861652683044607,
+   "top_kw": "satin sheets",
+   "top_kw_pct": 0.24023661495744553,
+   "reach": {
+    "OR": 0.985996257620571,
+    "SP": 0.2936560632582845,
+    "SB": 0.023238969034828274,
+    "SOR": 0.4949598599625762
+   },
+   "hero_child_asins": [
+    [
+     "B09V52BVJB",
+     0.5457852408817118
+    ],
+    [
+     "B0BCKD5X64",
+     0.24705756567716047
+    ],
+    [
+     "B09V52C9M9",
+     0.10213153225924594
+    ]
+   ],
+   "child_asins_total": 32,
+   "contested": 238,
+   "we_win": 142,
+   "we_lose": 79,
+   "our_zero": 42,
+   "theirs_only_kw": 119,
+   "theirs_only_share": 0.07146737490191345,
+   "our_share": 0.6249603839362521,
+   "ppc_we_run_none": 63,
+   "ppc_they_more_aggressive": 25,
+   "ad_gap": 1130.0720999999999,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Satin",
+     0.3048228405867085
+    ],
+    [
+     "Silk",
+     0.2256292629926963
+    ],
+    [
+     "Silk|Full",
+     0.11118488561598358
+    ],
+    [
+     "Silk|Queen",
+     0.08015935293052454
+    ],
+    [
+     "Satin|Full",
+     0.040321120299390355
+    ]
+   ]
+  },
+  {
+   "pid": 31,
+   "cid": 163,
+   "parent_asin": "B0DBVYL693",
+   "brand": "LIFCOM",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T00:01:14.618Z",
+   "keywords": 634,
+   "traffic": 23278,
+   "organic_pct": 0.49264627974911923,
+   "ad_pct": 0.507353720250881,
+   "top10_pct": 0.4749548930320474,
+   "top_kw": "brown sheets",
+   "top_kw_pct": 0.08553140304149841,
+   "reach": {
+    "OR": 0.9699286880316178,
+    "SP": 0.8651086863132571,
+    "AC": 0.12462410860039522,
+    "SOR": 0.8108084887017785
+   },
+   "hero_child_asins": [
+    [
+     "B0DCC5ZQNW",
+     0.21453853343948914
+    ],
+    [
+     "B0DCC78S4N",
+     0.17273463678670622
+    ],
+    [
+     "B0DC5L2BHY",
+     0.09184668095821591
+    ],
+    [
+     "B0DCC8MLV5",
+     0.08102133042932079
+    ],
+    [
+     "B0DCC8WZCH",
+     0.07367314041613271
+    ],
+    [
+     "B0DT1FH4DZ",
+     0.03380866347914526
+    ],
+    [
+     "B0DC5L25TX",
+     0.032090288955662405
+    ],
+    [
+     "B0DCCBPXYM",
+     0.02616453366898462
+    ],
+    [
+     "B0DCC7L3CF",
+     0.021482108723278385
+    ],
+    [
+     "B0DT1H8N83",
+     0.021049469304022676
+    ],
+    [
+     "B0DCC93BXL",
+     0.020274528806763663
+    ],
+    [
+     "B0DCC9JY3G",
+     0.020104209523125183
+    ]
+   ],
+   "child_asins_total": 60,
+   "contested": 270,
+   "we_win": 169,
+   "we_lose": 72,
+   "our_zero": 52,
+   "theirs_only_kw": 364,
+   "theirs_only_share": 0.2498496434401581,
+   "our_share": 0.5425370934460056,
+   "ppc_we_run_none": 70,
+   "ppc_they_more_aggressive": 29,
+   "ad_gap": 8901.164100000005,
+   "comparable": false,
+   "days_apart": 14,
+   "owned_buckets": [
+    [
+     "Silk",
+     0.19237047856345046
+    ],
+    [
+     "Satin",
+     0.13102500214795085
+    ],
+    [
+     "Silk|Full",
+     0.07681072257066758
+    ],
+    [
+     "Satin|Queen",
+     0.05000429590170977
+    ],
+    [
+     "Silk|Queen",
+     0.03870607440501761
+    ]
+   ]
+  },
+  {
+   "pid": 31,
+   "cid": 158,
+   "parent_asin": "B0DJ2HJ9M4",
+   "brand": "Madison Park",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-28T23:49:54.874Z",
+   "keywords": 592,
+   "traffic": 35631,
+   "organic_pct": 0.9497345738261626,
+   "ad_pct": 0.05026542617383739,
+   "top10_pct": 0.3870225365552468,
+   "top_kw": "satin sheets",
+   "top_kw_pct": 0.14453706042491088,
+   "reach": {
+    "OR": 0.9950885464904157,
+    "SP": 0.305408211950268,
+    "AC": 0,
+    "SOR": 0.4063034997614437
+   },
+   "hero_child_asins": [
+    [
+     "B0C5CG12M2",
+     0.267997079058893
+    ],
+    [
+     "B09HVCPNLX",
+     0.24082845934473535
+    ],
+    [
+     "B0C25NTWCM",
+     0.1841655669215066
+    ],
+    [
+     "B09HVDQ982",
+     0.09326151044616166
+    ],
+    [
+     "B0DDQ6PNMP",
+     0.06786181194781549
+    ]
+   ],
+   "child_asins_total": 44,
+   "contested": 249,
+   "we_win": 123,
+   "we_lose": 105,
+   "our_zero": 44,
+   "theirs_only_kw": 343,
+   "theirs_only_share": 0.3750105245432348,
+   "our_share": 0.4365571333691768,
+   "ppc_we_run_none": 20,
+   "ppc_they_more_aggressive": 7,
+   "ad_gap": 856.0304999999998,
+   "comparable": false,
+   "days_apart": 14,
+   "owned_buckets": [
+    [
+     "Satin",
+     0.21192220257640818
+    ],
+    [
+     "Satin|Queen",
+     0.07689932923577783
+    ],
+    [
+     "Silk",
+     0.06157559428587466
+    ],
+    [
+     "Silk|Queen",
+     0.054587297577951784
+    ],
+    [
+     "Silk|Full",
+     0.04448373607252112
+    ]
+   ]
+  },
+  {
+   "pid": 31,
+   "cid": 147,
+   "parent_asin": "B096P2MYZQ",
+   "brand": "P Pothuiny",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T04:58:09.900Z",
+   "keywords": 832,
+   "traffic": 66544,
+   "organic_pct": 0.9166959214955518,
+   "ad_pct": 0.08330407850444821,
+   "top10_pct": 0.4483349362827603,
+   "top_kw": "silk sheets",
+   "top_kw_pct": 0.10239841308006732,
+   "reach": {
+    "OR": 0.9850024044241404,
+    "SP": 0.18599723491223852,
+    "SB": 0.5380349843712431,
+    "AC": 0.019205337821591728,
+    "SOR": 0.8099152440490502
+   },
+   "hero_child_asins": [
+    [
+     "B08QMF6D5W",
+     0.5240649667312275
+    ],
+    [
+     "B08QMSJFYZ",
+     0.19030649024427268
+    ],
+    [
+     "B08QMYV2YR",
+     0.09605605975326158
+    ]
+   ],
+   "child_asins_total": 33,
+   "contested": 363,
+   "we_win": 84,
+   "we_lose": 228,
+   "our_zero": 82,
+   "theirs_only_kw": 469,
+   "theirs_only_share": 0.11246693916806924,
+   "our_share": 0.2932204649977164,
+   "ppc_we_run_none": 42,
+   "ppc_they_more_aggressive": 11,
+   "ad_gap": 3657.1618000000008,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Silk",
+     0.2586258716037509
+    ],
+    [
+     "Satin",
+     0.14941993267612408
+    ],
+    [
+     "Silk|Queen",
+     0.1291626592930993
+    ],
+    [
+     "Silk|King",
+     0.08382423659533542
+    ],
+    [
+     "Satin|Queen",
+     0.06141800913681173
+    ]
+   ]
+  },
+  {
+   "pid": 31,
+   "cid": 148,
+   "parent_asin": "B0DD37S32L",
+   "brand": "SiinvdaBZX",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-28T23:25:23.267Z",
+   "keywords": 1085,
+   "traffic": 47722,
+   "organic_pct": 0.8752176061355349,
+   "ad_pct": 0.12478239386446507,
+   "top10_pct": 0.37177821549809315,
+   "top_kw": "silk sheets",
+   "top_kw_pct": 0.07780478605255438,
+   "reach": {
+    "OR": 0.9897112442898454,
+    "SP": 0.6122543061900172,
+    "SB": 0.00018859226352625622,
+    "SBV": 0.010833577804786053,
+    "AC": 0.004777670675998491,
+    "SOR": 0.8207116214743724
+   },
+   "hero_child_asins": [
+    [
+     "B08JP9DG5Z",
+     0.5717336444888065
+    ],
+    [
+     "B09QPFBSD4",
+     0.12270954086480342
+    ],
+    [
+     "B09QP9LCFM",
+     0.0678470421999106
+    ],
+    [
+     "B08JPQ3JJK",
+     0.04442448814283481
+    ]
+   ],
+   "child_asins_total": 48,
+   "contested": 325,
+   "we_win": 100,
+   "we_lose": 189,
+   "our_zero": 75,
+   "theirs_only_kw": 760,
+   "theirs_only_share": 0.19502535518209632,
+   "our_share": 0.3664856828047631,
+   "ppc_we_run_none": 128,
+   "ppc_they_more_aggressive": 13,
+   "ad_gap": 3721.1203999999984,
+   "comparable": false,
+   "days_apart": 14,
+   "owned_buckets": [
+    [
+     "Silk",
+     0.2177402455890365
+    ],
+    [
+     "Silk|Queen",
+     0.1414861070365869
+    ],
+    [
+     "Satin",
+     0.10611458027744017
+    ],
+    [
+     "Satin|Queen",
+     0.09326935166170738
+    ],
+    [
+     "Satin|King",
+     0.03394660743472612
+    ]
+   ]
+  },
+  {
+   "pid": 31,
+   "cid": 640,
+   "parent_asin": "B0C9T1VY8J",
+   "brand": "VACVELT",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T05:14:16.642Z",
+   "keywords": 569,
+   "traffic": 23621,
+   "organic_pct": 0.9628617755387157,
+   "ad_pct": 0.037138224461284446,
+   "top10_pct": 0.5156428601668007,
+   "top_kw": "satin sheets",
+   "top_kw_pct": 0.16227086067482324,
+   "reach": {
+    "OR": 0.9919986452732737,
+    "SP": 0.08949663435078956,
+    "AC": 0.023411371237458192,
+    "SOR": 0.709792134117946
+   },
+   "hero_child_asins": [
+    [
+     "B0C1GN34VQ",
+     0.5871008509671516
+    ],
+    [
+     "B0C1GJZB6F",
+     0.15219244946499444
+    ],
+    [
+     "B0C1GN34VL",
+     0.08077220996832479
+    ]
+   ],
+   "child_asins_total": 35,
+   "contested": 276,
+   "we_win": 146,
+   "we_lose": 106,
+   "our_zero": 53,
+   "theirs_only_kw": 293,
+   "theirs_only_share": 0.1478768892087549,
+   "our_share": 0.5389045053486374,
+   "ppc_we_run_none": 23,
+   "ppc_they_more_aggressive": 2,
+   "ad_gap": 608.0744,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Satin",
+     0.2590068159688413
+    ],
+    [
+     "Silk",
+     0.19753609076669065
+    ],
+    [
+     "Satin|Queen",
+     0.09000465687312137
+    ],
+    [
+     "Silk|Queen",
+     0.04699208331569366
+    ],
+    [
+     "Satin|Full",
+     0.045002328436560685
+    ]
+   ]
+  },
+  {
+   "pid": 31,
+   "cid": 142,
+   "parent_asin": "B0BDDJM9RW",
+   "brand": "Vonty",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T05:34:24.702Z",
+   "keywords": 382,
+   "traffic": 11441,
+   "organic_pct": 0.9484301110042829,
+   "ad_pct": 0.051569888995717156,
+   "top10_pct": 0.5425225067738834,
+   "top_kw": "silk sheets",
+   "top_kw_pct": 0.14946245957521195,
+   "reach": {
+    "OR": 0.9741281356524779,
+    "SP": 0.06502928065728521,
+    "SOR": 0.17061445677825365
+   },
+   "hero_child_asins": [
+    [
+     "B0BDDGJ38X",
+     0.8124315312054081
+    ]
+   ],
+   "child_asins_total": 22,
+   "contested": 203,
+   "we_win": 141,
+   "we_lose": 42,
+   "our_zero": 34,
+   "theirs_only_kw": 179,
+   "theirs_only_share": 0.2149287649680972,
+   "our_share": 0.7070016390084,
+   "ppc_we_run_none": 15,
+   "ppc_they_more_aggressive": 1,
+   "ad_gap": 526.013,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Silk",
+     0.29560353115986365
+    ],
+    [
+     "Satin",
+     0.17795647233633424
+    ],
+    [
+     "Silk|King",
+     0.0912507647932873
+    ],
+    [
+     "Satin|King",
+     0.075080849576086
+    ],
+    [
+     "Satin|Queen",
+     0.05663840573376453
+    ]
+   ]
+  },
+  {
+   "pid": 31,
+   "cid": 160,
+   "parent_asin": "B0FB47M9WR",
+   "brand": null,
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T00:07:06.307Z",
+   "keywords": 827,
+   "traffic": 41904,
+   "organic_pct": 0.8273237471363115,
+   "ad_pct": 0.17267663468881256,
+   "top10_pct": 0.49422489499809086,
+   "top_kw": "juicy couture",
+   "top_kw_pct": 0.23873615883925162,
+   "reach": {
+    "OR": 0.9765893470790378,
+    "SP": 0.12125334096983581,
+    "SB": 0.10268709431080565,
+    "SBV": 0.5394234440626193,
+    "AC": 0.09507445589919816,
+    "SOR": 0.21830851470026727
+   },
+   "hero_child_asins": [
+    [
+     "B09NP86NP2",
+     0.21842252336231463
+    ],
+    [
+     "B0DKYVPBLR",
+     0.21307847032846175
+    ],
+    [
+     "B0BK1WRYR5",
+     0.11325952854083929
+    ],
+    [
+     "B09NP9WVDR",
+     0.11156920945192482
+    ],
+    [
+     "B0F3KT7FWM",
+     0.08235669423833465
+    ],
+    [
+     "B09NP68QS9",
+     0.026560571513805767
+    ],
+    [
+     "B0BK1ZM54Q",
+     0.023530212699406125
+    ],
+    [
+     "B09NP94GJ5",
+     0.02309808192546555
+    ]
+   ],
+   "child_asins_total": 58,
+   "contested": 260,
+   "we_win": 149,
+   "we_lose": 91,
+   "our_zero": 47,
+   "theirs_only_kw": 567,
+   "theirs_only_share": 0.7170198549064528,
+   "our_share": 0.39716016170102575,
+   "ppc_we_run_none": 134,
+   "ppc_they_more_aggressive": 12,
+   "ad_gap": 6952.818300000001,
+   "comparable": false,
+   "days_apart": 14,
+   "owned_buckets": [
+    [
+     "Satin",
+     0.08070828560519282
+    ],
+    [
+     "Silk",
+     0.04207235586101565
+    ],
+    [
+     "Satin|Queen",
+     0.03252672775868652
+    ],
+    [
+     "Silk|Full",
+     0.020690148911798396
+    ],
+    [
+     "Silk|Queen",
+     0.015034364261168385
+    ]
+   ]
+  },
+  {
+   "pid": 31,
+   "cid": 151,
+   "parent_asin": "B0F2H9HX69",
+   "brand": "Sasttie",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-28T23:56:02.571Z",
+   "keywords": 504,
+   "traffic": 26952,
+   "organic_pct": 0.9879767104482041,
+   "ad_pct": 0.012023289551795784,
+   "top10_pct": 0.43377114870881567,
+   "top_kw": "satin sheets",
+   "top_kw_pct": 0.10092015434847136,
+   "reach": {
+    "OR": 0.9959186702285545,
+    "SB": 0.004081329771445533,
+    "SBV": 0.11735678242802018
+   },
+   "hero_child_asins": [
+    [
+     "B0F2H8LPB3",
+     0.5725312680532718
+    ],
+    [
+     "B0F2H92RZ5",
+     0.12659632600181595
+    ],
+    [
+     "B0F2H9HRJJ",
+     0.11353464874044608
+    ]
+   ],
+   "child_asins_total": 27,
+   "contested": 279,
+   "we_win": 108,
+   "we_lose": 153,
+   "our_zero": 58,
+   "theirs_only_kw": 225,
+   "theirs_only_share": 0.03127782724844167,
+   "our_share": 0.5060026760021261,
+   "ppc_we_run_none": 13,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 199.9862,
+   "comparable": false,
+   "days_apart": 14,
+   "owned_buckets": [
+    [
+     "Silk",
+     0.20978035025230038
+    ],
+    [
+     "Satin",
+     0.16803947758978927
+    ],
+    [
+     "Satin|Queen",
+     0.11750519441970911
+    ],
+    [
+     "Silk|Queen",
+     0.09375927574948056
+    ],
+    [
+     "Silk|King",
+     0.07576432175719798
+    ]
+   ]
+  }
+ ]
+}

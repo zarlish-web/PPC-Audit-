@@ -1,0 +1,385 @@
+{
+ "pid": 69,
+ "our_hero_asins": null,
+ "our_child_asins_total": null,
+ "competitors": [
+  {
+   "pid": 69,
+   "cid": 46,
+   "parent_asin": "B0CPDTJ5NN",
+   "brand": "Bedsure",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T04:31:13.306Z",
+   "keywords": 22,
+   "traffic": 170,
+   "organic_pct": 1,
+   "ad_pct": 0,
+   "top10_pct": 0.9823529411764705,
+   "top_kw": "bedsure cooling sheets",
+   "top_kw_pct": 0.5529411764705883,
+   "reach": {
+    "OR": 1
+   },
+   "hero_child_asins": [
+    [
+     "B0DGWZTTRL",
+     1
+    ]
+   ],
+   "child_asins_total": 1,
+   "contested": null,
+   "we_win": null,
+   "we_lose": null,
+   "our_zero": null,
+   "theirs_only_kw": null,
+   "theirs_only_share": null,
+   "our_share": null,
+   "ppc_we_run_none": null,
+   "ppc_they_more_aggressive": null,
+   "ad_gap": null,
+   "comparable": null,
+   "days_apart": null,
+   "owned_buckets": [
+    [
+     "Cooling",
+     0.16470588235294117
+    ],
+    [
+     "Cooling|Queen",
+     0.023529411764705882
+    ]
+   ]
+  },
+  {
+   "pid": 69,
+   "cid": 1498,
+   "parent_asin": "B0H41M1N4B",
+   "brand": "Breescape",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T04:13:45.330Z",
+   "keywords": 1884,
+   "traffic": 107224,
+   "organic_pct": 0.5282540960978878,
+   "ad_pct": 0.47174599343430645,
+   "top10_pct": 0.6554222935163769,
+   "top_kw": "cooling sheets",
+   "top_kw_pct": 0.24118667462508395,
+   "reach": {
+    "OR": 0.9618835335372677,
+    "SP": 0.853279116615683,
+    "SB": 0.6382059986570171,
+    "SBV": 0.7425203312691189,
+    "AC": 0.09657352831455644,
+    "SOR": 0.8344960083563381
+   },
+   "hero_child_asins": [
+    [
+     "B0DSPZJKTB",
+     0.49275766015829786
+    ],
+    [
+     "B0DSPZSVFL",
+     0.26312652815036613
+    ],
+    [
+     "B0DSPZKCCN",
+     0.0574432109861517
+    ]
+   ],
+   "child_asins_total": 26,
+   "contested": null,
+   "we_win": null,
+   "we_lose": null,
+   "our_zero": null,
+   "theirs_only_kw": null,
+   "theirs_only_share": null,
+   "our_share": null,
+   "ppc_we_run_none": null,
+   "ppc_they_more_aggressive": null,
+   "ad_gap": null,
+   "comparable": null,
+   "days_apart": null,
+   "owned_buckets": [
+    [
+     "Cooling",
+     0.3236402297992987
+    ],
+    [
+     "Cooling|King",
+     0.13681638439155414
+    ],
+    [
+     "Cooling|Queen",
+     0.11295978512273372
+    ],
+    [
+     "Cooling|Full",
+     0.017365515183167948
+    ],
+    [
+     "Cooling|California King",
+     0.004206147877340894
+    ]
+   ]
+  },
+  {
+   "pid": 69,
+   "cid": 9,
+   "parent_asin": "B0H7YWGBW3",
+   "brand": "Elegear",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T04:19:39.216Z",
+   "keywords": 643,
+   "traffic": 15624,
+   "organic_pct": 0.6086269521249359,
+   "ad_pct": 0.39137325268817214,
+   "top10_pct": 0.47055811571940603,
+   "top_kw": "miracle sheets",
+   "top_kw_pct": 0.17613927291346645,
+   "reach": {
+    "OR": 0.7660010240655402,
+    "SP": 0.5840373783922171,
+    "SB": 0.7140296979006656,
+    "SOR": 0.6153993855606759
+   },
+   "hero_child_asins": [
+    [
+     "B0GCHRGYZZ",
+     0.24884379357837264
+    ],
+    [
+     "B0GCHG6VG6",
+     0.21236639166138868
+    ],
+    [
+     "B0GCH7FHV1",
+     0.17780455400999784
+    ],
+    [
+     "B0GCGXW1WT",
+     0.10637142601148414
+    ],
+    [
+     "B0GCGXXC24",
+     0.09767041638100742
+    ]
+   ],
+   "child_asins_total": 8,
+   "contested": null,
+   "we_win": null,
+   "we_lose": null,
+   "our_zero": null,
+   "theirs_only_kw": null,
+   "theirs_only_share": null,
+   "our_share": null,
+   "ppc_we_run_none": null,
+   "ppc_they_more_aggressive": null,
+   "ad_gap": null,
+   "comparable": null,
+   "days_apart": null,
+   "owned_buckets": [
+    [
+     "Cooling",
+     0.07546082949308756
+    ],
+    [
+     "Cooling|Full",
+     0.022721454173067077
+    ],
+    [
+     "Cooling|King",
+     0.015488991295442909
+    ],
+    [
+     "Cooling|Queen",
+     0.011712749615975423
+    ],
+    [
+     "Cooling|Twin",
+     0.010944700460829493
+    ]
+   ]
+  },
+  {
+   "pid": 69,
+   "cid": 1812,
+   "parent_asin": "B0HDC7BMTC",
+   "brand": "OMERAI",
+   "import_file": "VariationKeyword_US__20260918 (17).xlsx",
+   "imported_at": "2026-09-18T11:24:52.530Z",
+   "keywords": 332,
+   "traffic": 13712,
+   "organic_pct": 0.8852072199533255,
+   "ad_pct": 0.11479278004667445,
+   "top10_pct": 0.730965577596266,
+   "top_kw": "cooling sheets queen",
+   "top_kw_pct": 0.31403150525087514,
+   "reach": {
+    "OR": 0.951794049008168,
+    "SP": 0.8668319719953326,
+    "SOR": 0.7773483080513419
+   },
+   "hero_child_asins": [
+    [
+     "B0BM9K24ST",
+     0.4566754546208113
+    ],
+    [
+     "B0BM9GLKYV",
+     0.4281062531320825
+    ]
+   ],
+   "child_asins_total": 10,
+   "contested": null,
+   "we_win": null,
+   "we_lose": null,
+   "our_zero": null,
+   "theirs_only_kw": null,
+   "theirs_only_share": null,
+   "our_share": null,
+   "ppc_we_run_none": null,
+   "ppc_they_more_aggressive": null,
+   "ad_gap": null,
+   "comparable": null,
+   "days_apart": null,
+   "owned_buckets": [
+    [
+     "Cooling|Queen",
+     0.359830805134189
+    ],
+    [
+     "Cooling",
+     0.25364644107351225
+    ],
+    [
+     "Cooling|King",
+     0.20784714119019837
+    ],
+    [
+     "Cooling|California King",
+     0.0003646441073512252
+    ],
+    [
+     "Cooling|Twin",
+     0
+    ]
+   ]
+  },
+  {
+   "pid": 69,
+   "cid": 1811,
+   "parent_asin": "B0HC6866B7",
+   "brand": "REST",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T04:07:01.787Z",
+   "keywords": 7281,
+   "traffic": 522593,
+   "organic_pct": 0.2234137663535486,
+   "ad_pct": 0.7765862336464519,
+   "top10_pct": 0.3614725034587145,
+   "top_kw": "cooling sheets",
+   "top_kw_pct": 0.11562726634302412,
+   "reach": {
+    "OR": 0.690866506057295,
+    "SP": 0.7800085343661319,
+    "SB": 0.8614600654811679,
+    "SBV": 0.45345613125319323,
+    "AC": 0.11820671153268414,
+    "SOR": 0.7850296502249361
+   },
+   "hero_child_asins": [
+    [
+     "B0C56ZNQVQ",
+     0.164994231530016
+    ],
+    [
+     "B0BLYSGFRW",
+     0.15415320722612885
+    ],
+    [
+     "B0BLYVMGYB",
+     0.06942784883314285
+    ],
+    [
+     "B0BLYW9CJZ",
+     0.06759968726082849
+    ],
+    [
+     "B0C56YLKZW",
+     0.06716085460291848
+    ],
+    [
+     "B0C56YD1B6",
+     0.06250521410175221
+    ],
+    [
+     "B0D24X1MVY",
+     0.04724366849658172
+    ],
+    [
+     "B0C56Y2PS5",
+     0.03139243424759687
+    ],
+    [
+     "B0D25CX6QJ",
+     0.030513354967272668
+    ],
+    [
+     "B0D25LDRPS",
+     0.027773682487853047
+    ],
+    [
+     "B0C56Z36BJ",
+     0.027124696317587058
+    ],
+    [
+     "B0CXCR3MJZ",
+     0.02072840752888561
+    ],
+    [
+     "B0DFHG2YKM",
+     0.020476597271215445
+    ],
+    [
+     "B0D9JJSNC5",
+     0.017687434503246995
+    ]
+   ],
+   "child_asins_total": 69,
+   "contested": null,
+   "we_win": null,
+   "we_lose": null,
+   "our_zero": null,
+   "theirs_only_kw": null,
+   "theirs_only_share": null,
+   "our_share": null,
+   "ppc_we_run_none": null,
+   "ppc_they_more_aggressive": null,
+   "ad_gap": null,
+   "comparable": null,
+   "days_apart": null,
+   "owned_buckets": [
+    [
+     "Cooling",
+     0.1527536725520625
+    ],
+    [
+     "Cooling|King",
+     0.03623852596571328
+    ],
+    [
+     "Cooling|Queen",
+     0.018012105022455333
+    ],
+    [
+     "Cooling|Full",
+     0.0094739118204798
+    ],
+    [
+     "Cooling|Twin",
+     0.002434016529115392
+    ]
+   ]
+  }
+ ]
+}

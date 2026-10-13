@@ -1,0 +1,454 @@
+{
+ "pid": 56,
+ "our_hero_asins": [
+  [
+   "B0F4XS1FWJ",
+   0.5321311926605504
+  ],
+  [
+   "B0F4XP8CYP",
+   0.41282660550458716
+  ]
+ ],
+ "our_child_asins_total": 3,
+ "competitors": [
+  {
+   "pid": 56,
+   "cid": 1614,
+   "parent_asin": "B074TBH52S",
+   "brand": " LULUSILK",
+   "import_file": "VariationKeyword_US__20260920 (44).xlsx",
+   "imported_at": "2026-09-20T16:23:58.237Z",
+   "keywords": 644,
+   "traffic": 106430,
+   "organic_pct": 0.9607324494973225,
+   "ad_pct": 0.039267670769519876,
+   "top10_pct": 0.5744339002161045,
+   "top_kw": "sleep mask",
+   "top_kw_pct": 0.13252842243728272,
+   "reach": {
+    "OR": 0.9949638259889129,
+    "SP": 0.67251714742084,
+    "AC": 0.00684017664192427,
+    "SOR": 0.5410222681574745
+   },
+   "hero_child_asins": [
+    [
+     "B074TBYWGS",
+     0.8297016013050864
+    ]
+   ],
+   "child_asins_total": 7,
+   "contested": 41,
+   "we_win": 2,
+   "we_lose": 34,
+   "our_zero": 20,
+   "theirs_only_kw": 603,
+   "theirs_only_share": 0.9032039838391431,
+   "our_share": 0.002044107718850799,
+   "ppc_we_run_none": 135,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 4179.2582,
+   "comparable": false,
+   "days_apart": 15,
+   "owned_buckets": []
+  },
+  {
+   "pid": 56,
+   "cid": 1617,
+   "parent_asin": "B0FBWPMZHX",
+   "brand": "Umisleep Store",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T10:42:53.352Z",
+   "keywords": 578,
+   "traffic": 66655,
+   "organic_pct": 0.5586979461405747,
+   "ad_pct": 0.44130214987622834,
+   "top10_pct": 0.6175680744130223,
+   "top_kw": "sleep mask",
+   "top_kw_pct": 0.22104868351961593,
+   "reach": {
+    "OR": 0.9921236216337859,
+    "SP": 0.863221063686145,
+    "SB": 0.6191433500862651,
+    "SOR": 0.857355037131498
+   },
+   "hero_child_asins": [
+    [
+     "B0F7R9NPSW",
+     0.8449872822052066
+    ]
+   ],
+   "child_asins_total": 3,
+   "contested": 41,
+   "we_win": 3,
+   "we_lose": 34,
+   "our_zero": 20,
+   "theirs_only_kw": 537,
+   "theirs_only_share": 0.849283624634311,
+   "our_share": 0.0032599105767649127,
+   "ppc_we_run_none": 178,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 29414.994800000004,
+   "comparable": false,
+   "days_apart": 24,
+   "owned_buckets": []
+  },
+  {
+   "pid": 56,
+   "cid": 299,
+   "parent_asin": "B0B5K41YD7",
+   "brand": "Zenssia",
+   "import_file": "VariationKeyword_US__20260920 (39).xlsx",
+   "imported_at": "2026-09-20T16:18:59.829Z",
+   "keywords": 580,
+   "traffic": 151964,
+   "organic_pct": 0.8624514049380118,
+   "ad_pct": 0.1375487003500829,
+   "top10_pct": 0.7147745518675476,
+   "top_kw": "sleep mask",
+   "top_kw_pct": 0.23939880498012686,
+   "reach": {
+    "OR": 0.9987233818535969,
+    "SP": 0.340712273959622,
+    "SBV": 0.28575188860519596,
+    "AC": 0.0009278513332104972,
+    "SOR": 0.3331907557052986
+   },
+   "hero_child_asins": [
+    [
+     "B07V5BCQFW",
+     0.5806006757209983
+    ],
+    [
+     "B07CNT74Z6",
+     0.23727511724623573
+    ]
+   ],
+   "child_asins_total": 6,
+   "contested": 39,
+   "we_win": 1,
+   "we_lose": 35,
+   "our_zero": 19,
+   "theirs_only_kw": 541,
+   "theirs_only_share": 0.9027861862019952,
+   "our_share": 0.0014324953016782538,
+   "ppc_we_run_none": 59,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 20902.450699999998,
+   "comparable": false,
+   "days_apart": 15,
+   "owned_buckets": []
+  },
+  {
+   "pid": 56,
+   "cid": 1622,
+   "parent_asin": "B0DFGZZ7F1",
+   "brand": "ATreebay",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T10:50:01.957Z",
+   "keywords": 467,
+   "traffic": 81189,
+   "organic_pct": 0.6977105777876312,
+   "ad_pct": 0.3022894222123687,
+   "top10_pct": 0.7469731121211002,
+   "top_kw": "sleep mask",
+   "top_kw_pct": 0.25948096417002303,
+   "reach": {
+    "OR": 0.998004655803126,
+    "SP": 0.8474423875155501,
+    "SBV": 0.11745433494685241,
+    "SOR": 0.8452992400448337
+   },
+   "hero_child_asins": [
+    [
+     "B0DFGZ1MXL",
+     0.6181093263865792
+    ],
+    [
+     "B0DFGZPP7K",
+     0.3780601177499416
+    ]
+   ],
+   "child_asins_total": 5,
+   "contested": 40,
+   "we_win": 2,
+   "we_lose": 33,
+   "our_zero": 20,
+   "theirs_only_kw": 427,
+   "theirs_only_share": 0.9455591274680067,
+   "our_share": 0.0026779023916862184,
+   "ppc_we_run_none": 38,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 24542.575900000003,
+   "comparable": false,
+   "days_apart": 24,
+   "owned_buckets": []
+  },
+  {
+   "pid": 56,
+   "cid": 1618,
+   "parent_asin": "B0CWRWR64G",
+   "brand": "BLISSY",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T10:46:09.697Z",
+   "keywords": 638,
+   "traffic": 150410,
+   "organic_pct": 0.7120334106774815,
+   "ad_pct": 0.28796658932251856,
+   "top10_pct": 0.6398643707200319,
+   "top_kw": "eye mask",
+   "top_kw_pct": 0.18006781463998403,
+   "reach": {
+    "OR": 0.9952396782128847,
+    "SP": 0.8523834851406157,
+    "AC": 0.09252044411940695,
+    "SOR": 0.9213682600890898
+   },
+   "hero_child_asins": [
+    [
+     "B0BFDGC7CC",
+     0.79910150079927
+    ],
+    [
+     "B0DFTHSYLY",
+     0.06550205428243079
+    ]
+   ],
+   "child_asins_total": 19,
+   "contested": 44,
+   "we_win": 2,
+   "we_lose": 39,
+   "our_zero": 21,
+   "theirs_only_kw": 594,
+   "theirs_only_share": 0.8791902134166611,
+   "our_share": 0.0014472740791884643,
+   "ppc_we_run_none": 227,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 43313.05470000001,
+   "comparable": false,
+   "days_apart": 24,
+   "owned_buckets": []
+  },
+  {
+   "pid": 56,
+   "cid": 304,
+   "parent_asin": "B0GQZL7XLN",
+   "brand": "DROWSY ",
+   "import_file": "VariationKeyword_US__20260920 (42).xlsx",
+   "imported_at": "2026-09-20T16:22:15.954Z",
+   "keywords": 655,
+   "traffic": 143864,
+   "organic_pct": 0.5480138186064621,
+   "ad_pct": 0.4519862036367683,
+   "top10_pct": 0.7628663181894011,
+   "top_kw": "eye masks for sleep",
+   "top_kw_pct": 0.20353945392871045,
+   "reach": {
+    "OR": 0.9138213868653728,
+    "SP": 0.9813643441027637,
+    "AC": 0.13680976477784573,
+    "SOR": 0.6735806039036868
+   },
+   "hero_child_asins": [
+    [
+     "B08NHF4HCS",
+     0.5073668454294498
+    ],
+    [
+     "B08NHHDLT6",
+     0.3198740415948434
+    ]
+   ],
+   "child_asins_total": 13,
+   "contested": 40,
+   "we_win": 7,
+   "we_lose": 25,
+   "our_zero": 19,
+   "theirs_only_kw": 615,
+   "theirs_only_share": 0.962457598843352,
+   "our_share": 0.0015130273038963923,
+   "ppc_we_run_none": 269,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 65024.54320000002,
+   "comparable": false,
+   "days_apart": 15,
+   "owned_buckets": []
+  },
+  {
+   "pid": 56,
+   "cid": 303,
+   "parent_asin": "B0BBN7XTW5",
+   "brand": "iCooBreeze",
+   "import_file": "VariationKeyword_US__20260920 (40).xlsx",
+   "imported_at": "2026-09-20T16:20:27.308Z",
+   "keywords": 774,
+   "traffic": 303791,
+   "organic_pct": 0.556958422402244,
+   "ad_pct": 0.44304160919842883,
+   "top10_pct": 0.7290373974212534,
+   "top_kw": "sleep mask",
+   "top_kw_pct": 0.33877567143200427,
+   "reach": {
+    "OR": 0.9991507319176671,
+    "SP": 0.9396492983663111,
+    "SBV": 0.03647902669927681,
+    "AC": 0,
+    "SOR": 0.9002867102712062
+   },
+   "hero_child_asins": [
+    [
+     "B0BB9Z23FD",
+     0.4533761945440921
+    ],
+    [
+     "B0BBN627MK",
+     0.44746583671171003
+    ]
+   ],
+   "child_asins_total": 4,
+   "contested": 43,
+   "we_win": 3,
+   "we_lose": 37,
+   "our_zero": 20,
+   "theirs_only_kw": 731,
+   "theirs_only_share": 0.9690445075726404,
+   "our_share": 0.0007170840336963709,
+   "ppc_we_run_none": 172,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 134592.0534999999,
+   "comparable": false,
+   "days_apart": 15,
+   "owned_buckets": []
+  },
+  {
+   "pid": 56,
+   "cid": 1613,
+   "parent_asin": "B0CNX9RTK8",
+   "brand": "LitBear",
+   "import_file": "VariationKeyword_US__20260920 (43).xlsx",
+   "imported_at": "2026-09-20T16:23:07.715Z",
+   "keywords": 1367,
+   "traffic": 401761,
+   "organic_pct": 0.7073638471628658,
+   "ad_pct": 0.29263628027608496,
+   "top10_pct": 0.5949557074977412,
+   "top_kw": "sleep mask",
+   "top_kw_pct": 0.19748556977904774,
+   "reach": {
+    "OR": 0.980998653428282,
+    "SP": 0.9110316830155242,
+    "SB": 0.17941263587057976,
+    "SBV": 0.25057683548179144,
+    "AC": 0.02166711054582202,
+    "SOR": 0.9099215702868123
+   },
+   "hero_child_asins": [
+    [
+     "B0BN559GVG",
+     0.80744805527334
+    ]
+   ],
+   "child_asins_total": 4,
+   "contested": 44,
+   "we_win": 0,
+   "we_lose": 41,
+   "our_zero": 21,
+   "theirs_only_kw": 1323,
+   "theirs_only_share": 0.9459031613322348,
+   "our_share": 0.0005423168872005752,
+   "ppc_we_run_none": 684,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 117569.84460000017,
+   "comparable": false,
+   "days_apart": 15,
+   "owned_buckets": []
+  },
+  {
+   "pid": 56,
+   "cid": 1623,
+   "parent_asin": "B07C7VH6CQ",
+   "brand": "OLESILK",
+   "import_file": "VariationKeyword_US__20260920 (47).xlsx",
+   "imported_at": "2026-09-20T16:49:57.358Z",
+   "keywords": 563,
+   "traffic": 123074,
+   "organic_pct": 0.33150217348912037,
+   "ad_pct": 0.6685029843833791,
+   "top10_pct": 0.6711490647902888,
+   "top_kw": "eye masks for sleep",
+   "top_kw_pct": 0.23111298893348717,
+   "reach": {
+    "OR": 0.9961405333376667,
+    "SP": 0.9726749760306808,
+    "SOR": 0.9625753611648277
+   },
+   "hero_child_asins": [
+    [
+     "B07C7Y8QSW",
+     0.6304674052480933
+    ],
+    [
+     "B07RL1L8D4",
+     0.1838247615688663
+    ]
+   ],
+   "child_asins_total": 13,
+   "contested": 42,
+   "we_win": 2,
+   "we_lose": 34,
+   "our_zero": 21,
+   "theirs_only_kw": 521,
+   "theirs_only_share": 0.8928449550676829,
+   "our_share": 0.001768160140155079,
+   "ppc_we_run_none": 173,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 82275.33630000001,
+   "comparable": false,
+   "days_apart": 15,
+   "owned_buckets": []
+  },
+  {
+   "pid": 56,
+   "cid": 297,
+   "parent_asin": "B0C6DZRBWV",
+   "brand": "SECZIPE",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T10:39:48.478Z",
+   "keywords": 1005,
+   "traffic": 190502,
+   "organic_pct": 0.3638504939580689,
+   "ad_pct": 0.6361497076146179,
+   "top10_pct": 0.6393843634187567,
+   "top_kw": "sleep mask",
+   "top_kw_pct": 0.2152628318862794,
+   "reach": {
+    "OR": 0.9880316217152576,
+    "SP": 0.9771865912168901,
+    "SB": 0.1361350537002236,
+    "AC": 0.005595741776989218,
+    "SOR": 0.9746406861870217
+   },
+   "hero_child_asins": [
+    [
+     "B0C6DYG511",
+     0.8667442392558145
+    ]
+   ],
+   "child_asins_total": 5,
+   "contested": 43,
+   "we_win": 4,
+   "we_lose": 37,
+   "our_zero": 20,
+   "theirs_only_kw": 962,
+   "theirs_only_share": 0.97093993763845,
+   "our_share": 0.001143036912751678,
+   "ppc_we_run_none": 417,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 121187.79159999994,
+   "comparable": false,
+   "days_apart": 24,
+   "owned_buckets": []
+  }
+ ]
+}

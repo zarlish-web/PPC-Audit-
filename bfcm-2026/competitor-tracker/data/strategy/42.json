@@ -1,0 +1,1095 @@
+{
+ "pid": 42,
+ "our_hero_asins": [
+  [
+   "B0F7M4Q2HQ",
+   0.5547944284927451
+  ],
+  [
+   "B0F7M5T8FH",
+   0.2325954697847002
+  ],
+  [
+   "B0GHSG5G12",
+   0.06424288144470042
+  ]
+ ],
+ "our_child_asins_total": 13,
+ "competitors": [
+  {
+   "pid": 42,
+   "cid": 11,
+   "parent_asin": "B0BVQMYKYS",
+   "brand": "Cozy Bliss",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T06:47:02.771Z",
+   "keywords": 2185,
+   "traffic": 338464,
+   "organic_pct": 0.6728438451356722,
+   "ad_pct": 0.3271561832277584,
+   "top10_pct": 0.665497660017018,
+   "top_kw": "cooling blanket",
+   "top_kw_pct": 0.3455788503356339,
+   "reach": {
+    "OR": 0.9311034556112319,
+    "SP": 0.9430485960102108,
+    "SBV": 0.881334499385459,
+    "AC": 0.16600583813935899,
+    "SOR": 0.9344479767419873
+   },
+   "hero_child_asins": [
+    [
+     "B0CH8BK2PG",
+     0.3726688033337751
+    ],
+    [
+     "B0BVQMB99W",
+     0.36109627047098497
+    ],
+    [
+     "B0BVQQQQM6",
+     0.10896751563555082
+    ]
+   ],
+   "child_asins_total": 26,
+   "contested": 252,
+   "we_win": 13,
+   "we_lose": 225,
+   "our_zero": 126,
+   "theirs_only_kw": 1933,
+   "theirs_only_share": 0.2423300557814125,
+   "our_share": 0.026764661904926216,
+   "ppc_we_run_none": 819,
+   "ppc_they_more_aggressive": 6,
+   "ad_gap": 106563.87110000005,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Cooling|Blanket",
+     0.4116892786234282
+    ],
+    [
+     "Cooling|Comforter",
+     0.1070246761841732
+    ],
+    [
+     "Cooling|Comforter|Queen",
+     0.036420416942422235
+    ],
+    [
+     "Cooling|Comforter|King",
+     0.027586390280797957
+    ],
+    [
+     "Cooling|Blanket|Queen",
+     0.009930155053417794
+    ]
+   ]
+  },
+  {
+   "pid": 42,
+   "cid": 13,
+   "parent_asin": "B0DWNGWXVQ",
+   "brand": "bedsmile",
+   "import_file": "VariationKeyword_US__20260920 (1).xlsx",
+   "imported_at": "2026-09-20T15:34:03.985Z",
+   "keywords": 1199,
+   "traffic": 150494,
+   "organic_pct": 0.7684716287692533,
+   "ad_pct": 0.2315283712307469,
+   "top10_pct": 0.6788576288755698,
+   "top_kw": "cooling blanket",
+   "top_kw_pct": 0.3157202280489588,
+   "reach": {
+    "OR": 0.9765572049384028,
+    "SP": 0.9441572421491887,
+    "SBV": 0.39171661328690843,
+    "AC": 0.0038473294616396666,
+    "SOR": 0.8874639520512446
+   },
+   "hero_child_asins": [
+    [
+     "B0DWNFHNXL",
+     0.6637777146157674
+    ],
+    [
+     "B0DWNHX37J",
+     0.1252752777379553
+    ],
+    [
+     "B0DWNHXMS8",
+     0.05935916932691863
+    ]
+   ],
+   "child_asins_total": 19,
+   "contested": 215,
+   "we_win": 15,
+   "we_lose": 190,
+   "our_zero": 104,
+   "theirs_only_kw": 984,
+   "theirs_only_share": 0.3181389291267426,
+   "our_share": 0.058247080762443525,
+   "ppc_we_run_none": 309,
+   "ppc_they_more_aggressive": 3,
+   "ad_gap": 31654.41920000001,
+   "comparable": false,
+   "days_apart": 22,
+   "owned_buckets": [
+    [
+     "Cooling|Blanket",
+     0.35977514053716425
+    ],
+    [
+     "Cooling|Comforter|King",
+     0.0916382048453759
+    ],
+    [
+     "Cooling|Comforter",
+     0.08581737477906096
+    ],
+    [
+     "Cooling|Comforter|Queen",
+     0.05875981766714952
+    ],
+    [
+     "Cooling|Blanket|Queen",
+     0.017083737557643495
+    ]
+   ]
+  },
+  {
+   "pid": 42,
+   "cid": 1838,
+   "parent_asin": "B0DYZMVM53",
+   "brand": "Bedsure",
+   "import_file": "VariationKeyword_US__20260920 (11).xlsx",
+   "imported_at": "2026-09-20T15:48:17.520Z",
+   "keywords": 357,
+   "traffic": 18504,
+   "organic_pct": 0.9711953307392996,
+   "ad_pct": 0.028804669260700393,
+   "top10_pct": 0.6006268914829226,
+   "top_kw": "marshmallow comforter",
+   "top_kw_pct": 0.0938715953307393,
+   "reach": {
+    "OR": 1,
+    "SB": 0.064526588845655,
+    "SBV": 0.064526588845655
+   },
+   "hero_child_asins": [
+    [
+     "B0DFQ32464",
+     0.5358815509892122
+    ],
+    [
+     "B0DFW11ZMW",
+     0.24270434891783846
+    ],
+    [
+     "B0DFXWHG34",
+     0.10705663316942031
+    ]
+   ],
+   "child_asins_total": 5,
+   "contested": 105,
+   "we_win": 41,
+   "we_lose": 52,
+   "our_zero": 37,
+   "theirs_only_kw": 252,
+   "theirs_only_share": 0.6395914396887159,
+   "our_share": 0.33467567956277866,
+   "ppc_we_run_none": 1,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 533.0016,
+   "comparable": false,
+   "days_apart": 22,
+   "owned_buckets": [
+    [
+     "Cooling|Comforter",
+     0.035073497622135755
+    ],
+    [
+     "Cooling|Blanket|Twin",
+     0.021670990056204063
+    ],
+    [
+     "Cooling|Comforter|Queen",
+     0.006376999567661046
+    ],
+    [
+     "Cooling|Blanket|Full",
+     0.005079982706441851
+    ],
+    [
+     "Cooling|Blanket",
+     0.0034587116299178555
+    ]
+   ]
+  },
+  {
+   "pid": 42,
+   "cid": 18,
+   "parent_asin": "B0G3WWQ7DL",
+   "brand": "Bedsure",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T10:35:07.715Z",
+   "keywords": 948,
+   "traffic": 68067,
+   "organic_pct": 0.43098672484463824,
+   "ad_pct": 0.5690132751553616,
+   "top10_pct": 0.63587347760295,
+   "top_kw": "cooling comforter",
+   "top_kw_pct": 0.1937208926498891,
+   "reach": {
+    "OR": 0.9946376364464424,
+    "SP": 0.8533650667724448,
+    "SB": 0.708390262535443,
+    "SBV": 0.644453259288642,
+    "SOR": 0.8409214450467921
+   },
+   "hero_child_asins": [
+    [
+     "B0G3W85TSH",
+     0.8905026278954598
+    ]
+   ],
+   "child_asins_total": 6,
+   "contested": 208,
+   "we_win": 30,
+   "we_lose": 147,
+   "our_zero": 102,
+   "theirs_only_kw": 740,
+   "theirs_only_share": 0.31170758223515066,
+   "our_share": 0.12029725363489499,
+   "ppc_we_run_none": 118,
+   "ppc_they_more_aggressive": 8,
+   "ad_gap": 38090.05670000001,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Cooling|Comforter",
+     0.21941616348597706
+    ],
+    [
+     "Cooling|Comforter|King",
+     0.16454375835573773
+    ],
+    [
+     "Cooling|Blanket",
+     0.09367241100680213
+    ],
+    [
+     "Cooling|Comforter|Queen",
+     0.0638929290258128
+    ],
+    [
+     "Cooling|Blanket|King",
+     0.003790383004980387
+    ]
+   ]
+  },
+  {
+   "pid": 42,
+   "cid": 15,
+   "parent_asin": "B0FKTNLQHJ",
+   "brand": "Bedtter",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T06:52:07.076Z",
+   "keywords": 2017,
+   "traffic": 178117,
+   "organic_pct": 0.23901974376393006,
+   "ad_pct": 0.7609802562360694,
+   "top10_pct": 0.6145511096638726,
+   "top_kw": "cooling blanket",
+   "top_kw_pct": 0.32855370346457663,
+   "reach": {
+    "OR": 0.6864027577378914,
+    "SP": 0.9566015596489947,
+    "SB": 0.45902973887950055,
+    "SBV": 0.4395425478758344,
+    "AC": 0.02501164964601919,
+    "SOR": 0.9866829106710757
+   },
+   "hero_child_asins": [
+    [
+     "B0CZ7BR3C1",
+     0.21414229210143096
+    ],
+    [
+     "B0CZ7BTVWW",
+     0.18493379897506723
+    ],
+    [
+     "B0CZ7BHMW2",
+     0.16326353520427614
+    ],
+    [
+     "B0CZ78MKHK",
+     0.1560652875014765
+    ],
+    [
+     "B0CZ7BG45B",
+     0.06183493119780836
+    ],
+    [
+     "B0F66Q213C",
+     0.05920157169212688
+    ]
+   ],
+   "child_asins_total": 17,
+   "contested": 252,
+   "we_win": 38,
+   "we_lose": 181,
+   "our_zero": 122,
+   "theirs_only_kw": 1765,
+   "theirs_only_share": 0.45424075186534696,
+   "our_share": 0.0496625316793384,
+   "ppc_we_run_none": 1057,
+   "ppc_they_more_aggressive": 10,
+   "ad_gap": 134636.5604,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Cooling|Blanket",
+     0.36971765749479274
+    ],
+    [
+     "Cooling|Comforter",
+     0.04497044077769107
+    ],
+    [
+     "Cooling|Comforter|King",
+     0.023029806250947412
+    ],
+    [
+     "Cooling|Comforter|Queen",
+     0.010498717135366079
+    ],
+    [
+     "Cooling|Blanket|King",
+     0.006282387419505157
+    ]
+   ]
+  },
+  {
+   "pid": 42,
+   "cid": 14,
+   "parent_asin": "B0F38CR981",
+   "brand": "Breescape",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T06:41:52.090Z",
+   "keywords": 3067,
+   "traffic": 87874,
+   "organic_pct": 0.2855783553724651,
+   "ad_pct": 0.714421681043312,
+   "top10_pct": 0.4112365432323554,
+   "top_kw": "breescape cooling comforter blanket",
+   "top_kw_pct": 0.13148371531966224,
+   "reach": {
+    "OR": 0.4408243621549036,
+    "SP": 0.8754239024057173,
+    "SB": 0.19689555499920341,
+    "SBV": 0.24051482804925234,
+    "AC": 0.1635751189202722,
+    "SOR": 0.9100416505450987
+   },
+   "hero_child_asins": [
+    [
+     "B0DSPZQ9JG",
+     0.6138491881384595
+    ],
+    [
+     "B0DSPZWJ9F",
+     0.22507513838897458
+    ]
+   ],
+   "child_asins_total": 19,
+   "contested": 262,
+   "we_win": 47,
+   "we_lose": 183,
+   "our_zero": 133,
+   "theirs_only_kw": 2805,
+   "theirs_only_share": 0.5851560188451647,
+   "our_share": 0.09577905373423062,
+   "ppc_we_run_none": 1556,
+   "ppc_they_more_aggressive": 7,
+   "ad_gap": 61964.1557,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Cooling|Blanket",
+     0.054134328697908365
+    ],
+    [
+     "Cooling|Comforter",
+     0.04320959555727519
+    ],
+    [
+     "Cooling|Comforter|King",
+     0.025297585178778705
+    ],
+    [
+     "Cooling|Comforter|Queen",
+     0.00407401506702779
+    ],
+    [
+     "Cooling|Blanket|King",
+     0.0016956096228691081
+    ]
+   ]
+  },
+  {
+   "pid": 42,
+   "cid": 1839,
+   "parent_asin": "B0DVSHCVND",
+   "brand": "Cozy Bliss",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T10:03:51.769Z",
+   "keywords": 895,
+   "traffic": 80120,
+   "organic_pct": 0.4955746293060403,
+   "ad_pct": 0.5044254106340494,
+   "top10_pct": 0.6433349975037443,
+   "top_kw": "cooling blanket",
+   "top_kw_pct": 0.3612955566650025,
+   "reach": {
+    "OR": 0.9307788317523714,
+    "SP": 0.8833000499251124,
+    "SB": 0.458736894658013,
+    "SBV": 0.7495631552670994,
+    "AC": 0.013941587618572142,
+    "SOR": 0.872079380928607
+   },
+   "hero_child_asins": [
+    [
+     "B0DMCKB3Z8",
+     0.546496340386327
+    ],
+    [
+     "B0DMCDH3N3",
+     0.1757243806167966
+    ],
+    [
+     "B0DMCWVMVH",
+     0.14445055582765415
+    ]
+   ],
+   "child_asins_total": 14,
+   "contested": 210,
+   "we_win": 32,
+   "we_lose": 155,
+   "our_zero": 100,
+   "theirs_only_kw": 685,
+   "theirs_only_share": 0.2510733899151273,
+   "our_share": 0.10408373216442278,
+   "ppc_we_run_none": 292,
+   "ppc_they_more_aggressive": 7,
+   "ad_gap": 39317.68590000003,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Cooling|Blanket",
+     0.41316774837743386
+    ],
+    [
+     "Cooling|Comforter",
+     0.08079131303045432
+    ],
+    [
+     "Cooling|Comforter|Queen",
+     0.03981527708437344
+    ],
+    [
+     "Cooling|Comforter|Twin",
+     0.012718422366450325
+    ],
+    [
+     "Cooling|Blanket|Twin",
+     0.011295556665002496
+    ]
+   ]
+  },
+  {
+   "pid": 42,
+   "cid": 899,
+   "parent_asin": "B0BQ6XYWKB",
+   "brand": "EASELAND",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T06:57:01.782Z",
+   "keywords": 1781,
+   "traffic": 110161,
+   "organic_pct": 0.808195924147384,
+   "ad_pct": 0.19180407585261577,
+   "top10_pct": 0.6391100298653789,
+   "top_kw": "cooling blanket",
+   "top_kw_pct": 0.31135338277611857,
+   "reach": {
+    "OR": 0.9537858225687856,
+    "SP": 0.9762892493713746,
+    "SBV": 0.616906164613611,
+    "AC": 0.010284946578190103,
+    "SOR": 0.9032597743302984
+   },
+   "hero_child_asins": [
+    [
+     "B0BQ6YY21S",
+     0.5321420444026631
+    ],
+    [
+     "B0BQ6ZKNS2",
+     0.4031409379077121
+    ]
+   ],
+   "child_asins_total": 9,
+   "contested": 258,
+   "we_win": 34,
+   "we_lose": 186,
+   "our_zero": 129,
+   "theirs_only_kw": 1523,
+   "theirs_only_share": 0.24537722061346576,
+   "our_share": 0.07791142472105735,
+   "ppc_we_run_none": 401,
+   "ppc_they_more_aggressive": 3,
+   "ad_gap": 20598.2897,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Cooling|Blanket",
+     0.4104537903613802
+    ],
+    [
+     "Cooling|Comforter",
+     0.05476529806374307
+    ],
+    [
+     "Cooling|Comforter|King",
+     0.03789907499024155
+    ],
+    [
+     "Cooling|Blanket|Queen",
+     0.01431541108014633
+    ],
+    [
+     "Cooling|Blanket|King",
+     0.009222864716188125
+    ]
+   ]
+  },
+  {
+   "pid": 42,
+   "cid": 1837,
+   "parent_asin": "B0D4J5Q1TK",
+   "brand": "Elegear",
+   "import_file": "VariationKeyword_US__20260920 (10).xlsx",
+   "imported_at": "2026-09-20T15:46:36.119Z",
+   "keywords": 577,
+   "traffic": 25258,
+   "organic_pct": 0.8588992715179345,
+   "ad_pct": 0.14110072848206506,
+   "top10_pct": 0.6831498931031752,
+   "top_kw": "cooling blanket",
+   "top_kw_pct": 0.4350304853907673,
+   "reach": {
+    "OR": 0.9749386333042996,
+    "SP": 0.7770211418164542,
+    "SB": 0.8134056536542877,
+    "SOR": 0.8483648744952095
+   },
+   "hero_child_asins": [
+    [
+     "B0BYDLNKXY",
+     0.5177026510237019
+    ],
+    [
+     "B094C72SZ4",
+     0.35188020034943096
+    ]
+   ],
+   "child_asins_total": 14,
+   "contested": 169,
+   "we_win": 63,
+   "we_lose": 83,
+   "our_zero": 75,
+   "theirs_only_kw": 408,
+   "theirs_only_share": 0.19649220049093358,
+   "our_share": 0.2692819533645779,
+   "ppc_we_run_none": 138,
+   "ppc_they_more_aggressive": 4,
+   "ad_gap": 3302.952399999999,
+   "comparable": false,
+   "days_apart": 22,
+   "owned_buckets": [
+    [
+     "Cooling|Blanket",
+     0.5269617546915829
+    ],
+    [
+     "Cooling|Comforter|King",
+     0.055784305962467334
+    ],
+    [
+     "Cooling|Comforter",
+     0.047272151397577004
+    ],
+    [
+     "Cooling|Blanket|King",
+     0.02791194868952411
+    ],
+    [
+     "Cooling|Blanket|Queen",
+     0.007601551983529971
+    ]
+   ]
+  },
+  {
+   "pid": 42,
+   "cid": 610,
+   "parent_asin": "B0GJTG1NBW",
+   "brand": "Gehtmnl",
+   "import_file": "VariationKeyword_US__20261001.xlsx",
+   "imported_at": "2026-10-01T09:18:35.576Z",
+   "keywords": 1511,
+   "traffic": 69715,
+   "organic_pct": 0.7072078304525564,
+   "ad_pct": 0.29279216954744314,
+   "top10_pct": 0.5866886609768343,
+   "top_kw": "cooling blanket",
+   "top_kw_pct": 0.2693968299505128,
+   "reach": {
+    "OR": 0.9784551387793158,
+    "SP": 0.9338449401133185,
+    "SB": 0.2034999641397117,
+    "SBV": 0.006727390088216309,
+    "AC": 0.05787850534318296,
+    "SOR": 0.940930933084702
+   },
+   "hero_child_asins": [
+    [
+     "B0GKHZKQ9W",
+     0.8241764500157964
+    ]
+   ],
+   "child_asins_total": 16,
+   "contested": 219,
+   "we_win": 52,
+   "we_lose": 114,
+   "our_zero": 100,
+   "theirs_only_kw": 1292,
+   "theirs_only_share": 0.2739152262784193,
+   "our_share": 0.11778849195803753,
+   "ppc_we_run_none": 256,
+   "ppc_they_more_aggressive": 8,
+   "ad_gap": 19733.048099999996,
+   "comparable": false,
+   "days_apart": 11,
+   "owned_buckets": [
+    [
+     "Cooling|Blanket",
+     0.3943914509072653
+    ],
+    [
+     "Cooling|Comforter",
+     0.029104209997848383
+    ],
+    [
+     "Cooling|Comforter|Queen",
+     0.0131392096392455
+    ],
+    [
+     "Cooling|Blanket|Queen",
+     0.011303162877429534
+    ],
+    [
+     "Cooling",
+     0.007588037007817543
+    ]
+   ]
+  },
+  {
+   "pid": 42,
+   "cid": 21,
+   "parent_asin": "B0BNT8CPJF",
+   "brand": "HOMFINE",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T09:46:41.700Z",
+   "keywords": 1624,
+   "traffic": 273765,
+   "organic_pct": 0.41842645845889725,
+   "ad_pct": 0.5815735415411022,
+   "top10_pct": 0.7105985060179351,
+   "top_kw": "cooling blanket",
+   "top_kw_pct": 0.45983964348985445,
+   "reach": {
+    "OR": 0.8601793509031469,
+    "SP": 0.9619783390864427,
+    "SB": 0.7293846912497945,
+    "SBV": 0.6641097291472613,
+    "AC": 0.03137362336310339,
+    "SOR": 0.946980074151188
+   },
+   "hero_child_asins": [
+    [
+     "B0C3RB67HV",
+     0.6882947294081534
+    ],
+    [
+     "B0G1BFGHM2",
+     0.14131845787107866
+    ]
+   ],
+   "child_asins_total": 17,
+   "contested": 236,
+   "we_win": 26,
+   "we_lose": 184,
+   "our_zero": 116,
+   "theirs_only_kw": 1388,
+   "theirs_only_share": 0.2647964495096159,
+   "our_share": 0.032881977440448226,
+   "ppc_we_run_none": 461,
+   "ppc_they_more_aggressive": 8,
+   "ad_gap": 155785.61319999988,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Cooling|Blanket",
+     0.5202527715376326
+    ],
+    [
+     "Cooling|Comforter",
+     0.07015871276459737
+    ],
+    [
+     "Cooling|Comforter|Queen",
+     0.024853432688619802
+    ],
+    [
+     "Cooling|Comforter|King",
+     0.023892754734900372
+    ],
+    [
+     "Cooling|Blanket|King",
+     0.012485160630467737
+    ]
+   ]
+  },
+  {
+   "pid": 42,
+   "cid": 16,
+   "parent_asin": "B0B5TLCZ4X",
+   "brand": "REST",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T06:36:07.037Z",
+   "keywords": 7962,
+   "traffic": 1443297,
+   "organic_pct": 0.3077375513148022,
+   "ad_pct": 0.6922624553366351,
+   "top10_pct": 0.501885613286801,
+   "top_kw": "cooling blanket",
+   "top_kw_pct": 0.2713807345265735,
+   "reach": {
+    "OR": 0.9284076666133166,
+    "SP": 0.861086110481765,
+    "SB": 0.9551367459365605,
+    "SBV": 0.730965975817867,
+    "AC": 0.05441153137573209,
+    "SOR": 0.842796735529832
+   },
+   "hero_child_asins": [
+    [
+     "B0B5TG8ZVW",
+     0.12504883239637052
+    ],
+    [
+     "B0B5THLW19",
+     0.11182188148284172
+    ],
+    [
+     "B0CMTR1KLG",
+     0.07476297758160426
+    ],
+    [
+     "B09X2WT2P7",
+     0.07247892705322699
+    ],
+    [
+     "B09X2WNLMM",
+     0.07017697042137887
+    ],
+    [
+     "B0BCW6SY3L",
+     0.06975738494042205
+    ],
+    [
+     "B0CMTT1SVP",
+     0.06766598058666203
+    ],
+    [
+     "B0CMTPDRQ1",
+     0.06409617322258787
+    ],
+    [
+     "B0B5TGDD9S",
+     0.06285521666917183
+    ],
+    [
+     "B0CHR8KYVW",
+     0.059837674660975365
+    ],
+    [
+     "B0CHR84SPD",
+     0.056381055202322984
+    ]
+   ],
+   "child_asins_total": 18,
+   "contested": 288,
+   "we_win": 7,
+   "we_lose": 254,
+   "our_zero": 153,
+   "theirs_only_kw": 7674,
+   "theirs_only_share": 0.4419817958465929,
+   "our_share": 0.006407798403557746,
+   "ppc_we_run_none": 2643,
+   "ppc_they_more_aggressive": 11,
+   "ad_gap": 995106.3396999999,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Cooling|Blanket",
+     0.32148892431703247
+    ],
+    [
+     "Cooling|Comforter",
+     0.04100680594499954
+    ],
+    [
+     "Cooling|Comforter|King",
+     0.021895701300563918
+    ],
+    [
+     "Cooling|Comforter|Full",
+     0.005937100957044877
+    ],
+    [
+     "Cooling|Comforter|Queen",
+     0.005659957721799463
+    ]
+   ]
+  },
+  {
+   "pid": 42,
+   "cid": 609,
+   "parent_asin": "B0GVYJX6MB",
+   "brand": "Vine Voice",
+   "import_file": "VariationKeyword_US__20260920 (8).xlsx",
+   "imported_at": "2026-09-20T15:41:46.764Z",
+   "keywords": 1397,
+   "traffic": 149817,
+   "organic_pct": 0.7796245933372051,
+   "ad_pct": 0.22037585521002276,
+   "top10_pct": 0.7178891581062229,
+   "top_kw": "cooling blanket",
+   "top_kw_pct": 0.4496352216370639,
+   "reach": {
+    "OR": 0.9901613301561238,
+    "SP": 0.9663389334988686,
+    "SB": 0.5016720398886642,
+    "SBV": 0.0060874266605258414,
+    "AC": 0.030797573039107712,
+    "SOR": 0.9533030296962294
+   },
+   "hero_child_asins": [
+    [
+     "B0DX27SVYV",
+     0.44338602382127973
+    ],
+    [
+     "B0GK9776YF",
+     0.1827842639096521
+    ],
+    [
+     "B0GK9JCTXC",
+     0.09153611342745052
+    ],
+    [
+     "B0DX26NBM3",
+     0.07317747115213978
+    ],
+    [
+     "B0DX28SGQH",
+     0.05929328350979104
+    ]
+   ],
+   "child_asins_total": 39,
+   "contested": 219,
+   "we_win": 11,
+   "we_lose": 189,
+   "our_zero": 108,
+   "theirs_only_kw": 1178,
+   "theirs_only_share": 0.13036571283632697,
+   "our_share": 0.05849489395129615,
+   "ppc_we_run_none": 292,
+   "ppc_they_more_aggressive": 5,
+   "ad_gap": 29371.799200000005,
+   "comparable": false,
+   "days_apart": 22,
+   "owned_buckets": [
+    [
+     "Cooling|Blanket",
+     0.5404193115601034
+    ],
+    [
+     "Cooling|Comforter",
+     0.09114452965951794
+    ],
+    [
+     "Cooling|Comforter|King",
+     0.05909209235267026
+    ],
+    [
+     "Cooling|Comforter|Queen",
+     0.02934913928325891
+    ],
+    [
+     "Cooling|Blanket|King",
+     0.010893289813572559
+    ]
+   ]
+  },
+  {
+   "pid": 42,
+   "cid": 605,
+   "parent_asin": "B099J44BKW",
+   "brand": "Bedsure",
+   "import_file": "VariationKeyword_US__20261001.xlsx",
+   "imported_at": "2026-10-01T09:23:24.322Z",
+   "keywords": 5481,
+   "traffic": 643949,
+   "organic_pct": 0.7308647324555207,
+   "ad_pct": 0.2691352725138173,
+   "top10_pct": 0.39827222342142005,
+   "top_kw": "queen comforter set",
+   "top_kw_pct": 0.0914963762658223,
+   "reach": {
+    "OR": 0.9702150325569261,
+    "SP": 0.7493295276489287,
+    "SB": 0.8924138402264775,
+    "AC": 0.10168196549726764,
+    "SOR": 0.7800866217666306
+   },
+   "hero_child_asins": [
+    [
+     "B0BN5TKJ8D",
+     0.6370233674700774
+    ],
+    [
+     "B0BN5XYC3T",
+     0.31005627394064383
+    ]
+   ],
+   "child_asins_total": 18,
+   "contested": 232,
+   "we_win": 17,
+   "we_lose": 176,
+   "our_zero": 119,
+   "theirs_only_kw": 5249,
+   "theirs_only_share": 0.8483591091841124,
+   "our_share": 0.014248603535821277,
+   "ppc_we_run_none": 1401,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 173129.6873000001,
+   "comparable": false,
+   "days_apart": 11,
+   "owned_buckets": [
+    [
+     "Cooling|Comforter",
+     0.03155839981116517
+    ],
+    [
+     "Cooling|Comforter|King",
+     0.022177222109204302
+    ],
+    [
+     "Cooling|Comforter|Queen",
+     0.014956153359971053
+    ],
+    [
+     "Cooling|Blanket",
+     0.004845104193033921
+    ],
+    [
+     "Cooling|Comforter|Full",
+     0.001810702400345369
+    ]
+   ]
+  },
+  {
+   "pid": 42,
+   "cid": 20,
+   "parent_asin": "B0GXZLZ3KB",
+   "brand": "jiaao",
+   "import_file": "VariationKeyword_US__20260920 (6).xlsx",
+   "imported_at": "2026-09-20T15:39:46.503Z",
+   "keywords": 295,
+   "traffic": 19888,
+   "organic_pct": 1,
+   "ad_pct": 0,
+   "top10_pct": 0.7361725663716814,
+   "top_kw": "cooling blanket",
+   "top_kw_pct": 0.29238736926790027,
+   "reach": {
+    "OR": 1,
+    "SP": 0,
+    "SOR": 0.005681818181818182
+   },
+   "hero_child_asins": [
+    [
+     "B0GR4L84HS",
+     1
+    ]
+   ],
+   "child_asins_total": 1,
+   "contested": 127,
+   "we_win": 38,
+   "we_lose": 70,
+   "our_zero": 59,
+   "theirs_only_kw": 168,
+   "theirs_only_share": 0.31486323411102174,
+   "our_share": 0.318810795999452,
+   "ppc_we_run_none": 0,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 0,
+   "comparable": false,
+   "days_apart": 22,
+   "owned_buckets": [
+    [
+     "Cooling|Blanket",
+     0.4991452131938858
+    ],
+    [
+     "Cooling|Comforter",
+     0.08819388576025744
+    ],
+    [
+     "Cooling|Comforter|Queen",
+     0.015637570394207562
+    ],
+    [
+     "Cooling|Blanket|Queen",
+     0.01076025744167337
+    ],
+    [
+     "Cooling|Comforter|Full",
+     0.009402654867256638
+    ]
+   ]
+  }
+ ]
+}

@@ -1,0 +1,121 @@
+{
+ "pid": 40,
+ "our_hero_asins": null,
+ "our_child_asins_total": null,
+ "competitors": [
+  {
+   "pid": 40,
+   "cid": 1889,
+   "parent_asin": "B0HGLD1P8V",
+   "brand": "ELIBABA",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T09:20:49.946Z",
+   "keywords": 438,
+   "traffic": 15537,
+   "organic_pct": 0.770486258608483,
+   "ad_pct": 0.229513741391517,
+   "top10_pct": 0.6778013773572762,
+   "top_kw": "curved pillow case",
+   "top_kw_pct": 0.13239364098603335,
+   "reach": {
+    "OR": 0.9979404003346849,
+    "SP": 0.7482783034047757,
+    "SB": 0.4866447834202227,
+    "SBV": 0.23382892450279977,
+    "AC": 0.36660874042607966,
+    "SOR": 0.7134581965630431
+   },
+   "hero_child_asins": [
+    [
+     "B0CQK3KHHH",
+     0.3837212111800453
+    ],
+    [
+     "B0B8Y484FV",
+     0.19429914872540271
+    ],
+    [
+     "B0BJ6PPDL4",
+     0.11752914882863924
+    ],
+    [
+     "B0DSSYCX22",
+     0.09248549403463656
+    ],
+    [
+     "B0DSVP4PKM",
+     0.05362377462209036
+    ]
+   ],
+   "child_asins_total": 25,
+   "contested": null,
+   "we_win": null,
+   "we_lose": null,
+   "our_zero": null,
+   "theirs_only_kw": null,
+   "theirs_only_share": null,
+   "our_share": null,
+   "ppc_we_run_none": null,
+   "ppc_they_more_aggressive": null,
+   "ad_gap": null,
+   "comparable": null,
+   "days_apart": null,
+   "owned_buckets": []
+  },
+  {
+   "pid": 40,
+   "cid": 1094,
+   "parent_asin": "B09BKQK7RZ",
+   "brand": "WISHSMILE",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T10:16:41.920Z",
+   "keywords": 1980,
+   "traffic": 151964,
+   "organic_pct": 0.8020060705167013,
+   "ad_pct": 0.19799409794424985,
+   "top10_pct": 0.4332539285620278,
+   "top_kw": "body pillow pillowcase",
+   "top_kw_pct": 0.1435603169171646,
+   "reach": {
+    "OR": 0.9776789239556737,
+    "SP": 0.8215695822694848,
+    "SB": 0.5012437156168567,
+    "SBV": 0.8610986812666158,
+    "AC": 0.025749519623068623,
+    "SOR": 0.7293503724566345
+   },
+   "hero_child_asins": [
+    [
+     "B09BL2SMVG",
+     0.5108605087286555
+    ],
+    [
+     "B09BKY53J5",
+     0.2021987871802844
+    ],
+    [
+     "B09BKXKF1P",
+     0.06344263268561842
+    ],
+    [
+     "B09BKV27TP",
+     0.036549444413837964
+    ]
+   ],
+   "child_asins_total": 41,
+   "contested": null,
+   "we_win": null,
+   "we_lose": null,
+   "our_zero": null,
+   "theirs_only_kw": null,
+   "theirs_only_share": null,
+   "our_share": null,
+   "ppc_we_run_none": null,
+   "ppc_they_more_aggressive": null,
+   "ad_gap": null,
+   "comparable": null,
+   "days_apart": null,
+   "owned_buckets": []
+  }
+ ]
+}

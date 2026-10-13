@@ -1,0 +1,870 @@
+{
+ "pid": 43,
+ "our_hero_asins": [
+  [
+   "B0F7LM5KWC",
+   0.41705602571475486
+  ],
+  [
+   "B0F7LLMXSR",
+   0.3964396468794917
+  ]
+ ],
+ "our_child_asins_total": 4,
+ "competitors": [
+  {
+   "pid": 43,
+   "cid": 1863,
+   "parent_asin": "B0H3PX4VQC",
+   "brand": "Avolare",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T08:50:20.221Z",
+   "keywords": 1432,
+   "traffic": 53763,
+   "organic_pct": 0.6823409073154402,
+   "ad_pct": 0.3176590926845601,
+   "top10_pct": 0.628034149880029,
+   "top_kw": "cooling pillow cases",
+   "top_kw_pct": 0.22262522552684932,
+   "reach": {
+    "OR": 0.9801722374123468,
+    "SP": 0.6772687536037796,
+    "SB": 0.6927812808065026,
+    "SOR": 0.869854732808809
+   },
+   "hero_child_asins": [
+    [
+     "B08TBL21VT",
+     0.29225272383765777
+    ],
+    [
+     "B0GC5S5J7H",
+     0.21427911826928878
+    ],
+    [
+     "B08TBGP8R5",
+     0.19649707690745843
+    ],
+    [
+     "B0GC61D32V",
+     0.061961118325080465
+    ],
+    [
+     "B0DZHRG54P",
+     0.050969359411491715
+    ]
+   ],
+   "child_asins_total": 25,
+   "contested": 43,
+   "we_win": 3,
+   "we_lose": 38,
+   "our_zero": 18,
+   "theirs_only_kw": 1389,
+   "theirs_only_share": 0.6202964864311887,
+   "our_share": 0.019460149553164326,
+   "ppc_we_run_none": 191,
+   "ppc_they_more_aggressive": 2,
+   "ad_gap": 16923.29440000001,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": []
+  },
+  {
+   "pid": 43,
+   "cid": 1874,
+   "parent_asin": "B0HFSJ3HLW",
+   "brand": "Elegear",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T10:22:07.305Z",
+   "keywords": 546,
+   "traffic": 12595,
+   "organic_pct": 0.8238290353314806,
+   "ad_pct": 0.17617096466851923,
+   "top10_pct": 0.6918618499404525,
+   "top_kw": "cooling pillow cases",
+   "top_kw_pct": 0.39904724096863836,
+   "reach": {
+    "OR": 0.9926161175069472,
+    "SP": 0.7178245335450576,
+    "SB": 0.04525605398967844,
+    "SBV": 0.07185391028185788,
+    "SOR": 0.7516474791583961
+   },
+   "hero_child_asins": [
+    [
+     "B086V7TPDQ",
+     0.45826128679137407
+    ],
+    [
+     "B086V2N4QX",
+     0.34975750742156586
+    ]
+   ],
+   "child_asins_total": 19,
+   "contested": 41,
+   "we_win": 4,
+   "we_lose": 34,
+   "our_zero": 17,
+   "theirs_only_kw": 505,
+   "theirs_only_share": 0.26597856292179434,
+   "our_share": 0.07809983896940419,
+   "ppc_we_run_none": 31,
+   "ppc_they_more_aggressive": 1,
+   "ad_gap": 2207.864899999999,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": []
+  },
+  {
+   "pid": 43,
+   "cid": 485,
+   "parent_asin": "B0D15BSQCT",
+   "brand": "Serta",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T10:27:16.615Z",
+   "keywords": 2057,
+   "traffic": 290958,
+   "organic_pct": 0.6924335141154392,
+   "ad_pct": 0.30756652987716415,
+   "top10_pct": 0.6132912654060036,
+   "top_kw": "pillows queen size set of 2",
+   "top_kw_pct": 0.1269770894768317,
+   "reach": {
+    "OR": 0.9769416891785069,
+    "SP": 0.9424418644615374,
+    "SBV": 0.602303425236632,
+    "SOR": 0.956302971562906
+   },
+   "hero_child_asins": [
+    [
+     "B098TRFLHZ",
+     0.8221746176597134
+    ]
+   ],
+   "child_asins_total": 4,
+   "contested": 42,
+   "we_win": 2,
+   "we_lose": 38,
+   "our_zero": 18,
+   "theirs_only_kw": 2015,
+   "theirs_only_share": 0.9022504966352533,
+   "our_share": 0.003653796763975687,
+   "ppc_we_run_none": 699,
+   "ppc_they_more_aggressive": 2,
+   "ad_gap": 89355.93499999994,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": []
+  },
+  {
+   "pid": 43,
+   "cid": 1094,
+   "parent_asin": "B09BKQK7RZ",
+   "brand": "WISHSMILE",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T10:16:41.920Z",
+   "keywords": 1980,
+   "traffic": 151964,
+   "organic_pct": 0.8020060705167013,
+   "ad_pct": 0.19799409794424985,
+   "top10_pct": 0.4332539285620278,
+   "top_kw": "body pillow pillowcase",
+   "top_kw_pct": 0.1435603169171646,
+   "reach": {
+    "OR": 0.9776789239556737,
+    "SP": 0.8215695822694848,
+    "SB": 0.5012437156168567,
+    "SBV": 0.8610986812666158,
+    "AC": 0.025749519623068623,
+    "SOR": 0.7293503724566345
+   },
+   "hero_child_asins": [
+    [
+     "B09BL2SMVG",
+     0.5108605087286555
+    ],
+    [
+     "B09BKY53J5",
+     0.2021987871802844
+    ],
+    [
+     "B09BKXKF1P",
+     0.06344263268561842
+    ],
+    [
+     "B09BKV27TP",
+     0.036549444413837964
+    ]
+   ],
+   "child_asins_total": 41,
+   "contested": 42,
+   "we_win": 2,
+   "we_lose": 37,
+   "our_zero": 18,
+   "theirs_only_kw": 1938,
+   "theirs_only_share": 0.9321286620515385,
+   "our_share": 0.006972443491841522,
+   "ppc_we_run_none": 526,
+   "ppc_they_more_aggressive": 2,
+   "ad_gap": 29909.967999999993,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": []
+  },
+  {
+   "pid": 43,
+   "cid": 1871,
+   "parent_asin": "B0GS2D7MBT",
+   "brand": "Bedsure",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T08:55:25.776Z",
+   "keywords": 2045,
+   "traffic": 38313,
+   "organic_pct": 0.4058418317542347,
+   "ad_pct": 0.5941581682457653,
+   "top10_pct": 0.2983060579959805,
+   "top_kw": "cooling pillow cases",
+   "top_kw_pct": 0.10505572521076396,
+   "reach": {
+    "OR": 0.5835617153446611,
+    "SP": 0.20794508391407615,
+    "SB": 0.6478218881319656,
+    "SOR": 0.23861352543523087
+   },
+   "hero_child_asins": [
+    [
+     "B0CP3NQSTG",
+     0.6220067218669924
+    ],
+    [
+     "B0CP3P1HRF",
+     0.3354490354453336
+    ]
+   ],
+   "child_asins_total": 7,
+   "contested": 41,
+   "we_win": 2,
+   "we_lose": 36,
+   "our_zero": 18,
+   "theirs_only_kw": 2004,
+   "theirs_only_share": 0.7824237204082165,
+   "our_share": 0.027094972067039105,
+   "ppc_we_run_none": 785,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 22763.981900000006,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": []
+  },
+  {
+   "pid": 43,
+   "cid": 1859,
+   "parent_asin": "B0F53TNFSX",
+   "brand": "Breescape",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T09:00:25.076Z",
+   "keywords": 1207,
+   "traffic": 25040,
+   "organic_pct": 0.3706715455271565,
+   "ad_pct": 0.6293284544728435,
+   "top10_pct": 0.6414936102236422,
+   "top_kw": "cooling pillow cases",
+   "top_kw_pct": 0.4505191693290735,
+   "reach": {
+    "OR": 0.8664536741214057,
+    "SP": 0.9612220447284345,
+    "SB": 0.6791932907348243,
+    "SBV": 0.6243610223642172,
+    "AC": 0.006869009584664537,
+    "SOR": 0.9081070287539936
+   },
+   "hero_child_asins": [
+    [
+     "B0DSQ112N7",
+     0.5679658812728275
+    ],
+    [
+     "B0DSQ178L4",
+     0.15164222162937518
+    ],
+    [
+     "B0DSQ1KYQ8",
+     0.05437733239850777
+    ],
+    [
+     "B0DSQ26ZYC",
+     0.04709646425022112
+    ]
+   ],
+   "child_asins_total": 13,
+   "contested": 36,
+   "we_win": 1,
+   "we_lose": 32,
+   "our_zero": 14,
+   "theirs_only_kw": 1171,
+   "theirs_only_share": 0.29125399361022364,
+   "our_share": 0.04087026467997089,
+   "ppc_we_run_none": 467,
+   "ppc_they_more_aggressive": 2,
+   "ad_gap": 15746.3761,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": []
+  },
+  {
+   "pid": 43,
+   "cid": 1873,
+   "parent_asin": "B0B75178W1",
+   "brand": "CHOSHOME",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T09:15:12.282Z",
+   "keywords": 499,
+   "traffic": 17999,
+   "organic_pct": 0.8252617812100672,
+   "ad_pct": 0.1747382187899328,
+   "top10_pct": 0.6135896438691039,
+   "top_kw": "cooling pillow cases",
+   "top_kw_pct": 0.24295794210789487,
+   "reach": {
+    "OR": 0.9953886327018168,
+    "SP": 0.5976443135729763,
+    "SBV": 0.4869714984165787,
+    "AC": 0.010833935218623256,
+    "SOR": 0.6268126007000389
+   },
+   "hero_child_asins": [
+    [
+     "B08X2KBD67",
+     0.8474919068971113
+    ]
+   ],
+   "child_asins_total": 23,
+   "contested": 38,
+   "we_win": 2,
+   "we_lose": 34,
+   "our_zero": 17,
+   "theirs_only_kw": 461,
+   "theirs_only_share": 0.5255847547085949,
+   "our_share": 0.05596349522710584,
+   "ppc_we_run_none": 43,
+   "ppc_they_more_aggressive": 1,
+   "ad_gap": 3134.1047999999996,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": []
+  },
+  {
+   "pid": 43,
+   "cid": 1868,
+   "parent_asin": "B0DGH3JKZ5",
+   "brand": "Coop Home Goods",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T09:30:27.720Z",
+   "keywords": 214,
+   "traffic": 26180,
+   "organic_pct": 0.9925127425515661,
+   "ad_pct": 0.00748725744843392,
+   "top10_pct": 0.7299465240641712,
+   "top_kw": "coop pillow",
+   "top_kw_pct": 0.3707028265851795,
+   "reach": {
+    "OR": 1,
+    "SP": 0.0038579067990832695,
+    "SOR": 0.5616501145912911
+   },
+   "hero_child_asins": [
+    [
+     "B0CQBCS63N",
+     0.3378880767418956
+    ],
+    [
+     "B08B448344",
+     0.26678298187649246
+    ],
+    [
+     "B0CQB8LNYY",
+     0.15006743485809212
+    ],
+    [
+     "B0CQB3P54Y",
+     0.10795268822046025
+    ]
+   ],
+   "child_asins_total": 7,
+   "contested": 29,
+   "we_win": 3,
+   "we_lose": 22,
+   "our_zero": 11,
+   "theirs_only_kw": 185,
+   "theirs_only_share": 0.7874331550802139,
+   "our_share": 0.03916027452563585,
+   "ppc_we_run_none": 15,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 196.01640000000003,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": []
+  },
+  {
+   "pid": 43,
+   "cid": 1858,
+   "parent_asin": "B0D4BZDBY7",
+   "brand": "Coop Home Goods",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T10:13:05.459Z",
+   "keywords": 1312,
+   "traffic": 80590,
+   "organic_pct": 0.45670447077801235,
+   "ad_pct": 0.5432956880506267,
+   "top10_pct": 0.48166025561484055,
+   "top_kw": "coop pillow",
+   "top_kw_pct": 0.12468048144931133,
+   "reach": {
+    "OR": 0.7935351780617943,
+    "SP": 0.6335773669189726,
+    "AC": 0.075877900483931,
+    "SOR": 0.7205236381685073
+   },
+   "hero_child_asins": [
+    [
+     "B0CL1243GJ",
+     0.24095961845584996
+    ],
+    [
+     "B0CMG59TLG",
+     0.20161484097328147
+    ],
+    [
+     "B0CMG11PJV",
+     0.1544033055169554
+    ],
+    [
+     "B0CL12S4V3",
+     0.13875990041079989
+    ],
+    [
+     "B0GKCPSXNG",
+     0.12602401892620255
+    ]
+   ],
+   "child_asins_total": 14,
+   "contested": 42,
+   "we_win": 5,
+   "we_lose": 32,
+   "our_zero": 18,
+   "theirs_only_kw": 1270,
+   "theirs_only_share": 0.7916490879761757,
+   "our_share": 0.013066852811149075,
+   "ppc_we_run_none": 710,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 43003.1995,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": []
+  },
+  {
+   "pid": 43,
+   "cid": 1866,
+   "parent_asin": "B0CP7J6RB8",
+   "brand": "Cozy Bliss",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T10:10:23.126Z",
+   "keywords": 911,
+   "traffic": 19441,
+   "organic_pct": 0.46211789517000174,
+   "ad_pct": 0.5378821048299984,
+   "top10_pct": 0.5618538141042128,
+   "top_kw": "cooling pillow cases",
+   "top_kw_pct": 0.32292577542307493,
+   "reach": {
+    "OR": 0.8104006995524922,
+    "SP": 0.7438403374312021,
+    "SBV": 0.8985648886374158,
+    "AC": 0.018003189136361297,
+    "SOR": 0.7833444781647034
+   },
+   "hero_child_asins": [
+    [
+     "B0CH8B5HZB",
+     0.5904638320850488
+    ],
+    [
+     "B0CH87Q3JX",
+     0.31257995488400236
+    ]
+   ],
+   "child_asins_total": 18,
+   "contested": 33,
+   "we_win": 6,
+   "we_lose": 24,
+   "our_zero": 11,
+   "theirs_only_kw": 878,
+   "theirs_only_share": 0.4576410678463042,
+   "our_share": 0.052028476692022624,
+   "ppc_we_run_none": 301,
+   "ppc_they_more_aggressive": 1,
+   "ad_gap": 10445.957599999998,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": []
+  },
+  {
+   "pid": 43,
+   "cid": 1889,
+   "parent_asin": "B0HGLD1P8V",
+   "brand": "ELIBABA",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T09:20:49.946Z",
+   "keywords": 438,
+   "traffic": 15537,
+   "organic_pct": 0.770486258608483,
+   "ad_pct": 0.229513741391517,
+   "top10_pct": 0.6778013773572762,
+   "top_kw": "curved pillow case",
+   "top_kw_pct": 0.13239364098603335,
+   "reach": {
+    "OR": 0.9979404003346849,
+    "SP": 0.7482783034047757,
+    "SB": 0.4866447834202227,
+    "SBV": 0.23382892450279977,
+    "AC": 0.36660874042607966,
+    "SOR": 0.7134581965630431
+   },
+   "hero_child_asins": [
+    [
+     "B0CQK3KHHH",
+     0.3837212111800453
+    ],
+    [
+     "B0B8Y484FV",
+     0.19429914872540271
+    ],
+    [
+     "B0BJ6PPDL4",
+     0.11752914882863924
+    ],
+    [
+     "B0DSSYCX22",
+     0.09248549403463656
+    ],
+    [
+     "B0DSVP4PKM",
+     0.05362377462209036
+    ]
+   ],
+   "child_asins_total": 25,
+   "contested": 34,
+   "we_win": 5,
+   "we_lose": 25,
+   "our_zero": 13,
+   "theirs_only_kw": 404,
+   "theirs_only_share": 0.907639827508528,
+   "our_share": 0.06426162370513129,
+   "ppc_we_run_none": 34,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 3565.955,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": []
+  },
+  {
+   "pid": 43,
+   "cid": 1876,
+   "parent_asin": "B099JMGRBY",
+   "brand": "Fittia",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T09:09:53.401Z",
+   "keywords": 429,
+   "traffic": 16144,
+   "organic_pct": 0.8876912784935578,
+   "ad_pct": 0.11230872150644199,
+   "top10_pct": 0.7029236868186323,
+   "top_kw": "cooling pillow cases",
+   "top_kw_pct": 0.2257804757185332,
+   "reach": {
+    "OR": 0.9964692765113974,
+    "SP": 0.6258052527254707,
+    "SB": 0.5755698711595639,
+    "SOR": 0.6508919722497523
+   },
+   "hero_child_asins": [
+    [
+     "B09DJY94HD",
+     0.47429775183112993
+    ],
+    [
+     "B099J7KMK5",
+     0.302908990413334
+    ],
+    [
+     "B099HV3SX9",
+     0.12864999238229274
+    ]
+   ],
+   "child_asins_total": 13,
+   "contested": 33,
+   "we_win": 5,
+   "we_lose": 25,
+   "our_zero": 12,
+   "theirs_only_kw": 396,
+   "theirs_only_share": 0.6020193260654113,
+   "our_share": 0.06199523560513625,
+   "ppc_we_run_none": 24,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 1813.1119999999996,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": []
+  },
+  {
+   "pid": 43,
+   "cid": 1860,
+   "parent_asin": "B0CN6YFBVJ",
+   "brand": "HOMFINE",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T09:05:07.373Z",
+   "keywords": 741,
+   "traffic": 17008,
+   "organic_pct": 0.9595514640169331,
+   "ad_pct": 0.040453239651928506,
+   "top10_pct": 0.4160395108184384,
+   "top_kw": "cooling pillow cases",
+   "top_kw_pct": 0.13846425211665098,
+   "reach": {
+    "OR": 0.9941792097836313,
+    "SP": 0.23876999059266227,
+    "SB": 0.20896048918156163,
+    "SBV": 0.10871354656632173,
+    "AC": 0.0015286923800564441,
+    "SOR": 0.47142521166509876
+   },
+   "hero_child_asins": [
+    [
+     "B0BLT2MCT6",
+     0.5532656281599034
+    ],
+    [
+     "B0DJ7B3X2K",
+     0.149043120535331
+    ],
+    [
+     "B0FRLJV2B3",
+     0.14663496471044546
+    ]
+   ],
+   "child_asins_total": 22,
+   "contested": 42,
+   "we_win": 2,
+   "we_lose": 37,
+   "our_zero": 18,
+   "theirs_only_kw": 699,
+   "theirs_only_share": 0.6071848541862653,
+   "our_share": 0.059031811894882436,
+   "ppc_we_run_none": 26,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 667.9897000000001,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": []
+  },
+  {
+   "pid": 43,
+   "cid": 1893,
+   "parent_asin": "B0CFY7SVV7",
+   "brand": "Marchpower",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T09:33:13.038Z",
+   "keywords": 205,
+   "traffic": 5423,
+   "organic_pct": 0.9321121519454174,
+   "ad_pct": 0.06788784805458234,
+   "top10_pct": 0.847870182555781,
+   "top_kw": "cooling pillow cases",
+   "top_kw_pct": 0.6680803983035221,
+   "reach": {
+    "OR": 0.9380416743499908,
+    "SP": 0.7855430573483312,
+    "SOR": 0.786833855799373
+   },
+   "hero_child_asins": [
+    [
+     "B0BVB4W16P",
+     0.747709368184586
+    ],
+    [
+     "B08B7VPPND",
+     0.2364316470052304
+    ]
+   ],
+   "child_asins_total": 9,
+   "contested": 36,
+   "we_win": 4,
+   "we_lose": 26,
+   "our_zero": 16,
+   "theirs_only_kw": 169,
+   "theirs_only_share": 0.16983219620136455,
+   "our_share": 0.16440677966101694,
+   "ppc_we_run_none": 42,
+   "ppc_they_more_aggressive": 1,
+   "ad_gap": 360.99670000000003,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": []
+  },
+  {
+   "pid": 43,
+   "cid": 1864,
+   "parent_asin": "B0DL5R7SSB",
+   "brand": "QUTOOL",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T09:25:16.700Z",
+   "keywords": 408,
+   "traffic": 15503,
+   "organic_pct": 0.6025155131264917,
+   "ad_pct": 0.39748448687350835,
+   "top10_pct": 0.8037799135651165,
+   "top_kw": "cooling pillow cases",
+   "top_kw_pct": 0.5164806811584854,
+   "reach": {
+    "OR": 0.9428497710120621,
+    "SP": 0.7854608785396375,
+    "SB": 0.05508611236534864,
+    "SOR": 0.7779784557827517
+   },
+   "hero_child_asins": [
+    [
+     "B0DLB4PQS8",
+     0.41326717193803025
+    ],
+    [
+     "B0FXWZM587",
+     0.16167220673498983
+    ],
+    [
+     "B0DL9Y3JVW",
+     0.13163620193500344
+    ],
+    [
+     "B0DL9ZXKXM",
+     0.11897067572759114
+    ]
+   ],
+   "child_asins_total": 15,
+   "contested": 38,
+   "we_win": 3,
+   "we_lose": 31,
+   "our_zero": 15,
+   "theirs_only_kw": 370,
+   "theirs_only_share": 0.1844159194994517,
+   "our_share": 0.0643934821967411,
+   "ppc_we_run_none": 71,
+   "ppc_they_more_aggressive": 2,
+   "ad_gap": 6150.1936,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": []
+  },
+  {
+   "pid": 43,
+   "cid": 483,
+   "parent_asin": "B0C13Y18JW",
+   "brand": "REST",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T08:44:40.394Z",
+   "keywords": 4235,
+   "traffic": 345367,
+   "organic_pct": 0.2641106081356929,
+   "ad_pct": 0.7358896698294859,
+   "top10_pct": 0.41011156248280817,
+   "top_kw": "cooling pillow cases",
+   "top_kw_pct": 0.16496654283704001,
+   "reach": {
+    "OR": 0.8503418103061381,
+    "SP": 0.8527276780931589,
+    "SB": 0.9219902306821439,
+    "SBV": 0.6144159690995376,
+    "AC": 0.015589213792863823,
+    "SOR": 0.8586286472071738
+   },
+   "hero_child_asins": [
+    [
+     "B0C141VGM6",
+     0.29325147177160743
+    ],
+    [
+     "B0C144NQ87",
+     0.21961811398585068
+    ],
+    [
+     "B0C144HZHL",
+     0.10581987632696457
+    ],
+    [
+     "B0D4YFNCW6",
+     0.0875619711528332
+    ],
+    [
+     "B0D4YCZSLY",
+     0.06997001164509598
+    ],
+    [
+     "B0C14212V6",
+     0.061367988979537
+    ]
+   ],
+   "child_asins_total": 12,
+   "contested": 44,
+   "we_win": 2,
+   "we_lose": 40,
+   "our_zero": 19,
+   "theirs_only_kw": 4191,
+   "theirs_only_share": 0.7088227885119308,
+   "our_share": 0.003079951736838763,
+   "ppc_we_run_none": 1942,
+   "ppc_they_more_aggressive": 2,
+   "ad_gap": 252817.9952,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": []
+  },
+  {
+   "pid": 43,
+   "cid": 1888,
+   "parent_asin": "B0DJ933TY2",
+   "brand": "Rifens",
+   "import_file": "VariationKeyword_US__20260929.xlsx",
+   "imported_at": "2026-09-29T09:39:32.036Z",
+   "keywords": 164,
+   "traffic": 8663,
+   "organic_pct": 1,
+   "ad_pct": 0,
+   "top10_pct": 0.7840240101581438,
+   "top_kw": "cooling pillow cases",
+   "top_kw_pct": 0.4161375966755166,
+   "reach": {
+    "OR": 1,
+    "AC": 0.022971257070298973
+   },
+   "hero_child_asins": [
+    [
+     "B0DJ933TY2",
+     1
+    ]
+   ],
+   "child_asins_total": 1,
+   "contested": 29,
+   "we_win": 4,
+   "we_lose": 23,
+   "our_zero": 11,
+   "theirs_only_kw": 135,
+   "theirs_only_share": 0.3092462195544269,
+   "our_share": 0.10966084275436794,
+   "ppc_we_run_none": 0,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 0,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": []
+  }
+ ]
+}

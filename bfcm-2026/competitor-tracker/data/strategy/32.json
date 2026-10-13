@@ -1,0 +1,1032 @@
+{
+ "pid": 32,
+ "our_hero_asins": [
+  [
+   "B0DDTYDHVB",
+   0.6254608376135686
+  ],
+  [
+   "B0DDTYXN15",
+   0.284338432362834
+  ]
+ ],
+ "our_child_asins_total": 20,
+ "competitors": [
+  {
+   "pid": 32,
+   "cid": 27,
+   "parent_asin": "B0G5N99X9R",
+   "brand": "Hotel Sheets Direct",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T03:31:41.962Z",
+   "keywords": 4094,
+   "traffic": 451969,
+   "organic_pct": 0.6071584272372669,
+   "ad_pct": 0.3928415727627336,
+   "top10_pct": 0.5669282627790844,
+   "top_kw": "hotel",
+   "top_kw_pct": 0.26144492210748965,
+   "reach": {
+    "OR": 0.9799632275664923,
+    "SP": 0.9036371963563873,
+    "SB": 0.47678712478068186,
+    "SBV": 0.12640247450599487,
+    "AC": 0.3227168234989568,
+    "SOR": 0.6762145191373745
+   },
+   "hero_child_asins": [
+    [
+     "B01N9L2O9P",
+     0.3000183525380645
+    ],
+    [
+     "B01N0UB2GO",
+     0.20157930598885687
+    ],
+    [
+     "B072WD91XH",
+     0.09612311888365432
+    ],
+    [
+     "B072WV76WK",
+     0.05570462499464581
+    ],
+    [
+     "B07RJBYJ9L",
+     0.045681171197769994
+    ],
+    [
+     "B07Y8TTK9B",
+     0.0407096298316319
+    ],
+    [
+     "B07Y8VNQ4P",
+     0.03852705766501585
+    ],
+    [
+     "B07V49Z6H6",
+     0.037764204605685255
+    ]
+   ],
+   "child_asins_total": 57,
+   "contested": 412,
+   "we_win": 27,
+   "we_lose": 355,
+   "our_zero": 193,
+   "theirs_only_kw": 3682,
+   "theirs_only_share": 0.6653730676218944,
+   "our_share": 0.025737806337018682,
+   "ppc_we_run_none": 948,
+   "ppc_they_more_aggressive": 3,
+   "ad_gap": 166545.14130000008,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Bamboo",
+     0.08784894539227248
+    ],
+    [
+     "Bamboo|Queen",
+     0.05035079839546518
+    ],
+    [
+     "Bamboo|King",
+     0.025368996546223304
+    ],
+    [
+     "Cooling",
+     0.021131980290683652
+    ],
+    [
+     "Cooling|Queen",
+     0.012357042186521642
+    ]
+   ]
+  },
+  {
+   "pid": 32,
+   "cid": 4,
+   "parent_asin": "B0CZQ52MTQ",
+   "brand": "Pure Bamboo",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T03:14:56.937Z",
+   "keywords": 8283,
+   "traffic": 2565055,
+   "organic_pct": 0.4648594811807159,
+   "ad_pct": 0.5351407059497737,
+   "top10_pct": 0.3861983466241465,
+   "top_kw": "bamboo sheets",
+   "top_kw_pct": 0.15879464572884402,
+   "reach": {
+    "OR": 0.922259756613406,
+    "SP": 0.8806310196077667,
+    "SB": 0.8210506207469236,
+    "SBV": 0.8831019217911507,
+    "AC": 0.2663467255088098,
+    "SOR": 0.8832204377683909
+   },
+   "hero_child_asins": [
+    [
+     "B07MZ4GKZH",
+     0.3001745338317679
+    ],
+    [
+     "B079RXWGSD",
+     0.11508431524864907
+    ],
+    [
+     "B07DZTQ4JC",
+     0.10782885520159292
+    ],
+    [
+     "B074CHDX7V",
+     0.09977515288890562
+    ],
+    [
+     "B07DZMB498",
+     0.046341144116899664
+    ],
+    [
+     "B079RW9S26",
+     0.04436401505571401
+    ],
+    [
+     "B07MZ9223H",
+     0.042950415404130575
+    ],
+    [
+     "B07J9YPTTG",
+     0.023053885993541783
+    ],
+    [
+     "B0DNSSYC77",
+     0.018835139743275883
+    ],
+    [
+     "B07MZMHBRN",
+     0.018093669727902755
+    ]
+   ],
+   "child_asins_total": 131,
+   "contested": 435,
+   "we_win": 14,
+   "we_lose": 407,
+   "our_zero": 203,
+   "theirs_only_kw": 7848,
+   "theirs_only_share": 0.5702661346442863,
+   "our_share": 0.0046333035182450875,
+   "ppc_we_run_none": 3784,
+   "ppc_they_more_aggressive": 10,
+   "ad_gap": 1132700.1012999995,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Bamboo",
+     0.18137505823461875
+    ],
+    [
+     "Bamboo|King",
+     0.041624448598568065
+    ],
+    [
+     "Cooling",
+     0.029800530592911264
+    ],
+    [
+     "Bamboo|Queen",
+     0.028331166388245087
+    ],
+    [
+     "Cooling|King",
+     0.01176154117553035
+    ]
+   ]
+  },
+  {
+   "pid": 32,
+   "cid": 3,
+   "parent_asin": "B07K6SYX8L",
+   "brand": "Bambaw ",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T00:53:45.260Z",
+   "keywords": 2137,
+   "traffic": 407949,
+   "organic_pct": 0.5037485506766772,
+   "ad_pct": 0.49625152776450027,
+   "top10_pct": 0.5642666117578423,
+   "top_kw": "bamboo sheets",
+   "top_kw_pct": 0.22335635091641357,
+   "reach": {
+    "OR": 0.9466820607477896,
+    "SP": 0.8267479513370544,
+    "SB": 0.000431426477329274,
+    "SBV": 0.36365084851292684,
+    "AC": 0.0034146425165890834,
+    "SOR": 0.8423356841173775
+   },
+   "hero_child_asins": [
+    [
+     "B0DR99Q37Y",
+     0.5472355145658468
+    ],
+    [
+     "B0DR98VW37",
+     0.09917418776979599
+    ],
+    [
+     "B0F2J1742T",
+     0.07385168770034758
+    ],
+    [
+     "B0DR98HVG3",
+     0.05459649956508052
+    ],
+    [
+     "B0H3BQSQ1X",
+     0.05172148616641167
+    ]
+   ],
+   "child_asins_total": 56,
+   "contested": 400,
+   "we_win": 25,
+   "we_lose": 350,
+   "our_zero": 182,
+   "theirs_only_kw": 1737,
+   "theirs_only_share": 0.32125829454171967,
+   "our_share": 0.028436086680051157,
+   "ppc_we_run_none": 594,
+   "ppc_they_more_aggressive": 6,
+   "ad_gap": 196346.42149999988,
+   "comparable": false,
+   "days_apart": 14,
+   "owned_buckets": [
+    [
+     "Bamboo",
+     0.24557726578567418
+    ],
+    [
+     "Cooling",
+     0.10228729571588606
+    ],
+    [
+     "Bamboo|Queen",
+     0.08392225498775582
+    ],
+    [
+     "Cooling|Queen",
+     0.0629147270859838
+    ],
+    [
+     "Bamboo|King",
+     0.0425322773189786
+    ]
+   ]
+  },
+  {
+   "pid": 32,
+   "cid": 1814,
+   "parent_asin": "B0HC778XB4",
+   "brand": "BAMPURE",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T01:01:46.721Z",
+   "keywords": 1687,
+   "traffic": 67699,
+   "organic_pct": 0.8589487052984534,
+   "ad_pct": 0.14105129470154645,
+   "top10_pct": 0.7045746613687056,
+   "top_kw": "bamboo sheets",
+   "top_kw_pct": 0.31551426165822244,
+   "reach": {
+    "OR": 0.9443861800026588,
+    "SP": 0.9117121375500377,
+    "SOR": 0.9218304553981596
+   },
+   "hero_child_asins": [
+    [
+     "B07XBJY2JR",
+     0.6453308398046154
+    ],
+    [
+     "B07XFP6BY2",
+     0.2061935104983054
+    ]
+   ],
+   "child_asins_total": 31,
+   "contested": 376,
+   "we_win": 55,
+   "we_lose": 265,
+   "our_zero": 169,
+   "theirs_only_kw": 1311,
+   "theirs_only_share": 0.27151065746909114,
+   "our_share": 0.1499265435276686,
+   "ppc_we_run_none": 294,
+   "ppc_they_more_aggressive": 1,
+   "ad_gap": 9245.079199999996,
+   "comparable": false,
+   "days_apart": 14,
+   "owned_buckets": [
+    [
+     "Bamboo",
+     0.35812936675578666
+    ],
+    [
+     "Bamboo|Queen",
+     0.1401793231805492
+    ],
+    [
+     "Bamboo|King",
+     0.06775580141508737
+    ],
+    [
+     "Bamboo|Cooling",
+     0.010635312190726599
+    ],
+    [
+     "Cooling",
+     0.010472828254479387
+    ]
+   ]
+  },
+  {
+   "pid": 32,
+   "cid": 637,
+   "parent_asin": "B0H29V113N",
+   "brand": "BC BELLA COTERIE",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T00:22:20.735Z",
+   "keywords": 5504,
+   "traffic": 591713,
+   "organic_pct": 0.36227025872340163,
+   "ad_pct": 0.6377298332130611,
+   "top10_pct": 0.4410229283453296,
+   "top_kw": "bamboo sheets",
+   "top_kw_pct": 0.17399989521947296,
+   "reach": {
+    "OR": 0.9410389834260866,
+    "SP": 0.9808184035165697,
+    "SB": 0.5730548424658576,
+    "SBV": 0.5581810776508206,
+    "AC": 0.038364882975361364,
+    "SOR": 0.9719914891171902
+   },
+   "hero_child_asins": [
+    [
+     "B0C979FD5Z",
+     0.12259661346912226
+    ],
+    [
+     "B09JTQMF5C",
+     0.11032851289375431
+    ],
+    [
+     "B08L86VLZB",
+     0.0647461818705944
+    ],
+    [
+     "B08L85SV5Z",
+     0.047869659213167146
+    ],
+    [
+     "B09JV1NG9R",
+     0.044803172643697466
+    ],
+    [
+     "B09RKQWND2",
+     0.04425949856740283
+    ],
+    [
+     "B0BW69MDDB",
+     0.031845562006366096
+    ],
+    [
+     "B09JTTQ66V",
+     0.025313095548934787
+    ],
+    [
+     "B0CZVXXJ1N",
+     0.023875494994317237
+    ],
+    [
+     "B09JV6JS2S",
+     0.02264381617713359
+    ],
+    [
+     "B09JTSTR5B",
+     0.021938346703504454
+    ],
+    [
+     "B0C97CQNRK",
+     0.019216045958619424
+    ],
+    [
+     "B09JTRWR1W",
+     0.019020495675513532
+    ],
+    [
+     "B0D375S7G7",
+     0.018149325115762213
+    ],
+    [
+     "B08L86W4T2",
+     0.0175783112179541
+    ],
+    [
+     "B09RKLJMPV",
+     0.017447085313822035
+    ],
+    [
+     "B09RKNM83W",
+     0.016654603482365873
+    ],
+    [
+     "B0DHLVF2LV",
+     0.015383705871210721
+    ],
+    [
+     "B08L87KLRV",
+     0.014804207451801325
+    ],
+    [
+     "B0FR1SCHJG",
+     0.014571445807498437
+    ],
+    [
+     "B09JTYQ2LQ",
+     0.013084770129610604
+    ],
+    [
+     "B08L866W2S",
+     0.012651390609025814
+    ],
+    [
+     "B09RJR94PT",
+     0.011402632726856791
+    ],
+    [
+     "B0FR1SC6WB",
+     0.010041867768662671
+    ],
+    [
+     "B0CZWMKNZB",
+     0.010021443771073007
+    ],
+    [
+     "B0CZPKSYTW",
+     0.009874940218519252
+    ],
+    [
+     "B08L85BQYX",
+     0.008644429051869304
+    ],
+    [
+     "B0BMQT7R8J",
+     0.00807076212495741
+    ],
+    [
+     "B08L87MQTJ",
+     0.007602275346395299
+    ]
+   ],
+   "child_asins_total": 218,
+   "contested": 439,
+   "we_win": 21,
+   "we_lose": 390,
+   "our_zero": 204,
+   "theirs_only_kw": 5065,
+   "theirs_only_share": 0.4746135373060926,
+   "our_share": 0.019779575352064847,
+   "ppc_we_run_none": 2437,
+   "ppc_they_more_aggressive": 11,
+   "ad_gap": 297208.3467999997,
+   "comparable": false,
+   "days_apart": 14,
+   "owned_buckets": [
+    [
+     "Bamboo",
+     0.18831088720376263
+    ],
+    [
+     "Bamboo|King",
+     0.0522432327834609
+    ],
+    [
+     "Bamboo|Queen",
+     0.030502963429906053
+    ],
+    [
+     "Cooling|King",
+     0.007552647989819389
+    ],
+    [
+     "Cooling",
+     0.0065758230763900746
+    ]
+   ]
+  },
+  {
+   "pid": 32,
+   "cid": 6,
+   "parent_asin": "B0FB8XS4D1",
+   "brand": "Bedsure",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T00:29:55.285Z",
+   "keywords": 3961,
+   "traffic": 840292,
+   "organic_pct": 0.1404099194089678,
+   "ad_pct": 0.8595901834124341,
+   "top10_pct": 0.259695439204467,
+   "top_kw": "bamboo sheets",
+   "top_kw_pct": 0.11502073088878628,
+   "reach": {
+    "OR": 0.8717624349630843,
+    "SP": 0.9284082199997143,
+    "SB": 0.9843340172225845,
+    "SBV": 0.5269953777972419,
+    "AC": 0.000478405125837209,
+    "SOR": 0.9049723191462016
+   },
+   "hero_child_asins": [
+    [
+     "B0FB8XR43Q",
+     0.31440119654906085
+    ],
+    [
+     "B0FB8ZTD7M",
+     0.1756150987993528
+    ],
+    [
+     "B0GLN6VP9Y",
+     0.11391871275064569
+    ],
+    [
+     "B0FB8YV6C7",
+     0.09803987156724092
+    ],
+    [
+     "B0FB8Z4GGW",
+     0.0979378621175345
+    ],
+    [
+     "B0FB8Z1TFJ",
+     0.026853007112738587
+    ]
+   ],
+   "child_asins_total": 30,
+   "contested": 418,
+   "we_win": 21,
+   "we_lose": 375,
+   "our_zero": 188,
+   "theirs_only_kw": 3543,
+   "theirs_only_share": 0.5173963336554436,
+   "our_share": 0.014010269504078701,
+   "ppc_we_run_none": 2450,
+   "ppc_they_more_aggressive": 14,
+   "ad_gap": 689716.6238999999,
+   "comparable": false,
+   "days_apart": 14,
+   "owned_buckets": [
+    [
+     "Bamboo",
+     0.13357499535875625
+    ],
+    [
+     "Bamboo|Queen",
+     0.05058241658851923
+    ],
+    [
+     "Cooling|Queen",
+     0.046813488644423605
+    ],
+    [
+     "Cooling",
+     0.0423043418240326
+    ],
+    [
+     "Bamboo|King",
+     0.038792467380386816
+    ]
+   ]
+  },
+  {
+   "pid": 32,
+   "cid": 1510,
+   "parent_asin": "B0DCZGYVZ9",
+   "brand": "DOZ by SIJO",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T00:38:07.638Z",
+   "keywords": 2682,
+   "traffic": 171534,
+   "organic_pct": 0.5544749851341424,
+   "ad_pct": 0.44552503352105105,
+   "top10_pct": 0.33417281705084706,
+   "top_kw": "bamboo sheets",
+   "top_kw_pct": 0.1494222719694055,
+   "reach": {
+    "OR": 0.8580689542597969,
+    "SP": 0.8981426422750008,
+    "SB": 0.06748516329124256,
+    "SBV": 0.24623106789324564,
+    "AC": 0.0526193057936036,
+    "SOR": 0.8775694614478762
+   },
+   "hero_child_asins": [
+    [
+     "B0B8JLLT45",
+     0.3941030607388322
+    ],
+    [
+     "B0B8JK78HR",
+     0.06464918554444914
+    ],
+    [
+     "B0CS36MKM9",
+     0.05256448477655174
+    ],
+    [
+     "B0BRWD6PRK",
+     0.042679677638538804
+    ],
+    [
+     "B0B9T44SJV",
+     0.038737815527477536
+    ],
+    [
+     "B0BRWDHX7F",
+     0.03784025595566276
+    ],
+    [
+     "B0BRWDS33Q",
+     0.03447405355201482
+    ],
+    [
+     "B0B8JLSV64",
+     0.02904741650394522
+    ],
+    [
+     "B0CB136HW7",
+     0.027731902629959095
+    ],
+    [
+     "B0CS2YT29H",
+     0.017366836128466113
+    ],
+    [
+     "B0CS391TBS",
+     0.01631166384385142
+    ],
+    [
+     "B0CS2ZH94P",
+     0.016051145614165832
+    ],
+    [
+     "B0B8JG8LDB",
+     0.015494669744436583
+    ],
+    [
+     "B0CS3276RH",
+     0.014877084487604395
+    ]
+   ],
+   "child_asins_total": 131,
+   "contested": 401,
+   "we_win": 33,
+   "we_lose": 341,
+   "our_zero": 183,
+   "theirs_only_kw": 2281,
+   "theirs_only_share": 0.48239999067240313,
+   "our_share": 0.06507734065862193,
+   "ppc_we_run_none": 820,
+   "ppc_they_more_aggressive": 5,
+   "ad_gap": 72511.66409999989,
+   "comparable": false,
+   "days_apart": 14,
+   "owned_buckets": [
+    [
+     "Bamboo",
+     0.18563666678326163
+    ],
+    [
+     "Cooling",
+     0.06171371273333567
+    ],
+    [
+     "Bamboo|Queen",
+     0.04722678885818555
+    ],
+    [
+     "Cooling|Queen",
+     0.031090046288199422
+    ],
+    [
+     "Bamboo|King",
+     0.0238553289726818
+    ]
+   ]
+  },
+  {
+   "pid": 32,
+   "cid": 33,
+   "parent_asin": "B0FT7L9RSX",
+   "brand": "KRIMANO",
+   "import_file": "VariationKeyword_US__20261012.xlsx",
+   "imported_at": "2026-10-12T17:08:27.041Z",
+   "keywords": 2638,
+   "traffic": 334819,
+   "organic_pct": 0.6137371774003271,
+   "ad_pct": 0.38626285127188126,
+   "top10_pct": 0.45064049531239264,
+   "top_kw": "bamboo sheets",
+   "top_kw_pct": 0.14174524145881806,
+   "reach": {
+    "OR": 0.976569430050266,
+    "SP": 0.9348573408319122,
+    "SB": 0.33043823677867745,
+    "AC": 0.007908750698138397,
+    "SOR": 0.9169760377995275,
+    "OOR": 0.5660043187513254
+   },
+   "hero_child_asins": [
+    [
+     "B0FT7LV7PP",
+     0.4657654166547748
+    ],
+    [
+     "B0FT7LZ2CD",
+     0.42105627928775696
+    ]
+   ],
+   "child_asins_total": 26,
+   "contested": 417,
+   "we_win": 16,
+   "we_lose": 323,
+   "our_zero": 185,
+   "theirs_only_kw": 2221,
+   "theirs_only_share": 0.4425286498078066,
+   "our_share": 0.03443313655882039,
+   "ppc_we_run_none": 491,
+   "ppc_they_more_aggressive": 8,
+   "ad_gap": 113902.63970000003,
+   "comparable": true,
+   "days_apart": 0,
+   "owned_buckets": [
+    [
+     "Bamboo",
+     0.17256189164892077
+    ],
+    [
+     "Bamboo|King",
+     0.06328493902675775
+    ],
+    [
+     "Bamboo|Queen",
+     0.057081587365113685
+    ],
+    [
+     "Cooling",
+     0.0314259346094457
+    ],
+    [
+     "Cooling|King",
+     0.024888073854829027
+    ]
+   ]
+  },
+  {
+   "pid": 32,
+   "cid": 22,
+   "parent_asin": "B0F29FQLFD",
+   "brand": "SONORO KATE",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T01:25:37.434Z",
+   "keywords": 947,
+   "traffic": 114504,
+   "organic_pct": 0.8792897182631171,
+   "ad_pct": 0.12071028173688254,
+   "top10_pct": 0.5186631034723678,
+   "top_kw": "bamboo sheets",
+   "top_kw_pct": 0.18907636414448403,
+   "reach": {
+    "OR": 0.9982708027667155,
+    "SP": 0.31068783623279533,
+    "AC": 0.035876475930971846,
+    "SOR": 0.3078407741214281
+   },
+   "hero_child_asins": [
+    [
+     "B0F29F1JM5",
+     0.7093193141659259
+    ],
+    [
+     "B0F29HFNNS",
+     0.1932253908452511
+    ]
+   ],
+   "child_asins_total": 24,
+   "contested": 327,
+   "we_win": 22,
+   "we_lose": 286,
+   "our_zero": 141,
+   "theirs_only_kw": 620,
+   "theirs_only_share": 0.272278697687417,
+   "our_share": 0.0944291544082756,
+   "ppc_we_run_none": 88,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 11576.5775,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Bamboo",
+     0.24473380842590653
+    ],
+    [
+     "Cooling",
+     0.10369070076154545
+    ],
+    [
+     "Cooling|Queen",
+     0.08092293718996717
+    ],
+    [
+     "Bamboo|Queen",
+     0.07770907566547894
+    ],
+    [
+     "Bamboo|King",
+     0.06416369733808426
+    ]
+   ]
+  },
+  {
+   "pid": 32,
+   "cid": 1507,
+   "parent_asin": "B0F4852T9V",
+   "brand": "SONORO KATE",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T01:17:41.672Z",
+   "keywords": 1447,
+   "traffic": 185157,
+   "organic_pct": 0.9776013545261586,
+   "ad_pct": 0.02239928493116653,
+   "top10_pct": 0.403214569257441,
+   "top_kw": "bamboo sheets",
+   "top_kw_pct": 0.12755661411666855,
+   "reach": {
+    "OR": 0.9996489465696679,
+    "SP": 0.4342476924987983,
+    "AC": 0.16399596018514018,
+    "SOR": 0.475488369329812
+   },
+   "hero_child_asins": [
+    [
+     "B0F486MGJ1",
+     0.4635726653707363
+    ],
+    [
+     "B0F4873G4H",
+     0.45100065904658343
+    ]
+   ],
+   "child_asins_total": 33,
+   "contested": 332,
+   "we_win": 22,
+   "we_lose": 293,
+   "our_zero": 142,
+   "theirs_only_kw": 1115,
+   "theirs_only_share": 0.5631059047186981,
+   "our_share": 0.060579308665276485,
+   "ppc_we_run_none": 123,
+   "ppc_they_more_aggressive": 0,
+   "ad_gap": 4100.504700000001,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Bamboo",
+     0.15484156688648013
+    ],
+    [
+     "Bamboo|King",
+     0.06301679115561389
+    ],
+    [
+     "Bamboo|Queen",
+     0.044940239904513464
+    ],
+    [
+     "Cooling|King",
+     0.04243965931614792
+    ],
+    [
+     "Cooling",
+     0.02349357572222492
+    ]
+   ]
+  },
+  {
+   "pid": 32,
+   "cid": 24,
+   "parent_asin": "B0D4KS4MVX",
+   "brand": "Kickoff Home",
+   "import_file": "VariationKeyword_US__20260928.xlsx",
+   "imported_at": "2026-09-29T06:19:19.412Z",
+   "keywords": 1164,
+   "traffic": 58169,
+   "organic_pct": 0.8765498702057799,
+   "ad_pct": 0.12345023981846001,
+   "top10_pct": 0.5264316044628582,
+   "top_kw": "bamboo sheets",
+   "top_kw_pct": 0.23699908886176485,
+   "reach": {
+    "OR": 0.9705341333012429,
+    "SP": 0.6749987106534409,
+    "SBV": 0.08715982739947395,
+    "AC": 0.00037820832402138594,
+    "SOR": 0.578142997129055
+   },
+   "hero_child_asins": [
+    [
+     "B0CHN5ZPFH",
+     0.27050277676938544
+    ],
+    [
+     "B0CHN6N986",
+     0.10872038455653363
+    ],
+    [
+     "B0G84K7MZQ",
+     0.09124870552040526
+    ],
+    [
+     "B0G84MQQX4",
+     0.07618943109370863
+    ],
+    [
+     "B0CHN4BSZP",
+     0.05374393550742529
+    ],
+    [
+     "B0CHN4JGXH",
+     0.04706793122678102
+    ],
+    [
+     "B0CHN63YPY",
+     0.04632896632811998
+    ],
+    [
+     "B0CHN4F2VM",
+     0.041348658566910855
+    ],
+    [
+     "B0CHN5SKC1",
+     0.035996955890190696
+    ],
+    [
+     "B0CHN5NKY9",
+     0.020268558970210498
+    ],
+    [
+     "B0CHN63MT1",
+     0.017980407073643918
+    ]
+   ],
+   "child_asins_total": 106,
+   "contested": 341,
+   "we_win": 54,
+   "we_lose": 236,
+   "our_zero": 134,
+   "theirs_only_kw": 823,
+   "theirs_only_share": 0.3439460881225395,
+   "our_share": 0.1703062374302871,
+   "ppc_we_run_none": 117,
+   "ppc_they_more_aggressive": 1,
+   "ad_gap": 5483.9836000000005,
+   "comparable": false,
+   "days_apart": 13,
+   "owned_buckets": [
+    [
+     "Bamboo",
+     0.2914438962333889
+    ],
+    [
+     "Bamboo|King",
+     0.10225377778541835
+    ],
+    [
+     "Cooling|King",
+     0.06462204954529045
+    ],
+    [
+     "Bamboo|Queen",
+     0.062026165139507296
+    ],
+    [
+     "Bamboo|Cooling",
+     0.03158039505578573
+    ]
+   ]
+  }
+ ]
+}
