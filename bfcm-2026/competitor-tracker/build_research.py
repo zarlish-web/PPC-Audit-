@@ -54,6 +54,8 @@ ddj = jl(f"{DATA}/dd_out/asins.json", {}) or {}
 dd, ddb = ddj.get("asins", {}), ddj.get("benchmarks", {})
 pt = jl(f"{DATA}/pt_summary.json", {}) or {}
 ddimg = jl(f"{DATA}/catalog/dd_images.json", {}) or {}
+for _k, _v in (jl(f"{DATA}/catalog/dd_images_extra.json", {}) or {}).items():
+    ddimg.setdefault(_k, _v)
 catalog = {}
 for mk, f in (("US", "catalog_com.json"), ("CA", "catalog_ca.json")):
     c = jl(f"{DATA}/catalog/{f}", {}) or {}
@@ -204,7 +206,7 @@ def our_variations(pid, mkt):
         return next((x.get(k) for k in ks if x.get(k) not in (None, "")), None)
     for x in s:
         asin = g(x, "asin", "childAsin", "child_asin", "ASIN")
-        it = cat.get(asin) or {}
+        it = cat.get(asin) or catalog.get("US", {}).get(asin) or {}
         title = it.get("title")
         rows.append({
             "sku": g(x, "sku", "SKU", "sellerSku"), "asin": asin, "title": title,

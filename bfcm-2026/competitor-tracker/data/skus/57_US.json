@@ -1,0 +1,92 @@
+{
+ "product_id": 57,
+ "marketplace": "US",
+ "profile": {
+  "name": "Silk Sleep Mask - Velcro",
+  "brand": "Sleephoria",
+  "stage": "Launch",
+  "parentAsin": "B0F4XQ7L8Q",
+  "skuCount": 4,
+  "sizes": [
+   "One Size"
+  ],
+  "colours": [
+   "Black",
+   "Misty Blue",
+   "Peacock Blue",
+   "Pink"
+  ],
+  "heroes": [],
+  "thumbnail": {
+   "url": "https://images-na.ssl-images-amazon.com/images/I/61Z2DkWXasL.jpg",
+   "childAsin": "B0F4XQ7L8Q",
+   "week": "2026-10-05"
+  }
+ },
+ "skus": [
+  {
+   "sku": "SS-SLEEP-MASK-VELCRO-STRAP-BLACK",
+   "asin": "B0F4XQ7L8Q",
+   "size": "One Size",
+   "colour": "Black",
+   "hero": false,
+   "price": 17.95,
+   "referral": 2.69,
+   "fulfilment": 4.2,
+   "landedCost": 6.75,
+   "contribution": 4.309999999999999,
+   "breakEvenAcos": 24.011142061281333,
+   "complete": true,
+   "units28d": 5,
+   "feeDate": "2026-03-30"
+  },
+  {
+   "sku": "SS-SLEEP-MASK-VELCRO-STRAP-MISTY-BLUE",
+   "asin": "B0F4XS863Y",
+   "size": "One Size",
+   "colour": "Misty Blue",
+   "hero": false,
+   "price": 25.95,
+   "referral": 3.89,
+   "fulfilment": 4.2,
+   "landedCost": 6.75,
+   "contribution": 11.11,
+   "breakEvenAcos": 42.8131021194605,
+   "complete": true,
+   "units28d": 4,
+   "feeDate": "2026-03-30"
+  },
+  {
+   "sku": "SS-SLEEP-MASK-VELCRO-STRAP-PEACOCK-BLUE",
+   "asin": "B0F4XPMS5B",
+   "size": "One Size",
+   "colour": "Peacock Blue",
+   "hero": false,
+   "price": 17.95,
+   "referral": 2.69,
+   "fulfilment": 4.2,
+   "landedCost": 6.75,
+   "contribution": 4.309999999999999,
+   "breakEvenAcos": 24.011142061281333,
+   "complete": true,
+   "units28d": 1,
+   "feeDate": "2026-03-30"
+  },
+  {
+   "sku": "SS-SLEEP-MASK-VELCRO-STRAP-PINK",
+   "asin": "B0F4XR5RWT",
+   "size": "One Size",
+   "colour": "Pink",
+   "hero": false,
+   "price": 17.95,
+   "referral": 2.69,
+   "fulfilment": 4.2,
+   "landedCost": 9.22,
+   "contribution": 1.839999999999998,
+   "breakEvenAcos": 10.250696378830074,
+   "complete": true,
+   "units28d": 3,
+   "feeDate": "2026-03-30"
+  }
+ ]
+}

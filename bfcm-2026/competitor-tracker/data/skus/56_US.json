@@ -1,0 +1,92 @@
+{
+ "product_id": 56,
+ "marketplace": "US",
+ "profile": {
+  "name": "Silk Sleep Mask - Contoured",
+  "brand": "Sleephoria",
+  "stage": "Liquidation",
+  "parentAsin": "B0F4XS1FWJ",
+  "skuCount": 4,
+  "sizes": [
+   "One Size"
+  ],
+  "colours": [
+   "Black",
+   "Misty Blue",
+   "Peacock Blue",
+   "Pink"
+  ],
+  "heroes": [],
+  "thumbnail": {
+   "url": "https://images-na.ssl-images-amazon.com/images/I/71JEybynRcL.jpg",
+   "childAsin": "B0F4XRFWGR",
+   "week": "2026-10-05"
+  }
+ },
+ "skus": [
+  {
+   "sku": "SS-SLEEP-MASK-3D-CONTOURED-BLACK",
+   "asin": "B0F4XS1FWJ",
+   "size": "One Size",
+   "colour": "Black",
+   "hero": false,
+   "price": 17.95,
+   "referral": 2.69,
+   "fulfilment": 4.2,
+   "landedCost": 9.93,
+   "contribution": 1.129999999999999,
+   "breakEvenAcos": 6.295264623955426,
+   "complete": true,
+   "units28d": 0,
+   "feeDate": "2026-03-30"
+  },
+  {
+   "sku": "SS-SLEEP-MASK-3D-CONTOURED-MISTY-BLUE",
+   "asin": "B0F4XP8CYP",
+   "size": "One Size",
+   "colour": "Misty Blue",
+   "hero": false,
+   "price": 17.99,
+   "referral": 2.7,
+   "fulfilment": 4.2,
+   "landedCost": 9.52,
+   "contribution": 1.5700000000000003,
+   "breakEvenAcos": 8.727070594774878,
+   "complete": true,
+   "units28d": 0,
+   "feeDate": "2026-03-30"
+  },
+  {
+   "sku": "SS-SLEEP-MASK-3D-CONTOURED-PEACOCK-BLUE",
+   "asin": "B0F4XRFWGR",
+   "size": "One Size",
+   "colour": "Peacock Blue",
+   "hero": false,
+   "price": 25.95,
+   "referral": 3.89,
+   "fulfilment": 4.2,
+   "landedCost": 9.52,
+   "contribution": 8.34,
+   "breakEvenAcos": 32.138728323699425,
+   "complete": true,
+   "units28d": 4,
+   "feeDate": "2026-03-30"
+  },
+  {
+   "sku": "SS-SLEEP-MASK-3D-CONTOURED-PINK",
+   "asin": "B0F4XQBGJV",
+   "size": "One Size",
+   "colour": "Pink",
+   "hero": false,
+   "price": 25.95,
+   "referral": 3.89,
+   "fulfilment": 4.2,
+   "landedCost": 9.52,
+   "contribution": 8.34,
+   "breakEvenAcos": 32.138728323699425,
+   "complete": true,
+   "units28d": 0,
+   "feeDate": "2026-03-30"
+  }
+ ]
+}

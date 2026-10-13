@@ -1,0 +1,143 @@
+{
+ "product_id": 58,
+ "marketplace": "US",
+ "profile": {
+  "name": "Front Door Welcome Sign",
+  "brand": "Decolure",
+  "stage": "Liquidation",
+  "parentAsin": "B0DQ83G9MC",
+  "skuCount": 7,
+  "sizes": [
+   "One Size"
+  ],
+  "colours": [
+   "Black",
+   "Brown",
+   "Dark Brown",
+   "Midnight Black",
+   "Modern Black",
+   "Saddle Brown",
+   "Wood Brown"
+  ],
+  "heroes": [],
+  "thumbnail": {
+   "url": "https://images-na.ssl-images-amazon.com/images/I/71PaUaKaW9L.jpg",
+   "childAsin": "B0DQ84FD76",
+   "week": "2026-10-05"
+  }
+ },
+ "skus": [
+  {
+   "sku": "WELCOME-SIGN-FRONT-PORCH-BLACK",
+   "asin": "B0DQ83G9MC",
+   "size": "One Size",
+   "colour": "Black",
+   "hero": false,
+   "price": 37.95,
+   "referral": 5.69,
+   "fulfilment": 10.96,
+   "landedCost": 19.81,
+   "contribution": 1.4900000000000055,
+   "breakEvenAcos": 3.926218708827419,
+   "complete": true,
+   "units28d": 1,
+   "feeDate": "2026-03-30"
+  },
+  {
+   "sku": "WELCOME-SIGN-FRONT-PORCH-BROWN",
+   "asin": "B0DQ84FD76",
+   "size": "One Size",
+   "colour": "Brown",
+   "hero": false,
+   "price": 37.95,
+   "referral": 5.69,
+   "fulfilment": 11.13,
+   "landedCost": 20,
+   "contribution": 1.1300000000000026,
+   "breakEvenAcos": 2.9776021080368973,
+   "complete": true,
+   "units28d": 1,
+   "feeDate": "2026-03-30"
+  },
+  {
+   "sku": "WELCOME-SIGN-FRONT-PORCH-DARK-BROWN",
+   "asin": "B0DQ81HZ4X",
+   "size": "One Size",
+   "colour": "Dark Brown",
+   "hero": false,
+   "price": 37.95,
+   "referral": 5.69,
+   "fulfilment": 10.58,
+   "landedCost": null,
+   "contribution": null,
+   "breakEvenAcos": null,
+   "complete": false,
+   "units28d": null,
+   "feeDate": "2026-03-30"
+  },
+  {
+   "sku": "WELCOME-SIGN-FRONT-MIDNIGHT-BLACK",
+   "asin": "B0DYFCQ9RJ",
+   "size": "One Size",
+   "colour": "Midnight Black",
+   "hero": false,
+   "price": null,
+   "referral": null,
+   "fulfilment": null,
+   "landedCost": null,
+   "contribution": null,
+   "breakEvenAcos": null,
+   "complete": false,
+   "units28d": null,
+   "feeDate": null
+  },
+  {
+   "sku": "WELCOME-SIGN-FRONT-PORCH-MODERN-BLACK",
+   "asin": "B0DQ84NH4D",
+   "size": "One Size",
+   "colour": "Modern Black",
+   "hero": false,
+   "price": 32.95,
+   "referral": 4.94,
+   "fulfilment": 9.45,
+   "landedCost": null,
+   "contribution": null,
+   "breakEvenAcos": null,
+   "complete": false,
+   "units28d": 0,
+   "feeDate": "2026-03-30"
+  },
+  {
+   "sku": "WELCOME-SIGN-FRONT-PORCH-SADDLE-BROWN",
+   "asin": "B0DQ81GKN2",
+   "size": "One Size",
+   "colour": "Saddle Brown",
+   "hero": false,
+   "price": 32.95,
+   "referral": 4.94,
+   "fulfilment": 11.13,
+   "landedCost": null,
+   "contribution": null,
+   "breakEvenAcos": null,
+   "complete": false,
+   "units28d": 0,
+   "feeDate": "2026-03-30"
+  },
+  {
+   "sku": "WELCOME-SIGN-FRONT-PORCH-WOOD-BROWN",
+   "asin": "B0DYFCR4SS",
+   "size": "One Size",
+   "colour": "Wood Brown",
+   "hero": false,
+   "price": null,
+   "referral": null,
+   "fulfilment": null,
+   "landedCost": null,
+   "contribution": null,
+   "breakEvenAcos": null,
+   "complete": false,
+   "units28d": null,
+   "feeDate": null
+  }
+ ]
+}
