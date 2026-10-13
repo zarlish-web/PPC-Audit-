@@ -301,6 +301,34 @@ if "_agg" in globals():
         stock_oos[key] = {"asins": len(asins), "oos_asins": len(oos), "weighted": w,
                           "top": "; ".join(f"{a_} {v[0]}/{v[1]} days" for a_, v in top)}
 
+DEAL_NAMES = {"Decolure Bamboo Sheets 4 Piece": 59, "Decolure Bamboo Sheets 6 Piece": 30, "Decolure Satin Sheets 4 Piece": 37,
+              "Decolure Satin Sheets 6 Piece": 31, "Decolure Satin Fitted Sheet": 38, "Sleephoria Satin Sheets 4 Piece": 39,
+              "Sleephoria Bamboo Sheets 6 Piece": 32, "Decolure Cooling Sheets 4 Piece": 48, "Sleephoria Cooling Sheets 4 Piece": 45,
+              "Sleephoria Cooling Comforter": 42, "Decolure Silk Pillowcase": 55, "Decolure Waterproof Chair Cover": 33}
+deals25 = {}      # (pid, mkt) -> list of campaigns
+deals_cov = {}    # (pid, mkt) -> coverage note
+_dp = f"{DATA}/deals/our_deals_bfcm2025.csv"
+if os.path.exists(_dp):
+    _camp = {}
+    for row in csv.DictReader(open(_dp, encoding="utf-8-sig")):
+        pid_ = DEAL_NAMES.get(row["product_name"])
+        if pid_ is None:
+            continue
+        m_ = re.search(r"source_id=([0-9a-f]+)", row["notes"] or "")
+        k = (pid_, row["marketplace"], m_.group(1) if m_ else row["deal_start"])
+        c_ = _camp.setdefault(k, {"type": row["deal_type"], "status": row["status"], "start": row["deal_start"][:10], "end": row["deal_end"][:10], "kids": set(), "units": 0})
+        c_["kids"].add(row["child_asin"])
+        try:
+            c_["units"] += int(float(row["units_sold"] or 0))
+        except ValueError:
+            pass
+    for (pid_, mk_, _), c_ in _camp.items():
+        deals25.setdefault((pid_, mk_), []).append(c_)
+    for v_ in deals25.values():
+        v_.sort(key=lambda c: c["start"])
+    for row in csv.DictReader(open(f"{DATA}/deals/our_deals_bfcm2025_coverage.csv", encoding="utf-8-sig")):
+        deals_cov[(int(row["product_id"]), row["marketplace"])] = row["coverage"]
+
 str_now = {}
 for _f in sorted(glob.glob(f"{DATA}/str/str_check_*.csv")):
     for row in csv.DictReader(open(_f, encoding="utf-8-sig")):
@@ -580,6 +608,18 @@ for pid, mkt, tname in TABS:
            f"Prime Day 2026 {v.get('pd26_pre_org')} → {v.get('pd26_org')}; Aug-Sep 2026 {v.get('last30_org')}." if v else "No Command Center visibility history for our best child ASIN.")
     if mkt == "CA":
         vis = "Figures above are Amazon.ca in CAD. Visibility history is held for US ASINs only."
+    dl = deals25.get((pid, mkt))
+    cov = deals_cov.get((pid, mkt))
+    if dl or cov:
+        ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
+        if dl:
+            parts = [f"{c['type']} {c['start'][5:]} to {c['end'][5:]} ({c['status']}, {len(c['kids'])} variations" + (f", {c['units']:,} units" if c['units'] else "") + ")" for c in dl]
+            txt = "Deals we ran or scheduled, Nov 1 - Dec 5, 2025 (DataHub promotions; deal prices not in the feed): " + "; ".join(parts) + "."
+        else:
+            txt = "Deals Nov 1 - Dec 5, 2025: no record returned by the DataHub promotions feed. Unknown, not proof that no deal ran."
+        c = ws.cell(row=r, column=1, value=txt); c.font = F(size=8.5, bold=True, color=C_INK); c.alignment = WRAP
+        ws.row_dimensions[r].height = 30 if len(txt) > 180 else 18
+        r += 1
     so = stock_oos.get((pid, mkt))
     if so:
         ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
