@@ -1,5 +1,8 @@
 # BFCM 2026 competitor tracker
 
+**Main files:** `BFCM_2026_Competitor_Research.xlsx` has one tab per product and marketplace, a filterable Dashboard and live product images (open it in Excel 365 or Google Sheets). The web dashboard is at https://claude.ai/artifact/1y6Wz37LDhrmDxxGXkFP9C and is rebuilt with `build_dashboard.py`. `image_request.csv` lists the image files to download for the web dashboard (AGENT_PROMPTS.md Prompt 11).
+
+
 **Owner:** Shayan Rana. **Backup:** Zarlish. **v1 due:** Thu Oct 15, 2026 (BFCM-2026 ClickUp task "Competitor BFCM tracker").
 
 | File | What it is |

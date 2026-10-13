@@ -139,7 +139,7 @@ def put_image(ws, cell, url, role, product, mkt, brand, asin):
         if NO_IMAGE_FORMULA:
             c.value = "[image]"
         else:
-            c.value = f'=_xlfn.IMAGE("{u}","{(brand or "")[:30].replace(chr(34), "")} {asin or ""}",1)'
+            c.value = f'=_xlfn.IMAGE("{u}")'
     else:
         c.value = "IMAGE MISSING"
         c.font = F(size=7, color="C00000", bold=True)
@@ -720,7 +720,7 @@ def plook(col):
 if NO_IMAGE_FORMULA:
     db["E4"] = f'=IF($C$4="All","",{plook(4)})'
 else:
-    db["E4"] = f'=IF($C$4="All","",IFERROR(_xlfn.IMAGE({plook(4)},"our product",1),"IMAGE MISSING"))'
+    db["E4"] = f'=IF($C$4="All","",IFERROR(_xlfn.IMAGE({plook(4)}),"IMAGE MISSING"))'
 db["E4"].alignment = CENTER; db["E4"].border = BOX
 for i, (lab, col, nf) in enumerate((("Our product", 3, None), ("Brand", 5, None), ("Parent ASIN", 6, None), ("Variations (SKUs)", 7, "#,##0"),
                                     ("Blended price", 8, "$#,##0.00"), ("BFCM 2025 lift", 9, '0.00"x"')), 4):
@@ -782,7 +782,7 @@ for k in range(1, 81):
             c.value = f'=IF({k}<=COUNTIF({rng("A")},TRUE),{k},"")'
         elif h == "Image":
             c.alignment = CENTER
-            c.value = (f'=IF(B{rr}="","",{gv(10)})' if NO_IMAGE_FORMULA else f'=IF(B{rr}="","",IFERROR(_xlfn.IMAGE({gv(10)},{gv(7)},1),"IMAGE MISSING"))')
+            c.value = (f'=IF(B{rr}="","",{gv(10)})' if NO_IMAGE_FORMULA else f'=IF(B{rr}="","",IFERROR(_xlfn.IMAGE({gv(10)}),"IMAGE MISSING"))')
         elif h == "Brand · Tier":
             c.value = f'=IF(B{rr}="","",{gv(7)}&CHAR(10)&{gv(8)})'
             c.font = F(size=8, bold=True)
@@ -833,10 +833,10 @@ lines = [
     ("1. Dashboard - choose Product / Marketplace / Brand / Tier / Family in the yellow cells; the competitor gallery, images and tiles update. 'Open the product tab' jumps to the full analysis.", {}),
     ("2. Product Index - every one of our products with its image, variations and BFCM 2025 result; click a tab name to open it.", {}),
     (f"3. One tab per product and marketplace ({len(TABS)} tabs, named 'US ...' / 'CA ...'): 1 Our product · 2 Our variations (every SKU with image, size, colour, price, units) · 3 Our BFCM 2025 result · 4 Competitor landscape (image, title, ASINs, variations, price, List Price, STR band, same-size gap, BSR, units, reviews, search strategy, Prime Day visibility, BFCM 2025 columns) · 5 What it means for BFCM.", {}),
-    ("4. Shared tabs: Our BFCM 2025, Keepa Request, Data Gaps, Event Watch, Data (feeds the dashboard).", {}),
+    ("4. Data Gaps lists what is still missing (with the agent prompt that fills it); Data feeds the dashboard. The Keepa request list, lift inputs and the Nov 20 - Dec 1 event-watch log stay in BFCM_2026_Competitor_Tracker_v1.xlsx.", {}),
     ("", None),
     ("Images", dict(bold=True, size=11)),
-    ("Images are live IMAGE-function formulas pointing at the verified Amazon image URLs held by Data Dive (seller catalog for our variations, niche research for competitors) and the Command Center thumbnail. They render in Excel 365 (Windows / Mac / web) and Google Sheets; older Excel or LibreOffice shows #NAME? in those cells.", {}),
+    ("Images are live IMAGE-function formulas pointing at the verified Amazon image URLs held by Data Dive (seller catalog for our variations, niche research for competitors) and the Command Center thumbnail. They render in Excel 365 (Windows / Mac / web) and Google Sheets; older Excel and LibreOffice show an error in those cells instead of the picture.", {}),
     ("A cell reading IMAGE MISSING means no verified image URL was available - it is never replaced by an unrelated picture. The list of missing images is on Data Gaps; image_request.csv lists every image URL for download.", {}),
     ("", None),
     ("Colour legend", dict(bold=True, size=11)),
