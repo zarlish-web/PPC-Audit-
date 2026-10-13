@@ -258,8 +258,20 @@ STOCK_ALIAS = {"B4": 59, "B6": 30, "S4": 37, "S6": 31, "Satin Fitted": 38, "SSS4
                "Decolure - Cooling Sheets 4 Piece": 48, "Sleephoria - Cooling Sheets 4 Piece": 45, "Sleephoria - Cooling Fitted Sheet": 44,
                "Sleephoria - Cooling Comforter": 42, "Decolure - Silk Pillowcase": 55}
 stock_oos = {}
+_sp_child = f"{DATA}/stock/our_stock_bfcm2025_by_child_asin.csv"
 _sp = f"{DATA}/stock/our_stock_bfcm2025.csv"
-if os.path.exists(_sp):
+if os.path.exists(_sp_child):
+    # revision 2: one row per child ASIN per day; Y only when every linked SKU was observed at zero
+    _flags = {}
+    for row in csv.DictReader(open(_sp_child, encoding="utf-8-sig")):
+        if not ("2025-11-20" <= row["date"] <= "2025-12-01") or row["out_of_stock"] not in ("Y", "N"):
+            continue
+        name = row["product_name"].split("|")[0].strip() if "|" in row["product_name"] else row["product_name"]
+        pid_ = STOCK_ALIAS.get(name)
+        if pid_ is not None:
+            _flags[(pid_, row["marketplace"], row["child_asin"], row["date"])] = row["out_of_stock"] == "Y"
+    _agg = {k: (0 if v else 1) for k, v in _flags.items()}
+elif os.path.exists(_sp):
     _agg = {}
     for row in csv.DictReader(open(_sp, encoding="utf-8-sig")):
         if row["fba_available_units"] in ("", None) or not ("2025-11-20" <= row["date"] <= "2025-12-01"):
@@ -270,6 +282,7 @@ if os.path.exists(_sp):
             continue
         k = (pid_, row["marketplace"], row["child_asin"], row["date"])
         _agg[k] = _agg.get(k, 0) + float(row["fba_available_units"])
+if "_agg" in globals():
     _vel = {}
     for (pid_, m_), sd in skus.items():
         for x in sd.get("skus") or []:
@@ -570,7 +583,7 @@ for pid, mkt, tname in TABS:
     so = stock_oos.get((pid, mkt))
     if so:
         ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
-        txt = (f"Stock in BFCM week 2025 (Command Center FBA snapshots, child-ASIN level): {so['oos_asins']} of {so['asins']} variations hit zero FBA stock on at least one observed day"
+        txt = (f"Stock in BFCM week 2025 (FBA inventory snapshots, child-ASIN level, revision 2): {so['oos_asins']} of {so['asins']} variations hit zero FBA stock on at least one observed day"
                + (f"; weighted by today's sales mix that is ~{so['weighted']:.1%} of variation-days lost" if so['weighted'] is not None else "")
                + (f". Most important: {so['top']}." if so['top'] else ".")
                + " Snapshots missing: US Nov 26-27 and Dec 1 (Cyber Monday); CA Nov 24, 29-30.")
