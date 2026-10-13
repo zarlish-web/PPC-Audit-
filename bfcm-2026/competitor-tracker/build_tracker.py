@@ -211,7 +211,7 @@ C = [
     ("var", "Variations (DD)", 7, "dd", "Number of variations in the competitor's family (Data Dive)."),
     ("listed", "Listed (DD)", 9, "dd"),
     ("age", "Listing age (yrs)", 6, "calc"),
-    ("dd30", "Units 30d (DD est.)", 8, "dd"),
+    ("dd30", "Family units 30d (DD est.)", 8, "dd", "Data Dive 30-day unit estimate for the competitor's whole listing family (all variations), not the single tracked child. Use with Variations to judge family size."),
     ("ful", "Fulfilment", 6, "dd"),
     ("sellers", "Active sellers", 6, "dd"),
     ("country", "Seller country", 6, "dd"),
