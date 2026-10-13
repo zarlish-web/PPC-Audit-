@@ -364,7 +364,9 @@ DEAL_NAMES = {"Decolure Bamboo Sheets 4 Piece": 59, "Decolure Bamboo Sheets 6 Pi
               "Sleephoria Cooling Comforter": 42, "Decolure Silk Pillowcase": 55, "Decolure Waterproof Chair Cover": 33}
 deals25 = {}      # (pid, mkt) -> list of campaigns
 deals_cov = {}    # (pid, mkt) -> coverage note
-_dp = f"{DATA}/deals/our_deals_bfcm2025.csv"
+_dp = f"{DATA}/deals/our_deals_bfcm2025_v2.csv"   # v2 = v1 + Keepa-observed price (agent checkpoint); falls back to v1
+if not os.path.exists(_dp):
+    _dp = f"{DATA}/deals/our_deals_bfcm2025.csv"
 if os.path.exists(_dp):
     _camp = {}
     for row in csv.DictReader(open(_dp, encoding="utf-8-sig")):
@@ -373,8 +375,13 @@ if os.path.exists(_dp):
             continue
         m_ = re.search(r"source_id=([0-9a-f]+)", row["notes"] or "")
         k = (pid_, row["marketplace"], m_.group(1) if m_ else row["deal_start"])
-        c_ = _camp.setdefault(k, {"type": row["deal_type"], "status": row["status"], "start": row["deal_start"][:10], "end": row["deal_end"][:10], "kids": set(), "units": 0})
+        c_ = _camp.setdefault(k, {"type": row["deal_type"], "status": row["status"], "start": row["deal_start"][:10], "end": row["deal_end"][:10], "kids": set(), "units": 0, "kobs": []})
         c_["kids"].add(row["child_asin"])
+        if row.get("observed_deal_price_keepa"):
+            try:
+                c_["kobs"].append((float(row["observed_deal_price_keepa"]), row["child_asin"]))
+            except ValueError:
+                pass
         try:
             c_["units"] += int(float(row["units_sold"] or 0))
         except ValueError:
@@ -385,6 +392,13 @@ if os.path.exists(_dp):
         v_.sort(key=lambda c: c["start"])
     for row in csv.DictReader(open(f"{DATA}/deals/our_deals_bfcm2025_coverage.csv", encoding="utf-8-sig")):
         deals_cov[(int(row["product_id"]), row["marketplace"])] = row["coverage"]
+ped_obs = {}   # (pid, mkt) -> Keepa price observations (not native campaigns)
+_po = f"{DATA}/deals/sleephoria_keepa_observations.csv"
+if os.path.exists(_po):
+    for row in csv.DictReader(open(_po, encoding="utf-8-sig")):
+        pid_ = DEAL_NAMES.get(row["product_name"])
+        if pid_ is not None:
+            ped_obs.setdefault((pid_, row["marketplace"]), []).append(row)
 
 str_now = {}
 for _f in sorted(glob.glob(f"{DATA}/str/str_check_*.csv")):
@@ -704,12 +718,31 @@ for pid, mkt, tname in TABS:
     if dl or cov:
         ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
         if dl:
-            parts = [f"{c['type']} {c['start'][5:]} to {c['end'][5:]} ({c['status']}, {len(c['kids'])} variations" + (f", {c['units']:,} units" if c['units'] else "") + ")" for c in dl]
-            txt = "Deals we ran or scheduled, Nov 1 - Dec 5, 2025 (DataHub promotions; deal prices not in the feed): " + "; ".join(parts) + "."
+            cur = "C$" if mkt == "CA" else "$"
+            def _kp(c):
+                if c["status"] != "ran" or not c.get("kobs"):
+                    return ""
+                lo = min(c["kobs"])
+                return f"; Keepa lowest Buy Box during it {cur}{lo[0]:,.2f} on {lo[1]}"
+            parts = [f"{c['type']} {c['start'][5:]} to {c['end'][5:]} ({c['status']}, {len(c['kids'])} variations" + (f", {c['units']:,} units" if c['units'] else "") + _kp(c) + ")" for c in dl]
+            txt = ("Deals we ran or scheduled, Nov 1 - Dec 5, 2025 (DataHub promotions; scheduled deal price not in the feed. Keepa price = lowest Buy Box seen during the deal, "
+                   "an observation for the hero child only, not the scheduled deal price): " + "; ".join(parts) + ".")
         else:
             txt = "Deals Nov 1 - Dec 5, 2025: no record returned by the DataHub promotions feed. Unknown, not proof that no deal ran."
         c = ws.cell(row=r, column=1, value=txt); c.font = F(size=8.5, bold=True, color=C_INK); c.alignment = WRAP
         ws.row_dimensions[r].height = 30 if len(txt) > 180 else 18
+        r += 1
+    po = ped_obs.get((pid, mkt))
+    if po:
+        ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
+        by = {}
+        for o_ in po:
+            by.setdefault((o_["child_asin"], o_["observed_price_values"]), []).append((o_["observed_start_utc"][:10], o_["observed_end_utc"][:10]))
+        parts = [f"{a_} ${p_} {min(x[0] for x in iv)[5:]} to {max(x[1] for x in iv)[5:]}" + (f" ({len(iv)} separate spells)" if len(iv) > 1 else "") for (a_, p_), iv in sorted(by.items())]
+        txt = ("Prime Exclusive Discount seen in Keepa, BFCM 2025 (not in the DataHub deal feed): " + "; ".join(parts)
+               + ". Keepa observation only - campaign, scheduled dates and discount depth not confirmed.")
+        c = ws.cell(row=r, column=1, value=txt); c.font = F(size=8.5, bold=True, color="7030A0"); c.alignment = WRAP
+        ws.row_dimensions[r].height = 30
         r += 1
     so = stock_oos.get((pid, mkt))
     if so:
@@ -1159,7 +1192,8 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
      ("Our parent ASIN", "Data Dive seller catalog", "2026-10-13", len(TABS), "Fixed", "",
       "Command Center's 'parent_asin' is one of our child ASINs. Tabs now show the Amazon parent from the catalog; the Command Center ASIN is listed separately."),
      ("Our BFCM 2025 ad spend, ad sales, ACoS, TACoS, orders", "Command Center", "2025-11-20 to 2025-12-01", None, "Exact", "", "Total sales = ad spend / TACoS (derived, not reported)."),
-     ("Our BFCM 2025 deals", "DataHub promotions (agent)", "2026-10-13", None, "Partial", "", "Deal price, reference price, committed units and PED history not in the feed."),
+     ("Our BFCM 2025 deals", "DataHub promotions + Keepa (agent, v2 checkpoint)", "2026-10-13", None, "Partial", "",
+      "Scheduled deal price, reference price and committed units are still blank. Keepa lowest Buy Box during each deal is filled for 24 of 3,080 rows (hero children; full pull ~3 days). Prime Exclusive Discounts on SL Bamboo 6pc and SL Cooling Comforter are Keepa observations only, not confirmed campaigns."),
      ("Our BFCM 2025 stock", "DataHub inventory, revision 2 (agent)", "2026-10-13", None, "Partial", "", "US Nov 26, 27, Dec 1 and CA Nov 24, 29, 30 have no snapshot."),
      ("Canada competitors", "None", None, 0, "Missing", "", "No Amazon.ca competitor snapshots in the Command Center."),
      ("Competitors' BFCM 2025 history", "Keepa (pending)", None, 0, "Missing", "", "Yellow columns stay blank until Keepa is pulled; nothing is estimated.")]
