@@ -288,6 +288,11 @@ if os.path.exists(_sp):
         stock_oos[key] = {"asins": len(asins), "oos_asins": len(oos), "weighted": w,
                           "top": "; ".join(f"{a_} {v[0]}/{v[1]} days" for a_, v in top)}
 
+str_now = {}
+for _f in sorted(glob.glob(f"{DATA}/str/str_check_*.csv")):
+    for row in csv.DictReader(open(_f, encoding="utf-8-sig")):
+        str_now[row["asin"]] = row
+
 # ------------------------------------------------------------------ assemble competitor records
 records = []      # one per (product, marketplace, competitor) for the Data sheet and the dashboard
 TABS = []         # (pid, mkt, tab name)
@@ -334,6 +339,14 @@ for pid, fam, short, role in PRODUCTS:
                 "pd_pre": v.get("pd26_pre_org"), "pd": v.get("pd26_org"), "pd_pre_ad": v.get("pd26_pre_ad"), "pd_ad": v.get("pd26_ad"),
                 "q2": v.get("q2_org"), "l30": v.get("last30_org"),
             }
+            sc = str_now.get(ch) or {}
+            if sc:
+                num = lambda z: float(z) if z not in (None, "") else None
+                rec.update({"str_show": sc.get("strikethrough_shown") or "unknown", "str_label": sc.get("strikethrough_label") or None,
+                            "str_price": num(sc.get("strikethrough_price")), "page_price": num(sc.get("price")),
+                            "deal_now": ", ".join(z for z in [sc.get("deal_badge") if sc.get("deal_badge") not in ("", "none") else None,
+                                                               ("coupon " + sc["coupon"]) if sc.get("coupon") else None] if z) or ("none" if sc.get("strikethrough_shown") else None),
+                            "stock_now": sc.get("in_stock") or None, "str_checked": f"{sc.get('check_date')} {sc.get('check_time_et')}"})
             records.append(rec)
 
 tier_rank = {"Aspirational": 0, "Beatable": 1, "Poor": 2, "Untiered": 3}
@@ -412,8 +425,13 @@ COMP_COLS = [
     ("ppc_aggr", "KWs they out-advertise us", 7, "st", None, "#,##0"),
     ("pd_lift", "Prime Day 2026 organic vis lift", 7, "calc", "Organic visibility score Jun 23-26 vs Jun 1-20, 2026 (baseline score 5+).", '0.00"x"'),
     ("trend", "Organic trend (Aug-Sep vs Q2)", 7, "calc", None, "+0%;-0%;0%"),
-    ("str_show", "STR showing now? (Y/N)", 7, "str", None, None),
+    ("str_show", "STR showing now? (Y/N)", 7, "str", "From the Amazon page check (str_check_<date>.csv). Blank = not checked yet (P2 rows).", None),
     ("str_label", "STR label", 8, "str", None, None),
+    ("str_price", "Strikethrough price ($)", 8, "str", None, "$#,##0.00"),
+    ("page_price", "Page price at check ($)", 8, "str", None, "$#,##0.00"),
+    ("deal_now", "Deal / coupon now", 10, "str", None, None),
+    ("stock_now", "Orderable now (Y/N)", 6, "str", None, None),
+    ("str_checked", "Checked (ET)", 10, "str", None, None),
     ("bf_type", "BFCM 2025 deal type", 10, "kp", None, None),
     ("bf_dates", "BFCM 2025 deal dates", 10, "kp", None, None),
     ("bf_pre", "Pre-event price ($)", 8, "kp", None, "$#,##0.00"),
@@ -429,7 +447,7 @@ CK = {c[0]: i + 1 for i, c in enumerate(COMP_COLS)}
 CLt = {k: CL(v) for k, v in CK.items()}
 NC = len(COMP_COLS)
 GROUP_NAMES = {"id": "COMPETITOR", "cc": "PRICE & SALES - Command Center (Oct 12)", "dd": "LISTING - Data Dive", "calc": "",
-               "st": "SEARCH STRATEGY - Command Center ASINsight", "str": "STR NOW (fill)", "kp": "BFCM 2025 - fill from Keepa"}
+               "st": "SEARCH STRATEGY - Command Center ASINsight", "str": "STR NOW - Amazon page check (Oct 13); blank = not checked", "kp": "BFCM 2025 - fill from Keepa"}
 
 product_cells = {}   # (pid, mkt) -> dict of key cell refs for dashboard
 comp_cells = {}      # record index -> (tab, row)
@@ -610,6 +628,8 @@ for pid, mkt, tname in TABS:
             c.border = BOX; c.font = F(); c.alignment = WRAP if key in ("title", "hero", "top_kw", "basis") else Alignment(vertical="top")
             if grp in ("kp", "str"):
                 c.fill = INPUT; c.font = F(color=BLUE)
+                if grp == "str" and vals.get(key) is not None:
+                    c.value = vals[key]; c.fill = FILL["str"]; c.font = F()
             elif grp == "calc" and key not in ("our_same", "basis"):
                 c.fill = FILL["calc"]
             elif key in vals:
@@ -657,6 +677,12 @@ for pid, mkt, tname in TABS:
         below = [x for x in comps if isinstance(x.get("price"), (int, float)) and x.get("our_same") and x["price"] < x["our_same"]]
         ins.append(f"Price: {len(below)} of {len(comps)} rivals sit below our price today (same size where the title states one). Cheapest strong rivals: "
                    + ", ".join(f"{x['brand']} {fmt(x['price'])}" for x in sorted([b for b in below if b['tier'] in ('Aspirational', 'Beatable')], key=lambda b: b['price'])[:4]) + ".")
+    chk = [x for x in comps if x.get("str_show") in ("Y", "N")]
+    if chk:
+        sh = [x for x in chk if x["str_show"] == "Y"]
+        ins.append(f"Strikethrough on the page today (Oct 13 check): {len(sh)} of {len(chk)} checked rivals show one"
+                   + (": " + ", ".join(f"{x['brand']} {x.get('str_label')} {fmt(x.get('str_price'))} vs {fmt(x.get('page_price'))} (+{x['str_price']/x['page_price']-1:.0%})" + (" with deal" if x.get('deal_now') not in (None, 'none') and 'deal' in (x.get('deal_now') or '') else "") for x in sh[:6] if x.get('str_price') and x.get('page_price')) if sh else "")
+                   + ".")
     agg = [x for x in comps if isinstance(x.get("ppc_aggr"), (int, float))]
     if agg:
         a3 = sorted(agg, key=lambda x: -(x.get("ad_gap") or 0))[:3]

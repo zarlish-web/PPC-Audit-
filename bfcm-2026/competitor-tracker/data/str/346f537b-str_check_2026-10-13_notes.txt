@@ -1,0 +1,28 @@
+Amazon US competitor STR check | 2026-10-13
+
+Scope: exactly the 70 unique rows in keepa_request.csv with priority=P1 and role=competitor. No OURS or P2 rows included.
+Conditions: Amazon.com desktop, logged out, delivery ZIP 10001 (New York), USD. Individual check times are Eastern Daylight Time (UTC-04:00), 12:10:12-12:14:21. Subsequent redirect checks also failed to recover the requested child.
+Source: STR Panel was tried first. Browser required sign-in; authenticated read endpoints returned HTTP403; the accessible Command Center MCP catalogue does not expose STR Panel. All CSV rows therefore have source=page. No panel observations or historical Keepa prices substituted.
+
+Coverage: 70 requested URLs checked, 69 exact-ASIN pages verified, 1 unresolved ASIN redirect.
+STR: 25 shown (20 List Price, 5 Typical price), 44 not shown, 1 unknown.
+Stock: 64 orderable, 5 currently unavailable, 1 unknown.
+Deals: 8 Limited time deal, 61 none, 1 unknown. Coupons: 5 visible on the selected product.
+
+Definitions:
+- price is the displayed selected-product price before coupon, shipping, and tax. No credit-card signup incentive, bulk-buy saving, alternate variation, sponsored product, or used offer is substituted.
+- strikethrough_shown means a visible reference price in the selected product's main price section. No numerical List Price inference from Keepa or another variation.
+- coupon is the displayed coupon value, not applied. Eligibility/checkout redemption was not tested. Multi-buy and free-gift promotions are not coupons.
+- in_stock=Y means the selected new item is orderable for ZIP10001, including the two non-featured offers below. It is not a warehouse-inventory measurement or a promise of immediate shipment. N means the requested page explicitly showed Currently unavailable.
+- Blank price/seller on an unavailable item means not displayed, not zero. Blank STR/stock on the redirect means UNKNOWN, not N. Blank coupon on a verified page means none displayed; all commercial fields on the unresolved redirect remain unknown.
+- The source column is appended to the requested columns to record provenance.
+
+Exceptions:
+B0D1RBXBNG: Amazon selects B0DBHFTF8W instead, confirmed through /dp and /gp/product rechecks. Kept the requested ASIN row but left all commercial fields blank. Do not treat this row as an observation of B0D1RBXBNG or silently replace it with B0DBHFTF8W.
+B08L86VLZB: No featured offer / High price. Buying options shows a new offer at $169.99 sold by BC BELLA COTERIE, shipped by Amazon.com, orderable for ZIP10001. price uses that offer. buy_box_seller stays blank because there is no featured offer.
+B07YSVNCVT: No featured offer / High price. Buying options shows a new offer at $104.99 sold by Amcrest Direct, shipped by Amazon.com, orderable for ZIP10001. price uses that offer. buy_box_seller stays blank because there is no featured offer.
+B0DCC78S4N: Orderable at $23.99 from LIFCOM, but no explicit In Stock text. Displayed free delivery November 3-December 6; fastest November 3-December 3. Y reflects orderability, not immediate availability.
+B07XC2KVM7, B0HJYG8V9Q, B0CPDR5DDM, B0F93XRVSZ, B0BK1WH383: Currently unavailable; no featured price/seller displayed. Their STR=N reflects no visible main-product reference price.
+B0G1N8QS55: Shows Lowest price in 30 days, but no Limited time deal/Prime exclusive offer badge; deal_badge=none. The visible reference is Typical price $79.00.
+
+QA: Exact target count/order, unique ASINs, logged-out/ZIP verification for every capture, selected-ASIN identity, timestamp, allowed labels, reference-price arithmetic, all featured prices cross-checked against the buy box, coupon scope, and exception handling passed. Original page text and selected DOM evidence retained locally. No account, price, promotion, cart, or listing changes made.
