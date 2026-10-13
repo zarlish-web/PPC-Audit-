@@ -1,0 +1,334 @@
+priority,role,asin,parent_asin,brand,tier,our_products,family,marketplace
+P1,OURS,B0FX2RGLBW,B0FX2T8CG8,Decolure,,Decolure Bamboo Fitted Sheet,Bamboo,US
+P1,OURS,B0CQ2XQF9N,B0CQ31D5FM,Decolure,,Decolure Bamboo Sheets 6 Piece,Bamboo,US
+P1,OURS,B08KQHRDDG,B0BZQ1G5B8,Decolure,,Decolure Bamboo Sheets 4 Piece,Bamboo,US
+P1,OURS,B0DDTYDHVB,B0DDTY8HFR,Sleephoria,,Sleephoria Bamboo Sheets 6 Piece,Bamboo,US
+P1,OURS,B0DDTY5RQX,B0DDTRVWNR,Sleephoria,,Sleephoria Bamboo Sheets 4 Piece,Bamboo,US
+P1,OURS,B0H5WWMPNN,B0H5X3L7M3,CooLinens,,CooLinens Cooling Pillowcases 2 Piece,Cooling,US
+P1,OURS,B0C9LS5H2T,B0CWJ2ZQJR,Decolure,,Decolure Cooling Sheets 4 Piece,Cooling,US
+P1,OURS,B0F7LZQNHM,B0F7LXFGLX,Sleephoria,,Sleephoria Cooling Sheets 4 Piece,Cooling,US
+P1,OURS,B0F7M3YQ5R,B0F7M4DPM6,Sleephoria,,Sleephoria Cooling Fitted Sheet,Cooling,US
+P1,OURS,B0F7LJS3N2,B0F7LLMXSR,Sleephoria,,Sleephoria Cooling Pillowcases,Cooling,US
+P1,OURS,B0F7M4Q2HQ,B0GHSH1BJK,Sleephoria,,Sleephoria Cooling Comforter,Cooling,US
+P1,OURS,B0CY63VCW1,B0CY6QPTVJ,Decolure,,Decolure Waterproof Chair Cover,Other,US
+P1,OURS,B0F63C8HL2,B0F6371Q67,Decolure,,Decolure Linen Curtains,Other,US
+P1,OURS,B0DQ84FD76,B0DQ83G9MC,Decolure,,Decolure Front Door Welcome Sign,Other,US
+P1,OURS,B0DQ92K585,B0DQ8NHCYM,Decolure,,Decolure Beach Towel,Other,US
+P1,OURS,B0FGZDR11L,B0FGZF19SN,Sleephoria,,Sleephoria Quilt Set,Other,US
+P1,OURS,B0839MKJMV,B0CQRY9WLD,Decolure,,Decolure Satin Sheets 4 Piece,Satin,US
+P1,OURS,B0C7FXXS6R,B0D9QQWYP4,Decolure,,Decolure Satin Sheets 6 Piece,Satin,US
+P1,OURS,B0DBW1PNJ8,B0DBVZV66D,Decolure,,Decolure Satin Fitted Sheet,Satin,US
+P1,OURS,B0DDRH9RD7,B0DDR4HJCS,Sleephoria,,Sleephoria Satin Sheets 4 Piece,Satin,US
+P1,OURS,B0DBR5SY67,B0DBR7PBVP,Decolure,,Decolure Silk Pillowcase,Silk,US
+P1,OURS,B0F4XQ7L8Q,B0F4XQ7L8Q,Sleephoria,,Sleephoria Silk Sleep Mask - Velcro,Silk,US
+P1,OURS,B0F4XRFWGR,B0F4XS1FWJ,Sleephoria,,Sleephoria Silk Sleep Mask - Contoured,Silk,US
+P1,competitor,B07XFP6BY2,B0HC778XB4,BAMPURE,Beatable,Decolure Bamboo Fitted Sheet; Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Decolure Cooling Sheets 4 Piece; Sleephoria Bamboo Sheets 4 Piece; Sleephoria Bamboo Sheets 6 Piece,Bamboo,US
+P1,competitor,B07XC2KVM7,B0FH2WGKJV,BAMPURE,Beatable,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Decolure Cooling Sheets 4 Piece; Sleephoria Bamboo Sheets 6 Piece,Bamboo,US
+P1,competitor,B08L86VLZB,B0H29V113N,BC BELLA COTERIE,Beatable,Decolure Bamboo Fitted Sheet; Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Decolure Cooling Sheets 4 Piece; Sleephoria Bamboo Sheets 4 Piece; Sleephoria Bamboo Sheets 6 Piece; Sleephoria Cooling Sheets 4 Piece,Bamboo,US
+P1,competitor,B0G674ZDTV,B0GKBNZ8TC,BC BELLA COTERIE,Beatable,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Decolure Cooling Sheets 4 Piece; Sleephoria Bamboo Sheets 6 Piece,Bamboo,US
+P1,competitor,B0GT8Z4X5D,B0GT98GVQN,BEDELITE,Beatable,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Sleephoria Cooling Sheets 4 Piece,Bamboo,US
+P1,competitor,B0DR99Q37Y,B07K6SYX8L,Bambaw,Beatable,Decolure Bamboo Fitted Sheet; Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Decolure Cooling Sheets 4 Piece; Sleephoria Bamboo Sheets 4 Piece; Sleephoria Bamboo Sheets 6 Piece; Sleephoria Cooling Sheets 4 Piece,Bamboo,US
+P1,competitor,B08M9QK14J,B0DLD8982V,Bamboo Bay,Beatable,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece,Bamboo,US
+P1,competitor,B07YK8VTJV,B0BZ8T5BJ6,Bedsure,Aspirational,Decolure Bamboo Fitted Sheet; Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Decolure Cooling Sheets 4 Piece; Sleephoria Cooling Fitted Sheet; Sleephoria Cooling Sheets 4 Piece; Sleephoria Cooling Sheets 6 Piece,Bamboo,US
+P1,competitor,B0FB8XR43Q,B0FB8XS4D1,Bedsure,Beatable,Decolure Bamboo Fitted Sheet; Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Decolure Cooling Sheets 4 Piece; Sleephoria Bamboo Sheets 4 Piece; Sleephoria Bamboo Sheets 6 Piece; Sleephoria Cooling Fitted Sheet,Bamboo,US
+P1,competitor,B0GWHPJ9SD,B0HFBJPD56,California Design Den,Beatable,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Sleephoria Cooling Sheets 4 Piece,Bamboo,US
+P1,competitor,B0F24TRXCZ,B0DCZGYVZ9,DOZ by SIJO,Beatable,Decolure Bamboo Fitted Sheet; Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Decolure Cooling Sheets 4 Piece; Sleephoria Bamboo Sheets 4 Piece; Sleephoria Bamboo Sheets 6 Piece; Sleephoria Cooling Sheets 4 Piece,Bamboo,US
+P1,competitor,B0GXJYQR7H,B0HJZNMQ5G,Davmabcjy,Beatable,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Sleephoria Cooling Sheets 4 Piece,Bamboo,US
+P1,competitor,B0BR53P7DY,B09WV7RN1V,GOKOTTA,Beatable,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Decolure Cooling Sheets 4 Piece,Bamboo,US
+P1,competitor,B01N9L2O9P,B0G5N99X9R,Hotel Sheets Direct,Aspirational,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Decolure Cooling Sheets 4 Piece; Sleephoria Bamboo Sheets 4 Piece; Sleephoria Bamboo Sheets 6 Piece; Sleephoria Cooling Sheets 4 Piece,Bamboo,US
+P1,competitor,B0G1CSCQTB,B0GT172Y8L,KARISSA MAE,Beatable,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Decolure Cooling Sheets 4 Piece; Sleephoria Cooling Sheets 4 Piece,Bamboo,US
+P1,competitor,B0FT7LZ2CD,B0FT7L9RSX,KRIMANO,Beatable,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Sleephoria Bamboo Sheets 4 Piece; Sleephoria Bamboo Sheets 6 Piece; Sleephoria Cooling Sheets 4 Piece,Bamboo,US
+P1,competitor,B0DN1DVKH5,B0DN1GGFL7,Love's cabin,Beatable,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Sleephoria Cooling Sheets 4 Piece,Bamboo,US
+P1,competitor,B0HFZQRXXQ,B0H1GGHHVN,Pillcase,Beatable,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Sleephoria Cooling Sheets 4 Piece,Bamboo,US
+P1,competitor,B0H1BWY4MD,B0HK71WHZW,Pillcase,Beatable,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Sleephoria Cooling Sheets 4 Piece,Bamboo,US
+P1,competitor,B0HJYG8V9Q,B0HJYG8V9Q,Pillcase,Beatable,Decolure Bamboo Sheets 4 Piece; Sleephoria Cooling Sheets 4 Piece,Bamboo,US
+P1,competitor,B07DZTQ4JC,B0CZQ52MTQ,Pure Bamboo,Aspirational,Decolure Bamboo Fitted Sheet; Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Decolure Cooling Sheets 4 Piece; Sleephoria Bamboo Sheets 4 Piece; Sleephoria Bamboo Sheets 6 Piece; Sleephoria Cooling Fitted Sheet; Sleephoria Cooling Sheets 4 Piece,Bamboo,US
+P1,competitor,B0F4873G4H,B0F4852T9V,SONORO KATE,Beatable,Decolure Bamboo Fitted Sheet; Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Decolure Cooling Sheets 4 Piece; Sleephoria Bamboo Sheets 4 Piece; Sleephoria Bamboo Sheets 6 Piece; Sleephoria Cooling Sheets 4 Piece,Bamboo,US
+P1,competitor,B0F29F1JM5,B0F29FQLFD,SONORO KATE,Beatable,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Decolure Cooling Sheets 4 Piece; Sleephoria Bamboo Sheets 4 Piece; Sleephoria Bamboo Sheets 6 Piece; Sleephoria Cooling Sheets 4 Piece,Bamboo,US
+P1,competitor,B0FWY1TGFK,B0HJSVWNRS,Shilucheng,,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Sleephoria Cooling Sheets 4 Piece,Bamboo,US
+P1,competitor,B098JT1RF2,B098JT1RF2,Shilucheng,,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Decolure Cooling Sheets 4 Piece,Bamboo,US
+P1,competitor,B0HD7R5L1D,B0HHQ97HBL,TRUE BAMBOO,Beatable,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Sleephoria Cooling Sheets 4 Piece,Bamboo,US
+P1,competitor,B0G1N8QS55,B0HHQG3RSW,TWK,Beatable,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Sleephoria Cooling Sheets 4 Piece,Bamboo,US
+P1,competitor,B0HHRR4XGX,B0HHRR4XGX,TWK,Beatable,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece,Bamboo,US
+P1,competitor,B07YSVNCVT,B0D34K3FB9,Tafts,Beatable,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece,Bamboo,US
+P1,competitor,B0894QH86C,B0957W6SPP,Bedlifes,Aspirational,Decolure Cooling Sheets 4 Piece,Cooling,US
+P1,competitor,B0CPDR5DDM,B0CPDTJ5NN,Bedsure,Beatable,CooLinens Cooling Sheets 4 Piece; Decolure Cooling Sheets 4 Piece; Sleephoria Cooling Sheets 4 Piece; Sleephoria Cooling Sheets 6 Piece,Cooling,US
+P1,competitor,B0DSPZJKTB,B0H41M1N4B,Breescape,Beatable,CooLinens Cooling Sheets 4 Piece; Decolure Cooling Sheets 4 Piece; Sleephoria Cooling Sheets 4 Piece; Sleephoria Cooling Sheets 6 Piece,Cooling,US
+P1,competitor,B0F93XRVSZ,B0F93XRVSZ,DOWNCOOL,Beatable,CooLinens Cooling Sheets 4 Piece; Decolure Cooling Sheets 4 Piece; Sleephoria Cooling Sheets 4 Piece; Sleephoria Cooling Sheets 6 Piece,Cooling,US
+P1,competitor,B0D1RBXBNG,B0D1SRR2H4,David's Home,Beatable,Decolure Cooling Sheets 4 Piece; Sleephoria Cooling Sheets 4 Piece; Sleephoria Cooling Sheets 6 Piece,Cooling,US
+P1,competitor,B0GCGXW1WT,B0H7YWGBW3,Elegear,Beatable,CooLinens Cooling Sheets 4 Piece; Decolure Cooling Sheets 4 Piece; Sleephoria Cooling Sheets 4 Piece,Cooling,US
+P1,competitor,B0FX8K1CG9,B0HDC7BMTC,OMERAI,Beatable,CooLinens Cooling Sheets 4 Piece; Decolure Cooling Sheets 4 Piece; Sleephoria Cooling Fitted Sheet; Sleephoria Cooling Sheets 4 Piece; Sleephoria Cooling Sheets 6 Piece,Cooling,US
+P1,competitor,B0D9JHBBCZ,B0HC6866B7,REST,Beatable,CooLinens Cooling Sheets 4 Piece; Decolure Cooling Sheets 4 Piece; Sleephoria Cooling Fitted Sheet; Sleephoria Cooling Sheets 4 Piece; Sleephoria Cooling Sheets 6 Piece,Cooling,US
+P1,competitor,B0D25LDRPS,B0C56VXVB3,REST,Beatable,CooLinens Cooling Sheets 4 Piece; Decolure Cooling Sheets 4 Piece; Sleephoria Cooling Sheets 4 Piece,Cooling,US
+P1,competitor,B00EWJHJU4,B081KX96XD,SHEEX,Beatable,CooLinens Cooling Sheets 4 Piece; Sleephoria Cooling Sheets 4 Piece,Cooling,US
+P1,competitor,B0F2TDDFGJ,B0F2TDDFGJ,Shilucheng,Beatable,Decolure Cooling Sheets 4 Piece; Sleephoria Cooling Sheets 4 Piece,Cooling,US
+P1,competitor,B09PYQ2VQL,B09PYQ2VQL,Shilucheng,Beatable,Decolure Cooling Sheets 4 Piece; Sleephoria Cooling Sheets 4 Piece,Cooling,US
+P1,competitor,B0BK1WH383,B0FB47M9WR,,Poor,Decolure Satin Sheets 4 Piece; Decolure Satin Sheets 6 Piece; Sleephoria Satin Sheets 4 Piece,Satin,US
+P1,competitor,B0CSFTRP2X,B0FNMNMZ9T,BEDELITE,Aspirational,Decolure Satin Fitted Sheet; Decolure Satin Sheets 4 Piece; Decolure Satin Sheets 6 Piece; Sleephoria Satin Sheets 4 Piece; Sleephoria Satin Sheets 6pcs,Satin,US
+P1,competitor,B0CSFV4FXW,B0FPCM7DL3,BEDELITE,Aspirational,Decolure Satin Fitted Sheet; Sleephoria Satin Sheets 4 Piece; Sleephoria Satin Sheets 6pcs,Satin,US
+P1,competitor,B0FL2BK9CR,B0FNMFHHW7,BEDELITE,Beatable,Decolure Satin Fitted Sheet,Satin,US
+P1,competitor,B0CJ8RYNTS,B0DCZYNBYS,Bedsure,Poor,Decolure Satin Sheets 4 Piece; Decolure Satin Sheets 6 Piece; Sleephoria Satin Sheets 4 Piece; Sleephoria Satin Sheets 6pcs,Satin,US
+P1,competitor,B087CSRQQ4,B099PPQ7T3,Cobedzy,Beatable,Decolure Satin Sheets 4 Piece; Decolure Satin Sheets 6 Piece; Sleephoria Satin Sheets 4 Piece; Sleephoria Satin Sheets 6pcs,Satin,US
+P1,competitor,B08P16XLP2,B08CQKS3KP,CozyLux,Beatable,Decolure Satin Sheets 4 Piece; Decolure Satin Sheets 6 Piece; Sleephoria Satin Sheets 4 Piece; Sleephoria Satin Sheets 6pcs,Satin,US
+P1,competitor,B0D9BD63QH,B0D9B18P6N,FreshCulture,Beatable,Decolure Satin Sheets 4 Piece; Decolure Satin Sheets 6 Piece; Sleephoria Satin Sheets 4 Piece; Sleephoria Satin Sheets 6pcs,Satin,US
+P1,competitor,B09G17SQXF,B0B1Q2JG5X,GOLAL,Poor,Decolure Satin Sheets 4 Piece; Decolure Satin Sheets 6 Piece; Sleephoria Satin Sheets 4 Piece; Sleephoria Satin Sheets 6pcs,Satin,US
+P1,competitor,B0DYJHHJQL,B0DYJKM99H,Homiest,Beatable,Decolure Satin Sheets 4 Piece; Decolure Satin Sheets 6 Piece; Sleephoria Satin Sheets 4 Piece; Sleephoria Satin Sheets 6pcs,Satin,US
+P1,competitor,B0B5Z2B9NN,B07XBR22W1,Homiest,Beatable,Decolure Satin Sheets 4 Piece; Decolure Satin Sheets 6 Piece; Sleephoria Satin Sheets 4 Piece; Sleephoria Satin Sheets 6pcs,Satin,US
+P1,competitor,B09WHDR231,B09WGRB6MD,Homiest,Beatable,Decolure Satin Fitted Sheet,Satin,US
+P1,competitor,B09V52BVJB,B0BJZT93SL,HommxJF,Poor,Decolure Satin Sheets 4 Piece; Decolure Satin Sheets 6 Piece; Sleephoria Satin Sheets 4 Piece; Sleephoria Satin Sheets 6pcs,Satin,US
+P1,competitor,B0B4MQ1PP1,B0B4MQCT87,Horbaunal,Beatable,Decolure Satin Sheets 4 Piece; Decolure Satin Sheets 6 Piece; Sleephoria Satin Sheets 4 Piece; Sleephoria Satin Sheets 6pcs,Satin,US
+P1,competitor,B0DCC78S4N,B0DBVYL693,LIFCOM,Beatable,Decolure Satin Sheets 4 Piece; Decolure Satin Sheets 6 Piece; Sleephoria Satin Sheets 4 Piece,Satin,US
+P1,competitor,B082B5CY3D,B0DC3MX1DP,Lanest Housing,Beatable,Decolure Satin Sheets 4 Piece; Decolure Satin Sheets 6 Piece; Sleephoria Satin Sheets 4 Piece; Sleephoria Satin Sheets 6pcs,Satin,US
+P1,competitor,B0BNMC5G8R,B08DHTB63X,Love's cabin,Aspirational,Decolure Satin Fitted Sheet; Decolure Satin Sheets 4 Piece; Decolure Satin Sheets 6 Piece; Sleephoria Satin Sheets 4 Piece; Sleephoria Satin Sheets 6pcs,Satin,US
+P1,competitor,B07FGFRZ94,B07H522QXD,MK Home,Poor,Decolure Satin Sheets 4 Piece; Decolure Satin Sheets 6 Piece; Sleephoria Satin Sheets 4 Piece; Sleephoria Satin Sheets 6pcs,Satin,US
+P1,competitor,B08HM6WT6X,B08NQ3W7PG,MR&HM,Aspirational,Decolure Satin Fitted Sheet; Decolure Satin Sheets 4 Piece; Decolure Satin Sheets 6 Piece; Sleephoria Satin Sheets 4 Piece; Sleephoria Satin Sheets 6pcs,Satin,US
+P1,competitor,B09HVCPNLX,B0DJ2HJ9M4,Madison Park,Poor,Decolure Satin Sheets 4 Piece; Decolure Satin Sheets 6 Piece; Sleephoria Satin Sheets 4 Piece; Sleephoria Satin Sheets 6pcs,Satin,US
+P1,competitor,B09S5RNLN9,B09YQW7HBK,Manyshofu,Beatable,Decolure Satin Sheets 4 Piece; Decolure Satin Sheets 6 Piece; Sleephoria Satin Sheets 4 Piece; Sleephoria Satin Sheets 6pcs,Satin,US
+P1,competitor,B07X49LFDC,B0DLGX8P9D,Martex,Beatable,Decolure Satin Sheets 4 Piece; Decolure Satin Sheets 6 Piece; Sleephoria Satin Sheets 4 Piece; Sleephoria Satin Sheets 6pcs,Satin,US
+P1,competitor,B08QMF6D5W,B096P2MYZQ,P Pothuiny,Poor,Decolure Satin Sheets 4 Piece; Decolure Satin Sheets 6 Piece; Sleephoria Satin Sheets 4 Piece; Sleephoria Satin Sheets 6pcs,Satin,US
+P1,competitor,B083G81VSH,B0FMPQYB2J,Pure Bedding,Beatable,Decolure Satin Sheets 4 Piece; Decolure Satin Sheets 6 Piece; Sleephoria Satin Sheets 4 Piece; Sleephoria Satin Sheets 6pcs,Satin,US
+P1,competitor,B0F2H8LPB3,B0F2H9HX69,Sasttie,,Decolure Satin Sheets 4 Piece; Decolure Satin Sheets 6 Piece; Sleephoria Satin Sheets 4 Piece; Sleephoria Satin Sheets 6pcs,Satin,US
+P1,competitor,B08JP9DG5Z,B0DD37S32L,SiinvdaBZX,Beatable,Decolure Satin Sheets 4 Piece; Decolure Satin Sheets 6 Piece; Sleephoria Satin Sheets 4 Piece; Sleephoria Satin Sheets 6pcs,Satin,US
+P1,competitor,B0C1GJZB6F,B0C9T1VY8J,VACVELT,Beatable,Decolure Satin Sheets 4 Piece; Decolure Satin Sheets 6 Piece; Sleephoria Satin Sheets 4 Piece; Sleephoria Satin Sheets 6pcs,Satin,US
+P1,competitor,B0BWJ4MLLZ,B0BWJ4PYLN,VACVELT,Poor,Decolure Satin Fitted Sheet; Sleephoria Satin Sheets 4 Piece; Sleephoria Satin Sheets 6pcs,Satin,US
+P1,competitor,B0F7XRNKQY,B0F7XQDVJY,VACVELT,Poor,Decolure Satin Fitted Sheet; Sleephoria Satin Sheets 4 Piece; Sleephoria Satin Sheets 6pcs,Satin,US
+P2,competitor,B0FW38KM4S,B0FW3SSM8K,,Beatable,Decolure Bamboo Fitted Sheet; Sleephoria Cooling Fitted Sheet,Bamboo,US
+P2,competitor,B07JP2L1TG,B0DCZYVLFC,,,Sleephoria Bamboo Pillowcases,Bamboo,US
+P2,competitor,B0CRR369GQ,B0DD7BMGZ7,,,Sleephoria Bamboo Pillowcases,Bamboo,US
+P2,competitor,B09PYB9C45,B0GMGSMLQ1,ACCURATEX,Poor,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Sleephoria Bamboo Sheets 4 Piece; Sleephoria Bamboo Sheets 6 Piece,Bamboo,US
+P2,competitor,B0GX15Y7TT,B0H3KP6R9B,AiAngu,Poor,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Sleephoria Bamboo Sheets 4 Piece; Sleephoria Bamboo Sheets 6 Piece,Bamboo,US
+P2,competitor,B0GFHGS4DP,B0GFHP5V9H,Amazon Basics,,Decolure Bamboo Sheets 4 Piece,Bamboo,US
+P2,competitor,B0CZXZCTJP,B0FP7WBFNJ,BC BELLA COTERIE,Beatable,Decolure Bamboo Fitted Sheet; Sleephoria Cooling Fitted Sheet,Bamboo,US
+P2,competitor,B08GWQY7B3,B0BZ8RQ9RQ,BEDELITE,,Sleephoria Bamboo Pillowcases,Bamboo,US
+P2,competitor,B07TBHLZJM,B0DLF1SWJ5,Bamboo Bay,Poor,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Sleephoria Bamboo Sheets 4 Piece; Sleephoria Bamboo Sheets 6 Piece,Bamboo,US
+P2,competitor,B09TQ6ZVKZ,B0CZHCZQZ3,Bamtek,Poor,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Sleephoria Bamboo Sheets 4 Piece; Sleephoria Bamboo Sheets 6 Piece,Bamboo,US
+P2,competitor,B0FQ8JCH46,B0H29TVSQX,Brooklyn Loom,,Decolure Bamboo Sheets 4 Piece,Bamboo,US
+P2,competitor,B0D429MCF7,B0F2GR2DKR,CGK Unlimited,,Decolure Bamboo Sheets 4 Piece,Bamboo,US
+P2,competitor,B0DJV1K332,B0F89K7BXJ,Cariloha,Poor,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Sleephoria Bamboo Sheets 4 Piece; Sleephoria Bamboo Sheets 6 Piece,Bamboo,US
+P2,competitor,B0B4F4NTBL,B0CLBDW265,Cosy House Collection,,Decolure Bamboo Sheets 4 Piece,Bamboo,US
+P2,competitor,B0DMNMPVJP,B0DT14Y4VJ,Cozy Bliss,Beatable,Decolure Bamboo Fitted Sheet; Sleephoria Cooling Fitted Sheet,Bamboo,US
+P2,competitor,B0F22JR4S8,B0DSQ9V4ML,Cozy Earth,Poor,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Sleephoria Bamboo Sheets 4 Piece; Sleephoria Bamboo Sheets 6 Piece,Bamboo,US
+P2,competitor,B0GC5CJGWC,B0GC2GQNMT,CozyLux,,Decolure Bamboo Sheets 4 Piece,Bamboo,US
+P2,competitor,B0CF2MND41,B0DVZFLVMG,DREAMCARE,Poor,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Sleephoria Bamboo Sheets 4 Piece; Sleephoria Bamboo Sheets 6 Piece,Bamboo,US
+P2,competitor,B0CQK3KHHH,B0HGLD1P8V,ELIBABA,,Sleephoria Bamboo Pillowcases; Sleephoria Cooling Pillowcases,Bamboo,US
+P2,competitor,B0B6P8YLQ7,B0B6NZ1H4L,GOKOTTA,Aspirational,Decolure Bamboo Fitted Sheet,Bamboo,US
+P2,competitor,B0D3XQM7DL,B0DM3GDCTR,HOT SLEEPER SHEETS,Poor,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Sleephoria Bamboo Sheets 4 Piece; Sleephoria Bamboo Sheets 6 Piece,Bamboo,US
+P2,competitor,B0DSZTLBV1,B0DTY15N29,JSD,Poor,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Sleephoria Bamboo Sheets 4 Piece; Sleephoria Bamboo Sheets 6 Piece,Bamboo,US
+P2,competitor,B0H1MNZ16Z,B0HFVC6529,KAKIJUMN,,Decolure Bamboo Sheets 4 Piece,Bamboo,US
+P2,competitor,B0CHN5ZPFH,B0D4KS4MVX,Kickoff Home,Poor,Decolure Bamboo Fitted Sheet; Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Sleephoria Bamboo Sheets 4 Piece; Sleephoria Bamboo Sheets 6 Piece; Sleephoria Cooling Sheets 4 Piece,Bamboo,US
+P2,competitor,B0CH7N9WVC,B0D1HWHDL2,LB Luxury Bamboo Market,Poor,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Sleephoria Bamboo Sheets 4 Piece; Sleephoria Bamboo Sheets 6 Piece,Bamboo,US
+P2,competitor,B0F9FK7SMW,B0F9FK3L6J,LBRO2M,Poor,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Sleephoria Bamboo Sheets 4 Piece; Sleephoria Bamboo Sheets 6 Piece,Bamboo,US
+P2,competitor,B0DL5NCTYF,B0DQDMN3WK,MR&HM,,Decolure Bamboo Sheets 4 Piece,Bamboo,US
+P2,competitor,B0GSXRR9DN,B0GSXPDW9C,MRIDU,,Decolure Bamboo Sheets 4 Piece,Bamboo,US
+P2,competitor,B0D4Y6RKLL,B0C14HFDS1,REST,Aspirational,Decolure Bamboo Fitted Sheet; Sleephoria Cooling Fitted Sheet,Bamboo,US
+P2,competitor,B09PYKYCCF,B09PYKYCCF,Shilucheng,Poor,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Sleephoria Bamboo Sheets 4 Piece; Sleephoria Bamboo Sheets 6 Piece,Bamboo,US
+P2,competitor,B0F2TBWTZR,B0F2TBWTZR,Shilucheng,Poor,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Sleephoria Bamboo Sheets 4 Piece; Sleephoria Bamboo Sheets 6 Piece,Bamboo,US
+P2,competitor,B0C2BNK3JD,B0CZFCD9CJ,Shunjie.Home,,Sleephoria Bamboo Pillowcases,Bamboo,US
+P2,competitor,B0GVP3B7LS,B0GVP3B7LS,TWK,Poor,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Sleephoria Bamboo Sheets 4 Piece; Sleephoria Bamboo Sheets 6 Piece,Bamboo,US
+P2,competitor,B0DYT2QWLC,B0DYT2QWLC,TWK,Poor,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Decolure Cooling Sheets 4 Piece; Sleephoria Bamboo Sheets 4 Piece; Sleephoria Bamboo Sheets 6 Piece,Bamboo,US
+P2,competitor,B0GW7H7RHY,B0GKFHP6L6,TWK,Poor,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Sleephoria Bamboo Sheets 4 Piece; Sleephoria Bamboo Sheets 6 Piece,Bamboo,US
+P2,competitor,B0DM214YG3,B0CZRJY68B,Vesta,Poor,Decolure Bamboo Sheets 4 Piece; Decolure Bamboo Sheets 6 Piece; Sleephoria Bamboo Sheets 4 Piece; Sleephoria Bamboo Sheets 6 Piece,Bamboo,US
+P2,competitor,B09BL2SMVG,B09BKQK7RZ,WISHSMILE,,Sleephoria Bamboo Pillowcases; Sleephoria Cooling Pillowcases,Bamboo,US
+P2,competitor,B0CXPKK5DD,B0CXPDKH51,Zaizaihome,Beatable,Decolure Bamboo Fitted Sheet; Sleephoria Cooling Fitted Sheet,Bamboo,US
+P2,competitor,B08TBL21VT,B0GRV9GZ9L,Avolare,Aspirational,CooLinens Cooling Pillowcases 2 Piece; Sleephoria Cooling Pillowcases,Cooling,US
+P2,competitor,B0CP3NX181,B0GS2D7MBT,Bedsure,Beatable,CooLinens Cooling Pillowcases 2 Piece; Sleephoria Cooling Pillowcases,Cooling,US
+P2,competitor,B0G3W85TSH,B0G3WWQ7DL,Bedsure,Beatable,Sleephoria Cooling Comforter,Cooling,US
+P2,competitor,B0DFW11ZMW,B0DYZMVM53,Bedsure,Beatable,Sleephoria Cooling Comforter,Cooling,US
+P2,competitor,B0BN5TKJ8D,B099J44BKW,Bedsure,,Sleephoria Cooling Comforter,Cooling,US
+P2,competitor,B0FQPCYCVQ,B0GNMKSLRZ,Bedsure,Poor,Sleephoria Cooling Fitted Sheet,Cooling,US
+P2,competitor,B0F7GKNYTQ,B0FKTNLQHJ,Bedtter,Beatable,Sleephoria Cooling Comforter,Cooling,US
+P2,competitor,B0DSPYXPSP,B0DSPY326Y,Breescape,,CooLinens Cooling Sheets 4 Piece,Cooling,US
+P2,competitor,B0DSQ26RH3,B0H2797BXF,Breescape,,CooLinens Cooling Sheets 4 Piece,Cooling,US
+P2,competitor,B0DSQ12L6F,B0F53TNFSX,Breescape,Beatable,CooLinens Cooling Pillowcases 2 Piece; Sleephoria Cooling Pillowcases,Cooling,US
+P2,competitor,B0DSPZQ9JG,B0F38CR981,Breescape,Beatable,Sleephoria Cooling Comforter,Cooling,US
+P2,competitor,B0CTKM53QJ,B0CXB579TZ,Brookstone,Poor,CooLinens Cooling Sheets 4 Piece; Sleephoria Cooling Sheets 4 Piece,Cooling,US
+P2,competitor,B0FT4TC7NV,B0FT4VV426,CGK Unlimited,Poor,CooLinens Cooling Sheets 4 Piece; Sleephoria Cooling Sheets 4 Piece,Cooling,US
+P2,competitor,B08X2KBD67,B0B75178W1,CHOSHOME,Beatable,CooLinens Cooling Pillowcases 2 Piece; Sleephoria Cooling Pillowcases,Cooling,US
+P2,competitor,B09GV8SK79,B0DCGL5646,Comfort Spaces,,CooLinens Cooling Sheets 4 Piece; Sleephoria Cooling Sheets 4 Piece,Cooling,US
+P2,competitor,B08B448344,B0DGH3JKZ5,Coop Home Goods,Beatable,CooLinens Cooling Pillowcases 2 Piece; Sleephoria Cooling Pillowcases,Cooling,US
+P2,competitor,B0GKDH5DJ9,B0D4BZDBY7,Coop Home Goods,Beatable,Sleephoria Cooling Pillowcases,Cooling,US
+P2,competitor,B0CH8B5HZB,B0CP7J6RB8,Cozy Bliss,Beatable,Sleephoria Cooling Pillowcases,Cooling,US
+P2,competitor,B0BVQMB99W,B0BVQMYKYS,Cozy Bliss,Aspirational,Sleephoria Cooling Comforter,Cooling,US
+P2,competitor,B0DMCWVMVH,B0DVSHCVND,Cozy Bliss,Beatable,Sleephoria Cooling Comforter,Cooling,US
+P2,competitor,B0G7YZWPHK,B0F5WP36DB,DOWNCOOL,,Sleephoria Cooling Comforter,Cooling,US
+P2,competitor,B08YS6WZRR,B0DXT68BBR,Degrees of Comfort,,CooLinens Cooling Sheets 4 Piece; Sleephoria Cooling Sheets 4 Piece,Cooling,US
+P2,competitor,B0BQ6YY21S,B0BQ6XYWKB,EASELAND,Beatable,Sleephoria Cooling Comforter,Cooling,US
+P2,competitor,B07TMF54XC,B0HFSJ3HLW,Elegear,Aspirational,CooLinens Cooling Pillowcases 2 Piece; Sleephoria Cooling Pillowcases,Cooling,US
+P2,competitor,B094C72SZ4,B0D4J5Q1TK,Elegear,Beatable,Sleephoria Cooling Comforter,Cooling,US
+P2,competitor,B099J7KMK5,B099JMGRBY,Fittia,Beatable,CooLinens Cooling Pillowcases 2 Piece; Sleephoria Cooling Pillowcases,Cooling,US
+P2,competitor,B0GKHZKQ9W,B0GJTG1NBW,Gehtmnl,Beatable,Sleephoria Cooling Comforter,Cooling,US
+P2,competitor,B0BLT2MCT6,B0CN6YFBVJ,HOMFINE,Beatable,CooLinens Cooling Pillowcases 2 Piece; Sleephoria Cooling Pillowcases,Cooling,US
+P2,competitor,B0C3RB67HV,B0BNT8CPJF,HOMFINE,Beatable,Sleephoria Cooling Comforter,Cooling,US
+P2,competitor,B07V6SKZ7V,B0FRGBT861,LUXEAR,Aspirational,CooLinens Cooling Pillowcases 2 Piece; Sleephoria Cooling Pillowcases,Cooling,US
+P2,competitor,B0GBV12MKL,B0GBWB3NSS,MASVIS,,Sleephoria Cooling Comforter,Cooling,US
+P2,competitor,B095GTMX4Y,B0CFY7SVV7,Marchpower,Beatable,CooLinens Cooling Pillowcases 2 Piece; Sleephoria Cooling Pillowcases,Cooling,US
+P2,competitor,B0CZB5B67X,B0CZB5B67X,Niagara Sleep Solution,Poor,CooLinens Cooling Pillowcases 2 Piece; Sleephoria Cooling Pillowcases,Cooling,US
+P2,competitor,B0FLDYD61P,B0FLDYD61P,Pillcase,Poor,Decolure Cooling Sheets 4 Piece,Cooling,US
+P2,competitor,B0DLB4PQS8,B0DL5R7SSB,QUTOOL,Beatable,CooLinens Cooling Pillowcases 2 Piece; Sleephoria Cooling Pillowcases,Cooling,US
+P2,competitor,B0C141VGM6,B0C13Y18JW,REST,Beatable,CooLinens Cooling Pillowcases 2 Piece; Sleephoria Cooling Pillowcases,Cooling,US
+P2,competitor,B0B5TG8ZVW,B0B5TLCZ4X,REST,Beatable,Sleephoria Cooling Comforter,Cooling,US
+P2,competitor,B0DJ933TY2,B0DJ933TY2,Rifens,Beatable,CooLinens Cooling Pillowcases 2 Piece; Sleephoria Cooling Pillowcases,Cooling,US
+P2,competitor,B098TRFLHZ,B0D15BSQCT,Serta,Aspirational,Sleephoria Cooling Pillowcases,Cooling,US
+P2,competitor,B0BR9J5DGW,B0BR9J5DGW,Topcee,Beatable,CooLinens Cooling Pillowcases 2 Piece; Sleephoria Cooling Pillowcases,Cooling,US
+P2,competitor,B0GK9776YF,B0GVYJX6MB,Vine Voice,Beatable,Sleephoria Cooling Comforter,Cooling,US
+P2,competitor,B0DYNVCJG9,B0FDWBSS6T,Wolliwa,,Sleephoria Cooling Comforter,Cooling,US
+P2,competitor,B0DWNFHNXL,B0DWNGWXVQ,bedsmile,Beatable,Sleephoria Cooling Comforter,Cooling,US
+P2,competitor,B0GR4L84HS,B0GXZLZ3KB,jiaao,,Sleephoria Cooling Comforter,Cooling,US
+P2,competitor,B0BR3STN87,B0D6GLVXHM,100% Blackout Shield,Aspirational,Decolure Linen Curtains,Other,US
+P2,competitor,B0F8N6XCJ5,B0F82F4MD4,Anibedding,Poor,Sleephoria Quilt Set,Other,US
+P2,competitor,B08T761T9S,B0FSDPTLPL,Artrello,Aspirational,Decolure Waterproof Chair Cover,Other,US
+P2,competitor,B0CJHZYHGB,B0CJHW1J7V,BGment,Beatable,Decolure Linen Curtains,Other,US
+P2,competitor,B0DGGSVWZQ,B0D25V1C84,BIETYONE,Aspirational,Decolure Waterproof Chair Cover,Other,US
+P2,competitor,B0FH51CVXT,B0D14LL4GY,Bedsure,Beatable,Sleephoria Quilt Set,Other,US
+P2,competitor,B08V8HD2WT,B0D7MDYKGV,CUCRAF,Beatable,Decolure Linen Curtains,Other,US
+P2,competitor,B0CNV2LF3N,B0DGJ9RS81,Cape Comforts,Beatable,Decolure Beach Towel,Other,US
+P2,competitor,B0BT9RNGDQ,B0C37T2QLC,Casamollis,Beatable,Decolure Beach Towel,Other,US
+P2,competitor,B07M67HRKS,B0DCV7WBJM,Chakir Turkish,Aspirational,Decolure Beach Towel,Other,US
+P2,competitor,B0CKVPXJ8Z,B0CKVSC1SZ,Consevisen,Beatable,Decolure Front Door Welcome Sign,Other,US
+P2,competitor,B0DHCG7VDK,B0DHCGW8HR,DJY,Poor,Sleephoria Quilt Set,Other,US
+P2,competitor,B0FSZ8GX57,B0FSZBDYV5,DOUSUI,Beatable,Decolure Front Door Welcome Sign,Other,US
+P2,competitor,B0G82967V2,B0GPNMM78R,Dlerom,,Decolure Front Door Welcome Sign,Other,US
+P2,competitor,B08TT88SXY,B0D56RHFVV,Easy-Going,Aspirational,Decolure Waterproof Chair Cover,Other,US
+P2,competitor,B0BNHCYG6Z,B0BNHBKDGJ,Easy-Going,Beatable,Decolure Waterproof Chair Cover,Other,US
+P2,competitor,B0D14LPTLP,B0C4L25XW9,EverGrace,Beatable,Sleephoria Quilt Set,Other,US
+P2,competitor,B07S6N5C5P,B07TZHQQ2L,Exclusivo Mezcla,Aspirational,Sleephoria Quilt Set,Other,US
+P2,competitor,B0B2KVR9RB,B0CCFV2DPC,FESHKA,Beatable,Decolure Beach Towel,Other,US
+P2,competitor,B0D8JF6DDS,B0DS2L4CG2,FLYMME,Aspirational,Sleephoria Quilt Set,Other,US
+P2,competitor,B0DD37H251,B07YDFJ5K2,FORCHEER,Beatable,Decolure Waterproof Chair Cover,Other,US
+P2,competitor,B0CQ7YQJ5H,B0D6R57FVR,Fafua,Aspirational,Decolure Waterproof Chair Cover,Other,US
+P2,competitor,B0B136JQD1,B0B136S1FV,Genina,Aspirational,Decolure Waterproof Chair Cover,Other,US
+P2,competitor,B095H7XNTP,B0CD2CC5XV,Genina,Aspirational,Decolure Waterproof Chair Cover,Other,US
+P2,competitor,B0B12QRW73,B0BYZ5J2G2,Genina,Aspirational,Decolure Waterproof Chair Cover,Other,US
+P2,competitor,B08Z3KC7KL,B0HCPK37ZX,Genina,Aspirational,Decolure Waterproof Chair Cover,Other,US
+P2,competitor,B08WS5MYK8,B0CX5JQN29,Goroly Home,Beatable,Decolure Beach Towel,Other,US
+P2,competitor,B0CYLS2C62,B0CYLVSHZV,Guken,Beatable,Decolure Linen Curtains,Other,US
+P2,competitor,B07C9HL1G1,B0FGK6NVTC,H.VERSAILTEX,Aspirational,Decolure Linen Curtains,Other,US
+P2,competitor,B07TKS5LN7,B093Q37D94,H.VERSAILTEX,Aspirational,Decolure Waterproof Chair Cover,Other,US
+P2,competitor,B085DLHZQ1,B0BS5MVH9Q,HORIMOTE HOME,Aspirational,Sleephoria Quilt Set,Other,US
+P2,competitor,B089VT34WN,B089VRY7KD,Hansleep,Aspirational,Sleephoria Quilt Set,Other,US
+P2,competitor,B0FHWKTVFW,B0FHWJW2GJ,Hentonwell,Beatable,Decolure Front Door Welcome Sign,Other,US
+P2,competitor,B08GCF617Q,B09645XQZT,Howhic,Aspirational,Decolure Waterproof Chair Cover,Other,US
+P2,competitor,B09MT485FQ,B09MT5BQHW,INOVADAY,Aspirational,Decolure Linen Curtains,Other,US
+P2,competitor,B0CWWWFZ16,B0CX1RMCK5,Jowels,Poor,Decolure Linen Curtains,Other,US
+P2,competitor,B0BYD1BPNB,B0DBM44C7Y,Joydeco,Poor,Decolure Linen Curtains,Other,US
+P2,competitor,B0D1KHV9TM,B0D1KPS93N,Joyreap,Beatable,Sleephoria Quilt Set,Other,US
+P2,competitor,B0CX47TFJ4,B0CX3LSG5D,Lajode,Beatable,Decolure Linen Curtains,Other,US
+P2,competitor,B08FSDPZZP,B0C53PPZMS,Lalluxy,Aspirational,Decolure Waterproof Chair Cover,Other,US
+P2,competitor,B0FSD5K63B,B0FSCRCQQR,LianheCy,Beatable,Decolure Front Door Welcome Sign,Other,US
+P2,competitor,B08LDD8HBW,B0859YNTXN,Love's cabin,Aspirational,Sleephoria Quilt Set,Other,US
+P2,competitor,B0FWQB61X1,B0GDXK4KHR,Luxudecor,Beatable,Sleephoria Quilt Set,Other,US
+P2,competitor,B08SBYPF14,B0H7XKHWFT,MIULEE,Aspirational,Decolure Linen Curtains,Other,US
+P2,competitor,B0DM8RQ2MV,B0BTW5F4LQ,MODE HOME,Beatable,Decolure Front Door Welcome Sign,Other,US
+P2,competitor,B0BBQ84DMS,B0BBQDKL36,MONJITA,Aspirational,Decolure Front Door Welcome Sign,Other,US
+P2,competitor,B09P3NKL53,B09HGJGKYD,Maple&Stone,Aspirational,Sleephoria Quilt Set,Other,US
+P2,competitor,B09WDMDJCH,B07GFB5R1G,Mebien touche de la nature,Aspirational,Decolure Beach Towel,Other,US
+P2,competitor,B0BGS9VP2S,B0B4JBJGT9,Mybedsoul,Aspirational,Sleephoria Quilt Set,Other,US
+P2,competitor,B0B7DX7C51,B0D3XTPMX3,NICETOWN,Aspirational,Decolure Linen Curtains,Other,US
+P2,competitor,B0D59BMBK7,B0DFY9MKGZ,NORTHERN BROTHERS,Beatable,Decolure Waterproof Chair Cover,Other,US
+P2,competitor,B0BWJDW3BX,B0BWJC73QX,Nanspring,Aspirational,Decolure Linen Curtains,Other,US
+P2,competitor,B017NZZG12,B00JQFVKUO,Nature Is Gift,Aspirational,Decolure Beach Towel,Other,US
+P2,competitor,B0961CH4WH,B095ZRFXH5,Organic Cotton Mart,Beatable,Decolure Beach Towel,Other,US
+P2,competitor,B0BN99CBK2,B0DTSTCQF8,PARK&OZ,Beatable,Decolure Beach Towel,Other,US
+P2,competitor,B09P4228F4,B0CBV2JW6G,PERFNIQUE,Aspirational,Decolure Front Door Welcome Sign,Other,US
+P2,competitor,B0DT5T2BXX,B0DT64LH8Q,PONY DANCE,Poor,Decolure Linen Curtains,Other,US
+P2,competitor,B0DG84XRDW,B0DG84J1H5,Pitalk,Beatable,Decolure Linen Curtains,Other,US
+P2,competitor,B0DG2RHFFV,B0D1VHD6PY,RLWangChao,Beatable,Decolure Front Door Welcome Sign,Other,US
+P2,competitor,B0C7GTHJP6,B0C7GWSQ7G,RYB HOME,Poor,Decolure Linen Curtains,Other,US
+P2,competitor,B0DQKM17ZF,B0D8ZW2F3C,SMYRNA TURKISH COTTON,Aspirational,Decolure Beach Towel,Other,US
+P2,competitor,B08K7LPC9L,B08K7PDZ1F,SPRINGRICO,Aspirational,Decolure Waterproof Chair Cover,Other,US
+P2,competitor,B0BLN1DSXW,B0BLMYTK9C,SPRINGRICO,Beatable,Decolure Waterproof Chair Cover,Other,US
+P2,competitor,B0FLPZN8VF,B0HDS72F19,SRSZHIYUE,Beatable,Decolure Front Door Welcome Sign,Other,US
+P2,competitor,B085Y7YSVZ,B0CBMMBZ67,SUNSPUN LINENS,,Decolure Beach Towel,Other,US
+P2,competitor,B0F3X5N9F3,B0GTL61VXL,Salt Earth,,Decolure Beach Towel,Other,US
+P2,competitor,B09FL11K2J,B0DC3S5WV2,SearchI,Aspirational,Decolure Waterproof Chair Cover,Other,US
+P2,competitor,B081GQBPRT,B09GY7YG2P,SearchI,Aspirational,Decolure Waterproof Chair Cover,Other,US
+P2,competitor,B0CYSX48KJ,B0DNTT71SM,Secgo,Beatable,Decolure Waterproof Chair Cover,Other,US
+P2,competitor,B0D4Q71SDC,B0DK6WGD3R,Seimip,Beatable,Decolure Front Door Welcome Sign,Other,US
+P2,competitor,B077XWCV6D,B0D4ZNRN1P,Smiry,Aspirational,Decolure Waterproof Chair Cover,Other,US
+P2,competitor,B09GPP8TRT,B0DHVVZF9Q,Sufdari,Aspirational,Decolure Waterproof Chair Cover,Other,US
+P2,competitor,B0CL5YGW86,B0GLG3DN2P,Surfapans,Aspirational,Decolure Front Door Welcome Sign,Other,US
+P2,competitor,B0D2X1FT1X,B0D2XCKW3D,TQianJiang,Beatable,Decolure Front Door Welcome Sign,Other,US
+P2,competitor,B08N891RBV,B0H8T2BYZK,Threadmade,Beatable,Decolure Linen Curtains,Other,US
+P2,competitor,B0DFWPKBG1,B0F6YR5VMZ,Topfinel,Beatable,Decolure Linen Curtains,Other,US
+P2,competitor,B0CY5BYX7W,B0CY5H7RHH,Tyrot,Beatable,Sleephoria Quilt Set,Other,US
+P2,competitor,B0DJ6XGCFD,B0CRH88PXZ,WDCOZY,Beatable,Sleephoria Quilt Set,Other,US
+P2,competitor,B0CQT8LKMK,B0CQSZMYXD,WRENSONGE,Beatable,Sleephoria Quilt Set,Other,US
+P2,competitor,B0CRPTW9GV,B0D7V5YL6V,Wake In Cloud,Aspirational,Sleephoria Quilt Set,Other,US
+P2,competitor,B0895VM7KG,B0DM8Y65RT,YEMYHOM,Beatable,Decolure Waterproof Chair Cover,Other,US
+P2,competitor,B0BYCSLWR6,B0CJTP9JFK,YUEANG,Aspirational,Decolure Waterproof Chair Cover,Other,US
+P2,competitor,B0CRTM5ZDN,B0CRVBZ5GJ,Yakamok,Aspirational,Decolure Linen Curtains,Other,US
+P2,competitor,B0FCRYV96S,B0FCS2QVKW,Yalikop,Beatable,Decolure Front Door Welcome Sign,Other,US
+P2,competitor,B0FC6F4RYY,B08MX8D8KK,Ycosy,Beatable,Sleephoria Quilt Set,Other,US
+P2,competitor,B09Q2YTRL3,B0B5684GHJ,YoungsTex,Beatable,Decolure Linen Curtains,Other,US
+P2,competitor,B09VC8ZM91,B0B3DGBF86,Your Choice,Beatable,Decolure Beach Towel,Other,US
+P2,competitor,B0F534LNF4,B0GMBGGXCX,Zyvola,Poor,Decolure Linen Curtains,Other,US
+P2,competitor,B0F538X5VQ,B0GYNL4FXW,Zyvola Store,Poor,Decolure Linen Curtains,Other,US
+P2,competitor,B0DD3YKGCZ,B0DKDSQXBH,akkialla,Beatable,Sleephoria Quilt Set,Other,US
+P2,competitor,B0CLV2KQ6T,B0CLV68M42,comurdyo,Beatable,Decolure Front Door Welcome Sign,Other,US
+P2,competitor,B0D5HJM483,B0GMWJVN14,flowtorely,Beatable,Decolure Front Door Welcome Sign,Other,US
+P2,competitor,B0FWC4V93F,B0G2XD3DW6,homuvdok,Beatable,Decolure Front Door Welcome Sign,Other,US
+P2,competitor,B0DG2HRZKK,B0DG238XCM,Bedsure,Poor,Decolure Satin Fitted Sheet,Satin,US
+P2,competitor,B08JKWGXZ9,B08RHZ9TMQ,Candoury,,Decolure Satin Sheets 4 Piece; Decolure Satin Sheets 6 Piece; Sleephoria Satin Sheets 4 Piece; Sleephoria Satin Sheets 6pcs,Satin,US
+P2,competitor,B0B1DVKHSJ,B0B1DX9FRV,JUWENIN,,Decolure Satin Fitted Sheet,Satin,US
+P2,competitor,B0D62TQYPX,B0D62YKYKZ,Lirex,Poor,Decolure Satin Fitted Sheet,Satin,US
+P2,competitor,B0DWSK45RC,B0DWSHT8CF,Love's cabin,Poor,Decolure Satin Fitted Sheet,Satin,US
+P2,competitor,B0BV1HW54C,B0BV1JFXC4,NSGZ,Poor,Decolure Satin Fitted Sheet,Satin,US
+P2,competitor,B09W5W7VCC,B0BFB5DFVB,P Pothuiny,Poor,Decolure Satin Fitted Sheet,Satin,US
+P2,competitor,B0BDDGJ38X,B0BDDJM9RW,Vonty,Poor,Decolure Satin Sheets 4 Piece; Decolure Satin Sheets 6 Piece; Sleephoria Satin Sheets 4 Piece; Sleephoria Satin Sheets 6pcs,Satin,US
+P2,competitor,B00KDL108M,B01KFPFUAE,ALASKA BEAR,Aspirational,Decolure Silk Pillowcase,Silk,US
+P2,competitor,B0DFGZPP7K,B0DFGZZ7F1,ATreebay,Beatable,Sleephoria Silk Sleep Mask - Contoured; Sleephoria Silk Sleep Mask - Velcro,Silk,US
+P2,competitor,B07VKRTKRM,B07XD9468J,Adubor,,Decolure Silk Pillowcase,Silk,US
+P2,competitor,B01N0Z6HVO,B0FXBTQ86V,BLISSFORD,,Decolure Silk Pillowcase,Silk,US
+P2,competitor,B0BFDGC7CC,B0CWRWR64G,BLISSY,Beatable,Sleephoria Silk Sleep Mask - Contoured; Sleephoria Silk Sleep Mask - Velcro,Silk,US
+P2,competitor,B0G49VVD1Z,B0GY143VLB,BLISSY,Beatable,Sleephoria Silk Sleep Mask - Contoured,Silk,US
+P2,competitor,B0C1YYKVDQ,B0H5JPNHHN,BLSSNZ,Aspirational,Sleephoria Silk Sleep Mask - Contoured,Silk,US
+P2,competitor,B0DMFYTLQR,B0FSG756Y3,Back Bay Audio,Poor,Sleephoria Silk Sleep Mask - Contoured,Silk,US
+P2,competitor,B09NP72NNZ,B0DVCCDL65,Brooklinen,Poor,Decolure Silk Pillowcase,Silk,US
+P2,competitor,B0BXP2FQYZ,B09V4R7MMZ,Casbrove,,Decolure Silk Pillowcase,Silk,US
+P2,competitor,B081CTM1T8,B0CTCZGGHP,Colorado Home Co,Beatable,Decolure Silk Pillowcase,Silk,US
+P2,competitor,B0B8DXN3K2,B0B5WGXZTH,DKBslik,,Decolure Silk Pillowcase,Silk,US
+P2,competitor,B08NHHDLT6,B0GQZL7XLN,DROWSY,Beatable,Sleephoria Silk Sleep Mask - Contoured; Sleephoria Silk Sleep Mask - Velcro,Silk,US
+P2,competitor,B09YRX2F83,B09YRXKX5Z,FengXinZi Store,Aspirational,Sleephoria Silk Sleep Mask - Contoured,Silk,US
+P2,competitor,B00FWZW55Q,B0FKC1MD24,Fishers Finery,Aspirational,Decolure Silk Pillowcase,Silk,US
+P2,competitor,B01M1CKVJU,B01MQIYMW3,Fishers Finery,Beatable,Decolure Silk Pillowcase,Silk,US
+P2,competitor,B0CKPKG71N,B0CKPNR7DW,Gabire,,Decolure Silk Pillowcase,Silk,US
+P2,competitor,B0BBSSRNHM,B0D9FCH7Q5,INFIIXSO,Aspirational,Decolure Silk Pillowcase,Silk,US
+P2,competitor,B0CGLG8CDW,B0DK5G1ZJP,INFIIXSO,,Decolure Silk Pillowcase,Silk,US
+P2,competitor,B089SJQP45,B0BCGZVPCM,INSSL,,Decolure Silk Pillowcase,Silk,US
+P2,competitor,B07RGFS927,B0DS1T8ZR7,J JIMOO,,Decolure Silk Pillowcase,Silk,US
+P2,competitor,B07S2XV3TG,B094NS7KFX,JOGJUE,,Decolure Silk Pillowcase,Silk,US
+P2,competitor,B014VYD7NW,B0D4MHYD6C,Jersey Slumber,Aspirational,Sleephoria Silk Sleep Mask - Contoured; Sleephoria Silk Sleep Mask - Velcro,Silk,US
+P2,competitor,B07JLLJSK5,B08BFG7CNK,Jocoku,,Decolure Silk Pillowcase,Silk,US
+P2,competitor,B0CKLCLQ62,B0CM16H4RY,Kinself,,Decolure Silk Pillowcase,Silk,US
+P2,competitor,B09GYPT47K,B0FNPM9ZM4,Kitsch,Aspirational,Sleephoria Silk Sleep Mask - Contoured; Sleephoria Silk Sleep Mask - Velcro,Silk,US
+P2,competitor,B074TBYWGS,B074TBH52S,LULUSILK,Aspirational,Sleephoria Silk Sleep Mask - Contoured; Sleephoria Silk Sleep Mask - Velcro,Silk,US
+P2,competitor,B09H7FZ5JM,B09YQ2GFGB,LitBear,Aspirational,Sleephoria Silk Sleep Mask - Contoured; Sleephoria Silk Sleep Mask - Velcro,Silk,US
+P2,competitor,B0BN559GVG,B0CNX9RTK8,LitBear,Beatable,Sleephoria Silk Sleep Mask - Contoured; Sleephoria Silk Sleep Mask - Velcro,Silk,US
+P2,competitor,B0FDB7XXSL,B0D5R7CCZ2,LitBear,Beatable,Sleephoria Silk Sleep Mask - Contoured,Silk,US
+P2,competitor,B07KC5DWCC,B0BQD58J7V,MZOO,Aspirational,Sleephoria Silk Sleep Mask - Contoured,Silk,US
+P2,competitor,B0D8M5MDCS,B0DFJDJLDB,Manta Sleep,Beatable,Sleephoria Silk Sleep Mask - Contoured,Silk,US
+P2,competitor,B07C7Y8QSW,B07C7VH6CQ,OLESILK,Beatable,Sleephoria Silk Sleep Mask - Contoured; Sleephoria Silk Sleep Mask - Velcro,Silk,US
+P2,competitor,B0B4RH938T,B0HCMWNG9W,PROMEED,Aspirational,Decolure Silk Pillowcase,Silk,US
+P2,competitor,B09G8P3X6L,B09G8P3X6L,RENESSY,Beatable,Decolure Silk Pillowcase,Silk,US
+P2,competitor,B0BXBN7JMP,B0BXBPNMVW,ROSEWARD,Beatable,Decolure Silk Pillowcase,Silk,US
+P2,competitor,B07KJYP1VC,B0H9S9ZNL2,Ravmix,,Decolure Silk Pillowcase,Silk,US
+P2,competitor,B0C6DYG511,B0C6DZRBWV,SECZIPE,Beatable,Sleephoria Silk Sleep Mask - Contoured; Sleephoria Silk Sleep Mask - Velcro,Silk,US
+P2,competitor,B0CM9N244T,B0CM9LCN75,SGMSILK,,Decolure Silk Pillowcase,Silk,US
+P2,competitor,B0BBC1GN6H,B0C395RDGT,SIYUAN,,Decolure Silk Pillowcase,Silk,US
+P2,competitor,B09CLHKX26,B0D94T2PG7,SLIP,Beatable,Sleephoria Silk Sleep Mask - Contoured,Silk,US
+P2,competitor,B07TV3NVNX,B075CNDRFJ,Slpbaby,,Decolure Silk Pillowcase,Silk,US
+P2,competitor,B09BFQG17F,B09HZYQK2C,Suatien,,Decolure Silk Pillowcase,Silk,US
+P2,competitor,B0CJMHPKKC,B0CJMDTVS2,TheSleepGuard,Beatable,Sleephoria Silk Sleep Mask - Contoured,Silk,US
+P2,competitor,B0F7R9NPSW,B0FBWPMZHX,Umisleep Store,Aspirational,Sleephoria Silk Sleep Mask - Contoured; Sleephoria Silk Sleep Mask - Velcro,Silk,US
+P2,competitor,B09T6DV8BB,B0CZF5V1W7,WLOSJ,,Decolure Silk Pillowcase,Silk,US
+P2,competitor,B09C5PD9VD,B0F1MYF2WL,YFONG,Aspirational,Sleephoria Silk Sleep Mask - Contoured,Silk,US
+P2,competitor,B0D4PKVNWB,B0D4Q3KB7S,YFONG,Beatable,Sleephoria Silk Sleep Mask - Velcro,Silk,US
+P2,competitor,B01LVU7THF,B01LVZC25I,ZIMASILK,Aspirational,Decolure Silk Pillowcase,Silk,US
+P2,competitor,B094XT94FC,B0GXDFM5TS,ZIMASILK,Beatable,Decolure Silk Pillowcase,Silk,US
+P2,competitor,B09NVRZBDJ,B09ZRJBNY5,ZIMASILK,Beatable,Decolure Silk Pillowcase,Silk,US
+P2,competitor,B0CZPYKHQW,B0FV2TSFBG,ZIMASILK,Beatable,Sleephoria Silk Sleep Mask - Contoured,Silk,US
+P2,competitor,B0BZRCV4BM,B07KPF57S3,ZIMASILK,Beatable,Sleephoria Silk Sleep Mask - Contoured,Silk,US
+P2,competitor,B0DSYXFT4M,B0F9STVX64,ZIMASILK,Beatable,Sleephoria Silk Sleep Mask - Contoured,Silk,US
+P2,competitor,B07V5BCQFW,B0B5K41YD7,Zenssia,Aspirational,Sleephoria Silk Sleep Mask - Contoured; Sleephoria Silk Sleep Mask - Velcro,Silk,US
+P2,competitor,B0BBN627MK,B0BBN7XTW5,iCooBreeze,Beatable,Sleephoria Silk Sleep Mask - Contoured; Sleephoria Silk Sleep Mask - Velcro,Silk,US
+P2,competitor,B07J41LJJZ,B0H9RJ7HSY,spacepower,,Sleephoria Silk Sleep Mask - Contoured; Sleephoria Silk Sleep Mask - Velcro,Silk,US
