@@ -2,6 +2,8 @@
 
 **Main files:** `BFCM_2026_Competitor_Research.xlsx` has one tab per product and marketplace, a filterable Dashboard and live product images (open it in Excel 365 or Google Sheets). The web dashboard is at https://claude.ai/artifact/1y6Wz37LDhrmDxxGXkFP9C and is rebuilt with `build_dashboard.py`. `image_request.csv` lists the image files to download for the web dashboard (AGENT_PROMPTS.md Prompt 11).
 
+**Accuracy (Oct 13):** the workbook's *Data Check* tab gives the as-of date of every source and a spot check against the live Amazon search page. Our own prices in the Command Center come from its fee feed (Mar 30, 2026) and are out of date, so tabs show a dated *Price now* (Data Dive Oct 12–13 today; Amazon page check once Prompt 12 runs, saved to `data/our_prices/`). Any comparison still using the March price is marked STALE. Our *Parent ASIN* now comes from the Data Dive catalog; the Command Center's `parent_asin` is one of our child ASINs. `our_price_request.csv` lists every child ASIN for Prompt 12.
+
 
 **Owner:** Shayan Rana. **Backup:** Zarlish. **v1 due:** Thu Oct 15, 2026 (BFCM-2026 ClickUp task "Competitor BFCM tracker").
 

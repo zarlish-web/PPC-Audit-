@@ -159,14 +159,14 @@ function renderOurs(p){
         <div class="fact"><div class="k">Variations (SKUs)</div><div class="v">${fmtN(p.skus)}</div></div>
         <div class="fact"><div class="k">Sizes</div><div class="v">${esc((p.sizes||[]).join(", ") || "—")}</div></div>
         <div class="fact"><div class="k">Colours</div><div class="v">${(p.colours||[]).length ? esc(p.colours.length + ": " + p.colours.slice(0,8).join(", ") + (p.colours.length > 8 ? "…" : "")) : "—"}</div></div>
-        <div class="fact"><div class="k">Blended price</div><div class="v">${fmt$(p.price)}</div></div>
+        <div class="fact"><div class="k">Our price (best child)</div><div class="v">${fmt$(p.price)}</div><div class="sub">${esc(p.priceSrc || "")}</div></div>
         <div class="fact"><div class="k">Contribution / unit</div><div class="v">${fmt$(p.contrib)}</div></div>
         <div class="fact"><div class="k">Break-even ACoS</div><div class="v">${fmtP(p.be)}</div></div>
         <div class="fact"><div class="k">Units, 28 days</div><div class="v">${fmtN(p.u28)}</div></div>
         <div class="fact"><div class="k">BFCM 2025 lift</div><div class="v">${fmtX(p.lift)}</div></div>
         <div class="fact"><div class="k">BFCM 2025 TACoS</div><div class="v">${typeof p.tacos === "number" ? p.tacos.toFixed(1) + "%" : "—"}${typeof p.preTacos === "number" ? ` <span class="sub">vs ${p.preTacos.toFixed(1)}% before</span>` : ""}</div></div>
       </div>
-      ${vars.length ? `<div class="vars" aria-label="Our variations">${vars.map(v => `<div class="var">${imgBox(v.img, v.asin)}<b>${esc([v.size, v.colour].filter(Boolean).join(" · ") || v.asin || "")}</b>${v.price ? fmt$(v.price) : ""}${typeof v.u28 === "number" ? " · " + fmtN(v.u28) + " u" : ""}</div>`).join("")}</div><div class="sub">${p.vars.length} variations${p.vars.length > 60 ? ", first 60 by units shown" : ""}</div>` : `<div class="sub" style="margin-top:8px">Variation list not available yet for this product.</div>`}
+      ${vars.length ? `<div class="vars" aria-label="Our variations">${vars.map(v => `<div class="var">${imgBox(v.img, v.asin)}<b>${esc([v.size, v.colour].filter(Boolean).join(" · ") || v.asin || "")}</b>${v.price ? fmt$(v.price) + (v.live ? "" : " <span class=\"sub\">(CC, Mar)</span>") : ""}${typeof v.u28 === "number" ? " · " + fmtN(v.u28) + " u" : ""}</div>`).join("")}</div><div class="sub">${p.vars.length} variations${p.vars.length > 60 ? ", first 60 by units shown" : ""}</div>` : `<div class="sub" style="margin-top:8px">Variation list not available yet for this product.</div>`}
     </div>`;
 }
 
@@ -206,7 +206,7 @@ function renderKpis(p, rows){
   const lose = rows.reduce((s,c) => s + (c.we_lose || 0), 0), win = rows.reduce((s,c) => s + (c.we_win || 0), 0);
   const k = [
     ["Competitors", fmtN(rows.length), "in this view"],
-    ["Median price", fmt$(med), p ? "ours " + fmt$(p.price) + " blended" : ""],
+    ["Median price", fmt$(med), p ? "ours " + fmt$(p.price) + " (" + (p.priceSrc || "") + ")" : ""],
     ["Priced below us", fmtN(below), "same size, else vs our Queen"],
     ["List Price set", fmtN(lpset), `${zone} within 12% (STR zone)`],
     ["STR on page (checked)", `${rows.filter(c => c.str_show === "Y").length} / ${rows.filter(c => c.str_show === "Y" || c.str_show === "N").length}`, "Amazon page check, Oct 13"],
@@ -218,7 +218,8 @@ function renderKpis(p, rows){
 
 function card(c, p){
   const g = gap(c);
-  const gChip = g === null ? "" : (g < 0 ? `<span class="chip bad">${fmtP(g)} vs ours</span>` : `<span class="chip">+${fmtP(g)} vs ours</span>`);
+  const gTail = c.our_live ? "" : " (our price Mar, stale)";
+  const gChip = g === null ? "" : (g < 0 ? `<span class="chip bad" title="${esc(c.basis || "")}">${fmtP(g)} vs ours${gTail}</span>` : `<span class="chip" title="${esc(c.basis || "")}">+${fmtP(g)} vs ours${gTail}</span>`);
   const pd = (typeof c.pd === "number" && typeof c.pd_pre === "number" && c.pd_pre >= 5) ? c.pd / c.pd_pre : null;
   return `<article class="card">
     ${imgBox(c.img, c.child)}
@@ -227,7 +228,7 @@ function card(c, p){
     <div class="asin">Child <a href="${amz(c.child,c.mkt)}" target="_blank" rel="noopener">${esc(c.child || "—")}</a> · Parent ${esc(c.parent || "—")}</div>
     <div>${bandChip(c)} ${gChip} ${strChip(c)}</div>
     <div class="nums">
-      <div><div class="k">Price</div><div class="v">${fmt$(c.price)}</div></div>
+      <div><div class="k">Price <span class="sub">${esc(c.seen ? c.seen.slice(5) : "")}</span></div><div class="v">${fmt$(c.price)}</div></div>
       <div><div class="k">List</div><div class="v">${fmt$(c.lp)}</div></div>
       <div><div class="k">BSR</div><div class="v">${fmtN(c.bsr)}</div></div>
       <div><div class="k">Wk units</div><div class="v">${fmtN(c.wk)}</div></div>

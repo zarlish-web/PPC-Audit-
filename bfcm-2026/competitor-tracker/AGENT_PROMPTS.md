@@ -135,3 +135,24 @@ Download every image listed in the attached image_request.csv (column image_url)
 Save each file as <asin>.jpg, resized so the longest side is 400 px (JPEG quality 80). Put them all in one folder named product_images/, zip it as product_images.zip, and include a manifest CSV (asin, source_url, file_name, width, height, ok Y/N, error).
 Do not substitute any other image when a download fails; mark ok = N with the error.
 ```
+
+## Prompt 12: Our own live prices (Amazon page check of our child ASINs)
+
+Why: the Command Center price for our SKUs comes from its fee feed, last dated Mar 30, 2026. Live prices are higher on several heroes (B6 King White $99.99 live vs $89.99 in the feed; B4 King White $94.99 vs $79.99), so every "their price vs ours" gap needs our live price.
+
+```
+Read-only. Don't change any price, deal or listing, and don't change, request or grant any access.
+
+For every row in the attached our_price_request.csv (US rows on Amazon.com, CA rows on Amazon.ca), open the product page of child_asin with the size and colour selected, logged out or with a non-Prime view if possible, and record what a shopper sees right now.
+
+Output our_price_check_<YYYY-MM-DD>.csv with exactly these columns:
+  marketplace, asin, sku, check_date, check_time_et, price, strikethrough_shown (Y/N), strikethrough_price, strikethrough_label (List Price / Typical price / Was price / none), deal_badge (e.g. Limited time deal / none), coupon (e.g. 10% / $5 / blank), prime_exclusive_price, rating, reviews, bought_past_month, in_stock (Y/N), buy_box_seller, parent_asin_on_page
+
+Rules:
+- price = the price in the buy box for that exact size and colour, before any coupon. Plain numbers, USD for US and CAD for CA.
+- Blank when not shown, never 0. Don't carry a value over from another colour or size.
+- Start with the rows that have the most units_28d (heroes first); if you can't finish all of them, send what you have and say how many are left.
+- Report any child_asin that redirects to another ASIN, shows "Currently unavailable", or sits under a different parent than the rest of its product.
+```
+
+Save the file in `data/our_prices/` and rebuild: live prices replace the stale Command Center price in every tab, the Product Index, the Dashboard and the same-size gaps.

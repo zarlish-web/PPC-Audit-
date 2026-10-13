@@ -61,6 +61,57 @@ for mk, f in (("US", "catalog_com.json"), ("CA", "catalog_ca.json")):
     c = jl(f"{DATA}/catalog/{f}", {}) or {}
     catalog[mk] = {it["asin"]: it for it in c.get("items", []) if it.get("asin")}
 
+# ------------------------------------------------------------------ accuracy: our live price and real parent
+# Command Center SKU prices come from the fee feed (feeDate, mostly 2026-03-30) and are stale. Live price priority:
+# 1. Amazon page check of our own ASINs (data/our_prices/*.csv, AGENT_PROMPTS Prompt 12)
+# 2. Data Dive niche snapshot dated on/after FRESH_FROM
+# Command Center price is shown alongside with its date, never as "now".
+FRESH_FROM = "2026-10-01"
+OUR_BRANDS = ("DECOLURE", "SLEEPHORIA", "SLEEP SANCTUARY")
+our_now = {}   # (mkt, asin) -> price record
+for _a, _v in dd.items():
+    if (_v.get("brand") or "").strip().upper() in OUR_BRANDS and isinstance(_v.get("price"), (int, float)):
+        _d = (_v.get("nicheDate") or "")[:10]
+        if _d >= FRESH_FROM:
+            our_now[("US", _a)] = {"price": _v["price"], "lp": None, "src": "Data Dive", "date": _d,
+                                  "rating": _v.get("rating"), "reviews": _v.get("reviewCount")}
+for _f in sorted(glob.glob(f"{DATA}/our_prices/*.csv")):
+    for _r in csv.DictReader(open(_f, newline="", encoding="utf-8-sig")):
+        _m, _a = (_r.get("marketplace") or "").strip().upper(), (_r.get("asin") or "").strip()
+        try:
+            _p = float(_r["price"]) if _r.get("price") not in (None, "") else None
+        except ValueError:
+            _p = None
+        if _a and _m in ("US", "CA") and _p is not None:
+            num_ = lambda z: float(z) if z not in (None, "") else None
+            our_now[(_m, _a)] = {"price": _p, "lp": num_(_r.get("strikethrough_price")), "src": "Amazon page", "date": _r.get("check_date"),
+                                 "rating": num_(_r.get("rating")), "reviews": num_(_r.get("reviews")),
+                                 "label": _r.get("strikethrough_label"), "deal": _r.get("deal_badge"), "coupon": _r.get("coupon")}
+
+def now_txt(n):
+    return f"{n['src']}, {n['date']}" if n else None
+
+def amazon_parent(pid, mkt):
+    """Real Amazon parent ASIN: the parent the Data Dive catalog shows for our SKU children (Command Center's
+    'parent_asin' is one of our child ASINs, not the Amazon parent)."""
+    cat = catalog.get(mkt, {}) or {}
+    kids = [x.get("asin") for x in ((skus.get((pid, mkt)) or {}).get("skus") or []) if x.get("asin")]
+    cnt = {}
+    for a in kids:
+        pa = (cat.get(a) or {}).get("parentAsin")
+        if pa:
+            cnt[pa] = cnt.get(pa, 0) + 1
+    return max(cnt, key=cnt.get) if cnt else None
+
+def our_headline_price(pid, mkt, best, cc_price):
+    """Live price of the best-selling child when held; otherwise the Command Center blended price, labelled stale."""
+    n = our_now.get((mkt, best))
+    if n:
+        return n["price"], now_txt(n)
+    if cc_price is not None:
+        return cc_price, "Command Center blended, Mar 2026 - STALE"
+    return None, "No price"
+
 IMG_RE = re.compile(r"^https://[a-z0-9.-]*amazon\.com/images/I/[A-Za-z0-9+%._-]+\.(jpg|png|jpeg|gif)$")
 def good_img(u):
     return u if isinstance(u, str) and IMG_RE.match(u) else None
@@ -180,7 +231,7 @@ def our_title_and_image(pid, mkt):
     p, o = our_profile(pid, mkt)
     cat = catalog.get(mkt, {}) or {}
     best = (p.get("thumbnail") or {}).get("childAsin") or o.get("best_child_asin")
-    parent = p.get("parentAsin") or o.get("parent_asin")
+    parent = amazon_parent(pid, mkt) or p.get("parentAsin") or o.get("parent_asin")
     title = None
     img = good_img((p.get("thumbnail") or {}).get("url"))
     for a in (best, parent):
@@ -195,10 +246,13 @@ def our_title_and_image(pid, mkt):
             img = img or good_img(kids[0].get("imageUrl"))
     return title, img, best, parent
 
+_var_cache = {}
 def our_variations(pid, mkt):
     """SKU rows joined to catalog children (image, title)."""
+    if (pid, mkt) in _var_cache:
+        return _var_cache[(pid, mkt)]
     p, o = our_profile(pid, mkt)
-    parent = p.get("parentAsin") or o.get("parent_asin")
+    parent = amazon_parent(pid, mkt) or p.get("parentAsin") or o.get("parent_asin")
     cat = catalog.get(mkt, {}) or {}
     s = (skus.get((pid, mkt)) or {}).get("skus") or []
     rows, seen = [], set()
@@ -211,7 +265,7 @@ def our_variations(pid, mkt):
         rows.append({
             "sku": g(x, "sku", "SKU", "sellerSku"), "asin": asin, "title": title,
             "size": g(x, "size") or parse_size(title), "colour": g(x, "colour", "color") or parse_colour(title),
-            "price": g(x, "price"), "contribution": g(x, "contribution", "contributionPerUnit", "contribution_per_unit"),
+            "price": g(x, "price"), "price_date": g(x, "feeDate"), "contribution": g(x, "contribution", "contributionPerUnit", "contribution_per_unit"),
             "be_acos": g(x, "beAcos", "breakEvenAcos", "be_acos", "break_even_acos"), "units_28d": g(x, "units28d", "units_28d", "units"),
             "status": g(x, "status") or it.get("status"), "image": good_img(it.get("imageUrl")),
         })
@@ -220,12 +274,15 @@ def our_variations(pid, mkt):
     for a, it in cat.items():   # catalog children not in the SKU list
         if it.get("parentAsin") == parent and a not in seen and a != parent:
             rows.append({"sku": None, "asin": a, "title": it.get("title"), "size": parse_size(it.get("title")),
-                         "colour": parse_colour(it.get("title")), "price": None, "contribution": None, "be_acos": None,
+                         "colour": parse_colour(it.get("title")), "price": None, "price_date": None, "contribution": None, "be_acos": None,
                          "units_28d": None, "status": it.get("status"), "image": good_img(it.get("imageUrl"))})
     for r in rows:
         if isinstance(r["be_acos"], (int, float)) and abs(r["be_acos"]) > 1.5:
             r["be_acos"] = r["be_acos"] / 100
+        n = our_now.get((mkt, r["asin"]))
+        r["price_now"], r["now_src"] = (n["price"], now_txt(n)) if n else (None, None)
     rows.sort(key=lambda r: (-(r["units_28d"] or 0), r["size"] or "", r["colour"] or ""))
+    _var_cache[(pid, mkt)] = rows
     return rows
 
 def comp_image(cp):
@@ -400,16 +457,31 @@ for (pid, mkt), d in cc.items():
     bs = e.get("by_size") or (e.get("blended") or {}).get("by_size") or []
     our_size_price[(pid, mkt)] = {({"Cal King": "California King"}.get(x.get("size"), x.get("size"))): x.get("price") for x in bs if x.get("price") is not None}
     our_blend[(pid, mkt)] = econ(e)["price"]
+# live same-size price: median of our children of that size with a live (page / Data Dive) price
+our_live_size = {}
+for (pid, mkt) in cc:
+    for v in our_variations(pid, mkt):
+        sz = {"Cal King": "California King"}.get(v.get("size"), v.get("size"))
+        if sz and v.get("price_now") is not None:
+            our_live_size.setdefault((pid, mkt), {}).setdefault(sz, []).append((v["price_now"], v["now_src"]))
+def _live(pid, mkt, sz):
+    xs = (our_live_size.get((pid, mkt)) or {}).get(sz)
+    if not xs:
+        return None, None
+    return statistics.median(x[0] for x in xs), f"{xs[0][1]}; {len(xs)} child{'ren' if len(xs) > 1 else ''}"
 for r in records:
     bys = our_size_price.get((r["pid"], "US"), {})
-    if r["size"] and bys.get(r["size"]) is not None:
-        r["our_same"], r["basis"] = bys[r["size"]], f"Same size ({r['size']})"
-    elif bys.get("Queen") is not None:
-        r["our_same"], r["basis"] = bys["Queen"], "Size not stated - vs our Queen"
+    want = r["size"] if r["size"] else "Queen"
+    lead = f"Same size ({want})" if r["size"] else "Size not stated - vs our Queen"
+    lp_, src_ = _live(r["pid"], "US", want)
+    if lp_ is not None:
+        r["our_same"], r["basis"], r["our_live"] = lp_, f"{lead}. Ours live: {src_}", True
+    elif bys.get(want) is not None:
+        r["our_same"], r["basis"], r["our_live"] = bys[want], f"{lead}. Ours: Command Center fee feed, Mar 2026 - STALE", False
     elif our_blend.get((r["pid"], "US")) is not None:
-        r["our_same"], r["basis"] = our_blend[(r["pid"], "US")], "vs our blended price"
+        r["our_same"], r["basis"], r["our_live"] = our_blend[(r["pid"], "US")], "vs our blended price (Command Center, Mar 2026 - STALE)", False
     else:
-        r["our_same"], r["basis"] = None, "No price for us"
+        r["our_same"], r["basis"], r["our_live"] = None, "No price for us", False
 
 if "--data-only" in sys.argv:
     raise SystemExit(0)
@@ -446,6 +518,7 @@ COMP_COLS = [
     ("rev", "Est monthly revenue ($)", 9, "calc", None, "$#,##0"),
     ("rating", "Rating", 5, "cc", None, "0.0"),
     ("reviews", "Reviews", 7, "cc", None, "#,##0"),
+    ("seen", "Snapshot date", 8, "cc", "Date the Command Center last captured this competitor's price, BSR and reviews. Orange = older than 7 days before the build.", "yyyy-mm-dd"),
     ("listed", "Listed", 9, "dd", None, "yyyy-mm-dd"),
     ("ful", "Fulfil.", 5, "dd", None, None),
     ("country", "Seller country", 6, "dd", None, None),
@@ -487,7 +560,7 @@ COMP_COLS = [
 CK = {c[0]: i + 1 for i, c in enumerate(COMP_COLS)}
 CLt = {k: CL(v) for k, v in CK.items()}
 NC = len(COMP_COLS)
-GROUP_NAMES = {"id": "COMPETITOR", "cc": "PRICE & SALES - Command Center (Oct 12)", "dd": "LISTING - Data Dive", "calc": "",
+GROUP_NAMES = {"id": "COMPETITOR", "cc": "PRICE & SALES - Command Center snapshot (date per row)", "dd": "LISTING - Data Dive", "calc": "",
                "st": "SEARCH STRATEGY - Command Center ASINsight", "str": "STR NOW - Amazon page check (Oct 13); blank = not checked", "kp": "BFCM 2025 - fill from Keepa"}
 
 product_cells = {}   # (pid, mkt) -> dict of key cell refs for dashboard
@@ -521,13 +594,24 @@ for pid, mkt, tname in TABS:
     put_image(ws, f"A{r}", img, "OURS - parent/best child", pname, mkt, brand, best)
     for rr in range(r, r + 6):
         ws.row_dimensions[rr].height = 22
+    bn = our_now.get((mkt, best))
+    vlist = our_variations(pid, mkt)
+    nlive = sum(1 for v in vlist if v.get("price_now") is not None)
+    cc_dates = sorted({str(v["price_date"])[:10] for v in vlist if v.get("price_date")})
+    cc_asof = (cc_dates[-1] if cc_dates else "date unknown")
     facts = [
         ("Title", title or "Title not in catalog pull - see Data Gaps"), ("Brand", brand), ("Marketplace", "Amazon.com (US)" if mkt == "US" else "Amazon.ca (CA)"),
-        ("Parent ASIN", parent), ("Best-selling child ASIN", best), ("Stage", p.get("stage") or o.get("stage")),
-        ("Total variations (SKUs)", p.get("skuCount") or o.get("sku_count")), ("Sizes", ", ".join(p.get("sizes") or o.get("sizes") or []) or None),
+        ("Parent ASIN (Amazon)", parent or "Not in catalog pull"), ("Best-selling child ASIN", best), ("Stage", p.get("stage") or o.get("stage")),
+        ("Total variations (SKUs)", p.get("skuCount") or o.get("sku_count")),
+        ("Sizes", ", ".join(p.get("sizes") or o.get("sizes") or []) or None),
         ("Colours", ", ".join(p.get("colours") or []) or (f"{o.get('colour_count')} colours" if o.get("colour_count") else None)),
-        ("Blended price", fmt(e["price"])), ("Contribution / unit", fmt(e["contribution"])), ("Break-even ACoS", fmt(e["be_acos"], "%")),
+        ("Price now, best child", (f"${bn['price']:,.2f} ({now_txt(bn)})" if bn else "Not checked yet - AGENT_PROMPTS Prompt 12")),
+        ("Rating / reviews now", (f"{bn['rating']} / {bn['reviews']:,.0f} ({now_txt(bn)})" if bn and bn.get("rating") is not None and bn.get("reviews") is not None else "Not checked yet")),
+        ("Live prices held", f"{nlive} of {len(vlist)} variations"),
+        ("Blended price (Command Center)", (fmt(e["price"]) + f" - fee feed as of {cc_asof}, STALE") if e["price"] is not None else None),
+        ("Contribution / unit", fmt(e["contribution"])), ("Break-even ACoS", fmt(e["be_acos"], "%")),
         ("Units last 28 days", fmt(e["units_28d"], "n")),
+        ("Command Center product ASIN", (p.get("parentAsin") or o.get("parent_asin") or "") + " (one of our child ASINs, not the Amazon parent)"),
     ]
     for i, (k, v) in enumerate(facts):
         rr, cc0 = r + (i % 7), 3 + (i // 7) * 8
@@ -564,8 +648,11 @@ for pid, mkt, tname in TABS:
     r = section(ws, r, f"2 · OUR VARIATIONS ({len(vars_)} listed)", NC,
                 "Every SKU / child ASIN with its image, size, colour, price and 28-day units. Images from the Data Dive seller catalog; sizes and colours from the SKU data, else read from the title.")
     VC = [("img", "Image", 11), ("asin", "Child ASIN", 11), ("sku", "SKU", 14), ("title", "Title", 34), ("size", "Size", 8), ("colour", "Colour", 9),
-          ("price", "Price ($)", 8), ("contribution", "Contribution ($)", 8), ("be_acos", "Break-even ACoS", 7), ("units_28d", "Units 28d", 7), ("status", "Status", 8),
+          ("price_now", "Price now ($)", 8), ("now_src", "Price now: source, date", 10),
+          ("price", "Command Center price ($)", 8), ("price_date", "CC price date (stale)", 9),
+          ("contribution", "Contribution ($)", 8), ("be_acos", "Break-even ACoS", 7), ("units_28d", "Units 28d", 7), ("status", "Status", 8),
           ("hero", "Our hero ASIN? (share of our visibility)", 10)]
+    VF = {"price_now": "$#,##0.00", "price": "$#,##0.00", "contribution": "$#,##0.00", "be_acos": "0%", "units_28d": "#,##0"}
     header_row(ws, r, [(a, b, c) for a, b, c in VC], height=34)
     r += 1
     ourhero = {a: sh for a, sh in ((strat.get(pid) or {}).get("our_hero_asins") or []) if isinstance(sh, (int, float))} if mkt == "US" else {}
@@ -575,12 +662,16 @@ for pid, mkt, tname in TABS:
     for v in vars_:
         ws.row_dimensions[r].height = IMG_ROW_H
         put_image(ws, f"A{r}", v["image"], "OURS - variation", pname, mkt, brand, v["asin"])
-        vals = [None, v["asin"], v["sku"], v["title"], v["size"], v["colour"], v["price"], v["contribution"], v["be_acos"], v["units_28d"], v["status"],
-                (f"Yes ({ourhero[v['asin']]:.0%})" if v["asin"] in ourhero else None)]
-        for j, val in enumerate(vals[1:], 2):
-            c = ws.cell(row=r, column=j, value=val); c.font = F(); c.border = BOX; c.alignment = WRAP
-        ws.cell(row=r, column=7).number_format = "$#,##0.00"; ws.cell(row=r, column=8).number_format = "$#,##0.00"
-        ws.cell(row=r, column=9).number_format = "0%"; ws.cell(row=r, column=10).number_format = "#,##0"
+        vv = dict(v, hero=(f"Yes ({ourhero[v['asin']]:.0%})" if v["asin"] in ourhero else None),
+                  price_date=(str(v["price_date"])[:10] if v.get("price_date") else None))
+        for j, (key, _h, _w) in enumerate(VC[1:], 2):
+            c = ws.cell(row=r, column=j, value=vv.get(key)); c.font = F(); c.border = BOX; c.alignment = WRAP
+            if key in VF:
+                c.number_format = VF[key]
+            if key in ("price", "price_date") and vv.get(key) is not None:
+                c.font = F(color="808080")
+            if key == "price_now" and vv.get(key) is not None:
+                c.font = F(bold=True)
         r += 1
     r += 1
 
@@ -675,7 +766,13 @@ for pid, mkt, tname in TABS:
                 listed = dt.date.fromisoformat(listed[:10])
             except ValueError:
                 pass
-        vals = dict(x, listed=listed)
+        seen = x.get("seen")
+        if isinstance(seen, str) and len(seen) >= 10:
+            try:
+                seen = dt.date.fromisoformat(seen[:10])
+            except ValueError:
+                pass
+        vals = dict(x, listed=listed, seen=seen)
         for key, hdr, w, grp, com, nf in COMP_COLS[1:]:
             c = ws.cell(row=r, column=CK[key])
             c.border = BOX; c.font = F(); c.alignment = WRAP if key in ("title", "hero", "top_kw", "basis") else Alignment(vertical="top")
@@ -705,6 +802,8 @@ for pid, mkt, tname in TABS:
     last = r - 1
     if comps:
         ws.conditional_formatting.add(f"{CLt['band']}{first}:{CLt['band']}{last}", FormulaRule(formula=[f'{CLt["band"]}{first}="<=12% STR zone"'], fill=FILL["ok"]))
+        ws.conditional_formatting.add(f"{CLt['seen']}{first}:{CLt['seen']}{last}", FormulaRule(formula=[f'AND(ISNUMBER({CLt["seen"]}{first}),{CLt["seen"]}{first}<DATE(2026,10,6))'], fill=PatternFill("solid", fgColor="F8CBAD")))
+        ws.conditional_formatting.add(f"{CLt['basis']}{first}:{CLt['basis']}{last}", FormulaRule(formula=[f'ISNUMBER(SEARCH("STALE",{CLt["basis"]}{first}))'], fill=PatternFill("solid", fgColor="F8CBAD")))
         ws.conditional_formatting.add(f"{CLt['gap']}{first}:{CLt['gap']}{last}", FormulaRule(formula=[f'AND(ISNUMBER({CLt["gap"]}{first}),{CLt["gap"]}{first}<0)'], fill=FILL["flag"]))
         for lst, keys in (('"Y,N"', ("str_show", "bf_oos")), ('"List Price,Typical price,Was price,None"', ("str_label",)),
                           ('"Lightning Deal,Best Deal,Prime Exclusive Discount,Coupon only,Price cut only,None,Not live in 2025"', ("bf_type",))):
@@ -833,7 +932,7 @@ for pid, mkt, tname in TABS:
     lf = lift_of(pid, mkt)
     e = econ(o.get("economics"))
     vals = [PINFO[pid][2], tname, title or f"{o.get('brand')} {o.get('name')}", good_img(img), p.get("brand") or o.get("brand"), parent,
-            p.get("skuCount") or o.get("sku_count"), e["price"], lf["lift"] if lf else None, best]
+            p.get("skuCount") or o.get("sku_count"), our_headline_price(pid, mkt, best, e["price"])[0], lf["lift"] if lf else None, best]
     for j, v in enumerate(vals, 7):
         lst2.cell(row=pr, column=j, value=v)
     pr += 1
@@ -846,7 +945,7 @@ else:
     db["E4"] = f'=IF($C$4="All","",IFERROR(_xlfn.IMAGE({plook(4)}),"IMAGE MISSING"))'
 db["E4"].alignment = CENTER; db["E4"].border = BOX
 for i, (lab, col, nf) in enumerate((("Our product", 3, None), ("Brand", 5, None), ("Parent ASIN", 6, None), ("Variations (SKUs)", 7, "#,##0"),
-                                    ("Blended price", 8, "$#,##0.00"), ("BFCM 2025 lift", 9, '0.00"x"')), 4):
+                                    ("Our price (best child; see Data Check)", 8, "$#,##0.00"), ("BFCM 2025 lift", 9, '0.00"x"')), 4):
     a = db.cell(row=i, column=6, value=lab); a.font = F(bold=True, color=C_SUB, size=8)
     db.merge_cells(start_row=i, start_column=7, end_row=i, end_column=11)
     b = db.cell(row=i, column=7, value=f'=IF($C$4="All","All products",{plook(col)})' if col == 3 else f'=IF($C$4="All","",{plook(col)})')
@@ -923,8 +1022,8 @@ db.freeze_panes = f"A{GR + 1}"
 # ================================================================== Product Index
 pi = wb.create_sheet("Product Index", 2)
 pi.sheet_view.showGridLines = False
-PIH = [("Image", 11), ("Product tab", 18), ("Family", 8), ("Brand", 10), ("Title", 40), ("Mkt", 5), ("Parent ASIN", 11), ("Variations", 8), ("Sizes", 14),
-       ("Colours", 8), ("Blended price", 9), ("Units 28d", 8), ("Competitors mapped", 9), ("BFCM 2025 lift", 8), ("BFCM 2025 TACoS", 8), ("BFCM role", 20)]
+PIH = [("Image", 11), ("Product tab", 18), ("Family", 8), ("Brand", 10), ("Title", 40), ("Mkt", 5), ("Parent ASIN (Amazon)", 11), ("Variations", 8), ("Sizes", 14),
+       ("Colours", 8), ("Our price ($)", 9), ("Our price: source, date", 14), ("Units 28d", 8), ("Competitors mapped", 9), ("BFCM 2025 lift", 8), ("BFCM 2025 TACoS", 8), ("BFCM role", 20)]
 for j, (h, w) in enumerate(PIH, 1):
     c = pi.cell(row=1, column=j, value=h); c.font = F(bold=True, color="FFFFFF", size=8); c.fill = HDR; c.alignment = CENTER; c.border = BOX
     pi.column_dimensions[CL(j)].width = w
@@ -938,12 +1037,14 @@ for pid, mkt, tname in TABS:
     pi.row_dimensions[rr].height = IMG_ROW_H
     put_image(pi, f"A{rr}", img, "OURS - parent/best child", f"{p.get('brand') or o.get('brand')} {p.get('name') or o.get('name')}", mkt, p.get("brand") or o.get("brand"), best)
     vals = [None, tname, PINFO[pid][1], p.get("brand") or o.get("brand"), title, mkt, parent, p.get("skuCount") or o.get("sku_count"),
-            ", ".join(p.get("sizes") or o.get("sizes") or []), len(p.get("colours") or []) or o.get("colour_count"), e["price"], e["units_28d"],
+            ", ".join(p.get("sizes") or o.get("sizes") or []), len(p.get("colours") or []) or o.get("colour_count"), *our_headline_price(pid, mkt, best, e["price"]), e["units_28d"],
             len([x for x in records if x["pid"] == pid and x["mkt"] == mkt]), lf["lift"] if lf else None, (lf["tacos"] / 100) if lf and lf.get("tacos") is not None else None, PINFO[pid][3]]
     for j, v in enumerate(vals[1:], 2):
         c = pi.cell(row=rr, column=j, value=v); c.font = F(); c.border = BOX; c.alignment = WRAP
     pi.cell(row=rr, column=2).hyperlink = f"#'{tname}'!A1"; pi.cell(row=rr, column=2).font = F(color="0563C1", underline="single")
-    pi.cell(row=rr, column=11).number_format = "$#,##0.00"; pi.cell(row=rr, column=14).number_format = '0.00"x"'; pi.cell(row=rr, column=15).number_format = "0.0%"
+    pi.cell(row=rr, column=11).number_format = "$#,##0.00"; pi.cell(row=rr, column=15).number_format = '0.00"x"'; pi.cell(row=rr, column=16).number_format = "0.0%"
+    if "STALE" in str(pi.cell(row=rr, column=12).value):
+        pi.cell(row=rr, column=12).fill = PatternFill("solid", fgColor="F8CBAD")
     rr += 1
 pi.freeze_panes = "C2"
 
@@ -956,6 +1057,7 @@ lines = [
     ("1. Dashboard - choose Product / Marketplace / Brand / Tier / Family in the yellow cells; the competitor gallery, images and tiles update. 'Open the product tab' jumps to the full analysis.", {}),
     ("2. Product Index - every one of our products with its image, variations and BFCM 2025 result; click a tab name to open it.", {}),
     (f"3. One tab per product and marketplace ({len(TABS)} tabs, named 'US ...' / 'CA ...'): 1 Our product · 2 Our variations (every SKU with image, size, colour, price, units) · 3 Our BFCM 2025 result · 4 Competitor landscape (image, title, ASINs, variations, price, List Price, STR band, same-size gap, BSR, units, reviews, search strategy, Prime Day visibility, BFCM 2025 columns) · 5 What it means for BFCM.", {}),
+    ("Data Check (4th tab) shows the as-of date and accuracy of every source, and a spot check of the tracker against the live Amazon search page. Our own prices: 'Price now' is live (Amazon page / Data Dive, dated); the Command Center price is its fee feed from Mar 2026 and is marked STALE wherever it is still used.", {}),
     ("4. Data Gaps lists what is still missing (with the agent prompt that fills it); Data feeds the dashboard. The Keepa request list, lift inputs and the Nov 20 - Dec 1 event-watch log stay in BFCM_2026_Competitor_Tracker_v1.xlsx.", {}),
     ("", None),
     ("Images", dict(bold=True, size=11)),
@@ -1014,8 +1116,116 @@ for prod, br, ch in missing_comp:
 for j, w_ in enumerate((40, 50, 50), 1):
     gaps.column_dimensions[CL(j)].width = w_
 
+# our-price request list for AGENT_PROMPTS Prompt 12 (every child ASIN we sell, US and CA)
+with open(os.path.join(HERE, "our_price_request.csv"), "w", newline="") as fh:
+    w = csv.writer(fh)
+    w.writerow(["marketplace", "product_tab", "sku", "child_asin", "size", "colour", "units_28d", "command_center_price", "command_center_price_date", "live_price_held"])
+    for pid, mkt, tname in TABS:
+        for v in our_variations(pid, mkt):
+            if v.get("asin") and v.get("sku"):
+                w.writerow([mkt, tname, v["sku"], v["asin"], v["size"], v["colour"], v["units_28d"], v["price"],
+                            str(v["price_date"])[:10] if v.get("price_date") else "", "Y" if v.get("price_now") is not None else "N"])
+
+# ================================================================== Data Check (accuracy log)
+chk = wb.create_sheet("Data Check")
+chk.sheet_view.showGridLines = False
+for j, w_ in enumerate((34, 16, 16, 16, 16, 12, 60), 1):
+    chk.column_dimensions[CL(j)].width = w_
+row = 1
+chk.cell(row=row, column=1, value="Data Check - how current and how accurate every number is").font = F(bold=True, size=14)
+row += 1
+chk.cell(row=row, column=1, value="Read this before quoting a number. Orange cells in product tabs = stale value; 'STALE' in Comparison basis = our price there is the Command Center fee-feed price, not today's.").font = F(italic=True, size=9)
+row += 2
+US_recs = [x for x in records if x["mkt"] == "US"]
+seen_cnt = {}
+for x in US_recs:
+    seen_cnt[x.get("seen") or "no snapshot"] = seen_cnt.get(x.get("seen") or "no snapshot", 0) + 1
+latest_seen = max((k for k in seen_cnt if k != "no snapshot"), default=None)
+old_seen = sum(v for k, v in seen_cnt.items() if k != "no snapshot" and k < "2026-10-06")
+all_vars = [(pid, mkt, v) for pid, mkt, _t in TABS for v in our_variations(pid, mkt)]
+live_vars = sum(1 for *_x, v in all_vars if v.get("price_now") is not None)
+live_cmp = sum(1 for x in US_recs if x.get("our_live"))
+str_rows = len({x["child"] for x in records if x.get("str_checked")})
+S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
+     ("Competitor price, List Price, BSR, rating, reviews", "Command Center", latest_seen, sum(v for k, v in seen_cnt.items() if k == latest_seen), "Current",
+      "", f"{old_seen} US rows are older (Jul 20 - Sep 21, 2026) and are shaded orange in the 'Snapshot date' column. Price is for the one tracked child ASIN; Amazon search may show another size of the same listing."),
+     ("Strikethrough now (shown / label / price)", "Amazon page check", "2026-10-13", str_rows, "Current", "", f"{str_rows} competitor ASINs checked (P1); the others are blank, not assumed."),
+     ("Our price now", "Data Dive niche snapshot (Oct 1+) / Amazon page check", "2026-10-12 to 13", live_vars, "Partial", "",
+      f"{live_vars} of {len(all_vars)} of our variations have a live price. The rest show only the Command Center fee-feed price (Mar 2026), which is out of date (B6 King White: $89.99 there vs $99.99 live). Prompt 12 fills the rest."),
+     ("Same-size price gap vs ours", "Calculated", "2026-10-13", live_cmp, "Partial", "",
+      f"{live_cmp} of {len(US_recs)} US competitor rows compare against our live price; the rest are marked STALE in 'Comparison basis'."),
+     ("Our contribution / break-even ACoS", "Command Center", "2026-03-30 prices", None, "Stale", "",
+      "Calculated on the Mar 2026 fee-feed price. Where our live price is higher (e.g. B6 King +$10, B4 King +$15) contribution and break-even ACoS are understated."),
+     ("Our parent ASIN", "Data Dive seller catalog", "2026-10-13", len(TABS), "Fixed", "",
+      "Command Center's 'parent_asin' is one of our child ASINs. Tabs now show the Amazon parent from the catalog; the Command Center ASIN is listed separately."),
+     ("Our BFCM 2025 ad spend, ad sales, ACoS, TACoS, orders", "Command Center", "2025-11-20 to 2025-12-01", None, "Exact", "", "Total sales = ad spend / TACoS (derived, not reported)."),
+     ("Our BFCM 2025 deals", "DataHub promotions (agent)", "2026-10-13", None, "Partial", "", "Deal price, reference price, committed units and PED history not in the feed."),
+     ("Our BFCM 2025 stock", "DataHub inventory, revision 2 (agent)", "2026-10-13", None, "Partial", "", "US Nov 26, 27, Dec 1 and CA Nov 24, 29, 30 have no snapshot."),
+     ("Canada competitors", "None", None, 0, "Missing", "", "No Amazon.ca competitor snapshots in the Command Center."),
+     ("Competitors' BFCM 2025 history", "Keepa (pending)", None, 0, "Missing", "", "Yellow columns stay blank until Keepa is pulled; nothing is estimated.")]
+for i, r_ in enumerate(S):
+    for j, v in enumerate(r_, 1):
+        c = chk.cell(row=row, column=j, value=v); c.border = BOX; c.alignment = WRAP
+        c.font = F(bold=(i == 0), color=("FFFFFF" if i == 0 else "000000"))
+        if i == 0:
+            c.fill = HDR
+        elif j == 5:
+            c.fill = PatternFill("solid", fgColor={"Current": "C6EFCE", "Exact": "C6EFCE", "Fixed": "C6EFCE", "Partial": "FFEB9C", "Stale": "F8CBAD", "Missing": "F8CBAD"}.get(v, "FFFFFF"))
+    row += 1
+row += 1
+chk.cell(row=row, column=1, value="Spot check: Amazon search 'DECOLURE 100% Viscose from Bamboo Sheets King Size | 6 Pc Cooling Bed Set' (screenshot shared by Shayan, Oct 13, 2026)").font = F(bold=True, size=11)
+row += 1
+def _cmp(asin):
+    for x in US_recs:
+        if x["child"] == asin:
+            return x
+    return {}
+def _var(asin):
+    for pid, mkt, v in all_vars:
+        if mkt == "US" and v["asin"] == asin:
+            return v
+    return {}
+b6, b4, cl4 = _var("B0CQ2XQF9N"), _var("B08KQHRDDG"), _var("B0C9LS8Z18")
+pb, bb1, bb2, bc = _cmp("B07DZTQ4JC"), _cmp("B07TBHLZJM"), _cmp("B08M9QK14J"), _cmp("B08L86VLZB")
+SC = [("Listing on the search page", "Page price ($)", "Page rating / reviews", "Tracker price ($)", "Tracker rating / reviews", "Price match?", "Finding"),
+      ("DECOLURE Bamboo 6 Pc, King (B0CQ2XQF9N)", 99.99, "4.4 / 3.1K", b6.get("price_now"), f"{(our_now.get(('US','B0CQ2XQF9N')) or {}).get('rating')} / {(our_now.get(('US','B0CQ2XQF9N')) or {}).get('reviews')}",
+       None, f"Tracker now uses the live price ({b6.get('now_src')}). Command Center fee feed still says ${b6.get('price')} ({str(b6.get('price_date'))[:10]}) - stale, no longer used for comparisons."),
+      ("DECOLURE Bamboo 4 Pc, King (B08KQHRDDG)", 94.99, "4.5 / 5.9K", b4.get("price_now"), f"{(our_now.get(('US','B08KQHRDDG')) or {}).get('rating')} / {(our_now.get(('US','B08KQHRDDG')) or {}).get('reviews')}",
+       None, f"Live price from {b4.get('now_src')}. Command Center fee feed: ${b4.get('price')} ({str(b4.get('price_date'))[:10]}) - stale."),
+      ("DECOLURE Cooling 4pcs, King Purple (B0C9LS8Z18)", 37.95, "4.2 / 1.2K", (cl4.get("price_now") or cl4.get("price")), "not held",
+       None, "Matches the Command Center price; no live record yet (Prompt 12)."),
+      ("Pure Bamboo, King (B07DZTQ4JC)", 109.99, "4.5 / 21.9K", pb.get("price"), f"{pb.get('rating')} / {pb.get('reviews')}", None, f"Exact match (Command Center {pb.get('seen')})."),
+      ("Bamboo Bay 6 Piece, King", 89.99, "4.5 / 2.6K", bb1.get("price"), f"{bb1.get('rating')} / {bb1.get('reviews')}", None,
+       f"Same family (reviews match). Tracker prices tracked child {bb1.get('child')} ({bb1.get('size') or 'size not in title'}), not the King 6 Pc shown on the page."),
+      ("Bamboo Bay 6 Piece, King ($27.99/count)", 111.94, "4.4 / 739", bb2.get("price"), f"{bb2.get('rating')} / {bb2.get('reviews')}", None,
+       f"Same family (739 reviews). Tracked child {bb2.get('child')} is a 4 Piece Queen, so the price differs by design; compare on the same-size basis."),
+      ("Bella Coterie 6 Piece, King", 194.99, "4.4 / 5.8K", bc.get("price"), f"{bc.get('rating')} / {bc.get('reviews')}", None,
+       f"Same family. Tracked child {bc.get('child')} is another size/pack; it also moved from ${bc.get('price')} (Oct 12) to ${bc.get('page_price')} on the Oct 13 page check."),
+      ("TWK Real 100% Viscose, King", 79.00, "5.0 / 76", None, "not in map", None,
+       "Shows List $99.00, 'Limited time deal' and a 10% coupon. No TWK row in the map has 76 reviews - likely a TWK listing not yet mapped. Add it to the competitor map."),
+      ("DECOLURE Bamboo 6 Pc, California King", 106.99, "3.5 / 16", None, "not matched", None,
+       "Our own detail page with only 16 reviews - looks split from the main family (B6 now sits under parent B0H6335KNV). Check the variation family in Seller Central."),
+      ("DECOLURE Bamboo 6 Pc, Full", 79.99, "4.2 / 27", None, "not matched", None, "Same as above: an own listing with 27 reviews, outside the main review pool.")]
+first_sc = row
+for i, r_ in enumerate(SC):
+    for j, v in enumerate(r_, 1):
+        c = chk.cell(row=row, column=j, value=v); c.border = BOX; c.alignment = WRAP
+        c.font = F(bold=(i == 0), color=("FFFFFF" if i == 0 else "000000"))
+        if i == 0:
+            c.fill = HDR
+        elif j in (2, 4):
+            c.number_format = "$#,##0.00"
+    if i:
+        chk.cell(row=row, column=6, value=f'=IF(OR(B{row}="",D{row}=""),"n/a",IF(ABS(B{row}-D{row})<0.01,"Match","Differs"))').border = BOX
+    row += 1
+chk.conditional_formatting.add(f"F{first_sc + 1}:F{row - 1}", FormulaRule(formula=[f'F{first_sc + 1}="Match"'], fill=PatternFill("solid", fgColor="C6EFCE")))
+chk.conditional_formatting.add(f"F{first_sc + 1}:F{row - 1}", FormulaRule(formula=[f'F{first_sc + 1}="Differs"'], fill=PatternFill("solid", fgColor="FFEB9C")))
+row += 1
+chk.cell(row=row, column=1, value="Page values typed from the screenshot (Source: Amazon.com search, Oct 13, 2026, shared by Shayan). 'Differs' on a competitor is expected when the tracked child is a different size; it is an error only for the same ASIN.").font = F(italic=True, size=8)
+
 # order: README, Dashboard, Product Index, product tabs..., Data Gaps, Data
 wb.move_sheet("Data Gaps", offset=-(len(wb.sheetnames) - 1 - wb.sheetnames.index("Data Gaps")) + 0)
+wb.move_sheet("Data Check", offset=3 - wb.sheetnames.index("Data Check"))
 wb.save(OUT)
 print(json.dumps({"tabs": len(TABS), "competitor_rows": len(records), "image_cells": len(img_rows), "unique_images": len(seen),
                   "comp_missing_img": len(missing_comp), "strategy_products": len(strat), "sku_files": len(skus),
