@@ -254,6 +254,40 @@ def lift_of(pid, mkt="US"):
     return {"lift": (t1 / 12) / (t2 / 30), "dec": ((t3 / 30) / (t2 / 30)) if t3 else None, "tacos": w1.get("tacos"),
             "pre_tacos": w2.get("tacos"), "bf_total": t1, "pre_total": t2, "dec_total": t3, "spend": w1.get("spend"), "ad_sales": w1.get("ad_sales")}
 
+STOCK_ALIAS = {"B4": 59, "B6": 30, "S4": 37, "S6": 31, "Satin Fitted": 38, "SSS4": 39, "SL B6": 32,
+               "Decolure - Cooling Sheets 4 Piece": 48, "Sleephoria - Cooling Sheets 4 Piece": 45, "Sleephoria - Cooling Fitted Sheet": 44,
+               "Sleephoria - Cooling Comforter": 42, "Decolure - Silk Pillowcase": 55}
+stock_oos = {}
+_sp = f"{DATA}/stock/our_stock_bfcm2025.csv"
+if os.path.exists(_sp):
+    _agg = {}
+    for row in csv.DictReader(open(_sp, encoding="utf-8-sig")):
+        if row["fba_available_units"] in ("", None) or not ("2025-11-20" <= row["date"] <= "2025-12-01"):
+            continue
+        name = row["product_name"].split("|")[0].strip() if "|" in row["product_name"] else row["product_name"]
+        pid_ = STOCK_ALIAS.get(name)
+        if pid_ is None:
+            continue
+        k = (pid_, row["marketplace"], row["child_asin"], row["date"])
+        _agg[k] = _agg.get(k, 0) + float(row["fba_available_units"])
+    _vel = {}
+    for (pid_, m_), sd in skus.items():
+        for x in sd.get("skus") or []:
+            if x.get("asin"):
+                _vel[(m_, x["asin"])] = _vel.get((m_, x["asin"]), 0) + (x.get("units28d") or 0)
+    per = {}
+    for (pid_, m_, a_, dt_), q in _agg.items():
+        e_ = per.setdefault((pid_, m_), {}).setdefault(a_, [0, 0])
+        e_[1] += 1
+        e_[0] += (q == 0)
+    for key, asins in per.items():
+        tot = sum(_vel.get((key[1], a_), 0) for a_ in asins)
+        oos = {a_: v for a_, v in asins.items() if v[0] > 0}
+        w = sum(_vel.get((key[1], a_), 0) * v[0] / v[1] for a_, v in oos.items()) / tot if tot else None
+        top = sorted(oos.items(), key=lambda kv: -_vel.get((key[1], kv[0]), 0))[:4]
+        stock_oos[key] = {"asins": len(asins), "oos_asins": len(oos), "weighted": w,
+                          "top": "; ".join(f"{a_} {v[0]}/{v[1]} days" for a_, v in top)}
+
 # ------------------------------------------------------------------ assemble competitor records
 records = []      # one per (product, marketplace, competitor) for the Data sheet and the dashboard
 TABS = []         # (pid, mkt, tab name)
@@ -515,6 +549,16 @@ for pid, mkt, tname in TABS:
            f"Prime Day 2026 {v.get('pd26_pre_org')} → {v.get('pd26_org')}; Aug-Sep 2026 {v.get('last30_org')}." if v else "No Command Center visibility history for our best child ASIN.")
     if mkt == "CA":
         vis = "Figures above are Amazon.ca in CAD. Visibility history is held for US ASINs only."
+    so = stock_oos.get((pid, mkt))
+    if so:
+        ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
+        txt = (f"Stock in BFCM week 2025 (Command Center FBA snapshots, child-ASIN level): {so['oos_asins']} of {so['asins']} variations hit zero FBA stock on at least one observed day"
+               + (f"; weighted by today's sales mix that is ~{so['weighted']:.1%} of variation-days lost" if so['weighted'] is not None else "")
+               + (f". Most important: {so['top']}." if so['top'] else ".")
+               + " Snapshots missing: US Nov 26-27 and Dec 1 (Cyber Monday); CA Nov 24, 29-30.")
+        c = ws.cell(row=r, column=1, value=txt); c.font = F(size=8.5, bold=True, color=C_INK); c.alignment = WRAP
+        ws.row_dimensions[r].height = 26
+        r += 1
     ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
     ws.cell(row=r, column=1, value=vis).font = F(size=8, italic=True, color=C_SUB)
     if not d:
