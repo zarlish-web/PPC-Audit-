@@ -100,17 +100,42 @@ Output our_deals_bfcm2026_plan.csv with columns:
 Use the current Seller Central registrations (596 US and 438 CA SKUs registered). One row per parent product using the hero variation's price, plus a second file our_deals_bfcm2026_skus.csv with every registered SKU and its deal price.
 ```
 
-## Prompt 9: Canada competitor set (Joseph / Command Center, then Keepa .ca)
+## Prompt 9: Canada competitor set (Amazon.ca page research, then Keepa .ca)
+
+The Command Center maps no Canadian competitors, so the 6 Canada tabs are empty. Keepa tokens go to P2 and our 23 heroes first; part B runs after those.
 
 ```
-The Command Center has no Canadian competitor snapshots. For each of these Canadian products, list the top 10-15 competitors on Amazon.ca:
-  Decolure Bamboo Sheets 4 Piece, Decolure Bamboo Sheets 6 Piece, Decolure Satin Sheets 4 Piece, Decolure Satin Sheets 6 Piece, Decolure Satin Fitted Sheet, Sleephoria Satin Sheets 4 Piece
+Read-only. Don't change, request or grant any access; don't add to cart or change any listing.
 
-Output ca_competitors.csv with columns:
-  our_product, competitor_brand, parent_asin, child_asin (best seller), price_cad, list_price_cad, bsr, rating, review_count, variation_count
+PART A - Find the Canadian competitor set (Amazon.ca page research, no Keepa)
+Conditions: Amazon.ca desktop, logged out, delivery postal code M5V 3L9 (Toronto), prices in CAD.
 
-Then run the Keepa history pull (Prompt 1 spec) on Amazon.ca (domain 6) for those child ASINs and output keepa_history_ca.csv.
+For each of our products below, search each keyword and read page 1 organic results (skip "Sponsored" tiles). Keep products of the SAME type (same material and piece count). Exclude our own brands: DECOLURE, SLEEPHORIA, SLEEP SANCTUARY, CooLinens. Take up to 15 competitors per product, ranked by best organic position across its keywords.
+
+  DC B4  (our parent B08LW37SB9; 4-piece bamboo/viscose sheet set): "bamboo sheets queen", "bamboo sheets king", "cooling bamboo sheets"
+  DC B6  (our parent B0D71YJYNL; 6-piece bamboo/viscose sheet set): "6 piece bamboo sheets", "bamboo sheets queen 6 piece", "bamboo sheet set king"
+  DC S4  (our parent B0CT3HF44M; 4-piece satin sheet set): "satin sheets queen", "satin sheets king", "silk satin sheets"
+  DC S6  (our parent B0CJSDXDJW; 6-piece satin sheet set): "satin sheets 6 piece", "satin sheets queen 6 piece"
+  SSS4   (our parent B0F2Z7C4ST; 4-piece satin): reuse the DC S4 list, no separate search
+  DC Satin Fitted (our parent B0FQC9C5QT; satin fitted sheet only): "satin fitted sheet queen", "satin fitted sheet"
+
+For each competitor open the product page, select the QUEEN size (if there is no Queen, King, and say so in notes), and record what a shopper sees.
+
+Output ca_competitors.csv, one row per our_product + competitor, exactly these columns:
+  our_product, our_parent_asin, keyword, organic_rank, competitor_brand, title, parent_asin, child_asin, size, colour, piece_count, material, price_cad, strikethrough_shown (Y/N), strikethrough_price_cad, strikethrough_label (List Price / Typical price / Was price / none), deal_badge, coupon, rating, review_count, bought_past_month, bsr, bsr_category, variation_count, in_stock (Y/N), buy_box_seller, main_image_url, check_date, check_time_et, notes
+
+Rules:
+- child_asin = the ASIN of the selected Queen variation, not the parent.
+- price_cad = buy box price for that exact variation before coupon. Blank when not shown, never 0.
+- main_image_url = full https://m.media-amazon.com/images/I/<id>.jpg URL.
+- If a page redirects to another ASIN, keep the requested ASIN with blank commercial fields and name the redirect in notes. Don't substitute.
+- Send ca_competitors_notes.txt with conditions, counts per product, and every exception.
+
+PART B - Keepa history on Amazon.ca (domain 6), after the P2 and our-hero pulls finish
+For every unique child_asin in ca_competitors.csv, pull Nov 1 - Dec 5, 2025, one row per ASIN per day, in exactly the format of keepa_history_p1.csv (asin, date, buy_box_price, list_price, lightning_deal_price, prime_exclusive_price, coupon, sales_rank, out_of_stock), prices in CAD. Output keepa_history_ca.csv plus keepa_history_ca_coverage.csv and keepa_history_ca_provenance.csv like P1. Blank never 0; no parent or redirect substitution.
 ```
+
+Files go in `data/ca_competitors/` (Part A) and `data/keepa/` (Part B); the builder fills the 6 Canada tabs from them.
 
 ## Prompt 10: Competitor variations, with colours, sizes and images (Keepa)
 
