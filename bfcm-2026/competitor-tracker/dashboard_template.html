@@ -91,7 +91,7 @@ td .thumb{width:44px;height:44px}
     <label for="f-mkt">Marketplace<select id="f-mkt"><option>US</option><option>CA</option></select></label>
     <label for="f-brand">Competitor brand<select id="f-brand"></select></label>
     <label for="f-tier">Tier<select id="f-tier"><option value="">All tiers</option><option>Aspirational</option><option>Beatable</option><option>Poor</option><option>Untiered</option></select></label>
-    <label for="f-band">List Price band<select id="f-band"><option value="">Any</option><option value="zone">≤12% over (STR zone)</option><option value="mid">12–25% over</option><option value="high">&gt;25% over</option><option value="none">No List Price</option></select></label>
+    <label for="f-band">List Price band<select id="f-band"><option value="">Any</option><option value="zone">≤12% over</option><option value="mid">12–25% over</option><option value="high">&gt;25% over</option><option value="none">No List Price</option></select></label>
     <label for="f-str">Strikethrough on page<select id="f-str"><option value="">Any</option><option value="Y">Shown (Oct 13 check)</option><option value="N">Not shown</option><option value="x">Not checked yet</option></select></label>
     <label for="f-pos">Price vs ours<select id="f-pos"><option value="">Any</option><option value="below">Below our price</option><option value="above">At / above our price</option></select></label>
     <label for="f-q">Search<input id="f-q" type="search" placeholder="Brand, title or ASIN"></label>
@@ -129,7 +129,7 @@ function imgBox(src, asin, cls=""){
 function lpPct(c){ return (typeof c.lp === "number" && typeof c.price === "number" && c.price > 0) ? c.lp/c.price - 1 : null; }
 function band(c){ const p = lpPct(c); if (p === null) return "none"; if (p <= 0) return "none"; if (p <= .12) return "zone"; if (p <= .25) return "mid"; return "high"; }
 function gap(c){ return (typeof c.price === "number" && typeof c.our_same === "number" && c.our_same > 0) ? c.price/c.our_same - 1 : null; }
-const bandChip = c => ({zone:'<span class="chip good">List ≤12% · STR zone</span>', mid:'<span class="chip warn">List 12–25%</span>', high:'<span class="chip bad">List &gt;25%</span>', none:'<span class="chip">No List Price</span>'})[band(c)];
+const bandChip = c => ({zone:'<span class="chip">List ≤12% over</span>', mid:'<span class="chip">List 12–25% over</span>', high:'<span class="chip">List &gt;25% over</span>', none:'<span class="chip">No List Price</span>'})[band(c)];
 const strChip = c => c.str_show === "Y" ? `<span class="chip good">On page: ${esc(c.str_label)} ${fmt$(c.str_price)}${(c.str_price && c.page_price) ? " (+" + fmtP(c.str_price/c.page_price - 1) + ")" : ""}</span>${c.deal_now && c.deal_now !== "none" ? ` <span class="chip warn">${esc(c.deal_now)}</span>` : ""}`
   : c.str_show === "N" ? `<span class="chip">No strikethrough on page</span>${c.stock_now === "N" ? ' <span class="chip bad">Unavailable</span>' : ""}${c.deal_now && c.deal_now !== "none" ? ` <span class="chip warn">${esc(c.deal_now)}</span>` : ""}` : "";
 const tierChip = t => `<span class="chip ${t === "Aspirational" ? "asp" : ""}">${esc(t)}</span>`;
@@ -215,7 +215,7 @@ function renderKpis(p, rows){
     ["Competitors", fmtN(rows.length), "in this view"],
     ["Median price", fmt$(med), p ? "ours " + fmt$(p.price) + " (" + (p.priceSrc || "") + ")" : ""],
     ["Priced below us", fmtN(below), "same size, else vs our Queen"],
-    ["List Price set", fmtN(lpset), `${zone} within 12% (STR zone)`],
+    ["List Price set", fmtN(lpset), `${zone} within 12% · see "on page" for what shows`],
     ["STR on page (checked)", `${rows.filter(c => c.str_show === "Y").length} / ${rows.filter(c => c.str_show === "Y" || c.str_show === "N").length}`, "Amazon page check, Oct 13"],
     ["Est weekly units", fmtN(wk), ourwk !== null ? `we sell ~${fmtN(ourwk)}/wk (${fmtP(ourwk/(ourwk+wk),1)})` : ""],
     ["Shared keywords", `${fmtN(win)} / ${fmtN(lose)}`, "we win / we lose (sum over rivals)"],

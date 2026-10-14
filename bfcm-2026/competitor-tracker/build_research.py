@@ -794,7 +794,7 @@ COMP_COLS = [
     ("price", "Price ($)", 8, "cc", None, "$#,##0.00"),
     ("lp", "List Price ($)", 8, "cc", None, "$#,##0.00"),
     ("lp_pct", "List Price % over", 7, "calc", None, "0.0%"),
-    ("band", "STR band", 10, "calc", "<=12% over price = zone where Amazon reliably shows the strikethrough (if sold at it).", None),
+    ("band", "STR band", 10, "calc", "How far List Price sits above price. Oct 13 page check of 154 core rivals: strikethrough shown on 2 of 3 at <=12%, 13 of 13 at 12-25%, 11 of 13 above 25% - the size of the gap does not stop Amazon showing it.", None),
     ("our_same", "Our price, same size ($)", 8, "calc", None, "$#,##0.00"),
     ("gap", "Their price vs ours", 7, "calc", None, "+0%;-0%;0%"),
     ("basis", "Comparison basis", 11, "calc", None, None),
@@ -846,7 +846,7 @@ CK = {c[0]: i + 1 for i, c in enumerate(COMP_COLS)}
 CLt = {k: CL(v) for k, v in CK.items()}
 NC = len(COMP_COLS)
 GROUP_NAMES = {"id": "COMPETITOR", "cc": "PRICE & SALES - Command Center snapshot (date per row)", "dd": "LISTING - Data Dive", "calc": "",
-               "st": "SEARCH STRATEGY - Command Center ASINsight", "str": "STR NOW - Amazon page check (Oct 13); blank = not checked", "kp": "BFCM 2025 - Keepa (P1 filled; yellow = not pulled yet)"}
+               "st": "SEARCH STRATEGY - Command Center ASINsight", "str": "STR NOW - Amazon page check (Oct 13, P1 + P2)", "kp": "BFCM 2025 - Keepa (P1 filled; yellow = not pulled yet)"}
 
 product_cells = {}   # (pid, mkt) -> dict of key cell refs for dashboard
 comp_cells = {}      # record index -> (tab, row)
@@ -1135,7 +1135,7 @@ for pid, mkt, tname in TABS:
         P, LPc = f"{CLt['price']}{r}", f"{CLt['lp']}{r}"
         ws[f"{CLt['lp_pct']}{r}"] = f'=IF(AND(ISNUMBER({LPc}),ISNUMBER({P}),N({P})>0),{LPc}/{P}-1,"")'
         q = f"{CLt['lp_pct']}{r}"
-        ws[f"{CLt['band']}{r}"] = f'=IF({q}="","No List Price",IF({q}<=0,"At/below price",IF({q}<=0.12,"<=12% STR zone",IF({q}<=0.25,"12-25%",">25% likely ignored"))))'
+        ws[f"{CLt['band']}{r}"] = f'=IF({q}="","No List Price",IF({q}<=0,"At/below price",IF({q}<=0.12,"<=12% STR zone",IF({q}<=0.25,"12-25%",">25% over"))))'
         ws[f"{CLt['gap']}{r}"] = f'=IF(AND(ISNUMBER({P}),ISNUMBER({CLt["our_same"]}{r}),N({CLt["our_same"]}{r})>0),{P}/{CLt["our_same"]}{r}-1,"")'
         ws[f"{CLt['rev']}{r}"] = f'=IF(AND(ISNUMBER({P}),ISNUMBER({CLt["wk"]}{r})),{P}*{CLt["wk"]}{r}*52/12,"")'
         pd_pre, pd_ = x.get("pd_pre"), x.get("pd")
@@ -1428,7 +1428,7 @@ lines = [
     ("", None),
     ("Definitions", dict(bold=True, size=11)),
     ("BFCM 2025 = Nov 20 - Dec 1, 2025; pre-event = Oct 21 - Nov 19, 2025. Our total sales are derived as ad spend / TACoS. Prime Day 2026 = Jun 23-26 vs Jun 1-20.", {}),
-    ("STR band: List Price <=12% over price is where Joseph's study found Amazon shows the strikethrough (if the item sold at it recently); >25% over is usually ignored.", {}),
+    ("STR band: how far List Price sits above the price. Joseph's study put the reliable zone at <=12%, but the Oct 13 page check of all 154 core rivals found the strikethrough shown on 13 of 13 rivals at 12-25% and 11 of 13 above 25% (median shown premium 24%). Use the 'STR showing now?' column, not the band, to judge what shoppers see.", {}),
     ("Search strategy (Command Center ASINsight): shared keywords, we win / lose, their keywords we miss, keywords they advertise and we don't, and their SP / SB / SB-video / Amazon's Choice reach. Exports can be up to 2 weeks apart; treat as direction, not exact share.", {}),
     ("Estimated weekly units (Command Center) and 30-day units (Data Dive) are estimates - use them to rank competitors, not as exact sales.", {}),
 ]
@@ -1518,7 +1518,7 @@ str_rows = len({x["child"] for x in records if x.get("str_checked")})
 S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
      ("Competitor price, List Price, BSR, rating, reviews", "Command Center", latest_seen, sum(v for k, v in seen_cnt.items() if k == latest_seen), "Current",
       "", f"{old_seen} US rows are older (Jul 20 - Sep 21, 2026) and are shaded orange in the 'Snapshot date' column. Price is for the one tracked child ASIN; Amazon search may show another size of the same listing."),
-     ("Strikethrough now (shown / label / price)", "Amazon page check", "2026-10-13", str_rows, "Current", "", f"{str_rows} competitor ASINs checked (P1); the others are blank, not assumed."),
+     ("Strikethrough now (shown / label / price)", "Amazon page check", "2026-10-13", str_rows, "Current", "", f"{str_rows} competitor ASINs checked on the Amazon page Oct 13 (70 P1 at 12:10 ET, 240 P2 at 23:35 ET; logged out, ZIP 10001). Blank = redirect or not shown, never assumed. Redirects left blank, not substituted: B0D1RBXBNG (David's Home) now opens B0DBHFTF8W, a different variation (3-pc Twin vs 4-pc Twin) of the same family; B0CP3NX181, B0DG2HRZKK, B09G8P3X6L, B0D4PKVNWB."),
      ("Our price now", "Helium 10 Xray (Oct 13) / Data Dive (Oct 12-13) / Amazon page check", "2026-10-13", core_us[0] + core_ca[0], "Partial", "",
       f"Core products: US {core_us[0]} of {core_us[1]} variations live, Canada {core_ca[0]} of {core_ca[1]}. Core US still without a live price: "
       + (", ".join(f"{k} {v}" for k, v in sorted(core_gap.items(), key=lambda kv: -kv[1])) or "none")

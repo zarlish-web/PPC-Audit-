@@ -1,0 +1,51 @@
+Amazon.com P2 competitor STR check, October 13, 2026
+
+Scope: the 240 unique ASINs with priority=P2 and role=competitor in keepa_request.csv. Original P1 output is unchanged.
+Conditions: fresh desktop product-page reads in a dedicated logged-out Chrome profile, delivery ZIP 10001 (New York), USD. Every capture verifies ZIP and sign-in header. Actual Eastern check_date/check_time_et are retained per row.
+Source: page for every observation. This follow-up explicitly requests a new page check; no midday observations, Keepa prices or inferred STR Panel readings are substituted. STR Panel was inaccessible during the original October 13 collection (login/403); no access changes were attempted.
+
+Field definitions follow the P1 export:
+- price: selected-product new-item price before coupon, shipping or tax. No credit-card signup incentive, alternate variation, unit price, sponsored product or used-item price substituted.
+- strikethrough: visible main-product reference price and its displayed label, not historical pricing or a calculated discount.
+- deal_badge: visible selected-product deal badge. Generic Prime shipping invitations and Lowest price in 30 days are not Prime exclusive/Limited time deal badges.
+- coupon: displayed selected-product coupon value, not redeemed; bulk-buy promotions and free gifts excluded.
+- in_stock=Y: new item orderable for ZIP10001, not a warehouse-stock measurement or immediate-delivery promise. N only for an explicit unavailable/out-of-stock message. Unknown remains blank.
+- Non-featured offers: a verified new buying-option price may be recorded with in_stock=Y; buy_box_seller remains blank because there is no featured offer. See row-specific exceptions.
+- Blank price/seller on unavailable pages means not shown, never zero. Blank coupon on a verified page means no displayed coupon. All commercial fields are blank on unresolved identity mismatches or failed page checks.
+
+David's Home redirect, checked separately October 13 at 23:35 EDT:
+Requested B0D1RBXBNG redirects to selected ASIN B0DBHFTF8W.
+Current brand: David's Home.
+Current title: David's Home 3PCS Cooling Sheets Set Twin Size, 100% Rayon Derived from Bamboo, 16 inch Deep Pocket, Luxury Silky Breathable for Hot Sleeper,Breathable Smooth Soft, Sage Green.
+Current size: 3PCS-Twin; color: Sage Green.
+Current parent ASIN in Amazon page data: B0D1SRR2H4, matching the parent in keepa_request.csv.
+Earlier saved Keepa metadata for B0D1RBXBNG identifies 4PCS-Twin, White, under that same parent. Its title is David's Home 4PCS Cooling Sheets Set Twin Size, 100% Rayon Derived from Bamboo, 16 inch Deep Pocket 2.5cm Wider Elastic, Luxury Silky Breathable for Hot Sleeper,Breathable Smooth Soft, White. This is historical vendor metadata, not a currently rendered original-child page.
+Verdict: same brand and parent listing family, NOT the same exact variation. Do not substitute destination pricing for B0D1RBXBNG. Separate destination CSV is supplied for reference, using the requested schema: price 24.99, STR N, deal none, coupon blank, orderable Y, seller Jiashihua.
+
+Read-only: no account, access, catalog, cart, pricing, promotion or registry changes. No original-ASIN replacement and no changes to the separate Keepa history collection.
+
+FINAL COVERAGE
+240/240 requested URLs checked; 236 exact requested ASIN pages verified; 4 persistent redirects retained as blank commercial observations. Capture times: 23:35:19 to 23:49:11 EDT (UTC-04:00), October 13. Redirect confirmation rechecks also occurred during this run.
+STR: 70 Y (49 List Price, 21 Typical price), 166 N, 4 unknown. Deals: 20 Limited time deal, 216 none, 4 unknown. Coupons: 9 displayed, including one in a verified new buying-option offer. Stock: 213 orderable Y, 22 explicitly unavailable N, 5 unknown (4 redirects plus 1 used-only offer page).
+
+Persistent redirects (requested -> selected; both /dp and /gp/product checked; all commercial fields blank):
+- B0CP3NX181 -> B0CP3P7W45
+- B0DG2HRZKK -> B0DG2DMD4H
+- B09G8P3X6L -> B0HJGWBFT4
+- B0D4PKVNWB -> B0H1G5N8KL
+
+Non-featured NEW buying-option offers (price used; buy_box_seller remains blank):
+- B0FQ8JCH46: $129.99, sold by Tru Home Brands, ships from Amazon.com; coupon none displayed.
+- B0DSQ26RH3: $139.99, sold by Bedsure Collections, ships from Amazon.com; coupon 50%.
+- B0GBV12MKL: $66.99, sold by KuMan, ships from Amazon.com; coupon none displayed.
+- B08WS5MYK8: $29.99, sold by Goroly Home, ships from Amazon.com; coupon none displayed.
+
+B0FC6F4RYY: only a Used - Like New offer ($68.84 from Bedding Boz) was displayed. That used-item price is excluded. New-item price, stock and buy_box_seller remain blank; this is not a zero-price or confirmed new-stockout row.
+
+Orderable without explicit In Stock wording: B0D4Y6RKLL, B0DM214YG3, B0DHCG7VDK, B095H7XNTP, B0DJ6XGCFD, B09VC8ZM91, B0BFDGC7CC. These Y values follow the P1 definition of orderability, not immediate warehouse availability. B0BFDGC7CC displayed delivery October 28-November 3.
+
+Explicitly unavailable, price/seller blank: B0F9FK7SMW, B0GVP3B7LS, B0DYT2QWLC, B0GW7H7RHY, B0FQPCYCVQ, B0F7GKNYTQ, B0CZB5B67X, B0FLDYD61P, B0DJ933TY2, B0BR9J5DGW, B0BT9RNGDQ, B0CKVPXJ8Z, B0G82967V2, B0B2KVR9RB, B0FWQB61X1, B0DQKM17ZF, B085Y7YSVZ, B0F534LNF4, B08JKWGXZ9, B0DWSK45RC, B09W5W7VCC, B0CM9N244T.
+
+Exact current David's Home destination title (verbatim): David's Home 3PCS Cooling Sheets Set Twin Size, 100% Rayon Derived from Bamboo, 16" Deep Pocket, Luxury Silky Breathable for Hot Sleeper,Breathable Smooth Soft, Sage Green
+
+QA: exact 240-ASIN target membership/order, unique keys, schema, per-capture ZIP/login, selected ASIN, dates/times, price/Buy Box cross-check, reference-price labels/arithmetic, coupons, new-vs-used offers and all exceptions verified. Earlier P1 CSV byte hash unchanged. No live-source gaps filled by inference.
