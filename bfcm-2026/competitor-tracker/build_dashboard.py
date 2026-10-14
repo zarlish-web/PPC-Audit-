@@ -40,7 +40,7 @@ for pid, mkt, tname in br.TABS:
         "img": img_for(best) or img_for(parent), "stage": p.get("stage") or o.get("stage"), "skus": p.get("skuCount") or o.get("sku_count"),
         "sizes": p.get("sizes") or o.get("sizes") or [], "colours": p.get("colours") or [], "price": br.our_headline_price(pid, mkt, best, e["price"])[0], "priceSrc": f"{best_lbl} ({best}) · " + br.our_headline_price(pid, mkt, best, e["price"])[1], "nLive": nlive, "contrib": e["contribution"],
         "be": e["be_acos"], "u28": e["units_28d"],
-        "lift": lf["lift"] if lf else None, "tacos": lf["tacos"] if lf else None, "preTacos": lf["pre_tacos"] if lf else None, "dec": lf["dec"] if lf else None,
+        "lift": lf["lift"] if lf else None, "tacos": lf["tacos"] if lf else None, "preTacos": lf["pre_tacos"] if lf else None, "dec": lf["dec"] if lf else None, "hk": br.hero25.get((pid, mkt)),
         "vars": [{"asin": v["asin"], "sku": v["sku"], "size": v["size"], "colour": v["colour"], "price": v["price_now"] if v.get("price_now") is not None else v["price"], "live": v.get("price_now") is not None, "u28": v["units_28d"],
                   "img": img_for(v["asin"])} for v in vars_],
     })

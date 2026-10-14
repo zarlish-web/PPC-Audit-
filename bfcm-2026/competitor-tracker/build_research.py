@@ -733,6 +733,40 @@ if _kd:
             "notes": "; ".join(notes) or None, "kp_days": len(bb_bf), "raised": any("RAISED" in n for n in notes),
         }
 
+# Our hero children, BFCM 2025 (Command Center keepa_history, US, pulled 2026-10-14). Keepa holds no Buy Box series
+# for our own ASINs, so price = lowest new offer (we are the only seller); daily values are Eastern days, carried forward.
+HERO_PID = {"Decolure Bamboo Fitted Sheet": 73, "Decolure Bamboo Sheets 6 Piece": 30, "Decolure Bamboo Sheets 4 Piece": 59,
+            "Sleephoria Bamboo Sheets 6 Piece": 32, "Sleephoria Bamboo Sheets 4 Piece": 36, "CooLinens Cooling Pillowcases 2 Piece": 70,
+            "Decolure Cooling Sheets 4 Piece": 48, "Sleephoria Cooling Sheets 4 Piece": 45, "Sleephoria Cooling Fitted Sheet": 44,
+            "Sleephoria Cooling Pillowcases": 43, "Sleephoria Cooling Comforter": 42, "Decolure Waterproof Chair Cover": 33,
+            "Decolure Linen Curtains": 53, "Decolure Front Door Welcome Sign": 58, "Decolure Beach Towel": 49, "Sleephoria Quilt Set": 46,
+            "Decolure Satin Sheets 4 Piece": 37, "Decolure Satin Sheets 6 Piece": 31, "Decolure Satin Fitted Sheet": 38,
+            "Sleephoria Satin Sheets 4 Piece": 39, "Decolure Silk Pillowcase": 55, "Sleephoria Silk Sleep Mask - Velcro": 57,
+            "Sleephoria Silk Sleep Mask - Contoured": 56}
+hero25 = {}   # (pid, "US") -> summary for our hero child
+_ho = f"{DATA}/keepa/keepa_history_ours_cc.csv"
+if os.path.exists(_ho):
+    _hp = {r["asin"]: HERO_PID.get(r["our_product"]) for r in csv.DictReader(open(f"{DATA}/keepa/keepa_history_ours_cc_coverage.csv", encoding="utf-8-sig"))}
+    _hr = {}
+    for row in csv.DictReader(open(_ho, encoding="utf-8-sig")):
+        _hr.setdefault(row["asin"], []).append(row)
+    for a, rs in _hr.items():
+        if _hp.get(a) is None:
+            continue
+        def _eff(r):
+            v_ = [x for x in (_f(r["price_new_offer"]), _f(r["lightning_deal_price"]), _f(r["prime_exclusive_price"])) if x]
+            return min(v_) if v_ else None
+        pre = [r for r in rs if KP_PRE[0] <= r["date"] <= KP_PRE[1]]
+        bf = [r for r in rs if KP_BF[0] <= r["date"] <= KP_BF[1]]
+        pp, bp = [_eff(r) for r in pre if _eff(r)], [_eff(r) for r in bf if _eff(r)]
+        rp, rb = [_f(r["sales_rank"]) for r in pre if _f(r["sales_rank"])], [_f(r["sales_rank"]) for r in bf if _f(r["sales_rank"])]
+        ped = [r["date"][5:] for r in bf if _f(r["prime_exclusive_price"])]
+        cps = sorted({r["coupon"] for r in rs if r["coupon"]})
+        hero25[(_hp[a], "US")] = {
+            "asin": a, "pre": statistics.median(pp) if pp else None, "bf": statistics.median(bp) if bp else None, "low": min(bp) if bp else None,
+            "rank_pre": round(statistics.median(rp)) if rp else None, "rank_bf": round(statistics.median(rb)) if rb else None,
+            "ped": (f"{ped[0]} to {ped[-1]} ({len(ped)} days)" if ped else None), "coupons": ", ".join(cps) or None}
+
 # Canadian competitors from Amazon.ca page research (Prompt 9), by our product
 CA_PRODUCT_PID = {"DC B4": 59, "DC B6": 30, "DC S4": 37, "DC S6": 31, "SSS4": 39, "DC Satin Fitted": 38}
 ca_comp = {}
@@ -1157,6 +1191,25 @@ for pid, mkt, tname in TABS:
             txt = "Deals Nov 1 - Dec 5, 2025: no record returned by the DataHub promotions feed. Unknown, not proof that no deal ran."
         c = ws.cell(row=r, column=1, value=txt); c.font = F(size=8.5, bold=True, color=C_INK); c.alignment = WRAP
         ws.row_dimensions[r].height = 30 if len(txt) > 180 else 18
+        r += 1
+    hk = hero25.get((pid, mkt))
+    if hk and (hk["pre"] or hk["rank_pre"]):
+        ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
+        bits = []
+        if hk["pre"] and hk["bf"]:
+            bits.append(f"price ${hk['pre']:,.2f} before (median Nov 1-19) → ${hk['bf']:,.2f} in BFCM week (median Nov 20 - Dec 1), "
+                        + (f"{1 - hk['bf'] / hk['pre']:.0%} lower" if hk["bf"] < hk["pre"] else "no cut") + f"; lowest ${hk['low']:,.2f}")
+        if hk["rank_pre"] and hk["rank_bf"]:
+            lr = hk["rank_pre"] / hk["rank_bf"]
+            bits.append(f"Best Seller Rank {hk['rank_pre']:,} → {hk['rank_bf']:,} (" + (f"{lr:.2f}x better" if lr >= 1 else f"{1 / lr:.2f}x worse") + ")")
+        if hk["ped"]:
+            bits.append(f"Prime Exclusive price seen {hk['ped']}")
+        if hk["coupons"]:
+            bits.append(f"coupon {hk['coupons']}")
+        txt = (f"Our hero child {hk['asin']} in Keepa (Command Center, US): " + "; ".join(bits)
+               + ". Price is Keepa's lowest new offer (Keepa holds no Buy Box series for our own ASINs; we are the only seller).")
+        c = ws.cell(row=r, column=1, value=txt); c.font = F(size=8.5, bold=True, color=C_INK); c.alignment = WRAP
+        ws.row_dimensions[r].height = 30
         r += 1
     po = ped_obs.get((pid, mkt))
     if po:
@@ -1675,13 +1728,15 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
      ("Our BFCM 2025 ad spend, ad sales, ACoS, TACoS, orders", "Command Center", "2025-11-20 to 2025-12-01", None, "Exact", "", "Ad metrics as reported by the Command Center."),
      ("Our BFCM 2025 total sales and lift", "SellerBoard (Ecotero account), via connector", "Oct 21 - Dec 31, 2025", len(sellerboard), "Exact", "",
       "Actual sales, units (organic / PPC / SD), ad cost, sessions and refunds per Amazon parent for the 30 days before, BFCM week and December, US and CA. Every file sums exactly to SellerBoard's period totals; 99%+ of US sales map to a tracked product. Actual lifts match the Command Center estimates (B4 4.25x, B6 2.49x, S4 2.64x). Amazon.ca amounts are in USD (SellerBoard converts)."),
-     ("Our BFCM 2025 deals", "DataHub promotions + Keepa (agent, v2 checkpoint)", "2026-10-13", None, "Partial", "",
-      "Scheduled deal price, reference price and committed units are still blank. Keepa lowest Buy Box during each deal is filled for 24 of 3,080 rows (hero children; full pull ~3 days). Prime Exclusive Discounts on SL Bamboo 6pc and SL Cooling Comforter are Keepa observations only, not confirmed campaigns."),
-     ("Our BFCM 2025 stock", "DataHub inventory, revision 2 (agent)", "2026-10-13", None, "Partial", "", "US Nov 26, 27, Dec 1 and CA Nov 24, 29, 30 have no snapshot."),
+     ("Our BFCM 2025 deals", "DataHub promotions (agent, v2), checked against Command Center amazon_promotions / amazon_coupons", "2026-10-14", None, "Exact", "",
+      "Re-verified Oct 14 against the Command Center deal feed: the same 31 US campaigns, dates and units (6 Best Deals ran Nov 20 - Dec 1: B4 4,890 units, S4 4,311, B6 2,927, Satin Fitted 1,865, SSS4 1,152, S6 1,008; 3 Best Deals and 22 Lightning Deals cancelled). The Command Center coupon feed has no US coupons Nov 1 - Dec 5. Scheduled deal price is not in either feed; the hero child's actual price during the deal comes from Keepa (next row). Prime Exclusive Discounts on SL Bamboo 6pc and SL Cooling Comforter are Keepa observations only."),
+     ("Our heroes' BFCM 2025 price and Best Seller Rank (US)", "Command Center keepa_history (data/keepa/keepa_history_ours_cc.csv)", "Nov 1 - Dec 5, 2025", len(hero25), "Exact", "",
+      f"Daily Keepa for our {len(hero25)} US hero child ASINs, pulled Oct 14. Keepa holds no Buy Box series for our own ASINs, so price = lowest new offer (we are the only seller). Price drops on Nov 20 match the Best Deals start: B4 $74.99 to $71.24, B6 $79.99 to $75.99, S4 $29.95 to $25.46, S6 $33.95 to $32.25, Satin Fitted $16.95 to $15.15, SSS4 $33.95 to $31.41. No price history for Bamboo Fitted, Decolure Cooling 4pc, CL Pillowcases, Linen Curtains and Quilt Set in this window."),
+     ("Our BFCM 2025 stock", "DataHub inventory, revision 2 (agent) + data/stock/our_stock_bfcm2025_missing_dates_bracketed.csv", "2026-10-14", None, "Partial", "", "US Nov 26, 27, Dec 1 and CA Nov 24, 29, 30 have no snapshot. Readings either side of each gap settle 85% of those variation-days (3,352 of 3,936); 537 stay unclear until the agent's units-sold evidence arrives. Inferred only; stock columns stay blank."),
      ("Canada competitors", "Amazon.ca page research (agent, Prompt 9)", "2026-10-13", sum(len(v) for v in ca_comp.values()), "Partial" if ca_comp else "Missing", "",
       "Page-1 organic results per product keyword, same material and piece count, Queen selected (2 King), CAD, logged out Toronto. 15 rivals each for DC B4, S4, S6, SSS4 (reuses S4) and Satin Fitted; 8 for DC B6 (only 8 qualifying 6-piece bamboo sets). No Command Center fields (weekly units, ASINsight) exist for Canada; Keepa .ca BFCM 2025 history follows after the US pulls. Our Canadian comparison price is the live Amazon.ca price from Helium 10 Xray (Oct 14, CAD)."),
-     ("Competitors' BFCM 2025 history (US)", "Keepa via agent (" + ", ".join(os.path.basename(f_) for f_ in _kfiles) + ")", "Nov 1 - Dec 5, 2025", len(keepa25), "Partial", "",
-      f"{len(keepa25)} US competitor ASINs pulled (P1 70 + P2 delivered so far); {sum(1 for x in US_recs if x.get('bf_type') is None)} US rows still yellow until the remaining P2 batches arrive. Pre-event = Nov 1-19 (pull starts Nov 1), BFCM = Nov 20 - Dec 1. Daily end-of-day state, so a deal of a few hours can be missed. Coupons are listed, not netted into the low price.")]
+     ("Competitors' BFCM 2025 history (US)", "Keepa via agent (" + ", ".join(os.path.basename(f_) for f_ in _kfiles) + ")", "Nov 1 - Dec 5, 2025", len(keepa25), ("Partial" if any(x.get("bf_type") is None for x in US_recs) else "Exact"), "",
+      f"{len(keepa25)} US competitor ASINs pulled (P1 70 + P2 240, complete); {sum(1 for x in US_recs if x.get('bf_type') is None)} US rows without a BFCM 2025 result (ASINs Keepa has no history for). Spot-checked Oct 14 against the Command Center's own Keepa (keepa_history): Buy Box, List Price, Lightning Deal, Prime Exclusive and coupon days identical; daily rank values differ slightly because the agent reads 23:59 UTC and the Command Center reads per Eastern day. Pre-event = Nov 1-19 (pull starts Nov 1), BFCM = Nov 20 - Dec 1. Daily end-of-day state, so a deal of a few hours can be missed. Coupons are listed, not netted into the low price.")]
 for i, r_ in enumerate(S):
     for j, v in enumerate(r_, 1):
         c = chk.cell(row=row, column=j, value=v); c.border = BOX; c.alignment = WRAP
