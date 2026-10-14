@@ -681,6 +681,15 @@ if os.path.exists(_kh):
             "notes": "; ".join(notes) or None, "kp_days": len(bb_bf), "raised": any("RAISED" in n for n in notes),
         }
 
+# Canadian competitors from Amazon.ca page research (Prompt 9), by our product
+CA_PRODUCT_PID = {"DC B4": 59, "DC B6": 30, "DC S4": 37, "DC S6": 31, "SSS4": 39, "DC Satin Fitted": 38}
+ca_comp = {}
+for _f in sorted(glob.glob(f"{DATA}/ca_competitors/ca_competitors*.csv")):
+    for _r in csv.DictReader(open(_f, newline="", encoding="utf-8-sig")):
+        _p = CA_PRODUCT_PID.get(_r.get("our_product"))
+        if _p is not None:
+            ca_comp.setdefault(_p, []).append(_r)
+
 str_now = {}
 for _f in sorted(glob.glob(f"{DATA}/str/str_check_*.csv")):
     for row in csv.DictReader(open(_f, encoding="utf-8-sig")):
@@ -700,7 +709,33 @@ for pid, fam, short, role in PRODUCTS:
             continue
         TABS.append((pid, mkt, tab_name(pid, mkt)))
         if mkt == "CA":
-            continue     # Command Center holds no CA competitor snapshots
+            # The Command Center holds no CA competitors: use the Amazon.ca page research (AGENT_PROMPTS Prompt 9)
+            for row in ca_comp.get(pid, []):
+                f_ = lambda z: float(z) if z not in (None, "") else None
+                ch = row["child_asin"]
+                kp_ = keepa25.get(ch)
+                rec = {
+                    "pid": pid, "mkt": "CA", "family": fam, "product": short, "tab": tab_name(pid, mkt), "role": role,
+                    "cid": None, "brand": row["competitor_brand"].strip(), "parent": row["parent_asin"] or None, "child": ch,
+                    "title": row["title"], "tier": "Untiered", "image": good_img(row["main_image_url"]), "image_asin": ch,
+                    "price": f_(row["price_cad"]), "lp": None, "bsr": f_(row["bsr"]), "wk": None,
+                    "rating": f_(row["rating"]), "reviews": f_(row["review_count"]), "seen": row["check_date"],
+                    "size": row["size"] or None, "colour": row["colour"] or None,
+                    "var": f_(row["variation_count"]), "var_src": "Amazon.ca page" if row["variation_count"] else None,
+                    "ful": None, "country": None, "listed": None,
+                    "str_show": row["strikethrough_shown"] or "unknown", "str_label": row["strikethrough_label"] or None,
+                    "str_price": f_(row["strikethrough_price_cad"]), "page_price": f_(row["price_cad"]),
+                    "deal_now": ", ".join(z for z in [row["deal_badge"] if row["deal_badge"] not in ("", "none") else None,
+                                                     ("coupon " + row["coupon"]) if row["coupon"] else None] if z) or "none",
+                    "stock_now": row["in_stock"] or None, "str_checked": f"{row['check_date']} {row['check_time_et']}",
+                    "ca_rank": row["organic_rank"], "ca_keyword": row["keyword"], "material": row["material"],
+                    "notes": (f"Amazon.ca organic #{row['organic_rank']} for '{row['keyword']}'; {row['material']}; "
+                              f"{row['bought_past_month'] + ' bought past month; ' if row['bought_past_month'] else ''}{row['notes'][:160]}"),
+                }
+                if kp_:
+                    rec.update({k: kp_[k] for k in ("bf_type", "bf_dates", "bf_pre", "bf_low", "bsr_pre", "bsr_bf", "bf_oos")})
+                records.append(rec)
+            continue
         st = {r["cid"]: r for r in (strat.get(pid) or {}).get("competitors", []) if "cid" in r and "error" not in r}
         for cp in d.get("competitors", []):
             s = st.get(cp.get("id")) or {}
@@ -748,6 +783,11 @@ for pid, fam, short, role in PRODUCTS:
                 rec["raised"] = kp_["raised"]
             records.append(rec)
 
+_allk = set().union(*(r_.keys() for r_ in records)) if records else set()
+for r_ in records:            # CA rows lack the Command Center / ASINsight fields: give every row the same keys
+    for k_ in _allk:
+        r_.setdefault(k_, None)
+
 tier_rank = {"Aspirational": 0, "Beatable": 1, "Poor": 2, "Untiered": 3}
 records.sort(key=lambda r: ([p[0] for p in PRODUCTS].index(r["pid"]), tier_rank.get(r["tier"], 3), -(r["wk"] or 0)))
 
@@ -771,16 +811,19 @@ def _live(pid, mkt, sz):
         return None, None
     return statistics.median(x[0] for x in xs), f"{xs[0][1]}; {len(xs)} child{'ren' if len(xs) > 1 else ''}"
 for r in records:
-    bys = our_size_price.get((r["pid"], "US"), {})
+    m_ = r["mkt"]
+    bys = our_size_price.get((r["pid"], m_), {})
     want = r["size"] if r["size"] else "Queen"
     lead = f"Same size ({want})" if r["size"] else "Size not stated - vs our Queen"
-    lp_, src_ = _live(r["pid"], "US", want)
+    if m_ == "CA":
+        lead += ", CAD"
+    lp_, src_ = _live(r["pid"], m_, want)
     if lp_ is not None:
         r["our_same"], r["basis"], r["our_live"] = lp_, f"{lead}. Ours live: {src_}", True
     elif bys.get(want) is not None:
         r["our_same"], r["basis"], r["our_live"] = bys[want], f"{lead}. Ours: Command Center fee feed, Mar 2026 - STALE", False
-    elif our_blend.get((r["pid"], "US")) is not None:
-        r["our_same"], r["basis"], r["our_live"] = our_blend[(r["pid"], "US")], "vs our blended price (Command Center, Mar 2026 - STALE)", False
+    elif our_blend.get((r["pid"], m_)) is not None:
+        r["our_same"], r["basis"], r["our_live"] = our_blend[(r["pid"], m_)], "vs our blended price (Command Center, Mar 2026 - STALE)", False
     else:
         r["our_same"], r["basis"], r["our_live"] = None, "No price for us", False
 
@@ -935,9 +978,11 @@ for pid, mkt, tname in TABS:
         ("BFCM 2025 lift", f"{lf['lift']:.2f}x" if lf else "n/a", f"daily sales, BFCM wk vs 30 days before ({lf['src']})" if lf else "no data"),
         ("BFCM 2025 TACoS", f"{lf['tacos']:.1f}%" if lf and lf.get("tacos") is not None else "n/a", f"vs {lf['pre_tacos']:.1f}% before" if lf and lf.get("pre_tacos") is not None else ""),
         ("Dec 2025 vs pre-event", f"{lf['dec']:.2f}x" if lf and lf.get("dec") else "n/a", "December daily sales vs Oct 21-Nov 19"),
-        ("Competitors mapped", str(len(comps)) if mkt == "US" else "0 (CA not mapped)", "Command Center map"),
+        ("Competitors mapped", str(len(comps)) if comps else ("0 (CA not mapped)" if mkt == "CA" else "0"), "Command Center map" if mkt == "US" else "Amazon.ca page research"),
         ("Priced below us", str(sum(1 for x in comps if isinstance(x.get("price"), (int, float)) and x.get("our_same") and x["price"] < x["our_same"])) if comps else "n/a", "same size, else vs our Queen"),
-        ("List Price within 12%", str(sum(1 for x in comps if isinstance(x.get("lp"), (int, float)) and isinstance(x.get("price"), (int, float)) and 0 < x["lp"] / x["price"] - 1 <= 0.12)) if comps else "n/a", "most likely to show a strikethrough"),
+        (("List Price within 12%", str(sum(1 for x in comps if isinstance(x.get("lp"), (int, float)) and isinstance(x.get("price"), (int, float)) and 0 < x["lp"] / x["price"] - 1 <= 0.12)) if comps else "n/a", "List Price set, <=12% above price")
+         if mkt == "US" else
+         ("Strikethrough shown", (f"{sum(1 for x in comps if x.get('str_show') == 'Y')} of {len(comps)}") if comps else "n/a", "on the Amazon.ca page, Oct 13")),
     ]
     for i, (k, v, sub) in enumerate(kpis):
         c0 = 1 + i * 4
@@ -1091,12 +1136,21 @@ for pid, mkt, tname in TABS:
     # ---- section 4: competitor landscape
     r = section(ws, r, f"4 · COMPETITOR LANDSCAPE ({len(comps)} mapped)", NC,
                 "Sorted by tier, then estimated weekly units. Green = Command Center price/sales; blue = Data Dive listing; purple = Command Center search strategy (ASINsight); yellow = fill from Keepa / page check.")
-    if mkt == "CA":
+    if mkt == "CA" and not comps:
         ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
         ws.cell(row=r, column=1, value="The Command Center holds no Amazon.ca competitor snapshots. Map the CA competitor set (Data Gaps #6) and pull Keepa .ca - see AGENT_PROMPTS Prompt 9.").font = F(bold=True, color="C00000")
         r += 2
         product_cells[(pid, mkt)] = {"tab": tname}
         continue
+    if mkt == "CA":
+        ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
+        ws.cell(row=r, column=1, value=("Canadian competitors from Amazon.ca page research (Oct 13, logged out, Toronto M5V 3L9): page-1 organic results for this product's keywords, "
+                                        "same material and piece count, Queen size selected (2 King where no Queen). Prices in CAD. The Command Center columns (BSR trend, ASINsight search strategy, "
+                                        "weekly units) do not exist for Canada; organic rank and keyword are in Notes. 'Our price, same size' is our Command Center CAD price (Mar 2026) - "
+                                        "no live Canadian price source yet.")).font = F(size=8.5, bold=True, color=C_INK)
+        ws.cell(row=r, column=1).alignment = WRAP
+        ws.row_dimensions[r].height = 30
+        r += 1
     # group row
     gr = r
     spans, prev, start = [], None, 1
@@ -1185,12 +1239,17 @@ for pid, mkt, tname in TABS:
         ins.append("Who sells most: " + "; ".join(f"{x['brand']} ~{x['wk']:,}/wk at {fmt(x.get('price'))}" + (f" (List {fmt(x['lp'])}, +{x['lp']/x['price']-1:.0%})" if isinstance(x.get('lp'), (int, float)) and isinstance(x.get('price'), (int, float)) and x['lp'] > x['price'] else "") for x in top)
                    + (f". Tracked rivals ~{tot:,.0f} units/wk; we sell ~{ourwk:,.0f}/wk ({ourwk/(ourwk+tot):.1%} of the tracked set)." if tot else ""))
     z = [x for x in comps if isinstance(x.get("lp"), (int, float)) and isinstance(x.get("price"), (int, float)) and 0 < x["lp"] / x["price"] - 1 <= 0.12]
-    if comps:
+    if comps and mkt == "US":
         ins.append(f"Strikethrough: {sum(1 for x in comps if isinstance(x.get('lp'), (int, float)) and isinstance(x.get('price'), (int, float)) and x['lp'] > x['price'])} of {len(comps)} rivals set a List Price above price; {len(z)} within 12%"
                    + (": " + ", ".join(f"{x['brand']} +{x['lp']/x['price']-1:.0%}" for x in z[:6]) if z else "") + ".")
+    if comps:
         below = [x for x in comps if isinstance(x.get("price"), (int, float)) and x.get("our_same") and x["price"] < x["our_same"]]
         ins.append(f"Price: {len(below)} of {len(comps)} rivals sit below our price today (same size where the title states one). Cheapest strong rivals: "
-                   + ", ".join(f"{x['brand']} {fmt(x['price'])}" for x in sorted([b for b in below if b['tier'] in ('Aspirational', 'Beatable')], key=lambda b: b['price'])[:4]) + ".")
+                   + ", ".join(f"{x['brand']} {fmt(x['price'])}" for x in sorted([b for b in below if b['tier'] in ('Aspirational', 'Beatable') or mkt == 'CA'], key=lambda b: b['price'])[:4]) + "."
+                   + (" CA prices are CAD; our comparison price is the Command Center's Mar 2026 CAD price (no live Canadian price yet)." if mkt == "CA" else ""))
+    if comps and mkt == "CA":
+        top_ = sorted(comps, key=lambda x: int(x.get("ca_rank") or 999))[:5]
+        ins.append("Top organic on Amazon.ca (Oct 13): " + "; ".join(f"#{x['ca_rank']} {x['brand']} {fmt(x['price'])} ({x['ca_keyword']})" for x in top_) + ".")
     chk = [x for x in comps if x.get("str_show") in ("Y", "N")]
     if chk:
         sh = [x for x in chk if x["str_show"] == "Y"]
@@ -1556,7 +1615,8 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
      ("Our BFCM 2025 deals", "DataHub promotions + Keepa (agent, v2 checkpoint)", "2026-10-13", None, "Partial", "",
       "Scheduled deal price, reference price and committed units are still blank. Keepa lowest Buy Box during each deal is filled for 24 of 3,080 rows (hero children; full pull ~3 days). Prime Exclusive Discounts on SL Bamboo 6pc and SL Cooling Comforter are Keepa observations only, not confirmed campaigns."),
      ("Our BFCM 2025 stock", "DataHub inventory, revision 2 (agent)", "2026-10-13", None, "Partial", "", "US Nov 26, 27, Dec 1 and CA Nov 24, 29, 30 have no snapshot."),
-     ("Canada competitors", "None", None, 0, "Missing", "", "No Amazon.ca competitor snapshots in the Command Center."),
+     ("Canada competitors", "Amazon.ca page research (agent, Prompt 9)", "2026-10-13", sum(len(v) for v in ca_comp.values()), "Partial" if ca_comp else "Missing", "",
+      "Page-1 organic results per product keyword, same material and piece count, Queen selected (2 King), CAD, logged out Toronto. 15 rivals each for DC B4, S4, S6, SSS4 (reuses S4) and Satin Fitted; 8 for DC B6 (only 8 qualifying 6-piece bamboo sets). No Command Center fields (weekly units, ASINsight) exist for Canada; Keepa .ca BFCM 2025 history follows after the US pulls. Our Canadian comparison price is the Command Center's Mar 2026 CAD price."),
      ("Competitors' BFCM 2025 history (US)", "Keepa via agent (keepa_history_p1.csv)", "Nov 1 - Dec 5, 2025", len(keepa25), "Partial", "",
       f"All 70 P1 rivals pulled; {sum(1 for x in US_recs if x.get('bf_type') is None)} US rows (P2 rivals) still yellow. Pre-event = Nov 1-19 (pull starts Nov 1), BFCM = Nov 20 - Dec 1. Daily end-of-day state, so a deal of a few hours can be missed. Coupons are listed, not netted into the low price.")]
 for i, r_ in enumerate(S):

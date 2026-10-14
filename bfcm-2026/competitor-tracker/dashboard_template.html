@@ -211,14 +211,15 @@ function renderKpis(p, rows){
   const wk = rows.reduce((s,c) => s + (typeof c.wk === "number" ? c.wk : 0), 0);
   const ourwk = p && typeof p.u28 === "number" ? p.u28/4 : null;
   const lose = rows.reduce((s,c) => s + (c.we_lose || 0), 0), win = rows.reduce((s,c) => s + (c.we_win || 0), 0);
+  const isCA = p && p.mkt === "CA";
   const k = [
-    ["Competitors", fmtN(rows.length), "in this view"],
+    ["Competitors", fmtN(rows.length), isCA ? "Amazon.ca page research, CAD" : "in this view"],
     ["Median price", fmt$(med), p ? "ours " + fmt$(p.price) + " (" + (p.priceSrc || "") + ")" : ""],
     ["Priced below us", fmtN(below), "same size, else vs our Queen"],
-    ["List Price set", fmtN(lpset), `${zone} within 12% · see "on page" for what shows`],
+    ["List Price set", isCA ? "—" : fmtN(lpset), isCA ? "Canada: strikethrough read from the page instead" : `${zone} within 12% · see "on page" for what shows`],
     ["STR on page (checked)", `${rows.filter(c => c.str_show === "Y").length} / ${rows.filter(c => c.str_show === "Y" || c.str_show === "N").length}`, "Amazon page check, Oct 13"],
-    ["Est weekly units", fmtN(wk), ourwk !== null ? `we sell ~${fmtN(ourwk)}/wk (${fmtP(ourwk/(ourwk+wk),1)})` : ""],
-    ["Shared keywords", `${fmtN(win)} / ${fmtN(lose)}`, "we win / we lose (sum over rivals)"],
+    ["Est weekly units", isCA || !wk ? "—" : fmtN(wk), isCA ? "not available for Canada" : (ourwk !== null && wk ? `we sell ~${fmtN(ourwk)}/wk (${fmtP(ourwk/(ourwk+wk),1)})` : "")],
+    ["Shared keywords", isCA ? "—" : `${fmtN(win)} / ${fmtN(lose)}`, isCA ? "not available for Canada" : "we win / we lose (sum over rivals)"],
   ];
   $("#kpis").innerHTML = k.map(([a,b,c]) => `<div class="kpi"><div class="k">${a}</div><div class="v">${b}</div><div class="s">${esc(c)}</div></div>`).join("");
 }
