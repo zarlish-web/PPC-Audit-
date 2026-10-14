@@ -1017,7 +1017,7 @@ for pid, mkt, tname in TABS:
         ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
         ws.cell(row=r, column=1, value=(f"SellerBoard, Ecotero account, Amazon parent {amazon_parent(pid, mkt)} plus any of this product's child ASINs SellerBoard lists on their own, UTC days. Lift above uses these actual sales"
                                         + (f" ({lf['lift']:.2f}x; the ad-spend estimate was {lf['lift_derived']:.2f}x)." if lf and lf.get('lift_derived') else ".")
-                                        + (" Amazon.ca figures as SellerBoard reports them (account currency USD)." if mkt == "CA" else ""))).font = F(size=8, italic=True, color=C_SUB)
+                                        + (" Amazon.ca sales here are in USD: SellerBoard converts to the account currency, while the Command Center table above is in CAD (ratio ~0.71). Lift is a ratio, so it is unaffected." if mkt == "CA" else ""))).font = F(size=8, italic=True, color=C_SUB)
         r += 1
     v = pt.get(best) or {}
     vis = (f"Command Center visibility for our best child {best}: organic score {v.get('bf25_pre_org')} before BFCM 2025 → {v.get('bf25_org')} in BFCM week; "
@@ -1534,7 +1534,9 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
       "Calculated on the Mar 2026 fee-feed price. Where our live price is higher (e.g. B6 King +$10, B4 King +$15) contribution and break-even ACoS are understated."),
      ("Our parent ASIN", "Data Dive seller catalog", "2026-10-13", len(TABS), "Fixed", "",
       "Command Center's 'parent_asin' is one of our child ASINs. Tabs now show the Amazon parent from the catalog; the Command Center ASIN is listed separately."),
-     ("Our BFCM 2025 ad spend, ad sales, ACoS, TACoS, orders", "Command Center", "2025-11-20 to 2025-12-01", None, "Exact", "", "Total sales = ad spend / TACoS (derived, not reported)."),
+     ("Our BFCM 2025 ad spend, ad sales, ACoS, TACoS, orders", "Command Center", "2025-11-20 to 2025-12-01", None, "Exact", "", "Ad metrics as reported by the Command Center."),
+     ("Our BFCM 2025 total sales and lift", "SellerBoard (Ecotero account), via connector", "Oct 21 - Dec 31, 2025", len(sellerboard), "Exact", "",
+      "Actual sales, units (organic / PPC / SD), ad cost, sessions and refunds per Amazon parent for the 30 days before, BFCM week and December, US and CA. Every file sums exactly to SellerBoard's period totals; 99%+ of US sales map to a tracked product. Actual lifts match the Command Center estimates (B4 4.25x, B6 2.49x, S4 2.64x). Amazon.ca amounts are in USD (SellerBoard converts)."),
      ("Our BFCM 2025 deals", "DataHub promotions + Keepa (agent, v2 checkpoint)", "2026-10-13", None, "Partial", "",
       "Scheduled deal price, reference price and committed units are still blank. Keepa lowest Buy Box during each deal is filled for 24 of 3,080 rows (hero children; full pull ~3 days). Prime Exclusive Discounts on SL Bamboo 6pc and SL Cooling Comforter are Keepa observations only, not confirmed campaigns."),
      ("Our BFCM 2025 stock", "DataHub inventory, revision 2 (agent)", "2026-10-13", None, "Partial", "", "US Nov 26, 27, Dec 1 and CA Nov 24, 29, 30 have no snapshot."),
