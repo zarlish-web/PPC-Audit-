@@ -598,6 +598,21 @@ if "_agg" in globals():
         top = sorted(oos.items(), key=lambda kv: -_vel.get((key[1], kv[0]), 0))[:4]
         stock_oos[key] = {"asins": len(asins), "oos_asins": len(oos), "weighted": w,
                           "top": "; ".join(f"{a_} {v[0]}/{v[1]} days" for a_, v in top)}
+# The 6 dates with no inventory snapshot, inferred from sales that day (agent, DataHub amazon_sales) plus the
+# readings either side (bracket). Kept apart from the observed figures above: an inference, not a stock reading.
+stock_gap = {}   # (pid, mkt) -> Counter of status_inferred
+_sg = f"{DATA}/stock/our_stock_bfcm2025_missing_dates_combined.csv"
+if os.path.exists(_sg):
+    for row in csv.DictReader(open(_sg, encoding="utf-8-sig")):
+        name = row["product_name"].split("|")[0].strip() if "|" in row["product_name"] else row["product_name"]
+        pid_ = STOCK_ALIAS.get(name)
+        if pid_ is None:
+            continue
+        pid_ = (REASSIGN.get((row["marketplace"], row["child_asin"])) or (None, pid_))[1]
+        c_ = stock_gap.setdefault((pid_, row["marketplace"]), {})
+        c_[row["status_inferred"]] = c_.get(row["status_inferred"], 0) + 1
+        if row["status_inferred"] == "sold_despite_zero_snapshots":
+            c_.setdefault("_sold0", []).append(f"{row['child_asin']} {row['date'][5:]} ({row['units_ordered']} sold)")
 
 DEAL_NAMES = {"Decolure Bamboo Sheets 4 Piece": 59, "Decolure Bamboo Sheets 6 Piece": 30, "Decolure Satin Sheets 4 Piece": 37,
               "Decolure Satin Sheets 6 Piece": 31, "Decolure Satin Fitted Sheet": 38, "Sleephoria Satin Sheets 4 Piece": 39,
@@ -1228,10 +1243,18 @@ for pid, mkt, tname in TABS:
         ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
         txt = (f"Stock in BFCM week 2025 (FBA inventory snapshots, child-ASIN level, revision 2): {so['oos_asins']} of {so['asins']} variations hit zero FBA stock on at least one observed day"
                + (f"; weighted by today's sales mix that is ~{so['weighted']:.1%} of variation-days lost" if so['weighted'] is not None else "")
-               + (f". Most important: {so['top']}." if so['top'] else ".")
-               + " Snapshots missing: US Nov 26-27 and Dec 1 (Cyber Monday); CA Nov 24, 29-30.")
+               + (f". Most important: {so['top']}." if so['top'] else "."))
+        sg = stock_gap.get((pid, mkt))
+        if sg:
+            n_ = sum(v for k, v in sg.items() if not k.startswith("_"))
+            txt += (f" Days with no snapshot ({'Nov 26-27 and Dec 1, Cyber Monday' if mkt == 'US' else 'Nov 24, 29 and 30'}), inferred from sales that day and the readings either side: "
+                    f"{sg.get('in_stock', 0)} of {n_} variation-days in stock, {sg.get('out_of_stock', 0)} out of stock, {sg.get('unknown', 0)} unknown"
+                    + (f"; {sg['sold_despite_zero_snapshots']} sold despite 0 units on both sides (stock arriving that day): {', '.join(sg['_sold0'])}" if sg.get("sold_despite_zero_snapshots") else "")
+                    + ". Inferred, not a stock reading.")
+        else:
+            txt += f" Snapshots missing: {'US Nov 26-27 and Dec 1 (Cyber Monday)' if mkt == 'US' else 'CA Nov 24, 29-30'}."
         c = ws.cell(row=r, column=1, value=txt); c.font = F(size=8.5, bold=True, color=C_INK); c.alignment = WRAP
-        ws.row_dimensions[r].height = 26
+        ws.row_dimensions[r].height = 26 if len(txt) < 330 else 40
         r += 1
     ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
     ws.cell(row=r, column=1, value=vis).font = F(size=8, italic=True, color=C_SUB)
@@ -1732,7 +1755,7 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
       "Re-verified Oct 14 against the Command Center deal feed: the same 31 US campaigns, dates and units (6 Best Deals ran Nov 20 - Dec 1: B4 4,890 units, S4 4,311, B6 2,927, Satin Fitted 1,865, SSS4 1,152, S6 1,008; 3 Best Deals and 22 Lightning Deals cancelled). The Command Center coupon feed has no US coupons Nov 1 - Dec 5. Scheduled deal price is not in either feed; the hero child's actual price during the deal comes from Keepa (next row). Prime Exclusive Discounts on SL Bamboo 6pc and SL Cooling Comforter are Keepa observations only."),
      ("Our heroes' BFCM 2025 price and Best Seller Rank (US)", "Command Center keepa_history (data/keepa/keepa_history_ours_cc.csv)", "Nov 1 - Dec 5, 2025", len(hero25), "Exact", "",
       f"Daily Keepa for our {len(hero25)} US hero child ASINs, pulled Oct 14. Keepa holds no Buy Box series for our own ASINs, so price = lowest new offer (we are the only seller). Price drops on Nov 20 match the Best Deals start: B4 $74.99 to $71.24, B6 $79.99 to $75.99, S4 $29.95 to $25.46, S6 $33.95 to $32.25, Satin Fitted $16.95 to $15.15, SSS4 $33.95 to $31.41. No price history for Bamboo Fitted, Decolure Cooling 4pc, CL Pillowcases, Linen Curtains and Quilt Set in this window."),
-     ("Our BFCM 2025 stock", "DataHub inventory, revision 2 (agent) + data/stock/our_stock_bfcm2025_missing_dates_bracketed.csv", "2026-10-14", None, "Partial", "", "US Nov 26, 27, Dec 1 and CA Nov 24, 29, 30 have no snapshot. Readings either side of each gap settle 86% of those variation-days (3,399 of 3,936: 3,352 in stock, 47 out of stock); 537 stay unclear until the agent's units-sold evidence arrives. Inferred only; stock columns stay blank."),
+     ("Our BFCM 2025 stock", "DataHub inventory, revision 2 (agent) + data/stock/our_stock_bfcm2025_missing_dates_bracketed.csv", "2026-10-14", None, "Partial", "", "US Nov 26, 27, Dec 1 and CA Nov 24, 29, 30 have no snapshot. Filled by inference (data/stock/our_stock_bfcm2025_missing_dates_combined.csv) from units sold that day (agent, DataHub amazon_sales, 1,761 variation-days with a sale) and the readings either side: 3,503 of 3,936 variation-days in stock, 39 out of stock, 386 unknown (low or no stock either side and no sale), and 8 sold despite 0 units on both sides (inbound stock arriving that day, e.g. B4 Queen Mid Grey B0BZQ18QJB sold 87 on Cyber Monday). Stock unit columns stay blank for these days."),
      ("Canada competitors", "Amazon.ca page research (agent, Prompt 9)", "2026-10-13", sum(len(v) for v in ca_comp.values()), "Partial" if ca_comp else "Missing", "",
       "Page-1 organic results per product keyword, same material and piece count, Queen selected (2 King), CAD, logged out Toronto. 15 rivals each for DC B4, S4, S6, SSS4 (reuses S4) and Satin Fitted; 8 for DC B6 (only 8 qualifying 6-piece bamboo sets). No Command Center fields (weekly units, ASINsight) exist for Canada; Keepa .ca BFCM 2025 history follows after the US pulls. Our Canadian comparison price is the live Amazon.ca price from Helium 10 Xray (Oct 14, CAD)."),
      ("Competitors' BFCM 2025 history (US)", "Keepa via agent (" + ", ".join(os.path.basename(f_) for f_ in _kfiles) + ")", "Nov 1 - Dec 5, 2025", len(keepa25), ("Partial" if any(x.get("bf_type") is None for x in US_recs) else "Exact"), "",
