@@ -274,6 +274,17 @@ def our_title_and_image(pid, mkt):
     return title, img, best, parent
 
 _var_cache = {}
+_main_pool = {}
+def split_note(pid, mkt, v):
+    """None if the variation is in this product's main review family; otherwise a note. A variation that sits in
+    another of our products' main family (e.g. 'SATIN-4PC-TWIN' SKUs: the Twin of the 6 Pc set is a 4-piece set,
+    so Amazon lists it in the Satin 6pc family) is a Command Center mapping difference, not a split listing."""
+    if not v.get("split"):
+        return None
+    for (p2, m2), pool in _main_pool.items():
+        if m2 == mkt and p2 != pid and pool == v.get("x_pool"):
+            return ("mapped", f"Listed in the {PINFO[p2][2]} family on Amazon (Command Center maps it here) - expected, not an error")
+    return ("split", "SEPARATE listing - not in the main review family")
 def our_variations(pid, mkt):
     """SKU rows joined to catalog children (image, title)."""
     if (pid, mkt) in _var_cache:
@@ -321,6 +332,7 @@ def our_variations(pid, mkt):
     main_pool = max(pools, key=pools.get) if pools else None
     for r in rows:
         r["split"] = bool(main_pool and r.get("x_pool") and r["x_pool"] != main_pool)
+    _main_pool[(pid, mkt)] = main_pool
     rows.sort(key=lambda r: (-(r["units_28d"] or 0), r["size"] or "", r["colour"] or ""))
     _var_cache[(pid, mkt)] = rows
     return rows
@@ -814,7 +826,7 @@ for pid, mkt, tname in TABS:
         ws.row_dimensions[r].height = IMG_ROW_H
         put_image(ws, f"A{r}", v["image"], "OURS - variation", pname, mkt, brand, v["asin"])
         vv = dict(v, hero=(f"Yes ({ourhero[v['asin']]:.0%})" if v["asin"] in ourhero else None),
-                  split_txt=("SEPARATE listing - not in the main review family" if v.get("split") else None),
+                  split_txt=(split_note(pid, mkt, v) or (None, None))[1],
                   price_date=(str(v["price_date"])[:10] if v.get("price_date") else None))
         for j, (key, _h, _w) in enumerate(VC[1:], 2):
             c = ws.cell(row=r, column=j, value=vv.get(key)); c.font = F(); c.border = BOX; c.alignment = WRAP
@@ -825,7 +837,7 @@ for pid, mkt, tname in TABS:
             if key == "price_now" and vv.get(key) is not None:
                 c.font = F(bold=True)
             if key == "split_txt" and vv.get(key):
-                c.fill = FILL["flag"]; c.font = F(bold=True)
+                c.fill = FILL["flag"] if vv[key].startswith("SEPARATE") else FILL["calc"]; c.font = F(bold=vv[key].startswith("SEPARATE"))
         r += 1
     r += 1
 
@@ -1352,8 +1364,9 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
       f"Core products: US {core_us[0]} of {core_us[1]} variations live, Canada {core_ca[0]} of {core_ca[1]}. Core US still without a live price: "
       + (", ".join(f"{k} {v}" for k, v in sorted(core_gap.items(), key=lambda kv: -kv[1])) or "none")
       + ". Not-launched products (SL B4, SL Satin 6pc, SL Cooling 6pc, SL Bamboo Pillowcase) are excluded. Without a live price the tabs show the Command Center fee-feed price (Mar 2026), which is out of date. Xray matched every price already verified on the Amazon page. Prompt 12 (our_price_request.csv, live_price_held = N) fills the rest; Canada has no live source yet."),
-     ("Our listings outside the main review family", "Helium 10 Xray", "2026-10-13", sum(1 for *_x, v in all_vars if v.get("split")), "Check", "",
-      "Variations that sit in their own review family (own rating and review count) instead of the product's main one, flagged in each tab's variation table. Several have weak ratings (e.g. Bamboo Full 3.9 / 61, Cooling Cal King 3.0 / 15, Satin 6pc King 4.0 / 28). Check the variation family in Seller Central."),
+     ("Our listings outside the main review family", "Helium 10 Xray", "2026-10-13", sum(1 for p_, m_, v in all_vars if (split_note(p_, m_, v) or ("",))[0] == "split"), "Check", "",
+      "Variations with their own rating and review count instead of the product's main family, flagged in each tab's variation table: DC B4 Full Light Blue 3.9 / 61, DC S6 King White 4.0 / 28, DC Cooling Cal King Graphite 3.0 / 15, and CL Cooling launch variations not yet merged. "
+      f"Not counted: {sum(1 for p_, m_, v in all_vars if (split_note(p_, m_, v) or ('',))[0] == 'mapped')} DC S4 'SATIN-4PC-TWIN' variations - a Twin in the 6 Pc set is a 4-piece set, so Amazon correctly lists them in the Satin 6pc family; only the Command Center maps them to S4."),
      ("Same-size price gap vs ours", "Calculated", "2026-10-13", live_cmp, "Partial", "",
       f"{live_cmp} of {len(US_recs)} US competitor rows compare against our live price; the rest are marked STALE in 'Comparison basis'."),
      ("Our contribution / break-even ACoS", "Command Center", "2026-03-30 prices", None, "Stale", "",
