@@ -1,0 +1,642 @@
+[
+ {
+  "campaign": "CLCS4-SP-cooling sheets queen-VHSV-Exact-Rank-Fix-Q-GRAPHITE",
+  "ad_group": "cooling sheets queen",
+  "target": "cooling sheets queen",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-QUEEN-GRAPHITE",
+  "bid": 1.41,
+  "tos": 200,
+  "budget": 81.0
+ },
+ {
+  "campaign": "CLCS4-SP-queen sheets cooling-HSV-Exact-Rank-Fix-Q-GRAPHITE",
+  "ad_group": "queen sheets cooling",
+  "target": "queen sheets cooling",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-QUEEN-GRAPHITE",
+  "bid": 2.7,
+  "tos": 25,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-queen cooling sheets-HSV-Exact-Rank-Fix-Q-GRAPHITE",
+  "ad_group": "queen cooling sheets",
+  "target": "queen cooling sheets",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-QUEEN-GRAPHITE",
+  "bid": 3.01,
+  "tos": 75,
+  "budget": 15.0
+ },
+ {
+  "campaign": "CLCS4-SP-cooling queen sheets-HSV-Exact-Rank-Fix-Q-GRAPHITE",
+  "ad_group": "cooling queen sheets",
+  "target": "cooling queen sheets",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-QUEEN-GRAPHITE",
+  "bid": 3.34,
+  "tos": 25,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-queen bed sheets cooling-HSV-Exact-Rank-Fix-Q-GRAPHITE",
+  "ad_group": "queen bed sheets cooling",
+  "target": "queen bed sheets cooling",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-QUEEN-GRAPHITE",
+  "bid": 1.81,
+  "tos": 75,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-queen size sheets cooling-HSV-Exact-Rank-Fix-Q-GRAPHITE",
+  "ad_group": "queen size sheets cooling",
+  "target": "queen size sheets cooling",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-QUEEN-GRAPHITE",
+  "bid": 2.08,
+  "tos": 50,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-cool sheets queen-MSV-Exact-Rank-Fix-Q-GRAPHITE",
+  "ad_group": "cool sheets queen",
+  "target": "cool sheets queen",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-QUEEN-GRAPHITE",
+  "bid": 3.54,
+  "tos": 75,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-cool sheets for hot sleepers-HSV-Exact-Rank-Fix-Q-GRAPHITE",
+  "ad_group": "cool sheets for hot sleepers",
+  "target": "cool sheets for hot sleepers",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-QUEEN-GRAPHITE",
+  "bid": 1.88,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-cooling sheets queen size-HSV-Exact-Rank-Fix-Q-GRAPHITE",
+  "ad_group": "cooling sheets queen size",
+  "target": "cooling sheets queen size",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-QUEEN-GRAPHITE",
+  "bid": 2.03,
+  "tos": 25,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-sheets queen cooling-MSV-Exact-Rank-Fix-Q-GRAPHITE",
+  "ad_group": "sheets queen cooling",
+  "target": "sheets queen cooling",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-QUEEN-GRAPHITE",
+  "bid": 3.11,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-cooling sheets-VHSV-Exact-Disc-Fix-Q-GRAPHITE",
+  "ad_group": "cooling sheets",
+  "target": "cooling sheets",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-QUEEN-GRAPHITE",
+  "bid": 0.99,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-cooling bed sheets-VHSV-Exact-Disc-Fix-Q-GRAPHITE",
+  "ad_group": "cooling bed sheets",
+  "target": "cooling bed sheets",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-QUEEN-GRAPHITE",
+  "bid": 1.63,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-cooling sheet set-HSV-Exact-Disc-Fix-Q-GRAPHITE",
+  "ad_group": "cooling sheet set",
+  "target": "cooling sheet set",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-QUEEN-GRAPHITE",
+  "bid": 2.08,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-california king cooling sheets-MSV-Exact-Disc-Fix-CK-GRAPHITE",
+  "ad_group": "california king cooling sheets",
+  "target": "california king cooling sheets",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-CAL-KING-GRAPHITE",
+  "bid": 3.76,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-cal king cooling sheets-LSV-Exact-Disc-Fix-CK-GRAPHITE",
+  "ad_group": "cal king cooling sheets",
+  "target": "cal king cooling sheets",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-CAL-KING-GRAPHITE",
+  "bid": 3.61,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-cooling california king sheets-LSV-Exact-Disc-Fix-CK-GRAPHITE",
+  "ad_group": "cooling california king sheets",
+  "target": "cooling california king sheets",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-CAL-KING-GRAPHITE",
+  "bid": 1.52,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-cooling sheets full size-HSV-Exact-Disc-Fix-F-COOL-GREY",
+  "ad_group": "cooling sheets full size",
+  "target": "cooling sheets full size",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-FULL-COOL-GREY",
+  "bid": 1.96,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-full size sheets cooling-HSV-Exact-Disc-Fix-F-COOL-GREY",
+  "ad_group": "full size sheets cooling",
+  "target": "full size sheets cooling",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-FULL-COOL-GREY",
+  "bid": 2.23,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-cooling sheets full-MSV-Exact-Disc-Fix-F-COOL-GREY",
+  "ad_group": "cooling sheets full",
+  "target": "cooling sheets full",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-FULL-COOL-GREY",
+  "bid": 1.81,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-cooling full size sheets-MSV-Exact-Disc-Fix-F-COOL-GREY",
+  "ad_group": "cooling full size sheets",
+  "target": "cooling full size sheets",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-FULL-COOL-GREY",
+  "bid": 1.56,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-full cooling sheets-LSV-Exact-Disc-Fix-F-COOL-GREY",
+  "ad_group": "full cooling sheets",
+  "target": "full cooling sheets",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-FULL-COOL-GREY",
+  "bid": 2.17,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-cooling sheets king size-VHSV-Exact-Disc-Fix-K-GRAPHITE",
+  "ad_group": "cooling sheets king size",
+  "target": "cooling sheets king size",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-KING-GRAPHITE",
+  "bid": 1.47,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-king size cooling sheets-HSV-Exact-Disc-Fix-K-GRAPHITE",
+  "ad_group": "king size cooling sheets",
+  "target": "king size cooling sheets",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-KING-GRAPHITE",
+  "bid": 2.16,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-king sheets cooling-HSV-Exact-Disc-Fix-K-GRAPHITE",
+  "ad_group": "king sheets cooling",
+  "target": "king sheets cooling",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-KING-GRAPHITE",
+  "bid": 2.69,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-king size sheets set cooling-HSV-Exact-Disc-Fix-K-GRAPHITE",
+  "ad_group": "king size sheets set cooling",
+  "target": "king size sheets set cooling",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-KING-GRAPHITE",
+  "bid": 2.89,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-cooling king sheets-HSV-Exact-Disc-Fix-K-GRAPHITE",
+  "ad_group": "cooling king sheets",
+  "target": "cooling king sheets",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-KING-GRAPHITE",
+  "bid": 2.64,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-cooling sheets king-HSV-Exact-Disc-Fix-K-GRAPHITE",
+  "ad_group": "cooling sheets king",
+  "target": "cooling sheets king",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-KING-GRAPHITE",
+  "bid": 1.66,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-cooling bed sheets king-HSV-Exact-Disc-Fix-K-GRAPHITE",
+  "ad_group": "cooling bed sheets king",
+  "target": "cooling bed sheets king",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-KING-GRAPHITE",
+  "bid": 1.92,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-king size bed sheets cooling-MSV-Exact-Disc-Fix-K-GRAPHITE",
+  "ad_group": "king size bed sheets cooling",
+  "target": "king size bed sheets cooling",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-KING-GRAPHITE",
+  "bid": 1.53,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-cooling king size sheets-MSV-Exact-Disc-Fix-K-GRAPHITE",
+  "ad_group": "cooling king size sheets",
+  "target": "cooling king size sheets",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-KING-GRAPHITE",
+  "bid": 2.19,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-cooling sheets twin-HSV-Exact-Disc-Fix-T-GRAPHITE",
+  "ad_group": "cooling sheets twin",
+  "target": "cooling sheets twin",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-TWIN-GRAPHITE",
+  "bid": 1.38,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-twin cooling sheets-HSV-Exact-Disc-Fix-T-GRAPHITE",
+  "ad_group": "twin cooling sheets",
+  "target": "twin cooling sheets",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-TWIN-GRAPHITE",
+  "bid": 1.83,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-cooling twin sheets-MSV-Exact-Disc-Fix-T-GRAPHITE",
+  "ad_group": "cooling twin sheets",
+  "target": "cooling twin sheets",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-TWIN-GRAPHITE",
+  "bid": 2.1,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-Head-Halo-B1-Exact-Rank-Fix-Q-GRAPHITE",
+  "ad_group": "Head - Cool - cold",
+  "target": "cool bed sheets",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-QUEEN-GRAPHITE",
+  "bid": 1.45,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-Head-Halo-B1-Exact-Rank-Fix-Q-GRAPHITE",
+  "ad_group": "Head - Hot sleepers",
+  "target": "cooling sheets for night sweats",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-QUEEN-GRAPHITE",
+  "bid": 1.48,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-Queen-Halo-B1-Exact-Rank-Fix-Q-GRAPHITE",
+  "ad_group": "Queen - Colour",
+  "target": "black queen sheets cooling",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-QUEEN-MIDNIGHT-BLACK",
+  "bid": 1.74,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-Queen-Halo-B1-Exact-Rank-Fix-Q-GRAPHITE",
+  "ad_group": "Queen - Cooling sheets",
+  "target": "soft cooling sheets queen",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-QUEEN-GRAPHITE",
+  "bid": 1.91,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-Queen-Halo-B1-Exact-Rank-Fix-Q-GRAPHITE",
+  "ad_group": "Queen - Cooling sheets",
+  "target": "queen bed cooling sheets",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-QUEEN-GRAPHITE",
+  "bid": 2.7,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-Twin-CalKing-Halo-B1-Exact-Disc-Fix-T+CK-GRAPHITE",
+  "ad_group": "Cal King - Sheet set",
+  "target": "california king sheet sets cooling",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-CAL-KING-GRAPHITE",
+  "bid": 1.36,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-Twin-CalKing-Halo-B1-Exact-Disc-Fix-T+CK-GRAPHITE",
+  "ad_group": "Cal King - Cooling sheets",
+  "target": "cal king sheets cooling",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-CAL-KING-GRAPHITE",
+  "bid": 2.68,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-Twin-CalKing-Halo-B1-Exact-Disc-Fix-T+CK-GRAPHITE",
+  "ad_group": "Cal King - Twin - Cooling sheets",
+  "target": "cooling sheets twin size",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-TWIN-GRAPHITE",
+  "bid": 1.28,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-Twin-CalKing-Halo-B1-Exact-Disc-Fix-T+CK-GRAPHITE",
+  "ad_group": "Cal King - Twin - Cooling sheets",
+  "target": "twin size cooling sheets",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-TWIN-GRAPHITE",
+  "bid": 1.76,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-Twin-CalKing-Halo-B1-Exact-Disc-Fix-T+CK-GRAPHITE",
+  "ad_group": "Cal King - Twin - Sheet set",
+  "target": "twin sheets set cooling",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-TWIN-GRAPHITE",
+  "bid": 2.7,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-Twin-CalKing-Halo-B1-Exact-Disc-Fix-T+CK-GRAPHITE",
+  "ad_group": "Cal King - Twin - Bed sheets",
+  "target": "cooling bed sheets twin",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-TWIN-GRAPHITE",
+  "bid": 2.19,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-Full-Halo-B1-Exact-Disc-Fix-F-COOL-GREY",
+  "ad_group": "Full - Cooling sheets",
+  "target": "full sheets cooling",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-FULL-COOL-GREY",
+  "bid": 1.66,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-Full-Halo-B1-Exact-Disc-Fix-F-COOL-GREY",
+  "ad_group": "Full - Cooling sheets",
+  "target": "cooling sheets full size bed",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-FULL-COOL-GREY",
+  "bid": 1.67,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-King-Halo-B1-Exact-Disc-Fix-K-GRAPHITE",
+  "ad_group": "King - Cooling sheets",
+  "target": "soft cooling sheets king",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-KING-GRAPHITE",
+  "bid": 1.87,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-King-Halo-B1-Exact-Disc-Fix-K-GRAPHITE",
+  "ad_group": "King - Cooling sheets",
+  "target": "sheets king size cooling",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-KING-GRAPHITE",
+  "bid": 2.65,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-King-Halo-B1-Exact-Disc-Fix-K-GRAPHITE",
+  "ad_group": "King - Cooling sheets",
+  "target": "cooling sheets for king size bed",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-KING-GRAPHITE",
+  "bid": 2.9,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-King-Halo-B1-Exact-Disc-Fix-K-GRAPHITE",
+  "ad_group": "King - Cooling sheets",
+  "target": "sheets for king size bed cooling",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-KING-GRAPHITE",
+  "bid": 1.92,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-Branded-B1-Exact-Def-Fix-Q-GRAPHITE",
+  "ad_group": "Branded sheets",
+  "target": "coolinens cooling sheets",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-QUEEN-GRAPHITE",
+  "bid": 1.5,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-Branded-B1-Exact-Def-Fix-Q-GRAPHITE",
+  "ad_group": "Branded sheets",
+  "target": "coolinens sheets",
+  "type": "keyword",
+  "sku": "CL-COOLING-SHEET-QUEEN-GRAPHITE",
+  "bid": 1.5,
+  "tos": 0,
+  "budget": 10.0
+ },
+ {
+  "campaign": "CLCS4-SP-PAT-Premium-Rivals-Conv-Fix-Q+K-GRAPHITE",
+  "ad_group": "Queen - premium rival pages",
+  "target": "asin=\"B0DSPZ9151\" (Breescape Queen, BlendTek)",
+  "type": "product target",
+  "sku": "CL-COOLING-SHEET-QUEEN-GRAPHITE",
+  "bid": 1.47,
+  "tos": 0,
+  "budget": 20.0
+ },
+ {
+  "campaign": "CLCS4-SP-PAT-Premium-Rivals-Conv-Fix-Q+K-GRAPHITE",
+  "ad_group": "Queen - premium rival pages",
+  "target": "asin=\"B00EWJS3PO\" (SHEEX Queen, performance fabric)",
+  "type": "product target",
+  "sku": "CL-COOLING-SHEET-QUEEN-GRAPHITE",
+  "bid": 1.59,
+  "tos": 0,
+  "budget": 20.0
+ },
+ {
+  "campaign": "CLCS4-SP-PAT-Premium-Rivals-Conv-Fix-Q+K-GRAPHITE",
+  "ad_group": "Queen - premium rival pages",
+  "target": "asin=\"B0GCHG6VG6\" (Elegear Queen, Arc-Chill 3.0)",
+  "type": "product target",
+  "sku": "CL-COOLING-SHEET-QUEEN-GRAPHITE",
+  "bid": 2.54,
+  "tos": 0,
+  "budget": 20.0
+ },
+ {
+  "campaign": "CLCS4-SP-PAT-Premium-Rivals-Conv-Fix-Q+K-GRAPHITE",
+  "ad_group": "Queen - premium rival pages",
+  "target": "asin=\"B0FB8XR43Q\" (Bedsure PureWoven Cooling Queen)",
+  "type": "product target",
+  "sku": "CL-COOLING-SHEET-QUEEN-GRAPHITE",
+  "bid": 1.26,
+  "tos": 0,
+  "budget": 20.0
+ },
+ {
+  "campaign": "CLCS4-SP-PAT-Premium-Rivals-Conv-Fix-Q+K-GRAPHITE",
+  "ad_group": "Queen - premium rival pages",
+  "target": "asin=\"B0DR99Q37Y\" (Bambaw Queen, viscose bamboo)",
+  "type": "product target",
+  "sku": "CL-COOLING-SHEET-QUEEN-GRAPHITE",
+  "bid": 2.62,
+  "tos": 0,
+  "budget": 20.0
+ },
+ {
+  "campaign": "CLCS4-SP-PAT-Premium-Rivals-Conv-Fix-Q+K-GRAPHITE",
+  "ad_group": "Queen - premium rival pages",
+  "target": "asin=\"B0GWHFGLVL\" (California Design Den Queen, viscose bamboo)",
+  "type": "product target",
+  "sku": "CL-COOLING-SHEET-QUEEN-GRAPHITE",
+  "bid": 1.1,
+  "tos": 0,
+  "budget": 20.0
+ },
+ {
+  "campaign": "CLCS4-SP-PAT-Premium-Rivals-Conv-Fix-Q+K-GRAPHITE",
+  "ad_group": "Queen - premium rival pages",
+  "target": "asin=\"B0GT8Z4X5D\" (BEDELITE Queen, bamboo viscose)",
+  "type": "product target",
+  "sku": "CL-COOLING-SHEET-QUEEN-GRAPHITE",
+  "bid": 2.95,
+  "tos": 0,
+  "budget": 20.0
+ },
+ {
+  "campaign": "CLCS4-SP-PAT-Premium-Rivals-Conv-Fix-Q+K-GRAPHITE",
+  "ad_group": "Queen - premium rival pages",
+  "target": "asin=\"B0DMNQDZNB\" (Cozy Bliss Queen, 3 piece)",
+  "type": "product target",
+  "sku": "CL-COOLING-SHEET-QUEEN-GRAPHITE",
+  "bid": 1.73,
+  "tos": 0,
+  "budget": 20.0
+ },
+ {
+  "campaign": "CLCS4-SP-PAT-Premium-Rivals-Conv-Fix-Q+K-GRAPHITE",
+  "ad_group": "King - premium rival pages",
+  "target": "asin=\"B0BLYSGFRW\" (REST Evercool+ King)",
+  "type": "product target",
+  "sku": "CL-COOLING-SHEET-KING-GRAPHITE",
+  "bid": 2.27,
+  "tos": 0,
+  "budget": 20.0
+ },
+ {
+  "campaign": "CLCS4-SP-PAT-Premium-Rivals-Conv-Fix-Q+K-GRAPHITE",
+  "ad_group": "King - premium rival pages",
+  "target": "asin=\"B0DSPZJKTB\" (Breescape King, BlendTek)",
+  "type": "product target",
+  "sku": "CL-COOLING-SHEET-KING-GRAPHITE",
+  "bid": 3.0,
+  "tos": 0,
+  "budget": 20.0
+ },
+ {
+  "campaign": "CLCS4-SP-PAT-Premium-Rivals-Conv-Fix-Q+K-GRAPHITE",
+  "ad_group": "King - premium rival pages",
+  "target": "asin=\"B0DMNP5BC8\" (Cozy Bliss King, 3 piece)",
+  "type": "product target",
+  "sku": "CL-COOLING-SHEET-KING-GRAPHITE",
+  "bid": 1.63,
+  "tos": 0,
+  "budget": 20.0
+ },
+ {
+  "campaign": "CLCS4-SP-PAT-Premium-Rivals-Conv-Fix-Q+K-GRAPHITE",
+  "ad_group": "King - premium rival pages",
+  "target": "asin=\"B08L86VLZB\" (BC Bella Coterie King, bamboo)",
+  "type": "product target",
+  "sku": "CL-COOLING-SHEET-KING-GRAPHITE",
+  "bid": 2.23,
+  "tos": 0,
+  "budget": 20.0
+ }
+]
