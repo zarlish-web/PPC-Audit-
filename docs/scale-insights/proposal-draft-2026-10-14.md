@@ -7,72 +7,70 @@ Items marked **[OWNER]** can only be filled from the Scale Insights owner login,
 
 ## Slack message (ready to paste once the [OWNER] fields are filled)
 
-<@Erik> sorry this is a day late. Here is the full analysis and proposal. Every number is from the owner account's Manage subscriptions page (screenshot attached) or Command Center.
+<@Erik> sorry this is a day late. Here is the full analysis and proposal. Every number is from the owner account (screenshots attached) or Command Center.
 
 **Short answers**
-• **What we pay today (Ecotero):** **Scale 50 Monthly, $388 list less 20% = $310.40/mo.** The current period is Sep 17 – Oct 17, 2026, so **the next charge is Oct 17**. The 20% badge reads "20% off until [OWNER: date]". We are **not** on the 1% plan; my earlier ~$1,350/mo estimate was wrong.
-• **Inspiratek:** **no active subscription.** It has its own login, but there's no "My active subscriptions" entry and the **last payment was Mar 9, 2025** ($200, Scale 50). Nothing has been billed for 19 months, so there's nothing to cancel or refund. Total ever paid on Inspiratek: $5,713.69 (Apr 2022 – Mar 2025).
-• **What we use:** dayparting only (the overnight pause). The bid and budget rules were removed. The dashboard shows **0 automated ASINs** in US, while the automation page earlier showed 222 (123 US, 98 CA, 1 MX). [OWNER: confirm which is current, and whether dayparting needs ASIN slots.]
-• **Recommendation:** drop Ecotero to the smallest tier dayparting needs, before Oct 17, then cancel it fully once Joseph's in-house dayparting has run alongside for a few nights. Inspiratek already has no subscription.
-• **Saving:** Scale 50 → Scale 5 saves **$248/mo** ($310.40 → $62.40 with the 20%). Cancelling fully saves $310.40/mo, or **$3,725/yr**.
-• **Refund:** the current billing is already sized to the 50 plan, so the "overpaying for unused capacity" case for Ecotero is weaker than we thought. Details in section 4.
+• **What we pay (Ecotero):** **Scale 50 Monthly, $388 less 20% = $310.40/mo.** We've paid that every month since Jun 2025. The current period ends **Oct 17**, when it renews. My earlier ~$1,350/mo estimate was wrong.
+• **What we get:** the Automated ASINs page says *"You can automate 2,001 ASINs with your Subscription Plan. ASINs automated: 222 (1,779 remaining)."* Scale 50 normally allows 50. So **we're not overpaying. We pay for 50 slots and use 222.** That looks like a limit carried over from when we were on Scale 500 (Apr 2024 – Mar 2025).
+• **Inspiratek:** **not active.** It has no subscription, and its last charge was Mar 9, 2025 ($200, Scale 50). There's nothing to cancel.
+• **What we use:** dayparting only (the overnight pause), on 222 automated ASINs (123 US, 98 CA, 1 MX). The bid and budget rules were removed.
+• **Recommendation:** **keep Scale 50 as it is until in-house dayparting is live, then cancel.** Any plan change (even to a cheaper tier) will very likely reset the limit to that tier's number and may drop the 20%. That means losing dayparting on most of the 222 ASINs to save $80–$248/mo.
+• **Saving:** **$310.40/mo ($3,725/yr)** once we cancel. Target: move dayparting in-house and cancel before the **Nov 17** renewal, so we pay only one more month.
+• **Refund:** no basis. We haven't been overpaying, so I'd **not** send a refund request. It would also draw attention to the 2,001-ASIN limit.
 
 **1. What we pay, and the history** (source: Manage subscriptions → Transactions)
-• Customers since **April 2022**, about 4.5 years. Total paid: **$18,645.30**.
-• 2022: Basic $29/mo, then Scale 20 $178/mo from Jul 2022. 2022 total: $1,169.38.
-• 2023: Scale 35 ($288/mo, then $777 a quarter), then Scale 50 ($1,047 a quarter) from Jun 2023. 2023 total: $4,261.02.
-• Apr 2024 – Mar 2025: **Scale 500** ($2,788 list, $2,188 off) at about **$600/mo**. 2024 total: $5,708.53.
-• Mar 2025: down to Scale 75 ($548). Apr 29, 2025: down to Scale 50 with 20% off, with a $227.66 credit for unused time. 2025 total: $4,712.77.
-• Since Jun 2025: **$310.40 every month**, 16 payments = $4,966.40. 2026 to date: $2,793.60.
-• Keyword tracking plan: none active.
+• Ecotero: customers since **April 2022**, **$18,645.30** paid in total.
+  - 2022: Basic $29, then Scale 20 $178/mo.
+  - 2023: Scale 35, then Scale 50 quarterly ($1,047).
+  - **Apr 2024 – Mar 2025: Scale 500 at ~$600/mo.**
+  - Mar 2025: Scale 75. Apr 29, 2025: Scale 50 with 20% off.
+  - **Since Jun 2025: $310.40/mo.**
+• Inspiratek (separate login): **$5,713.69** paid from Apr 2022 to Mar 2025. The last charge was Scale 50 at $200, on Mar 9, 2025. No subscription since.
+• Both logins together: **$24,358.99** since April 2022.
+• Keyword tracking plan: none.
 
-**2. Plan tiers** (monthly list price; × 0.8 with our 20%)
-• Scale 5 $78 ($62.40) · Scale 10 $98 ($78.40) · Scale 20 $178 ($142.40) · Scale 35 $288 ($230.40) · **Scale 50 $388 ($310.40), current** · Scale 75 $548 · Scale 100 $688 · Scale 150 $968 · Scale 200 $1,248 · up to Scale 2000 $9,976 · 1% of ad spend (unlimited).
-• Quarterly billing is −10% and yearly is −20%. We bill monthly, so that's not where our 20% comes from: it's a separate discount on the plan.
+**2. Options for Ecotero** (monthly price after our 20%; slots = ASINs we could keep dayparted)
 
-**3. What we use, and which ASINs matter**
-• US: $103,524 SP spend over 30 days across 23 advertised products. The top 10 carry 92.2%.
-• CA: C$28,400 across 6 products. The top 4 carry 96.4%.
-• About **42 SKUs (≈33 US + 9 CA)** carry 80% of the spend on SKU-named campaigns (Command Center, Sep 15 – Oct 14).
-• If dayparting needs an automated-ASIN slot per ASIN, the hero set fits **Scale 50** (current). Nothing smaller fits it, so the saving only comes from cancelling.
-• If dayparting doesn't need ASIN slots (the dashboard's 0 automated ASINs suggests it might not), **Scale 5** is enough.
+| Option | Price | Slots | Saving/mo | What we lose |
+|---|---|---|---|---|
+| **Keep Scale 50 (recommended)** | $310.40 | 2,001 today (222 used) | — | nothing |
+| Scale 35 | $230.40 | 35 | $80 | dayparting on 187 ASINs; even the ~42 top SKUs don't fit |
+| Scale 20 | $142.40 | 20 | $168 | dayparting on 202 ASINs |
+| Scale 5 | $62.40 | 5 | $248 | dayparting on 217 ASINs |
+| Cancel | $0 | 0 | $310.40 | all dayparting, until in-house is live |
 
-**4. Overpayment and refund**
-• Ecotero, since Jun 2025: $310.40/mo for 50 ASIN slots. If dayparting hasn't been using slots, we've paid for capacity we don't use. Compared with Scale 5, that's $248/mo × [N] months since the bid/budget rules were removed on [date] = **$[X]**. That's an argument for a credit, not a strong refund claim.
-• Apr 2024 – Mar 2025 Scale 500 at ~$600/mo (~$6,600): too old to claim back, and the rules were active then.
-• Inspiratek: no charges since Mar 9, 2025, so no current overpayment. From Apr 2024 to Mar 2025 we paid for two subscriptions at once: Ecotero on Scale 500 (~$600/mo) and Inspiratek on Scale 50 (~$200/mo, $2,140 in total). That's 18+ months ago, so it's only worth mentioning as context for a loyalty discount, not as a refund claim.
-• Ask: a loyalty discount on whatever we keep, and a credit for unused months on Ecotero if dayparting hasn't used its ASIN slots. Across both logins we've been customers since April 2022 and paid **$24,358.99** ($18,645.30 Ecotero + $5,713.69 Inspiratek).
+• About **42 SKUs (≈33 US + 9 CA)** carry 80% of the spend on SKU-named campaigns (Command Center, Sep 15 – Oct 14). So the smallest tier that keeps dayparting on the important ones is the one we're already paying for.
+• The 20% badge reads "20% off until [OWNER: date]". If that date is before we can cancel, the price goes to $388 at the next renewal.
 
-**5. Decisions for you (before the Oct 17 renewal)**
-1. Approve dropping Ecotero to [Scale 5 / keep Scale 50] until in-house dayparting is live, then cancel.
-2. Inspiratek: nothing to cancel (no subscription since Mar 2025). Optional: download its archived data and close the login.
-3. Approve sending the refund/discount email below.
-_If I don't hear back by Oct 16, 8 PM ET, Ecotero renews on Scale 50 for one more month at $310.40. Nothing else changes._
+**3. Plan**
+1. **Now:** no change. Ecotero renews Oct 17 at $310.40.
+2. **By [date agreed with Joseph]:** Joseph builds the overnight pause/resume in-house. We run it alongside Scale Insights for 3 nights.
+3. **Before Nov 17:** download the archived data, cancel the Ecotero subscription, and check the next morning that in-house dayparting ran.
+4. **Optional:** email Scale Insights for a loyalty discount on the remaining month(s), citing 4.5 years and $24.4K paid. No refund claim.
+
+**4. Decisions for you**
+1. Approve keeping Ecotero on Scale 50 until in-house dayparting is live (instead of downgrading now).
+2. Agree the in-house dayparting date with Joseph, so we can cancel before Nov 17.
+3. Inspiratek: no action needed. Optional: download its archive and ask support to close the login.
+_If I don't hear back by Oct 16, 8 PM ET, Ecotero renews on Scale 50 at $310.40. Nothing else changes._
 
 ---
 
-## Email to Scale Insights (send only after Erik approves)
+## Email to Scale Insights (optional, only after Erik approves)
 
-**Subject:** Account review: Ecotero and Inspiratek, refund and plan change request
+**Subject:** Loyalty discount request: Ecotero account
 
 Hi Scale Insights team,
 
-We've been customers since April 2022 and are reviewing our accounts. We found that:
-• **Inspiratek:** we've been paying $[X]/month since [date] with nothing active on the account.
-• **Ecotero:** we're billed for Scale 50 ($310.40/month) but have used only dayparting since [date], with [N] automated ASINs.
+We've been customers since April 2022, across our Ecotero and Inspiratek accounts. We're reviewing our tools for the coming months. Is there a loyalty discount you can offer on our current Ecotero plan (Scale 50, monthly)?
 
-We'd like to:
-1. Cancel the Inspiratek subscription, effective immediately.
-2. Move Ecotero to the [Scale 5] plan on monthly billing, keeping our existing 20% discount.
-3. Request a refund or account credit of $[X] for the overpaid period ([dates]); invoice breakdown attached.
+Thank you.
 
-Given our long history with you, we'd appreciate any further loyalty discount you can offer on the reduced plan.
-
-Please confirm in writing. Thank you.
+_No refund claim: billing was at or below what we use. Don't mention the ASIN limit._
 
 ---
 
-## Overpayment worksheet (fill from invoices)
+## Overpayment worksheet (not needed: no overpayment found)
 
 | Month | Account | Plan billed | Paid (USD) | ASINs automated | Smallest plan that fits | Its price | Overpaid |
 |---|---|---|---|---|---|---|---|
