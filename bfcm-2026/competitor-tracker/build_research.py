@@ -110,6 +110,22 @@ for _a, _v in dd.items():
         if _d >= FRESH_FROM:
             our_now[("US", _a)] = {"price": _v["price"], "lp": None, "src": "Data Dive", "date": _d,
                                   "rating": _v.get("rating"), "reviews": _v.get("reviewCount")}
+# SellerBoard product list (US listing price per SKU, live when pulled). Used only where no Amazon-page / Xray price
+# exists. "Amazon.Found.*" SKUs carry stale prices and are skipped. SellerBoard's Amazon.ca rows repeat the US
+# price, so it is never used for Canada.
+for _f in sorted(glob.glob(f"{DATA}/sellerboard/US_prices_*.csv")):
+    _sd = re.search(r"(\d{4}-\d{2}-\d{2})", _f)
+    for _r in csv.DictReader(open(_f, newline="", encoding="utf-8-sig")):
+        if str(_r.get("sku", "")).startswith("Amazon.Found") or str(_r.get("hide", "")).lower() == "true":
+            continue
+        try:
+            _p = float(_r["price"])
+        except (TypeError, ValueError, KeyError):
+            continue
+        if _p > 0 and _r.get("asin"):
+            our_now[("US", _r["asin"])] = {"price": _p, "lp": None, "src": "SellerBoard listing price",
+                                          "date": _sd.group(1) if _sd else "2026-10-14", "rating": None, "reviews": None}
+
 # Helium 10 Xray export of our own catalog (child level, US): price, review pool, BSR, est. sales, image
 xray = {}        # asin -> row summary
 for _f in sorted(glob.glob(f"{DATA}/xray/helium10_xray_*.csv")):
