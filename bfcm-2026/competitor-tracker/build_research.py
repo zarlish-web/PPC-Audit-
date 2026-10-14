@@ -675,78 +675,94 @@ _kfiles = sorted(f_ for f_ in glob.glob(f"{DATA}/keepa/keepa_history_*.csv")
                  if not re.search(r"_(coverage|provenance)\.csv$", f_) and "/keepa_history_ca" not in f_ and "/keepa_history_ours" not in f_)
 if any(f_.endswith("/keepa_history_p2.csv") for f_ in _kfiles):
     _kfiles = [f_ for f_ in _kfiles if "_p2_batch" not in f_]
-_kd, _kcov = {}, {}
-for _kh in _kfiles:
-    _seen_day = set()
-    for row in csv.DictReader(open(_kh, encoding="utf-8-sig")):
-        _kd.setdefault(row["asin"], {})[row["date"]] = row          # one row per ASIN per day, last file wins
-    _cf = _kh[:-4] + "_coverage.csv"
-    if os.path.exists(_cf):
-        _kcov.update({r["asin"]: r for r in csv.DictReader(open(_cf, encoding="utf-8-sig"))})
-_kd = {a: list(d.values()) for a, d in _kd.items()}
-if _kd:
-    for a, rs in _kd.items():
-        rs.sort(key=lambda r: r["date"])
-        pre = [r for r in rs if KP_PRE[0] <= r["date"] <= KP_PRE[1]]
-        bf = [r for r in rs if KP_BF[0] <= r["date"] <= KP_BF[1]]
-        bb_pre = [_f(r["buy_box_price"]) for r in pre if _f(r["buy_box_price"])]
-        bb_bf = [_f(r["buy_box_price"]) for r in bf if _f(r["buy_box_price"])]
-        eff_bf = [min(x for x in (_f(r["buy_box_price"]), _f(r["lightning_deal_price"]), _f(r["prime_exclusive_price"])) if x)
-                  for r in bf if any(_f(r[k]) for k in ("buy_box_price", "lightning_deal_price", "prime_exclusive_price"))]
-        eff_pre = [min(x for x in (_f(r["buy_box_price"]), _f(r["lightning_deal_price"]), _f(r["prime_exclusive_price"])) if x)
-                   for r in pre if any(_f(r[k]) for k in ("buy_box_price", "lightning_deal_price", "prime_exclusive_price"))]
-        rk_pre = [_f(r["sales_rank"]) for r in pre if _f(r["sales_rank"])]
-        rk_bf = [_f(r["sales_rank"]) for r in bf if _f(r["sales_rank"])]
-        def span(key, rows_=rs):
-            ds = [r["date"] for r in rows_ if (_f(r[key]) if key != "coupon" else r[key])]
-            return (ds[0][5:] + " to " + ds[-1][5:], len(ds)) if ds else (None, 0)
-        ld, ld_n = span("lightning_deal_price"); pe, pe_n = span("prime_exclusive_price"); cp, cp_n = span("coupon")
-        ld_bf, pe_bf, cp_bf = span("lightning_deal_price", bf)[1], span("prime_exclusive_price", bf)[1], span("coupon", bf)[1]
-        pre_med = statistics.median(bb_pre) if bb_pre else None          # Buy Box only (used for the "raised" check)
-        pre_eff = statistics.median(eff_pre) if eff_pre else None        # what a Prime shopper paid before the event
-        low = min(eff_bf) if eff_bf else None
-        cov = _kcov.get(a, {})
-        notes = []
-        if ld_bf:
-            typ, dates = "Lightning Deal", ld
-        elif pe_bf:
-            typ, dates = "Prime Exclusive Discount", pe
-        elif cp_bf:
-            typ, dates = "Coupon only", cp
-        elif pre_eff and low is not None and low <= pre_eff * 0.95:
-            ds = [r["date"][5:] for r in bf if _f(r["buy_box_price"]) and _f(r["buy_box_price"]) <= pre_eff * 0.95]
-            typ, dates = "Price cut only", (ds[0] + " to " + ds[-1]) if ds else None
-        elif bb_bf:
-            typ, dates = "None", None
-        elif (cov.get("tracking_since") or "9999") > "2025-12-01":
-            typ, dates = "Not live in 2025", None
-        else:
-            typ, dates = None, None
-            notes.append("No Buy Box history in Keepa for BFCM 2025")
-        if typ != "Not live in 2025":
-            if pe_n and typ != "Prime Exclusive Discount":
-                notes.append(f"Prime Exclusive {pe}")
-            if ld_n and typ != "Lightning Deal":
-                notes.append(f"Lightning Deal {ld}")
-            if cp_n and typ != "Coupon only":
-                cps = sorted({r["coupon"] for r in rs if r["coupon"]})
-                notes.append(f"Coupon {', '.join(cps)} ({cp})")
-            elif typ == "Coupon only":
-                notes.append("Coupon " + ", ".join(sorted({r["coupon"] for r in bf if r["coupon"]})))
-            if pe and pe_n and pe.split(" to ")[0] < KP_BF[0][5:]:
-                notes.append("Prime Exclusive already running before BFCM week")
-            if pre_med and bb_bf and statistics.median(bb_bf) >= pre_med * 1.05:
-                notes.append(f"Buy Box RAISED in BFCM week (median ${statistics.median(bb_bf):,.2f} vs ${pre_med:,.2f} before)")
-            lps = sorted({_f(r["list_price"]) for r in bf if _f(r["list_price"])})
-            if lps:
-                notes.append("List Price " + "/".join(f"${x:,.2f}" for x in lps))
-        oos_bf = [r["out_of_stock"] for r in bf if r["out_of_stock"] in ("Y", "N")]
-        keepa25[a] = {
-            "bf_type": typ, "bf_dates": dates, "bf_pre": pre_eff, "bf_low": low,
-            "bsr_pre": round(statistics.median(rk_pre)) if rk_pre else None, "bsr_bf": round(statistics.median(rk_bf)) if rk_bf else None,
-            "bf_oos": ("Y" if "Y" in oos_bf else ("N" if len(oos_bf) == len(bf) and oos_bf else None)),
-            "notes": "; ".join(notes) or None, "kp_days": len(bb_bf), "raised": any("RAISED" in n for n in notes),
-        }
+def _keepa_summaries(files, cur):
+    """Keepa BFCM 2025 summary per ASIN for one marketplace (files of that marketplace only)."""
+    out = {}
+    _kd, _kcov = {}, {}
+    for _kh in files:
+        _seen_day = set()
+        for row in csv.DictReader(open(_kh, encoding="utf-8-sig")):
+            _kd.setdefault(row["asin"], {})[row["date"]] = row          # one row per ASIN per day, last file wins
+        _cf = _kh[:-4] + "_coverage.csv"
+        if os.path.exists(_cf):
+            _kcov.update({r["asin"]: r for r in csv.DictReader(open(_cf, encoding="utf-8-sig"))})
+    _kd = {a: list(d.values()) for a, d in _kd.items()}
+    if _kd:
+        for a, rs in _kd.items():
+            rs.sort(key=lambda r: r["date"])
+            pre = [r for r in rs if KP_PRE[0] <= r["date"] <= KP_PRE[1]]
+            bf = [r for r in rs if KP_BF[0] <= r["date"] <= KP_BF[1]]
+            bb_pre = [_f(r["buy_box_price"]) for r in pre if _f(r["buy_box_price"])]
+            bb_bf = [_f(r["buy_box_price"]) for r in bf if _f(r["buy_box_price"])]
+            eff_bf = [min(x for x in (_f(r["buy_box_price"]), _f(r["lightning_deal_price"]), _f(r["prime_exclusive_price"])) if x)
+                      for r in bf if any(_f(r[k]) for k in ("buy_box_price", "lightning_deal_price", "prime_exclusive_price"))]
+            eff_pre = [min(x for x in (_f(r["buy_box_price"]), _f(r["lightning_deal_price"]), _f(r["prime_exclusive_price"])) if x)
+                       for r in pre if any(_f(r[k]) for k in ("buy_box_price", "lightning_deal_price", "prime_exclusive_price"))]
+            rk_pre = [_f(r["sales_rank"]) for r in pre if _f(r["sales_rank"])]
+            rk_bf = [_f(r["sales_rank"]) for r in bf if _f(r["sales_rank"])]
+            def span(key, rows_=rs):
+                ds = [r["date"] for r in rows_ if (_f(r[key]) if key != "coupon" else r[key])]
+                return (ds[0][5:] + " to " + ds[-1][5:], len(ds)) if ds else (None, 0)
+            ld, ld_n = span("lightning_deal_price"); pe, pe_n = span("prime_exclusive_price"); cp, cp_n = span("coupon")
+            ld_bf, pe_bf, cp_bf = span("lightning_deal_price", bf)[1], span("prime_exclusive_price", bf)[1], span("coupon", bf)[1]
+            pre_med = statistics.median(bb_pre) if bb_pre else None          # Buy Box only (used for the "raised" check)
+            pre_eff = statistics.median(eff_pre) if eff_pre else None        # what a Prime shopper paid before the event
+            low = min(eff_bf) if eff_bf else None
+            cov = _kcov.get(a, {})
+            notes = []
+            if ld_bf:
+                typ, dates = "Lightning Deal", ld
+            elif pe_bf:
+                typ, dates = "Prime Exclusive Discount", pe
+            elif cp_bf:
+                typ, dates = "Coupon only", cp
+            elif pre_eff and low is not None and low <= pre_eff * 0.95:
+                ds = [r["date"][5:] for r in bf if _f(r["buy_box_price"]) and _f(r["buy_box_price"]) <= pre_eff * 0.95]
+                typ, dates = "Price cut only", (ds[0] + " to " + ds[-1]) if ds else None
+            elif bb_bf:
+                typ, dates = "None", None
+            elif (cov.get("tracking_since") or "9999") > "2025-12-01":
+                typ, dates = "Not live in 2025", None
+            else:
+                typ, dates = None, None
+                notes.append("No Buy Box history in Keepa for BFCM 2025")
+            if typ != "Not live in 2025":
+                if pe_n and typ != "Prime Exclusive Discount":
+                    notes.append(f"Prime Exclusive {pe}")
+                if ld_n and typ != "Lightning Deal":
+                    notes.append(f"Lightning Deal {ld}")
+                if cp_n and typ != "Coupon only":
+                    cps = sorted({r["coupon"] for r in rs if r["coupon"]})
+                    notes.append(f"Coupon {', '.join(cps)} ({cp})")
+                elif typ == "Coupon only":
+                    notes.append("Coupon " + ", ".join(sorted({r["coupon"] for r in bf if r["coupon"]})))
+                if pe and pe_n and pe.split(" to ")[0] < KP_BF[0][5:]:
+                    notes.append("Prime Exclusive already running before BFCM week")
+                if pre_med and bb_bf and statistics.median(bb_bf) >= pre_med * 1.05:
+                    notes.append(f"Buy Box RAISED in BFCM week (median {cur}{statistics.median(bb_bf):,.2f} vs {cur}{pre_med:,.2f} before)")
+                lps = sorted({_f(r["list_price"]) for r in bf if _f(r["list_price"])})
+                if lps:
+                    notes.append("List Price " + "/".join(f"{cur}{x:,.2f}" for x in lps))
+            oos_bf = [r["out_of_stock"] for r in bf if r["out_of_stock"] in ("Y", "N")]
+            out[a] = {
+                "bf_type": typ, "bf_dates": dates, "bf_pre": pre_eff, "bf_low": low,
+                "bsr_pre": round(statistics.median(rk_pre)) if rk_pre else None, "bsr_bf": round(statistics.median(rk_bf)) if rk_bf else None,
+                "bf_oos": ("Y" if "Y" in oos_bf else ("N" if len(oos_bf) == len(bf) and oos_bf else None)),
+                "notes": "; ".join(notes) or None, "kp_days": len(bb_bf), "raised": any("RAISED" in n for n in notes),
+            }
+    return out
+
+keepa25 = _keepa_summaries(_kfiles, "$")
+# Canada (Amazon.ca, domain 6, CAD): kept apart, because the same ASIN can sell in both markets at different prices.
+# The final keepa_history_ca.csv supersedes the partial delivery.
+_kfiles_ca = sorted(f_ for f_ in glob.glob(f"{DATA}/keepa/keepa_history_ca*.csv") if not re.search(r"_(coverage|provenance)\.csv$", f_))
+if any(f_.endswith("/keepa_history_ca.csv") for f_ in _kfiles_ca):
+    _kfiles_ca = [f_ for f_ in _kfiles_ca if f_.endswith("/keepa_history_ca.csv")]
+keepa25_ca = _keepa_summaries(_kfiles_ca, "C$")
+_ca_pending = set()
+for _fc in glob.glob(f"{DATA}/keepa/keepa_history_ca*_coverage.csv"):
+    _ca_pending |= {r["asin"] for r in csv.DictReader(open(_fc, encoding="utf-8-sig")) if r.get("acquisition_status") == "not_yet_fetched"}
+_ca_pending -= set(keepa25_ca)
 
 # Our hero children, BFCM 2025 (Command Center keepa_history, US, pulled 2026-10-14). Keepa holds no Buy Box series
 # for our own ASINs, so price = lowest new offer (we are the only seller); daily values are Eastern days, carried forward.
@@ -848,7 +864,7 @@ for pid, fam, short, role in PRODUCTS:
             for row in ca_comp.get(pid, []):
                 f_ = lambda z: float(z) if z not in (None, "") else None
                 ch = row["child_asin"]
-                kp_ = keepa25.get(ch)
+                kp_ = keepa25_ca.get(ch)
                 rec = {
                     "pid": pid, "mkt": "CA", "family": fam, "product": short, "tab": tab_name(pid, mkt), "role": role,
                     "cid": None, "brand": row["competitor_brand"].strip(), "parent": row["parent_asin"] or None, "child": ch,
@@ -869,6 +885,14 @@ for pid, fam, short, role in PRODUCTS:
                 }
                 if kp_:
                     rec.update({k: kp_[k] for k in ("bf_type", "bf_dates", "bf_pre", "bf_low", "bsr_pre", "bsr_bf", "bf_oos")})
+                    rec["bf_disc_v"] = (1 - kp_["bf_low"] / kp_["bf_pre"]) if kp_["bf_pre"] and kp_["bf_low"] else None
+                    rec["bsr_lift_v"] = (kp_["bsr_pre"] / kp_["bsr_bf"]) if kp_["bsr_pre"] and kp_["bsr_bf"] else None
+                    rec["raised"] = kp_["raised"]
+                    if kp_.get("notes"):
+                        rec["notes"] = f"{rec['notes']} Keepa .ca: {kp_['notes']}"
+                elif ch in _ca_pending:
+                    rec["bf_type"] = None
+                    rec["notes"] = f"{rec['notes']} Keepa .ca history still being pulled."
                 records.append(rec)
             continue
         st = {r["cid"]: r for r in (strat.get(pid) or {}).get("competitors", []) if "cid" in r and "error" not in r}
@@ -1833,6 +1857,8 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
       f"257 US competitor ASINs that lacked an image, size or colour were checked on their own Amazon page (signed out, ZIP 10001). {len(comp_det)} kept their ASIN; 4 redirected to another ASIN and are left blank, not substituted (B0DG2HRZKK, B09G8P3X6L, B0D4PKVNWB, B0D1RBXBNG). Fills 165 of the 169 missing images. Size and colour come from the page's variation attributes, never the title. Brand and parent now follow Amazon as of Oct 14: B07M67HRKS is WETCAT (Command Center: Chakir Turkish) and B0D59BMBK7 is Fafua (CC: NORTHERN BROTHERS); 28 competitors have a new parent ASIN (Amazon re-parented them; the old Command Center parent is kept in the cell comment). Keepa (Command Center keepa_history) confirmed both brands and agreed with the page on all 11 tracked ASINs where Keepa lists a parent; the other 17 rest on the page alone."),
      ("Canada competitors", "Amazon.ca page research (agent, Prompt 9)", "2026-10-13", sum(len(v) for v in ca_comp.values()), "Partial" if ca_comp else "Missing", "",
       "Page-1 organic results per product keyword, same material and piece count, Queen selected (2 King), CAD, logged out Toronto. 15 rivals each for DC B4, S4, S6, SSS4 (reuses S4) and Satin Fitted; 8 for DC B6 (only 8 qualifying 6-piece bamboo sets). No Command Center fields (weekly units, ASINsight) exist for Canada; Keepa .ca BFCM 2025 history follows after the US pulls. Our Canadian comparison price is the live Amazon.ca price from Helium 10 Xray (Oct 14, CAD)."),
+     ("Competitors' BFCM 2025 history (Canada)", "Keepa .ca via agent (" + ", ".join(os.path.basename(f_) for f_ in _kfiles_ca) + ")", "Nov 1 - Dec 5, 2025", len(keepa25_ca), "Partial" if _ca_pending else "Exact", "",
+      f"{len(keepa25_ca)} of 68 Canadian competitor ASINs delivered (Amazon.ca, domain 6, CAD); {len(_ca_pending)} still being pulled. Kept apart from the US history: 7 of these ASINs also sell in the US at different prices, and earlier builds showed their US figures on the Canada tabs. B0FNR1QR4J now redirects to B0FNQW1YT4 and is not substituted."),
      ("Competitors' BFCM 2025 history (US)", "Keepa via agent (" + ", ".join(os.path.basename(f_) for f_ in _kfiles) + ")", "Nov 1 - Dec 5, 2025", len(keepa25), ("Partial" if any(x.get("bf_type") is None for x in US_recs) else "Exact"), "",
       f"{len(keepa25)} US competitor ASINs pulled (P1 70 + P2 240, complete); {sum(1 for x in US_recs if x.get('bf_type') is None)} US rows without a BFCM 2025 result (ASINs Keepa has no history for). Spot-checked Oct 14 against the Command Center's own Keepa (keepa_history): Buy Box, List Price, Lightning Deal, Prime Exclusive and coupon days identical; daily rank values differ slightly because the agent reads 23:59 UTC and the Command Center reads per Eastern day. Pre-event = Nov 1-19 (pull starts Nov 1), BFCM = Nov 20 - Dec 1. Daily end-of-day state, so a deal of a few hours can be missed. Coupons are listed, not netted into the low price.")]
 for i, r_ in enumerate(S):
