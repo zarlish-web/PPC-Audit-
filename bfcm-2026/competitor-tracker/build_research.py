@@ -791,6 +791,14 @@ for _f in sorted(glob.glob(f"{DATA}/ca_competitors/ca_competitors*.csv")):
         if _p is not None:
             ca_comp.setdefault(_p, []).append(_r)
 
+# Competitor details from the exact Amazon.com page (agent Part A, Oct 14): image, size and colour from the page's own
+# variation attributes. Requests that redirected to another ASIN are left out (no substitution).
+comp_det = {}
+for _f in sorted(glob.glob(f"{DATA}/competitor_details/competitor_details_us*.csv")):
+    for _r in csv.DictReader(open(_f, encoding="utf-8-sig")):
+        if "identity unresolved" not in (_r.get("notes") or ""):
+            comp_det[_r["asin"]] = _r
+
 str_now = {}
 for _f in sorted(glob.glob(f"{DATA}/str/str_check_*.csv")):
     for row in csv.DictReader(open(_f, encoding="utf-8-sig")):
@@ -868,6 +876,12 @@ for pid, fam, short, role in PRODUCTS:
                 "pd_pre": v.get("pd26_pre_org"), "pd": v.get("pd26_org"), "pd_pre_ad": v.get("pd26_pre_ad"), "pd_ad": v.get("pd26_ad"),
                 "q2": v.get("q2_org"), "l30": v.get("last30_org"),
             }
+            pg = comp_det.get(ch)
+            if pg:
+                if not rec["image"] and good_img(pg.get("main_image_url")):
+                    rec["image"], rec["image_asin"] = pg["main_image_url"], ch
+                rec["size"] = pg.get("size") or rec["size"]
+                rec["colour"] = pg.get("color") or rec["colour"]
             sc = str_now.get(ch) or {}
             if sc:
                 num = lambda z: float(z) if z not in (None, "") else None
@@ -947,8 +961,8 @@ COMP_COLS = [
     ("tier", "Tier", 9, "id", "Command Center mapping tier against this product.", None),
     ("parent", "Parent ASIN", 11, "id", None, None),
     ("child", "Tracked child ASIN", 11, "id", None, None),
-    ("size", "Size (title)", 8, "id", None, None),
-    ("colour", "Colour (title)", 9, "id", None, None),
+    ("size", "Size", 8, "id", "From the competitor's Amazon page (variation attributes, Oct 14, 2026) where captured; otherwise parsed from the title.", None),
+    ("colour", "Colour", 9, "id", "From the competitor's Amazon page (variation attributes, Oct 14, 2026) where captured; otherwise parsed from the title.", None),
     ("var", "Variations", 7, "dd", "Variation count: Data Dive family count, else ASINsight child-ASIN count.", "#,##0"),
     ("hero", "Hero child ASINs (share of their visibility)", 26, "st", "The fewest child ASINs carrying 80% of this competitor's ASINsight impressions.", None),
     ("price", "Price ($)", 8, "cc", None, "$#,##0.00"),
@@ -1756,6 +1770,8 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
      ("Our heroes' BFCM 2025 price and Best Seller Rank (US)", "Command Center keepa_history (data/keepa/keepa_history_ours_cc.csv)", "Nov 1 - Dec 5, 2025", len(hero25), "Exact", "",
       f"Daily Keepa for our {len(hero25)} US hero child ASINs, pulled Oct 14. Keepa holds no Buy Box series for our own ASINs, so price = lowest new offer (we are the only seller). Price drops on Nov 20 match the Best Deals start: B4 $74.99 to $71.24, B6 $79.99 to $75.99, S4 $29.95 to $25.46, S6 $33.95 to $32.25, Satin Fitted $16.95 to $15.15, SSS4 $33.95 to $31.41. No price history for Bamboo Fitted, Decolure Cooling 4pc, CL Pillowcases, Linen Curtains and Quilt Set in this window."),
      ("Our BFCM 2025 stock", "DataHub inventory, revision 2 (agent) + data/stock/our_stock_bfcm2025_missing_dates_bracketed.csv", "2026-10-14", None, "Partial", "", "US Nov 26, 27, Dec 1 and CA Nov 24, 29, 30 have no snapshot. Filled by inference (data/stock/our_stock_bfcm2025_missing_dates_combined.csv) from units sold that day (agent, DataHub amazon_sales, 1,761 variation-days with a sale) and the readings either side: 3,503 of 3,936 variation-days in stock, 39 out of stock, 386 unknown (low or no stock either side and no sale), and 8 sold despite 0 units on both sides (inbound stock arriving that day, e.g. B4 Queen Mid Grey B0BZQ18QJB sold 87 on Cyber Monday). Stock unit columns stay blank for these days."),
+     ("Competitor image, size and colour (US)", "Amazon.com exact-ASIN pages (agent, Part A; data/competitor_details)", "2026-10-14", len(comp_det), "Current", "",
+      f"257 US competitor ASINs that lacked an image, size or colour were checked on their own Amazon page (signed out, ZIP 10001). {len(comp_det)} kept their ASIN; 4 redirected to another ASIN and are left blank, not substituted (B0DG2HRZKK, B09G8P3X6L, B0D4PKVNWB, B0D1RBXBNG). Fills 165 of the 169 missing images. Size and colour come from the page's variation attributes, never the title. Page brand differs from the Command Center brand for B07M67HRKS (page: WETCAT, CC: Chakir Turkish) and B0D59BMBK7 (page: Fafua, CC: NORTHERN BROTHERS); 28 pages list a different parent ASIN than the Command Center (Amazon re-parenting) - the Command Center parent is kept."),
      ("Canada competitors", "Amazon.ca page research (agent, Prompt 9)", "2026-10-13", sum(len(v) for v in ca_comp.values()), "Partial" if ca_comp else "Missing", "",
       "Page-1 organic results per product keyword, same material and piece count, Queen selected (2 King), CAD, logged out Toronto. 15 rivals each for DC B4, S4, S6, SSS4 (reuses S4) and Satin Fitted; 8 for DC B6 (only 8 qualifying 6-piece bamboo sets). No Command Center fields (weekly units, ASINsight) exist for Canada; Keepa .ca BFCM 2025 history follows after the US pulls. Our Canadian comparison price is the live Amazon.ca price from Helium 10 Xray (Oct 14, CAD)."),
      ("Competitors' BFCM 2025 history (US)", "Keepa via agent (" + ", ".join(os.path.basename(f_) for f_ in _kfiles) + ")", "Nov 1 - Dec 5, 2025", len(keepa25), ("Partial" if any(x.get("bf_type") is None for x in US_recs) else "Exact"), "",
