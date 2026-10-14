@@ -882,6 +882,12 @@ for pid, fam, short, role in PRODUCTS:
                     rec["image"], rec["image_asin"] = pg["main_image_url"], ch
                 rec["size"] = pg.get("size") or rec["size"]
                 rec["colour"] = pg.get("color") or rec["colour"]
+                # brand and parent as Amazon shows them today (page; Keepa agreed on every tracked case); Command Center value kept
+                _pb = re.sub(r"^(Brand:\s*|Visit the\s+)|\s+Store$", "", pg.get("brand") or "").strip()
+                if _pb and _pb.lower().replace(" ", "")[:5] != rec["brand"].lower().replace(" ", "")[:5]:
+                    rec["brand_cc"], rec["brand"] = rec["brand"], _pb
+                if pg.get("parent_asin") and pg["parent_asin"] != rec["parent"]:
+                    rec["parent_cc"], rec["parent"] = rec["parent"], pg["parent_asin"]
             sc = str_now.get(ch) or {}
             if sc:
                 num = lambda z: float(z) if z not in (None, "") else None
@@ -1351,6 +1357,9 @@ for pid, mkt, tname in TABS:
                 c = ws.cell(row=r, column=CK[key])
                 c.hyperlink = f"https://www.amazon.{'ca' if x['mkt'] == 'CA' else 'com'}/dp/{vals[key]}"
                 c.font = F(color="0563C1", underline="single")
+        for key, old in (("parent", "parent_cc"), ("brand", "brand_cc")):
+            if x.get(old):
+                ws.cell(row=r, column=CK[key]).comment = Comment(f"Amazon page, Oct 14, 2026. The Command Center still lists {x[old]}.", "Tracker")
         P, LPc = f"{CLt['price']}{r}", f"{CLt['lp']}{r}"
         ws[f"{CLt['lp_pct']}{r}"] = f'=IF(AND(ISNUMBER({LPc}),ISNUMBER({P}),N({P})>0),{LPc}/{P}-1,"")'
         q = f"{CLt['lp_pct']}{r}"
@@ -1771,7 +1780,7 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
       f"Daily Keepa for our {len(hero25)} US hero child ASINs, pulled Oct 14. Keepa holds no Buy Box series for our own ASINs, so price = lowest new offer (we are the only seller). Price drops on Nov 20 match the Best Deals start: B4 $74.99 to $71.24, B6 $79.99 to $75.99, S4 $29.95 to $25.46, S6 $33.95 to $32.25, Satin Fitted $16.95 to $15.15, SSS4 $33.95 to $31.41. No price history for Bamboo Fitted, Decolure Cooling 4pc, CL Pillowcases, Linen Curtains and Quilt Set in this window."),
      ("Our BFCM 2025 stock", "DataHub inventory, revision 2 (agent) + data/stock/our_stock_bfcm2025_missing_dates_bracketed.csv", "2026-10-14", None, "Partial", "", "US Nov 26, 27, Dec 1 and CA Nov 24, 29, 30 have no snapshot. Filled by inference (data/stock/our_stock_bfcm2025_missing_dates_combined.csv) from units sold that day (agent, DataHub amazon_sales, 1,761 variation-days with a sale) and the readings either side: 3,503 of 3,936 variation-days in stock, 39 out of stock, 386 unknown (low or no stock either side and no sale), and 8 sold despite 0 units on both sides (inbound stock arriving that day, e.g. B4 Queen Mid Grey B0BZQ18QJB sold 87 on Cyber Monday). Stock unit columns stay blank for these days."),
      ("Competitor image, size and colour (US)", "Amazon.com exact-ASIN pages (agent, Part A; data/competitor_details)", "2026-10-14", len(comp_det), "Current", "",
-      f"257 US competitor ASINs that lacked an image, size or colour were checked on their own Amazon page (signed out, ZIP 10001). {len(comp_det)} kept their ASIN; 4 redirected to another ASIN and are left blank, not substituted (B0DG2HRZKK, B09G8P3X6L, B0D4PKVNWB, B0D1RBXBNG). Fills 165 of the 169 missing images. Size and colour come from the page's variation attributes, never the title. Page brand differs from the Command Center brand for B07M67HRKS (page: WETCAT, CC: Chakir Turkish) and B0D59BMBK7 (page: Fafua, CC: NORTHERN BROTHERS); 28 pages list a different parent ASIN than the Command Center (Amazon re-parenting) - the Command Center parent is kept."),
+      f"257 US competitor ASINs that lacked an image, size or colour were checked on their own Amazon page (signed out, ZIP 10001). {len(comp_det)} kept their ASIN; 4 redirected to another ASIN and are left blank, not substituted (B0DG2HRZKK, B09G8P3X6L, B0D4PKVNWB, B0D1RBXBNG). Fills 165 of the 169 missing images. Size and colour come from the page's variation attributes, never the title. Brand and parent now follow Amazon as of Oct 14: B07M67HRKS is WETCAT (Command Center: Chakir Turkish) and B0D59BMBK7 is Fafua (CC: NORTHERN BROTHERS); 28 competitors have a new parent ASIN (Amazon re-parented them; the old Command Center parent is kept in the cell comment). Keepa (Command Center keepa_history) confirmed both brands and agreed with the page on all 11 tracked ASINs where Keepa lists a parent; the other 17 rest on the page alone."),
      ("Canada competitors", "Amazon.ca page research (agent, Prompt 9)", "2026-10-13", sum(len(v) for v in ca_comp.values()), "Partial" if ca_comp else "Missing", "",
       "Page-1 organic results per product keyword, same material and piece count, Queen selected (2 King), CAD, logged out Toronto. 15 rivals each for DC B4, S4, S6, SSS4 (reuses S4) and Satin Fitted; 8 for DC B6 (only 8 qualifying 6-piece bamboo sets). No Command Center fields (weekly units, ASINsight) exist for Canada; Keepa .ca BFCM 2025 history follows after the US pulls. Our Canadian comparison price is the live Amazon.ca price from Helium 10 Xray (Oct 14, CAD)."),
      ("Competitors' BFCM 2025 history (US)", "Keepa via agent (" + ", ".join(os.path.basename(f_) for f_ in _kfiles) + ")", "Nov 1 - Dec 5, 2025", len(keepa25), ("Partial" if any(x.get("bf_type") is None for x in US_recs) else "Exact"), "",
