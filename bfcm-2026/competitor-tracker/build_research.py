@@ -1256,6 +1256,11 @@ for pid, mkt, tname in TABS:
                 c.value = vals[key]
             if nf:
                 c.number_format = nf
+        for key in ("parent", "child"):   # clickable product page on the competitor's own marketplace
+            if vals.get(key):
+                c = ws.cell(row=r, column=CK[key])
+                c.hyperlink = f"https://www.amazon.{'ca' if x['mkt'] == 'CA' else 'com'}/dp/{vals[key]}"
+                c.font = F(color="0563C1", underline="single")
         P, LPc = f"{CLt['price']}{r}", f"{CLt['lp']}{r}"
         ws[f"{CLt['lp_pct']}{r}"] = f'=IF(AND(ISNUMBER({LPc}),ISNUMBER({P}),N({P})>0),{LPc}/{P}-1,"")'
         q = f"{CLt['lp_pct']}{r}"

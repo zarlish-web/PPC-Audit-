@@ -233,7 +233,7 @@ function card(c, p){
     ${imgBox(c.img, c.child)}
     <div class="head"><div class="brand">${esc(c.brand || "Unknown brand")}</div>${tierChip(c.tier)}</div>
     <div class="title" title="${esc(c.title)}">${esc(c.title)}</div>
-    <div class="asin">Child <a href="${amz(c.child,c.mkt)}" target="_blank" rel="noopener">${esc(c.child || "—")}</a> · Parent ${esc(c.parent || "—")}</div>
+    <div class="asin">Child <a href="${amz(c.child,c.mkt)}" target="_blank" rel="noopener">${esc(c.child || "—")}</a> · Parent ${c.parent ? `<a href="${amz(c.parent,c.mkt)}" target="_blank" rel="noopener">${esc(c.parent)}</a>` : "—"}</div>
     <div>${bandChip(c)} ${gChip} ${strChip(c)}</div>
     <div class="nums">
       <div><div class="k">Price <span class="sub">${esc(c.seen ? c.seen.slice(5) : "")}</span></div><div class="v">${fmt$(c.price)}</div></div>
@@ -249,7 +249,7 @@ function card(c, p){
 
 function table(rows){
   const cols = [["", c => `<div class="imgbox thumb">${c.img ? `<img loading="lazy" src="${esc(c.img)}" alt="">` : `<div class="pending" style="font-size:9px">pending</div>`}</div>`],
-    ["Brand", c => esc(c.brand)], ["Tier", c => esc(c.tier)], ["Child ASIN", c => esc(c.child)], ["Title", c => `<span title="${esc(c.title)}">${esc((c.title||"").slice(0,60))}</span>`],
+    ["Brand", c => esc(c.brand)], ["Tier", c => esc(c.tier)], ["Child ASIN", c => c.child ? `<a href="${amz(c.child,c.mkt)}" target="_blank" rel="noopener">${esc(c.child)}</a>` : "—"], ["Title", c => `<span title="${esc(c.title)}">${esc((c.title||"").slice(0,60))}</span>`],
     ["Price", c => fmt$(c.price), 1], ["List", c => fmt$(c.lp), 1], ["List %", c => fmtP(lpPct(c)), 1], ["vs ours", c => fmtP(gap(c)), 1], ["BSR", c => fmtN(c.bsr), 1],
     ["Wk units", c => fmtN(c.wk), 1], ["Rating", c => typeof c.rating === "number" ? c.rating.toFixed(1) : "—", 1], ["Reviews", c => fmtN(c.reviews), 1],
     ["Variations", c => fmtN(c.var), 1], ["We win", c => fmtN(c.we_win), 1], ["We lose", c => fmtN(c.we_lose), 1], ["Ad gap KWs", c => fmtN(c.ppc_none), 1]];
