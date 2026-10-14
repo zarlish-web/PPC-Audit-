@@ -74,6 +74,7 @@ td .thumb{width:44px;height:44px}
 .empty{padding:40px;text-align:center;color:var(--muted)}
 .note{font-size:12px;color:var(--muted);margin-top:18px;max-width:900px}
 @media (prefers-reduced-motion:no-preference){.card{transition:border-color .15s}.card:hover{border-color:var(--accent)}}
+.var .live{font-weight:600;color:var(--ink, inherit)}
 </style>
 
 <div class="wrap">
@@ -166,7 +167,7 @@ function renderOurs(p){
         <div class="fact"><div class="k">BFCM 2025 lift</div><div class="v">${fmtX(p.lift)}</div></div>
         <div class="fact"><div class="k">BFCM 2025 TACoS</div><div class="v">${typeof p.tacos === "number" ? p.tacos.toFixed(1) + "%" : "—"}${typeof p.preTacos === "number" ? ` <span class="sub">vs ${p.preTacos.toFixed(1)}% before</span>` : ""}</div></div>
       </div>
-      ${vars.length ? `<div class="vars" aria-label="Our variations">${vars.map(v => `<div class="var">${imgBox(v.img, v.asin)}<b>${esc([v.size, v.colour].filter(Boolean).join(" · ") || v.asin || "")}</b>${v.price ? fmt$(v.price) + (v.live ? "" : " <span class=\"sub\">(CC, Mar)</span>") : ""}${typeof v.u28 === "number" ? " · " + fmtN(v.u28) + " u" : ""}</div>`).join("")}</div><div class="sub">${p.vars.length} variations${p.vars.length > 60 ? ", first 60 by units shown" : ""}</div>` : `<div class="sub" style="margin-top:8px">Variation list not available yet for this product.</div>`}
+      ${vars.length ? `<div class="vars" aria-label="Our variations">${vars.map(v => `<div class="var">${imgBox(v.img, v.asin)}<b>${esc([v.size, v.colour].filter(Boolean).join(" · ") || v.asin || "")}</b>${v.live ? `<span class="live">${fmt$(v.price)} live</span>` : `<span class="sub">no live price${v.price ? " · Mar " + fmt$(v.price) + " (old)" : ""}</span>`}${typeof v.u28 === "number" ? " · " + fmtN(v.u28) + " u" : ""}</div>`).join("")}</div><div class="sub">${p.vars.length} variations${p.vars.length > 60 ? ", first 60 by units shown" : ""} · live Amazon price held for ${p.nLive || 0}. The others show the Command Center's March price, which is out of date and is not today's price.</div>` : `<div class="sub" style="margin-top:8px">Variation list not available yet for this product.</div>`}
     </div>`;
 }
 
