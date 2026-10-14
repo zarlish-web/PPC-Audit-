@@ -383,14 +383,42 @@ def comp_title(cp):
             return t
     return (cp.get("name") or "").strip()
 
+# SellerBoard actual sales (Ecotero account) by current Amazon parent ASIN, per marketplace and window
+SB_DAYS = {"pre": 30, "bfcm": 12, "dec": 30}
+sellerboard = {}   # (mkt, parent_asin) -> {window: row}
+for _f in sorted(glob.glob(f"{DATA}/sellerboard/*_*.csv")):
+    for _r in csv.DictReader(open(_f, newline="", encoding="utf-8-sig")):
+        def _sn(z):
+            try:
+                return float(z)
+            except (TypeError, ValueError):
+                return None
+        sellerboard.setdefault((_r["marketplace"], _r["parent_asin"]), {})[_r["window"]] = {
+            k: (_sn(v) if k not in ("marketplace", "window", "parent_asin", "name") else v) for k, v in _r.items()}
+
+def sb_of(pid, mkt):
+    return sellerboard.get((mkt, amazon_parent(pid, mkt))) or {}
+
 def lift_of(pid, mkt="US"):
     d = ours.get((pid, mkt)) or {}
     w1, w2, w3 = d.get("w1_bfcm") or {}, d.get("w2_pre30") or {}, d.get("w3_dec") or {}
     t1, t2, t3 = w1.get("total_sales_derived"), w2.get("total_sales_derived"), w3.get("total_sales_derived")
-    if not (t1 and t2):
+    sb = sb_of(pid, mkt)
+    s_pre, s_bf, s_dec = ((sb.get(w) or {}).get("sales") for w in ("pre", "bfcm", "dec"))
+    derived = ((t1 / 12) / (t2 / 30)) if (t1 and t2) else None
+    if s_pre and s_bf:
+        bf = sb["bfcm"]
+        return {"lift": (s_bf / 12) / (s_pre / 30), "dec": ((s_dec / 30) / (s_pre / 30)) if s_dec else None, "src": "SellerBoard actual",
+                "lift_derived": derived, "tacos": w1.get("tacos"), "pre_tacos": w2.get("tacos"),
+                "tacos_actual": (abs(bf["advertising"]) / s_bf * 100) if bf.get("advertising") is not None and s_bf else None,
+                "pre_tacos_actual": (abs(sb["pre"]["advertising"]) / s_pre * 100) if sb["pre"].get("advertising") is not None else None,
+                "organic_share": (bf["units_organic"] / bf["units"]) if bf.get("units") and bf.get("units_organic") is not None else None,
+                "bf_total": s_bf, "pre_total": s_pre, "dec_total": s_dec, "spend": w1.get("spend"), "ad_sales": w1.get("ad_sales")}
+    if not derived:
         return None
-    return {"lift": (t1 / 12) / (t2 / 30), "dec": ((t3 / 30) / (t2 / 30)) if t3 else None, "tacos": w1.get("tacos"),
-            "pre_tacos": w2.get("tacos"), "bf_total": t1, "pre_total": t2, "dec_total": t3, "spend": w1.get("spend"), "ad_sales": w1.get("ad_sales")}
+    return {"lift": derived, "dec": ((t3 / 30) / (t2 / 30)) if t3 else None, "src": "derived (ad spend / TACoS)", "lift_derived": derived,
+            "tacos": w1.get("tacos"), "pre_tacos": w2.get("tacos"), "tacos_actual": None, "pre_tacos_actual": None, "organic_share": None,
+            "bf_total": t1, "pre_total": t2, "dec_total": t3, "spend": w1.get("spend"), "ad_sales": w1.get("ad_sales")}
 
 STOCK_ALIAS = {"B4": 59, "B6": 30, "S4": 37, "S6": 31, "Satin Fitted": 38, "SSS4": 39, "SL B6": 32,
                "Decolure - Cooling Sheets 4 Piece": 48, "Sleephoria - Cooling Sheets 4 Piece": 45, "Sleephoria - Cooling Fitted Sheet": 44,
@@ -816,7 +844,7 @@ for pid, mkt, tname in TABS:
     # ---- KPI strip (BFCM 2025 + market position)
     comps = [x for x in records if x["pid"] == pid and x["mkt"] == mkt]
     kpis = [
-        ("BFCM 2025 lift", f"{lf['lift']:.2f}x" if lf else "n/a", "daily sales, BFCM wk vs 30 days before (derived)"),
+        ("BFCM 2025 lift", f"{lf['lift']:.2f}x" if lf else "n/a", f"daily sales, BFCM wk vs 30 days before ({lf['src']})" if lf else "no data"),
         ("BFCM 2025 TACoS", f"{lf['tacos']:.1f}%" if lf and lf.get("tacos") is not None else "n/a", f"vs {lf['pre_tacos']:.1f}% before" if lf and lf.get("pre_tacos") is not None else ""),
         ("Dec 2025 vs pre-event", f"{lf['dec']:.2f}x" if lf and lf.get("dec") else "n/a", "December daily sales vs Oct 21-Nov 19"),
         ("Competitors mapped", str(len(comps)) if mkt == "US" else "0 (CA not mapped)", "Command Center map"),
@@ -890,6 +918,34 @@ for pid, mkt, tname in TABS:
                 c.font = F()
                 c.number_format = ["@", "$#,##0", "$#,##0", '0.0"%"', '0.0"%"', "$#,##0", "#,##0", '0.00"%"'][j]
         ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=3)
+        r += 1
+    sb = sb_of(pid, mkt)
+    if sb:
+        r += 1
+        hdr = ("Actual sales (SellerBoard)", "Sales", "Units", "Organic units", "Ad units", "Ad cost", "TACoS (actual)", "Sessions", "Unit session %", "Avg price", "Refunds")
+        cols_ = [1, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14]
+        for j, val in enumerate(hdr):
+            c = ws.cell(row=r, column=cols_[j], value=val); c.font = F(bold=True, color="FFFFFF", size=8); c.fill = HDR; c.border = BOX
+        ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=3)
+        r += 1
+        for w, lab in (("pre", "Pre-event Oct 21 - Nov 19, 2025 (30d)"), ("bfcm", "BFCM week Nov 20 - Dec 1, 2025 (12d)"), ("dec", "December 2 - 31, 2025 (30d)")):
+            x = sb.get(w)
+            if not x:
+                continue
+            vals = (lab, x.get("sales"), x.get("units"), x.get("units_organic"), (x.get("units_ppc") or 0) + (x.get("units_sd") or 0),
+                    abs(x["advertising"]) if x.get("advertising") is not None else None,
+                    (abs(x["advertising"]) / x["sales"]) if x.get("advertising") is not None and x.get("sales") else None,
+                    x.get("sessions"), (x["unit_session_pct"] / 100) if x.get("unit_session_pct") is not None else None,
+                    x.get("avg_sales_price"), x.get("refunds"))
+            fm = ["@", "$#,##0", "#,##0", "#,##0", "#,##0", "$#,##0", "0.0%", "#,##0", "0.0%", "$#,##0.00", "#,##0"]
+            for j, val in enumerate(vals):
+                c = ws.cell(row=r, column=cols_[j], value=val); c.font = F(); c.border = BOX; c.number_format = fm[j]
+            ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=3)
+            r += 1
+        ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
+        ws.cell(row=r, column=1, value=(f"SellerBoard, Ecotero account, Amazon parent {amazon_parent(pid, mkt)}, UTC days. Lift above uses these actual sales"
+                                        + (f" ({lf['lift']:.2f}x; the ad-spend estimate was {lf['lift_derived']:.2f}x)." if lf and lf.get('lift_derived') else ".")
+                                        + (" Amazon.ca figures as SellerBoard reports them (account currency USD)." if mkt == "CA" else ""))).font = F(size=8, italic=True, color=C_SUB)
         r += 1
     v = pt.get(best) or {}
     vis = (f"Command Center visibility for our best child {best}: organic score {v.get('bf25_pre_org')} before BFCM 2025 → {v.get('bf25_org')} in BFCM week; "
