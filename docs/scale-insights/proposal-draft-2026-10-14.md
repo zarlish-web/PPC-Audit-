@@ -42,8 +42,14 @@ Items marked **[OWNER]** can only be filled from the Scale Insights owner login,
 • About **42 SKUs (≈33 US + 9 CA)** carry 80% of the spend on SKU-named campaigns (Command Center, Sep 15 – Oct 14). So the smallest tier that keeps dayparting on the important ones is the one we're already paying for.
 • The 20% badge reads "20% off until [OWNER: date]". If that date is before we can cancel, the price goes to $388 at the next renewal.
 
+**2b. Are the right ASINs dayparted?** (SellerBoard ad spend per child ASIN, Sep 15 – Oct 14, all ad types; Scale Insights export of Oct 14)
+• The 222 automated ASINs carry only **60.4%** of ad spend ($78.3K of $129.7K, US+CA). US is 61.1% and CA is 56.5%.
+• **135 of the 222 spend under $25/mo** (72 spend $0). Meanwhile big spenders aren't dayparted: SATIN-FULL-BLACK US $2,834, BAMBOO-KING-TAUPE CA $2,148, SS-SATIN-GREY-KING US $2,031, SL-COOLING-FITTED-QUEEN-WHITE US $1,764 and others.
+• **Fix at no cost:** turning automation on for the **24 ASINs** that are in the top 50 by spend but switched off raises coverage to **81.7%** and uses 246 of 2,001 slots. List: `asins-to-enable-2026-10-14.csv`.
+• For comparison, the best 35 ASINs alone cover 68.6%, which is more than all 222 today.
+
 **3. Plan**
-1. **Now:** no change. Ecotero renews Oct 17 at $310.40.
+1. **Now:** no plan change. Ecotero renews Oct 17 at $310.40. With your approval, turn automation on for the 24 high-spend ASINs (after checking under Assigned rules that only the dayparting rule applies).
 2. **By [date agreed with Joseph]:** Joseph builds the overnight pause/resume in-house. We run it alongside Scale Insights for 3 nights.
 3. **Before Nov 17:** download the archived data, cancel the Ecotero subscription, and check the next morning that in-house dayparting ran.
 4. **Optional:** email Scale Insights for a loyalty discount on the remaining month(s), citing 4.5 years and $24.4K paid. No refund claim.
