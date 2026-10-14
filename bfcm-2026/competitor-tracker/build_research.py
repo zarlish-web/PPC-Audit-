@@ -164,6 +164,21 @@ for _f in sorted(glob.glob(f"{DATA}/our_prices/*.csv")):
                                  "rating": num_(_r.get("rating")), "reviews": num_(_r.get("reviews")),
                                  "label": _r.get("strikethrough_label"), "deal": _r.get("deal_badge"), "coupon": _r.get("coupon")}
 
+# Amazon page status of our own variations (page-check notes): redirects / no Buy Box
+our_page_flag = {}   # (mkt, asin) -> text
+for _f in sorted(glob.glob(f"{DATA}/our_prices/*_notes.txt")):
+    _m = "CA" if "_ca" in os.path.basename(_f) else "US"
+    _d = re.search(r"(\d{4}-\d{2}-\d{2})", _f)
+    for _ln in open(_f, encoding="utf-8"):
+        _mm = re.match(r"(B0[0-9A-Z]{8}): REDIRECT: requested \S+; page selected (B0[0-9A-Z]{8}).*?Destination size=([^,]+), colour=([^,]+)", _ln)
+        if _mm:
+            our_page_flag[(_m, _mm.group(1))] = (f"Not buyable on Amazon {_d.group(1) if _d else ''}: page redirects to {_mm.group(2)} "
+                                                 f"({_mm.group(3)} {_mm.group(4)})")
+            continue
+        _mm = re.match(r"(B0[0-9A-Z]{8}): Exact child Buy Box price not shown", _ln)
+        if _mm:
+            our_page_flag[(_m, _mm.group(1))] = f"No Buy Box on Amazon {_d.group(1) if _d else ''} (no featured offer)"
+
 def now_txt(n):
     return f"{n['src']}, {n['date']}" if n else None
 
@@ -368,6 +383,8 @@ def our_variations(pid, mkt):
             r["be_acos"] = r["be_acos"] / 100
         n = our_now.get((mkt, r["asin"]))
         r["price_now"], r["now_src"] = (n["price"], now_txt(n)) if n else (None, None)
+        if (mkt, r["asin"]) in our_page_flag:
+            r["status"] = our_page_flag[(mkt, r["asin"])]
         xr = xray.get((mkt, r["asin"]))
         r.update({"x_rating": xr["rating"] if xr else None, "x_reviews": xr["reviews"] if xr else None, "x_bsr": xr["bsr"] if xr else None,
                   "x_units": xr["units_mo"] if xr else None, "x_pool": xr["pool"] if xr else None})
@@ -1041,6 +1058,8 @@ for pid, mkt, tname in TABS:
                 c.font = F(color="808080")
             if key == "price_now" and vv.get(key) is not None:
                 c.font = F(bold=True)
+            if key == "status" and str(vv.get(key) or "").startswith(("Not buyable", "No Buy Box")):
+                c.fill = FILL["flag"]; c.font = F(bold=True)
             if key == "split_txt" and vv.get(key):
                 c.fill = FILL["flag"] if vv[key].startswith("SEPARATE") else FILL["calc"]; c.font = F(bold=vv[key].startswith("SEPARATE"))
         r += 1
@@ -1611,6 +1630,8 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
       f"Core products: US {core_us[0]} of {core_us[1]} variations live, Canada {core_ca[0]} of {core_ca[1]}. Core US still without a live price: "
       + (", ".join(f"{k} {v}" for k, v in sorted(core_gap.items(), key=lambda kv: -kv[1])) or "none")
       + ". Not-launched products (SL B4, SL Satin 6pc, SL Cooling 6pc, SL Bamboo Pillowcase) are excluded. Without a live price the tabs show the Command Center fee-feed price (Mar 2026), which is out of date. Xray matched every price already verified on the Amazon page. Canada: Helium 10 Xray of Amazon.ca (Oct 14, CAD). Prompt 12 (our_price_request.csv, live_price_held = N) fills the rest."),
+     ("Our variations not buyable on Amazon", "Amazon.ca page check (agent)", "2026-10-14", len(our_page_flag), "Check", "",
+      f"Of 20 selling Canadian variations with no Xray price, {sum(1 for t in our_page_flag.values() if t.startswith('Not buyable'))} now redirect to another size of the family (the exact variation cannot be bought) and {sum(1 for t in our_page_flag.values() if t.startswith('No Buy Box'))} show no Buy Box. They sold 1-6 units in the last 28 days, so they went inactive or lost the Buy Box recently. Flagged red in each Canada tab's Status column; check stock and listing status in Seller Central."),
      ("Our listings outside the main review family", "Helium 10 Xray", "2026-10-13", sum(1 for p_, m_, v in all_vars if (split_note(p_, m_, v) or ("",))[0] == "split"), "Check", "",
       "Variations with their own rating and review count instead of the product's main family, flagged in each tab's variation table: DC B4 Full Light Blue 3.9 / 61, DC S6 King White 4.0 / 28, DC Cooling Cal King Graphite 3.0 / 15, and CL Cooling launch variations not yet merged. "
       f"Reassigned: {len(REASSIGN)} 'SATIN-4PC-TWIN' SKUs moved from DC S4 to DC S6 (a Twin in the 6 Pc set is a 4-piece set; Amazon lists them in the Satin 6pc family). Their variations, units, deals and stock now count under DC S6; ad spend stays under DC S4 as the Command Center attributes it."),

@@ -1,0 +1,30 @@
+CANADA OWN-PRICE PAGE CHECK — 2026-10-14
+Scope: exactly20 children from Shayan1791980552.079289; 96-row attachment not used. Processed descending units_28d; ties retain source order.
+Conditions: Amazon.ca desktop1440x1000, logged out; M5V3L9 Toronto verified each page; CAD verified page currencyInfo each page. NoKeepa, no access changes/cart/listing actions.
+Price=displayed selected-child BuyBox beforecoupon, not other sellers/colour swatch prices. Delivery charges not added. Missing/nonpositive prices blank, never0.
+Redirects retain requested asin+sku and check time; destination commercial and parent values excluded. Redirect destinations appear only in notes.
+Exact CSV schema retained; exceptions here because requested columns have no notes field. Parent fields record literal page value, including child self-reference; notes flag this. Parent comparisons use earlier supplied family references because20-row input has no parent column.
+Blank coupon/deal/Prime price = not displayed in captured purchase widgets, not proof of universal absence. Generic JoinPrime advertising is not a Prime-exclusive price.
+Rating/reviews are page-displayed values, potentially shared across variations. Blank stock means unknown, not unavailable.
+SUMMARY {"requested": 20, "checked": 20, "redirects": 15, "priced": 2, "in_stock": 2, "unavailable": 0, "sha256": "c68f62c3d0d7a73e2c0b4907fe6e65efba2de432fe680b325d9d49b938aabb56"}
+
+B0CLKJL9KD: Exact requested child, size and colour confirmed; no exception.
+B0CV4D54FV: Page parent field repeats the child itself; no distinct parent exposed. PARENT EXCEPTION: observed B0CV4D54FV differs from earlier supplied family parent B0CT3HF44M; input20 itself has no parent column. No reparenting or substitution.
+B0BZQ1FBJ9: REDIRECT: requested B0BZQ1FBJ9; page selected B0BZQ1G5B8 at https://www.amazon.ca/dp/B0BZQ1G5B8?th=1. Destination size=California King, colour=Black, page parent=B08LW37SB9. No substitution; all commercial and parent fields blank.
+B0BZPVZKVS: REDIRECT: requested B0BZPVZKVS; page selected B0BZPV4LYC at https://www.amazon.ca/dp/B0BZPV4LYC?th=1. Destination size=Full, colour=Taupe, page parent=B0CT3HF44M. No substitution; all commercial and parent fields blank.
+B0DBW157CR: REDIRECT: requested B0DBW157CR; page selected B0DBW27P8P at https://www.amazon.ca/dp/B0DBW27P8P?th=1. Destination size=Full, colour=White, page parent=B0FQC9C5QT. No substitution; all commercial and parent fields blank.
+B0CRHYS5KT: REDIRECT: requested B0CRHYS5KT; page selected B0CRHYHS4X at https://www.amazon.ca/dp/B0CRHYHS4X?th=1. Destination size=California King, colour=Burgundy, page parent=B08LW37SB9. No substitution; all commercial and parent fields blank.
+B0CLKDSVCV: REDIRECT: requested B0CLKDSVCV; page selected B0CLKD23ZH at https://www.amazon.ca/dp/B0CLKD23ZH?th=1. Destination size=California King, colour=Light Pink, page parent=B08LW37SB9. No substitution; all commercial and parent fields blank.
+B0DBVY6P25: REDIRECT: requested B0DBVY6P25; page selected B0DBW17ZJP at https://www.amazon.ca/dp/B0DBW17ZJP?th=1. Destination size=Full, colour=Grey, page parent=B0FQC9C5QT. No substitution; all commercial and parent fields blank.
+B0DBVYF4DM: REDIRECT: requested B0DBVYF4DM; page selected B0DBVZZZ7B at https://www.amazon.ca/dp/B0DBVZZZ7B?th=1. Destination size=Full, colour=Stone Grey, page parent=B0FQC9C5QT. No substitution; all commercial and parent fields blank.
+B0CQRWGHJN: REDIRECT: requested B0CQRWGHJN; page selected B0CQRX2Z2G at https://www.amazon.ca/dp/B0CQRX2Z2G?th=1. Destination size=Full, colour=Dark Green, page parent=B0CT3HF44M. No substitution; all commercial and parent fields blank.
+B0D9QSG8V3: Exact child Buy Box price not shown; price blank, no other-offer substitution. Purchase panel: No featured offers available | Learn more. Stock unknown; not marked unavailable.
+B0C7FNXRJF: REDIRECT: requested B0C7FNXRJF; page selected B0C7FHXP11 at https://www.amazon.ca/dp/B0C7FHXP11?th=1. Destination size=Full, colour=Taupe, page parent=B0CJSDXDJW. No substitution; all commercial and parent fields blank.
+B0C7KFWRM8: REDIRECT: requested B0C7KFWRM8; page selected B0C7K3WWDT at https://www.amazon.ca/dp/B0C7K3WWDT?th=1. Destination size=Full, colour=Striped Purple, page parent=B0CJSDXDJW. No substitution; all commercial and parent fields blank.
+B0DBVZRL8V: REDIRECT: requested B0DBVZRL8V; page selected B0DBW13VVR at https://www.amazon.ca/dp/B0DBW13VVR?th=1. Destination size=King, colour=Black, page parent=B0FQC9C5QT. No substitution; all commercial and parent fields blank.
+B0CQ32CNNX: REDIRECT: requested B0CQ32CNNX; page selected B0CQ31X3X5 at https://www.amazon.ca/dp/B0CQ31X3X5?th=1. Destination size=Full, colour=Purple, page parent=B0D71YJYNL. No substitution; all commercial and parent fields blank.
+B0DBQVFTZS: Exact child Buy Box price not shown; price blank, no other-offer substitution. Purchase panel: Price higher than typical | Learn more. Stock unknown; not marked unavailable. PARENT EXCEPTION: observed B0H7TRVN2R differs from earlier supplied family parent B0CT3HF44M; input20 itself has no parent column. No reparenting or substitution.
+B0C7K3WWDT: Exact child Buy Box price not shown; price blank, no other-offer substitution. Purchase panel: No featured offers available | Learn more. Stock unknown; not marked unavailable.
+B0C7KGGWS8: REDIRECT: requested B0C7KGGWS8; page selected B0C7K3WWDT at https://www.amazon.ca/dp/B0C7K3WWDT?th=1. Destination size=Full, colour=Striped Purple, page parent=B0CJSDXDJW. No substitution; all commercial and parent fields blank.
+B0C7FFRNMH: REDIRECT: requested B0C7FFRNMH; page selected B0C7FSXPC5 at https://www.amazon.ca/dp/B0C7FSXPC5?th=1. Destination size=Full, colour=Champagne, page parent=B0CJSDXDJW. No substitution; all commercial and parent fields blank.
+B0DDR4D9HP: REDIRECT: requested B0DDR4D9HP; page selected B0DDR95PQM at https://www.amazon.ca/dp/B0DDR95PQM?th=1. Destination size=Twin, colour=Striped White, page parent=B0F2Z7C4ST. No substitution; all commercial and parent fields blank.
