@@ -126,8 +126,9 @@ for _f in sorted(glob.glob(f"{DATA}/sellerboard/US_prices_*.csv")):
             our_now[("US", _r["asin"])] = {"price": _p, "lp": None, "src": "SellerBoard listing price",
                                           "date": _sd.group(1) if _sd else "2026-10-14", "rating": None, "reviews": None}
 
-# Helium 10 Xray export of our own catalog (child level, US): price, review pool, BSR, est. sales, image
-xray = {}        # asin -> row summary
+# Helium 10 Xray exports of our own catalog (child level): price, review family, BSR, est. sales, image.
+# US file prices in USD ("Price  $"); Amazon.ca file (URLs on amazon.ca) prices in CAD ("Price  CA$").
+xray = {}        # (mkt, asin) -> row summary
 for _f in sorted(glob.glob(f"{DATA}/xray/helium10_xray_*.csv")):
     _xd = re.search(r"(\d{4}-\d{2}-\d{2})", _f).group(1)
     for _r in csv.DictReader(open(_f, newline="", encoding="utf-8-sig")):
@@ -139,14 +140,17 @@ for _f in sorted(glob.glob(f"{DATA}/xray/helium10_xray_*.csv")):
                 return float(str(z).replace(",", ""))
             except (TypeError, ValueError):
                 return None
+        _m = "CA" if ("amazon.ca" in (_r.get("URL") or "") or "Price  CA$" in _r) else "US"
+        _pk, _fk = ("Price  CA$", "Fees  CA$") if _m == "CA" else ("Price  $", "Fees  $")
         _pool = (_r.get("Display Order") or "").split(".")[0]
-        xray[_a] = {"price": _n(_r.get("Price  $")), "rating": _n(_r.get("Ratings")), "reviews": _n(_r.get("Review Count")),
-                    "bsr": _n(_r.get("BSR")), "units_mo": _n(_r.get("ASIN Sales")), "bought": _n(_r.get("Recent Purchases")),
-                    "fees": _n(_r.get("Fees  $")), "image": _r.get("Image URL"), "pool": _pool, "created": _r.get("Creation Date"),
-                    "title": _r.get("Product Details"), "date": _xd}
-        if xray[_a]["price"] is not None:
-            our_now[("US", _a)] = {"price": xray[_a]["price"], "lp": None, "src": "Helium 10 Xray", "date": _xd,
-                                  "rating": xray[_a]["rating"], "reviews": xray[_a]["reviews"]}
+        xray[(_m, _a)] = {"price": _n(_r.get(_pk)), "rating": _n(_r.get("Ratings")), "reviews": _n(_r.get("Review Count")),
+                          "bsr": _n(_r.get("BSR")), "units_mo": _n(_r.get("ASIN Sales")), "bought": _n(_r.get("Recent Purchases")),
+                          "fees": _n(_r.get(_fk)), "image": _r.get("Image URL"), "pool": _pool, "created": _r.get("Creation Date"),
+                          "title": _r.get("Product Details"), "date": _xd}
+        if xray[(_m, _a)]["price"] is not None:
+            our_now[(_m, _a)] = {"price": xray[(_m, _a)]["price"], "lp": None,
+                                 "src": "Helium 10 Xray" + (" (Amazon.ca, CAD)" if _m == "CA" else ""), "date": _xd,
+                                 "rating": xray[(_m, _a)]["rating"], "reviews": xray[(_m, _a)]["reviews"]}
 for _f in sorted(glob.glob(f"{DATA}/our_prices/*.csv")):
     for _r in csv.DictReader(open(_f, newline="", encoding="utf-8-sig")):
         _m, _a = (_r.get("marketplace") or "").strip().upper(), (_r.get("asin") or "").strip()
@@ -350,7 +354,7 @@ def our_variations(pid, mkt):
             "size": g(x, "size") or parse_size(title), "colour": g(x, "colour", "color") or parse_colour(title),
             "price": g(x, "price"), "price_date": g(x, "feeDate"), "contribution": g(x, "contribution", "contributionPerUnit", "contribution_per_unit"),
             "be_acos": g(x, "beAcos", "breakEvenAcos", "be_acos", "break_even_acos"), "units_28d": g(x, "units28d", "units_28d", "units"),
-            "status": g(x, "status") or it.get("status"), "image": good_img(it.get("imageUrl")) or (good_img((xray.get(asin) or {}).get("image")) if mkt == "US" else None),
+            "status": g(x, "status") or it.get("status"), "image": good_img(it.get("imageUrl")) or good_img((xray.get((mkt, asin)) or {}).get("image")),
         })
         if asin:
             seen.add(asin)
@@ -364,7 +368,7 @@ def our_variations(pid, mkt):
             r["be_acos"] = r["be_acos"] / 100
         n = our_now.get((mkt, r["asin"]))
         r["price_now"], r["now_src"] = (n["price"], now_txt(n)) if n else (None, None)
-        xr = xray.get(r["asin"]) if mkt == "US" else None
+        xr = xray.get((mkt, r["asin"]))
         r.update({"x_rating": xr["rating"] if xr else None, "x_reviews": xr["reviews"] if xr else None, "x_bsr": xr["bsr"] if xr else None,
                   "x_units": xr["units_mo"] if xr else None, "x_pool": xr["pool"] if xr else None})
         if not r.get("title") and xr:
@@ -1155,8 +1159,8 @@ for pid, mkt, tname in TABS:
         ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
         ws.cell(row=r, column=1, value=("Canadian competitors from Amazon.ca page research (Oct 13, logged out, Toronto M5V 3L9): page-1 organic results for this product's keywords, "
                                         "same material and piece count, Queen size selected (2 King where no Queen). Prices in CAD. The Command Center columns (BSR trend, ASINsight search strategy, "
-                                        "weekly units) do not exist for Canada; organic rank and keyword are in Notes. 'Our price, same size' is our Command Center CAD price (Mar 2026) - "
-                                        "no live Canadian price source yet.")).font = F(size=8.5, bold=True, color=C_INK)
+                                        "weekly units) do not exist for Canada; organic rank and keyword are in Notes. 'Our price, same size' is our live Amazon.ca price "
+                                        "(Helium 10 Xray, CAD) where held, else the Command Center CAD price marked STALE.")).font = F(size=8.5, bold=True, color=C_INK)
         ws.cell(row=r, column=1).alignment = WRAP
         ws.row_dimensions[r].height = 30
         r += 1
@@ -1255,7 +1259,7 @@ for pid, mkt, tname in TABS:
         below = [x for x in comps if isinstance(x.get("price"), (int, float)) and x.get("our_same") and x["price"] < x["our_same"]]
         ins.append(f"Price: {len(below)} of {len(comps)} rivals sit below our price today (same size where the title states one). Cheapest strong rivals: "
                    + ", ".join(f"{x['brand']} {fmt(x['price'])}" for x in sorted([b for b in below if b['tier'] in ('Aspirational', 'Beatable') or mkt == 'CA'], key=lambda b: b['price'])[:4]) + "."
-                   + (" CA prices are CAD; our comparison price is the Command Center's Mar 2026 CAD price (no live Canadian price yet)." if mkt == "CA" else ""))
+                   + (" CA prices are CAD; ours is the live Amazon.ca price (Helium 10 Xray) where held." if mkt == "CA" else ""))
     if comps and mkt == "CA":
         top_ = sorted(comps, key=lambda x: int(x.get("ca_rank") or 999))[:5]
         ins.append("Top organic on Amazon.ca (Oct 13): " + "; ".join(f"#{x['ca_rank']} {x['brand']} {fmt(x['price'])} ({x['ca_keyword']})" for x in top_) + ".")
@@ -1603,10 +1607,10 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
      ("Competitor price, List Price, BSR, rating, reviews", "Command Center", latest_seen, sum(v for k, v in seen_cnt.items() if k == latest_seen), "Current",
       "", f"{old_seen} US rows are older (Jul 20 - Sep 21, 2026) and are shaded orange in the 'Snapshot date' column. Price is for the one tracked child ASIN; Amazon search may show another size of the same listing."),
      ("Strikethrough now (shown / label / price)", "Amazon page check", "2026-10-13", str_rows, "Current", "", f"{str_rows} competitor ASINs checked on the Amazon page Oct 13 (70 P1 at 12:10 ET, 240 P2 at 23:35 ET; logged out, ZIP 10001). Blank = redirect or not shown, never assumed. Redirects left blank, not substituted: B0D1RBXBNG (David's Home) now opens B0DBHFTF8W, a different variation (3-pc Twin vs 4-pc Twin) of the same family; B0CP3NX181, B0DG2HRZKK, B09G8P3X6L, B0D4PKVNWB."),
-     ("Our price now", "Helium 10 Xray (Oct 13) / SellerBoard listing price (Oct 14, gap-fill) / Data Dive / Amazon page check", "2026-10-13 to 14", core_us[0] + core_ca[0], "Partial", "",
+     ("Our price now", "Helium 10 Xray US (Oct 13) and Amazon.ca (Oct 14) / SellerBoard listing price (US gap-fill) / Data Dive / Amazon page check", "2026-10-13 to 14", core_us[0] + core_ca[0], "Partial", "",
       f"Core products: US {core_us[0]} of {core_us[1]} variations live, Canada {core_ca[0]} of {core_ca[1]}. Core US still without a live price: "
       + (", ".join(f"{k} {v}" for k, v in sorted(core_gap.items(), key=lambda kv: -kv[1])) or "none")
-      + ". Not-launched products (SL B4, SL Satin 6pc, SL Cooling 6pc, SL Bamboo Pillowcase) are excluded. Without a live price the tabs show the Command Center fee-feed price (Mar 2026), which is out of date. Xray matched every price already verified on the Amazon page. Prompt 12 (our_price_request.csv, live_price_held = N) fills the rest; Canada has no live source yet."),
+      + ". Not-launched products (SL B4, SL Satin 6pc, SL Cooling 6pc, SL Bamboo Pillowcase) are excluded. Without a live price the tabs show the Command Center fee-feed price (Mar 2026), which is out of date. Xray matched every price already verified on the Amazon page. Canada: Helium 10 Xray of Amazon.ca (Oct 14, CAD). Prompt 12 (our_price_request.csv, live_price_held = N) fills the rest."),
      ("Our listings outside the main review family", "Helium 10 Xray", "2026-10-13", sum(1 for p_, m_, v in all_vars if (split_note(p_, m_, v) or ("",))[0] == "split"), "Check", "",
       "Variations with their own rating and review count instead of the product's main family, flagged in each tab's variation table: DC B4 Full Light Blue 3.9 / 61, DC S6 King White 4.0 / 28, DC Cooling Cal King Graphite 3.0 / 15, and CL Cooling launch variations not yet merged. "
       f"Reassigned: {len(REASSIGN)} 'SATIN-4PC-TWIN' SKUs moved from DC S4 to DC S6 (a Twin in the 6 Pc set is a 4-piece set; Amazon lists them in the Satin 6pc family). Their variations, units, deals and stock now count under DC S6; ad spend stays under DC S4 as the Command Center attributes it."),
@@ -1625,7 +1629,7 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
       "Scheduled deal price, reference price and committed units are still blank. Keepa lowest Buy Box during each deal is filled for 24 of 3,080 rows (hero children; full pull ~3 days). Prime Exclusive Discounts on SL Bamboo 6pc and SL Cooling Comforter are Keepa observations only, not confirmed campaigns."),
      ("Our BFCM 2025 stock", "DataHub inventory, revision 2 (agent)", "2026-10-13", None, "Partial", "", "US Nov 26, 27, Dec 1 and CA Nov 24, 29, 30 have no snapshot."),
      ("Canada competitors", "Amazon.ca page research (agent, Prompt 9)", "2026-10-13", sum(len(v) for v in ca_comp.values()), "Partial" if ca_comp else "Missing", "",
-      "Page-1 organic results per product keyword, same material and piece count, Queen selected (2 King), CAD, logged out Toronto. 15 rivals each for DC B4, S4, S6, SSS4 (reuses S4) and Satin Fitted; 8 for DC B6 (only 8 qualifying 6-piece bamboo sets). No Command Center fields (weekly units, ASINsight) exist for Canada; Keepa .ca BFCM 2025 history follows after the US pulls. Our Canadian comparison price is the Command Center's Mar 2026 CAD price."),
+      "Page-1 organic results per product keyword, same material and piece count, Queen selected (2 King), CAD, logged out Toronto. 15 rivals each for DC B4, S4, S6, SSS4 (reuses S4) and Satin Fitted; 8 for DC B6 (only 8 qualifying 6-piece bamboo sets). No Command Center fields (weekly units, ASINsight) exist for Canada; Keepa .ca BFCM 2025 history follows after the US pulls. Our Canadian comparison price is the live Amazon.ca price from Helium 10 Xray (Oct 14, CAD)."),
      ("Competitors' BFCM 2025 history (US)", "Keepa via agent (" + ", ".join(os.path.basename(f_) for f_ in _kfiles) + ")", "Nov 1 - Dec 5, 2025", len(keepa25), "Partial", "",
       f"{len(keepa25)} US competitor ASINs pulled (P1 70 + P2 delivered so far); {sum(1 for x in US_recs if x.get('bf_type') is None)} US rows still yellow until the remaining P2 batches arrive. Pre-event = Nov 1-19 (pull starts Nov 1), BFCM = Nov 20 - Dec 1. Daily end-of-day state, so a deal of a few hours can be missed. Coupons are listed, not netted into the low price.")]
 for i, r_ in enumerate(S):
