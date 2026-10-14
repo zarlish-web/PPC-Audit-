@@ -12,8 +12,8 @@ Items marked **[OWNER]** can only be filled from the Scale Insights owner login,
 **Short answers**
 • **What we pay today:** [OWNER: plan name] at $[OWNER]/mo for Ecotero, and $[OWNER]/mo for Inspiratek. [OWNER: the 20% discount is / is not] still on the latest invoice. Invoices: [link to Drive folder with PDFs].
 • **What we use:** dayparting only (the overnight pause). The bid and budget rules were removed. 222 ASINs are automated out of 2,001 allowed (123 US, 98 CA, 1 Mexico).
-• **Recommendation:** move Ecotero to the **[50/100]-ASIN plan**, monthly, at **$[310/550]/mo** (or $[388/688] if the 20% discount doesn't carry over). Cancel Inspiratek now. Cancel Ecotero fully once Joseph's in-house dayparting has run alongside for a few nights.
-• **Saving:** about **$[X]/mo** on Ecotero plus **$[OWNER]/mo** on Inspiratek.
+• **Recommendation:** move Ecotero to the **100-ASIN plan**, monthly, at **$550/mo** (or $688 if the 20% discount doesn't carry over). Keep only the ~42 hero SKUs that carry the spend, plus the next tier up to 100. Cancel Inspiratek now. Cancel Ecotero fully once Joseph's in-house dayparting has run alongside for a few nights.
+• **Saving:** about **$690/mo** on Ecotero if we're paying ~$1,240 today (check against the invoice: $[OWNER] − $550), plus **$[OWNER]/mo** on Inspiratek.
 • **Refund:** we've overpaid about **$[X]** ([dates]). I'd ask for a refund or account credit plus a loyalty discount. Email draft below; I'll send it only once you approve.
 
 **1. What we pay**
@@ -25,8 +25,11 @@ Items marked **[OWNER]** can only be filled from the Scale Insights owner login,
 **2. What we use, and which ASINs matter**
 • US: $103,524 SP spend over 30 days across 23 advertised products. The top 10 products carry 92.2% of it; the other 13 together spend about $8K/mo.
 • CA: C$28,400 across 6 products. Bamboo 6PC, Bamboo 4PC, Satin 4PC and Satin 6PC carry 96.4%.
-• Advertised child ASINs in those top products: **[N] US + [N] CA = [N]** (from campaign names in Command Center, last 30 days). [A smaller set of [N] carries 80% of each product's spend.]
-• So the [50/100] plan covers [all of them / the top [N] that carry [X]% of spend].
+• Advertised child SKUs in those 14 products: about **175 US + 36 CA** distinct SKUs had spend in the last 30 days. Source: campaign names in Command Center, Sep 15 – Oct 14. That's a floor, because many older campaigns don't carry the SKU in their name.
+• Within each product, a small set carries the spend: **about 33 US + 9 CA ≈ 42 SKUs** carry 80% of the spend on SKU-named campaigns. For example, Bamboo 4PC US is 2 SKUs (King White and Queen White).
+• So keeping every advertised SKU doesn't fit the 50 or the 100 plan. The hero set of about 42 fits either one.
+• **Recommendation: the 100 plan.** The hero set is built from campaign names that cover only part of the spend (as little as 16–25% for the CA Satin products), so the 50 plan would leave about 8 slots for anything we've missed. The 100 plan leaves room for the next tier of SKUs. The extra $240/mo only lasts until dayparting moves in-house. We drop to 50 only if Scale Insights' own automated-ASIN list shows the hero set already covers the rest.
+• Note: Scale Insights shows 123 US and 98 CA automated ASINs, which doesn't line up with what we advertise (175 US and 36 CA). The trim list must come from Scale Insights' own list, matched against the hero set.
 
 **3. Recommendation**
 1. **Today:** cancel Inspiratek (after I download its archived data), and remove the Mexico ASIN from automation.
