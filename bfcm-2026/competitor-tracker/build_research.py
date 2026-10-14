@@ -55,6 +55,35 @@ def scope_of(pid):
 cc = {(int(d["product_id"]), d["marketplace"]): d for d in (jl(f) for f in glob.glob(f"{DATA}/cc/*.json")) if d}
 ours = {(int(d["product_id"]), d["marketplace"]): d for d in (jl(f) for f in glob.glob(f"{DATA}/ours/*.json")) if d}
 skus = {(int(d["product_id"]), d["marketplace"]): d for d in (jl(f) for f in glob.glob(f"{DATA}/skus/*.json")) if d and "product_id" in d}
+# ---- SKU reassignment (Shayan, Oct 14, 2026): a Twin in the 6 Pc satin set is a 4-piece set, so the
+# SATIN-4PC-TWIN-* SKUs are listed on Amazon under the Satin 6pc parent (B0HDTF4MN2) and share its reviews.
+# The Command Center maps them to Satin 4pc (pid 37); the tracker counts them under Satin 6pc (pid 31).
+# Ad spend/sales stay where the Command Center attributes them (product-level PPC cannot be split by SKU).
+REASSIGN = {}   # (mkt, asin) -> (from_pid, to_pid)
+for _x in ((skus.get((37, "US")) or {}).get("skus") or []):
+    if str(_x.get("sku", "")).upper().startswith("SATIN-4PC-TWIN") and _x.get("asin"):
+        REASSIGN[("US", _x["asin"])] = (37, 31)
+def _apply_reassign():
+    for (m_, a_), (f_, t_) in REASSIGN.items():
+        src, dst = skus.get((f_, m_)), skus.get((t_, m_))
+        if not (src and dst):
+            continue
+        mv = [x for x in src["skus"] if x.get("asin") == a_]
+        src["skus"] = [x for x in src["skus"] if x.get("asin") != a_]
+        dst["skus"].extend(mv)
+        for d_, sign in ((src, -1), (dst, 1)):
+            if isinstance(d_["profile"].get("skuCount"), int):
+                d_["profile"]["skuCount"] += sign * len(mv)
+        u = sum((x.get("units28d") or 0) for x in mv)
+        for pid_, sign in ((f_, -1), (t_, 1)):
+            e_ = ((cc.get((pid_, m_)) or {}).get("our") or {}).get("economics") or {}
+            if isinstance(e_.get("units_28d"), (int, float)):
+                e_["units_28d"] += sign * u
+            for b_ in e_.get("by_size") or []:
+                if b_.get("size") == "Twin" and isinstance(b_.get("units_28d"), (int, float)):
+                    b_["units_28d"] += sign * u
+_apply_reassign()
+
 strat = {int(d["pid"]): d for d in (jl(f) for f in glob.glob(f"{DATA}/strategy/*.json")) if d and "pid" in d}
 ddj = jl(f"{DATA}/dd_out/asins.json", {}) or {}
 dd, ddb = ddj.get("asins", {}), ddj.get("benchmarks", {})
@@ -377,6 +406,7 @@ if os.path.exists(_sp_child):
             continue
         name = row["product_name"].split("|")[0].strip() if "|" in row["product_name"] else row["product_name"]
         pid_ = STOCK_ALIAS.get(name)
+        pid_ = (REASSIGN.get((row["marketplace"], row["child_asin"])) or (None, pid_))[1] if pid_ is not None else None
         if pid_ is not None:
             _flags[(pid_, row["marketplace"], row["child_asin"], row["date"])] = row["out_of_stock"] == "Y"
     _agg = {k: (0 if v else 1) for k, v in _flags.items()}
@@ -425,6 +455,7 @@ if os.path.exists(_dp):
         pid_ = DEAL_NAMES.get(row["product_name"])
         if pid_ is None:
             continue
+        pid_ = (REASSIGN.get((row["marketplace"], row["child_asin"])) or (None, pid_))[1]
         m_ = re.search(r"source_id=([0-9a-f]+)", row["notes"] or "")
         k = (pid_, row["marketplace"], m_.group(1) if m_ else row["deal_start"])
         c_ = _camp.setdefault(k, {"type": row["deal_type"], "status": row["status"], "start": row["deal_start"][:10], "end": row["deal_end"][:10], "kids": set(), "units": 0, "kobs": []})
@@ -1366,7 +1397,9 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
       + ". Not-launched products (SL B4, SL Satin 6pc, SL Cooling 6pc, SL Bamboo Pillowcase) are excluded. Without a live price the tabs show the Command Center fee-feed price (Mar 2026), which is out of date. Xray matched every price already verified on the Amazon page. Prompt 12 (our_price_request.csv, live_price_held = N) fills the rest; Canada has no live source yet."),
      ("Our listings outside the main review family", "Helium 10 Xray", "2026-10-13", sum(1 for p_, m_, v in all_vars if (split_note(p_, m_, v) or ("",))[0] == "split"), "Check", "",
       "Variations with their own rating and review count instead of the product's main family, flagged in each tab's variation table: DC B4 Full Light Blue 3.9 / 61, DC S6 King White 4.0 / 28, DC Cooling Cal King Graphite 3.0 / 15, and CL Cooling launch variations not yet merged. "
-      f"Not counted: {sum(1 for p_, m_, v in all_vars if (split_note(p_, m_, v) or ('',))[0] == 'mapped')} DC S4 'SATIN-4PC-TWIN' variations - a Twin in the 6 Pc set is a 4-piece set, so Amazon correctly lists them in the Satin 6pc family; only the Command Center maps them to S4."),
+      f"Reassigned: {len(REASSIGN)} 'SATIN-4PC-TWIN' SKUs moved from DC S4 to DC S6 (a Twin in the 6 Pc set is a 4-piece set; Amazon lists them in the Satin 6pc family). Their variations, units, deals and stock now count under DC S6; ad spend stays under DC S4 as the Command Center attributes it."),
+     ("SKU reassignment vs Command Center", "Tracker rule (Shayan, Oct 14)", "2026-10-14", len(REASSIGN), "Fixed", "",
+      f"DC S4 and DC S6 SKU counts and 28-day units differ from the Command Center by {len(REASSIGN)} SKUs / {sum((x.get('units28d') or 0) for x in (skus.get((31, 'US')) or {}).get('skus', []) if ('US', x.get('asin')) in REASSIGN)} units. Blended price and contribution are still the Command Center's (effect under 1%)."),
      ("Same-size price gap vs ours", "Calculated", "2026-10-13", live_cmp, "Partial", "",
       f"{live_cmp} of {len(US_recs)} US competitor rows compare against our live price; the rest are marked STALE in 'Comparison basis'."),
      ("Our contribution / break-even ACoS", "Command Center", "2026-03-30 prices", None, "Stale", "",
