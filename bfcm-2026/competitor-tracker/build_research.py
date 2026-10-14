@@ -177,8 +177,30 @@ for _f in sorted(glob.glob(f"{DATA}/our_prices/*_notes.txt")):
             continue
         _mm = re.match(r"(B0[0-9A-Z]{8}): Exact child Buy Box price not shown", _ln)
         if _mm:
-            our_page_flag[(_m, _mm.group(1))] = f"No Buy Box on Amazon {_d.group(1) if _d else ''} (no featured offer)"
+            _pp = re.search(r"Purchase panel: ([^|]+)\|", _ln)
+            our_page_flag[(_m, _mm.group(1))] = (f"No Buy Box on Amazon {_d.group(1) if _d else ''}"
+                                                 + (f" (page says '{_pp.group(1).strip()}')" if _pp else ""))
 
+# DataHub stock for those variations (agent): explains each flag. Blank numeric = confirmed zero when the
+# row notes say "Confirmed source zero ... <field>".
+for _f in sorted(glob.glob(f"{DATA}/our_prices/*_stock_*.csv")):
+    _m = "CA" if "/ca_" in _f else "US"
+    for _r in csv.DictReader(open(_f, newline="", encoding="utf-8-sig")):
+        _k = (_m, _r["asin"])
+        if _k not in our_page_flag:
+            continue
+        _notes = _r.get("notes") or ""
+        _zero = re.search(r"Confirmed source zero[^:]*: ([^.]+)\.", _notes)
+        _zf = {z.strip() for z in _zero.group(1).split(",")} if _zero else set()
+        _av = _r.get("fba_available") or ("0" if "fba_available" in _zf else "")
+        _inb = _r.get("inbound") or ("0" if "inbound" in _zf else "")
+        if _av == "0":
+            why = f"FBA stock 0 since {_r.get('last_date_with_available_gt_0') or '?'}" + (f", {_inb} inbound" if _inb not in ("", "0") else ", nothing inbound")
+        elif _av:
+            why = f"{_av} units in FBA stock, so not a stock-out: offer / listing issue"
+        else:
+            why = "stock unknown"
+        our_page_flag[_k] += f" - {why} (DataHub {_r.get('snapshot_date')})"
 def now_txt(n):
     return f"{n['src']}, {n['date']}" if n else None
 
@@ -1631,7 +1653,9 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
       + (", ".join(f"{k} {v}" for k, v in sorted(core_gap.items(), key=lambda kv: -kv[1])) or "none")
       + ". Not-launched products (SL B4, SL Satin 6pc, SL Cooling 6pc, SL Bamboo Pillowcase) are excluded. Without a live price the tabs show the Command Center fee-feed price (Mar 2026), which is out of date. Xray matched every price already verified on the Amazon page. Canada: Helium 10 Xray of Amazon.ca (Oct 14, CAD). Prompt 12 (our_price_request.csv, live_price_held = N) fills the rest."),
      ("Our variations not buyable on Amazon", "Amazon.ca page check (agent)", "2026-10-14", len(our_page_flag), "Check", "",
-      f"Of 20 selling Canadian variations with no Xray price, {sum(1 for t in our_page_flag.values() if t.startswith('Not buyable'))} now redirect to another size of the family (the exact variation cannot be bought) and {sum(1 for t in our_page_flag.values() if t.startswith('No Buy Box'))} show no Buy Box. They sold 1-6 units in the last 28 days, so they went inactive or lost the Buy Box recently. Flagged red in each Canada tab's Status column; check stock and listing status in Seller Central."),
+      f"Of 20 selling Canadian variations with no Xray price, {sum(1 for t in our_page_flag.values() if t.startswith('Not buyable'))} redirect to another size and {sum(1 for t in our_page_flag.values() if t.startswith('No Buy Box'))} show no Buy Box. "
+      f"DataHub stock (Oct 14): {sum(1 for t in our_page_flag.values() if 'FBA stock 0' in t)} are out of FBA stock ({sum(1 for t in our_page_flag.values() if 'FBA stock 0' in t and 'nothing inbound' not in t)} with stock inbound, {sum(1 for t in our_page_flag.values() if 'nothing inbound' in t)} with nothing inbound); "
+      f"{sum(1 for t in our_page_flag.values() if 'not a stock-out' in t)} have stock but no Buy Box (offer / listing issue - one page says 'Price higher than typical', i.e. Buy Box suppressed on price). Reason shown per variation in each Canada tab's Status column."),
      ("Our listings outside the main review family", "Helium 10 Xray", "2026-10-13", sum(1 for p_, m_, v in all_vars if (split_note(p_, m_, v) or ("",))[0] == "split"), "Check", "",
       "Variations with their own rating and review count instead of the product's main family, flagged in each tab's variation table: DC B4 Full Light Blue 3.9 / 61, DC S6 King White 4.0 / 28, DC Cooling Cal King Graphite 3.0 / 15, and CL Cooling launch variations not yet merged. "
       f"Reassigned: {len(REASSIGN)} 'SATIN-4PC-TWIN' SKUs moved from DC S4 to DC S6 (a Twin in the 6 Pc set is a 4-piece set; Amazon lists them in the Satin 6pc family). Their variations, units, deals and stock now count under DC S6; ad spend stays under DC S4 as the Command Center attributes it."),

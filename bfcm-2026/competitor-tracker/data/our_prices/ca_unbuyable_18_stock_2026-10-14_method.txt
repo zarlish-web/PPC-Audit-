@@ -1,0 +1,23 @@
+DATAHUB CA INVENTORY CHECK
+Latest amazon_inventory snapshot: 2026-10-14; exact18 requested children. Read-only. No Keepa, access, listing or credential changes.
+History: daily amazon_inventory exact ASIN-filtered reads, 2026-08-16 through 2026-10-14 inclusive (60 calendar days including today). Source snapshots were checked for pagination and exact date, and matched per ASIN+seller SKU+FNSKU. No history aggregation endpoint used.
+One source SKU/FNSKU identity per requested ASIN across the60-day window. All60 dates have snapshots; seven identity-days are absent (four on August16, three on August17), not treated as zero. Each row gives its matched-day count. All18 last-positive dates are later than these gaps. All18 source identities retained, no summing across SKUs. FNSKU recorded in notes to preserve requested ten-column schema.
+FBA available=source fulfillable. Inbound=source working+shipped+receiving within that same row. Reserved=source reserved. Unfulfillable=source unfulfillable. Observed zero quantities are blank in numeric cells per explicit never0 instruction and named as CONFIRMED ZERO in row notes; these must not be interpreted as unknown. Missing values would be blank and marked unknown.
+Listing status is not exposed; recommended_action is kept in notes and must not be interpreted as live listing status or definitive suppression cause. Positive stock does not guarantee a Buy Box or Toronto delivery eligibility. No local per-FC stock or physical-location proof is exposed by this report.
+Last positive date is last observed snapshot with fulfillable>0, not an inferred stockout onset or proof of continuous availability. Missing last-date means no positive observation within window, not never stocked.
+
+{
+  "rows": 18,
+  "asins": 18,
+  "snapshot_date": "2026-10-14",
+  "available_positive": 2,
+  "available_confirmed_zero": 16,
+  "with_inbound": 6,
+  "with_reserved": 2,
+  "history_dates": 60,
+  "matched_history_rows": 1073,
+  "missing_snapshot_dates": [],
+  "no_positive_last60": 0,
+  "listing_status_exposed": 0,
+  "sha256": "fa4101f9a8c68d6ab562dd11e8f752d71d3837d24b8d62014b5d85518479ea02"
+}
