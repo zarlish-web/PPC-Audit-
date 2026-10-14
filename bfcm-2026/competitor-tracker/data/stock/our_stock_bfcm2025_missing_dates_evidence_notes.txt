@@ -1,0 +1,89 @@
+BFCM 2025 MISSING-DATE EVIDENCE
+
+Route 1 rechecked October 14 2026: Google archive read failed RefreshError; Seller Central Inventory Planning returned No autorizado / email not associated with an account. Existing user Chrome unavailable. No access, credentials or permissions changed/requested.
+Route 2 WORKED: DataHub amazon_sales contains source rows on all six dates. Stopped here as requested; SellerBoard and route 3 not needed. Rows without sales evidence remain unknown, not inferred OOS.
+
+Exact accepted revision2 universe: 843 US + 469 CA child ASINs, three requested dates each, 3936 output rows. US dates Nov26, Nov27, Dec1; CA Nov24, Nov29, Nov30, all2025. ASINs and marketplaces are joined exactly, no parent/redirect replacement. Original revision2 files unchanged.
+
+Date basis: Pacific calendar days, as exposed by DataHub orders. units_ordered excludes cancelled lines, includes pending units, does not subtract returns. Source pagination and all-marketplace units reconcile on all6dates. Only exact in-scope children appear in output. SKU column is a semicolon-delimited identity set, NOT multiple duplicate totals. It includes revision2 inventory SKUs and any exact-child sales SKUs; notes give each contributing sales SKU and quantity.
+
+INFERRED statuses: units_ordered>0 => in_stock_sold under the requested sales-evidence rule. A sale indicates orderability at some time that day, not a historical FBA balance, physical fulfillment location, or full-day availability. An explicit source zero is retained as0 but statusunknown; absent source rows have blank units and statusunknown. No likely_in_stock/likely_oos classifications are made without the snapshot fallback. All prev/next snapshot fields are intentionally blank because route2 worked and the stop rule applies.
+
+Validation summary:
+{
+  "validated": true,
+  "generated_at": "2026-10-14T13:01:19.019071+00:00",
+  "route": 2,
+  "rows": 3936,
+  "marketplace_child_pairs": {
+    "CA": 469,
+    "US": 843
+  },
+  "marketplace_rows": {
+    "CA": 1407,
+    "US": 2529
+  },
+  "statuses": {
+    "unknown": 2175,
+    "in_stock_sold": 1761
+  },
+  "blank_units": 2127,
+  "source_explicit_zero_units": 48,
+  "input_sha256": "1c30f1bbe39de799b5064ce7f0cf5d6ad940228cd92f6786edaace67c436320e",
+  "csv_sha256": "3d08b2bf3ea2451e14a47423f967238379438a37d80e3d1b51691db7e186b2ea",
+  "source_checks": [
+    {
+      "marketplace": "US",
+      "date": "2025-11-26",
+      "source_rows": 351,
+      "all_marketplace_units": 1131,
+      "in_scope_rows": 345,
+      "raw_sha256": "ec9d18ea8b02929887c630ae5c919af830ca44d917b23031335d6065733c9f3f"
+    },
+    {
+      "marketplace": "US",
+      "date": "2025-11-27",
+      "source_rows": 365,
+      "all_marketplace_units": 1189,
+      "in_scope_rows": 359,
+      "raw_sha256": "c8d903cf2fc7c29ad8c758bbc82051619eb4805e171a9d238937d062007e45e5"
+    },
+    {
+      "marketplace": "US",
+      "date": "2025-12-01",
+      "source_rows": 535,
+      "all_marketplace_units": 3257,
+      "in_scope_rows": 524,
+      "raw_sha256": "c1aa567bb60213e16b1a82f142379a910bd981305a76f89ee6b5ee22631fa1da"
+    },
+    {
+      "marketplace": "CA",
+      "date": "2025-11-24",
+      "source_rows": 175,
+      "all_marketplace_units": 423,
+      "in_scope_rows": 169,
+      "raw_sha256": "0a15c686f28580207caef5d8ce758f7217140a55ff4b743d48f4b062734cd6b9"
+    },
+    {
+      "marketplace": "CA",
+      "date": "2025-11-29",
+      "source_rows": 217,
+      "all_marketplace_units": 540,
+      "in_scope_rows": 211,
+      "raw_sha256": "f57027573825c4d851ea01ac550bd1177fcb893a1c5d5bb0a9200d3863bea575"
+    },
+    {
+      "marketplace": "CA",
+      "date": "2025-11-30",
+      "source_rows": 211,
+      "all_marketplace_units": 604,
+      "in_scope_rows": 203,
+      "raw_sha256": "b9b120412a00f1cacda5d125c5ac31ed18068086408bd6287962d55c3e1224e8"
+    }
+  ],
+  "snapshot_columns_all_blank": true,
+  "keepa_tokens_used": 0,
+  "not_yet_delivered": true
+}
+
+Delivery held until P2, our23heroes and CA68Keepa files have confirmed delivery. This is supporting evidence only; it does not fill actual inventory columns or revise accepted stock balances.
