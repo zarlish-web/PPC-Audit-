@@ -137,7 +137,12 @@ const tierChip = t => `<span class="chip ${t === "Aspirational" ? "asp" : ""}">$
 const products = D.products;
 const pSel = $("#f-product");
 const order = [...new Map(products.map(p => [p.short, p])).values()];
-pSel.innerHTML = order.map(p => `<option value="${esc(p.short)}">${esc(p.family)} · ${esc(p.short)} — ${esc(p.brand)} ${esc(p.name)}</option>`).join("");
+const scopeRank = {"Core": 0, "Other": 1, "Launching (partly live)": 2, "Not launched": 3};
+order.sort((a, b) => (scopeRank[a.scope] ?? 1) - (scopeRank[b.scope] ?? 1));
+pSel.innerHTML = ["Core", "Other", "Launching (partly live)", "Not launched"].map(sc => {
+  const ps = order.filter(p => (p.scope || "Other") === sc);
+  return ps.length ? `<optgroup label="${esc(sc === "Core" ? "Core BFCM products" : sc)}">${ps.map(p => `<option value="${esc(p.short)}">${esc(p.family)} · ${esc(p.short)} — ${esc(p.brand)} ${esc(p.name)}</option>`).join("")}</optgroup>` : "";
+}).join("");
 $("#builtline").textContent = `Data built ${D.built} · ${products.length} product tabs · ${D.comps.length} competitor rows · ${D.imagesLoaded} image files loaded`;
 
 let view = "cards";
@@ -152,7 +157,8 @@ function renderOurs(p){
   el.innerHTML = `
     ${imgBox(p.img, p.best)}
     <div style="min-width:0">
-      <div class="eyebrow">Our product · ${esc(p.mkt === "US" ? "Amazon.com" : "Amazon.ca")} · ${esc(p.role)}</div>
+      <div class="eyebrow">Our product · ${esc(p.mkt === "US" ? "Amazon.com" : "Amazon.ca")} · ${esc(p.role)} · ${esc(p.scope || "")}</div>
+      ${p.scope === "Not launched" ? `<div class="sub" style="color:#b42318;font-weight:600">Not launched yet - no live price, rating or sales expected.</div>` : p.scope === "Launching (partly live)" ? `<div class="sub" style="color:#b54708;font-weight:600">Launching - only part of this family is live.</div>` : ""}
       <h2>${esc(p.title || (p.brand + " " + p.name))}</h2>
       <div class="asin">Parent <a href="${amz(p.parent,p.mkt)}" target="_blank" rel="noopener">${esc(p.parent || "—")}</a> · Best seller ${esc(p.best || "—")} · Stage ${esc(p.stage || "—")}</div>
       <div class="facts">

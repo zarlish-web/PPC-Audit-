@@ -31,7 +31,7 @@ def jl(p, d=None):
 # ------------------------------------------------------------------ products
 PRODUCTS = [
     (59, "Bamboo", "DC B4", "Hero: rank and profit"), (30, "Bamboo", "DC B6", "Hero: rank and profit"),
-    (32, "Bamboo", "SL B6", "Core"), (36, "Bamboo", "SL B4", "Core"),
+    (32, "Bamboo", "SL B6", "Core"), (36, "Bamboo", "SL B4", "Not launched yet"),
     (73, "Bamboo", "DC Bamboo Fitted", "Excluded (ranking variations OOS to Dec 3)"), (40, "Bamboo", "SL Bamboo Pillowcase", "Other"),
     (37, "Satin", "DC S4", "Clearance with margin"), (31, "Satin", "DC S6", "Clearance with margin"),
     (39, "Satin", "SSS4", "Clearance with margin"), (74, "Satin", "SL Satin 6pc", "Clearance with margin"),
@@ -45,6 +45,12 @@ PRODUCTS = [
     (49, "Other", "DC Beach Towel", "Other"), (58, "Other", "DC Welcome Sign", "Other"), (33, "Other", "DC Chair Cover", "Other"),
 ]
 PINFO = {p[0]: p for p in PRODUCTS}
+# Scope confirmed by Shayan, Oct 14, 2026: the core BFCM set, and products not launched yet (no live price expected)
+CORE = {59, 30, 73, 37, 31, 38, 32, 39, 48, 45, 42, 43, 44}   # DC bamboo + satin, SS-B6, SS-S4, all cooling (DC + SL)
+NOT_LAUNCHED = {36, 74, 76, 40}                               # SL B4, SL Satin 6pc, SL Cooling 6pc, SL Bamboo Pillowcase
+LAUNCHING = {69}                                              # CL Cooling Sheets: only part of the family is live
+def scope_of(pid):
+    return ("Core" if pid in CORE else "Not launched" if pid in NOT_LAUNCHED else "Launching (partly live)" if pid in LAUNCHING else "Other")
 
 cc = {(int(d["product_id"]), d["marketplace"]): d for d in (jl(f) for f in glob.glob(f"{DATA}/cc/*.json")) if d}
 ours = {(int(d["product_id"]), d["marketplace"]): d for d in (jl(f) for f in glob.glob(f"{DATA}/ours/*.json")) if d}
@@ -718,9 +724,15 @@ for pid, mkt, tname in TABS:
 
     # ---- title band
     ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=NC)
-    t = ws.cell(row=1, column=1, value=f"{pname}  ·  {('Amazon.com (US)' if mkt == 'US' else 'Amazon.ca (CA)')}  ·  {fam}  ·  BFCM role: {role}")
+    t = ws.cell(row=1, column=1, value=f"{pname}  ·  {('Amazon.com (US)' if mkt == 'US' else 'Amazon.ca (CA)')}  ·  {fam}  ·  BFCM role: {role}  ·  Scope: {scope_of(pid)}")
     t.font = F(size=14, bold=True, color="FFFFFF"); t.fill = HDR; t.alignment = Alignment(vertical="center", indent=1)
     ws.row_dimensions[1].height = 28
+    if pid in NOT_LAUNCHED or pid in LAUNCHING:
+        ws.merge_cells(start_row=2, start_column=3, end_row=2, end_column=NC)
+        b_ = ws.cell(row=2, column=3, value=("NOT LAUNCHED YET (confirmed Oct 14, 2026): no live price, rating or sales expected; excluded from the gap counts on Data Check."
+                                             if pid in NOT_LAUNCHED else
+                                             "LAUNCHING: only part of this family is live (confirmed Oct 14, 2026). Variations without a live price are not launched yet, not missing data."))
+        b_.font = F(bold=True, color="C00000"); b_.fill = FILL["flag"]
     ws.cell(row=2, column=1, value="← Dashboard").hyperlink = "#'Dashboard'!A1"
     ws.cell(row=2, column=1).font = F(color="0563C1", underline="single")
 
@@ -1198,7 +1210,7 @@ db.freeze_panes = f"A{GR + 1}"
 pi = wb.create_sheet("Product Index", 2)
 pi.sheet_view.showGridLines = False
 PIH = [("Image", 11), ("Product tab", 18), ("Family", 8), ("Brand", 10), ("Title", 40), ("Mkt", 5), ("Parent ASIN (Amazon)", 11), ("Variations", 8), ("Sizes", 14),
-       ("Colours", 8), ("Our price ($)", 9), ("Our price: source, date", 14), ("Units 28d", 8), ("Competitors mapped", 9), ("BFCM 2025 lift", 8), ("BFCM 2025 TACoS", 8), ("BFCM role", 20)]
+       ("Colours", 8), ("Our price ($)", 9), ("Our price: source, date", 14), ("Units 28d", 8), ("Competitors mapped", 9), ("BFCM 2025 lift", 8), ("BFCM 2025 TACoS", 8), ("BFCM role", 20), ("Scope", 14)]
 for j, (h, w) in enumerate(PIH, 1):
     c = pi.cell(row=1, column=j, value=h); c.font = F(bold=True, color="FFFFFF", size=8); c.fill = HDR; c.alignment = CENTER; c.border = BOX
     pi.column_dimensions[CL(j)].width = w
@@ -1213,13 +1225,14 @@ for pid, mkt, tname in TABS:
     put_image(pi, f"A{rr}", img, "OURS - parent/best child", f"{p.get('brand') or o.get('brand')} {p.get('name') or o.get('name')}", mkt, p.get("brand") or o.get("brand"), best)
     vals = [None, tname, PINFO[pid][1], p.get("brand") or o.get("brand"), title, mkt, parent, p.get("skuCount") or o.get("sku_count"),
             ", ".join(p.get("sizes") or o.get("sizes") or []), len(p.get("colours") or []) or o.get("colour_count"), *our_headline_price(pid, mkt, best, e["price"]), e["units_28d"],
-            len([x for x in records if x["pid"] == pid and x["mkt"] == mkt]), lf["lift"] if lf else None, (lf["tacos"] / 100) if lf and lf.get("tacos") is not None else None, PINFO[pid][3]]
+            len([x for x in records if x["pid"] == pid and x["mkt"] == mkt]), lf["lift"] if lf else None, (lf["tacos"] / 100) if lf and lf.get("tacos") is not None else None, PINFO[pid][3], scope_of(pid)]
     for j, v in enumerate(vals[1:], 2):
         c = pi.cell(row=rr, column=j, value=v); c.font = F(); c.border = BOX; c.alignment = WRAP
     pi.cell(row=rr, column=2).hyperlink = f"#'{tname}'!A1"; pi.cell(row=rr, column=2).font = F(color="0563C1", underline="single")
     pi.cell(row=rr, column=11).number_format = "$#,##0.00"; pi.cell(row=rr, column=15).number_format = '0.00"x"'; pi.cell(row=rr, column=16).number_format = "0.0%"
-    if "STALE" in str(pi.cell(row=rr, column=12).value):
+    if "STALE" in str(pi.cell(row=rr, column=12).value) and pid not in NOT_LAUNCHED:
         pi.cell(row=rr, column=12).fill = PatternFill("solid", fgColor="F8CBAD")
+    pi.cell(row=rr, column=18).fill = PatternFill("solid", fgColor={"Core": "C6EFCE", "Not launched": "D9D9D9", "Launching (partly live)": "FFEB9C"}.get(scope_of(pid), "FFFFFF"))
     rr += 1
 pi.freeze_panes = "C2"
 
@@ -1294,11 +1307,13 @@ for j, w_ in enumerate((40, 50, 50), 1):
 # our-price request list for AGENT_PROMPTS Prompt 12 (every child ASIN we sell, US and CA)
 with open(os.path.join(HERE, "our_price_request.csv"), "w", newline="") as fh:
     w = csv.writer(fh)
-    w.writerow(["marketplace", "product_tab", "sku", "child_asin", "size", "colour", "units_28d", "command_center_price", "command_center_price_date", "live_price_held"])
-    for pid, mkt, tname in TABS:
+    w.writerow(["marketplace", "product_tab", "scope", "sku", "child_asin", "size", "colour", "units_28d", "command_center_price", "command_center_price_date", "live_price_held"])
+    for pid, mkt, tname in sorted(TABS, key=lambda t: (scope_of(t[0]) != "Core", t[1] != "US")):
+        if pid in NOT_LAUNCHED:
+            continue
         for v in our_variations(pid, mkt):
             if v.get("asin") and v.get("sku"):
-                w.writerow([mkt, tname, v["sku"], v["asin"], v["size"], v["colour"], v["units_28d"], v["price"],
+                w.writerow([mkt, tname, scope_of(pid), v["sku"], v["asin"], v["size"], v["colour"], v["units_28d"], v["price"],
                             str(v["price_date"])[:10] if v.get("price_date") else "", "Y" if v.get("price_now") is not None else "N"])
 
 # ================================================================== Data Check (accuracy log)
@@ -1317,7 +1332,15 @@ for x in US_recs:
     seen_cnt[x.get("seen") or "no snapshot"] = seen_cnt.get(x.get("seen") or "no snapshot", 0) + 1
 latest_seen = max((k for k in seen_cnt if k != "no snapshot"), default=None)
 old_seen = sum(v for k, v in seen_cnt.items() if k != "no snapshot" and k < "2026-10-06")
-all_vars = [(pid, mkt, v) for pid, mkt, _t in TABS for v in our_variations(pid, mkt)]
+all_vars = [(pid, mkt, v) for pid, mkt, _t in TABS if pid not in NOT_LAUNCHED for v in our_variations(pid, mkt)]
+def _cov(sel):
+    xs = [v for pid_, mk_, v in all_vars if sel(pid_, mk_)]
+    return sum(1 for v in xs if v.get("price_now") is not None), len(xs)
+core_us, core_ca = _cov(lambda p_, m_: p_ in CORE and m_ == "US"), _cov(lambda p_, m_: p_ in CORE and m_ == "CA")
+core_gap = {}
+for pid_, mk_, v in all_vars:
+    if pid_ in CORE and mk_ == "US" and v.get("price_now") is None:
+        core_gap[PINFO[pid_][2]] = core_gap.get(PINFO[pid_][2], 0) + 1
 live_vars = sum(1 for *_x, v in all_vars if v.get("price_now") is not None)
 live_cmp = sum(1 for x in US_recs if x.get("our_live"))
 str_rows = len({x["child"] for x in records if x.get("str_checked")})
@@ -1325,8 +1348,10 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
      ("Competitor price, List Price, BSR, rating, reviews", "Command Center", latest_seen, sum(v for k, v in seen_cnt.items() if k == latest_seen), "Current",
       "", f"{old_seen} US rows are older (Jul 20 - Sep 21, 2026) and are shaded orange in the 'Snapshot date' column. Price is for the one tracked child ASIN; Amazon search may show another size of the same listing."),
      ("Strikethrough now (shown / label / price)", "Amazon page check", "2026-10-13", str_rows, "Current", "", f"{str_rows} competitor ASINs checked (P1); the others are blank, not assumed."),
-     ("Our price now", "Helium 10 Xray (Oct 13) / Data Dive (Oct 12-13) / Amazon page check", "2026-10-13", live_vars, "Partial", "",
-      f"{live_vars} of {len(all_vars)} of our variations (US + CA) have a live price; US {sum(1 for _p, _m, v in all_vars if _m == 'US' and v.get('price_now') is not None)} of {sum(1 for _p, _m, v in all_vars if _m == 'US')}. The rest show only the Command Center fee-feed price (Mar 2026), which is out of date (B6 King White: $89.99 there vs $99.99 live). Xray matched every price already verified on the Amazon page. Prompt 12 (our_price_request.csv, rows with live_price_held = N) fills the rest; Canada has no live source yet."),
+     ("Our price now", "Helium 10 Xray (Oct 13) / Data Dive (Oct 12-13) / Amazon page check", "2026-10-13", core_us[0] + core_ca[0], "Partial", "",
+      f"Core products: US {core_us[0]} of {core_us[1]} variations live, Canada {core_ca[0]} of {core_ca[1]}. Core US still without a live price: "
+      + (", ".join(f"{k} {v}" for k, v in sorted(core_gap.items(), key=lambda kv: -kv[1])) or "none")
+      + ". Not-launched products (SL B4, SL Satin 6pc, SL Cooling 6pc, SL Bamboo Pillowcase) are excluded. Without a live price the tabs show the Command Center fee-feed price (Mar 2026), which is out of date. Xray matched every price already verified on the Amazon page. Prompt 12 (our_price_request.csv, live_price_held = N) fills the rest; Canada has no live source yet."),
      ("Our listings outside the main review family", "Helium 10 Xray", "2026-10-13", sum(1 for *_x, v in all_vars if v.get("split")), "Check", "",
       "Variations that sit in their own review family (own rating and review count) instead of the product's main one, flagged in each tab's variation table. Several have weak ratings (e.g. Bamboo Full 3.9 / 61, Cooling Cal King 3.0 / 15, Satin 6pc King 4.0 / 28). Check the variation family in Seller Central."),
      ("Same-size price gap vs ours", "Calculated", "2026-10-13", live_cmp, "Partial", "",

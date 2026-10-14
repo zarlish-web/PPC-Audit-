@@ -35,7 +35,7 @@ for pid, mkt, tname in br.TABS:
     best_lbl = " ".join(x for x in (bv.get("size"), bv.get("colour")) if x) or best
     nlive = sum(1 for v in vars_ if v.get("price_now") is not None)
     products.append({
-        "key": f"{pid}-{mkt}", "pid": pid, "mkt": mkt, "short": br.PINFO[pid][2], "family": br.PINFO[pid][1], "role": br.PINFO[pid][3],
+        "key": f"{pid}-{mkt}", "pid": pid, "mkt": mkt, "short": br.PINFO[pid][2], "scope": br.scope_of(pid), "family": br.PINFO[pid][1], "role": br.PINFO[pid][3],
         "brand": p.get("brand") or o.get("brand"), "name": p.get("name") or o.get("name"), "title": title, "parent": parent, "best": best,
         "img": img_for(best) or img_for(parent), "stage": p.get("stage") or o.get("stage"), "skus": p.get("skuCount") or o.get("sku_count"),
         "sizes": p.get("sizes") or o.get("sizes") or [], "colours": p.get("colours") or [], "price": br.our_headline_price(pid, mkt, best, e["price"])[0], "priceSrc": f"{best_lbl} ({best}) · " + br.our_headline_price(pid, mkt, best, e["price"])[1], "nLive": nlive, "contrib": e["contribution"],
