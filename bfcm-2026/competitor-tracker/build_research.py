@@ -804,6 +804,32 @@ for _f in sorted(glob.glob(f"{DATA}/str/str_check_*.csv")):
     for row in csv.DictReader(open(_f, encoding="utf-8-sig")):
         str_now[row["asin"]] = row
 
+# Command Center Competitor Summary (competitors_roster, scrape week of Oct 11, 2026): one row per mapped rival and
+# product. Its price, BSR and reviews belong to the rival's seed ASIN, often a different variation from the child
+# tracked here, so they sit beside the child figures rather than replacing them. It also carries the current tier,
+# the X-Ray sales band and listing assets, and rivals mapped after the tracker's snapshot are added from it.
+roster = {}   # (pid, cid) -> roster row
+for _f in glob.glob(f"{DATA}/cc_roster/*_US.json"):
+    _d = jl(_f, {}) or {}
+    for _r in _d.get("rows") or []:
+        roster[(_d["productId"], _r["competitorProductId"])] = _r
+_by_cid = {}
+for (_p, _m), _dd in cc.items():
+    if _m == "US":
+        for _cp in _dd.get("competitors", []):
+            _by_cid.setdefault(_cp["id"], _cp)
+roster_added = 0
+for (_p, _c), _r in sorted(roster.items()):
+    _dd = cc.get((_p, "US"))
+    if not _dd or any(_cp.get("id") == _c for _cp in _dd["competitors"]):
+        continue
+    _base = dict(_by_cid.get(_c) or {"id": _c, "child_asin": _r.get("parentAsin"), "parent_asin": None, "brand": (_r.get("brand") or "").strip(),
+                                       "name": (_r.get("name") or "").split(" - ", 1)[-1], "price": _r.get("price"), "bsr": _r.get("bsr"),
+                                       "rating": _r.get("rating"), "reviews": _r.get("reviews"), "seen_on": (_r.get("weekStartDate") or "")[:10]})
+    _base["tier"] = _r.get("tier")
+    _dd["competitors"].append(_base)
+    roster_added += 1
+
 # ------------------------------------------------------------------ assemble competitor records
 records = []      # one per (product, marketplace, competitor) for the Data sheet and the dashboard
 TABS = []         # (pid, mkt, tab name)
@@ -888,6 +914,13 @@ for pid, fam, short, role in PRODUCTS:
                     rec["brand_cc"], rec["brand"] = rec["brand"], _pb
                 if pg.get("parent_asin") and pg["parent_asin"] != rec["parent"]:
                     rec["parent_cc"], rec["parent"] = rec["parent"], pg["parent_asin"]
+            ro_ = roster.get((pid, cp.get("id")))
+            if ro_ is not None:
+                rec["tier"] = ro_.get("tier") or "Untiered"
+                rec["ro"] = {k: ro_.get(k) for k in ("parentAsin", "price", "bsr", "reviews", "rating", "salesPerWeek", "salesBand", "reviewVelocity",
+                                                     "bsrTrendPct", "bsrTrendDirection", "coupon", "deal", "strikethroughPct", "inStock", "hasAplus",
+                                                     "imageCount", "bulletCount", "beatability", "beatabilityProfile", "tierRationale", "tierSetBy",
+                                                     "relevance", "priceIndex", "weekStartDate")}
             sc = str_now.get(ch) or {}
             if sc:
                 num = lambda z: float(z) if z not in (None, "") else None
@@ -896,6 +929,17 @@ for pid, fam, short, role in PRODUCTS:
                             "deal_now": ", ".join(z for z in [sc.get("deal_badge") if sc.get("deal_badge") not in ("", "none") else None,
                                                                ("coupon " + sc["coupon"]) if sc.get("coupon") else None] if z) or ("none" if sc.get("strikethrough_shown") else None),
                             "stock_now": sc.get("in_stock") or None, "str_checked": f"{sc.get('check_date')} {sc.get('check_time_et')}"})
+            # price: the newest reading for this exact ASIN (Amazon page Oct 14, then Oct 13 page check, then the Command Center)
+            rec["price_src"] = f"Command Center {(rec.get('seen') or '')[:10]}".strip()
+            _fresh = None
+            if pg and pg.get("current_price"):
+                _fresh = (float(pg["current_price"]), f"Amazon page {pg.get('check_date') or '2026-10-14'}")
+            elif rec.get("page_price"):
+                _fresh = (rec["page_price"], f"Amazon page {(rec.get('str_checked') or '')[:10]}")
+            if _fresh:
+                if rec.get("price") is not None and abs(rec["price"] - _fresh[0]) > 0.005:
+                    rec["price_cc"] = rec["price"]
+                rec["price"], rec["price_src"] = _fresh
             kp_ = keepa25.get(ch)
             if kp_:
                 rec.update({k: kp_[k] for k in ("bf_type", "bf_dates", "bf_pre", "bf_low", "bsr_pre", "bsr_bf", "bf_oos", "notes")})
@@ -971,7 +1015,7 @@ COMP_COLS = [
     ("colour", "Colour", 9, "id", "From the competitor's Amazon page (variation attributes, Oct 14, 2026) where captured; otherwise parsed from the title.", None),
     ("var", "Variations", 7, "dd", "Variation count: Data Dive family count, else ASINsight child-ASIN count.", "#,##0"),
     ("hero", "Hero child ASINs (share of their visibility)", 26, "st", "The fewest child ASINs carrying 80% of this competitor's ASINsight impressions.", None),
-    ("price", "Price ($)", 8, "cc", None, "$#,##0.00"),
+    ("price", "Price ($)", 8, "cc", "Newest price for this exact ASIN: Amazon page (Oct 13-14, 2026) where checked, otherwise the Command Center snapshot. A cell comment gives the older Command Center price when they differ.", "$#,##0.00"),
     ("lp", "List Price ($)", 8, "cc", None, "$#,##0.00"),
     ("lp_pct", "List Price % over", 7, "calc", None, "0.0%"),
     ("band", "STR band", 10, "calc", "How far List Price sits above price. Oct 13 page check of 154 core rivals: strikethrough shown on 2 of 3 at <=12%, 13 of 13 at 12-25%, 11 of 13 above 25% - the size of the gap does not stop Amazon showing it.", None),
@@ -1357,6 +1401,8 @@ for pid, mkt, tname in TABS:
                 c = ws.cell(row=r, column=CK[key])
                 c.hyperlink = f"https://www.amazon.{'ca' if x['mkt'] == 'CA' else 'com'}/dp/{vals[key]}"
                 c.font = F(color="0563C1", underline="single")
+        if x.get("price_cc") is not None:
+            ws.cell(row=r, column=CK["price"]).comment = Comment(f"{x.get('price_src')}. The Command Center snapshot ({(x.get('seen') or '')[:10]}) has ${x['price_cc']:,.2f}.", "Tracker")
         for key, old in (("parent", "parent_cc"), ("brand", "brand_cc")):
             if x.get(old):
                 ws.cell(row=r, column=CK[key]).comment = Comment(f"Amazon page, Oct 14, 2026. The Command Center still lists {x[old]}.", "Tracker")
@@ -1779,6 +1825,10 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
      ("Our heroes' BFCM 2025 price and Best Seller Rank (US)", "Command Center keepa_history (data/keepa/keepa_history_ours_cc.csv)", "Nov 1 - Dec 5, 2025", len(hero25), "Exact", "",
       f"Daily Keepa for our {len(hero25)} US hero child ASINs, pulled Oct 14. Keepa holds no Buy Box series for our own ASINs, so price = lowest new offer (we are the only seller). Price drops on Nov 20 match the Best Deals start: B4 $74.99 to $71.24, B6 $79.99 to $75.99, S4 $29.95 to $25.46, S6 $33.95 to $32.25, Satin Fitted $16.95 to $15.15, SSS4 $33.95 to $31.41. No price history for Bamboo Fitted, Decolure Cooling 4pc, CL Pillowcases, Linen Curtains and Quilt Set in this window."),
      ("Our BFCM 2025 stock", "DataHub inventory, revision 2 (agent) + data/stock/our_stock_bfcm2025_missing_dates_bracketed.csv", "2026-10-14", None, "Partial", "", "US Nov 26, 27, Dec 1 and CA Nov 24, 29, 30 have no snapshot. Filled by inference (data/stock/our_stock_bfcm2025_missing_dates_combined.csv) from units sold that day (agent, DataHub amazon_sales, 1,761 variation-days with a sale) and the readings either side: 3,503 of 3,936 variation-days in stock, 39 out of stock, 386 unknown (low or no stock either side and no sale), and 8 sold despite 0 units on both sides (inbound stock arriving that day, e.g. B4 Queen Mid Grey B0BZQ18QJB sold 87 on Cyber Monday). Stock unit columns stay blank for these days."),
+     ("Competitor tier, X-Ray sales band, listing assets; newly mapped rivals", "Command Center Competitor Summary (competitors_roster, data/cc_roster)", "week of 2026-10-11", len(roster), "Current", "",
+      f"All 27 US products pulled Oct 14 (661 product-competitor pairs). Tier now follows the Command Center's current grade. {roster_added} pairs mapped after the tracker's snapshot were added (B4, B6, CooLinens Cooling); Keepa BFCM 2025 history for the 6 new ASINs came from the Command Center (keepa_history_cc_added.csv). The Command Center list reads each rival's seed ASIN, often a different variation from the child tracked here, so its price, rank and reviews are shown beside the child figures, not in place of them."),
+     ("Competitor price, newest", "Amazon page for the exact ASIN (agent, Oct 13 and 14)", "2026-10-14", sum(1 for x in records if str(x.get('price_src') or '').startswith('Amazon page')), "Current", "",
+      f"Price column uses the Amazon page price for that exact ASIN where checked; {sum(1 for x in records if x.get('price_cc') is not None)} had changed since the Command Center snapshot and the cell comment keeps the older price. The page price matched the tracked child in 493 of 549 checkable rows on Oct 13-14."),
      ("Competitor image, size and colour (US)", "Amazon.com exact-ASIN pages (agent, Part A; data/competitor_details)", "2026-10-14", len(comp_det), "Current", "",
       f"257 US competitor ASINs that lacked an image, size or colour were checked on their own Amazon page (signed out, ZIP 10001). {len(comp_det)} kept their ASIN; 4 redirected to another ASIN and are left blank, not substituted (B0DG2HRZKK, B09G8P3X6L, B0D4PKVNWB, B0D1RBXBNG). Fills 165 of the 169 missing images. Size and colour come from the page's variation attributes, never the title. Brand and parent now follow Amazon as of Oct 14: B07M67HRKS is WETCAT (Command Center: Chakir Turkish) and B0D59BMBK7 is Fafua (CC: NORTHERN BROTHERS); 28 competitors have a new parent ASIN (Amazon re-parented them; the old Command Center parent is kept in the cell comment). Keepa (Command Center keepa_history) confirmed both brands and agreed with the page on all 11 tracked ASINs where Keepa lists a parent; the other 17 rest on the page alone."),
      ("Canada competitors", "Amazon.ca page research (agent, Prompt 9)", "2026-10-13", sum(len(v) for v in ca_comp.values()), "Partial" if ca_comp else "Missing", "",
