@@ -402,7 +402,7 @@ def comp_title(cp):
 # SellerBoard actual sales (Ecotero account) by current Amazon parent ASIN, per marketplace and window
 SB_DAYS = {"pre": 30, "bfcm": 12, "dec": 30}
 sellerboard = {}   # (mkt, parent_asin) -> {window: row}
-for _f in sorted(glob.glob(f"{DATA}/sellerboard/*_*.csv")):
+for _f in sorted(f_ for f_ in glob.glob(f"{DATA}/sellerboard/*.csv") if re.search(r"/(US|CA)_(pre|bfcm|dec)\.csv$", f_)):
     for _r in csv.DictReader(open(_f, newline="", encoding="utf-8-sig")):
         def _sn(z):
             try:
@@ -1535,7 +1535,7 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
      ("Competitor price, List Price, BSR, rating, reviews", "Command Center", latest_seen, sum(v for k, v in seen_cnt.items() if k == latest_seen), "Current",
       "", f"{old_seen} US rows are older (Jul 20 - Sep 21, 2026) and are shaded orange in the 'Snapshot date' column. Price is for the one tracked child ASIN; Amazon search may show another size of the same listing."),
      ("Strikethrough now (shown / label / price)", "Amazon page check", "2026-10-13", str_rows, "Current", "", f"{str_rows} competitor ASINs checked on the Amazon page Oct 13 (70 P1 at 12:10 ET, 240 P2 at 23:35 ET; logged out, ZIP 10001). Blank = redirect or not shown, never assumed. Redirects left blank, not substituted: B0D1RBXBNG (David's Home) now opens B0DBHFTF8W, a different variation (3-pc Twin vs 4-pc Twin) of the same family; B0CP3NX181, B0DG2HRZKK, B09G8P3X6L, B0D4PKVNWB."),
-     ("Our price now", "Helium 10 Xray (Oct 13) / Data Dive (Oct 12-13) / Amazon page check", "2026-10-13", core_us[0] + core_ca[0], "Partial", "",
+     ("Our price now", "Helium 10 Xray (Oct 13) / SellerBoard listing price (Oct 14, gap-fill) / Data Dive / Amazon page check", "2026-10-13 to 14", core_us[0] + core_ca[0], "Partial", "",
       f"Core products: US {core_us[0]} of {core_us[1]} variations live, Canada {core_ca[0]} of {core_ca[1]}. Core US still without a live price: "
       + (", ".join(f"{k} {v}" for k, v in sorted(core_gap.items(), key=lambda kv: -kv[1])) or "none")
       + ". Not-launched products (SL B4, SL Satin 6pc, SL Cooling 6pc, SL Bamboo Pillowcase) are excluded. Without a live price the tabs show the Command Center fee-feed price (Mar 2026), which is out of date. Xray matched every price already verified on the Amazon page. Prompt 12 (our_price_request.csv, live_price_held = N) fills the rest; Canada has no live source yet."),
