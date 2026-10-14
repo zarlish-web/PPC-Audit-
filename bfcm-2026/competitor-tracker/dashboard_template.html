@@ -155,8 +155,10 @@ section.checks td{white-space:normal;vertical-align:top}
 </div>
 <div id="sheet-root"></div>
 
+<script src="images.js"></script>
 <script>
 const D = /*__DATA__*/null;
+const IMG = window.IMG || {};
 const $ = s => document.querySelector(s);
 const isNum = v => typeof v === "number" && isFinite(v);
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -169,7 +171,8 @@ const fmtX = v => isNum(v) ? v.toFixed(2) + "x" : "—";
 const amz = (a, m) => a ? `https://www.amazon.${m === "CA" ? "ca" : "com"}/dp/${a}` : null;
 const lnk = (a, m) => a ? `<a href="${amz(a, m)}" target="_blank" rel="noopener">${esc(a)}</a>` : "—";
 
-function imgBox(src, asin, cls = "") {
+function imgBox(key, asin, cls = "") {
+  const src = key ? IMG[key] : null;
   if (src) return `<div class="imgbox ${cls}"><img loading="lazy" src="${esc(src)}" alt="Product photo ${esc(asin || "")}"></div>`;
   return `<div class="imgbox ${cls}"><div class="pending">Photo pending<br>${esc(asin || "")}</div></div>`;
 }

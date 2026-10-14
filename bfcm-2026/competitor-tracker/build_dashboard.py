@@ -21,10 +21,13 @@ try:
 except SystemExit:
     pass
 
+used_img = set()
 def img_for(asin, mkt="US"):
+    """Key into images.js (photos shipped with the page as data URIs; the viewer blocks Amazon's image host)."""
     for k in (f"{mkt}_{asin}", asin):
-        if asin and k in have_img:
-            return f"product_images/{have_img[k]}"
+        if asin and k in have_img and have_img[k].lower().endswith(".jpg"):
+            used_img.add(k)
+            return k
     return None
 
 def num(v):
@@ -177,7 +180,11 @@ sources = [
 ]
 
 payload = json.dumps({"products": products, "comps": comps, "summary": summary, "checks": checks, "sources": sources,
-                      "built": "2026-10-14", "imagesLoaded": len(have_img)}, separators=(",", ":"), default=str)
+                      "built": "2026-10-14", "imagesLoaded": len(used_img)}, separators=(",", ":"), default=str)
+import base64
+with open(os.path.join(os.path.dirname(os.path.abspath(OUT)), "images.js"), "w") as fh:
+    fh.write("window.IMG={" + ",".join(f'"{k}":"data:image/jpeg;base64,' + base64.b64encode(open(os.path.join(IMG_DIR, have_img[k]), "rb").read()).decode() + '"'
+                                      for k in sorted(used_img)) + "};")
 tpl = open(os.path.join(HERE, "dashboard_template.html")).read()
 open(OUT, "w").write(tpl.replace("/*__DATA__*/null", payload))
-print(json.dumps({"products": len(products), "comps": len(comps), "images_available": len(have_img), "bytes": os.path.getsize(OUT)}))
+print(json.dumps({"products": len(products), "comps": len(comps), "images_used": len(used_img), "bytes": os.path.getsize(OUT)}))
