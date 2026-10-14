@@ -611,13 +611,22 @@ def _f(z):
         return v if v > 0 else None
     except (TypeError, ValueError):
         return None
-_kh = f"{DATA}/keepa/keepa_history_p1.csv"
-if os.path.exists(_kh):
-    _kd = {}
+# US competitor files: keepa_history_p1.csv, keepa_history_p2_batch<N>.csv (or the cumulative keepa_history_p2.csv,
+# which supersedes the batches). Canada (keepa_history_ca*.csv) is kept apart: same ASIN can sell in both markets.
+_kfiles = sorted(f_ for f_ in glob.glob(f"{DATA}/keepa/keepa_history_*.csv")
+                 if not re.search(r"_(coverage|provenance)\.csv$", f_) and "/keepa_history_ca" not in f_ and "/keepa_history_ours" not in f_)
+if any(f_.endswith("/keepa_history_p2.csv") for f_ in _kfiles):
+    _kfiles = [f_ for f_ in _kfiles if "_p2_batch" not in f_]
+_kd, _kcov = {}, {}
+for _kh in _kfiles:
+    _seen_day = set()
     for row in csv.DictReader(open(_kh, encoding="utf-8-sig")):
-        _kd.setdefault(row["asin"], []).append(row)
-    _kcov = {r["asin"]: r for r in csv.DictReader(open(f"{DATA}/keepa/keepa_history_p1_coverage.csv", encoding="utf-8-sig"))} \
-        if os.path.exists(f"{DATA}/keepa/keepa_history_p1_coverage.csv") else {}
+        _kd.setdefault(row["asin"], {})[row["date"]] = row          # one row per ASIN per day, last file wins
+    _cf = _kh[:-4] + "_coverage.csv"
+    if os.path.exists(_cf):
+        _kcov.update({r["asin"]: r for r in csv.DictReader(open(_cf, encoding="utf-8-sig"))})
+_kd = {a: list(d.values()) for a, d in _kd.items()}
+if _kd:
     for a, rs in _kd.items():
         rs.sort(key=lambda r: r["date"])
         pre = [r for r in rs if KP_PRE[0] <= r["date"] <= KP_PRE[1]]
@@ -1277,13 +1286,13 @@ for pid, mkt, tname in TABS:
             ds = [x["bf_disc_v"] for x in kc if isinstance(x.get("bf_disc_v"), (int, float))]
             ls = [x["bsr_lift_v"] for x in kc if isinstance(x.get("bsr_lift_v"), (int, float))]
             rz = sum(1 for x in kc if x.get("raised"))
-            ins.append(f"BFCM 2025, {len(kc)} P1 rivals with Keepa history: " + ", ".join(f"{k} {v}" for k, v in tc.most_common())
+            ins.append(f"BFCM 2025, {len(kc)} rivals with Keepa history: " + ", ".join(f"{k} {v}" for k, v in tc.most_common())
                        + (f". Median depth vs their Nov 1-19 price {statistics.median(ds):.0%}" if ds else "")
                        + (f"; median BSR lift {statistics.median(ls):.2f}x" if ls else "")
                        + (f". {rz} raised their Buy Box in BFCM week, so their deal looked deeper than it was." if rz else "."))
         nk = sum(1 for x in comps if x.get("bf_type") is None)
         if nk:
-            ins.append(f"{nk} rivals not in the Keepa P1 pull yet (yellow BFCM 2025 columns) - AGENT_PROMPTS Prompt 2.")
+            ins.append(f"{nk} rival{'s' if nk != 1 else ''} not in the Keepa pulls yet (yellow BFCM 2025 columns) - remaining P2 batches, AGENT_PROMPTS Prompt 2.")
     for line in ins or ["No competitor data for this product yet."]:
         ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
         c = ws.cell(row=r, column=1, value="•  " + line); c.font = F(size=9); c.alignment = WRAP
@@ -1617,8 +1626,8 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
      ("Our BFCM 2025 stock", "DataHub inventory, revision 2 (agent)", "2026-10-13", None, "Partial", "", "US Nov 26, 27, Dec 1 and CA Nov 24, 29, 30 have no snapshot."),
      ("Canada competitors", "Amazon.ca page research (agent, Prompt 9)", "2026-10-13", sum(len(v) for v in ca_comp.values()), "Partial" if ca_comp else "Missing", "",
       "Page-1 organic results per product keyword, same material and piece count, Queen selected (2 King), CAD, logged out Toronto. 15 rivals each for DC B4, S4, S6, SSS4 (reuses S4) and Satin Fitted; 8 for DC B6 (only 8 qualifying 6-piece bamboo sets). No Command Center fields (weekly units, ASINsight) exist for Canada; Keepa .ca BFCM 2025 history follows after the US pulls. Our Canadian comparison price is the Command Center's Mar 2026 CAD price."),
-     ("Competitors' BFCM 2025 history (US)", "Keepa via agent (keepa_history_p1.csv)", "Nov 1 - Dec 5, 2025", len(keepa25), "Partial", "",
-      f"All 70 P1 rivals pulled; {sum(1 for x in US_recs if x.get('bf_type') is None)} US rows (P2 rivals) still yellow. Pre-event = Nov 1-19 (pull starts Nov 1), BFCM = Nov 20 - Dec 1. Daily end-of-day state, so a deal of a few hours can be missed. Coupons are listed, not netted into the low price.")]
+     ("Competitors' BFCM 2025 history (US)", "Keepa via agent (" + ", ".join(os.path.basename(f_) for f_ in _kfiles) + ")", "Nov 1 - Dec 5, 2025", len(keepa25), "Partial", "",
+      f"{len(keepa25)} US competitor ASINs pulled (P1 70 + P2 delivered so far); {sum(1 for x in US_recs if x.get('bf_type') is None)} US rows still yellow until the remaining P2 batches arrive. Pre-event = Nov 1-19 (pull starts Nov 1), BFCM = Nov 20 - Dec 1. Daily end-of-day state, so a deal of a few hours can be missed. Coupons are listed, not netted into the low price.")]
 for i, r_ in enumerate(S):
     for j, v in enumerate(r_, 1):
         c = chk.cell(row=row, column=j, value=v); c.border = BOX; c.alignment = WRAP
