@@ -11,9 +11,9 @@ Items marked **[OWNER]** can only be filled from the Scale Insights owner login,
 
 **Short answers**
 • **What we pay today (Ecotero):** **Scale 50 Monthly, $388 list less 20% = $310.40/mo.** The current period is Sep 17 – Oct 17, 2026, so **the next charge is Oct 17**. The 20% badge reads "20% off until [OWNER: date]". We are **not** on the 1% plan; my earlier ~$1,350/mo estimate was wrong.
-• **Inspiratek:** [OWNER: plan and price, or "no separate subscription"].
+• **Inspiratek:** **no active subscription.** It has its own login, but there's no "My active subscriptions" entry and the **last payment was Mar 9, 2025** ($200, Scale 50). Nothing has been billed for 19 months, so there's nothing to cancel or refund. Total ever paid on Inspiratek: $5,713.69 (Apr 2022 – Mar 2025).
 • **What we use:** dayparting only (the overnight pause). The bid and budget rules were removed. The dashboard shows **0 automated ASINs** in US, while the automation page earlier showed 222 (123 US, 98 CA, 1 MX). [OWNER: confirm which is current, and whether dayparting needs ASIN slots.]
-• **Recommendation:** drop Ecotero to the smallest tier dayparting needs, before Oct 17, then cancel it fully once Joseph's in-house dayparting has run alongside for a few nights. Cancel Inspiratek now if it has its own subscription.
+• **Recommendation:** drop Ecotero to the smallest tier dayparting needs, before Oct 17, then cancel it fully once Joseph's in-house dayparting has run alongside for a few nights. Inspiratek already has no subscription.
 • **Saving:** Scale 50 → Scale 5 saves **$248/mo** ($310.40 → $62.40 with the 20%). Cancelling fully saves $310.40/mo, or **$3,725/yr**.
 • **Refund:** the current billing is already sized to the 50 plan, so the "overpaying for unused capacity" case for Ecotero is weaker than we thought. Details in section 4.
 
@@ -40,12 +40,12 @@ Items marked **[OWNER]** can only be filled from the Scale Insights owner login,
 **4. Overpayment and refund**
 • Ecotero, since Jun 2025: $310.40/mo for 50 ASIN slots. If dayparting hasn't been using slots, we've paid for capacity we don't use. Compared with Scale 5, that's $248/mo × [N] months since the bid/budget rules were removed on [date] = **$[X]**. That's an argument for a credit, not a strong refund claim.
 • Apr 2024 – Mar 2025 Scale 500 at ~$600/mo (~$6,600): too old to claim back, and the rules were active then.
-• Inspiratek: [OWNER] months × $[OWNER] = **$[X]**, if it has its own subscription. That's the strongest case.
-• Ask: a credit or partial refund for the months above, plus a loyalty discount on whatever we keep (4.5 years, $18.6K paid).
+• Inspiratek: no charges since Mar 9, 2025, so no current overpayment. From Apr 2024 to Mar 2025 we paid for two subscriptions at once: Ecotero on Scale 500 (~$600/mo) and Inspiratek on Scale 50 (~$200/mo, $2,140 in total). That's 18+ months ago, so it's only worth mentioning as context for a loyalty discount, not as a refund claim.
+• Ask: a loyalty discount on whatever we keep, and a credit for unused months on Ecotero if dayparting hasn't used its ASIN slots. Across both logins we've been customers since April 2022 and paid **$24,358.99** ($18,645.30 Ecotero + $5,713.69 Inspiratek).
 
 **5. Decisions for you (before the Oct 17 renewal)**
 1. Approve dropping Ecotero to [Scale 5 / keep Scale 50] until in-house dayparting is live, then cancel.
-2. Approve cancelling Inspiratek (if it's billed separately).
+2. Inspiratek: nothing to cancel (no subscription since Mar 2025). Optional: download its archived data and close the login.
 3. Approve sending the refund/discount email below.
 _If I don't hear back by Oct 16, 8 PM ET, Ecotero renews on Scale 50 for one more month at $310.40. Nothing else changes._
 
