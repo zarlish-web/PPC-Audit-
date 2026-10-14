@@ -75,6 +75,27 @@ for _a, _v in dd.items():
         if _d >= FRESH_FROM:
             our_now[("US", _a)] = {"price": _v["price"], "lp": None, "src": "Data Dive", "date": _d,
                                   "rating": _v.get("rating"), "reviews": _v.get("reviewCount")}
+# Helium 10 Xray export of our own catalog (child level, US): price, review pool, BSR, est. sales, image
+xray = {}        # asin -> row summary
+for _f in sorted(glob.glob(f"{DATA}/xray/helium10_xray_*.csv")):
+    _xd = re.search(r"(\d{4}-\d{2}-\d{2})", _f).group(1)
+    for _r in csv.DictReader(open(_f, newline="", encoding="utf-8-sig")):
+        _a = (_r.get("ASIN") or "").strip()
+        if not _a or (_r.get("Brand") or "").strip().upper() not in OUR_BRANDS + ("COOLINENS",):
+            continue
+        def _n(z):
+            try:
+                return float(str(z).replace(",", ""))
+            except (TypeError, ValueError):
+                return None
+        _pool = (_r.get("Display Order") or "").split(".")[0]
+        xray[_a] = {"price": _n(_r.get("Price  $")), "rating": _n(_r.get("Ratings")), "reviews": _n(_r.get("Review Count")),
+                    "bsr": _n(_r.get("BSR")), "units_mo": _n(_r.get("ASIN Sales")), "bought": _n(_r.get("Recent Purchases")),
+                    "fees": _n(_r.get("Fees  $")), "image": _r.get("Image URL"), "pool": _pool, "created": _r.get("Creation Date"),
+                    "title": _r.get("Product Details"), "date": _xd}
+        if xray[_a]["price"] is not None:
+            our_now[("US", _a)] = {"price": xray[_a]["price"], "lp": None, "src": "Helium 10 Xray", "date": _xd,
+                                  "rating": xray[_a]["rating"], "reviews": xray[_a]["reviews"]}
 for _f in sorted(glob.glob(f"{DATA}/our_prices/*.csv")):
     for _r in csv.DictReader(open(_f, newline="", encoding="utf-8-sig")):
         _m, _a = (_r.get("marketplace") or "").strip().upper(), (_r.get("asin") or "").strip()
@@ -267,7 +288,7 @@ def our_variations(pid, mkt):
             "size": g(x, "size") or parse_size(title), "colour": g(x, "colour", "color") or parse_colour(title),
             "price": g(x, "price"), "price_date": g(x, "feeDate"), "contribution": g(x, "contribution", "contributionPerUnit", "contribution_per_unit"),
             "be_acos": g(x, "beAcos", "breakEvenAcos", "be_acos", "break_even_acos"), "units_28d": g(x, "units28d", "units_28d", "units"),
-            "status": g(x, "status") or it.get("status"), "image": good_img(it.get("imageUrl")),
+            "status": g(x, "status") or it.get("status"), "image": good_img(it.get("imageUrl")) or (good_img((xray.get(asin) or {}).get("image")) if mkt == "US" else None),
         })
         if asin:
             seen.add(asin)
@@ -281,6 +302,19 @@ def our_variations(pid, mkt):
             r["be_acos"] = r["be_acos"] / 100
         n = our_now.get((mkt, r["asin"]))
         r["price_now"], r["now_src"] = (n["price"], now_txt(n)) if n else (None, None)
+        xr = xray.get(r["asin"]) if mkt == "US" else None
+        r.update({"x_rating": xr["rating"] if xr else None, "x_reviews": xr["reviews"] if xr else None, "x_bsr": xr["bsr"] if xr else None,
+                  "x_units": xr["units_mo"] if xr else None, "x_pool": xr["pool"] if xr else None})
+        if not r.get("title") and xr:
+            r["title"] = xr["title"]
+    # review pool: the family most of this product's variations share; others are separate listings
+    pools = {}
+    for r in rows:
+        if r.get("x_pool"):
+            pools[r["x_pool"]] = pools.get(r["x_pool"], 0) + (r.get("units_28d") or 0) + 1
+    main_pool = max(pools, key=pools.get) if pools else None
+    for r in rows:
+        r["split"] = bool(main_pool and r.get("x_pool") and r["x_pool"] != main_pool)
     rows.sort(key=lambda r: (-(r["units_28d"] or 0), r["size"] or "", r["colour"] or ""))
     _var_cache[(pid, mkt)] = rows
     return rows
@@ -753,8 +787,11 @@ for pid, mkt, tname in TABS:
           ("price_now", "Price now ($)", 8), ("now_src", "Price now: source, date", 10),
           ("price", "Command Center price ($)", 8), ("price_date", "CC price date (stale)", 9),
           ("contribution", "Contribution ($)", 8), ("be_acos", "Break-even ACoS", 7), ("units_28d", "Units 28d", 7), ("status", "Status", 8),
-          ("hero", "Our hero ASIN? (share of our visibility)", 10)]
-    VF = {"price_now": "$#,##0.00", "price": "$#,##0.00", "contribution": "$#,##0.00", "be_acos": "0%", "units_28d": "#,##0"}
+          ("hero", "Our hero ASIN? (share of our visibility)", 10),
+          ("x_rating", "Rating (H10, review family)", 7), ("x_reviews", "Reviews (H10, review family)", 8), ("x_bsr", "BSR (H10)", 8),
+          ("x_units", "Est units / month (H10)", 8), ("split_txt", "Own review family?", 12)]
+    VF = {"price_now": "$#,##0.00", "price": "$#,##0.00", "contribution": "$#,##0.00", "be_acos": "0%", "units_28d": "#,##0",
+          "x_rating": "0.0", "x_reviews": "#,##0", "x_bsr": "#,##0", "x_units": "#,##0"}
     header_row(ws, r, [(a, b, c) for a, b, c in VC], height=34)
     r += 1
     ourhero = {a: sh for a, sh in ((strat.get(pid) or {}).get("our_hero_asins") or []) if isinstance(sh, (int, float))} if mkt == "US" else {}
@@ -765,6 +802,7 @@ for pid, mkt, tname in TABS:
         ws.row_dimensions[r].height = IMG_ROW_H
         put_image(ws, f"A{r}", v["image"], "OURS - variation", pname, mkt, brand, v["asin"])
         vv = dict(v, hero=(f"Yes ({ourhero[v['asin']]:.0%})" if v["asin"] in ourhero else None),
+                  split_txt=("SEPARATE listing - not in the main review family" if v.get("split") else None),
                   price_date=(str(v["price_date"])[:10] if v.get("price_date") else None))
         for j, (key, _h, _w) in enumerate(VC[1:], 2):
             c = ws.cell(row=r, column=j, value=vv.get(key)); c.font = F(); c.border = BOX; c.alignment = WRAP
@@ -774,6 +812,8 @@ for pid, mkt, tname in TABS:
                 c.font = F(color="808080")
             if key == "price_now" and vv.get(key) is not None:
                 c.font = F(bold=True)
+            if key == "split_txt" and vv.get(key):
+                c.fill = FILL["flag"]; c.font = F(bold=True)
         r += 1
     r += 1
 
@@ -1285,8 +1325,10 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
      ("Competitor price, List Price, BSR, rating, reviews", "Command Center", latest_seen, sum(v for k, v in seen_cnt.items() if k == latest_seen), "Current",
       "", f"{old_seen} US rows are older (Jul 20 - Sep 21, 2026) and are shaded orange in the 'Snapshot date' column. Price is for the one tracked child ASIN; Amazon search may show another size of the same listing."),
      ("Strikethrough now (shown / label / price)", "Amazon page check", "2026-10-13", str_rows, "Current", "", f"{str_rows} competitor ASINs checked (P1); the others are blank, not assumed."),
-     ("Our price now", "Data Dive niche snapshot (Oct 1+) / Amazon page check", "2026-10-12 to 13", live_vars, "Partial", "",
-      f"{live_vars} of {len(all_vars)} of our variations have a live price. The rest show only the Command Center fee-feed price (Mar 2026), which is out of date (B6 King White: $89.99 there vs $99.99 live). Prompt 12 fills the rest."),
+     ("Our price now", "Helium 10 Xray (Oct 13) / Data Dive (Oct 12-13) / Amazon page check", "2026-10-13", live_vars, "Partial", "",
+      f"{live_vars} of {len(all_vars)} of our variations (US + CA) have a live price; US {sum(1 for _p, _m, v in all_vars if _m == 'US' and v.get('price_now') is not None)} of {sum(1 for _p, _m, v in all_vars if _m == 'US')}. The rest show only the Command Center fee-feed price (Mar 2026), which is out of date (B6 King White: $89.99 there vs $99.99 live). Xray matched every price already verified on the Amazon page. Prompt 12 (our_price_request.csv, rows with live_price_held = N) fills the rest; Canada has no live source yet."),
+     ("Our listings outside the main review family", "Helium 10 Xray", "2026-10-13", sum(1 for *_x, v in all_vars if v.get("split")), "Check", "",
+      "Variations that sit in their own review family (own rating and review count) instead of the product's main one, flagged in each tab's variation table. Several have weak ratings (e.g. Bamboo Full 3.9 / 61, Cooling Cal King 3.0 / 15, Satin 6pc King 4.0 / 28). Check the variation family in Seller Central."),
      ("Same-size price gap vs ours", "Calculated", "2026-10-13", live_cmp, "Partial", "",
       f"{live_cmp} of {len(US_recs)} US competitor rows compare against our live price; the rest are marked STALE in 'Comparison basis'."),
      ("Our contribution / break-even ACoS", "Command Center", "2026-03-30 prices", None, "Stale", "",
@@ -1307,7 +1349,7 @@ for i, r_ in enumerate(S):
         if i == 0:
             c.fill = HDR
         elif j == 5:
-            c.fill = PatternFill("solid", fgColor={"Current": "C6EFCE", "Exact": "C6EFCE", "Fixed": "C6EFCE", "Partial": "FFEB9C", "Stale": "F8CBAD", "Missing": "F8CBAD"}.get(v, "FFFFFF"))
+            c.fill = PatternFill("solid", fgColor={"Current": "C6EFCE", "Exact": "C6EFCE", "Fixed": "C6EFCE", "Partial": "FFEB9C", "Check": "FFEB9C", "Stale": "F8CBAD", "Missing": "F8CBAD"}.get(v, "FFFFFF"))
     row += 1
 row += 1
 chk.cell(row=row, column=1, value="Spot check: Amazon search 'DECOLURE 100% Viscose from Bamboo Sheets King Size | 6 Pc Cooling Bed Set' (screenshot shared by Shayan, Oct 13, 2026)").font = F(bold=True, size=11)
@@ -1329,8 +1371,9 @@ SC = [("Listing on the search page", "Page price ($)", "Page rating / reviews", 
        None, f"Tracker now uses the live price ({b6.get('now_src')}). Command Center fee feed still says ${b6.get('price')} ({str(b6.get('price_date'))[:10]}) - stale, no longer used for comparisons."),
       ("DECOLURE Bamboo 4 Pc, King (B08KQHRDDG)", 94.99, "4.5 / 5.9K", b4.get("price_now"), f"{(our_now.get(('US','B08KQHRDDG')) or {}).get('rating')} / {(our_now.get(('US','B08KQHRDDG')) or {}).get('reviews')}",
        None, f"Live price from {b4.get('now_src')}. Command Center fee feed: ${b4.get('price')} ({str(b4.get('price_date'))[:10]}) - stale."),
-      ("DECOLURE Cooling 4pcs, King Purple (B0C9LS8Z18)", 37.95, "4.2 / 1.2K", (cl4.get("price_now") or cl4.get("price")), "not held",
-       None, "Matches the Command Center price; no live record yet (Prompt 12)."),
+      ("DECOLURE Cooling 4pcs, King Purple (B0C9LS8Z18)", 37.95, "4.2 / 1.2K", (cl4.get("price_now") or cl4.get("price")),
+       f"{cl4.get('x_rating')} / {cl4.get('x_reviews'):,.0f}" if cl4.get("x_reviews") is not None else "not held",
+       None, f"Live price from {cl4.get('now_src') or 'Command Center (Mar 2026)'}."),
       ("Pure Bamboo, King (B07DZTQ4JC)", 109.99, "4.5 / 21.9K", pb.get("price"), f"{pb.get('rating')} / {pb.get('reviews')}", None, f"Exact match (Command Center {pb.get('seen')})."),
       ("Bamboo Bay 6 Piece, King", 89.99, "4.5 / 2.6K", bb1.get("price"), f"{bb1.get('rating')} / {bb1.get('reviews')}", None,
        f"Same family (reviews match). Tracker prices tracked child {bb1.get('child')} ({bb1.get('size') or 'size not in title'}), not the King 6 Pc shown on the page."),

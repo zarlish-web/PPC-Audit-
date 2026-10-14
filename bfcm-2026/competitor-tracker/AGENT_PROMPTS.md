@@ -143,7 +143,7 @@ Why: the Command Center price for our SKUs comes from its fee feed, last dated M
 ```
 Read-only. Don't change any price, deal or listing, and don't change, request or grant any access.
 
-For every row in the attached our_price_request.csv (US rows on Amazon.com, CA rows on Amazon.ca), open the product page of child_asin with the size and colour selected, logged out or with a non-Prime view if possible, and record what a shopper sees right now.
+For every row in the attached our_price_request.csv where live_price_held = N (US rows on Amazon.com, CA rows on Amazon.ca), open the product page of child_asin with the size and colour selected, logged out or with a non-Prime view if possible, and record what a shopper sees right now.
 
 Output our_price_check_<YYYY-MM-DD>.csv with exactly these columns:
   marketplace, asin, sku, check_date, check_time_et, price, strikethrough_shown (Y/N), strikethrough_price, strikethrough_label (List Price / Typical price / Was price / none), deal_badge (e.g. Limited time deal / none), coupon (e.g. 10% / $5 / blank), prime_exclusive_price, rating, reviews, bought_past_month, in_stock (Y/N), buy_box_seller, parent_asin_on_page
