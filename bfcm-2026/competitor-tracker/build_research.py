@@ -393,8 +393,19 @@ for _f in sorted(glob.glob(f"{DATA}/sellerboard/*_*.csv")):
                 return float(z)
             except (TypeError, ValueError):
                 return None
-        sellerboard.setdefault((_r["marketplace"], _r["parent_asin"]), {})[_r["window"]] = {
-            k: (_sn(v) if k not in ("marketplace", "window", "parent_asin", "name") else v) for k, v in _r.items()}
+        # a parent can appear twice (e.g. an "Amazon.Found" SKU row); add the rows together
+        _slot = sellerboard.setdefault((_r["marketplace"], _r["parent_asin"]), {})
+        _new = {k: (_sn(v) if k not in ("marketplace", "window", "parent_asin", "name") else v) for k, v in _r.items()}
+        _old = _slot.get(_r["window"])
+        if _old:
+            for k, v in _new.items():
+                if k in ("unit_session_pct", "avg_sales_price") or not isinstance(v, float):
+                    continue
+                _old[k] = (_old.get(k) or 0) + v
+            _old["avg_sales_price"] = (_old["sales"] / _old["units"]) if _old.get("units") else None
+            _old["unit_session_pct"] = (_old["units"] / _old["sessions"] * 100) if _old.get("sessions") else None
+        else:
+            _slot[_r["window"]] = _new
 
 def sb_of(pid, mkt):
     return sellerboard.get((mkt, amazon_parent(pid, mkt))) or {}
