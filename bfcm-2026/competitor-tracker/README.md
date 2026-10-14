@@ -31,3 +31,5 @@ To rebuild: `python3 build_tracker.py BFCM_2026_Competitor_Tracker_v1.xlsx keepa
 | Keepa Request | The Keepa ASIN list |
 | Data Gaps | What's missing and where to get it |
 | Event Watch | Log for competitor checks, Nov 20 – Dec 1 |
+
+**Competitors' BFCM 2025 (Oct 14):** `data/keepa/keepa_history_p1.csv` (Keepa via the Amazon Ops Agent, 70 P1 US rivals, Nov 1 – Dec 5, 2025) fills the BFCM 2025 columns in every US tab: deal type and dates, pre-event price (median Nov 1–19, lowest of Buy Box / Lightning / Prime Exclusive), BFCM low (Nov 20 – Dec 1, same basis), depth, BSR before / during and lift, out-of-stock. Coupons and Buy Box raises are listed in Notes. P2 rivals stay yellow until Prompt 2 is pulled.

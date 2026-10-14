@@ -47,7 +47,7 @@ for x in br.records:
     comps.append({k: x.get(k) for k in ("pid", "mkt", "family", "product", "tier", "brand", "title", "parent", "child", "price", "lp", "bsr", "wk",
                                          "rating", "reviews", "var", "size", "colour", "our_same", "basis", "asi_tr", "org_pct", "ad_pct", "top_kw",
                                          "r_sp", "r_sb", "r_sbv", "r_ac", "contested", "we_win", "we_lose", "theirs_only", "ppc_none", "ppc_aggr", "hero",
-                                         "listed", "pd", "pd_pre", "str_show", "str_label", "str_price", "page_price", "deal_now", "stock_now", "seen", "our_live")} | {"img": img_for(x.get("image_asin")) or img_for(x.get("child")), "key": f"{x['pid']}-{x['mkt']}"})
+                                         "listed", "pd", "pd_pre", "str_show", "str_label", "str_price", "page_price", "deal_now", "stock_now", "seen", "our_live", "bf_type", "bf_dates", "bf_pre", "bf_low", "bf_disc_v", "bsr_lift_v", "raised")} | {"img": img_for(x.get("image_asin")) or img_for(x.get("child")), "key": f"{x['pid']}-{x['mkt']}"})
 
 payload = json.dumps({"products": products, "comps": comps, "built": "2026-10-13", "imagesLoaded": len(have_img)}, separators=(",", ":"), default=str)
 tpl = open(os.path.join(HERE, "dashboard_template.html")).read()
