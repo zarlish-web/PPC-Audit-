@@ -407,8 +407,69 @@ for _f in sorted(glob.glob(f"{DATA}/sellerboard/*_*.csv")):
         else:
             _slot[_r["window"]] = _new
 
+# SellerBoard rows listed under an older parent or a lone child ASIN, matched by product name (2025 listings that
+# have since been re-parented or retired). Only sheet/bedding rows; other categories are not tracked here.
+SB_NAME_MAP = {
+    "B0F2G983W3": 39,   # "Sleep Sanctuary Satin Sheets 4Pcs"                -> SSS4
+    "B0F55Y1P53": 32,   # "SLEEP SANCTUARY ... Viscose Derived from Bamboo"  -> SL B6 (SL B4 not launched)
+    "B0F7LX9RP3": 45, "B0F7LY4RD6": 45, "B0F7LY3994": 45, "B0FTSWF3M7": 45,   # "SLEEPHORIA Cooling Sheets - BreezeWeave 4 PC" -> SL Cooling 4pc
+    "B0CQ3GXLCJ": 30,   # "DECOLURE ... Bamboo Sheets Queen Size | 6 Pc"      -> DC B6
+    "B0D9HRYKBW": 48,   # "DECOLURE Cooling Bed Sheets Microfiber"           -> DC Cooling 4pc
+    "B0CRF7S2TH": 31,   # "DECOLURE Satin Sheets Set 6pcs"                   -> DC S6
+    "B0CRVZ1TTS": 37,   # "DECOLURE Satin Sheets Set - Silky ..." (no piece count; 4pc is the main satin family) -> DC S4
+}
+_sb_owner = {}   # (mkt, key) -> (pid, rule)
+def _build_sb_owner():
+    child_pid = {}
+    for (p_, m_), d_ in skus.items():
+        for x in d_.get("skus") or []:
+            if x.get("asin"):
+                child_pid.setdefault(x["asin"], set()).add(p_)
+    cat_parent_pid = {}
+    for m_c, items in catalog.items():
+        for a_, it in items.items():
+            pa = it.get("parentAsin")
+            if pa and a_ in child_pid:
+                cat_parent_pid.setdefault(pa, set()).update(child_pid[a_])
+    for (m_, k_) in sellerboard:
+        own = {p_ for p_ in child_pid.get(k_, set())}
+        if len(own) == 1:
+            _sb_owner[(m_, k_)] = (own.pop(), "child ASIN of this product")
+            continue
+        par = cat_parent_pid.get(k_, set())
+        if len(par) == 1:
+            _sb_owner[(m_, k_)] = (next(iter(par)), "Amazon parent of this product's children")
+            continue
+        if k_ in SB_NAME_MAP:
+            _sb_owner[(m_, k_)] = (SB_NAME_MAP[k_], "matched by product name")
+_build_sb_owner()
+
+def sb_keys(pid, mkt):
+    """SellerBoard rows that belong to this product: its current Amazon parent, older parents whose children are this
+    product's, rows listed under one of its child ASINs (any marketplace), and the name-matched list above."""
+    keys = {k_ for (m_, k_), (p_, _) in _sb_owner.items() if m_ == mkt and p_ == pid}
+    ap = amazon_parent(pid, mkt)
+    if ap and (mkt, ap) in sellerboard:
+        keys.add(ap)
+    return keys
+
+_sb_cache = {}
 def sb_of(pid, mkt):
-    return sellerboard.get((mkt, amazon_parent(pid, mkt))) or {}
+    if (pid, mkt) in _sb_cache:
+        return _sb_cache[(pid, mkt)]
+    out = {}
+    for k in sorted(sb_keys(pid, mkt)):
+        for w, row in sellerboard[(mkt, k)].items():
+            o = out.setdefault(w, {"rows": 0})
+            o["rows"] += 1
+            for f, v in row.items():
+                if isinstance(v, float) and f not in ("unit_session_pct", "avg_sales_price"):
+                    o[f] = (o.get(f) or 0) + v
+    for o in out.values():
+        o["avg_sales_price"] = (o["sales"] / o["units"]) if o.get("units") else None
+        o["unit_session_pct"] = (o["units"] / o["sessions"] * 100) if o.get("sessions") else None
+    _sb_cache[(pid, mkt)] = out
+    return out
 
 def lift_of(pid, mkt="US"):
     d = ours.get((pid, mkt)) or {}
@@ -954,7 +1015,7 @@ for pid, mkt, tname in TABS:
             ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=3)
             r += 1
         ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
-        ws.cell(row=r, column=1, value=(f"SellerBoard, Ecotero account, Amazon parent {amazon_parent(pid, mkt)}, UTC days. Lift above uses these actual sales"
+        ws.cell(row=r, column=1, value=(f"SellerBoard, Ecotero account, Amazon parent {amazon_parent(pid, mkt)} plus any of this product's child ASINs SellerBoard lists on their own, UTC days. Lift above uses these actual sales"
                                         + (f" ({lf['lift']:.2f}x; the ad-spend estimate was {lf['lift_derived']:.2f}x)." if lf and lf.get('lift_derived') else ".")
                                         + (" Amazon.ca figures as SellerBoard reports them (account currency USD)." if mkt == "CA" else ""))).font = F(size=8, italic=True, color=C_SUB)
         r += 1
