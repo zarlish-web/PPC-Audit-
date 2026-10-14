@@ -1,0 +1,14 @@
+Six user-mapped US competitor ASINs; read-only exact Amazon.com signed-out US10001 page captures on2026-10-14. Five verified exact-child main images, RGB JPEG quality75, longestside200px, aspectratio retained. B0DWXNH24Z exact page returnedHTTP404, no image/substitute included; manifest retains failure withblank dimensions/source. No parent/redirect/cross-market substitutions, placeholders, generatedimages, accesschanges or Keepacalls. This is an add-on, not a replacement for accepted378-entry competitor bundle.
+{
+  "requested": 6,
+  "verified": 5,
+  "failures": [
+    {
+      "asin": "B0DWXNH24Z",
+      "error": "Exact requested Amazon.com page HTTP 404; no verified exact-child image. No substitution."
+    }
+  ],
+  "zip_sha256": "df7355cd1345261a0671a8a18b399178d75dc4f01732e7bc69211f7faf425195",
+  "manifest_sha256": "d76de56f34791cfb14e7afb092b6dacb2816ee8e0d7032df4eca3c0338bd9bc5",
+  "validated": true
+}

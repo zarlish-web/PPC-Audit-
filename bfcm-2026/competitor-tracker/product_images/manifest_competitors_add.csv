@@ -1,0 +1,7 @@
+marketplace,asin,role,source_url,file_name,width,height,ok,error
+US,B07XBJY2JR,competitor,https://m.media-amazon.com/images/I/61fbapIObwL._AC_SL1500_.jpg,US_B07XBJY2JR.jpg,200,190,Y,
+US,B0DF7NK85K,competitor,https://m.media-amazon.com/images/I/71q7X74N9cL._AC_SL1500_.jpg,US_B0DF7NK85K.jpg,200,200,Y,
+US,B0DWXNH24Z,competitor,,US_B0DWXNH24Z.jpg,,,N,Exact requested Amazon.com page HTTP 404; no verified exact-child image. No substitution.
+US,B0FW51LMYP,competitor,https://m.media-amazon.com/images/I/61qpaDyqceL._AC_SL1500_.jpg,US_B0FW51LMYP.jpg,200,200,Y,
+US,B0G1N59S1Q,competitor,https://m.media-amazon.com/images/I/71VhuTgyypL._AC_SL1500_.jpg,US_B0G1N59S1Q.jpg,200,197,Y,
+US,B0GZ243WW5,competitor,https://m.media-amazon.com/images/I/619BLF7gvdL._AC_SL1500_.jpg,US_B0GZ243WW5.jpg,199,200,Y,
