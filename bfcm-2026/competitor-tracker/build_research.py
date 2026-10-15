@@ -295,11 +295,25 @@ COMING_SOON = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets",
 
 img_rows = []   # (role, product, marketplace, brand, asin, url) for the image download request
 
+xmkt_img = []   # (mkt, asin): photo taken from the other marketplace's listing of the SAME ASIN
+
+def other_mkt_img(mkt, asin):
+    """Same ASIN, other marketplace: US and CA share the listing, so its photo is the same product. Never a different ASIN."""
+    o = "CA" if mkt == "US" else "US"
+    if not asin:
+        return None
+    return (good_img((catalog.get(o, {}).get(asin) or {}).get("imageUrl")) or good_img((xray.get((o, asin)) or {}).get("image"))
+            or (good_img((ddimg.get(asin) or {}).get("imageUrl")) if o == "US" else None))
+
 def put_image(ws, cell, url, role, product, mkt, brand, asin):
     u = good_img(url)
     c = ws[cell]
     c.border = BOX
     c.alignment = CENTER
+    if not u and other_mkt_img(mkt, asin):
+        u = other_mkt_img(mkt, asin)
+        xmkt_img.append((mkt, asin))
+        c.comment = Comment(f"Photo from Amazon.{'ca' if mkt == 'US' else 'com'}: same ASIN {asin}, same listing in both marketplaces.", "Tracker")
     if u:
         img_rows.append((role, product, mkt, brand, asin, u))
         if NO_IMAGE_FORMULA:
@@ -1950,7 +1964,7 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
      ("Competitor image, size and colour (US)", "Amazon.com exact-ASIN pages (agent, Part A; data/competitor_details)", "2026-10-14", len(comp_det), "Current", "",
       f"257 US competitor ASINs that lacked an image, size or colour were checked on their own Amazon page (signed out, ZIP 10001). {len(comp_det)} kept their ASIN; 4 redirected to another ASIN and are left blank, not substituted (B0DG2HRZKK, B09G8P3X6L, B0D4PKVNWB, B0D1RBXBNG). Fills 165 of the 169 missing images. Size and colour come from the page's variation attributes, never the title. Brand and parent now follow Amazon as of Oct 14: B07M67HRKS is WETCAT (Command Center: Chakir Turkish) and B0D59BMBK7 is Fafua (CC: NORTHERN BROTHERS); 28 competitors have a new parent ASIN (Amazon re-parented them; the old Command Center parent is kept in the cell comment). Keepa (Command Center keepa_history) confirmed both brands and agreed with the page on all 11 tracked ASINs where Keepa lists a parent; the other 17 rest on the page alone."),
      ("Our product photos (web dashboard)", "Agent zip product_images_ours.zip, Part 1 (SHA-256 09da5421...c501d8d); product_images/manifest_ours.csv", "2026-10-15", 148, "Partial", "",
-      "Part 1 of 2: 148 exact-ASIN main images (26 US, 122 CA), all checked as 200 px RGB JPEGs matching the manifest. Sources: 129 cached Keepa main image for the exact ASIN and marketplace, 14 fresh Amazon pages, 5 saved Amazon pages. The other 2,343 of our ASINs are still pending (no placeholder used); on the dashboard they show a COMING SOON picture with an Open photo link to the Xray / catalog image URL until Part 2 arrives. In the workbook our images come from the Data Dive / Xray image URLs."),
+      "Part 1 of 2: 148 exact-ASIN main images (26 US, 122 CA), all checked as 200 px RGB JPEGs matching the manifest. Sources: 129 cached Keepa main image for the exact ASIN and marketplace, 14 fresh Amazon pages, 5 saved Amazon pages. The other 2,343 of our ASINs are still pending (no placeholder used); on the dashboard they show a COMING SOON picture with an Open photo link to the Xray / catalog image URL until Part 2 arrives. In the workbook our images come from the Data Dive / Xray image URLs. US and CA share the same listing for the same ASIN, so where one marketplace has no photo the other marketplace's photo of that SAME ASIN is used (flagged in the cell comment and on the dashboard tile); a different ASIN is never used. Anything still without a photo shows the COMING SOON picture."),
      ("Canada competitors", "Amazon.ca page research (agent, Prompt 9)", "2026-10-13", sum(len(v) for v in ca_comp.values()), "Partial" if ca_comp else "Missing", "",
       "Page-1 organic results per product keyword, same material and piece count, Queen selected (2 King), CAD, logged out Toronto. 15 rivals each for DC B4, S4, S6, SSS4 (reuses S4) and Satin Fitted; 8 for DC B6 (only 8 qualifying 6-piece bamboo sets). No Command Center fields (weekly units, ASINsight) exist for Canada; Keepa .ca BFCM 2025 history follows after the US pulls. Our Canadian comparison price is the live Amazon.ca price from Helium 10 Xray (Oct 14, CAD)."),
      ("Competitors' BFCM 2025 history (Canada)", "Keepa .ca via agent (" + ", ".join(os.path.basename(f_) for f_ in _kfiles_ca) + ")", "Nov 1 - Dec 5, 2025", len(keepa25_ca), "Partial" if _ca_pending else "Exact", "",
@@ -2022,6 +2036,6 @@ chk.cell(row=row, column=1, value="Page values typed from the screenshot (Source
 wb.move_sheet("Data Gaps", offset=-(len(wb.sheetnames) - 1 - wb.sheetnames.index("Data Gaps")) + 0)
 wb.move_sheet("Data Check", offset=3 - wb.sheetnames.index("Data Check"))
 wb.save(OUT)
-print(json.dumps({"tabs": len(TABS), "competitor_rows": len(records), "image_cells": len(img_rows), "unique_images": len(seen),
+print(json.dumps({"tabs": len(TABS), "other_mkt_photos": len(xmkt_img), "competitor_rows": len(records), "image_cells": len(img_rows), "unique_images": len(seen),
                   "comp_missing_img": len(missing_comp), "strategy_products": len(strat), "sku_files": len(skus),
                   "catalog_us": len(catalog.get("US", {})), "catalog_ca": len(catalog.get("CA", {})), "dd_images": len(ddimg)}))

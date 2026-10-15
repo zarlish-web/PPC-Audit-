@@ -37,6 +37,7 @@ select,input[type=search]{font:inherit;font-size:13px;color:var(--ink);backgroun
 .imgbox img{width:100%;height:100%;object-fit:contain;background:#fff}
 .imgbox.soon{position:relative}
 .imgbox.soon .cap{position:absolute;left:0;right:0;bottom:3px;text-align:center;font-size:10px;line-height:1.2;color:var(--muted)}
+.imgbox.soon .cap.xm{left:auto;right:3px;bottom:3px;font-size:9px;background:rgba(255,255,255,.9);padding:1px 5px;border-radius:4px}
 .imgbox.soon .cap a{background:rgba(255,255,255,.9);padding:1px 5px;border-radius:4px}
 .imgbox .pending{font-size:11px;color:var(--muted);text-align:center;padding:8px;line-height:1.35}
 .eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);font-weight:600}
@@ -177,7 +178,8 @@ const lnk = (a, m) => a ? `<a href="${amz(a, m)}" target="_blank" rel="noopener"
 
 function imgBox(key, asin, cls = "", url = null) {
   const src = key ? IMG[key] : null;
-  if (src) return `<div class="imgbox ${cls}"><img loading="lazy" src="${esc(src)}" alt="Product photo ${esc(asin || "")}"></div>`;
+  const xm = src && /^(US|CA)_/.test(key) && key.slice(0, 2) !== $("#f-mkt").value;
+  if (src) return `<div class="imgbox ${cls}${xm ? " soon" : ""}"><img loading="lazy" src="${esc(src)}" alt="Product photo ${esc(asin || "")}">${xm ? `<div class="cap xm" title="Same ASIN, same listing in both marketplaces">${key.startsWith("US") ? "Amazon.com" : "Amazon.ca"} photo</div>` : ""}</div>`;
   const cap = url ? `<a href="${esc(url)}" target="_blank" rel="noopener">Open photo ↗</a>` : esc(asin || "");
   return `<div class="imgbox soon ${cls}"><img loading="lazy" src="${esc(IMG.COMING_SOON || "")}" alt="Photo coming soon ${esc(asin || "")}"><div class="cap">${cap}</div></div>`;
 }

@@ -22,9 +22,10 @@ except SystemExit:
     pass
 
 used_img = set()
-def img_for(asin, mkt="US"):
+def img_for(asin, mkt="US", other=True):
     """Key into images.js (photos shipped with the page as data URIs; the viewer blocks Amazon's image host)."""
-    for k in (f"{mkt}_{asin}", asin):
+    # last resort: the other marketplace's photo of the SAME ASIN (US and CA share the listing); never a different ASIN
+    for k in (f"{mkt}_{asin}", asin) + ((f"{'CA' if mkt == 'US' else 'US'}_{asin}",) if other else ()):
         if asin and k in have_img and have_img[k].lower().endswith(".jpg"):
             used_img.add(k)
             return k
@@ -94,7 +95,7 @@ for pid, mkt, tname in br.TABS:
     products.append({
         "key": f"{pid}-{mkt}", "pid": pid, "mkt": mkt, "short": br.PINFO[pid][2], "scope": br.scope_of(pid), "family": br.PINFO[pid][1], "role": br.PINFO[pid][3],
         "brand": p.get("brand") or o.get("brand"), "name": p.get("name") or o.get("name"), "title": title, "parent": parent, "best": best,
-        "bestLabel": " ".join(x for x in (bv.get("size"), bv.get("colour")) if x) or best, "img": img_for(best, mkt) or img_for(parent, mkt),
+        "bestLabel": " ".join(x for x in (bv.get("size"), bv.get("colour")) if x) or best, "img": img_for(best, mkt, False) or img_for(parent, mkt, False) or img_for(best, mkt),
         "stage": p.get("stage") or o.get("stage"), "price": price, "priceSrc": psrc, "contrib": e["contribution"], "be": e["be_acos"], "u28": e["units_28d"],
         "lift": lf.get("lift"), "tacos": lf.get("tacos_actual") if lf.get("tacos_actual") is not None else lf.get("tacos"),
         "preTacos": lf.get("pre_tacos_actual") if lf.get("pre_tacos_actual") is not None else lf.get("pre_tacos"),
@@ -113,7 +114,8 @@ for i, x in enumerate(br.records):
     c = {k: x.get(k) for k in KEYS}
     c["uid"] = f"c{i}"
     c["key"] = f"{x['pid']}-{x['mkt']}"
-    c["img"] = img_for(x.get("image_asin"), x["mkt"]) or img_for(x.get("child"), x["mkt"])
+    c["img"] = (img_for(x.get("image_asin"), x["mkt"], False) or img_for(x.get("child"), x["mkt"], False)
+                or img_for(x.get("child"), x["mkt"]) or img_for(x.get("image_asin"), x["mkt"]))
     pr, wk = num(x.get("price")), num(x.get("wk"))
     c["rev"] = pr * wk * 52 / 12 if pr is not None and wk is not None else None
     c["gap"] = (pr / x["our_same"] - 1) if pr is not None and num(x.get("our_same")) else None
@@ -179,7 +181,7 @@ sources = [
     {"data": "Competitor price, newest", "source": "Amazon page for the exact ASIN (agent)", "asof": "2026-10-13 / 14", "rows": paged},
     {"data": "Competitor tier, X-Ray sales band, listing assets", "source": "Command Center Competitor Summary (competitors_roster)", "asof": "week of 2026-10-11", "rows": len(ro_pairs)},
     {"data": "Competitor image, size, colour", "source": "Amazon page (agent) and Data Dive", "asof": "2026-10-14", "rows": len(br.comp_det)},
-    {"data": "Our product photos", "source": "Agent zip, Part 1 (exact ASIN and marketplace); Open photo link from Xray / catalog otherwise", "asof": "2026-10-15", "rows": 148},
+    {"data": "Our product photos", "source": "Agent zip, Part 1 (exact ASIN); the other marketplace's photo of the same ASIN where one market has none (labelled); otherwise Coming Soon with the Open photo link", "asof": "2026-10-15", "rows": 148},
     {"data": "Strikethrough shown, label, price", "source": "Amazon page check (agent)", "asof": "2026-10-13", "rows": len(br.str_now)},
     {"data": "Search and ads (ASINsight)", "source": "Command Center", "asof": "2026-09-29", "rows": sum(1 for x in US if x.get("asi_tr") is not None)},
     {"data": "Competitors' BFCM 2025 history", "source": "Keepa (agent P1 + P2; Command Center for 6 new ASINs)", "asof": "Nov 1 – Dec 5, 2025", "rows": len(br.keepa25)},

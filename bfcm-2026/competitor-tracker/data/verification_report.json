@@ -92,6 +92,15 @@
    "note": ""
   },
   {
+   "name": "Photos from the other marketplace",
+   "compared": "Each one is the same ASIN as the item it illustrates (never another ASIN)",
+   "checked": 114,
+   "mismatches": 0,
+   "status": "Pass",
+   "examples": [],
+   "note": ""
+  },
+  {
    "name": "BFCM 2026 plan mapped",
    "compared": "Every planned deal for a tracked product shows on that product",
    "checked": 21,
@@ -110,6 +119,6 @@
    "note": ""
   }
  ],
- "passed": 12,
- "total": 12
+ "passed": 13,
+ "total": 13
 }

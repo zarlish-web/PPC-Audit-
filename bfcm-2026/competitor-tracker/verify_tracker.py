@@ -159,6 +159,10 @@ imgjs = open(os.path.join(os.path.dirname(os.path.abspath(HTML)), "images.js")).
 keys = {c["img"] for c in P["comps"] if c.get("img")} | {v["img"] for p in P["products"] for v in p["vars"] if v.get("img")}
 missing = [k for k in keys if f'"{k}":' not in imgjs]
 check("Photos", "Every photo the dashboard points to is shipped in images.js", len(keys), len(missing), missing)
+xm = [(p["mkt"], v["asin"], v["img"]) for p in P["products"] for v in p["vars"] if v.get("img") and v["img"][:2] != p["mkt"]] + \
+     [(c["mkt"], c["child"], c["img"]) for c in P["comps"] if c.get("img") and re.match(r"(US|CA)_", c["img"]) and c["img"][:2] != c["mkt"]]
+xbad = [f"{m} {a} uses {k}" for m, a, k in xm if k[3:] != a]
+check("Photos from the other marketplace", "Each one is the same ASIN as the item it illustrates (never another ASIN)", len(xm), len(xbad), xbad)
 plan = rd(os.path.join(D, "deals", "our_deals_bfcm2026_plan.csv"))
 unm = [r["product_name"] for r in plan if r["pid"] and not any(p["pid"] == int(r["pid"]) and p["mkt"] == r["marketplace"] and p.get("plan26") for p in P["products"])]
 check("BFCM 2026 plan mapped", "Every planned deal for a tracked product shows on that product", sum(1 for r in plan if r["pid"]), len(unm), unm,
