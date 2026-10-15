@@ -22,7 +22,8 @@ Sources:
   - No keyword-tracking plan.
 
 **2. What we get and use**
-• The Automated ASINs page shows **2,001 slots, with 222 child ASINs in use** (123 US, 98 CA, 1 MX). Those 222 children belong to **about 30 parent products** (estimate from product names). Either Scale 50 counts parents (we use ~30 of 50), or the 2,001 limit is carried over from our Scale 500 period. **Either way we're within the plan, so there's no overpayment and no refund case.** I've asked Scale Insights which one it is.
+• Scale Insights counts an automated ASIN as **one child ASIN (the ad group's associated ASIN) per marketplace**; the same ASIN in the US and CA counts as 2 (Scale Insights docs, "How are automated ASINs calculated?"). So Scale 50 normally allows 50 child ASINs. Our Automated ASINs page shows **2,001 allowed, with 222 child ASINs in use** (123 US, 98 CA, 1 MX). That's a non-standard allowance, most likely carried over from our Scale 500 period (Apr 2024 – Mar 2025). **We get more than we pay for, so there's no overpayment and no refund case.**
+• If Scale Insights ever enforces the 50 limit, the best 50 ASINs by spend cover **75%** of ad spend, which is more than the current 222 (60%). So we'd still be fine.
 • We use **dayparting only** (the overnight pause, confirmed live in Marketing Stream Oct 6–7). The bid and budget rules that were overriding our manual changes (Aug 25 review) are all removed.
 • The 2022–2026 history is backed up to Drive (Shayan Rana, Oct 1): <https://drive.google.com/drive/folders/14jrmIifOSSjIWWuv2-dNAut6vaCywgZa|link>.
 
