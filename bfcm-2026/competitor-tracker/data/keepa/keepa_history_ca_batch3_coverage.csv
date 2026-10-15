@@ -1,0 +1,11 @@
+asin,marketplace,buybox_request_complete,product_returned,days_requested,days_with_buybox,days_unknown_stock_proxy,tracking_since,identity,notes,current_page_redirect_to
+B0FL2BKPPN,CA,True,True,35,0,35,2025-10-03T03:18:00+00:00,exact_ASIN,No parent/redirect substitution. Unknown history remains blank; a missing observation is not proof of no promotion.,
+B0FNR1QR4J,CA,True,True,35,16,0,2025-10-29T13:58:00+00:00,exact_ASIN,"No parent/redirect substitution. Unknown history remains blank; a missing observation is not proof of no promotion. Current Amazon.ca page redirects to B0FNQW1YT4 (captured2026-10-14T20:00:52Z, user-confirmed20:20UTC). Original requested ASIN retained. Only exact historical original-ASIN/domain6 data may populate history; destination never substituted.",B0FNQW1YT4
+B0FT7LV7PP,CA,True,True,35,0,35,2026-02-13T18:16:00+00:00,exact_ASIN,No parent/redirect substitution. Unknown history remains blank; a missing observation is not proof of no promotion.,
+B0FVJG1KD3,CA,True,True,35,0,35,2025-11-06T20:20:00+00:00,exact_ASIN,No parent/redirect substitution. Unknown history remains blank; a missing observation is not proof of no promotion.,
+B0FXWJD1B1,CA,True,True,35,0,35,2026-01-05T10:12:00+00:00,exact_ASIN,No parent/redirect substitution. Unknown history remains blank; a missing observation is not proof of no promotion.,
+B0G3C5G8FR,CA,True,True,35,0,35,2026-01-01T20:26:00+00:00,exact_ASIN,No parent/redirect substitution. Unknown history remains blank; a missing observation is not proof of no promotion.,
+B0GGGRH6PC,CA,True,True,35,0,35,2026-04-10T18:04:00+00:00,exact_ASIN,No parent/redirect substitution. Unknown history remains blank; a missing observation is not proof of no promotion.,
+B0GJCBX6CJ,CA,True,True,35,0,35,2026-03-30T13:44:00+00:00,exact_ASIN,No parent/redirect substitution. Unknown history remains blank; a missing observation is not proof of no promotion.,
+B0GTWJ29LG,CA,True,True,35,0,35,2026-05-05T04:40:00+00:00,exact_ASIN,No parent/redirect substitution. Unknown history remains blank; a missing observation is not proof of no promotion.,
+B0GWPMHSL9,CA,True,True,35,0,35,2026-08-03T15:04:00+00:00,exact_ASIN,No parent/redirect substitution. Unknown history remains blank; a missing observation is not proof of no promotion.,
