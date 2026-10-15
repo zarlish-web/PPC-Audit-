@@ -1978,8 +1978,14 @@ def build_dashboard(mkt, sname, mcol, scol, pos):
         a = db.cell(row=i, column=2, value=lab); a.font = F(bold=True, color=C_SUB)
         b = db.cell(row=i, column=3, value="DC B4" if lab == "Product" else "All")
         b.fill = INPUT; b.font = F(bold=True, size=10, color=BLUE); b.border = BOX
-        # direct range (not a named range) so Excel AND Google Sheets both show the dropdown arrow
-        dv = DataValidation(type="list", formula1=f"={LIST_RANGE[name]}", allow_blank=False, showDropDown=False,
+        # the list lives on this same sheet (hidden columns AA onward): Google Sheets keeps a same-sheet list as a dropdown
+        # on import, Excel too; a list on another (hidden) sheet is dropped by Google Sheets
+        vals_ = dict(LISTS)[name]
+        lc = CL(26 + i - 3)   # AA, AB, AC, AD, AE for rows 4..8
+        for k_, v_ in enumerate(vals_, 1):
+            db[f"{lc}{k_}"] = v_
+        db.column_dimensions[lc].hidden = True
+        dv = DataValidation(type="list", formula1=f"${lc}$1:${lc}${len(vals_)}", allow_blank=False, showDropDown=False,
                             showInputMessage=True, promptTitle=lab, prompt="Pick from the list", showErrorMessage=True,
                             errorTitle=lab, error="Please pick a value from the list.")
         db.add_data_validation(dv); dv.add(b.coordinate)
