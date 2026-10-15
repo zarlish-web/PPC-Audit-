@@ -1,0 +1,115 @@
+{
+ "generated": "2026-10-15",
+ "checks": [
+  {
+   "name": "Competitor BFCM 2025 price and rank (US)",
+   "compared": "Dashboard vs recomputed from the raw Keepa daily files",
+   "checked": 635,
+   "mismatches": 0,
+   "status": "Pass",
+   "examples": [],
+   "note": ""
+  },
+  {
+   "name": "Competitor BFCM 2025 price and rank (CA)",
+   "compared": "Dashboard vs recomputed from the raw Keepa daily file",
+   "checked": 71,
+   "mismatches": 0,
+   "status": "Pass",
+   "examples": [],
+   "note": ""
+  },
+  {
+   "name": "Workbook vs dashboard, competitor rows",
+   "compared": "Price, List Price, rank, weekly units, rating, reviews and BFCM 2025 columns on every product tab",
+   "checked": 744,
+   "mismatches": 0,
+   "status": "Pass",
+   "examples": [],
+   "note": ""
+  },
+  {
+   "name": "Price vs ours",
+   "compared": "Workbook formula vs dashboard (their price \u00f7 our same-size price \u2212 1)",
+   "checked": 684,
+   "mismatches": 0,
+   "status": "Pass",
+   "examples": [],
+   "note": ""
+  },
+  {
+   "name": "Our live variation prices",
+   "compared": "Dashboard vs the Helium 10 Xray exports (US Oct 13, CA Oct 14)",
+   "checked": 1253,
+   "mismatches": 0,
+   "status": "Pass",
+   "examples": [],
+   "note": ""
+  },
+  {
+   "name": "Account BFCM 2025 sales lift (US)",
+   "compared": "Dashboard vs raw SellerBoard files (BFCM week \u00f7 30 days before, per day)",
+   "checked": 1,
+   "mismatches": 0,
+   "status": "Pass",
+   "examples": [],
+   "note": "2.74x"
+  },
+  {
+   "name": "Account BFCM 2025 sales lift (CA)",
+   "compared": "Dashboard vs raw SellerBoard files (BFCM week \u00f7 30 days before, per day)",
+   "checked": 1,
+   "mismatches": 0,
+   "status": "Pass",
+   "examples": [],
+   "note": "3.14x"
+  },
+  {
+   "name": "Our BFCM 2025 deal units",
+   "compared": "Units in each product's deal line vs the raw deals file",
+   "checked": 19,
+   "mismatches": 0,
+   "status": "Pass",
+   "examples": [],
+   "note": ""
+  },
+  {
+   "name": "No zero or negative values",
+   "compared": "Competitor price, List Price, rank, BFCM prices (blank means unknown)",
+   "checked": 744,
+   "mismatches": 0,
+   "status": "Pass",
+   "examples": [],
+   "note": ""
+  },
+  {
+   "name": "Photos",
+   "compared": "Every photo the dashboard points to is shipped in images.js",
+   "checked": 377,
+   "mismatches": 0,
+   "status": "Pass",
+   "examples": [],
+   "note": ""
+  },
+  {
+   "name": "BFCM 2026 plan mapped",
+   "compared": "Every planned deal for a tracked product shows on that product",
+   "checked": 21,
+   "mismatches": 0,
+   "status": "Pass",
+   "examples": [],
+   "note": "1 planned deal(s) for a product not tracked here (Hanging Closet Organizer)"
+  },
+  {
+   "name": "Assumed 2026 deal price arithmetic",
+   "compared": "Deal = reference \u00d7 (1 \u2212 discount)",
+   "checked": 21,
+   "mismatches": 0,
+   "status": "Pass",
+   "examples": [],
+   "note": ""
+  }
+ ],
+ "passed": 12,
+ "total": 12
+}

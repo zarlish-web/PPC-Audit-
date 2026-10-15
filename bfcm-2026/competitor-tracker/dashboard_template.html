@@ -128,6 +128,7 @@ section.checks td{white-space:normal;vertical-align:top}
     <div class="sub" id="builtline"></div>
   </header>
 
+  <section class="checks" style="margin-top:4px" id="guide"></section>
   <section class="filters" aria-label="Filters">
     <label for="f-product">Product<select id="f-product"></select></label>
     <label for="f-mkt">Marketplace<select id="f-mkt"><option value="US">US</option><option value="CA">Canada</option></select></label>
@@ -171,8 +172,9 @@ const fmtX = v => isNum(v) ? v.toFixed(2) + "x" : "—";
 const amz = (a, m) => a ? `https://www.amazon.${m === "CA" ? "ca" : "com"}/dp/${a}` : null;
 const lnk = (a, m) => a ? `<a href="${amz(a, m)}" target="_blank" rel="noopener">${esc(a)}</a>` : "—";
 
-function imgBox(key, asin, cls = "") {
+function imgBox(key, asin, cls = "", url = null) {
   const src = key ? IMG[key] : null;
+  if (!src && url) return `<div class="imgbox ${cls}"><div class="pending"><a href="${esc(url)}" target="_blank" rel="noopener">Open photo ↗</a><br>${esc(asin || "")}</div></div>`;
   if (src) return `<div class="imgbox ${cls}"><img loading="lazy" src="${esc(src)}" alt="Product photo ${esc(asin || "")}"></div>`;
   return `<div class="imgbox ${cls}"><div class="pending">Photo pending<br>${esc(asin || "")}</div></div>`;
 }
@@ -208,7 +210,7 @@ function renderOurs(p) {
   const tail = p.vars.length - nLive;
   const sb = p.sb || [];
   el.innerHTML = `
-    ${imgBox(p.img, p.best)}
+    ${imgBox(p.img, p.best, "", p.imgUrl)}
     <div style="min-width:0">
       <div class="eyebrow">Our product · ${m === "US" ? "Amazon.com" : "Amazon.ca"} · ${esc(p.role)} · ${esc(p.scope || "")}</div>
       <h2>${esc(p.title || (p.brand + " " + p.name))}</h2>
@@ -219,13 +221,14 @@ function renderOurs(p) {
         <div class="fact"><div class="k">Contribution per unit</div><div class="v">${fmt$(p.contrib, m)}</div></div>
         <div class="fact"><div class="k">Break-even ACoS</div><div class="v">${isNum(p.be) ? (p.be <= 1.5 ? fmtP(p.be, 1) : p.be.toFixed(1) + "%") : "—"}</div></div>
         <div class="fact"><div class="k">BFCM 2026 plan</div><div class="v" style="font-family:var(--body);font-size:13.5px">${p.plan26 ? esc(p.plan26) : '<span class="chip bad">No deal planned</span>'}</div><div class="s">BM, Oct 15</div></div>
+        ${p.da ? `<div class="fact"><div class="k">Assumed 2026 deal price</div><div class="v">${isNum(p.da.ref) ? `${fmt$(p.da.ref, m)} → ${fmt$(p.da.deal, m)}` : "—"}</div><div class="s">${fmtP(p.da.depth)} off ${esc(p.da.asin || "")} · assumption until BM's final prices</div></div>` : ""}
         <div class="fact"><div class="k">BFCM 2025 sales lift</div><div class="v">${fmtX(p.lift)}</div><div class="s">BFCM week vs 30 days before</div></div>
         <div class="fact"><div class="k">BFCM 2025 TACoS</div><div class="v">${isNum(p.tacos) ? p.tacos.toFixed(1) + "%" : "—"}</div><div class="s">${isNum(p.preTacos) ? p.preTacos.toFixed(1) + "% before" : ""}</div></div>
         ${p.hk && isNum(p.hk.pre) && isNum(p.hk.bf) ? `<div class="fact"><div class="k">Hero price, BFCM 2025</div><div class="v">${fmt$(p.hk.pre, m)} → ${fmt$(p.hk.bf, m)}</div><div class="s">${p.hk.bf < p.hk.pre ? fmtP(1 - p.hk.bf / p.hk.pre) + " lower" : "no cut"}${p.hk.rank_pre && p.hk.rank_bf ? " · rank " + fmtX(p.hk.rank_pre / p.hk.rank_bf) : ""} · ${esc(p.hk.asin)}</div></div>` : ""}
       </div>
       ${p.colours.length ? `<div class="chipset"><div class="k">Colours (${p.colours.length}) · select to filter the variations below</div><div class="chips">${p.colours.map(c => `<button type="button" class="pick" data-col="${esc(c.name)}" aria-pressed="${vcol === c.name}">${esc(c.name)}<span class="n">${c.n} · ${fmtN(c.u28)} units</span></button>`).join("")}</div></div>` : ""}
       ${p.sizes.length ? `<div class="chipset"><div class="k">Sizes (${p.sizes.length})</div><div class="chips">${p.sizes.map(c => `<button type="button" class="pick" data-size="${esc(c.name)}" aria-pressed="${vsize === c.name}">${esc(c.name)}<span class="n">${c.n} · ${fmtN(c.u28)} units</span></button>`).join("")}</div></div>` : ""}
-      ${vars.length ? `<div class="vars" aria-label="Our variations">${vars.map(v => `<div class="var">${imgBox(v.img, v.asin)}<b>${esc([v.size, v.colour].filter(Boolean).join(" · ") || v.asin)}</b>${v.live ? `<span class="pr">${fmt$(v.price, m)}</span>` : `<span class="chip warn">no live price</span>`}${isNum(v.u28) ? ` · ${fmtN(v.u28)} units` : ""}<br>${lnk(v.asin, m)}</div>`).join("")}</div>
+      ${vars.length ? `<div class="vars" aria-label="Our variations">${vars.map(v => `<div class="var">${imgBox(v.img, v.asin, "", v.url)}<b>${esc([v.size, v.colour].filter(Boolean).join(" · ") || v.asin)}</b>${v.live ? `<span class="pr">${fmt$(v.price, m)}</span>` : `<span class="chip warn">no live price</span>`}${isNum(v.u28) ? ` · ${fmtN(v.u28)} units` : ""}<br>${lnk(v.asin, m)}</div>`).join("")}</div>
         <div class="sub">${vars.length} of ${p.vars.length} variations shown${vcol || vsize ? ` · filtered by ${esc([vsize, vcol].filter(Boolean).join(" · "))} · <a href="#" id="clearv">show all</a>` : ""} · sorted by units · live price for ${nLive}${tail ? ` (${tail} with no live price: out of stock, no Buy Box or not selling)` : ""}</div>` : `<div class="sub" style="margin-top:8px">No variation list for this product.</div>`}
       <details class="more"><summary>Our BFCM 2025 record</summary>
         ${sb.length ? `<div class="tablewrap"><table><thead><tr><th>SellerBoard${m === "CA" ? " (USD)" : ""}</th><th class="num">Sales</th><th class="num">Units</th><th class="num">Organic units</th><th class="num">Ad units</th><th class="num">Ad cost</th><th class="num">TACoS</th><th class="num">Sessions</th><th class="num">Unit session %</th><th class="num">Avg price</th></tr></thead>
@@ -390,6 +393,22 @@ function openComp(uid) {
   $("#sh-x").focus();
 }
 
+function renderGuide() {
+  const rows = [
+    ["What this is", "Every product we sell in the US and Canada, the competitors the Command Center maps to it, and what each did in BFCM 2025, to plan BFCM 2026 (Nov 19 – 30)."],
+    ["Our price", "Live Amazon price of our best-selling variation (Helium 10 Xray Oct 13 US / Oct 14 CA, or the Amazon page). Variations without a live price are out of stock, have no Buy Box, or are not selling."],
+    ["BFCM 2026 plan", "BM's deal list (Oct 15). Not yet visible in Amazon's deal feed."],
+    ["Assumed 2026 deal price", "Until BM sends prices: reference = today's live price of the hero variation, held to Nov 18 (Amazon sets the deal reference price the day before). Deal = last year's BFCM price of the same variation if the product ran a 2025 deal, otherwise the median price cut competitors used on this product in BFCM 2025. Canada uses the US product's discount."],
+    ["BFCM 2025 sales lift", "Average daily sales in BFCM week (Nov 20 – Dec 1, 2025) ÷ average daily sales in the 30 days before. SellerBoard actual sales."],
+    ["Competitor price", "Price of the competitor's tracked variation: the Amazon page (Oct 13 – 14) where checked, otherwise the Command Center snapshot (Oct 12)."],
+    ["Units / wk, Revenue / mo", "Command Center estimate for the tracked variation; revenue = price × weekly units × 52 ÷ 12. The profile also shows the whole listing's X-Ray sales range."],
+    ["Strikethrough", "Whether Amazon shows a crossed-out List Price or Typical price on the page today (page check)."],
+    ["BFCM 2025 deal and rank change", "Keepa, daily close. Deal type found in BFCM week; discount = lowest BFCM price vs the median Nov 1 – 19 price; rank change = median rank before ÷ median rank in BFCM week (above 1.00x = better)."],
+    ["Tier", "The Command Center grade of each competitor against this product: Beatable, Aspirational, Poor or ungraded."],
+    ["Blank values", "Blank means unknown. Nothing missing is shown as 0. Canada figures are CAD and kept apart from the US."],
+  ];
+  $("#guide").innerHTML = `<details><summary>How to read this tracker</summary><div class="tablewrap"><table><tbody>${rows.map(([k, v]) => `<tr><td style="width:220px"><b>${esc(k)}</b></td><td class="sub">${esc(v)}</td></tr>`).join("")}</tbody></table></div></details>`;
+}
 function renderChecks() {
   const ok = D.checks.filter(c => c.status === "Match").length;
   $("#checks").innerHTML = `<details><summary>Verification and sources · ${D.checks.length} cross-checks, ${ok} exact matches</summary>
@@ -418,6 +437,7 @@ $("#f-q").addEventListener("input", render);
 $("#v-cards").addEventListener("click", () => { view = "cards"; $("#v-cards").setAttribute("aria-pressed", "true"); $("#v-table").setAttribute("aria-pressed", "false"); render(); });
 $("#v-table").addEventListener("click", () => { view = "table"; $("#v-table").setAttribute("aria-pressed", "true"); $("#v-cards").setAttribute("aria-pressed", "false"); render(); });
 if (view === "table") { $("#v-table").setAttribute("aria-pressed", "true"); $("#v-cards").setAttribute("aria-pressed", "false"); }
+renderGuide();
 renderChecks();
 render();
 </script>

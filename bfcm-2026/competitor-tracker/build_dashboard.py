@@ -51,7 +51,7 @@ for pid, mkt, tname in br.TABS:
         vrows.append({"asin": v["asin"], "sku": v.get("sku"), "size": v.get("size"), "colour": v.get("colour"),
                       "price": v["price_now"] if live else None, "live": live, "src": v.get("now_src") if live else None,
                       "u28": num(v.get("units_28d")), "rating": num(v.get("x_rating")), "reviews": num(v.get("x_reviews")), "bsr": num(v.get("x_bsr")),
-                      "status": v.get("status"), "img": img_for(v["asin"], mkt)})
+                      "status": v.get("status"), "img": img_for(v["asin"], mkt), "url": v.get("image")})
         for d_, k in ((cols, v.get("colour")), (sizes, v.get("size"))):
             if k:
                 d_.setdefault(k, {"name": k, "n": 0, "u28": 0})
@@ -99,7 +99,7 @@ for pid, mkt, tname in br.TABS:
         "lift": lf.get("lift"), "tacos": lf.get("tacos_actual") if lf.get("tacos_actual") is not None else lf.get("tacos"),
         "preTacos": lf.get("pre_tacos_actual") if lf.get("pre_tacos_actual") is not None else lf.get("pre_tacos"),
         "hk": hk, "hkCut": (1 - hk["bf"] / hk["pre"]) if hk and hk.get("pre") and hk.get("bf") else None, "hkLine": hk_line,
-        "deals": deals, "plan26": br.plan26_text(pid, mkt), "stock": stock, "stockGap": gap, "sb": sbrows or None,
+        "deals": deals, "plan26": br.plan26_text(pid, mkt), "da": br.deal_assumption(pid, mkt), "imgUrl": img, "stock": stock, "stockGap": gap, "sb": sbrows or None,
         "vars": vrows, "colours": sorted(cols.values(), key=lambda c: -c["u28"]), "sizes": sorted(sizes.values(), key=lambda c: -c["u28"]),
     })
 
@@ -167,6 +167,13 @@ checks = [
     {"name": "Our live prices", "compared": "Helium 10 Xray vs Amazon page check", "status": "Match",
      "detail": "Xray matched every price also verified on the Amazon page. US core: 895 of 917 variations hold a live price; Canada core 495 of 590 (the rest are out of stock, have no Buy Box, or had no sales)."},
 ]
+_vr = os.path.join(HERE, "data", "verification_report.json")
+if os.path.exists(_vr):
+    _rep = json.load(open(_vr))
+    for r_ in _rep["checks"]:
+        checks.append({"name": "Re-check: " + r_["name"], "compared": r_["compared"], "status": "Match" if r_["status"] == "Pass" else "Difference noted",
+                       "detail": f"{r_['checked']:,} checked, {r_['mismatches']} mismatches." + (f" {r_['note']}." if r_.get("note") else "")
+                                 + " Independent script (verify_tracker.py) recomputing from the raw files."})
 sources = [
     {"data": "Competitor price, Best Seller Rank, reviews, weekly units", "source": "Command Center snapshot (tracked child ASIN)", "asof": "2026-10-12", "rows": len(US)},
     {"data": "Competitor price, newest", "source": "Amazon page for the exact ASIN (agent)", "asof": "2026-10-13 / 14", "rows": paged},
