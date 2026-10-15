@@ -721,7 +721,7 @@ def _keepa_summaries(files, cur):
                 typ, dates = "Price cut only", (ds[0] + " to " + ds[-1]) if ds else None
             elif bb_bf:
                 typ, dates = "None", None
-            elif (cov.get("tracking_since") or "9999") > "2025-12-01":
+            elif cov.get("tracking_since") and cov["tracking_since"] > "2025-12-01":
                 typ, dates = "Not live in 2025", None
             else:
                 typ, dates = None, None
@@ -756,6 +756,7 @@ keepa25 = _keepa_summaries(_kfiles, "$")
 # Canada (Amazon.ca, domain 6, CAD): kept apart, because the same ASIN can sell in both markets at different prices.
 # The final keepa_history_ca.csv supersedes the partial delivery.
 _kfiles_ca = sorted(f_ for f_ in glob.glob(f"{DATA}/keepa/keepa_history_ca*.csv") if not re.search(r"_(coverage|provenance)\.csv$", f_))
+_kfiles_ca.sort(key=lambda f_: (0 if "_partial" in f_ else 1, f_))
 if any(f_.endswith("/keepa_history_ca.csv") for f_ in _kfiles_ca):
     _kfiles_ca = [f_ for f_ in _kfiles_ca if f_.endswith("/keepa_history_ca.csv")]
 keepa25_ca = _keepa_summaries(_kfiles_ca, "C$")
