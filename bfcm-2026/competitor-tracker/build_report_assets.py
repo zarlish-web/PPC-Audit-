@@ -11,6 +11,7 @@ import base64, json, os, statistics, sys
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+import matplotlib.ticker
 from matplotlib import font_manager
 from matplotlib.patches import FancyBboxPatch
 
@@ -75,18 +76,18 @@ charts = {}
 # ---------------------------------------------------------------- 1. method diagram
 fig, ax = plt.subplots(figsize=(10, 3.2))
 ax.set_xlim(0, 100); ax.set_ylim(0, 32); ax.axis("off")
-steps = [("1", "Our products", "33 listings\nUS and Canada"), ("2", "Competitors", "744 mapped to\nthe product they rival"),
-         ("3", "Classify", "Direct vs alternative\nmaterial and type"), ("4", "BFCM 2025", "deal type, price,\ndiscount, rank change"),
-         ("5", "Today", "price, List Price,\nstrikethrough"), ("6", "BFCM 2026", "assumed deal price\nand stock to Nov 30"),
-         ("7", "Verify", "16 checks against\nthe raw data")]
+steps = [("1", "Our products", "33 listings\nUS and\nCanada"), ("2", "Competitors", "744 mapped\nto the product\nthey rival"),
+         ("3", "Classify", "direct vs\nalternative\nmaterial"), ("4", "BFCM 2025", "deal type,\ndiscount,\nrank change"),
+         ("5", "Today", "price,\nList Price,\nstrikethrough"), ("6", "BFCM 2026", "assumed deal\nprice, stock\nto Nov 30"),
+         ("7", "Verify", "16 checks\nagainst the\nraw data")]
 w, gap = 12.2, 2.1
 for j, (n, t, s) in enumerate(steps):
     x = 1 + j * (w + gap)
     ax.add_patch(FancyBboxPatch((x, 6), w, 20, boxstyle="round,pad=0.3,rounding_size=1.6", fc="#eef4fc" if j < 6 else "#e8f6ef",
                                 ec=BLUE if j < 6 else GREEN, lw=1.2))
     ax.text(x + w / 2, 22.2, n, ha="center", va="center", fontsize=11, fontweight="bold", color=BLUE if j < 6 else GREEN)
-    ax.text(x + w / 2, 17.4, t, ha="center", va="center", fontsize=9.5, fontweight="bold")
-    ax.text(x + w / 2, 11.0, s, ha="center", va="center", fontsize=7.4, color=INK2, linespacing=1.4)
+    ax.text(x + w / 2, 18.0, t, ha="center", va="center", fontsize=8.4, fontweight="bold")
+    ax.text(x + w / 2, 11.2, s, ha="center", va="center", fontsize=7.0, color=INK2, linespacing=1.35)
     if j < len(steps) - 1:
         ax.annotate("", xy=(x + w + gap - 0.2, 16), xytext=(x + w + 0.4, 16), arrowprops=dict(arrowstyle="-|>", color=INK2, lw=1))
 ax.text(50, 1.5, "Every number flows left to right; the verification step re-computes them from the raw data before anything is shared.",
@@ -109,9 +110,13 @@ box(49, 13, 19, 8, "Material known?\n(product page first,\nthen the title)", "#f
 box(75, 24, 23, 8, "Same material family\n= DIRECT", "#eef4fc", BLUE, bold=True)
 box(75, 13, 23, 8, "Other material\n= ALTERNATIVE MATERIAL", "#fdf0ea", ORANGE, bold=True)
 box(75, 2, 23, 8, "No material shown\n= MATERIAL NOT VERIFIED", "#fdf6e3", YELLOW, bold=True)
-box(23, 1, 19, 7.5, "No\n= DIFFERENT PRODUCT TYPE", "#f4f4f2", GREY, fs=7.6, bold=True)
-arrow(16, 17, 23, 17); arrow(42, 17, 49, 17, "yes"); arrow(32.5, 13, 32.5, 8.6, "")
-arrow(68, 19, 75, 27, "yes, same"); arrow(68, 17, 75, 17, "yes, other"); arrow(68, 15, 75, 7, "no")
+box(21, 1, 23, 7.5, "DIFFERENT\nPRODUCT TYPE", "#f4f4f2", GREY, fs=7.6, bold=True)
+arrow(16, 17, 23, 17); arrow(42, 17, 49, 17); ax.text(44.2, 18, "yes", fontsize=7.2, color=INK2)
+arrow(32.5, 13, 32.5, 8.6); ax.text(33.3, 10.4, "no", fontsize=7.2, color=INK2)
+arrow(68, 19, 75, 27); arrow(68, 17, 75, 17); arrow(68, 15, 75, 7)
+ax.text(66.5, 24.5, "same material", fontsize=7.0, color=INK2, ha="right")
+ax.text(70.2, 18.0, "other", fontsize=7.0, color=INK2)
+ax.text(66.5, 9.0, "none shown", fontsize=7.0, color=INK2, ha="right")
 charts["cls_tree"] = save(fig, "cls_tree")
 
 # ---------------------------------------------------------------- 3. classification by product
@@ -168,6 +173,7 @@ for t, col in (("Price cut only", BLUE), ("Prime Exclusive Discount", ORANGE), (
         ax.scatter([a for a, _ in xs], [b for _, b in xs], s=22, color=col, label=f"{t} ({len(xs)})", edgecolor=SURF, linewidth=0.8, alpha=0.9)
 ax.axhline(1, color=INK2, lw=0.8, ls=(0, (3, 3)))
 ax.set_yscale("log"); ax.set_yticks([0.25, 0.5, 1, 2, 4, 6]); ax.set_yticklabels(["0.25x", "0.5x", "1x", "2x", "4x", "6x"])
+ax.yaxis.set_minor_formatter(matplotlib.ticker.NullFormatter())
 ax.set_xlabel("BFCM 2025 discount vs the price before (%)"); ax.set_ylabel("Rank improvement (log scale)")
 ax.legend(loc="upper left", fontsize=8)
 ax.set_title("United States: deeper discounts vs rank change in BFCM 2025, by deal type", loc="left", fontsize=10, fontweight="bold")
@@ -233,7 +239,8 @@ def price_map(p, cs):
         xs = [c["price"] for c in cs if (c.get("cls") or "Not classified") == cl and num(c.get("price"))]
         ys = [y + ((k % 5) - 2) * 0.07 for k in range(len(xs))]
         ax.scatter(xs, ys, s=26, color=CLS_COL[cl], edgecolor=SURF, linewidth=0.8, zorder=3)
-        ax.text(max(xs), y, f"   median {cur(m)}{statistics.median(xs):.2f} · {len(xs)}", va="center", fontsize=7.4, color=INK2)
+        ax.text(1.01, y, f"median {cur(m)}{statistics.median(xs):.2f}\n{len(xs)} competitors", va="center", fontsize=7.2, color=INK2,
+                transform=ax.get_yaxis_transform(), clip_on=False)
     if num(p.get("price")):
         ax.axvline(p["price"], color=INK, lw=1.3, zorder=2)
         ax.text(p["price"], len(rows) - 0.45, f" ours today {cur(m)}{p['price']:.2f}", fontsize=7.8, fontweight="bold", va="bottom")
