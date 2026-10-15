@@ -239,9 +239,9 @@ const pSel = $("#f-product");
 function fillProducts() {
   const mkt = $("#f-mkt").value, keep = pSel.value;
   const order = products.filter(p => p.mkt === mkt);
-  const scopeRank = {"Core": 0, "Other": 1, "Launching (partly live)": 2, "Not launched": 3};
+  const scopeRank = {"Core": 0, "Other": 1, "Launched (partly live)": 2, "Not launched": 3};
   order.sort((a, b) => (scopeRank[a.scope] ?? 1) - (scopeRank[b.scope] ?? 1));
-  pSel.innerHTML = ["Core", "Other", "Launching (partly live)", "Not launched"].map(sc => {
+  pSel.innerHTML = ["Core", "Other", "Launched (partly live)", "Not launched"].map(sc => {
     const ps = order.filter(p => (p.scope || "Other") === sc);
     return ps.length ? `<optgroup label="${esc(sc === "Core" ? "Core BFCM products" : sc)}">${ps.map(p => `<option value="${esc(p.short)}">${esc(p.family)} · ${esc(p.short)} — ${esc(p.brand)} ${esc(p.name)}</option>`).join("")}</optgroup>` : "";
   }).join("");

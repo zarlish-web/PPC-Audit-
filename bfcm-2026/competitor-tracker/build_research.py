@@ -32,7 +32,7 @@ def jl(p, d=None):
 # ------------------------------------------------------------------ products
 PRODUCTS = [
     (59, "Bamboo", "DC B4", "Hero: rank and profit"), (30, "Bamboo", "DC B6", "Hero: rank and profit"),
-    (32, "Bamboo", "SL B6", "Core"), (36, "Bamboo", "SL B4", "Not launched yet"),
+    (32, "Bamboo", "SL B6", "Core"), (36, "Bamboo", "SL B4", "Launched (Twin live)"),
     (73, "Bamboo", "DC Bamboo Fitted", "Excluded (ranking variations OOS to Dec 3)"), (40, "Bamboo", "SL Bamboo Pillowcase", "Other"),
     (37, "Satin", "DC S4", "Clearance with margin"), (31, "Satin", "DC S6", "Clearance with margin"),
     (39, "Satin", "SSS4", "Clearance with margin"), (74, "Satin", "SL Satin 6pc", "Clearance with margin"),
@@ -48,10 +48,11 @@ PRODUCTS = [
 PINFO = {p[0]: p for p in PRODUCTS}
 # Scope confirmed by Shayan, Oct 14, 2026: the core BFCM set, and products not launched yet (no live price expected)
 CORE = {59, 30, 73, 37, 31, 38, 32, 39, 48, 45, 42, 43, 44}   # DC bamboo + satin, SS-B6, SS-S4, all cooling (DC + SL)
-NOT_LAUNCHED = {36, 74, 76, 40}                               # SL B4, SL Satin 6pc, SL Cooling 6pc, SL Bamboo Pillowcase
-LAUNCHING = set()                                             # CL Cooling Sheets launched Oct 15, 2026 (all 60 children live)
+NOT_LAUNCHED = {74, 76, 40}                                   # SL Satin 6pc, SL Cooling 6pc, SL Bamboo Pillowcase
+LAUNCHING = {36}                                              # SL B4 (Sleep Sanctuary 4 Pc) launched: Twin variations live, confirmed Oct 15, 2026;
+                                                              # CL Cooling Sheets launched Oct 15, 2026 (all 60 children live)
 def scope_of(pid):
-    return ("Core" if pid in CORE else "Not launched" if pid in NOT_LAUNCHED else "Launching (partly live)" if pid in LAUNCHING else "Other")
+    return ("Core" if pid in CORE else "Not launched" if pid in NOT_LAUNCHED else "Launched (partly live)" if pid in LAUNCHING else "Other")
 
 cc = {(int(d["product_id"]), d["marketplace"]): d for d in (jl(f) for f in glob.glob(f"{DATA}/cc/*.json")) if d}
 ours = {(int(d["product_id"]), d["marketplace"]): d for d in (jl(f) for f in glob.glob(f"{DATA}/ours/*.json")) if d}
@@ -411,14 +412,24 @@ def header_row(ws, row, cols, start_col=1, height=48):
     ws.row_dimensions[row].height = height
 
 # ------------------------------------------------------------------ shared lookups
-def our_profile(pid, mkt):
+def _our_profile_raw(pid, mkt):
     s = skus.get((pid, mkt)) or skus.get((pid, "US")) or {}
     p = s.get("profile") or {}
     o = (cc.get((pid, mkt)) or cc.get((pid, "US")) or {}).get("our", {})
     return p, o
 
+LISTING_BRANDS = (("SLEEP SANCTUARY", "Sleep Sanctuary"), ("SLEEPHORIA", "Sleephoria"), ("DECOLURE", "Decolure"), ("COOLINENS", "CooLinens"))
+def our_profile(pid, mkt):
+    """Profile with the brand the live Amazon listing shows (the title's brand), e.g. Sleep Sanctuary rather than Sleephoria."""
+    p, o = _our_profile_raw(pid, mkt)
+    title = (our_title_and_image(pid, mkt)[0] or "").upper()
+    lb = next((b for k, b in LISTING_BRANDS if title.startswith(k)), None)
+    if lb:
+        p, o = dict(p, brand=lb), dict(o, brand=lb)
+    return p, o
+
 def _our_title_and_image(pid, mkt):
-    p, o = our_profile(pid, mkt)
+    p, o = _our_profile_raw(pid, mkt)
     cat = catalog.get(mkt, {}) or {}
     best = (p.get("thumbnail") or {}).get("childAsin") or o.get("best_child_asin")
     parent = amazon_parent(pid, mkt) or p.get("parentAsin") or o.get("parent_asin")
@@ -550,7 +561,7 @@ for _f in sorted(f_ for f_ in glob.glob(f"{DATA}/sellerboard/*.csv") if re.searc
 # have since been re-parented or retired). Only sheet/bedding rows; other categories are not tracked here.
 SB_NAME_MAP = {
     "B0F2G983W3": 39,   # "Sleep Sanctuary Satin Sheets 4Pcs"                -> SSS4
-    "B0F55Y1P53": 32,   # "SLEEP SANCTUARY ... Viscose Derived from Bamboo"  -> SL B6 (SL B4 not launched)
+    "B0F55Y1P53": 32,   # "SLEEP SANCTUARY ... Viscose Derived from Bamboo"  -> SL B6
     "B0F7LX9RP3": 45, "B0F7LY4RD6": 45, "B0F7LY3994": 45, "B0FTSWF3M7": 45,   # "SLEEPHORIA Cooling Sheets - BreezeWeave 4 PC" -> SL Cooling 4pc
     "B0CQ3GXLCJ": 30,   # "DECOLURE ... Bamboo Sheets Queen Size | 6 Pc"      -> DC B6
     "B0D9HRYKBW": 48,   # "DECOLURE Cooling Bed Sheets Microfiber"           -> DC Cooling 4pc
@@ -1443,7 +1454,7 @@ for pid, mkt, tname in TABS:
         ws.merge_cells(start_row=2, start_column=3, end_row=2, end_column=NC)
         b_ = ws.cell(row=2, column=3, value=("NOT LAUNCHED YET (confirmed Oct 14, 2026): no live price, rating or sales expected; excluded from the gap counts on Data Check."
                                              if pid in NOT_LAUNCHED else
-                                             "LAUNCHING: only part of this family is live (confirmed Oct 14, 2026). Variations without a live price are not launched yet, not missing data."))
+                                             f"LAUNCHED (confirmed Oct 15, 2026): {sum(1 for v_ in our_variations(pid, mkt) if v_.get('price_now') is not None)} of {len(our_variations(pid, mkt))} variations are live so far ({', '.join(sorted({v_['size'] for v_ in our_variations(pid, mkt) if v_.get('price_now') is not None and v_.get('size')}))}). Variations without a live price are not live yet, not missing data."))
         b_.font = F(bold=True, color="C00000"); b_.fill = FILL["flag"]
     ws.cell(row=2, column=1, value="← Dashboard").hyperlink = f"#'{mkt} Dashboard'!A1"
     ws.cell(row=2, column=1).font = F(color="0563C1", underline="single")
@@ -2109,7 +2120,7 @@ for pid, mkt, tname in TABS:
     pi.cell(row=rr, column=11).number_format = "$#,##0.00"; pi.cell(row=rr, column=15).number_format = '0.00"x"'; pi.cell(row=rr, column=16).number_format = "0.0%"
     if "STALE" in str(pi.cell(row=rr, column=12).value) and pid not in NOT_LAUNCHED:
         pi.cell(row=rr, column=12).fill = PatternFill("solid", fgColor="F8CBAD")
-    pi.cell(row=rr, column=18).fill = PatternFill("solid", fgColor={"Core": "C6EFCE", "Not launched": "D9D9D9", "Launching (partly live)": "FFEB9C"}.get(scope_of(pid), "FFFFFF"))
+    pi.cell(row=rr, column=18).fill = PatternFill("solid", fgColor={"Core": "C6EFCE", "Not launched": "D9D9D9", "Launched (partly live)": "FFEB9C"}.get(scope_of(pid), "FFFFFF"))
     rr += 1
 pi.freeze_panes = "C2"
 
@@ -2224,7 +2235,7 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
      ("Our price now", "Helium 10 Xray US (Oct 13) and Amazon.ca (Oct 14) / SellerBoard listing price (US gap-fill) / Data Dive / Amazon page check", "2026-10-13 to 14", core_us[0] + core_ca[0], "Partial", "",
       f"Core products: US {core_us[0]} of {core_us[1]} variations live, Canada {core_ca[0]} of {core_ca[1]}. Core US still without a live price: "
       + (", ".join(f"{k} {v}" for k, v in sorted(core_gap.items(), key=lambda kv: -kv[1])) or "none")
-      + ". Not-launched products (SL B4, SL Satin 6pc, SL Cooling 6pc, SL Bamboo Pillowcase) are excluded. Without a live price the tabs show the Command Center fee-feed price (Mar 2026), which is out of date. Xray matched every price already verified on the Amazon page. Canada: Helium 10 Xray of Amazon.ca (Oct 14, CAD). Prompt 12 (our_price_request.csv, live_price_held = N) fills the rest."),
+      + ". Not-launched products (SL Satin 6pc, SL Cooling 6pc, SL Bamboo Pillowcase) are excluded; SL B4 is launched with its Twin variations live. Without a live price the tabs show the Command Center fee-feed price (Mar 2026), which is out of date. Xray matched every price already verified on the Amazon page. Canada: Helium 10 Xray of Amazon.ca (Oct 14, CAD). Prompt 12 (our_price_request.csv, live_price_held = N) fills the rest."),
      ("Our variations not buyable on Amazon", "Amazon.ca page check (agent)", "2026-10-14", len(our_page_flag), "Check", "",
       f"Of 20 selling Canadian variations with no Xray price, {sum(1 for t in our_page_flag.values() if t.startswith('Not buyable'))} redirect to another size and {sum(1 for t in our_page_flag.values() if t.startswith('No Buy Box'))} show no Buy Box. "
       f"DataHub stock (Oct 14): {sum(1 for t in our_page_flag.values() if 'FBA stock 0' in t)} are out of FBA stock ({sum(1 for t in our_page_flag.values() if 'FBA stock 0' in t and 'nothing inbound' not in t)} with stock inbound, {sum(1 for t in our_page_flag.values() if 'nothing inbound' in t)} with nothing inbound); "
