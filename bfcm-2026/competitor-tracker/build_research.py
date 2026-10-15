@@ -301,8 +301,12 @@ def _ours_manifest():
     if not os.path.exists(f):
         return {"ok": 0, "scope": 0, "US": 0, "CA": 0, "nok": 0, "err": "", "src": ""}
     rows = list(csv.DictReader(open(f, encoding="utf-8-sig")))
-    ok = [r for r in rows if r["ok"] == "Y"]
     kinds = {(r["marketplace"], r["asin"]): r["source_kind"] for r in csv.DictReader(open(pv, encoding="utf-8-sig"))} if os.path.exists(pv) else {}
+    for f2, pv2 in ((f.replace(".csv", "_part2.csv"), pv.replace(".csv", "_part2.csv")),):
+        if os.path.exists(f2):
+            rows += list(csv.DictReader(open(f2, encoding="utf-8-sig")))
+            kinds.update({(r["marketplace"], r["asin"]): r["source_kind"] for r in csv.DictReader(open(pv2, encoding="utf-8-sig"))})
+    ok = [r for r in rows if r["ok"] == "Y"]
     ck = collections.Counter(kinds.get((r["marketplace"], r["asin"])) or "unknown" for r in ok)
     lab = {"fresh_amazon_page": "fresh Amazon page", "cached_Keepa_exact_domain_MAIN": "cached Keepa main image, exact ASIN and marketplace", "saved_amazon_page": "saved Amazon page"}
     ce = collections.Counter("HTTP 404 on the exact page" if "404" in r["error"] else "page showed another ASIN" if "identity" in r["error"] else "pending" for r in rows if r["ok"] != "Y")
@@ -1978,9 +1982,9 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
       f"Price column uses the Amazon page price for that exact ASIN where checked; {sum(1 for x in records if x.get('price_cc') is not None)} had changed since the Command Center snapshot and the cell comment keeps the older price. The page price matched the tracked child in 493 of 549 checkable rows on Oct 13-14."),
      ("Competitor image, size and colour (US)", "Amazon.com exact-ASIN pages (agent, Part A; data/competitor_details)", "2026-10-14", len(comp_det), "Current", "",
       f"257 US competitor ASINs that lacked an image, size or colour were checked on their own Amazon page (signed out, ZIP 10001). {len(comp_det)} kept their ASIN; 4 redirected to another ASIN and are left blank, not substituted (B0DG2HRZKK, B09G8P3X6L, B0D4PKVNWB, B0D1RBXBNG). Fills 165 of the 169 missing images. Size and colour come from the page's variation attributes, never the title. Brand and parent now follow Amazon as of Oct 14: B07M67HRKS is WETCAT (Command Center: Chakir Turkish) and B0D59BMBK7 is Fafua (CC: NORTHERN BROTHERS); 28 competitors have a new parent ASIN (Amazon re-parented them; the old Command Center parent is kept in the cell comment). Keepa (Command Center keepa_history) confirmed both brands and agreed with the page on all 11 tracked ASINs where Keepa lists a parent; the other 17 rest on the page alone."),
-     ("Our product photos (web dashboard)", "Agent zip product_images_ours.zip, Part 1 update (SHA-256 52e6570b...8ec109e); product_images/manifest_ours.csv + provenance_ours.csv", "2026-10-15", _om["ok"], "Partial", "",
-      f"Part 1 (updated): {_om['ok']:,} exact-ASIN main images of our {_om['scope']:,} listed child ASINs ({_om['US']:,} US, {_om['CA']:,} CA), all checked as 200 px RGB JPEGs matching the manifest; all 45 best-selling children covered. "
-      f"Sources: {_om['src']}. Not available: {_om['nok']:,} ({_om['err']}), never filled with a placeholder or another ASIN. Part 2 (remaining active children) to follow. "
+     ("Our product photos (web dashboard)", "Agent zips: product_images_ours.zip Part 1 update (SHA-256 52e6570b...8ec109e) and product_images_ours_part2.zip (SHA-256 147ac537...b67dfc); product_images/manifest_ours*.csv + provenance_ours*.csv", "2026-10-15", _om["ok"], "Partial", "",
+      f"Parts 1 and 2: {_om['ok']:,} exact-ASIN main images of our {_om['scope']:,} listed child ASINs ({_om['US']:,} US, {_om['CA']:,} CA), all checked as 200 px RGB JPEGs matching the manifest; all 45 best-selling children covered. "
+      f"Sources: {_om['src']}. Not available: {_om['nok']:,} ({_om['err']}), never filled with a placeholder or another ASIN."
       "US and CA share the same listing for the same ASIN, so where one marketplace has no photo the other marketplace's photo of that SAME ASIN is used (flagged in the cell comment and on the dashboard tile); a different ASIN is never used. Anything still without a photo shows the COMING SOON picture. In the workbook our images come from the Data Dive / Xray image URLs."),
      ("Canada competitors", "Amazon.ca page research (agent, Prompt 9)", "2026-10-13", sum(len(v) for v in ca_comp.values()), "Partial" if ca_comp else "Missing", "",
       "Page-1 organic results per product keyword, same material and piece count, Queen selected (2 King), CAD, logged out Toronto. 15 rivals each for DC B4, S4, S6, SSS4 (reuses S4) and Satin Fitted; 8 for DC B6 (only 8 qualifying 6-piece bamboo sets). No Command Center fields (weekly units, ASINsight) exist for Canada; Keepa .ca BFCM 2025 history follows after the US pulls. Our Canadian comparison price is the live Amazon.ca price from Helium 10 Xray (Oct 14, CAD)."),

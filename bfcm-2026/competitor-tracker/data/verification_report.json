@@ -85,7 +85,7 @@
   {
    "name": "Photos",
    "compared": "Every photo the dashboard points to is shipped in images.js / images2.js",
-   "checked": 1789,
+   "checked": 1890,
    "mismatches": 0,
    "status": "Pass",
    "examples": [],
@@ -94,7 +94,7 @@
   {
    "name": "Photos from the other marketplace",
    "compared": "Each one is the same ASIN as the item it illustrates (never another ASIN)",
-   "checked": 102,
+   "checked": 93,
    "mismatches": 0,
    "status": "Pass",
    "examples": [],

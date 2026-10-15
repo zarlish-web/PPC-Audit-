@@ -181,7 +181,7 @@ sources = [
     {"data": "Competitor price, newest", "source": "Amazon page for the exact ASIN (agent)", "asof": "2026-10-13 / 14", "rows": paged},
     {"data": "Competitor tier, X-Ray sales band, listing assets", "source": "Command Center Competitor Summary (competitors_roster)", "asof": "week of 2026-10-11", "rows": len(ro_pairs)},
     {"data": "Competitor image, size, colour", "source": "Amazon page (agent) and Data Dive", "asof": "2026-10-14", "rows": len(br.comp_det)},
-    {"data": "Our product photos", "source": "Agent zip, Part 1 update (exact ASIN); the other marketplace's photo of the same ASIN where one market has none (labelled); otherwise Coming Soon with the Open photo link", "asof": "2026-10-15", "rows": br._om["ok"]},
+    {"data": "Our product photos", "source": "Agent zips, Parts 1 and 2 (exact ASIN); the other marketplace's photo of the same ASIN where one market has none (labelled); otherwise Coming Soon with the Open photo link", "asof": "2026-10-15", "rows": br._om["ok"]},
     {"data": "Strikethrough shown, label, price", "source": "Amazon page check (agent)", "asof": "2026-10-13", "rows": len(br.str_now)},
     {"data": "Search and ads (ASINsight)", "source": "Command Center", "asof": "2026-09-29", "rows": sum(1 for x in US if x.get("asi_tr") is not None)},
     {"data": "Competitors' BFCM 2025 history", "source": "Keepa (agent P1 + P2; Command Center for 6 new ASINs)", "asof": "Nov 1 – Dec 5, 2025", "rows": len(br.keepa25)},

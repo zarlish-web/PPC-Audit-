@@ -1,0 +1,17 @@
+PART 2 VERIFIED-SUBSET CHECKPOINT, not a full-coverage claim.
+{
+  "part": 2,
+  "scope": 343,
+  "images": 340,
+  "unresolved": 3,
+  "by_market": {
+    "US": 105,
+    "CA": 235
+  },
+  "bestseller_pairs": 0,
+  "bestsellers_with_images": 0,
+  "sha256": "147ac537623b98bb63bd2e6e67b13b45aa9066d9353291b6d57fa01e8db67dfc"
+}
+Scope: current Oct15 US/CA all-listings records. Core includes named Bamboo4/6, Satin4/6, Satin Fitted, Sleep Sanctuary/Sleephoria Satin4, Sleephoria Bamboo6 and all mapped cooling products. Both active and inactive core child variations retained; parents excluded. Part2 is remaining active children only. Bestsellers ranked separately by marketplace and live parent, plus mapped product-group representatives where parent links are incomplete; positive ordered units Sep15-Oct14 inclusive, cancellations excluded, pending units included, ties retained. See bestseller-selection.csv for exact selections. No arbitrary child chosen for zero-sales group.
+Image sources: exact-market saved Amazon pages or exact-ASIN/domain cached Keepa MAIN-image associations; no new Keepa tokens. Source age and provenance supplied separately. This is not a current-page refresh claim for cached records. Redirected page captures fail even if an old image exists. Parent/redirect/cross-market replacements prohibited.
+Every successful ZIP entry decodes as RGB JPEG, longest side200px, quality75, original aspect ratio retained. Failures/pending entries stay in manifest ok=N, no placeholder JPEG. Unknown dimensions/source blank. Initial ZIP is usable immediately; additional verified core images follow before Part2.
