@@ -57,6 +57,18 @@ for pid, mkt, tname in br.TABS:
             if k:
                 d_.setdefault(k, {"name": k, "n": 0, "u28": 0})
                 d_[k]["n"] += 1; d_[k]["u28"] += u
+    so_ = br.stock_outlook(pid, mkt)
+    srow = {x["asin"]: x for x in so_["rows"]}
+    for vr in vrows:
+        x = srow.get(vr["asin"])
+        vr["stk"] = {"oh": x["on_hand"], "ib": x["inbound"], "st": x["status"], "oos": x["oos"].isoformat() if x["oos"] else None} if x else None
+    stock26 = {"lift": so_["lift"], "liftSrc": so_["lift_src"], "onHand": so_["on_hand"], "inbound": so_["inbound"], "vel": so_["vel"], "need": so_["need"],
+               "short": so_["short"], "counts": so_["counts"],
+               "need28": sum((x["u28"] or 0) / 28 * (br.PRE_DAYS + (so_["lift"] or 1) * br.BF_DAYS) for x in so_["rows"] if isinstance(x.get("u28"), (int, float))),
+               "rows": [{"asin": x["asin"], "sku": x["sku"], "size": x["size"], "colour": x["colour"], "oh": x["on_hand"], "ib": x["inbound"], "vel": x["vel"],
+                         "velSrc": x["vel_src"], "need": x["need"], "short": x["short"], "oos": x["oos"].isoformat() if x["oos"] else None,
+                         "oosIn": x["oos_in"].isoformat() if x["oos_in"] else None, "st": x["status"],
+                         "ships": [{"id": a, "status": b, "units": u} for a, b, u in x["ships"]]} for x in so_["rows"]]} if so_["rows"] else None
     sb = br.sb_of(pid, mkt)
     sbrows = []
     for w, lab in WINDOWS:
@@ -101,7 +113,7 @@ for pid, mkt, tname in br.TABS:
         "preTacos": lf.get("pre_tacos_actual") if lf.get("pre_tacos_actual") is not None else lf.get("pre_tacos"),
         "hk": hk, "hkCut": (1 - hk["bf"] / hk["pre"]) if hk and hk.get("pre") and hk.get("bf") else None, "hkLine": hk_line,
         "deals": deals, "plan26": br.plan26_text(pid, mkt), "slack": [{"topic": r_["topic"], "detail": r_["detail"], "source": r_["source"]} for r_ in br.slack_deal.get((pid, mkt)) or []], "da": br.deal_assumption(pid, mkt), "imgUrl": img, "stock": stock, "stockGap": gap, "sb": sbrows or None,
-        "vars": vrows, "colours": sorted(cols.values(), key=lambda c: -c["u28"]), "sizes": sorted(sizes.values(), key=lambda c: -c["u28"]),
+        "stock26": stock26, "vars": vrows, "colours": sorted(cols.values(), key=lambda c: -c["u28"]), "sizes": sorted(sizes.values(), key=lambda c: -c["u28"]),
     })
 
 KEYS = ("pid", "mkt", "product", "tier", "brand", "title", "parent", "child", "price", "price_src", "price_cc", "lp", "bsr", "wk", "rating", "reviews", "seen",
@@ -189,6 +201,7 @@ sources = [
     {"data": "Canadian competitors' BFCM 2025 history", "source": "Keepa .ca (agent), CAD", "asof": "Nov 1 – Dec 5, 2025", "rows": len(br.keepa25_ca)},
     {"data": "Our live prices", "source": "Helium 10 Xray (US Oct 13, CA Oct 14), Amazon page, SellerBoard listing price", "asof": "2026-10-13 / 14", "rows": sum(1 for p in products for v in p["vars"] if v["live"])},
     {"data": "Our BFCM 2025 sales", "source": "SellerBoard (Ecotero account)", "asof": "Oct 21 – Dec 31, 2025", "rows": len(br.sellerboard)},
+    {"data": "BFCM 2026 stock outlook", "source": "SellerBoard inventory and FBA shipments (Ecotero, read-only pull)", "asof": "2026-10-15", "rows": len(br.sb_inv)},
     {"data": "Deal pricing, pre-BFCM deal decisions, STR tests", "source": "Slack: Umair Tahir deal reviews (Oct 13–15), Abubakar Ishrat STR updates (Oct 13–15)", "asof": "2026-10-15", "rows": sum(len(v) for v in br.slack_deal.values())},
     {"data": "Our BFCM 2026 deal plan", "source": "BM (Slack)", "asof": "2026-10-15", "rows": sum(len(v) for v in br.plan26.values())},
     {"data": "Our BFCM 2025 deals", "source": "DataHub promotions, checked against Command Center amazon_promotions", "asof": "2026-10-14", "rows": sum(len(v) for v in br.deals25.values())},

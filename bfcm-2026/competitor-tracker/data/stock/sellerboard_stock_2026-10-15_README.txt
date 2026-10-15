@@ -36,9 +36,10 @@ WHAT WAS PULLED
   status "success"; none returned "preparing", and no 429 errors occurred. No row had hasMoreChildren=true, so
   inventory_children was not needed. Every row is type "fnsku".
 - Inspiratek (4ff2aeee-...): page 1 only, as instructed. Amazon.com showed 35 of 65 rows; Amazon.ca 6 of 6.
-  These are Inspiratek fitness trackers, bands, smartwatches and glasses, plus one DECOLURE row, SCR-BEIGE
+  These are non-bedding Inspiratek items (kids and adult fitness trackers, bands, chargers, smartwatches,
+  blue-light glasses, storage bags), plus one DECOLURE row, SCR-BEIGE
   ("DECOLURE Elegant Bathroom Sets with Shower Curtain and Rugs", 0 stock). That row is bathroom decor, not
-  bedding, so it was excluded. Result: 0 Inspiratek rows in the CSV. Inspiratek .com pages 2 (rows 36-65) were
+  bedding, so it was excluded. Result: 0 Inspiratek rows in the CSV. Inspiratek .com page 2 (rows 36-65) were
   not checked.
 - fba_shipments / fba_shipment / purchase_orders: see above and the inbound README.
 

@@ -1102,6 +1102,93 @@ def deal_evidence_text(da):
         parts.append(f"US competitors' median price cut in BFCM 2025: {da['comp25']['median']:.0%} ({da['comp25']['n']} rivals)")
     return "; ".join(parts)
 
+# ------------------------------------------------------------------ BFCM 2026 stock outlook (SellerBoard, Oct 15, 2026)
+# Per child ASIN: stock at Amazon now (on hand = FBA stock + units moving between Amazon warehouses), units already sent to
+# Amazon (SellerBoard "sent to FBA"), and SellerBoard's sales velocity (units a day). Demand is walked day by day:
+# Oct 16 - Nov 18 at today's pace, Nov 19 - 30 at today's pace x the product's own BFCM 2025 lift (SellerBoard, BFCM week vs
+# the 30 days before), where that lift is reliable; otherwise the account's BFCM 2025 lift is assumed and flagged.
+# No ETA exists in SellerBoard, so inbound is shown by Amazon shipment status and the outlook is given with and without it.
+STOCK_ASOF, PRE_DAYS, BF_DAYS = "2026-10-15", 34, 12
+def _acct_lift(m):
+    try:
+        pre = sum(float(r["sales"] or 0) for r in csv.DictReader(open(f"{DATA}/sellerboard/{m}_pre.csv", encoding="utf-8-sig")))
+        bf = sum(float(r["sales"] or 0) for r in csv.DictReader(open(f"{DATA}/sellerboard/{m}_bfcm.csv", encoding="utf-8-sig")))
+        return (bf / 12) / (pre / 30) if pre and bf else None
+    except FileNotFoundError:
+        return None
+ACCT_LIFT = {m: _acct_lift(m) for m in ("US", "CA")}
+
+sb_inv = {}   # (mkt, asin) -> summed stock fields
+_inv = f"{DATA}/stock/sellerboard_inventory_2026-10-15.csv"
+if os.path.exists(_inv):
+    for row in csv.DictReader(open(_inv, encoding="utf-8-sig")):
+        k = ("CA" if row["marketplace"] == "Amazon.ca" else "US", row["asin"])
+        d = sb_inv.setdefault(k, {"on_hand": 0.0, "fba": 0.0, "inbound": 0.0, "vel": 0.0, "skus": []})
+        for f_, c_ in (("on_hand", "on_hand"), ("fba", "fba_stock"), ("inbound", "sent_to_fba"), ("vel", "sales_velocity")):
+            d[f_] += float(row[c_] or 0)
+        d["skus"].append(row["sku"])
+sb_ship = {}  # (mkt, asin) -> [(shipment_id, status, units still inbound)]
+_shp = f"{DATA}/stock/sellerboard_inbound_shipments_2026-10-15.csv"
+if os.path.exists(_shp):
+    for row in csv.DictReader(open(_shp, encoding="utf-8-sig")):
+        u_ = float(row["units_still_inbound_calc"] or 0)
+        if u_ > 0:
+            sb_ship.setdefault(("CA" if row["marketplace_inferred"] == "Amazon.ca" else "US", row["asin"]), []).append((row["shipment_id"], row["status"], int(u_)))
+
+def stock_lift(pid, mkt):
+    lf = lift_of(pid, mkt) or {}
+    if lf.get("src") == "SellerBoard actual" and lf.get("lift") and 0.8 <= lf["lift"] <= 8:
+        return lf["lift"], "own BFCM 2025 lift (SellerBoard)"
+    return ACCT_LIFT.get(mkt), f"ASSUMED: account BFCM 2025 lift ({mkt}); product's own 2025 lift " + ("not reliable" if lf.get("lift") else "not available")
+
+def oos_date(stock, v, lift):
+    """Day stock runs out walking the demand calendar; None when it lasts past Nov 30 or nothing sells."""
+    if not v:
+        return None
+    t0 = dt.date(2026, 10, 15)
+    if stock < v * PRE_DAYS:
+        return t0 + dt.timedelta(days=stock / v)
+    if stock < v * PRE_DAYS + v * lift * BF_DAYS:
+        return dt.date(2026, 11, 18) + dt.timedelta(days=(stock - v * PRE_DAYS) / (v * lift))
+    return None
+
+stock26 = {}
+def stock_outlook(pid, mkt):
+    if (pid, mkt) in stock26:
+        return stock26[(pid, mkt)]
+    lift, lift_src = stock_lift(pid, mkt)
+    rows = []
+    for v_ in our_variations(pid, mkt):
+        inv = sb_inv.get((mkt, v_["asin"]))
+        if not inv:
+            continue
+        vel, vel_src = inv["vel"], "SellerBoard velocity"
+        if not vel and (v_.get("units_28d") or 0) > 0:
+            vel, vel_src = v_["units_28d"] / 28, "units last 28 days / 28 (no SellerBoard velocity: out of stock)"
+        need = vel * PRE_DAYS + vel * (lift or 1) * BF_DAYS
+        oh, ib = inv["on_hand"], inv["inbound"]
+        if not vel and not oh and not ib:
+            continue
+        if oh <= 0 and vel > 0:
+            status = "Out of stock now"
+        elif oh >= need:
+            status = "Covered to Nov 30"
+        elif oh + ib >= need:
+            status = "Needs inbound in time"
+        else:
+            status = "Short even with inbound"
+        rows.append({"asin": v_["asin"], "sku": v_.get("sku") or ", ".join(inv["skus"]), "size": v_.get("size"), "colour": v_.get("colour"),
+                     "on_hand": oh, "inbound": ib, "vel": vel, "vel_src": vel_src, "need": need, "short": max(0.0, need - oh - ib),
+                     "oos": oos_date(oh, vel, lift or 1), "oos_in": oos_date(oh + ib, vel, lift or 1), "status": status,
+                     "ships": sb_ship.get((mkt, v_["asin"]), []), "u28": v_.get("units_28d")})
+    rows.sort(key=lambda r: -r["vel"])
+    cnt = collections.Counter(r["status"] for r in rows)
+    out = {"lift": lift, "lift_src": lift_src, "rows": rows, "on_hand": sum(r["on_hand"] for r in rows), "inbound": sum(r["inbound"] for r in rows),
+           "vel": sum(r["vel"] for r in rows), "need": sum(r["need"] for r in rows), "short": sum(r["short"] for r in rows), "counts": dict(cnt),
+           "risk_vel": sum(r["vel"] for r in rows if r["status"] != "Covered to Nov 30")}
+    stock26[(pid, mkt)] = out
+    return out
+
 tier_rank = {"Aspirational": 0, "Beatable": 1, "Poor": 2, "Untiered": 3}
 records.sort(key=lambda r: ([p[0] for p in PRODUCTS].index(r["pid"]), tier_rank.get(r["tier"], 3), -(r["wk"] or 0)))
 
@@ -1432,6 +1519,18 @@ for pid, mkt, tname in TABS:
         c = ws.cell(row=r, column=1, value=f"{sd_['topic']} (Slack): {sd_['detail']} [{sd_['source']}]")
         c.font = F(size=8.5, color="1F4E79"); c.alignment = WRAP
         ws.row_dimensions[r].height = 30 if len(c.value) > 180 else 18
+        r += 1
+    so_ = stock_outlook(pid, mkt)
+    if so_["rows"]:
+        c_ = so_["counts"]
+        txt_ = (f"BFCM 2026 stock (SellerBoard, Oct 15): {so_['on_hand']:,.0f} units at Amazon + {so_['inbound']:,.0f} already sent (no ETA in SellerBoard); "
+                f"selling {so_['vel']:,.1f} a day; need about {so_['need']:,.0f} to Nov 30 with a {so_['lift']:.2f}x BFCM lift ({so_['lift_src']}). "
+                f"Variations: {c_.get('Covered to Nov 30', 0)} covered, {c_.get('Needs inbound in time', 0)} need the inbound in time, "
+                f"{c_.get('Short even with inbound', 0)} short even with inbound ({so_['short']:,.0f} units), {c_.get('Out of stock now', 0)} out of stock now. Detail: BFCM Stock tab.")
+        ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
+        c = ws.cell(row=r, column=1, value=txt_)
+        c.font = F(size=8.5, bold=True, color=("C00000" if (c_.get("Short even with inbound") or c_.get("Out of stock now")) else "1F4E79")); c.alignment = WRAP
+        ws.row_dimensions[r].height = 30
         r += 1
     da = deal_assumption(pid, mkt)
     if da:
@@ -2000,6 +2099,10 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
       next((r_["detail"] for r_ in slack_deal.get(("ALL", None), []) if r_["topic"] == "STR (strikethrough) tests"), "")),
      ("Deal pricing and pre-BFCM decisions per product", "Slack threads of Umair Tahir (Oct 13-15); data/deals/slack_deal_pricing_2026-10-15.csv", "2026-10-15", sum(len(v) for k_, v in slack_deal.items() if k_[0] != "ALL"), "Current", "",
       "Shown on each product tab under the BFCM 2026 plan: Amazon's current reference and max deal price, and the decision on each pre-BFCM deal (B4 US and CA, B6, S4, Satin Fitted, Quilt, SL B6, S6, Silk Pillowcase, SL Cooling Fitted)."),
+     ("BFCM 2026 stock outlook", "SellerBoard MCP, Ecotero account, read-only (data/stock/sellerboard_inventory_2026-10-15.csv, sellerboard_inbound_shipments_2026-10-15.csv)", "2026-10-15", len(sb_inv), "Partial", "",
+      f"Inventory: every page pulled (Amazon.com 2,177 rows, Amazon.ca 836); totals match SellerBoard's own account summary (US 70,217 FBA stock, 22,893 sent to FBA; CA 10,238 and 8,062). 78 open FBA shipments listed by Amazon status; SellerBoard has NO ETA field, so arrival dates are not shown and the outlook is given with and without inbound. No purchase orders in SellerBoard. Demand uses SellerBoard's velocity, which runs about 1.5x the 28-day units on the big products (includes Prime Big Deal Days and late-September deals), so the 28-day pace is shown beside it. BFCM lift = product's own 2025 lift where reliable, else ASSUMED at the account lift (US {ACCT_LIFT['US']:.2f}x, CA {ACCT_LIFT['CA']:.2f}x)."),
+     ("Our prices", "Helium 10 Xray only (US Oct 13, CA Oct 14)", "2026-10-14", len(our_now), "Current", "",
+      "Agreed Oct 15: Xray is the single source for our price. Amazon page check, Data Dive and SellerBoard listing prices are no longer shown as our price; a variation missing from Xray shows no price."),
      ("Our BFCM 2026 deal plan", "BM (Slack, Oct 15, 2026); data/deals/our_deals_bfcm2026_plan.csv", "2026-10-15", sum(len(v) for v in plan26.values()), "Partial", "",
       "US: 13 Best Deals Nov 19-30 (12 tracked products plus the Hanging Closet Organizer) and 3 Lightning Deals (S6 Nov 23 cancelled, trying for a Best Deal; Silk Pillowcase Nov 23; SL Cooling Fitted Nov 25). CA: 6 Best Deals Nov 19-30. Every tracked product not on this list is NOT in a deal (BM confirmed Oct 15), e.g. DC Cooling 4pc. The Hanging Closet Organizer is not a bedding product, so it stays outside this tracker. Deal price, depth, variations and committed units not given yet. Command Center amazon_promotions shows no Nov 15 - Dec 5, 2026 deals in either market yet."),
      ("Independent re-verification", "verify_tracker.py: recomputes from the raw files and compares with this workbook and the dashboard", "2026-10-15",
@@ -2087,9 +2190,80 @@ chk.conditional_formatting.add(f"F{first_sc + 1}:F{row - 1}", FormulaRule(formul
 row += 1
 chk.cell(row=row, column=1, value="Page values typed from the screenshot (Source: Amazon.com search, Oct 13, 2026, shared by Shayan). 'Differs' on a competitor is expected when the tracked child is a different size; it is an error only for the same ASIN.").font = F(italic=True, size=8)
 
+# ------------------------------------------------------------------ BFCM Stock tab
+stk = wb.create_sheet("BFCM Stock")
+stk.sheet_view.showGridLines = False
+stk["A1"] = "BFCM 2026 stock outlook: will each variation last to Nov 30?"; stk["A1"].font = F(size=13, bold=True, color=C_NAVY)
+stk["A2"] = (f"SellerBoard inventory pulled Oct 15, 2026 (Ecotero; Amazon.com {sum(1 for k in sb_inv if k[0] == 'US'):,} and Amazon.ca {sum(1 for k in sb_inv if k[0] == 'CA'):,} ASINs). "
+             "On hand = units at Amazon (FBA stock + moving between warehouses). Inbound = units already sent to Amazon (SellerBoard 'sent to FBA'); SellerBoard holds no ETA, "
+             "so shipments are listed by Amazon status. Demand: Oct 16 - Nov 18 (34 days) at SellerBoard's current velocity, Nov 19 - 30 (12 days) at velocity x BFCM lift. "
+             f"Lift = the product's own BFCM 2025 lift where reliable; otherwise ASSUMED at the account's BFCM 2025 lift (US {ACCT_LIFT['US']:.2f}x, CA {ACCT_LIFT['CA']:.2f}x). SellerBoard's velocity runs about 1.5x the 28-day units on the big products (its window includes Prime Big Deal Days and the late-September deals), so the outlook leans cautious; the 28-day pace is shown beside it as a cross-check. Blue cells are inputs; the rest are formulas.")
+stk["A2"].font = F(size=8.5, italic=True); stk["A2"].alignment = WRAP; stk.merge_cells("A2:T2"); stk.row_dimensions[2].height = 52
+SC = [("tab", "Product tab", 16), ("mkt", "Mkt", 5), ("asin", "Child ASIN", 12), ("sku", "SKU", 22), ("size", "Size", 9), ("colour", "Colour", 11),
+      ("on_hand", "On hand at Amazon", 9), ("inbound", "Inbound (sent to FBA)", 9), ("ships", "Inbound shipments (status: units)", 30),
+      ("vel", "Sales a day now", 8), ("vel_src", "Velocity source", 16), ("lift", "BFCM lift used", 7), ("lift_src", "Lift source", 22),
+      ("need", "Units needed Oct 16 - Nov 30", 10), ("short", "Short even with inbound", 9), ("oos", "Runs out (on hand only)", 11),
+      ("oos_in", "Runs out (with inbound)", 11), ("status", "Status", 18), ("v28", "Sales a day, 28-day units / 28 (cross-check)", 9),
+      ("need28", "Units needed at the 28-day pace", 10)]
+# product summary (formulas over the detail rows below)
+sum_rows = [(pid, mkt) for pid, *_ in PRODUCTS for mkt in ("US", "CA") if (pid, mkt) in cc and stock_outlook(pid, mkt)["rows"]]
+hdr_s = 4
+SUMC = ["Product tab", "Mkt", "Variations", "On hand", "Inbound", "Sales a day", "BFCM lift", "Units needed to Nov 30", "Short even with inbound",
+        "Covered", "Need inbound in time", "Short with inbound", "Out of stock now", "Lift source", "Units needed at the 28-day pace (cross-check)"]
+for j, h in enumerate(SUMC, 1):
+    c = stk.cell(row=hdr_s, column=j, value=h); c.font = F(bold=True, color="FFFFFF", size=8); c.fill = HDR; c.alignment = CENTER; c.border = BOX
+stk.row_dimensions[hdr_s].height = 36
+det_hdr = hdr_s + len(sum_rows) + 3
+d0, d1 = det_hdr + 1, det_hdr + sum(len(stock_outlook(pid, mkt)["rows"]) for pid, mkt in sum_rows)
+rng = lambda col: f"${col}${d0}:${col}${d1}"
+for i, (pid, mkt) in enumerate(sum_rows):
+    rr_ = hdr_s + 1 + i
+    so_ = stock_outlook(pid, mkt)
+    tab_ = f"{mkt} {next(p_[2] for p_ in PRODUCTS if p_[0] == pid)}"[:31]
+    vals = [tab_, mkt, f'=COUNTIFS({rng("A")},A{rr_},{rng("B")},B{rr_})', f'=SUMIFS({rng("G")},{rng("A")},A{rr_},{rng("B")},B{rr_})',
+            f'=SUMIFS({rng("H")},{rng("A")},A{rr_},{rng("B")},B{rr_})', f'=SUMIFS({rng("J")},{rng("A")},A{rr_},{rng("B")},B{rr_})', so_["lift"],
+            f'=SUMIFS({rng("N")},{rng("A")},A{rr_},{rng("B")},B{rr_})', f'=SUMIFS({rng("O")},{rng("A")},A{rr_},{rng("B")},B{rr_})']
+    vals += [f'=COUNTIFS({rng("A")},A{rr_},{rng("B")},B{rr_},{rng("R")},"{st_}")' for st_ in ("Covered to Nov 30", "Needs inbound in time", "Short even with inbound", "Out of stock now")]
+    vals.append(so_["lift_src"])
+    vals.append(f'=SUMIFS({rng("T")},{rng("A")},A{rr_},{rng("B")},B{rr_})')
+    for j, v in enumerate(vals, 1):
+        c = stk.cell(row=rr_, column=j, value=v); c.border = BOX; c.font = F(size=8.5)
+        c.number_format = {4: "#,##0", 5: "#,##0", 6: "#,##0.0", 7: "0.00x", 8: "#,##0", 9: "#,##0", 15: "#,##0"}.get(j, "General")
+    stk.cell(row=rr_, column=1).hyperlink = f"#'{tab_}'!A1"
+stk.cell(row=det_hdr - 1, column=1, value="Every variation with stock, inbound or sales (sorted by sales a day within each product)").font = F(bold=True, size=10, color=C_NAVY)
+for j, (k_, h_, w_) in enumerate(SC, 1):
+    c = stk.cell(row=det_hdr, column=j, value=h_); c.font = F(bold=True, color="FFFFFF", size=8); c.fill = HDR; c.alignment = CENTER; c.border = BOX
+    stk.column_dimensions[CL(j)].width = w_
+stk.row_dimensions[det_hdr].height = 40
+rr_ = d0
+BLUE = "0000FF"
+for pid, mkt in sum_rows:
+    so_ = stock_outlook(pid, mkt)
+    tab_ = f"{mkt} {next(p_[2] for p_ in PRODUCTS if p_[0] == pid)}"[:31]
+    for x in so_["rows"]:
+        vals = {"tab": tab_, "mkt": mkt, "asin": x["asin"], "sku": x["sku"], "size": x["size"], "colour": x["colour"], "on_hand": x["on_hand"],
+                "inbound": x["inbound"], "ships": "; ".join(f"{a} {b.lower().replace('_', ' ')}: {u:,}" for a, b, u in x["ships"]) or None,
+                "vel": round(x["vel"], 3), "vel_src": x["vel_src"], "lift": round(so_["lift"], 4) if so_["lift"] else None, "lift_src": so_["lift_src"],
+                "need": f"=J{rr_}*{PRE_DAYS}+J{rr_}*L{rr_}*{BF_DAYS}", "short": f"=MAX(0,N{rr_}-G{rr_}-H{rr_})",
+                "oos": f'=IF(J{rr_}=0,"",IF(G{rr_}<J{rr_}*{PRE_DAYS},DATE(2026,10,15)+G{rr_}/J{rr_},IF(G{rr_}<N{rr_},DATE(2026,11,18)+(G{rr_}-J{rr_}*{PRE_DAYS})/(J{rr_}*L{rr_}),"after Nov 30")))',
+                "oos_in": f'=IF(J{rr_}=0,"",IF(G{rr_}+H{rr_}<J{rr_}*{PRE_DAYS},DATE(2026,10,15)+(G{rr_}+H{rr_})/J{rr_},IF(G{rr_}+H{rr_}<N{rr_},DATE(2026,11,18)+(G{rr_}+H{rr_}-J{rr_}*{PRE_DAYS})/(J{rr_}*L{rr_}),"after Nov 30")))',
+                "status": f'=IF(AND(G{rr_}<=0,J{rr_}>0),"Out of stock now",IF(G{rr_}>=N{rr_},"Covered to Nov 30",IF(G{rr_}+H{rr_}>=N{rr_},"Needs inbound in time","Short even with inbound")))',
+                "v28": round(x["u28"] / 28, 3) if isinstance(x.get("u28"), (int, float)) else None, "need28": f'=IF(S{rr_}="","",S{rr_}*{PRE_DAYS}+S{rr_}*L{rr_}*{BF_DAYS})'}
+        for j, (k_, h_, w_) in enumerate(SC, 1):
+            c = stk.cell(row=rr_, column=j, value=vals[k_]); c.border = BOX; c.font = F(size=8.5, color=(BLUE if k_ in ("on_hand", "inbound", "vel", "lift", "v28") else "000000"))
+            c.number_format = {"on_hand": "#,##0", "inbound": "#,##0", "vel": "#,##0.00", "lift": "0.00x", "need": "#,##0", "short": "#,##0", "oos": "mmm d", "oos_in": "mmm d", "v28": "#,##0.00", "need28": "#,##0"}.get(k_, "General")
+            if k_ in ("ships", "lift_src", "vel_src"):
+                c.alignment = WRAP
+        rr_ += 1
+stk.conditional_formatting.add(f"R{d0}:R{d1}", FormulaRule(formula=[f'OR(R{d0}="Short even with inbound",R{d0}="Out of stock now")'], fill=PatternFill("solid", fgColor="FFC7CE")))
+stk.conditional_formatting.add(f"R{d0}:R{d1}", FormulaRule(formula=[f'R{d0}="Needs inbound in time"'], fill=PatternFill("solid", fgColor="FFEB9C")))
+stk.freeze_panes = stk.cell(row=d0, column=4)
+stk.auto_filter.ref = f"A{det_hdr}:T{d1}"
+
 # order: README, Dashboard, Product Index, product tabs..., Data Gaps, Data
 wb.move_sheet("Data Gaps", offset=-(len(wb.sheetnames) - 1 - wb.sheetnames.index("Data Gaps")) + 0)
 wb.move_sheet("Data Check", offset=3 - wb.sheetnames.index("Data Check"))
+wb.move_sheet("BFCM Stock", offset=4 - wb.sheetnames.index("BFCM Stock"))
 wb.save(OUT)
 print(json.dumps({"tabs": len(TABS), "other_mkt_photos": len(xmkt_img), "competitor_rows": len(records), "image_cells": len(img_rows), "unique_images": len(seen),
                   "comp_missing_img": len(missing_comp), "strategy_products": len(strat), "sku_files": len(skus),

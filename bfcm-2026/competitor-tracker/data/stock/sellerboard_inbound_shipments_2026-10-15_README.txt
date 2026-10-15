@@ -6,7 +6,7 @@ HOW IT WAS PULLED
 - mcp__Sellerborad__fba_shipments, count=8, one status at a time: WORKING (0 plans), READY_TO_SHIP (2),
   SHIPPED (7), IN_TRANSIT (5), DELIVERED (1), CHECKED_IN (0), RECEIVING (25, pages 1-4), plus ACTIVE (60 plans,
   pages 1-8). ACTIVE works but only returns open "working" plans: 57 of the 60 are stale draft plans with NO
-  shipments (dated 2024-05 to 2026-08) and 3 hold 7 READY_TO_SHIP shipments. Shipped/in-transit/receiving plans are
+  shipments (plan dates 2024-05-04 to 2026-08-18) and 3 hold 7 READY_TO_SHIP shipments. Shipped/in-transit/receiving plans are
   NOT in ACTIVE, which is why every status was also queried.
 - The status filter applies to the nested shipments, so one plan can appear under several statuses with different
   shipments (e.g. plan "FBA STA (2026-08-28 10:04)" has IN_TRANSIT, RECEIVING and READY_TO_SHIP shipments).
@@ -141,7 +141,7 @@ TOTALS (still_inbound_calc by inferred marketplace and status)
 AMBIGUITIES
 - FBA19N7RQF4Q (ITX3) and FBA19HT4BHCP (YYC4) are READY_TO_SHIP in SellerBoard but already show 504 and 410 units
   received. The status looks stale; the units are reported as returned.
-- The 8 READY_TO_SHIP shipments created 2026-08-28 to 2026-10-12 (FBA19N82086K, FBA19SV5KWMR, FBA19STZ9LHZ,
-  FBA19STRJMC3, FBA19SV47PX1, FBA19SV1CLVT, FBA19STYQSF4, plus FBA19N7RQF4Q) have not left yet, as far as
-  SellerBoard knows.
+- 7 READY_TO_SHIP shipments with 0 units received sit in the 3 ACTIVE plans (FBA19N82086K created 2026-08-28;
+  FBA19STZ9LHZ, FBA19STRJMC3, FBA19SV47PX1, FBA19SV1CLVT, FBA19STYQSF4 and FBA19SV5KWMR created 2026-10-12). As far
+  as SellerBoard knows, they have not shipped yet. Together they hold most of the Amazon.com READY_TO_SHIP units.
 - FBA19KFX24C6 is DELIVERED with 0 of 180 units received.

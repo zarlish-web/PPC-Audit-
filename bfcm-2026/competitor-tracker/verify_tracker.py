@@ -174,6 +174,41 @@ arith = [p["key"] for p in P["products"] if p.get("da") and p["da"].get("ref") a
     and p["da"]["std"] == 0.15 and p["da"]["peak"] == 0.20)]
 check("Assumed 2026 deal price arithmetic", "Deal = today's price × 0.85 (Nov 19-26) and × 0.80 (Nov 27-30), Umair's rule", sum(1 for p in P["products"] if p.get("da") and p["da"].get("ref")), len(arith), arith)
 
+# 7. BFCM stock outlook: product totals recomputed from the raw SellerBoard inventory file, demand arithmetic, workbook vs dashboard
+inv = {}
+for r in rd(os.path.join(D, "stock", "sellerboard_inventory_2026-10-15.csv")):
+    k = ("CA" if r["marketplace"] == "Amazon.ca" else "US", r["asin"])
+    d = inv.setdefault(k, [0.0, 0.0, 0.0])
+    d[0] += float(r["on_hand"] or 0); d[1] += float(r["sent_to_fba"] or 0); d[2] += float(r["sales_velocity"] or 0)
+tot = bad = 0; ex = []
+for p in P["products"]:
+    st = p.get("stock26")
+    if not st:
+        continue
+    for x in st["rows"]:
+        tot += 1
+        raw = inv.get((p["mkt"], x["asin"]))
+        need = x["vel"] * 34 + x["vel"] * st["lift"] * 12
+        if not raw or not close(x["oh"], raw[0], 0.0001) or not close(x["ib"], raw[1], 0.0001) or not close(x["need"], need, 0.0001) \
+           or (x["velSrc"].startswith("SellerBoard") and not close(x["vel"], raw[2], 0.0001)):
+            bad += 1; ex.append(f"{p['mkt']} {x['asin']}")
+check("BFCM 2026 stock per variation", "On hand, inbound and pace vs the raw SellerBoard file; units needed = pace × 34 + pace × lift × 12", tot, bad, ex)
+sws = wb["BFCM Stock"] if "BFCM Stock" in wb.sheetnames else None
+tot = bad = 0; ex = []
+if sws:
+    hdr = next(r for r in range(1, 12) if sws.cell(row=r, column=1).value == "Product tab")
+    r = hdr + 1
+    while sws.cell(row=r, column=1).value:
+        tab, mkt = sws.cell(row=r, column=1).value, sws.cell(row=r, column=2).value
+        p = next((q for q in P["products"] if f"{q['mkt']} {q['short']}"[:31] == tab and q["mkt"] == mkt), None)
+        tot += 1
+        st = (p or {}).get("stock26") or {}
+        if not p or not (close(sws.cell(row=r, column=4).value, st.get("onHand"), 0.0001) and close(sws.cell(row=r, column=5).value, st.get("inbound"), 0.0001)
+                         and close(sws.cell(row=r, column=8).value, st.get("need"), 0.001)):
+            bad += 1; ex.append(tab)
+        r += 1
+check("BFCM 2026 stock, workbook vs dashboard", "On hand, inbound and units needed per product on the BFCM Stock tab (formulas) vs the dashboard", tot, bad, ex)
+
 rep = {"generated": "2026-10-15", "checks": results, "passed": sum(1 for r in results if r["status"] == "Pass"), "total": len(results)}
 json.dump(rep, open(os.path.join(D, "verification_report.json"), "w"), indent=1)
 for r in results:
