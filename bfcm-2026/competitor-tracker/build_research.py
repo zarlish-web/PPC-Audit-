@@ -1900,10 +1900,12 @@ brands = ["All"] + sorted({x["brand"] for x in records if x["brand"]}, key=str.l
 LISTS = (("Products_US", ["All"] + [PINFO[p][2] for p, m, t in TABS if m == "US"]), ("Products_CA", ["All"] + [PINFO[p][2] for p, m, t in TABS if m == "CA"]),
          ("Brands", brands), ("Tiers", ["All", "Aspirational", "Beatable", "Poor", "Untiered"]), ("Families", ["All", "Bamboo", "Satin", "Silk", "Cooling", "Other"]),
          ("Types", ["All", "Direct", "Alternative material", "Material not verified", "Different product type", "Not classified"]))
+LIST_RANGE = {}
 for j, (name, vals) in enumerate(LISTS, 1):
     for i, v in enumerate(vals, 1):
         lst.cell(row=i, column=j, value=v)
-    wb.defined_names[name] = DefinedName(name, attr_text=f"Lists!${CL(j)}$1:${CL(j)}${len(vals)}")
+    LIST_RANGE[name] = f"Lists!${CL(j)}$1:${CL(j)}${len(vals)}"
+    wb.defined_names[name] = DefinedName(name, attr_text=LIST_RANGE[name])
 
 # product lookup (hidden): one row per marketplace and product, read by the dashboards
 lk = wb.create_sheet("Lookup")
@@ -1958,7 +1960,12 @@ def build_dashboard(mkt, sname, mcol, scol, pos):
         a = db.cell(row=i, column=2, value=lab); a.font = F(bold=True, color=C_SUB)
         b = db.cell(row=i, column=3, value="DC B4" if lab == "Product" else "All")
         b.fill = INPUT; b.font = F(bold=True, size=10, color=BLUE); b.border = BOX
-        dv = DataValidation(type="list", formula1=f"={name}", allow_blank=False); db.add_data_validation(dv); dv.add(b.coordinate)
+        # direct range (not a named range) so Excel AND Google Sheets both show the dropdown arrow
+        dv = DataValidation(type="list", formula1=f"={LIST_RANGE[name]}", allow_blank=False, showDropDown=False,
+                            showInputMessage=True, promptTitle=lab, prompt="Pick from the list", showErrorMessage=True,
+                            errorTitle=lab, error="Please pick a value from the list.")
+        db.add_data_validation(dv); dv.add(b.coordinate)
+        h_ = db.cell(row=i, column=4, value="▼ pick from the list"); h_.font = F(size=8, italic=True, color="808080")
     other = "CA Dashboard" if mkt == "US" else "US Dashboard"
     db["B9"] = f"→ {other}"; db["B9"].hyperlink = f"#'{other}'!A1"; db["B9"].font = F(color="0563C1", underline="single", size=9)
     db["B10"] = "→ BFCM Stock"; db["B10"].hyperlink = "#'BFCM Stock'!A1"; db["B10"].font = F(color="0563C1", underline="single", size=9)
