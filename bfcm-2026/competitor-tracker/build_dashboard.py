@@ -181,7 +181,7 @@ sources = [
     {"data": "Competitor price, newest", "source": "Amazon page for the exact ASIN (agent)", "asof": "2026-10-13 / 14", "rows": paged},
     {"data": "Competitor tier, X-Ray sales band, listing assets", "source": "Command Center Competitor Summary (competitors_roster)", "asof": "week of 2026-10-11", "rows": len(ro_pairs)},
     {"data": "Competitor image, size, colour", "source": "Amazon page (agent) and Data Dive", "asof": "2026-10-14", "rows": len(br.comp_det)},
-    {"data": "Our product photos", "source": "Agent zip, Part 1 (exact ASIN); the other marketplace's photo of the same ASIN where one market has none (labelled); otherwise Coming Soon with the Open photo link", "asof": "2026-10-15", "rows": 148},
+    {"data": "Our product photos", "source": "Agent zip, Part 1 update (exact ASIN); the other marketplace's photo of the same ASIN where one market has none (labelled); otherwise Coming Soon with the Open photo link", "asof": "2026-10-15", "rows": br._om["ok"]},
     {"data": "Strikethrough shown, label, price", "source": "Amazon page check (agent)", "asof": "2026-10-13", "rows": len(br.str_now)},
     {"data": "Search and ads (ASINsight)", "source": "Command Center", "asof": "2026-09-29", "rows": sum(1 for x in US if x.get("asi_tr") is not None)},
     {"data": "Competitors' BFCM 2025 history", "source": "Keepa (agent P1 + P2; Command Center for 6 new ASINs)", "asof": "Nov 1 – Dec 5, 2025", "rows": len(br.keepa25)},
@@ -197,10 +197,22 @@ sources = [
 
 payload = json.dumps({"products": products, "comps": comps, "summary": summary, "checks": checks, "sources": sources,
                       "built": "2026-10-14", "imagesLoaded": len(used_img)}, separators=(",", ":"), default=str)
-import base64
-with open(os.path.join(os.path.dirname(os.path.abspath(OUT)), "images.js"), "w") as fh:
-    fh.write("window.IMG={" + '"COMING_SOON":"data:image/jpeg;base64,' + base64.b64encode(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets", "coming_soon.jpg"), "rb").read()).decode() + '",' + ",".join(f'"{k}":"data:image/jpeg;base64,' + base64.b64encode(open(os.path.join(IMG_DIR, have_img[k]), "rb").read()).decode() + '"'
-                                      for k in sorted(used_img)) + "};")
+import base64, io
+from PIL import Image as _PIL
+
+def _thumb(path, side=160):
+    """Re-encode as a small thumbnail so the photo files stay under the artifact's 16 MB per-file limit."""
+    im = _PIL.open(path).convert("RGB")
+    im.thumbnail((side, side))
+    b = io.BytesIO()
+    im.save(b, "JPEG", quality=72, optimize=True, progressive=True)
+    return "data:image/jpeg;base64," + base64.b64encode(b.getvalue()).decode()
+
+_items = [("COMING_SOON", _thumb(os.path.join(HERE, "assets", "coming_soon.jpg"), 400))] + [(k, _thumb(os.path.join(IMG_DIR, have_img[k]))) for k in sorted(used_img)]
+_half = (len(_items) + 1) // 2
+for _fn, _part in (("images.js", _items[:_half]), ("images2.js", _items[_half:])):
+    with open(os.path.join(os.path.dirname(os.path.abspath(OUT)), _fn), "w") as fh:
+        fh.write("window.IMG=Object.assign(window.IMG||{},{" + ",".join(f'"{k}":"{v}"' for k, v in _part) + "});")
 tpl = open(os.path.join(HERE, "dashboard_template.html")).read()
 open(OUT, "w").write(tpl.replace("/*__DATA__*/null", payload))
 print(json.dumps({"products": len(products), "comps": len(comps), "images_used": len(used_img), "bytes": os.path.getsize(OUT)}))

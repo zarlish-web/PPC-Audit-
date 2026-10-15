@@ -155,10 +155,10 @@ check("Our BFCM 2025 deal units", "Units in each product's deal line vs the raw 
 # 6. Integrity: no zero or negative prices or ranks, photos present, plan mapped, assumption arithmetic
 neg = [f"{c['child']} {k}={c[k]}" for c in P["comps"] for k in ("price", "lp", "bsr", "bf_pre", "bf_low") if isinstance(c.get(k), (int, float)) and c[k] <= 0]
 check("No zero or negative values", "Competitor price, List Price, rank, BFCM prices (blank means unknown)", len(P["comps"]), len(neg), neg)
-imgjs = open(os.path.join(os.path.dirname(os.path.abspath(HTML)), "images.js")).read()
+imgjs = "".join(open(os.path.join(os.path.dirname(os.path.abspath(HTML)), f_)).read() for f_ in ("images.js", "images2.js"))
 keys = {c["img"] for c in P["comps"] if c.get("img")} | {v["img"] for p in P["products"] for v in p["vars"] if v.get("img")}
 missing = [k for k in keys if f'"{k}":' not in imgjs]
-check("Photos", "Every photo the dashboard points to is shipped in images.js", len(keys), len(missing), missing)
+check("Photos", "Every photo the dashboard points to is shipped in images.js / images2.js", len(keys), len(missing), missing)
 xm = [(p["mkt"], v["asin"], v["img"]) for p in P["products"] for v in p["vars"] if v.get("img") and v["img"][:2] != p["mkt"]] + \
      [(c["mkt"], c["child"], c["img"]) for c in P["comps"] if c.get("img") and re.match(r"(US|CA)_", c["img"]) and c["img"][:2] != c["mkt"]]
 xbad = [f"{m} {a} uses {k}" for m, a, k in xm if k[3:] != a]
