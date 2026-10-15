@@ -1,0 +1,231 @@
+<title>BFCM 2026 Competitor Boards</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: a stack of numbered boards (like a planning board), each a self-contained panel; summary first, detail after. */
+:root{
+  --bg:#f3f6f7; --panel:#ffffff; --ink:#15232b; --muted:#5a6b74; --line:#d9e2e6; --soft:#e6f1f0;
+  --accent:#0e6b67; --accent-soft:#e0f0ee; --deal:#6a3f9e; --deal-bg:#efe8f7; --bad:#a3262c; --bad-bg:#fbe6e7;
+  --warn:#8a5a00; --warn-bg:#fcf0d6; --good:#1d7a3e; --good-bg:#e2f3e8; --chip:#edf2f4;
+  --display:"Comfortaa","IBM Plex Sans",system-ui,sans-serif; --body:"Comfortaa","IBM Plex Sans",system-ui,sans-serif;
+  --num:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1519; --panel:#162027; --ink:#e4ecef; --muted:#9aabb3; --line:#27343c; --soft:#18302f;
+  --accent:#4fc2b8; --accent-soft:#163533; --deal:#c4a6ef; --deal-bg:#2a2140; --bad:#f08b90; --bad-bg:#3a1b1e;
+  --warn:#f0b75c; --warn-bg:#3a2b13; --good:#72d394; --good-bg:#16321f; --chip:#1f2b32; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1519; --panel:#162027; --ink:#e4ecef; --muted:#9aabb3; --line:#27343c; --soft:#18302f;
+  --accent:#4fc2b8; --accent-soft:#163533; --deal:#c4a6ef; --deal-bg:#2a2140; --bad:#f08b90; --bad-bg:#3a1b1e;
+  --warn:#f0b75c; --warn-bg:#3a2b13; --good:#72d394; --good-bg:#16321f; --chip:#1f2b32; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:14px;line-height:1.5}
+.wrap{max-width:1280px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:22px 48px}
+h1{font-family:var(--display);font-size:clamp(22px,3vw,30px);margin:0;letter-spacing:-.01em;text-wrap:balance}
+h2{font-family:var(--display);font-size:18px;margin:0;text-wrap:balance}
+.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.09em;color:var(--accent);font-weight:700}
+.owner{color:var(--muted);margin-top:4px}.owner b{color:var(--ink);font-weight:600}
+.nav{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 4px}
+.nav a{font-size:12.5px;text-decoration:none;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:6px 12px}
+.nav a:hover,.nav a:focus-visible{border-color:var(--accent);color:var(--accent);outline:none}
+.board{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:18px;min-width:0}
+.bh{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin-bottom:12px}
+.bn{font-family:var(--num);font-size:11px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:6px;padding:2px 8px;letter-spacing:.06em}
+.sub{color:var(--muted);font-size:12.5px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.tile{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:10px 12px;background:var(--accent-soft);min-width:0}
+.tile .k{font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:700}
+.tile .v{font-family:var(--num);font-size:20px;font-weight:700;line-height:1.25;margin-top:2px}
+.tile .s{font-size:11.5px;color:var(--muted)}
+.tile.deal{border-left-color:var(--deal);background:var(--deal-bg)}.tile.deal .v{color:var(--deal)}
+.tile.risk{border-left-color:var(--bad);background:var(--bad-bg)}.tile.risk .v{color:var(--bad);font-size:16px;font-family:var(--body)}
+.tile.ok{border-left-color:var(--good);background:var(--good-bg)}.tile.ok .v{color:var(--good);font-size:16px;font-family:var(--body)}
+.tile.plan .v{font-size:15px;font-family:var(--body)}
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin-bottom:12px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{font:inherit;font-size:13px;font-weight:600;padding:8px 14px;border:0;background:var(--panel);color:var(--muted);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--panel)}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
+select{font:inherit;font-size:13.5px;text-transform:none;letter-spacing:0;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 10px;min-width:220px;max-width:100%}
+select:focus-visible,.seg button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.ptitle{font-family:var(--display);font-size:16px;font-weight:700;margin:4px 0 10px}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px;margin-top:10px}
+table{border-collapse:collapse;width:100%;font-size:12.5px}
+th{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap;background:var(--chip)}
+td{padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.n,th.n{text-align:right;font-family:var(--num);font-variant-numeric:tabular-nums;white-space:nowrap}
+.grp td{background:var(--soft);font-weight:700;font-family:var(--display);font-size:12.5px}
+.pill{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--chip);color:var(--ink);white-space:nowrap}
+.pill.good{background:var(--good-bg);color:var(--good)}.pill.bad{background:var(--bad-bg);color:var(--bad)}.pill.warn{background:var(--warn-bg);color:var(--warn)}.pill.deal{background:var(--deal-bg);color:var(--deal)}
+.neg{color:var(--bad);font-weight:600}.pos{color:var(--good);font-weight:600}
+ul.notes{margin:8px 0 0;padding-left:18px}ul.notes li{margin:4px 0}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.chart{min-width:0}.chart svg{width:100%;height:auto;display:block}
+.chart .lbl{fill:var(--ink);font-family:var(--body);font-size:12px}.chart .val{fill:var(--ink);font-family:var(--num);font-size:12px;font-weight:600}
+.chart .ax{stroke:var(--line)}.chart .one{stroke:var(--muted);stroke-dasharray:3 3}.chart .bar{fill:var(--accent)}.chart .bar.low{fill:var(--muted)}
+.note{color:var(--muted);font-size:12px;margin-top:8px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">BFCM 2026 · competitor research</div>
+    <h1>BFCM 2026 Competitor Boards</h1>
+    <div class="owner">Owner: <b>Shayan Rana</b> · Prepared for <b>Erik Fisher</b> &amp; <b>Joseph Fisher</b> · <span id="asof"></span></div>
+    <nav class="nav" aria-label="Boards">
+      <a href="#b1">1 · Start here</a><a href="#b2">2 · Product board</a><a href="#b3">3 · BFCM 2025 lift by deal type</a>
+      <a href="#b4">4 · Stock risk</a><a href="#b5">5 · Deal prices</a><a href="#b6">6 · Verification</a>
+    </nav>
+  </header>
+
+  <section class="board" id="b1"><div class="bh"><span class="bn">BOARD 1</span><h2>Start here</h2></div>
+    <div class="tiles" id="startTiles"></div>
+    <ul class="notes">
+      <li>Every competitor is classed as <b>Direct</b> (same product type and material as ours) or <b>Alternative material</b>; direct rivals lead every list.</li>
+      <li>For each competitor: BFCM 2025 deal type, price before and during, discount and rank change, plus today's List Price and strikethrough.</li>
+      <li>Assumed BFCM 2026 deal prices: 15% off today's price Nov 19–26, 20% off Nov 27–30 (Black Friday to Cyber Monday), until final prices are set.</li>
+      <li>Stock: units at Amazon and inbound vs what each product needs to Nov 30 at today's pace and its BFCM 2025 lift.</li>
+    </ul>
+  </section>
+
+  <section class="board" id="b2"><div class="bh"><span class="bn">BOARD 2</span><h2>Product board</h2><span class="sub">Pick a marketplace and a product</span></div>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Marketplace"><button type="button" id="mUS" aria-pressed="true">United States</button><button type="button" id="mCA" aria-pressed="false">Canada</button></div>
+      <label class="f" for="prod">Product<select id="prod"></select></label>
+      <label class="f" for="cls">Competitor type<select id="cls"><option value="">All types</option><option>Direct</option><option>Alternative material</option><option>Material not verified</option><option>Different product type</option></select></label>
+    </div>
+    <div id="pboard"></div>
+  </section>
+
+  <section class="board" id="b3"><div class="bh"><span class="bn">BOARD 3</span><h2>BFCM 2025 lift by deal type</h2><span class="sub">Median Best Seller Rank improvement, BFCM week vs Nov 1–19 (1.00x = no change)</span></div>
+    <div class="two"><div class="chart" id="liftUS"></div><div class="chart" id="liftCA"></div></div>
+    <div class="note" id="liftNote"></div>
+  </section>
+
+  <section class="board" id="b4"><div class="bh"><span class="bn">BOARD 4</span><h2>Stock risk to Nov 30</h2><span class="sub">At Amazon now vs units needed at today's pace and the BFCM lift; inbound has no arrival date yet</span></div>
+    <div class="tw"><table><thead><tr><th>Product</th><th>Mkt</th><th class="n">At Amazon</th><th class="n">Inbound</th><th class="n">Need to Nov 30</th><th class="n">Short vars</th><th class="n">Out now</th><th>Status</th></tr></thead><tbody id="stockRows"></tbody></table></div>
+  </section>
+
+  <section class="board" id="b5"><div class="bh"><span class="bn">BOARD 5</span><h2>Deal prices</h2><span class="sub">Assumed until final prices are set; Amazon may use a lower reference price</span></div>
+    <div class="tw"><table><thead><tr><th>Product</th><th>Mkt</th><th>BFCM 2026 plan</th><th class="n">Today</th><th class="n">Nov 19–26 (−15%)</th><th class="n">Nov 27–30 (−20%)</th><th class="n">Our 2025 cut</th><th class="n">Rivals' 2025 cut</th></tr></thead><tbody id="dealRows"></tbody></table></div>
+  </section>
+
+  <section class="board" id="b6"><div class="bh"><span class="bn">BOARD 6</span><h2>Verification</h2><span class="sub" id="chkSub"></span></div>
+    <div class="tw"><table><thead><tr><th>Check</th><th class="n">Rows checked</th><th class="n">Mismatches</th><th>Result</th></tr></thead><tbody id="chkRows"></tbody></table></div>
+  </section>
+</div>
+
+<script>
+const D = /*__DATA__*/null;
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const isNum = v => typeof v === "number" && isFinite(v);
+const $f = (v, m) => isNum(v) ? (m === "CA" ? "C$" : "$") + v.toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2}) : "—";
+const N = v => isNum(v) ? Math.round(v).toLocaleString("en-US") : "—";
+const P = (v, d = 0) => isNum(v) ? (v * 100).toFixed(d) + "%" : "—";
+const X = v => isNum(v) ? v.toFixed(2) + "x" : "—";
+const CLS_RANK = {"Direct": 0, "Material not verified": 1, "Alternative material": 2, "Different product type": 3, "Not classified": 4};
+const CLS_PILL = {"Direct": "good", "Material not verified": "warn", "Alternative material": "", "Different product type": "", "Not classified": ""};
+$("#asof").textContent = "Data as of " + D.built;
+
+// Board 1
+const us = D.comps.filter(c => c.mkt === "US").length, ca = D.comps.filter(c => c.mkt === "CA").length;
+const direct = D.comps.filter(c => c.cls === "Direct").length, ok = D.checks.filter(c => c.status === "Pass").length;
+$("#startTiles").innerHTML = [
+  ["", "Competitors tracked", N(us + ca), `US ${N(us)} · CA ${N(ca)} · ${D.products.length} product listings`],
+  ["", "Direct competitors", N(direct), "same product type and material"],
+  ["", "Our BFCM 2025 sales lift", `${X(D.summary.US.accountLift)} · ${X(D.summary.CA.accountLift)}`, "US · CA, BFCM week vs 30 days before"],
+  [ok === D.checks.length ? "ok" : "risk", "Verification", `${ok} of ${D.checks.length} checks pass`, "against the raw data"],
+].map(([c, k, v, s]) => `<div class="tile ${c}"><div class="k">${k}</div><div class="v">${v}</div><div class="s">${esc(s)}</div></div>`).join("");
+
+// Board 2
+let mkt = "US";
+function fill() {
+  const keep = $("#prod").value;
+  const ps = D.products.filter(p => p.mkt === mkt);
+  $("#prod").innerHTML = ps.map(p => `<option value="${esc(p.key)}">${esc(p.family)} · ${esc(p.short)}</option>`).join("");
+  if (ps.some(p => p.key === keep)) $("#prod").value = keep;
+  $("#mUS").setAttribute("aria-pressed", String(mkt === "US")); $("#mCA").setAttribute("aria-pressed", String(mkt === "CA"));
+  renderProduct();
+}
+function renderProduct() {
+  const p = D.products.find(x => x.key === $("#prod").value); if (!p) { $("#pboard").innerHTML = ""; return; }
+  const m = p.mkt, cs = D.comps.filter(c => c.pid === p.pid && c.mkt === m);
+  const dir = cs.filter(c => c.cls === "Direct"), base = dir.length ? dir : cs;
+  const pr = base.map(c => c.price).filter(isNum).sort((a, b) => a - b);
+  const med = pr.length ? (pr.length % 2 ? pr[pr.length >> 1] : (pr[pr.length / 2 - 1] + pr[pr.length / 2]) / 2) : null;
+  const st = p.stock, sc = st ? st.counts : {}, sh = st ? (sc["Short even with inbound"] || 0) : 0, oo = st ? (sc["Out of stock now"] || 0) : 0;
+  const t = (c, k, v, s) => `<div class="tile ${c}"><div class="k">${k}</div><div class="v">${v}</div>${s ? `<div class="s">${s}</div>` : ""}</div>`;
+  const tiles = [
+    t("", "Our price", $f(p.price, m), esc(p.bestLabel || "")),
+    p.da && isNum(p.da.ref) ? t("deal", "Assumed BFCM 2026 deal", `${$f(p.da.deal_std, m)} → ${$f(p.da.deal_peak, m)}`, "15% off Nov 19–26 · 20% off Nov 27–30") : t("plan", "BFCM 2026 deal", p.plan26 ? "Price not set" : "Not in a deal", p.plan26 ? "" : "regular price through BFCM"),
+    p.plan26 ? t("plan", "BFCM 2026 plan", esc(p.plan26.split(" (")[0]), "") : "",
+    st ? t(sh || oo ? "risk" : "ok", "Stock to Nov 30", sh || oo ? `${N(sh)} short · ${N(oo)} out now` : "Covered", `${N(st.onHand)} at Amazon · need ${N(st.need)}`) : "",
+    isNum(p.lift) ? t("", "BFCM 2025 lift", X(p.lift), p.hk && isNum(p.hk.pre) && isNum(p.hk.bf) ? `hero ${$f(p.hk.pre, m)} → ${$f(p.hk.bf, m)}` : "") : "",
+    cs.length ? t("", dir.length ? "Direct competitors" : "Competitors", N(base.length), `median ${$f(med, m)} · ${N(base.filter(c => isNum(c.gap) && c.gap < 0).length)} below us`) : "",
+  ].join("");
+  const want = $("#cls").value;
+  const rows = cs.filter(c => !want || c.cls === want).sort((a, b) => (CLS_RANK[a.cls] ?? 4) - (CLS_RANK[b.cls] ?? 4) || (b.wk || 0) - (a.wk || 0));
+  let last = null, body = "";
+  for (const c of rows) {
+    if (c.cls !== last) { body += `<tr class="grp"><td colspan="12">${esc(c.cls || "Competitors")} · ${N(rows.filter(r => r.cls === c.cls).length)}</td></tr>`; last = c.cls; }
+    const g = c.gap, lift = c.bsr_lift_v;
+    body += `<tr><td><b>${esc(c.brand || "—")}</b><div class="sub">${esc(c.title)}</div></td><td><span class="pill ${CLS_PILL[c.cls] || ""}">${esc(c.mat || c.cls || "—")}</span></td>
+      <td>${esc([c.size, c.colour].filter(Boolean).join(" · ") || "—")}</td><td class="n"><b>${$f(c.price, m)}</b></td><td class="n">${$f(c.lp, m)}</td>
+      <td class="n ${isNum(g) ? (g < 0 ? "neg" : "") : ""}">${isNum(g) ? (g > 0 ? "+" : "") + P(g) : "—"}</td>
+      <td>${c.str_show === "Y" ? `<span class="pill good">Shown ${$f(c.str_price, m)}</span>` : c.str_show === "N" ? "Not shown" : "—"}</td>
+      <td>${c.bf_type ? `<span class="pill ${c.bf_type === "Price cut only" || c.bf_type === "Prime Exclusive Discount" || c.bf_type === "Lightning Deal" ? "deal" : ""}">${esc(c.bf_type)}</span>` : "—"}</td>
+      <td class="n">${isNum(c.bf_pre) && isNum(c.bf_low) ? `${$f(c.bf_pre, m)} → <b>${$f(c.bf_low, m)}</b>` : "—"}</td><td class="n">${P(c.bf_disc_v)}</td>
+      <td class="n ${isNum(lift) ? (lift >= 1.2 ? "pos" : lift < 1 ? "neg" : "") : ""}">${X(lift)}</td><td class="n">${N(c.wk)}</td></tr>`;
+  }
+  const notes = (p.notes || []).map(x => `<li><b>${esc(x.topic)}.</b> ${esc(x.detail)}</li>`).join("");
+  const risk = (p.risk || []).map(x => `<tr><td>${esc([x.size, x.colour].filter(Boolean).join(" · "))}</td><td class="n">${N(x.oh)}</td><td class="n">${N(x.ib)}</td><td class="n">${isNum(x.vel) ? x.vel.toFixed(1) : "—"}</td><td class="n">${N(x.need)}</td><td>${x.oos ? new Date(x.oos + "T12:00:00").toLocaleDateString("en-US", {month: "short", day: "numeric"}) : "after Nov 30"}</td><td><span class="pill bad">${esc(x.st)}</span></td></tr>`).join("");
+  $("#pboard").innerHTML = `<div class="ptitle">${esc(p.title || p.short)}</div><div class="tiles">${tiles}</div>
+    ${notes ? `<ul class="notes">${notes}</ul>` : ""}
+    ${risk ? `<div class="tw"><table><thead><tr><th>Variation at risk</th><th class="n">At Amazon</th><th class="n">Inbound</th><th class="n">Sales a day</th><th class="n">Need to Nov 30</th><th>Runs out</th><th>Status</th></tr></thead><tbody>${risk}</tbody></table></div>` : ""}
+    <div class="tw"><table><thead><tr><th>Competitor</th><th>Type · material</th><th>Size · colour</th><th class="n">Price</th><th class="n">List</th><th class="n">vs ours</th><th>Strikethrough</th><th>BFCM 2025 deal</th><th class="n">2025 price before → during</th><th class="n">Discount</th><th class="n">Rank lift</th><th class="n">Units / wk</th></tr></thead><tbody>${body || `<tr><td colspan="12">No competitors match.</td></tr>`}</tbody></table></div>`;
+}
+$("#mUS").addEventListener("click", () => { mkt = "US"; fill(); });
+$("#mCA").addEventListener("click", () => { mkt = "CA"; fill(); });
+$("#prod").addEventListener("change", renderProduct);
+$("#cls").addEventListener("change", renderProduct);
+fill();
+
+// Board 3: horizontal bars, one scale per marketplace
+function liftChart(el, m) {
+  const rows = D.lift[m] || [];
+  if (!rows.length) { el.innerHTML = `<p class="sub">No ${m} data.</p>`; return; }
+  const W = 560, rowH = 34, top = 30, left = 190, right = 70, H = top + rows.length * rowH + 10;
+  const max = Math.max(1.6, ...rows.map(r => r.median)) * 1.05, x = v => left + (v / max) * (W - left - right);
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${m} rank lift by deal type"><text class="lbl" x="0" y="16" font-weight="700">${m === "US" ? "United States" : "Canada"}</text>`;
+  s += `<line class="one" x1="${x(1)}" x2="${x(1)}" y1="${top - 6}" y2="${H - 6}"/><text class="lbl" x="${x(1)}" y="${top - 10}" text-anchor="middle" font-size="10">1.00x</text>`;
+  rows.forEach((r, i) => {
+    const y = top + i * rowH;
+    s += `<text class="lbl" x="0" y="${y + 18}">${esc(r.type)} (${r.n})</text>`;
+    s += `<rect class="bar ${r.median < 1 ? "low" : ""}" x="${left}" y="${y + 6}" width="${Math.max(2, x(r.median) - left)}" height="18" rx="3"/>`;
+    s += `<text class="val" x="${x(r.median) + 6}" y="${y + 19}">${r.median.toFixed(2)}x</text>`;
+  });
+  el.innerHTML = s + "</svg>";
+}
+liftChart($("#liftUS"), "US"); liftChart($("#liftCA"), "CA");
+$("#liftNote").textContent = "Competitors with a measured rank change in BFCM 2025; count in brackets. Higher = more sales lift during BFCM week.";
+
+// Board 4
+const prodRows = D.products.filter(p => p.stock).map(p => ({p, sh: p.stock.counts["Short even with inbound"] || 0, oo: p.stock.counts["Out of stock now"] || 0}))
+  .sort((a, b) => (b.sh + b.oo) - (a.sh + a.oo));
+$("#stockRows").innerHTML = prodRows.map(({p, sh, oo}) => `<tr><td><b>${esc(p.short)}</b></td><td>${p.mkt}</td><td class="n">${N(p.stock.onHand)}</td><td class="n">${N(p.stock.inbound)}</td><td class="n">${N(p.stock.need)}</td><td class="n ${sh ? "neg" : ""}">${N(sh)}</td><td class="n ${oo ? "neg" : ""}">${N(oo)}</td><td>${sh || oo ? '<span class="pill bad">At risk</span>' : '<span class="pill good">Covered</span>'}</td></tr>`).join("");
+
+// Board 5
+$("#dealRows").innerHTML = D.products.filter(p => p.plan26 || p.da).map(p => {
+  const d = p.da || {}, m = p.mkt;
+  return `<tr><td><b>${esc(p.short)}</b></td><td>${m}</td><td>${esc(p.plan26 || "Not in a deal")}</td><td class="n">${$f(d.ref ?? p.price, m)}</td><td class="n"><b>${$f(d.deal_std, m)}</b></td><td class="n"><b>${$f(d.deal_peak, m)}</b></td>
+    <td class="n">${d.ev25 ? P(d.ev25.depth) : "—"}</td><td class="n">${d.comp25 ? P(d.comp25.median) + ` (${d.comp25.n})` : "—"}</td></tr>`;
+}).join("");
+
+// Board 6
+$("#chkSub").textContent = `${ok} of ${D.checks.length} checks pass against the raw data`;
+$("#chkRows").innerHTML = D.checks.map(c => `<tr><td>${esc(c.name)}</td><td class="n">${N(c.checked)}</td><td class="n">${N(c.bad)}</td><td><span class="pill ${c.status === "Pass" ? "good" : "bad"}">${esc(c.status)}</span></td></tr>`).join("");
+</script>
