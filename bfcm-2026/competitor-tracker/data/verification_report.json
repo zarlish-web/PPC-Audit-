@@ -85,7 +85,7 @@
   {
    "name": "Photos",
    "compared": "Every photo the dashboard points to is shipped in images.js",
-   "checked": 377,
+   "checked": 523,
    "mismatches": 0,
    "status": "Pass",
    "examples": [],

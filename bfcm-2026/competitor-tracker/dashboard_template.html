@@ -220,7 +220,7 @@ function renderOurs(p) {
         <div class="fact"><div class="k">Units, last 28 days</div><div class="v">${fmtN(p.u28)}</div><div class="s">${fmtN(p.vars.length)} variations</div></div>
         <div class="fact"><div class="k">Contribution per unit</div><div class="v">${fmt$(p.contrib, m)}</div></div>
         <div class="fact"><div class="k">Break-even ACoS</div><div class="v">${isNum(p.be) ? (p.be <= 1.5 ? fmtP(p.be, 1) : p.be.toFixed(1) + "%") : "—"}</div></div>
-        <div class="fact"><div class="k">BFCM 2026 plan</div><div class="v" style="font-family:var(--body);font-size:13.5px">${p.plan26 ? esc(p.plan26) : '<span class="chip bad">No deal planned</span>'}</div><div class="s">BM, Oct 15</div></div>
+        <div class="fact"><div class="k">BFCM 2026 plan</div><div class="v" style="font-family:var(--body);font-size:13.5px">${p.plan26 ? esc(p.plan26) : '<span class="chip bad">Not in a deal</span>'}</div><div class="s">BM, Oct 15${p.plan26 ? "" : " · regular price through BFCM"}</div></div>
         ${p.da ? `<div class="fact"><div class="k">Assumed 2026 deal price</div><div class="v">${isNum(p.da.ref) ? `${fmt$(p.da.ref, m)} → ${fmt$(p.da.deal, m)}` : "—"}</div><div class="s">${fmtP(p.da.depth)} off ${esc(p.da.asin || "")} · assumption until BM's final prices</div></div>` : ""}
         <div class="fact"><div class="k">BFCM 2025 sales lift</div><div class="v">${fmtX(p.lift)}</div><div class="s">BFCM week vs 30 days before</div></div>
         <div class="fact"><div class="k">BFCM 2025 TACoS</div><div class="v">${isNum(p.tacos) ? p.tacos.toFixed(1) + "%" : "—"}</div><div class="s">${isNum(p.preTacos) ? p.preTacos.toFixed(1) + "% before" : ""}</div></div>
