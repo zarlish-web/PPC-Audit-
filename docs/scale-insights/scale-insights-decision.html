@@ -1,0 +1,253 @@
+<title>Scale Insights Decision</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column; decision first, then evidence sections, each a quiet band. Night-ink palette for an overnight-pause tool. */
+:root{
+  --bg:#F5F7FA; --surface:#FFFFFF; --ink:#16202E; --muted:#5A6676; --line:#DCE2EA;
+  --accent:#2E5A8C; --accent-soft:#E3ECF6; --gap:#B4701A; --gap-soft:#F8EEDD; --good:#2F7A55; --good-soft:#E2F1E8;
+  --display:"Archivo", "Helvetica Neue", Arial, sans-serif;
+  --body:"IBM Plex Sans", "Segoe UI", Roboto, Arial, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E141C; --surface:#151D28; --ink:#E6ECF3; --muted:#9AA7B6; --line:#263241;
+  --accent:#7FA9DA; --accent-soft:#1B2A3C; --gap:#E3A44E; --gap-soft:#33270F; --good:#6CC496; --good-soft:#15291F; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E141C; --surface:#151D28; --ink:#E6ECF3; --muted:#9AA7B6; --line:#263241;
+  --accent:#7FA9DA; --accent-soft:#1B2A3C; --gap:#E3A44E; --gap-soft:#33270F; --good:#6CC496; --good-soft:#15291F; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 56px}
+.wrap{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(28px,5vw,40px);font-weight:800;letter-spacing:-.01em}
+h2{font-size:22px;font-weight:700}
+h3{font-size:16px;font-weight:700}
+p{margin:0;max-width:68ch}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+header{display:flex;flex-direction:column;gap:12px}
+.lede{font-size:17px;color:var(--ink)}
+.meta{color:var(--muted);font-size:13px}
+section{display:flex;flex-direction:column;gap:16px}
+.verdict{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px;display:flex;flex-direction:column;gap:14px}
+.verdict ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+.verdict li::marker{font-family:var(--mono);color:var(--accent)}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.fact{border-top:2px solid var(--accent);padding-top:10px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.fact .v{font-family:var(--display);font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}
+.fact .k{font-size:13px;color:var(--muted)}
+.fact.gap{border-color:var(--gap)}
+@media (max-width:640px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.callout{background:var(--gap-soft);border-left:3px solid var(--gap);padding:14px 16px;border-radius:0 8px 8px 0}
+.callout.good{background:var(--good-soft);border-left-color:var(--good)}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500;background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td.r,th.r{text-align:right}
+tr.pick td{background:var(--accent-soft)}
+.pill{display:inline-block;font-family:var(--mono);font-size:11px;padding:1px 7px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.pill.us{color:var(--accent);border-color:var(--accent)}
+.pill.ca{color:var(--gap);border-color:var(--gap)}
+.chart{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px;overflow-x:auto}
+.chart svg{display:block;width:100%;height:auto;min-width:520px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.step .when{font-family:var(--mono);font-size:12px;color:var(--accent)}
+@media (max-width:640px){.steps{grid-template-columns:1fr}}
+ul.src{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--muted)}
+a{color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.copybar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+button{font-family:var(--body);font-size:14px;padding:7px 12px;border-radius:6px;border:1px solid var(--accent);background:var(--surface);color:var(--accent);cursor:pointer}
+button:hover{background:var(--accent-soft)}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.small{font-size:13px;color:var(--muted)}
+</style>
+
+<div class="wrap">
+
+<header>
+  <span class="eyebrow">PPC tools review · Oct 15, 2026 · for Erik</span>
+  <h1>Scale Insights: keep for now, cancel before Nov 17</h1>
+  <p class="lede">We pay $310.40 a month for a plan that gives us far more than its price, and we only use it for the overnight pause. The real issue is that the pause misses 40% of our ad spend. Fix that now at no cost, move the pause in-house, then cancel.</p>
+  <p class="meta">Prepared from the Scale Insights owner account (Ecotero and Inspiratek logins), the Automated ASINs export, SellerBoard ad spend for Sep 15 – Oct 14, Scale Insights' documentation and the team's Slack history. This replaces the Oct 13 estimate in the thread.</p>
+</header>
+
+<section class="verdict" aria-labelledby="rec">
+  <h2 id="rec">Recommendation</h2>
+  <ol>
+    <li><strong>Don't downgrade.</strong> A cheaper tier saves only $80–$248 a month and would likely cut dayparting to 35, 20 or 5 ASINs.</li>
+    <li><strong>Enable automation on 24 high-spend ASINs now.</strong> Dayparting coverage goes from 60% to 82% of ad spend, at no extra cost.</li>
+    <li><strong>Move the overnight pause in-house by about Nov 12,</strong> run both for 3 nights, download the archived data, and <strong>cancel before the Nov 17 renewal.</strong> Saving: <span class="num">$310.40</span> a month, <span class="num">$3,725</span> a year.</li>
+  </ol>
+  <p class="small">Needed: Erik's approval for steps 2 and 3, and a date from Joseph for the in-house overnight pause.</p>
+</section>
+
+<section aria-labelledby="pay">
+  <span class="eyebrow">What we pay</span>
+  <h2 id="pay">One active subscription, already at a low tier</h2>
+  <div class="facts">
+    <div class="fact"><span class="v num">$310.40</span><span class="k">per month, Scale 50 ($388 list, 20% off)</span></div>
+    <div class="fact"><span class="v num">Oct 17</span><span class="k">next monthly renewal</span></div>
+    <div class="fact"><span class="v num">$0</span><span class="k">Inspiratek, no subscription since Mar 9, 2025</span></div>
+    <div class="fact"><span class="v num">$24,359</span><span class="k">paid since Apr 2022, both accounts</span></div>
+  </div>
+  <p>Every Ecotero invoice since Jun 17, 2025 (16 in a row) reads "Scale 50 at $388.00 / month" and was charged $310.40, so the 20% discount is still applied. The expensive period ended in March 2025: Ecotero was on Scale 500 at about $600 a month and Inspiratek on Scale 50 at about $200 a month.</p>
+  <div class="chart" role="img" aria-label="Amount paid to Scale Insights per year, by account">
+    <div class="legend"><span><i class="sw" style="background:var(--accent)"></i>Ecotero</span><span><i class="sw" style="background:var(--gap)"></i>Inspiratek</span><span>2026 is January to October</span></div>
+    <svg id="yearly" viewBox="0 0 640 250" aria-hidden="true"></svg>
+  </div>
+</section>
+
+<section aria-labelledby="get">
+  <span class="eyebrow">What we get</span>
+  <h2 id="get">2,001 ASINs allowed on a 50-ASIN plan</h2>
+  <p>Scale Insights counts one automated ASIN per child ASIN per marketplace, so Scale 50 normally allows 50. Our Automated ASINs page shows <strong class="num">2,001</strong> allowed and <strong class="num">222</strong> in use (123 US, 98 CA, 1 MX). The limit most likely carried over from the custom Scale 500 plan (Apr 2024 – Mar 2025) and wasn't reset when billing moved down. We get more than we pay for, so there is no refund case.</p>
+  <p>We use the tool only for dayparting, the overnight pause. The bid and budget rules that kept overriding our manual changes (Aug 25 review) have been removed.</p>
+</section>
+
+<section aria-labelledby="gapsec">
+  <span class="eyebrow">The gap</span>
+  <h2 id="gapsec">The overnight pause covers only 60% of ad spend</h2>
+  <div class="facts">
+    <div class="fact gap"><span class="v num">60%</span><span class="k">of US + CA ad spend on the 222 dayparted ASINs</span></div>
+    <div class="fact gap"><span class="v num">135</span><span class="k">of the 222 spend under $25 a month</span></div>
+    <div class="fact"><span class="v num">24</span><span class="k">high-spend ASINs not dayparted</span></div>
+    <div class="fact"><span class="v num">82%</span><span class="k">coverage after enabling the 24</span></div>
+  </div>
+  <div class="chart" role="img" aria-label="Share of ad spend covered by dayparting under each option">
+    <div class="legend"><span><i class="sw" style="background:var(--good)"></i>Recommended</span><span><i class="sw" style="background:var(--accent)"></i>Other options</span><span>US + CA ad spend $129,745, Sep 15 – Oct 14</span></div>
+    <svg id="coverage" viewBox="0 0 640 280" aria-hidden="true"></svg>
+  </div>
+  <div class="callout"><strong>Example:</strong> Satin Full Black (US) spent $2,834 in 30 days and isn't dayparted, while dozens of dayparted ASINs spent nothing.</div>
+</section>
+
+<section aria-labelledby="opt">
+  <span class="eyebrow">Options compared</span>
+  <h2 id="opt">Downgrading saves little and loses coverage</h2>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Option</th><th class="r">Price / mo</th><th class="r">ASINs dayparted</th><th class="r">Saving / mo</th><th class="r">Spend covered</th></tr></thead>
+    <tbody>
+      <tr class="pick"><td><strong>Keep Scale 50, enable the 24</strong></td><td class="r num">$310.40</td><td class="r num">246</td><td class="r num">–</td><td class="r num">82%</td></tr>
+      <tr><td>Keep Scale 50 as it is</td><td class="r num">$310.40</td><td class="r num">222</td><td class="r num">–</td><td class="r num">60%</td></tr>
+      <tr><td>Scale 35, best 35 ASINs</td><td class="r num">$230.40</td><td class="r num">35</td><td class="r num">$80</td><td class="r num">69%</td></tr>
+      <tr><td>Scale 20, best 20 ASINs</td><td class="r num">$142.40</td><td class="r num">20</td><td class="r num">$168</td><td class="r num">57%</td></tr>
+      <tr><td>Scale 5, best 5 ASINs</td><td class="r num">$62.40</td><td class="r num">5</td><td class="r num">$248</td><td class="r num">33%</td></tr>
+      <tr><td><strong>Cancel after in-house pause is live</strong></td><td class="r num">$0</td><td class="r">in-house</td><td class="r num">$310.40</td><td class="r">in-house</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="small">Downgrade prices assume the 20% carries over; without it they are $288, $178 and $78. Even if Scale Insights ever enforced the 50 limit, the best 50 ASINs cover 75% of spend, more than the 222 today.</p>
+</section>
+
+<section aria-labelledby="list">
+  <span class="eyebrow">The 24 ASINs to enable</span>
+  <h2 id="list">Top-50 spenders that are switched off</h2>
+  <div class="copybar"><button type="button" id="copyBtn">Copy ASIN list</button><span class="small" id="copyMsg" role="status"></span></div>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th class="r">Spend rank</th><th>Market</th><th>ASIN</th><th>SKU</th><th class="r">Ad spend, 30 days</th></tr></thead>
+    <tbody id="asinRows"></tbody>
+    <tfoot><tr><td colspan="4"><strong>Total</strong></td><td class="r num"><strong id="asinTotal"></strong></td></tr></tfoot>
+  </table>
+  </div>
+  <p class="small">Rank is across US + CA by 30-day ad spend in USD (SellerBoard, all ad types). Enable these after the overnight pause ends, after confirming under Assigned rules that only the dayparting rule applies.</p>
+</section>
+
+<section aria-labelledby="plan">
+  <span class="eyebrow">Plan</span>
+  <h2 id="plan">From now to cancellation</h2>
+  <div class="steps">
+    <div class="step"><span class="when">This week</span><h3>Enable the 24 ASINs</h3><p>After the overnight pause ends. Check the next morning that those campaigns paused and resumed.</p></div>
+    <div class="step"><span class="when">By ~Nov 12</span><h3>In-house overnight pause</h3><p>Joseph builds pause and resume in our system (SOP-45 and the dayparting runbook exist). Run both side by side for 3 nights.</p></div>
+    <div class="step"><span class="when">Before Nov 17</span><h3>Cancel Scale Insights</h3><p>Download the archived data from both logins, confirm the Drive backup is complete, then cancel and check the next morning.</p></div>
+  </div>
+  <div class="callout good">Oct 17 renewal at $310.40 goes ahead as normal. Nothing else changes until approval.</div>
+</section>
+
+<section aria-labelledby="src">
+  <span class="eyebrow">Sources</span>
+  <h2 id="src">Where each number comes from</h2>
+  <ul class="src">
+    <li>Scale Insights owner account, Oct 15: Manage subscriptions (Scale 50 Monthly, $388 with 20% off, period Sep 17 – Oct 17) and the full Ecotero and Inspiratek transaction lists.</li>
+    <li>Scale Insights Automated ASINs page and Bulk Automate export, Oct 14: 2,001 allowed, 222 enabled (123 US, 98 CA, 1 MX).</li>
+    <li>SellerBoard, Ecotero account, ad spend per child ASIN, Sep 15 – Oct 14, 2026: US $109,345, CA $20,400 (USD).</li>
+    <li>Scale Insights documentation, "How are automated ASINs calculated?": one automated ASIN per associated child ASIN, per marketplace.</li>
+    <li>Slack: #ppc-team-private (Oct 5 thread, Aug 8 and Aug 25 reviews, Jul 22 backup request) and #amazon-ppc (Oct 1 Drive backup of 2022–2026 history, Oct 6–7 overnight-pause checks).</li>
+  </ul>
+</section>
+
+</div>
+
+<script>
+const ROWS = [{"rank": 7, "mkt": "US", "asin": "B0839LCXBP", "sku": "SATIN-FULL-BLACK", "spend": 2834.27}, {"rank": 11, "mkt": "CA", "asin": "B08KQJ61T7", "sku": "BAMBOO-KING-TAUPE", "spend": 2148.3}, {"rank": 12, "mkt": "US", "asin": "B0DDQXM4RF", "sku": "SS-SATIN-GREY-KING-4PCS", "spend": 2030.84}, {"rank": 13, "mkt": "US", "asin": "B0F7M5PNCT", "sku": "SL-COOLING-FITTED-QUEEN-WHITE", "spend": 1763.62}, {"rank": 15, "mkt": "US", "asin": "B0839LQK8K", "sku": "SATIN-QUEEN-GREY", "spend": 1715.05}, {"rank": 17, "mkt": "US", "asin": "B0H5WV9RBQ", "sku": "CL-CLG-PC-LIGHT-GREY-QUEEN-2PCS", "spend": 1592.68}, {"rank": 18, "mkt": "US", "asin": "B08KQJTP39", "sku": "BAMBOO-FULL-OLIVE", "spend": 1567.94}, {"rank": 19, "mkt": "US", "asin": "B08KQJRSW6", "sku": "BAMBOO-QUEEN-OLIVE", "spend": 1451.31}, {"rank": 20, "mkt": "US", "asin": "B0F7M3YQ5R", "sku": "SL-COOLING-FITTED-KING-WHITE", "spend": 1430.75}, {"rank": 22, "mkt": "US", "asin": "B0DDTYDHVB", "sku": "SS-BAMBOO-TAUPE-KING-6PCS", "spend": 1222.47}, {"rank": 23, "mkt": "US", "asin": "B0C9LS5H2T", "sku": "BM-QUEEN-NAVY-BLUE", "spend": 1218.58}, {"rank": 28, "mkt": "US", "asin": "B0H5X91BWJ", "sku": "CL-CLG-PC-WHITE-KING-2PCS", "spend": 1023.11}, {"rank": 31, "mkt": "US", "asin": "B0BZPY4PXY", "sku": "BAMBOO-FULL-PURPLE", "spend": 984.72}, {"rank": 32, "mkt": "US", "asin": "B0H5WWMPNN", "sku": "CL-CLG-PC-WHITE-QUEEN-2PCS", "spend": 963.12}, {"rank": 35, "mkt": "US", "asin": "B0CRHX3LKM", "sku": "BAMBOO-TWIN-BURGUNDY-NEW", "spend": 772.64}, {"rank": 36, "mkt": "CA", "asin": "B0BZPZPGDC", "sku": "BAMBOO-FULL-LIGHTOLIVE", "spend": 741.89}, {"rank": 37, "mkt": "US", "asin": "B0DDR6TLDV", "sku": "SS-SATIN-ROSEWOOD-TWIN-3PCS", "spend": 729.15}, {"rank": 38, "mkt": "US", "asin": "B0839L7PJL", "sku": "SATIN-TWIN-BLACK-NEW", "spend": 663.13}, {"rank": 40, "mkt": "US", "asin": "B0BZPZPGDC", "sku": "BAMBOO-FULL-LIGHTOLIVE", "spend": 531.56}, {"rank": 41, "mkt": "US", "asin": "B0DBVY6P25", "sku": "SATIN-FITTED-KING-GREY", "spend": 499.29}, {"rank": 43, "mkt": "CA", "asin": "B0C7K74SLC", "sku": "SATIN-STRIPE-KING-GRAY--6-PCS", "spend": 486.4}, {"rank": 47, "mkt": "US", "asin": "B0DDRH9RD7", "sku": "SS-SATIN-NAVY-BLUE-QUEEN-4PCS", "spend": 425.83}, {"rank": 48, "mkt": "US", "asin": "B0GGT7NYJ6", "sku": "SL-BOHO-BLANKET-BUTTERFLY-50x60-1-PC", "spend": 424.17}, {"rank": 49, "mkt": "US", "asin": "B08KQL6HKG", "sku": "BAMBOO-KING-LIGHTBLUE", "spend": 420.97}];
+const fmt = n => '$' + n.toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:0});
+(function(){
+  const tb=document.getElementById('asinRows');
+  let tot=0;
+  ROWS.sort((a,b)=>a.rank-b.rank).forEach(r=>{
+    tot+=r.spend;
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td class="r num">${r.rank}</td><td><span class="pill ${r.mkt.toLowerCase()}">${r.mkt}</span></td><td class="num">${r.asin}</td><td>${r.sku}</td><td class="r num">${fmt(r.spend)}</td>`;
+    tb.appendChild(tr);
+  });
+  document.getElementById('asinTotal').textContent=fmt(tot);
+  const btn=document.getElementById('copyBtn'), msg=document.getElementById('copyMsg');
+  btn.addEventListener('click',()=>{
+    const text=ROWS.map(r=>r.mkt+'\t'+r.asin+'\t'+r.sku).join('\n');
+    const done=()=>{msg.textContent='Copied 24 ASINs';};
+    try{
+      navigator.clipboard.writeText(text).then(done).catch(()=>{msg.textContent='Copy blocked here. Select the table and copy it instead.';});
+    }catch(e){msg.textContent='Copy blocked here. Select the table and copy it instead.';}
+  });
+})();
+
+const NS='http://www.w3.org/2000/svg';
+function el(tag,attrs,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;return e;}
+
+(function yearly(){
+  const svg=document.getElementById('yearly');
+  const data=[['2022',1169.38,884.47],['2023',4261.02,2305.09],['2024',5708.53,1924.13],['2025',4712.77,600],['2026',2793.60,0]];
+  const W=640,H=250,L=56,R=12,T=16,B=34, max=8000;
+  const ph=H-T-B, pw=W-L-R, bw=pw/data.length*0.55;
+  [0,2000,4000,6000,8000].forEach(v=>{
+    const y=T+ph-(v/max)*ph;
+    svg.appendChild(el('line',{x1:L,x2:W-R,y1:y,y2:y,stroke:'var(--line)','stroke-width':1}));
+    svg.appendChild(el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':11,fill:'var(--muted)','font-family':'IBM Plex Mono, monospace'},'$'+(v/1000)+'K'));
+  });
+  data.forEach((d,i)=>{
+    const cx=L+pw/data.length*(i+0.5), x=cx-bw/2;
+    const he=(d[1]/max)*ph, hi=(d[2]/max)*ph;
+    svg.appendChild(el('rect',{x:x,y:T+ph-he,width:bw,height:he,fill:'var(--accent)',rx:2}));
+    if(hi>0) svg.appendChild(el('rect',{x:x,y:T+ph-he-hi,width:bw,height:hi,fill:'var(--gap)',rx:2}));
+    svg.appendChild(el('text',{x:cx,y:T+ph-he-hi-6,'text-anchor':'middle','font-size':11.5,fill:'var(--ink)','font-family':'IBM Plex Mono, monospace'},fmt(d[1]+d[2])));
+    svg.appendChild(el('text',{x:cx,y:H-12,'text-anchor':'middle','font-size':12,fill:'var(--muted)','font-family':'IBM Plex Mono, monospace'},d[0]));
+  });
+})();
+
+(function coverage(){
+  const svg=document.getElementById('coverage');
+  const data=[['Scale 50 + 24 ASINs (246)',81.7,true],['Scale 50 today (222)',60.4,false],['Best 50 only',74.6,false],['Scale 35, best 35',68.6,false],['Scale 20, best 20',56.5,false],['Scale 5, best 5',32.6,false]];
+  const W=640,L=190,R=56,T=10,rowH=40, pw=W-L-R;
+  [0,25,50,75,100].forEach(v=>{
+    const x=L+pw*v/100;
+    svg.appendChild(el('line',{x1:x,x2:x,y1:T,y2:T+rowH*data.length,stroke:'var(--line)','stroke-width':1}));
+    svg.appendChild(el('text',{x:x,y:T+rowH*data.length+16,'text-anchor':'middle','font-size':11,fill:'var(--muted)','font-family':'IBM Plex Mono, monospace'},v+'%'));
+  });
+  data.forEach((d,i)=>{
+    const y=T+i*rowH+8;
+    svg.appendChild(el('text',{x:L-10,y:y+15,'text-anchor':'end','font-size':12.5,fill:'var(--ink)','font-family':'IBM Plex Sans, sans-serif'},d[0]));
+    svg.appendChild(el('rect',{x:L,y:y,width:pw*d[1]/100,height:22,rx:3,fill:d[2]?'var(--good)':'var(--accent)','fill-opacity':d[2]?1:0.75}));
+    svg.appendChild(el('text',{x:L+pw*d[1]/100+6,y:y+15,'font-size':12,fill:'var(--ink)','font-family':'IBM Plex Mono, monospace'},d[1].toFixed(1)+'%'));
+  });
+})();
+</script>
