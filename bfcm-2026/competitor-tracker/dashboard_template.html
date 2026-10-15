@@ -52,9 +52,13 @@ select,input[type=search]{font:inherit;font-size:13px;color:var(--ink);backgroun
 .chip.ok{background:var(--good-bg);color:var(--good)}
 td.small{font-size:11px;line-height:1.35}
 p.note{font-size:12px;color:var(--muted);margin:6px 0}
-ul.slack{margin:6px 0 0;padding-left:18px;font-size:13px;line-height:1.5}
-ul.slack li{margin:4px 0}
-ul.slack .src{color:var(--muted);font-size:11.5px}
+ul.notes{margin:6px 0 0;padding-left:18px;font-size:13px;line-height:1.5}
+ul.notes li{margin:4px 0}
+ul.notes .src{color:var(--muted);font-size:11.5px}
+.mkt-tabs{display:flex;gap:6px;margin:14px 0 4px;border-bottom:1px solid var(--line)}
+.mkt-tabs button{font:inherit;font-weight:600;padding:9px 16px;border:1px solid var(--line);border-bottom:none;border-radius:8px 8px 0 0;background:var(--chip);color:var(--muted);cursor:pointer;margin-bottom:-1px}
+.mkt-tabs button span{font-weight:400;font-size:12px;margin-left:4px}
+.mkt-tabs button[aria-selected="true"]{background:var(--panel);color:var(--ink);border-color:var(--line)}
 .fact.wide{grid-column:span 2}
 .fact .s{font-size:11.5px;color:var(--muted)}
 .chipset{margin-top:14px}
@@ -144,9 +148,13 @@ section.checks td{white-space:normal;vertical-align:top}
   </header>
 
   <section class="checks" style="margin-top:4px" id="guide"></section>
+  <nav class="mkt-tabs" role="tablist" aria-label="Marketplace">
+    <button type="button" role="tab" data-mkt="US" aria-selected="true">United States <span>Amazon.com</span></button>
+    <button type="button" role="tab" data-mkt="CA" aria-selected="false">Canada <span>Amazon.ca</span></button>
+  </nav>
   <section class="filters" aria-label="Filters">
     <label for="f-product">Product<select id="f-product"></select></label>
-    <label for="f-mkt">Marketplace<select id="f-mkt"><option value="US">US</option><option value="CA">Canada</option></select></label>
+    <select id="f-mkt" hidden aria-hidden="true"><option value="US">US</option><option value="CA">Canada</option></select>
     <label for="f-brand">Competitor brand<select id="f-brand"></select></label>
     <label for="f-tier">Tier<select id="f-tier"><option value="">All tiers</option><option>Aspirational</option><option>Beatable</option><option>Poor</option><option>Untiered</option></select></label>
     <label for="f-deal">BFCM 2025 deal<select id="f-deal"><option value="">Any</option><option>Lightning Deal</option><option>Prime Exclusive Discount</option><option>Price cut only</option><option>Coupon only</option><option>None</option><option>Not live in 2025</option></select></label>
@@ -204,17 +212,25 @@ const dealChip = t => t ? `<span class="chip ${DEAL[t] || ""}">${esc(t)}</span>`
 
 const products = D.products;
 const pSel = $("#f-product");
-const order = [...new Map(products.map(p => [p.short, p])).values()];
-const scopeRank = {"Core": 0, "Other": 1, "Launching (partly live)": 2, "Not launched": 3};
-order.sort((a, b) => (scopeRank[a.scope] ?? 1) - (scopeRank[b.scope] ?? 1));
-pSel.innerHTML = ["Core", "Other", "Launching (partly live)", "Not launched"].map(sc => {
-  const ps = order.filter(p => (p.scope || "Other") === sc);
-  return ps.length ? `<optgroup label="${esc(sc === "Core" ? "Core BFCM products" : sc)}">${ps.map(p => `<option value="${esc(p.short)}">${esc(p.family)} · ${esc(p.short)} — ${esc(p.brand)} ${esc(p.name)}</option>`).join("")}</optgroup>` : "";
-}).join("");
+function fillProducts() {
+  const mkt = $("#f-mkt").value, keep = pSel.value;
+  const order = products.filter(p => p.mkt === mkt);
+  const scopeRank = {"Core": 0, "Other": 1, "Launching (partly live)": 2, "Not launched": 3};
+  order.sort((a, b) => (scopeRank[a.scope] ?? 1) - (scopeRank[b.scope] ?? 1));
+  pSel.innerHTML = ["Core", "Other", "Launching (partly live)", "Not launched"].map(sc => {
+    const ps = order.filter(p => (p.scope || "Other") === sc);
+    return ps.length ? `<optgroup label="${esc(sc === "Core" ? "Core BFCM products" : sc)}">${ps.map(p => `<option value="${esc(p.short)}">${esc(p.family)} · ${esc(p.short)} — ${esc(p.brand)} ${esc(p.name)}</option>`).join("")}</optgroup>` : "";
+  }).join("");
+  if ([...pSel.options].some(o => o.value === keep)) pSel.value = keep;
+  document.querySelectorAll(".mkt-tabs button").forEach(b => b.setAttribute("aria-selected", String(b.dataset.mkt === mkt)));
+}
+fillProducts();
+document.querySelectorAll(".mkt-tabs button").forEach(b => b.addEventListener("click", () => { $("#f-mkt").value = b.dataset.mkt; fillProducts(); $("#f-brand").value = ""; vcol = vsize = null; render(); }));
 $("#builtline").textContent = `Data as of ${D.built} · ${products.length} product listings · ${D.comps.length.toLocaleString("en-US")} competitor rows · cross-checked, see the end of the page`;
 
 let view = "cards", vcol = null, vsize = null;
 try { const s = JSON.parse(localStorage.getItem("bfcm-dash") || "{}"); if (s.product) pSel.value = s.product; if (s.mkt) $("#f-mkt").value = s.mkt; if (s.view) view = s.view; } catch (e) {}
+fillProducts();
 
 function current() { const short = pSel.value, mkt = $("#f-mkt").value; return products.find(p => p.short === short && p.mkt === mkt) || null; }
 
@@ -239,28 +255,28 @@ function renderOurs(p) {
         <div class="fact"><div class="k">Units, last 28 days</div><div class="v">${fmtN(p.u28)}</div><div class="s">${fmtN(p.vars.length)} variations</div></div>
         <div class="fact"><div class="k">Contribution per unit</div><div class="v">${fmt$(p.contrib, m)}</div></div>
         <div class="fact"><div class="k">Break-even ACoS</div><div class="v">${isNum(p.be) ? (p.be <= 1.5 ? fmtP(p.be, 1) : p.be.toFixed(1) + "%") : "—"}</div></div>
-        <div class="fact"><div class="k">BFCM 2026 plan</div><div class="v" style="font-family:var(--body);font-size:13.5px">${p.plan26 ? esc(p.plan26) : '<span class="chip bad">Not in a deal</span>'}</div><div class="s">BM, Oct 15${p.plan26 ? "" : " · regular price through BFCM"}</div></div>
-        ${p.da ? `<div class="fact wide"><div class="k">Assumed 2026 deal price</div><div class="v">${isNum(p.da.ref) ? `${fmt$(p.da.deal_std, m)} · ${fmt$(p.da.deal_peak, m)}` : "—"}</div><div class="s">From today's ${fmt$(p.da.ref, m)} (${esc(p.da.asin || "")}): ${fmtP(p.da.std)} off Nov 19–26, ${fmtP(p.da.peak)} off Nov 27–30 (Umair's rule). Evidence: ${p.da.ev25 ? `our US BFCM 2025 price on ${esc(p.da.ev25.asin)} ${fmt$(p.da.ev25.pre, "US")} → ${fmt$(p.da.ev25.bf, "US")} (${fmtP(p.da.ev25.depth)} off)` : "no 2025 deal history"}${p.da.comp25 ? ` · rivals' median 2025 cut ${fmtP(p.da.comp25.median)} (${p.da.comp25.n})` : ""}. Amazon may use a lower reference price. Assumption until BM's final prices.</div></div>` : ""}
-        ${p.stock26 ? `<div class="fact wide"><div class="k">BFCM 2026 stock (SellerBoard, Oct 15)</div><div class="v">${fmtN(p.stock26.onHand)} at Amazon · ${fmtN(p.stock26.inbound)} inbound</div><div class="s">Need about ${fmtN(p.stock26.need)} to Nov 30 (${fmtN(p.stock26.need28)} at the 28-day pace) with a ${fmtX(p.stock26.lift)} BFCM lift${/ASSUMED/.test(p.stock26.liftSrc) ? " (assumed: account 2025 lift)" : " (own 2025 lift)"}. <b class="${(p.stock26.counts["Short even with inbound"] || p.stock26.counts["Out of stock now"]) ? "neg" : ""}">${fmtN(p.stock26.counts["Short even with inbound"] || 0)} short, ${fmtN(p.stock26.counts["Out of stock now"] || 0)} out of stock now</b>, ${fmtN(p.stock26.counts["Needs inbound in time"] || 0)} need inbound in time, ${fmtN(p.stock26.counts["Covered to Nov 30"] || 0)} covered.</div></div>` : ""}
+        <div class="fact"><div class="k">BFCM 2026 plan</div><div class="v" style="font-family:var(--body);font-size:13.5px">${p.plan26 ? esc(p.plan26) : '<span class="chip bad">Not in a deal</span>'}</div><div class="s">Oct 15${p.plan26 ? "" : " · regular price through BFCM"}</div></div>
+        ${p.da ? `<div class="fact wide"><div class="k">Assumed 2026 deal price</div><div class="v">${isNum(p.da.ref) ? `${fmt$(p.da.deal_std, m)} · ${fmt$(p.da.deal_peak, m)}` : "—"}</div><div class="s">From today's ${fmt$(p.da.ref, m)} (${esc(p.da.asin || "")}): ${fmtP(p.da.std)} off Nov 19–26, ${fmtP(p.da.peak)} off Nov 27–30 (team rule). Evidence: ${p.da.ev25 ? `our US BFCM 2025 price on ${esc(p.da.ev25.asin)} ${fmt$(p.da.ev25.pre, "US")} → ${fmt$(p.da.ev25.bf, "US")} (${fmtP(p.da.ev25.depth)} off)` : "no 2025 deal history"}${p.da.comp25 ? ` · rivals' median 2025 cut ${fmtP(p.da.comp25.median)} (${p.da.comp25.n})` : ""}. Amazon may use a lower reference price. Assumption until final prices are set.</div></div>` : ""}
+        ${p.stock26 ? `<div class="fact wide"><div class="k">BFCM 2026 stock (Oct 15)</div><div class="v">${fmtN(p.stock26.onHand)} at Amazon · ${fmtN(p.stock26.inbound)} inbound</div><div class="s">Need about ${fmtN(p.stock26.need)} to Nov 30 (${fmtN(p.stock26.need28)} at the 28-day pace) with a ${fmtX(p.stock26.lift)} BFCM lift${/ASSUMED/.test(p.stock26.liftSrc) ? " (assumed: account 2025 lift)" : " (own 2025 lift)"}. <b class="${(p.stock26.counts["Short even with inbound"] || p.stock26.counts["Out of stock now"]) ? "neg" : ""}">${fmtN(p.stock26.counts["Short even with inbound"] || 0)} short, ${fmtN(p.stock26.counts["Out of stock now"] || 0)} out of stock now</b>, ${fmtN(p.stock26.counts["Needs inbound in time"] || 0)} need inbound in time, ${fmtN(p.stock26.counts["Covered to Nov 30"] || 0)} covered.</div></div>` : ""}
         <div class="fact"><div class="k">BFCM 2025 sales lift</div><div class="v">${fmtX(p.lift)}</div><div class="s">BFCM week vs 30 days before</div></div>
         <div class="fact"><div class="k">BFCM 2025 TACoS</div><div class="v">${isNum(p.tacos) ? p.tacos.toFixed(1) + "%" : "—"}</div><div class="s">${isNum(p.preTacos) ? p.preTacos.toFixed(1) + "% before" : ""}</div></div>
         ${p.hk && isNum(p.hk.pre) && isNum(p.hk.bf) ? `<div class="fact"><div class="k">Hero price, BFCM 2025</div><div class="v">${fmt$(p.hk.pre, m)} → ${fmt$(p.hk.bf, m)}</div><div class="s">${p.hk.bf < p.hk.pre ? fmtP(1 - p.hk.bf / p.hk.pre) + " lower" : "no cut"}${p.hk.rank_pre && p.hk.rank_bf ? " · rank " + fmtX(p.hk.rank_pre / p.hk.rank_bf) : ""} · ${esc(p.hk.asin)}</div></div>` : ""}
       </div>
       ${p.colours.length ? `<div class="chipset"><div class="k">Colours (${p.colours.length}) · select to filter the variations below</div><div class="chips">${p.colours.map(c => `<button type="button" class="pick" data-col="${esc(c.name)}" aria-pressed="${vcol === c.name}">${esc(c.name)}<span class="n">${c.n} · ${fmtN(c.u28)} units</span></button>`).join("")}</div></div>` : ""}
       ${p.sizes.length ? `<div class="chipset"><div class="k">Sizes (${p.sizes.length})</div><div class="chips">${p.sizes.map(c => `<button type="button" class="pick" data-size="${esc(c.name)}" aria-pressed="${vsize === c.name}">${esc(c.name)}<span class="n">${c.n} · ${fmtN(c.u28)} units</span></button>`).join("")}</div></div>` : ""}
-      ${vars.length ? `<div class="vars" aria-label="Our variations">${vars.map(v => `<div class="var">${imgBox(v.img, v.asin, "", v.url)}<b>${esc([v.size, v.colour].filter(Boolean).join(" · ") || v.asin)}</b>${v.live ? `<span class="pr">${fmt$(v.price, m)}</span>` : `<span class="chip warn">not in Xray</span>`}${isNum(v.u28) ? ` · ${fmtN(v.u28)} units` : ""}${v.stk ? `<br><span class="stk ${STK[v.stk.st] || ""}">Stock ${fmtN(v.stk.oh)}${v.stk.ib ? ` +${fmtN(v.stk.ib)} inbound` : ""}${v.stk.st !== "Covered to Nov 30" ? ` · ${v.stk.oos ? "out " + fmtD(v.stk.oos) : esc(v.stk.st)}` : ""}</span>` : ""}<br>${lnk(v.asin, m)}</div>`).join("")}</div>
-        <div class="sub">${vars.length} of ${p.vars.length} variations shown${vcol || vsize ? ` · filtered by ${esc([vsize, vcol].filter(Boolean).join(" · "))} · <a href="#" id="clearv">show all</a>` : ""} · sorted by units · Xray price for ${nLive}${tail ? ` (${tail} not in Xray: out of stock, no Buy Box or not selling)` : ""}</div>` : `<div class="sub" style="margin-top:8px">No variation list for this product.</div>`}
+      ${vars.length ? `<div class="vars" aria-label="Our variations">${vars.map(v => `<div class="var">${imgBox(v.img, v.asin, "", v.url)}<b>${esc([v.size, v.colour].filter(Boolean).join(" · ") || v.asin)}</b>${v.live ? `<span class="pr">${fmt$(v.price, m)}</span>` : `<span class="chip warn">no current price</span>`}${isNum(v.u28) ? ` · ${fmtN(v.u28)} units` : ""}${v.stk ? `<br><span class="stk ${STK[v.stk.st] || ""}">Stock ${fmtN(v.stk.oh)}${v.stk.ib ? ` +${fmtN(v.stk.ib)} inbound` : ""}${v.stk.st !== "Covered to Nov 30" ? ` · ${v.stk.oos ? "out " + fmtD(v.stk.oos) : esc(v.stk.st)}` : ""}</span>` : ""}<br>${lnk(v.asin, m)}</div>`).join("")}</div>
+        <div class="sub">${vars.length} of ${p.vars.length} variations shown${vcol || vsize ? ` · filtered by ${esc([vsize, vcol].filter(Boolean).join(" · "))} · <a href="#" id="clearv">show all</a>` : ""} · sorted by units · current price for ${nLive}${tail ? ` (${tail} no current price: out of stock, no Buy Box or not selling)` : ""}</div>` : `<div class="sub" style="margin-top:8px">No variation list for this product.</div>`}
       ${p.stock26 ? (() => { const risk = p.stock26.rows.filter(x => x.st !== "Covered to Nov 30"); return `<details class="more"${risk.length ? " open" : ""}><summary>BFCM 2026 stock: ${fmtN(risk.length)} of ${fmtN(p.stock26.rows.length)} variations at risk</summary>
-        <p class="note">On hand = at Amazon now. Inbound = already sent to Amazon (SellerBoard has no ETA; shipment status shown). Demand: today's SellerBoard pace to Nov 18, then × ${fmtX(p.stock26.lift)} on Nov 19–30 (${esc(p.stock26.liftSrc)}). "Runs out" assumes no inbound arrives; "with inbound" assumes all of it lands in time.</p>
+        <p class="note">On hand = at Amazon now. Inbound = already sent to Amazon (no arrival date yet; shipment status shown). Demand: today's pace to Nov 18, then × ${fmtX(p.stock26.lift)} on Nov 19–30 (${esc(p.stock26.liftSrc)}). "Runs out" assumes no inbound arrives; "with inbound" assumes all of it lands in time.</p>
         ${risk.length ? `<div class="tablewrap"><table><thead><tr><th>Variation</th><th>Child ASIN</th><th class="num">On hand</th><th class="num">Inbound</th><th>Shipments (status: units)</th><th class="num">Sales a day</th><th class="num">Need to Nov 30</th><th class="num">Short</th><th>Runs out</th><th>With inbound</th><th>Status</th></tr></thead>
         <tbody>${risk.map(x => `<tr><td>${esc([x.size, x.colour].filter(Boolean).join(" · ") || x.sku)}</td><td>${lnk(x.asin, m)}</td><td class="num">${fmtN(x.oh)}</td><td class="num">${fmtN(x.ib)}</td><td class="small">${x.ships.length ? x.ships.map(z => `${esc(z.id)} ${esc(z.status.toLowerCase().replace(/_/g, " "))}: ${fmtN(z.units)}`).join("<br>") : "—"}</td><td class="num">${x.vel.toFixed(1)}</td><td class="num">${fmtN(x.need)}</td><td class="num">${x.short ? fmtN(x.short) : "—"}</td><td>${x.oos ? fmtD(x.oos) : "after Nov 30"}</td><td>${x.oosIn ? fmtD(x.oosIn) : "after Nov 30"}</td><td><span class="chip ${STK[x.st] || ""}">${esc(x.st)}</span></td></tr>`).join("")}</tbody></table></div>` : `<p>Every variation is covered to Nov 30 by stock already at Amazon.</p>`}</details>`; })() : ""}
-      ${p.slack && p.slack.length ? `<details class="more" open><summary>Deal pricing and decisions (Slack, Oct 13–15)</summary><ul class="slack">${p.slack.map(x => `<li><b>${esc(x.topic)}.</b> ${esc(x.detail)} <span class="src">${esc(x.source)}</span></li>`).join("")}</ul></details>` : ""}
+      ${p.slack && p.slack.length ? `<details class="more" open><summary>Deal pricing and decisions (Oct 13–15)</summary><ul class="notes">${p.slack.map(x => `<li><b>${esc(x.topic)}.</b> ${esc(x.detail)}</li>`).join("")}</ul></details>` : ""}
       <details class="more"><summary>Our BFCM 2025 record</summary>
-        ${sb.length ? `<div class="tablewrap"><table><thead><tr><th>SellerBoard${m === "CA" ? " (USD)" : ""}</th><th class="num">Sales</th><th class="num">Units</th><th class="num">Organic units</th><th class="num">Ad units</th><th class="num">Ad cost</th><th class="num">TACoS</th><th class="num">Sessions</th><th class="num">Unit session %</th><th class="num">Avg price</th></tr></thead>
+        ${sb.length ? `<div class="tablewrap"><table><thead><tr><th>BFCM 2025${m === "CA" ? " (USD)" : ""}</th><th class="num">Sales</th><th class="num">Units</th><th class="num">Organic units</th><th class="num">Ad units</th><th class="num">Ad cost</th><th class="num">TACoS</th><th class="num">Sessions</th><th class="num">Unit session %</th><th class="num">Avg price</th></tr></thead>
           <tbody>${sb.map(w => `<tr><td>${esc(w.label)}</td><td class="num">${fmt$(w.sales)}</td><td class="num">${fmtN(w.units)}</td><td class="num">${fmtN(w.org)}</td><td class="num">${fmtN(w.ad)}</td><td class="num">${fmt$(w.adcost)}</td><td class="num">${fmtP(w.tacos, 1)}</td><td class="num">${fmtN(w.sessions)}</td><td class="num">${fmtP(w.usp, 1)}</td><td class="num">${fmt$(w.avg)}</td></tr>`).join("")}</tbody></table></div>` : ""}
         <div class="rec">
           ${p.deals ? `<div class="k">Deals</div><div>${p.deals}</div>` : ""}
-          ${p.hkLine ? `<div class="k">Hero child in Keepa</div><div>${esc(p.hkLine)}</div>` : ""}
+          ${p.hkLine ? `<div class="k">Hero child, BFCM 2025 price</div><div>${esc(p.hkLine)}</div>` : ""}
           ${p.stock ? `<div class="k">Stock</div><div>${esc(p.stock)}</div>` : ""}
           ${p.stockGap ? `<div class="k">Days with no stock reading</div><div>${esc(p.stockGap)}</div>` : ""}
         </div>
@@ -313,7 +329,7 @@ function renderKpis(p, rows) {
     ["Est. weekly units", isCA || !wk ? "—" : fmtN(wk), isCA ? "not available for Canada" : (ourwk !== null && wk ? `ours about ${fmtN(ourwk)} a week (${fmtP(ourwk / (ourwk + wk), 1)} share)` : "")],
     ["Est. monthly revenue", isCA || !rev ? "—" : fmt0$(rev, m), isCA ? "not available for Canada" : "these competitors' tracked ASINs"],
     ["Keywords we win / lose", isCA ? "—" : `${fmtN(win)} / ${fmtN(lose)}`, isCA ? "not available for Canada" : "shared keywords, summed"],
-    ["With BFCM 2025 history", `${fmtN(bf)} of ${fmtN(rows.length)}`, "Keepa, Nov 1 – Dec 5, 2025"],
+    ["With BFCM 2025 history", `${fmtN(bf)} of ${fmtN(rows.length)}`, "Nov 1 – Dec 5, 2025"],
   ];
   $("#kpis").innerHTML = k.map(([a, b, c]) => `<div class="kpi"><div class="k">${a}</div><div class="v">${b}</div><div class="s">${esc(c)}</div></div>`).join("");
 }
@@ -338,7 +354,7 @@ function card(c) {
       <div><div class="k">Revenue / mo</div><div class="v">${fmt0$(c.rev, m)}</div></div>
       <div><div class="k">Rating</div><div class="v">${isNum(c.rating) ? c.rating.toFixed(1) : "—"} <span class="sub">(${fmtN(c.reviews)})</span></div></div>
     </div>
-    <div class="strat">${c.contested != null ? `Shared keywords <b>${fmtN(c.contested)}</b> · we win <b>${fmtN(c.we_win)}</b>, lose <b>${fmtN(c.we_lose)}</b><br>` : ""}${c.top_kw ? `Top keyword <b>${esc(c.top_kw)}</b>${isNum(c.org_pct) ? ` · ${fmtP(c.org_pct)} organic` : ""}<br>` : ""}${pd !== null ? `Prime Day 2026 visibility ${fmtX(pd)}<br>` : ""}${c.bf_type ? `<b>BFCM 2025</b> ${dealChip(c.bf_type)}${isNum(c.bf_low) && isNum(c.bf_pre) ? ` ${fmt$(c.bf_pre, m)} → ${fmt$(c.bf_low, m)}` : ""}${isNum(c.bsr_lift_v) ? ` · rank ${fmtX(c.bsr_lift_v)}` : ""}` : `<span>BFCM 2025: ${m === "CA" ? "Keepa .ca pending" : "no Keepa history"}</span>`}</div>
+    <div class="strat">${c.contested != null ? `Shared keywords <b>${fmtN(c.contested)}</b> · we win <b>${fmtN(c.we_win)}</b>, lose <b>${fmtN(c.we_lose)}</b><br>` : ""}${c.top_kw ? `Top keyword <b>${esc(c.top_kw)}</b>${isNum(c.org_pct) ? ` · ${fmtP(c.org_pct)} organic` : ""}<br>` : ""}${pd !== null ? `Prime Day 2026 visibility ${fmtX(pd)}<br>` : ""}${c.bf_type ? `<b>BFCM 2025</b> ${dealChip(c.bf_type)}${isNum(c.bf_low) && isNum(c.bf_pre) ? ` ${fmt$(c.bf_pre, m)} → ${fmt$(c.bf_low, m)}` : ""}${isNum(c.bsr_lift_v) ? ` · rank ${fmtX(c.bsr_lift_v)}` : ""}` : `<span>BFCM 2025: ${m === "CA" ? "price history pending" : "no price history"}</span>`}</div>
     <div class="open">Full profile →</div>
   </article>`;
 }
@@ -378,11 +394,11 @@ function openComp(uid) {
         ["Price vs ours", isNum(c.gap) ? (c.gap > 0 ? "+" : "") + fmtP(c.gap, 1) : "—", esc((c.basis || "").split(".")[0])],
       ])}</div>
       <div class="grp"><h3>Sales and revenue</h3>${kv([
-        ["Units a week, this ASIN", fmtN(c.wk), "Command Center estimate"],
+        ["Units a week, this ASIN", fmtN(c.wk), "estimate"],
         ["Revenue a month, this ASIN", fmt0$(c.rev, m), "price × weekly units × 52 ÷ 12"],
-        r.salesPerWeek != null ? ["Sales a week, whole listing", fmtN(r.salesPerWeek), r.salesBand ? `X-Ray range ${fmtN(r.salesBand.lo)} – ${fmtN(r.salesBand.hi)}` : ""] : null,
+        r.salesPerWeek != null ? ["Sales a week, whole listing", fmtN(r.salesPerWeek), r.salesBand ? `Sales band ${fmtN(r.salesBand.lo)} – ${fmtN(r.salesBand.hi)}` : ""] : null,
         ["Best Seller Rank", fmtN(c.bsr), r.bsrTrendDirection ? `${esc(r.bsrTrendDirection)}${isNum(r.bsrTrendPct) ? ", " + r.bsrTrendPct.toFixed(1) + "% over 6 weeks" : ""}` : ""],
-        c.dd30 != null ? ["Sales, last 30 days", fmtN(c.dd30), "Data Dive, whole listing"] : null,
+        c.dd30 != null ? ["Sales, last 30 days", fmtN(c.dd30), "whole listing"] : null,
         ["Variations in listing", fmtN(c.var), esc(c.var_src || "")],
       ])}</div>
       <div class="grp"><h3>Reviews and listing</h3>${kv([
@@ -392,7 +408,7 @@ function openComp(uid) {
         c.ful ? ["Fulfilment", esc(c.ful)] : null, c.country ? ["Seller country", esc(c.country)] : null,
         r.hasAplus != null ? ["A+ content", r.hasAplus ? "Yes" : "No"] : null, r.imageCount != null ? ["Images", fmtN(r.imageCount)] : null, r.bulletCount != null ? ["Bullet points", fmtN(r.bulletCount)] : null,
       ])}</div>
-      ${c.asi_tr != null || c.contested != null ? `<div class="grp"><h3>Search and ads (ASINsight)</h3>${kv([
+      ${c.asi_tr != null || c.contested != null ? `<div class="grp"><h3>Search and ads</h3>${kv([
         ["Traffic, 7 days", fmtN(c.asi_tr), "impression-like, not clicks"], ["Keywords ranked", fmtN(c.asi_kw)],
         ["Organic / ad share", isNum(c.org_pct) ? `${fmtP(c.org_pct)} / ${fmtP(c.ad_pct)}` : "—"],
         ["Top keyword", esc(c.top_kw || "—"), isNum(c.top_kw_pct) ? fmtP(c.top_kw_pct, 1) + " of traffic" : ""],
@@ -405,12 +421,12 @@ function openComp(uid) {
         ["Before Prime Day 2026", isNum(c.pd_pre) ? c.pd_pre.toFixed(1) : "—"], ["Prime Day 2026", isNum(c.pd) ? c.pd.toFixed(1) : "—", isNum(c.pd) && isNum(c.pd_pre) && c.pd_pre > 0 ? fmtX(c.pd / c.pd_pre) + " of before" : ""],
         ["Q2 2026 average", isNum(c.q2) ? c.q2.toFixed(1) : "—"], ["Last 30 days", isNum(c.l30) ? c.l30.toFixed(1) : "—"],
       ])}</div>` : ""}
-      <div class="grp"><h3>BFCM 2025 (Keepa)</h3>${c.bf_type ? kv([
+      <div class="grp"><h3>BFCM 2025</h3>${c.bf_type ? kv([
         ["Deal type", dealChip(c.bf_type), esc(c.bf_dates || "")],
         ["Price before, median Nov 1 – 19", fmt$(c.bf_pre, m)], ["Lowest in BFCM week", fmt$(c.bf_low, m)], ["Discount", isNum(c.bf_disc_v) ? fmtP(c.bf_disc_v, 1) : "—"],
         ["Rank before", fmtN(c.bsr_pre)], ["Rank in BFCM week", fmtN(c.bsr_bf)], ["Rank change", fmtX(c.bsr_lift_v), "above 1.00x means it improved"], ["Out of stock in BFCM week", yn(c.bf_oos)],
-      ]) + (c.notes ? `<div class="sub" style="margin-top:8px">${esc(c.notes)}</div>` : "") : `<div class="sub">${m === "CA" ? "Canadian Keepa history is being pulled." : "Keepa has no Buy Box history for this ASIN in Nov – Dec 2025."}</div>`}</div>
-      ${r.tierRationale || r.beatability != null ? `<div class="grp"><h3>Command Center grade</h3>${kv([["Tier", tierChip(c.tier)], ["Beatability score", fmtN(r.beatability)]])}${r.tierRationale ? `<div class="sub" style="margin-top:8px">${esc(r.tierRationale)}</div>` : ""}</div>` : ""}
+      ]) + (c.notes ? `<div class="sub" style="margin-top:8px">${esc(c.notes)}</div>` : "") : `<div class="sub">${m === "CA" ? "Canadian price history is being added." : "No Buy Box history for this ASIN in Nov – Dec 2025."}</div>`}</div>
+      ${r.tierRationale || r.beatability != null ? `<div class="grp"><h3>Grade</h3>${kv([["Tier", tierChip(c.tier)], ["Beatability score", fmtN(r.beatability)]])}${r.tierRationale ? `<div class="sub" style="margin-top:8px">${esc(r.tierRationale)}</div>` : ""}</div>` : ""}
     </div></aside>`;
   const close = () => { $("#sheet-root").innerHTML = ""; document.removeEventListener("keydown", onKey); };
   const onKey = e => { if (e.key === "Escape") close(); };
@@ -420,30 +436,30 @@ function openComp(uid) {
 
 function renderGuide() {
   const rows = [
-    ["What this is", "Every product we sell in the US and Canada, the competitors the Command Center maps to it, and what each did in BFCM 2025, to plan BFCM 2026 (Nov 19 – 30)."],
-    ["Our price", "Live Amazon price of our best-selling variation (Helium 10 Xray Oct 13 US / Oct 14 CA, or the Amazon page). Variations without a live price are out of stock, have no Buy Box, or are not selling."],
-    ["BFCM 2026 plan", "BM's deal list (Oct 15). Not yet visible in Amazon's deal feed."],
-    ["Our prices", "Helium 10 Xray only (US Oct 13, CA Oct 14), the single price source. A variation missing from Xray shows \"not in Xray\" instead of a price from another source."],
-    ["BFCM 2026 stock", "SellerBoard inventory, Oct 15. On hand = units at Amazon now; inbound = units already sent to Amazon (no ETA in SellerBoard, so the shipment status is shown). Demand = SellerBoard's current pace to Nov 18, then × the product's own BFCM 2025 lift for Nov 19–30; where that lift is missing or unreliable the account's BFCM 2025 lift is assumed (US 2.74x, CA 3.14x) and labelled. SellerBoard's pace runs about 1.5x the 28-day units on the big products, so the 28-day figure is shown as a cross-check. Status: covered by stock at Amazon / needs the inbound in time / short even with inbound / out of stock now."],
-    ["Deal pricing and decisions (Slack)", "From Umair Tahir's deal reviews (Oct 13–15): Amazon's current reference and maximum deal price per product, and whether each pre-BFCM deal is kept or cancelled. Amazon's BFCM deal price is the lower of the lowest deal price still in the lookback and 15% below its reference. AB's STR tests: 2–4 day holds failed; 9+ day holds have worked; readout Oct 20."],
-    ["Assumed 2026 deal price", "Until BM sends final prices. Umair's rule (Oct 15): 15% off today's live price of the hero variation on Nov 19–26, 20% off on the high days, taken as Black Friday to Cyber Monday (Nov 27–30) until confirmed. Shown beside it as evidence: our own BFCM 2025 cut on that variation (Keepa) and the median cut of this product's competitors in BFCM 2025. Amazon sets the deal reference price the day before and it can be lower than today's price, which would lower the deal price."],
-    ["BFCM 2025 sales lift", "Average daily sales in BFCM week (Nov 20 – Dec 1, 2025) ÷ average daily sales in the 30 days before. SellerBoard actual sales."],
-    ["Competitor price", "Price of the competitor's tracked variation: the Amazon page (Oct 13 – 14) where checked, otherwise the Command Center snapshot (Oct 12)."],
-    ["Units / wk, Revenue / mo", "Command Center estimate for the tracked variation; revenue = price × weekly units × 52 ÷ 12. The profile also shows the whole listing's X-Ray sales range."],
+    ["What this is", "Every product we sell in the US and Canada, the competitors the market data maps to it, and what each did in BFCM 2025, to plan BFCM 2026 (Nov 19 – 30)."],
+    ["Our price", "Live Amazon price of our best-selling variation (catalog price Oct 13 US / Oct 14 CA, or the Amazon page). Variations without a live price are out of stock, have no Buy Box, or are not selling."],
+    ["BFCM 2026 plan", "the team's deal list (Oct 15). Not yet visible in Amazon's deal feed."],
+    ["Our prices", "catalog price only (US Oct 13, CA Oct 14), the single price source. A variation missing from catalog shows \"not in catalog\" instead of a price from another source."],
+    ["BFCM 2026 stock", "account data inventory, Oct 15. On hand = units at Amazon now; inbound = units already sent to Amazon (no ETA in account data, so the shipment status is shown). Demand = account data's current pace to Nov 18, then × the product's own BFCM 2025 lift for Nov 19–30; where that lift is missing or unreliable the account's BFCM 2025 lift is assumed (US 2.74x, CA 3.14x) and labelled. account data's pace runs about 1.5x the 28-day units on the big products, so the 28-day figure is shown as a cross-check. Status: covered by stock at Amazon / needs the inbound in time / short even with inbound / out of stock now."],
+    ["Deal pricing and decisions", "From the team's deal reviews (Oct 13–15): Amazon's current reference and maximum deal price per product, and whether each pre-BFCM deal is kept or cancelled. Amazon's BFCM deal price is the lower of the lowest deal price still in the lookback and 15% below its reference. AB's STR tests: 2–4 day holds failed; 9+ day holds have worked; readout Oct 20."],
+    ["Assumed 2026 deal price", "Until the team sends final prices. the team rule (Oct 15): 15% off today's live price of the hero variation on Nov 19–26, 20% off on the high days, taken as Black Friday to Cyber Monday (Nov 27–30) until confirmed. Shown beside it as evidence: our own BFCM 2025 cut on that variation (price history) and the median cut of this product's competitors in BFCM 2025. Amazon sets the deal reference price the day before and it can be lower than today's price, which would lower the deal price."],
+    ["BFCM 2025 sales lift", "Average daily sales in BFCM week (Nov 20 – Dec 1, 2025) ÷ average daily sales in the 30 days before. account data actual sales."],
+    ["Competitor price", "Price of the competitor's tracked variation: the Amazon page (Oct 13 – 14) where checked, otherwise the market data snapshot (Oct 12)."],
+    ["Units / wk, Revenue / mo", "market data estimate for the tracked variation; revenue = price × weekly units × 52 ÷ 12. The profile also shows the whole listing's sales range."],
     ["Strikethrough", "Whether Amazon shows a crossed-out List Price or Typical price on the page today (page check)."],
-    ["BFCM 2025 deal and rank change", "Keepa, daily close. Deal type found in BFCM week; discount = lowest BFCM price vs the median Nov 1 – 19 price; rank change = median rank before ÷ median rank in BFCM week (above 1.00x = better)."],
-    ["Tier", "The Command Center grade of each competitor against this product: Beatable, Aspirational, Poor or ungraded."],
+    ["BFCM 2025 deal and rank change", "price history, daily close. Deal type found in BFCM week; discount = lowest BFCM price vs the median Nov 1 – 19 price; rank change = median rank before ÷ median rank in BFCM week (above 1.00x = better)."],
+    ["Tier", "The market data grade of each competitor against this product: Beatable, Aspirational, Poor or ungraded."],
     ["Blank values", "Blank means unknown. Nothing missing is shown as 0. Canada figures are CAD and kept apart from the US."],
   ];
   $("#guide").innerHTML = `<details><summary>How to read this tracker</summary><div class="tablewrap"><table><tbody>${rows.map(([k, v]) => `<tr><td style="width:220px"><b>${esc(k)}</b></td><td class="sub">${esc(v)}</td></tr>`).join("")}</tbody></table></div></details>`;
 }
 function renderChecks() {
   const ok = D.checks.filter(c => c.status === "Match").length;
-  $("#checks").innerHTML = `<details><summary>Verification and sources · ${D.checks.length} cross-checks, ${ok} exact matches</summary>
+  $("#checks").innerHTML = `<details><summary>Verification · ${D.checks.length} cross-checks, ${ok} exact matches</summary>
     <div class="tablewrap"><table><thead><tr><th>Check</th><th>Compared</th><th>Result</th><th>Detail</th></tr></thead><tbody>
     ${D.checks.map(c => `<tr><td><b>${esc(c.name)}</b></td><td class="sub">${esc(c.compared)}</td><td><span class="chip ${c.status === "Match" ? "good" : "warn"}">${esc(c.status)}</span></td><td class="sub">${esc(c.detail)}</td></tr>`).join("")}</tbody></table></div>
-    <div class="tablewrap"><table><thead><tr><th>Data</th><th>Source</th><th>As of</th><th class="num">Rows</th></tr></thead><tbody>
-    ${D.sources.map(s => `<tr><td><b>${esc(s.data)}</b></td><td class="sub">${esc(s.source)}</td><td class="asin">${esc(s.asof)}</td><td class="num">${fmtN(s.rows)}</td></tr>`).join("")}</tbody></table></div>
+    <div class="tablewrap"><table><thead><tr><th>Data</th><th>As of</th><th class="num">Rows</th></tr></thead><tbody>
+    ${D.sources.map(s => `<tr><td><b>${esc(s.data)}</b></td><td class="asin">${esc(s.asof)}</td><td class="num">${fmtN(s.rows)}</td></tr>`).join("")}</tbody></table></div>
   </details>`;
 }
 

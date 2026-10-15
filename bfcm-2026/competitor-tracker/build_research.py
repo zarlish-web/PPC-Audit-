@@ -1,6 +1,6 @@
 """BFCM 2026 Competitor Research workbook.
 
-One tab per product and marketplace, a filterable Dashboard with live product images
+One tab per product and marketplace, US and CA dashboards with live product images
 (Excel 365 / Google Sheets IMAGE()), and shared tabs (our BFCM 2025, Keepa request,
 data gaps, event watch).
 
@@ -1060,8 +1060,8 @@ for r_ in records:            # CA rows lack the Command Center / ASINsight fiel
 # product in BFCM 2025 (price cuts). Canada takes the US product's discount on its own live CAD price.
 # BFCM 2026 discount rule (Umair Tahir, relayed by Shayan Rana, Oct 15, 2026): 20% off on the high days, 15% on the other
 # deal days. High days are taken as Black Friday to Cyber Monday (Nov 27-30, 2026) until Umair confirms the exact days.
-RULE26 = {"std": 0.15, "peak": 0.20, "peak_days": "Nov 27-30 (Black Friday to Cyber Monday)", "std_days": "Nov 19-26",
-          "src": "Umair Tahir via Shayan Rana, Oct 15, 2026"}
+RULE26 = {"std": 0.15, "peak": 0.20, "peak_days": "Nov 27-30, Black Friday to Cyber Monday", "std_days": "Nov 19-26",
+          "src": "team rule agreed Oct 15, 2026"}
 
 def deal_assumption(pid, mkt):
     """Assumed 2026 deal prices: today's live price of the hero ASIN cut by Umair's 15% / 20% rule, with the 2025 evidence beside it."""
@@ -1337,7 +1337,7 @@ for pid, mkt, tname in TABS:
                                              if pid in NOT_LAUNCHED else
                                              "LAUNCHING: only part of this family is live (confirmed Oct 14, 2026). Variations without a live price are not launched yet, not missing data."))
         b_.font = F(bold=True, color="C00000"); b_.fill = FILL["flag"]
-    ws.cell(row=2, column=1, value="← Dashboard").hyperlink = "#'Dashboard'!A1"
+    ws.cell(row=2, column=1, value="← Dashboard").hyperlink = f"#'{mkt} Dashboard'!A1"
     ws.cell(row=2, column=1).font = F(color="0563C1", underline="single")
 
     # ---- section 1: our product
@@ -1772,7 +1772,8 @@ for pid, mkt, tname in TABS:
 dsh = wb.create_sheet("Data")
 DCOLS = ["match", "seq", "pid", "Product", "Marketplace", "Family", "Brand", "Tier", "Title", "Image URL", "Parent ASIN", "Child ASIN",
          "Variations", "Price", "List Price", "List % over", "Our price same size", "Gap vs ours", "BSR", "Est weekly units", "Rating", "Reviews",
-         "ASINsight traffic", "Organic share", "We win", "We lose", "KWs they advertise we don't", "PD26 vis lift", "Tab", "BFCM25 discount", "BFCM25 BSR lift", "Size", "Colour"]
+         "Search traffic", "Organic share", "We win", "We lose", "KWs they advertise we don't", "PD26 vis lift", "Tab", "BFCM25 discount", "BFCM25 BSR lift", "Size", "Colour",
+         "match CA", "seq CA"]
 for j, h in enumerate(DCOLS, 1):
     c = dsh.cell(row=1, column=j, value=h); c.font = F(bold=True, color="FFFFFF"); c.fill = HDR
 DR0 = 2
@@ -1790,143 +1791,165 @@ for i, x in enumerate(records):
     dsh[f"P{rr}"] = f'=IF(AND(ISNUMBER(O{rr}),ISNUMBER(N{rr}),N(N{rr})>0),O{rr}/N{rr}-1,"")'
     dsh[f"R{rr}"] = f'=IF(AND(ISNUMBER(N{rr}),ISNUMBER(Q{rr}),N(Q{rr})>0),N{rr}/Q{rr}-1,"")'
     # filter match against the Dashboard selectors (C4 product, C5 marketplace, C6 brand, C7 tier, C8 family)
-    dsh[f"A{rr}"] = (f'=AND(OR(Dashboard!$C$4="All",Dashboard!$C$4=D{rr}),OR(Dashboard!$C$5="All",Dashboard!$C$5=E{rr}),'
-                     f'OR(Dashboard!$C$6="All",Dashboard!$C$6=G{rr}),OR(Dashboard!$C$7="All",Dashboard!$C$7=H{rr}),OR(Dashboard!$C$8="All",Dashboard!$C$8=F{rr}))')
-    dsh[f"B{rr}"] = f"=IF(A{rr},{('B' + str(rr - 1)) if rr > DR0 else '0'}+1,{('B' + str(rr - 1)) if rr > DR0 else '0'})"
+    for mk_, sh_, mc_, sc_ in (("US", "US Dashboard", "A", "B"), ("CA", "CA Dashboard", "AH", "AI")):
+        dsh[f"{mc_}{rr}"] = (f"=AND(E{rr}=\"{mk_}\",OR('{sh_}'!$C$4=\"All\",'{sh_}'!$C$4=D{rr}),OR('{sh_}'!$C$5=\"All\",'{sh_}'!$C$5=G{rr}),"
+                             f"OR('{sh_}'!$C$6=\"All\",'{sh_}'!$C$6=H{rr}),OR('{sh_}'!$C$7=\"All\",'{sh_}'!$C$7=F{rr}))")
+        dsh[f"{sc_}{rr}"] = f"=IF({mc_}{rr},{(sc_ + str(rr - 1)) if rr > DR0 else '0'}+1,{(sc_ + str(rr - 1)) if rr > DR0 else '0'})"
 DR1 = DR0 + len(records) - 1
 dsh.freeze_panes = "C2"
 dsh.sheet_properties.tabColor = "BFBFBF"
 
-# lists for dropdowns
+# lists for dropdowns (per marketplace)
 lst = wb.create_sheet("Lists")
 lst.sheet_state = "hidden"
-prods = ["All"] + list(dict.fromkeys(PINFO[p][2] for p, m, t in TABS))
 brands = ["All"] + sorted({x["brand"] for x in records if x["brand"]}, key=str.lower)
-for j, (name, vals) in enumerate((("Products", prods), ("Markets", ["All", "US", "CA"]), ("Brands", brands),
-                                  ("Tiers", ["All", "Aspirational", "Beatable", "Poor", "Untiered"]), ("Families", ["All", "Bamboo", "Satin", "Silk", "Cooling", "Other"])), 1):
+LISTS = (("Products_US", ["All"] + [PINFO[p][2] for p, m, t in TABS if m == "US"]), ("Products_CA", ["All"] + [PINFO[p][2] for p, m, t in TABS if m == "CA"]),
+         ("Brands", brands), ("Tiers", ["All", "Aspirational", "Beatable", "Poor", "Untiered"]), ("Families", ["All", "Bamboo", "Satin", "Silk", "Cooling", "Other"]))
+for j, (name, vals) in enumerate(LISTS, 1):
     for i, v in enumerate(vals, 1):
         lst.cell(row=i, column=j, value=v)
     wb.defined_names[name] = DefinedName(name, attr_text=f"Lists!${CL(j)}$1:${CL(j)}${len(vals)}")
 
-# ================================================================== Dashboard
-db = wb.create_sheet("Dashboard", 1)
-db.sheet_view.showGridLines = False
-db.sheet_view.zoomScale = 90
-W = [2, 13, 18, 34, 10, 9, 9, 8, 9, 9, 8, 7, 8, 9, 8, 8, 9, 14]
-for i, w in enumerate(W, 1):
-    db.column_dimensions[CL(i)].width = w
-db.merge_cells("B1:R1")
-c = db["B1"]; c.value = "BFCM 2026 Competitor Dashboard"; c.font = F(size=18, bold=True, color="FFFFFF"); c.fill = HDR; c.alignment = Alignment(vertical="center", indent=1)
-db.row_dimensions[1].height = 34
-db.merge_cells("B2:R2")
-db["B2"] = "Pick a product, marketplace, brand, tier or family in the yellow cells. The competitor list, images and numbers below update instantly. Images render in Excel 365 and Google Sheets."
-db["B2"].font = F(italic=True, color=C_SUB)
-for i, (lab, name) in enumerate((("Product", "Products"), ("Marketplace", "Markets"), ("Brand", "Brands"), ("Tier", "Tiers"), ("Family", "Families")), 4):
-    a = db.cell(row=i, column=2, value=lab); a.font = F(bold=True, color=C_SUB)
-    b = db.cell(row=i, column=3, value="DC B4" if lab == "Product" else ("US" if lab == "Marketplace" else "All"))
-    b.fill = INPUT; b.font = F(bold=True, size=10, color=BLUE); b.border = BOX
-    dv = DataValidation(type="list", formula1=f"={name}", allow_blank=False); db.add_data_validation(dv); dv.add(b.coordinate)
-# our product panel (driven by the selected product)
-db.merge_cells("E4:E8")
-prod_rows = []
-lst2 = wb["Lists"]
-# product lookup table on Lists (cols G..P): short, tab, title, image, brand, parent, skus, price, lift, comps
-lst2.cell(row=1, column=7, value="short")
-pr = 2
+# product lookup (hidden): one row per marketplace and product, read by the dashboards
+lk = wb.create_sheet("Lookup")
+lk.sheet_state = "hidden"
+LKC = ["key", "Product", "Tab", "Title", "Image URL", "Brand", "Parent ASIN", "Best-selling child", "Variations", "Our price (best child)", "Units, last 28 days",
+       "BFCM 2025 sales lift", "BFCM 2026 plan", "Assumed deal Nov 19-26", "Assumed deal Nov 27-30", "Stock at Amazon", "Inbound", "Units needed to Nov 30",
+       "Short even with inbound", "Variations covered", "Variations needing inbound", "Variations short", "Variations out of stock", "Contribution per unit", "Break-even ACoS"]
+for j, h in enumerate(LKC, 1):
+    lk.cell(row=1, column=j, value=h).font = F(bold=True)
+lr = 2
 for pid, mkt, tname in TABS:
-    if mkt != "US":
-        continue
     p, o = our_profile(pid, mkt)
     title, img, best, parent = our_title_and_image(pid, mkt)
     lf = lift_of(pid, mkt)
     e = econ(o.get("economics"))
-    vals = [PINFO[pid][2], tname, title or f"{o.get('brand')} {o.get('name')}", good_img(img), p.get("brand") or o.get("brand"), parent,
-            p.get("skuCount") or o.get("sku_count"), our_headline_price(pid, mkt, best, e["price"])[0], lf["lift"] if lf else None, best]
-    for j, v in enumerate(vals, 7):
-        lst2.cell(row=pr, column=j, value=v)
-    pr += 1
-LP_RANGE = f"Lists!$G$2:$P${pr - 1}"
-def plook(col):
-    return f'IFERROR(INDEX({LP_RANGE},MATCH($C$4,Lists!$G$2:$G${pr - 1},0),{col}),"")'
-if NO_IMAGE_FORMULA:
-    db["E4"] = f'=IF($C$4="All","",{plook(4)})'
-else:
-    db["E4"] = f'=IF($C$4="All","",IFERROR(_xlfn.IMAGE({plook(4)}),"IMAGE COMING SOON"))'
-db["E4"].alignment = CENTER; db["E4"].border = BOX
-for i, (lab, col, nf) in enumerate((("Our product", 3, None), ("Brand", 5, None), ("Parent ASIN", 6, None), ("Variations (SKUs)", 7, "#,##0"),
-                                    ("Our price (best child; see Data Check)", 8, "$#,##0.00"), ("BFCM 2025 lift", 9, '0.00"x"')), 4):
-    a = db.cell(row=i, column=6, value=lab); a.font = F(bold=True, color=C_SUB, size=8)
-    db.merge_cells(start_row=i, start_column=7, end_row=i, end_column=11)
-    b = db.cell(row=i, column=7, value=f'=IF($C$4="All","All products",{plook(col)})' if col == 3 else f'=IF($C$4="All","",{plook(col)})')
-    b.font = F(bold=(col == 3), size=9); b.alignment = Alignment(wrap_text=True, vertical="center")
-    if nf:
-        b.number_format = nf
-db.cell(row=9, column=6, value="Open the product tab:").font = F(bold=True, color=C_SUB, size=8)
-db.merge_cells("G9:K9")
-db["G9"] = f'=IF($C$4="All","",HYPERLINK("#\'"&{plook(2)}&"\'!A1",{plook(2)}))'
-db["G9"].font = F(color="0563C1", underline="single")
-for rr in range(4, 9):
-    db.row_dimensions[rr].height = 22
-db.row_dimensions[4].height = 30
-# KPI tiles
-rng = lambda col: f"Data!${col}${DR0}:${col}${DR1}"
-tiles = [("Competitors shown", f"=COUNTIF({rng('A')},TRUE)", "#,##0"),
-         ("Median price", f'=IFERROR(MEDIAN(IF(({rng("A")}=TRUE)*ISNUMBER({rng("N")}),{rng("N")})),"")', "$#,##0.00"),
-         ("Priced below us", f'=COUNTIFS({rng("A")},TRUE,{rng("R")},"<0")', "#,##0"),
-         ("List Price set", f'=COUNTIFS({rng("A")},TRUE,{rng("P")},">0")', "#,##0"),
-         ("List Price ≤12% over", f'=COUNTIFS({rng("A")},TRUE,{rng("P")},">0",{rng("P")},"<=0.12")', "#,##0"),
-         ("Est weekly units (sum)", f'=SUMIFS({rng("T")},{rng("A")},TRUE)', "#,##0"),
-         ("Keepa BFCM rows filled", f'=COUNTIFS({rng("A")},TRUE,{rng("AD")},">=0")', "#,##0"),
-         ("Avg BFCM 2025 discount", f'=IFERROR(AVERAGEIFS({rng("AD")},{rng("A")},TRUE),"")', "0.0%")]
-for i, (lab, fx, nf) in enumerate(tiles):
-    col = 12 + (i % 4) * 2 - 1 + 1
-    row = 4 + (i // 4) * 3
-    cA, cB = CL(col), CL(col + 1)
-    db.merge_cells(f"{cA}{row}:{cB}{row}"); db.merge_cells(f"{cA}{row + 1}:{cB}{row + 2}")
-    a = db[f"{cA}{row}"]; a.value = lab.upper(); a.font = F(size=7, bold=True, color=C_SUB); a.fill = FILL["tile"]; a.alignment = CENTER
-    b = db[f"{cA}{row + 1}"]; b.font = F(size=15, bold=True, color=C_INK); b.fill = FILL["tile"]; b.alignment = CENTER; b.number_format = nf
-    if "MEDIAN(IF(" in fx:
-        from openpyxl.worksheet.formula import ArrayFormula
-        b.value = ArrayFormula(f"{cA}{row + 1}", fx)
-    else:
-        b.value = fx
-# competitor gallery
-GR = 12
-db.merge_cells(f"B{GR - 1}:R{GR - 1}")
-db[f"B{GR - 1}"] = "COMPETITORS (first 80 matches, in tier then weekly-units order)"
-db[f"B{GR - 1}"].font = F(size=11, bold=True, color=C_NAVY); db[f"B{GR - 1}"].fill = SEC
-GH = [("#", 1, None), ("Image", 10, None), ("Brand · Tier", 7, None), ("Title", 9, None), ("Our product", 4, None), ("Mkt", 5, None), ("Price", 14, "$#,##0.00"),
-      ("List Price", 15, "$#,##0.00"), ("List % over", 16, "0%"), ("vs our price", 18, "+0%;-0%;0%"), ("BSR", 19, "#,##0"), ("Wk units", 20, "#,##0"),
-      ("Rating", 21, "0.0"), ("Reviews", 22, "#,##0"), ("Variations", 13, "#,##0"), ("We win / lose", 25, None), ("ASIN", 12, None)]
-for j, (h, src, nf) in enumerate(GH, 2):
-    c = db.cell(row=GR, column=j, value=h); c.font = F(bold=True, color="FFFFFF", size=8); c.fill = HDR; c.alignment = CENTER; c.border = BOX
-for k in range(1, 81):
-    rr = GR + k
-    db.row_dimensions[rr].height = IMG_ROW_H
-    m = f"MATCH({k},Data!$B${DR0}:$B${DR1},0)"
-    def gv(col):
-        x_ = f"INDEX(Data!${CL(col)}${DR0}:${CL(col)}${DR1},{m})"
-        return f'IFERROR(IF({x_}="","",{x_}),"")'
-    for j, (h, src, nf) in enumerate(GH, 2):
-        c = db.cell(row=rr, column=j); c.border = BOX; c.font = F(size=8); c.alignment = WRAP
-        if h == "#":
-            c.value = f'=IF({k}<=COUNTIF({rng("A")},TRUE),{k},"")'
-        elif h == "Image":
-            c.alignment = CENTER
-            c.value = (f'=IF(B{rr}="","",{gv(10)})' if NO_IMAGE_FORMULA else f'=IF(B{rr}="","",IFERROR(_xlfn.IMAGE({gv(10)}),"IMAGE COMING SOON"))')
-        elif h == "Brand · Tier":
-            c.value = f'=IF(B{rr}="","",{gv(7)}&CHAR(10)&{gv(8)})'
-            c.font = F(size=8, bold=True)
-        elif h == "We win / lose":
-            c.value = f'=IF(OR(B{rr}="",{gv(25)}=""),"",{gv(25)}&" / "&{gv(26)})'
+    da = deal_assumption(pid, mkt)
+    so_ = stock_outlook(pid, mkt)
+    c_ = so_["counts"]
+    vals = [f"{mkt}|{PINFO[pid][2]}", PINFO[pid][2], tname, title or f"{o.get('brand')} {o.get('name')}", good_img(img), p.get("brand") or o.get("brand"), parent, best,
+            len(our_variations(pid, mkt)), our_headline_price(pid, mkt, best, e["price"])[0], e["units_28d"], lf["lift"] if lf else None,
+            plan26_text(pid, mkt) or "Not in a deal", (da or {}).get("deal_std"), (da or {}).get("deal_peak"),
+            so_["on_hand"] if so_["rows"] else None, so_["inbound"] if so_["rows"] else None, so_["need"] if so_["rows"] else None, so_["short"] if so_["rows"] else None,
+            c_.get("Covered to Nov 30", 0), c_.get("Needs inbound in time", 0), c_.get("Short even with inbound", 0), c_.get("Out of stock now", 0),
+            e["contribution"], e["be_acos"]]
+    for j, v in enumerate(vals, 1):
+        lk.cell(row=lr, column=j, value=v)
+    lr += 1
+LK_RANGE, LK_KEYS = f"Lookup!$A$2:${CL(len(LKC))}${lr - 1}", f"Lookup!$A$2:$A${lr - 1}"
+
+def build_dashboard(mkt, sname, mcol, scol, pos):
+    """One dashboard per marketplace: product dropdown + our product panel + competitor gallery for that marketplace."""
+    cur = "C$" if mkt == "CA" else "$"
+    money = f'"{cur}"#,##0.00'
+    db = wb.create_sheet(sname, pos)
+    db.sheet_view.showGridLines = False
+    db.sheet_view.zoomScale = 90
+    db.sheet_properties.tabColor = "1F4E79" if mkt == "US" else "C00000"
+    W = [2, 13, 18, 34, 10, 9, 9, 8, 9, 9, 8, 7, 8, 9, 8, 8, 9, 14]
+    for i, w in enumerate(W, 1):
+        db.column_dimensions[CL(i)].width = w
+    db.merge_cells("B1:R1")
+    c = db["B1"]; c.value = f"BFCM 2026 Tracker · {'Amazon.com (US)' if mkt == 'US' else 'Amazon.ca (Canada)'}"; c.font = F(size=18, bold=True, color="FFFFFF")
+    c.fill = HDR; c.alignment = Alignment(vertical="center", indent=1)
+    db.row_dimensions[1].height = 34
+    db.merge_cells("B2:R2")
+    db["B2"] = "Pick a product in the yellow cell (brand, tier and family narrow the competitor list). Everything below updates instantly. Images show in Excel 365 and Google Sheets."
+    db["B2"].font = F(italic=True, color=C_SUB)
+    for i, (lab, name) in enumerate((("Product", f"Products_{mkt}"), ("Brand", "Brands"), ("Tier", "Tiers"), ("Family", "Families")), 4):
+        a = db.cell(row=i, column=2, value=lab); a.font = F(bold=True, color=C_SUB)
+        b = db.cell(row=i, column=3, value="DC B4" if lab == "Product" else "All")
+        b.fill = INPUT; b.font = F(bold=True, size=10, color=BLUE); b.border = BOX
+        dv = DataValidation(type="list", formula1=f"={name}", allow_blank=False); db.add_data_validation(dv); dv.add(b.coordinate)
+    other = "CA Dashboard" if mkt == "US" else "US Dashboard"
+    db["B9"] = f"→ {other}"; db["B9"].hyperlink = f"#'{other}'!A1"; db["B9"].font = F(color="0563C1", underline="single", size=9)
+    db["B10"] = "→ BFCM Stock"; db["B10"].hyperlink = "#'BFCM Stock'!A1"; db["B10"].font = F(color="0563C1", underline="single", size=9)
+    def lk_(col):
+        return f'IFERROR(INDEX({LK_RANGE},MATCH("{mkt}|"&$C$4,{LK_KEYS},0),{col}),"")'
+    db.merge_cells("E4:E10")
+    db["E4"] = (f'=IF($C$4="All","",{lk_(5)})' if NO_IMAGE_FORMULA else f'=IF($C$4="All","",IFERROR(_xlfn.IMAGE({lk_(5)}),"IMAGE COMING SOON"))')
+    db["E4"].alignment = CENTER; db["E4"].border = BOX
+    facts = (("Our product", 4, None), ("Brand · parent ASIN", None, None), ("Our price (best child)", 10, money), ("Units, last 28 days", 11, "#,##0"),
+             ("BFCM 2026 plan", 13, None), ("Assumed deal price (15% / 20%)", None, None), ("BFCM 2025 sales lift", 12, '0.00"x"'))
+    for i, (lab, col, nf) in enumerate(facts, 4):
+        a = db.cell(row=i, column=6, value=lab); a.font = F(bold=True, color=C_SUB, size=8)
+        db.merge_cells(start_row=i, start_column=7, end_row=i, end_column=11)
+        if lab == "Brand · parent ASIN":
+            fx = f'=IF($C$4="All","",{lk_(6)}&" · "&{lk_(7)})'
+        elif lab.startswith("Assumed deal"):
+            fx = f'=IF(OR($C$4="All",{lk_(14)}=""),"No deal planned",TEXT({lk_(14)},"{cur}0.00")&" (Nov 19-26) · "&TEXT({lk_(15)},"{cur}0.00")&" (Nov 27-30)")'
         else:
-            c.value = f'=IF(B{rr}="","",{gv(src)})'
+            fx = f'=IF($C$4="All","All products",{lk_(col)})' if col == 4 else f'=IF($C$4="All","",{lk_(col)})'
+        b = db.cell(row=i, column=7, value=fx); b.font = F(bold=(lab == "Our product"), size=9); b.alignment = Alignment(wrap_text=True, vertical="center")
         if nf:
-            c.number_format = nf
-db.column_dimensions["E"].width = 34
-db.conditional_formatting.add(f"K{GR + 1}:K{GR + 80}", FormulaRule(formula=[f'AND(ISNUMBER(K{GR + 1}),K{GR + 1}<0)'], fill=FILL["flag"]))
-db.conditional_formatting.add(f"J{GR + 1}:J{GR + 80}", FormulaRule(formula=[f'AND(ISNUMBER(J{GR + 1}),J{GR + 1}>0,J{GR + 1}<=0.12)'], fill=FILL["ok"]))
-db.freeze_panes = f"A{GR + 1}"
+            b.number_format = nf
+        db.row_dimensions[i].height = 22
+    db.row_dimensions[4].height = 30
+    db.cell(row=11, column=6, value="Open the product tab:").font = F(bold=True, color=C_SUB, size=8)
+    db.merge_cells("G11:K11")
+    db["G11"] = f'=IF($C$4="All","",HYPERLINK("#\'"&{lk_(3)}&"\'!A1",{lk_(3)}))'
+    db["G11"].font = F(color="0563C1", underline="single")
+    # stock tiles + competitor tiles
+    rng = lambda col: f"Data!${col}${DR0}:${col}${DR1}"
+    tiles = [("Stock at Amazon", f'=IF($C$4="All","",{lk_(16)})', "#,##0"), ("Inbound", f'=IF($C$4="All","",{lk_(17)})', "#,##0"),
+             ("Units needed to Nov 30", f'=IF($C$4="All","",{lk_(18)})', "#,##0"),
+             ("Variations short / out of stock", f'=IF($C$4="All","",{lk_(22)}&" / "&{lk_(23)})', "General"),
+             ("Competitors shown", f"=COUNTIF({rng(mcol)},TRUE)", "#,##0"),
+             ("Median competitor price", f'=IFERROR(MEDIAN(IF(({rng(mcol)}=TRUE)*ISNUMBER({rng("N")}),{rng("N")})),"")', money),
+             ("Priced below us", f'=COUNTIFS({rng(mcol)},TRUE,{rng("R")},"<0")', "#,##0"),
+             ("Avg BFCM 2025 discount", f'=IFERROR(AVERAGEIFS({rng("AD")},{rng(mcol)},TRUE),"")', "0.0%")]
+    for i, (lab, fx, nf) in enumerate(tiles):
+        col = 12 + (i % 4) * 2
+        row = 4 + (i // 4) * 3
+        cA, cB = CL(col), CL(col + 1)
+        db.merge_cells(f"{cA}{row}:{cB}{row}"); db.merge_cells(f"{cA}{row + 1}:{cB}{row + 2}")
+        a = db[f"{cA}{row}"]; a.value = lab.upper(); a.font = F(size=7, bold=True, color=C_SUB); a.fill = FILL["tile"]; a.alignment = CENTER
+        b = db[f"{cA}{row + 1}"]; b.font = F(size=15, bold=True, color=C_INK); b.fill = FILL["tile"]; b.alignment = CENTER; b.number_format = nf
+        if "MEDIAN(IF(" in fx:
+            from openpyxl.worksheet.formula import ArrayFormula
+            b.value = ArrayFormula(f"{cA}{row + 1}", fx)
+        else:
+            b.value = fx
+    GR = 14
+    db.merge_cells(f"B{GR - 1}:R{GR - 1}")
+    db[f"B{GR - 1}"] = "COMPETITORS (first 80 matches, in tier then weekly-units order)"
+    db[f"B{GR - 1}"].font = F(size=11, bold=True, color=C_NAVY); db[f"B{GR - 1}"].fill = SEC
+    GH = [("#", 1, None), ("Image", 10, None), ("Brand · Tier", 7, None), ("Title", 9, None), ("Our product", 4, None), ("Size · colour", None, None), ("Price", 14, money),
+          ("List Price", 15, money), ("List % over", 16, "0%"), ("vs our price", 18, "+0%;-0%;0%"), ("BSR", 19, "#,##0"), ("Wk units", 20, "#,##0"),
+          ("Rating", 21, "0.0"), ("Reviews", 22, "#,##0"), ("Variations", 13, "#,##0"), ("BFCM 2025 discount", 30, "0%"), ("ASIN", 12, None)]
+    for j, (h, src, nf) in enumerate(GH, 2):
+        c = db.cell(row=GR, column=j, value=h); c.font = F(bold=True, color="FFFFFF", size=8); c.fill = HDR; c.alignment = CENTER; c.border = BOX
+    for k in range(1, 81):
+        rr = GR + k
+        db.row_dimensions[rr].height = IMG_ROW_H
+        m = f"MATCH({k},Data!${scol}${DR0}:${scol}${DR1},0)"
+        def gv(col):
+            x_ = f"INDEX(Data!${CL(col)}${DR0}:${CL(col)}${DR1},{m})"
+            return f'IFERROR(IF({x_}="","",{x_}),"")'
+        for j, (h, src, nf) in enumerate(GH, 2):
+            c = db.cell(row=rr, column=j); c.border = BOX; c.font = F(size=8); c.alignment = WRAP
+            if h == "#":
+                c.value = f'=IF({k}<=COUNTIF({rng(mcol)},TRUE),{k},"")'
+            elif h == "Image":
+                c.alignment = CENTER
+                c.value = (f'=IF(B{rr}="","",{gv(10)})' if NO_IMAGE_FORMULA else f'=IF(B{rr}="","",IFERROR(_xlfn.IMAGE({gv(10)}),"IMAGE COMING SOON"))')
+            elif h == "Brand · Tier":
+                c.value = f'=IF(B{rr}="","",{gv(7)}&CHAR(10)&{gv(8)})'
+                c.font = F(size=8, bold=True)
+            elif h == "Size · colour":
+                c.value = f'=IF(B{rr}="","",TRIM({gv(32)}&" "&{gv(33)}))'
+            else:
+                c.value = f'=IF(B{rr}="","",{gv(src)})'
+            if nf:
+                c.number_format = nf
+    db.column_dimensions["E"].width = 34
+    db.conditional_formatting.add(f"K{GR + 1}:K{GR + 80}", FormulaRule(formula=[f'AND(ISNUMBER(K{GR + 1}),K{GR + 1}<0)'], fill=FILL["flag"]))
+    db.conditional_formatting.add(f"J{GR + 1}:J{GR + 80}", FormulaRule(formula=[f'AND(ISNUMBER(J{GR + 1}),J{GR + 1}>0,J{GR + 1}<=0.12)'], fill=FILL["ok"]))
+    db.freeze_panes = f"A{GR + 1}"
+    return db
+
+build_dashboard("US", "US Dashboard", "A", "B", 1)
+build_dashboard("CA", "CA Dashboard", "AH", "AI", 2)
 
 # ================================================================== Product Index
 pi = wb.create_sheet("Product Index", 2)
@@ -1961,27 +1984,22 @@ pi.freeze_panes = "C2"
 # ================================================================== README
 lines = [
     ("BFCM 2026 Competitor Research", dict(bold=True, size=16)),
-    ("Owner: Shayan Rana · Backup: Zarlish · v1 for Thu Oct 15, 2026 · Built from the Command Center (primary) and Data Dive on Oct 13, 2026", dict(italic=True)),
+    ("Owner: Shayan Rana · Backup: Zarlish · Final for Thu Oct 15, 2026 · Data as of Oct 13-15, 2026", dict(italic=True)),
     ("", None),
     ("How to use it", dict(bold=True, size=11)),
-    ("1. Dashboard - choose Product / Marketplace / Brand / Tier / Family in the yellow cells; the competitor gallery, images and tiles update. 'Open the product tab' jumps to the full analysis.", {}),
-    ("2. Product Index - every one of our products with its image, variations and BFCM 2025 result; click a tab name to open it.", {}),
-    (f"3. One tab per product and marketplace ({len(TABS)} tabs, named 'US ...' / 'CA ...'): 1 Our product · 2 Our variations (every SKU with image, size, colour, price, units) · 3 Our BFCM 2025 result · 4 Competitor landscape (image, title, ASINs, variations, price, List Price, STR band, same-size gap, BSR, units, reviews, search strategy, Prime Day visibility, BFCM 2025 columns) · 5 What it means for BFCM.", {}),
-    ("Data Check (4th tab) shows the as-of date and accuracy of every source, and a spot check of the tracker against the live Amazon search page. Our own prices: 'Price now' is live (Amazon page / Data Dive, dated); the Command Center price is its fee feed from Mar 2026 and is marked STALE wherever it is still used.", {}),
-    ("4. Data Gaps lists what is still missing (with the agent prompt that fills it); Data feeds the dashboard. The Keepa request list, lift inputs and the Nov 20 - Dec 1 event-watch log stay in BFCM_2026_Competitor_Tracker_v1.xlsx.", {}),
+    ("1. US Dashboard and CA Dashboard - pick a product in the yellow cell (brand, tier and family narrow the competitors). Our product panel, stock tiles, competitor tiles and the competitor gallery update. 'Open the product tab' jumps to the full analysis.", {}),
+    ("2. Product Index - every product in both marketplaces with its image, variations and BFCM 2025 result; click a tab name to open it.", {}),
+    ("3. BFCM Stock - every variation: stock at Amazon, inbound, sales a day, units needed to Nov 30, run-out date with and without inbound, and status. Filter by product or status.", {}),
+    (f"4. Product tabs - US tabs (blue) then CA tabs (orange), {len(TABS)} in all. Each has: 1 Our product (plan, assumed deal prices, stock outlook, deal pricing notes) · 2 Our variations · 3 Our BFCM 2025 result · 4 Competitor landscape.", {}),
+    ("5. Data Check - the as-of date, coverage and verification result of every data set; Data Gaps - what is still missing.", {}),
     ("", None),
-    ("Images", dict(bold=True, size=11)),
-    ("Images are live IMAGE-function formulas pointing at the verified Amazon image URLs held by Data Dive (seller catalog for our variations, niche research for competitors) and the Command Center thumbnail. They render in Excel 365 (Windows / Mac / web) and Google Sheets; older Excel and LibreOffice show an error in those cells instead of the picture.", {}),
-    ("A COMING SOON picture means no verified image is available yet - it is never replaced by another product's photo. The list of missing images is on Data Gaps; image_request.csv lists every image URL for download.", {}),
-    ("", None),
-    ("Colour legend", dict(bold=True, size=11)),
-    ("Green group = Command Center price/sales snapshot · Blue = Data Dive listing · Purple = Command Center search strategy (ASINsight) · Grey = formula · YELLOW / blue text = to fill (Keepa or page check).", {}),
-    ("", None),
-    ("Definitions", dict(bold=True, size=11)),
-    ("BFCM 2025 = Nov 20 - Dec 1, 2025; pre-event = Oct 21 - Nov 19, 2025. Our total sales are derived as ad spend / TACoS. Prime Day 2026 = Jun 23-26 vs Jun 1-20.", {}),
-    ("STR band: how far List Price sits above the price. Joseph's study put the reliable zone at <=12%, but the Oct 13 page check of all 154 core rivals found the strikethrough shown on 13 of 13 rivals at 12-25% and 11 of 13 above 25% (median shown premium 24%). Use the 'STR showing now?' column, not the band, to judge what shoppers see.", {}),
-    ("Search strategy (Command Center ASINsight): shared keywords, we win / lose, their keywords we miss, keywords they advertise and we don't, and their SP / SB / SB-video / Amazon's Choice reach. Exports can be up to 2 weeks apart; treat as direction, not exact share.", {}),
-    ("Estimated weekly units (Command Center) and 30-day units (Data Dive) are estimates - use them to rank competitors, not as exact sales.", {}),
+    ("Key rules", dict(bold=True, size=11)),
+    ("Our price = the latest catalog price read (US Oct 13, CA Oct 14); a variation without one shows no price.", {}),
+    ("Assumed BFCM 2026 deal price, until final prices are set: 15% off today's price on Nov 19-26 and 20% off on Nov 27-30 (Black Friday to Cyber Monday). Amazon sets the reference price the day before the deal and can use a lower reference, which would lower the deal price.", {}),
+    ("BFCM 2026 stock: demand at today's pace to Nov 18, then x the product's BFCM 2025 lift for Nov 19-30 (the account's lift where the product's own is missing or unreliable, labelled ASSUMED). Inbound has no arrival date, so each variation shows its run-out date with and without inbound.", {}),
+    ("BFCM 2025 = Nov 20 - Dec 1, 2025; pre-event = Nov 1-19 for prices and Oct 21 - Nov 19 for sales.", {}),
+    ("A COMING SOON picture means no verified photo yet - it is never replaced by another product's photo. Images render in Excel 365 and Google Sheets.", {}),
+    ("Estimated weekly units and sales bands for competitors are estimates - use them to rank competitors, not as exact sales.", {}),
 ]
 for i, (t, f) in enumerate(lines, 1):
     c = rd.cell(row=i, column=1, value=t)
@@ -2013,6 +2031,7 @@ G = [("Gap", "Why it matters", "How to fill it (AGENT_PROMPTS.md)"),
      ("Our 2026 deal plan per product", "Undercut flags and the forecast scenario", "Prompt 8"),
      ("Image files for the web dashboard", "The web dashboard cannot load images from Amazon; it needs the files", "Prompt 11 (download image_request.csv)")]
 for i, row in enumerate(G, 1):
+    row = row[:2]
     for j, v in enumerate(row, 1):
         c = gaps.cell(row=i, column=j, value=v); c.font = F(bold=(i == 1), color=("FFFFFF" if i == 1 else "000000")); c.border = BOX; c.alignment = WRAP
         if i == 1:
@@ -2102,6 +2121,8 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
       "Shown on each product tab under the BFCM 2026 plan: Amazon's current reference and max deal price, and the decision on each pre-BFCM deal (B4 US and CA, B6, S4, Satin Fitted, Quilt, SL B6, S6, Silk Pillowcase, SL Cooling Fitted)."),
      ("BFCM 2026 stock outlook", "SellerBoard MCP, Ecotero account, read-only (data/stock/sellerboard_inventory_2026-10-15.csv, sellerboard_inbound_shipments_2026-10-15.csv)", "2026-10-15", len(sb_inv), "Partial", "",
       f"Inventory: every page pulled (Amazon.com 2,177 rows, Amazon.ca 836); totals match SellerBoard's own account summary (US 70,217 FBA stock, 22,893 sent to FBA; CA 10,238 and 8,062). 78 open FBA shipments listed by Amazon status; SellerBoard has NO ETA field, so arrival dates are not shown and the outlook is given with and without inbound. No purchase orders in SellerBoard. Demand uses SellerBoard's velocity, which runs about 1.5x the 28-day units on the big products (includes Prime Big Deal Days and late-September deals), so the 28-day pace is shown beside it. BFCM lift = product's own 2025 lift where reliable, else ASSUMED at the account lift (US {ACCT_LIFT['US']:.2f}x, CA {ACCT_LIFT['CA']:.2f}x)."),
+     ("Stock outlook cross-check (inventory planner)", "", "2026-10-15", 44, "Exact", "",
+      "44 key variations (each product's best seller plus the biggest risks) checked against the inventory planner's own forecast: sales pace matches on every row; where we see a run-out before Nov 18, the planner's date is within 3 days on 17 of 19 (the other 2 within 15 days); where we show 'covered', the planner's run-out date is after Nov 30 on all 15. Our dates are earlier when the run-out falls in BFCM week because we add the BFCM lift."),
      ("Our prices", "Helium 10 Xray only (US Oct 13, CA Oct 14)", "2026-10-14", len(our_now), "Current", "",
       "Agreed Oct 15: Xray is the single source for our price. Amazon page check, Data Dive and SellerBoard listing prices are no longer shown as our price; a variation missing from Xray shows no price."),
      ("Our BFCM 2026 deal plan", "BM (Slack, Oct 15, 2026); data/deals/our_deals_bfcm2026_plan.csv", "2026-10-15", sum(len(v) for v in plan26.values()), "Partial", "",
@@ -2131,12 +2152,13 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
      ("Competitors' BFCM 2025 history (US)", "Keepa via agent (" + ", ".join(os.path.basename(f_) for f_ in _kfiles) + ")", "Nov 1 - Dec 5, 2025", len(keepa25), ("Partial" if any(x.get("bf_type") is None for x in US_recs) else "Exact"), "",
       f"{len(keepa25)} US competitor ASINs pulled (P1 70 + P2 240, complete); {sum(1 for x in US_recs if x.get('bf_type') is None)} US rows without a BFCM 2025 result (ASINs Keepa has no history for). Spot-checked Oct 14 against the Command Center's own Keepa (keepa_history): Buy Box, List Price, Lightning Deal, Prime Exclusive and coupon days identical; daily rank values differ slightly because the agent reads 23:59 UTC and the Command Center reads per Eastern day. Pre-event = Nov 1-19 (pull starts Nov 1), BFCM = Nov 20 - Dec 1. Daily end-of-day state, so a deal of a few hours can be missed. Coupons are listed, not netted into the low price.")]
 for i, r_ in enumerate(S):
+    r_ = (r_[0],) + tuple(r_[2:])   # the source column is never shown
     for j, v in enumerate(r_, 1):
         c = chk.cell(row=row, column=j, value=v); c.border = BOX; c.alignment = WRAP
         c.font = F(bold=(i == 0), color=("FFFFFF" if i == 0 else "000000"))
         if i == 0:
             c.fill = HDR
-        elif j == 5:
+        elif j == 4:
             c.fill = PatternFill("solid", fgColor={"Current": "C6EFCE", "Exact": "C6EFCE", "Fixed": "C6EFCE", "Partial": "FFEB9C", "Check": "FFEB9C", "Stale": "F8CBAD", "Missing": "F8CBAD"}.get(v, "FFFFFF"))
     row += 1
 row += 1
@@ -2262,9 +2284,32 @@ stk.freeze_panes = stk.cell(row=d0, column=4)
 stk.auto_filter.ref = f"A{det_hdr}:T{d1}"
 
 # order: README, Dashboard, Product Index, product tabs..., Data Gaps, Data
-wb.move_sheet("Data Gaps", offset=-(len(wb.sheetnames) - 1 - wb.sheetnames.index("Data Gaps")) + 0)
-wb.move_sheet("Data Check", offset=3 - wb.sheetnames.index("Data Check"))
-wb.move_sheet("BFCM Stock", offset=4 - wb.sheetnames.index("BFCM Stock"))
+# order: README, US Dashboard, CA Dashboard, Product Index, BFCM Stock, US product tabs, CA product tabs, Data Check, Data Gaps, data sheets
+_front = ["README", "US Dashboard", "CA Dashboard", "Product Index", "BFCM Stock"]
+_us = [t for p_, m_, t in TABS if m_ == "US"]
+_ca = [t for p_, m_, t in TABS if m_ == "CA"]
+_back = ["Data Check", "Data Gaps", "Data", "Lists", "Lookup"]
+_order = _front + _us + _ca + _back
+_rest = [w_ for w_ in wb._sheets if w_.title not in _order]
+wb._sheets = [wb[n_] for n_ in _order if n_ in wb.sheetnames] + _rest
+for t_ in _us:
+    wb[t_].sheet_properties.tabColor = "9DC3E6"
+for t_ in _ca:
+    wb[t_].sheet_properties.tabColor = "F4B183"
+wb["Data"].sheet_state = "hidden"
+wb.active = 0
+# never name a data source in the workbook (agreed Oct 15, 2026)
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from scrub import scrub as _scrub
+from openpyxl.comments import Comment as _Cm
+for ws_ in wb.worksheets:
+    for row_ in ws_.iter_rows():
+        for c_ in row_:
+            if isinstance(c_.value, str) and not c_.value.startswith("="):
+                c_.value = _scrub(c_.value)
+            if c_.comment is not None:
+                t_ = _scrub(c_.comment.text)
+                c_.comment = _Cm(t_, "Tracker") if t_ else None
 wb.save(OUT)
 print(json.dumps({"tabs": len(TABS), "other_mkt_photos": len(xmkt_img), "competitor_rows": len(records), "image_cells": len(img_rows), "unique_images": len(seen),
                   "comp_missing_img": len(missing_comp), "strategy_products": len(strat), "sku_files": len(skus),

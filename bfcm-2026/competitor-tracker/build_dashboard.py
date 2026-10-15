@@ -209,6 +209,14 @@ sources = [
     {"data": "Our BFCM 2025 stock", "source": "DataHub inventory + units sold on days with no snapshot", "asof": "Nov 15 – Dec 5, 2025", "rows": 27552},
 ]
 
+sys.path.insert(0, HERE)
+from scrub import scrub_obj
+for s_ in sources:
+    s_.pop("source", None)
+for p_ in products:
+    for x_ in p_.get("slack") or []:
+        x_.pop("source", None)
+products, comps, checks, sources = scrub_obj(products), scrub_obj(comps), scrub_obj(checks), scrub_obj(sources)
 payload = json.dumps({"products": products, "comps": comps, "summary": summary, "checks": checks, "sources": sources,
                       "built": "2026-10-14", "imagesLoaded": len(used_img)}, separators=(",", ":"), default=str)
 import base64, io

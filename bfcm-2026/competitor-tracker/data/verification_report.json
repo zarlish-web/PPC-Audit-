@@ -135,8 +135,17 @@
    "status": "Pass",
    "examples": [],
    "note": ""
+  },
+  {
+   "name": "Stock run-out dates vs the inventory planner",
+   "compared": "Covered rows run out after Nov 30 in the planner; run-out dates within 15 days (30 inside BFCM week, where we add the lift)",
+   "checked": 43,
+   "mismatches": 0,
+   "status": "Pass",
+   "examples": [],
+   "note": ""
   }
  ],
- "passed": 15,
- "total": 15
+ "passed": 16,
+ "total": 16
 }

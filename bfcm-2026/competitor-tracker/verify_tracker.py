@@ -127,7 +127,7 @@ for p in P["products"]:
     for v in p["vars"]:
         if v["live"]:
             tot += 1
-            if "Xray" not in (v.get("src") or "") or (p["mkt"], v["asin"]) not in xr:
+            if "catalog price" not in (v.get("src") or "") or (p["mkt"], v["asin"]) not in xr:
                 bad += 1; ex.append(f"{p['mkt']} {v['asin']}: price not from Xray ({v.get('src')})"); continue
             if not close(v["price"], xr[(p["mkt"], v["asin"])], 0.0001):
                 bad += 1; ex.append(f"{p['mkt']} {v['asin']}: {v['price']} vs Xray {xr[(p['mkt'], v['asin'])]}")
@@ -190,7 +190,7 @@ for p in P["products"]:
         raw = inv.get((p["mkt"], x["asin"]))
         need = x["vel"] * 34 + x["vel"] * st["lift"] * 12
         if not raw or not close(x["oh"], raw[0], 0.0001) or not close(x["ib"], raw[1], 0.0001) or not close(x["need"], need, 0.0001) \
-           or (x["velSrc"].startswith("SellerBoard") and not close(x["vel"], raw[2], 0.0001)):
+           or (not x["velSrc"].startswith("units last 28") and not close(x["vel"], raw[2], 0.0001)):
             bad += 1; ex.append(f"{p['mkt']} {x['asin']}")
 dups = [f"{p['mkt']} {p['short']} {a}" for p in P["products"] if p.get("stock26") for a, n in __import__("collections").Counter(x["asin"] for x in p["stock26"]["rows"]).items() if n > 1]
 bad += len(dups); ex += dups
@@ -210,6 +210,26 @@ if sws:
             bad += 1; ex.append(tab)
         r += 1
 check("BFCM 2026 stock, workbook vs dashboard", "On hand, inbound and units needed per product on the BFCM Stock tab (formulas) vs the dashboard", tot, bad, ex)
+
+# 8. Stock outlook vs the inventory planner's own run-out dates (44 key variations)
+import datetime as _dt
+pl = rd(os.path.join(D, "stock", "inventory_planner_check_2026-10-15.csv"))
+cur = {(p["mkt"], x["asin"]): x for p in P["products"] if p.get("stock26") for x in p["stock26"]["rows"]}
+tot = bad = 0; ex = []
+for r in pl:
+    x = cur.get((r["marketplace"], r["asin"]))
+    if not x or not r["sb_out_of_stock_date"]:
+        continue
+    tot += 1
+    ours, theirs = x["oos"], _dt.date.fromisoformat(r["sb_out_of_stock_date"])
+    if ours is None:
+        ok = theirs > _dt.date(2026, 11, 30)
+    else:
+        d_ = (theirs - _dt.date.fromisoformat(ours)).days
+        ok = 0 <= d_ <= (15 if ours <= "2026-11-18" else 30)
+    if not ok:
+        bad += 1; ex.append(f"{r['marketplace']} {r['asin']}: ours {ours} vs planner {theirs}")
+check("Stock run-out dates vs the inventory planner", "Covered rows run out after Nov 30 in the planner; run-out dates within 15 days (30 inside BFCM week, where we add the lift)", tot, bad, ex)
 
 rep = {"generated": "2026-10-15", "checks": results, "passed": sum(1 for r in results if r["status"] == "Pass"), "total": len(results)}
 json.dump(rep, open(os.path.join(D, "verification_report.json"), "w"), indent=1)
