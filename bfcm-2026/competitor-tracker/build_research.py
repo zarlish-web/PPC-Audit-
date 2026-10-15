@@ -1948,6 +1948,9 @@ def build_dashboard(mkt, sname, mcol, scol, pos):
     c = db["B1"]; c.value = f"BFCM 2026 Tracker · {'Amazon.com (US)' if mkt == 'US' else 'Amazon.ca (Canada)'}"; c.font = F(size=18, bold=True, color="FFFFFF")
     c.fill = HDR; c.alignment = Alignment(vertical="center", indent=1)
     db.row_dimensions[1].height = 34
+    db.merge_cells("B3:R3")
+    db["B3"] = "Owner: Shayan Rana · Prepared for: Erik Fisher & Joseph Fisher · Data as of Oct 13-15, 2026"
+    db["B3"].font = F(size=9, bold=True, color=C_NAVY)
     db.merge_cells("B2:R2")
     db["B2"] = "Pick a product in the yellow cell. Competitor type (Direct = same product and material as ours), brand, tier and family narrow the competitor list. Everything below updates instantly."
     db["B2"].font = F(italic=True, color=C_SUB)
@@ -2082,7 +2085,7 @@ pi.freeze_panes = "C2"
 # ================================================================== README
 lines = [
     ("BFCM 2026 Competitor Research", dict(bold=True, size=16)),
-    ("Owner: Shayan Rana · Backup: Zarlish · Final for Thu Oct 15, 2026 · Data as of Oct 13-15, 2026", dict(italic=True)),
+    ("Owner: Shayan Rana · Prepared for: Erik Fisher & Joseph Fisher · Backup: Zarlish · Final for Thu Oct 15, 2026 · Data as of Oct 13-15, 2026", dict(italic=True)),
     ("", None),
     ("How to use it", dict(bold=True, size=11)),
     ("1. US Dashboard and CA Dashboard - pick a product in the yellow cell (brand, tier and family narrow the competitors). Our product panel, stock tiles, competitor tiles and the competitor gallery update. 'Open the product tab' jumps to the full analysis.", {}),
