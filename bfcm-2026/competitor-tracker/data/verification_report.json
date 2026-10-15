@@ -39,7 +39,7 @@
   },
   {
    "name": "Our live variation prices",
-   "compared": "Dashboard vs the Helium 10 Xray exports (US Oct 13, CA Oct 14)",
+   "compared": "Every price shown is the Helium 10 Xray price (US Oct 13, CA Oct 14), the single price source",
    "checked": 1253,
    "mismatches": 0,
    "status": "Pass",

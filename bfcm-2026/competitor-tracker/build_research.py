@@ -165,6 +165,13 @@ for _f in sorted(glob.glob(f"{DATA}/our_prices/*.csv")):
                                  "rating": num_(_r.get("rating")), "reviews": num_(_r.get("reviews")),
                                  "label": _r.get("strikethrough_label"), "deal": _r.get("deal_badge"), "coupon": _r.get("coupon")}
 
+# Our price = Helium 10 Xray only (US Oct 13, CA Oct 14): the latest full read of our catalog, agreed Oct 15 as the single
+# price source. Other reads (Amazon page check, Data Dive, SellerBoard listing price) are kept in our_now_other for reference
+# but are never shown as our price; a variation missing from Xray shows no price.
+our_now_other = our_now
+our_now = {k: {"price": x["price"], "lp": None, "src": "Helium 10 Xray" + (" (Amazon.ca, CAD)" if k[0] == "CA" else ""), "date": x["date"],
+               "rating": x["rating"], "reviews": x["reviews"]} for k, x in xray.items() if x.get("price") is not None}
+
 # Amazon page status of our own variations (page-check notes): redirects / no Buy Box
 our_page_flag = {}   # (mkt, asin) -> text
 for _f in sorted(glob.glob(f"{DATA}/our_prices/*_notes.txt")):
@@ -222,9 +229,7 @@ def our_headline_price(pid, mkt, best, cc_price):
     n = our_now.get((mkt, best))
     if n:
         return n["price"], now_txt(n)
-    if cc_price is not None:
-        return cc_price, "Command Center blended, Mar 2026 - STALE"
-    return None, "No price"
+    return None, "No Xray price for this child"
 
 IMG_RE = re.compile(r"^https://[a-z0-9.-]*amazon\.com/images/I/[A-Za-z0-9+%._-]+\.(jpg|png|jpeg|gif)$")
 def good_img(u):
@@ -711,6 +716,13 @@ def plan26_text(pid, mkt):
         s_, e_ = d_["start"][5:].replace("-", "/"), d_["end"][5:].replace("-", "/")
         out.append(f"{d_['deal_type']} {s_}" + (f"-{e_}" if e_ != s_ else "") + (f" ({d_['status']}: {d_['note']})" if d_["status"] != "planned" else ""))
     return "; ".join(out) or None
+
+# Deal pricing evidence and pre-BFCM decisions from Slack (Umair Tahir's deal reviews, AB's STR tests), Oct 13-15, 2026
+slack_deal = {}   # (pid, mkt) -> rows; ("ALL", None) for account-wide rules
+_sd = f"{DATA}/deals/slack_deal_pricing_2026-10-15.csv"
+if os.path.exists(_sd):
+    for row in csv.DictReader(open(_sd, encoding="utf-8-sig")):
+        slack_deal.setdefault((int(row["pid"]), row["marketplace"]) if row["pid"] else ("ALL", None), []).append(row)
 
 ped_obs = {}   # (pid, mkt) -> Keepa price observations (not native campaigns)
 _po = f"{DATA}/deals/sleephoria_keepa_observations.csv"
@@ -1415,6 +1427,12 @@ for pid, mkt, tname in TABS:
     c.font = F(size=8.5, bold=True, color=("1F4E79" if p26 else "C00000")); c.alignment = WRAP
     ws.row_dimensions[r].height = 18
     r += 1
+    for sd_ in slack_deal.get((pid, mkt)) or []:
+        ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
+        c = ws.cell(row=r, column=1, value=f"{sd_['topic']} (Slack): {sd_['detail']} [{sd_['source']}]")
+        c.font = F(size=8.5, color="1F4E79"); c.alignment = WRAP
+        ws.row_dimensions[r].height = 30 if len(c.value) > 180 else 18
+        r += 1
     da = deal_assumption(pid, mkt)
     if da:
         cur_ = "C$" if mkt == "CA" else "$"
@@ -1976,6 +1994,12 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
       "Actual sales, units (organic / PPC / SD), ad cost, sessions and refunds per Amazon parent for the 30 days before, BFCM week and December, US and CA. Every file sums exactly to SellerBoard's period totals; 99%+ of US sales map to a tracked product. Actual lifts match the Command Center estimates (B4 4.25x, B6 2.49x, S4 2.64x). Amazon.ca amounts are in USD (SellerBoard converts)."),
      ("Our BFCM 2025 deals", "DataHub promotions (agent, v2), checked against Command Center amazon_promotions / amazon_coupons", "2026-10-14", None, "Exact", "",
       "Re-verified Oct 14 against the Command Center deal feed: the same 31 US campaigns, dates and units (6 Best Deals ran Nov 20 - Dec 1: B4 4,890 units, S4 4,311, B6 2,927, Satin Fitted 1,865, SSS4 1,152, S6 1,008; 3 Best Deals and 22 Lightning Deals cancelled). The Command Center coupon feed has no US coupons Nov 1 - Dec 5. Scheduled deal price is not in either feed; the hero child's actual price during the deal comes from Keepa (next row). Prime Exclusive Discounts on SL Bamboo 6pc and SL Cooling Comforter are Keepa observations only."),
+     ("How Amazon sets the BFCM deal price", "Slack: {src}".format(src=next(r_["source"] for r_ in slack_deal.get(("ALL", None), []) if r_["topic"] == "How Amazon sets the BFCM deal price")) if any(r_["topic"] == "How Amazon sets the BFCM deal price" for r_ in slack_deal.get(("ALL", None), [])) else "Slack", "2026-10-15", None, "Current", "",
+      next((r_["detail"] for r_ in slack_deal.get(("ALL", None), []) if r_["topic"] == "How Amazon sets the BFCM deal price"), "")),
+     ("STR (strikethrough) tests", "Slack: {src}".format(src=next(r_["source"] for r_ in slack_deal.get(("ALL", None), []) if r_["topic"] == "STR (strikethrough) tests")) if any(r_["topic"] == "STR (strikethrough) tests" for r_ in slack_deal.get(("ALL", None), [])) else "Slack", "2026-10-15", None, "Current", "",
+      next((r_["detail"] for r_ in slack_deal.get(("ALL", None), []) if r_["topic"] == "STR (strikethrough) tests"), "")),
+     ("Deal pricing and pre-BFCM decisions per product", "Slack threads of Umair Tahir (Oct 13-15); data/deals/slack_deal_pricing_2026-10-15.csv", "2026-10-15", sum(len(v) for k_, v in slack_deal.items() if k_[0] != "ALL"), "Current", "",
+      "Shown on each product tab under the BFCM 2026 plan: Amazon's current reference and max deal price, and the decision on each pre-BFCM deal (B4 US and CA, B6, S4, Satin Fitted, Quilt, SL B6, S6, Silk Pillowcase, SL Cooling Fitted)."),
      ("Our BFCM 2026 deal plan", "BM (Slack, Oct 15, 2026); data/deals/our_deals_bfcm2026_plan.csv", "2026-10-15", sum(len(v) for v in plan26.values()), "Partial", "",
       "US: 13 Best Deals Nov 19-30 (12 tracked products plus the Hanging Closet Organizer) and 3 Lightning Deals (S6 Nov 23 cancelled, trying for a Best Deal; Silk Pillowcase Nov 23; SL Cooling Fitted Nov 25). CA: 6 Best Deals Nov 19-30. Every tracked product not on this list is NOT in a deal (BM confirmed Oct 15), e.g. DC Cooling 4pc. The Hanging Closet Organizer is not a bedding product, so it stays outside this tracker. Deal price, depth, variations and committed units not given yet. Command Center amazon_promotions shows no Nov 15 - Dec 5, 2026 deals in either market yet."),
      ("Independent re-verification", "verify_tracker.py: recomputes from the raw files and compares with this workbook and the dashboard", "2026-10-15",

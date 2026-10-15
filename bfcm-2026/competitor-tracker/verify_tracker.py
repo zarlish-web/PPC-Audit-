@@ -125,11 +125,13 @@ for f, m in ((os.path.join(D, "xray", "helium10_xray_2026-10-13.csv"), "US"), (o
 tot = bad = 0; ex = []
 for p in P["products"]:
     for v in p["vars"]:
-        if v["live"] and "Xray" in (v.get("src") or "") and (p["mkt"], v["asin"]) in xr:
+        if v["live"]:
             tot += 1
+            if "Xray" not in (v.get("src") or "") or (p["mkt"], v["asin"]) not in xr:
+                bad += 1; ex.append(f"{p['mkt']} {v['asin']}: price not from Xray ({v.get('src')})"); continue
             if not close(v["price"], xr[(p["mkt"], v["asin"])], 0.0001):
                 bad += 1; ex.append(f"{p['mkt']} {v['asin']}: {v['price']} vs Xray {xr[(p['mkt'], v['asin'])]}")
-check("Our live variation prices", "Dashboard vs the Helium 10 Xray exports (US Oct 13, CA Oct 14)", tot, bad, ex)
+check("Our live variation prices", "Every price shown is the Helium 10 Xray price (US Oct 13, CA Oct 14), the single price source", tot, bad, ex)
 
 # 4. Account-level BFCM 2025 lift from the raw SellerBoard files
 for m in ("US", "CA"):

@@ -100,7 +100,7 @@ for pid, mkt, tname in br.TABS:
         "lift": lf.get("lift"), "tacos": lf.get("tacos_actual") if lf.get("tacos_actual") is not None else lf.get("tacos"),
         "preTacos": lf.get("pre_tacos_actual") if lf.get("pre_tacos_actual") is not None else lf.get("pre_tacos"),
         "hk": hk, "hkCut": (1 - hk["bf"] / hk["pre"]) if hk and hk.get("pre") and hk.get("bf") else None, "hkLine": hk_line,
-        "deals": deals, "plan26": br.plan26_text(pid, mkt), "da": br.deal_assumption(pid, mkt), "imgUrl": img, "stock": stock, "stockGap": gap, "sb": sbrows or None,
+        "deals": deals, "plan26": br.plan26_text(pid, mkt), "slack": [{"topic": r_["topic"], "detail": r_["detail"], "source": r_["source"]} for r_ in br.slack_deal.get((pid, mkt)) or []], "da": br.deal_assumption(pid, mkt), "imgUrl": img, "stock": stock, "stockGap": gap, "sb": sbrows or None,
         "vars": vrows, "colours": sorted(cols.values(), key=lambda c: -c["u28"]), "sizes": sorted(sizes.values(), key=lambda c: -c["u28"]),
     })
 
@@ -189,6 +189,7 @@ sources = [
     {"data": "Canadian competitors' BFCM 2025 history", "source": "Keepa .ca (agent), CAD", "asof": "Nov 1 – Dec 5, 2025", "rows": len(br.keepa25_ca)},
     {"data": "Our live prices", "source": "Helium 10 Xray (US Oct 13, CA Oct 14), Amazon page, SellerBoard listing price", "asof": "2026-10-13 / 14", "rows": sum(1 for p in products for v in p["vars"] if v["live"])},
     {"data": "Our BFCM 2025 sales", "source": "SellerBoard (Ecotero account)", "asof": "Oct 21 – Dec 31, 2025", "rows": len(br.sellerboard)},
+    {"data": "Deal pricing, pre-BFCM deal decisions, STR tests", "source": "Slack: Umair Tahir deal reviews (Oct 13–15), Abubakar Ishrat STR updates (Oct 13–15)", "asof": "2026-10-15", "rows": sum(len(v) for v in br.slack_deal.values())},
     {"data": "Our BFCM 2026 deal plan", "source": "BM (Slack)", "asof": "2026-10-15", "rows": sum(len(v) for v in br.plan26.values())},
     {"data": "Our BFCM 2025 deals", "source": "DataHub promotions, checked against Command Center amazon_promotions", "asof": "2026-10-14", "rows": sum(len(v) for v in br.deals25.values())},
     {"data": "Our heroes' BFCM 2025 price and rank", "source": "Command Center keepa_history", "asof": "Nov 1 – Dec 5, 2025", "rows": len(br.hero25)},

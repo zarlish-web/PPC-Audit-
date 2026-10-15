@@ -45,6 +45,9 @@ select,input[type=search]{font:inherit;font-size:13px;color:var(--ink);backgroun
 .facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px 18px;margin-top:12px}
 .fact .k{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-weight:500}
 .fact .v{font-family:var(--mono);font-size:14px;font-weight:500;overflow-wrap:anywhere}
+ul.slack{margin:6px 0 0;padding-left:18px;font-size:13px;line-height:1.5}
+ul.slack li{margin:4px 0}
+ul.slack .src{color:var(--muted);font-size:11.5px}
 .fact.wide{grid-column:span 2}
 .fact .s{font-size:11.5px;color:var(--muted)}
 .chipset{margin-top:14px}
@@ -237,6 +240,7 @@ function renderOurs(p) {
       ${p.sizes.length ? `<div class="chipset"><div class="k">Sizes (${p.sizes.length})</div><div class="chips">${p.sizes.map(c => `<button type="button" class="pick" data-size="${esc(c.name)}" aria-pressed="${vsize === c.name}">${esc(c.name)}<span class="n">${c.n} · ${fmtN(c.u28)} units</span></button>`).join("")}</div></div>` : ""}
       ${vars.length ? `<div class="vars" aria-label="Our variations">${vars.map(v => `<div class="var">${imgBox(v.img, v.asin, "", v.url)}<b>${esc([v.size, v.colour].filter(Boolean).join(" · ") || v.asin)}</b>${v.live ? `<span class="pr">${fmt$(v.price, m)}</span>` : `<span class="chip warn">no live price</span>`}${isNum(v.u28) ? ` · ${fmtN(v.u28)} units` : ""}<br>${lnk(v.asin, m)}</div>`).join("")}</div>
         <div class="sub">${vars.length} of ${p.vars.length} variations shown${vcol || vsize ? ` · filtered by ${esc([vsize, vcol].filter(Boolean).join(" · "))} · <a href="#" id="clearv">show all</a>` : ""} · sorted by units · live price for ${nLive}${tail ? ` (${tail} with no live price: out of stock, no Buy Box or not selling)` : ""}</div>` : `<div class="sub" style="margin-top:8px">No variation list for this product.</div>`}
+      ${p.slack && p.slack.length ? `<details class="more" open><summary>Deal pricing and decisions (Slack, Oct 13–15)</summary><ul class="slack">${p.slack.map(x => `<li><b>${esc(x.topic)}.</b> ${esc(x.detail)} <span class="src">${esc(x.source)}</span></li>`).join("")}</ul></details>` : ""}
       <details class="more"><summary>Our BFCM 2025 record</summary>
         ${sb.length ? `<div class="tablewrap"><table><thead><tr><th>SellerBoard${m === "CA" ? " (USD)" : ""}</th><th class="num">Sales</th><th class="num">Units</th><th class="num">Organic units</th><th class="num">Ad units</th><th class="num">Ad cost</th><th class="num">TACoS</th><th class="num">Sessions</th><th class="num">Unit session %</th><th class="num">Avg price</th></tr></thead>
           <tbody>${sb.map(w => `<tr><td>${esc(w.label)}</td><td class="num">${fmt$(w.sales)}</td><td class="num">${fmtN(w.units)}</td><td class="num">${fmtN(w.org)}</td><td class="num">${fmtN(w.ad)}</td><td class="num">${fmt$(w.adcost)}</td><td class="num">${fmtP(w.tacos, 1)}</td><td class="num">${fmtN(w.sessions)}</td><td class="num">${fmtP(w.usp, 1)}</td><td class="num">${fmt$(w.avg)}</td></tr>`).join("")}</tbody></table></div>` : ""}
