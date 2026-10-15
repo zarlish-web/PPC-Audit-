@@ -252,7 +252,7 @@ COMP_KEYS = ("brand", "title", "child", "size", "colour", "price", "lp", "gap", 
              "bf_type", "bf_dates", "bf_pre", "bf_low", "bf_disc_v", "bsr_pre", "bsr_bf", "bsr_lift_v", "bf_oos", "wk", "rating", "reviews",
              "bsr", "tier", "cls", "cls_why", "mat", "listed", "ful", "notes")
 out_products = []
-order = {"Core": 0, "Launched (partly live)": 1, "Other": 2, "Not launched": 3}
+order = {"Core": 0, "Launching (partly live)": 1, "Other": 2, "Not launched": 3}
 for p in sorted(products, key=lambda p: (p["mkt"] != "US", order.get(p["scope"], 4), p["family"], p["short"])):
     cs = sorted(by_prod.get((str(p["pid"]), p["mkt"]), []), key=lambda c: (CLS_ORDER.index(c.get("cls") or "Not classified"), -(c.get("wk") or 0)))
     st = p.get("stock26")
