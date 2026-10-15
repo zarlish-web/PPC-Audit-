@@ -70,6 +70,13 @@ button{font-family:var(--body);font-size:14px;padding:7px 12px;border-radius:6px
 button:hover{background:var(--accent-soft)}
 button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .small{font-size:13px;color:var(--muted)}
+figure{margin:0;display:flex;flex-direction:column;gap:8px;min-width:0}
+figure img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#fff}
+figcaption{font-size:13px;color:var(--muted)}
+.scroll{max-height:520px;overflow:auto;border:1px solid var(--line);border-radius:8px;background:#fff}
+.scroll img{border:0;border-radius:0}
+.evgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:640px){.evgrid{grid-template-columns:1fr}}
 </style>
 
 <div class="wrap">
@@ -172,6 +179,34 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
     <div class="step"><span class="when">Before Nov 17</span><h3>Cancel Scale Insights</h3><p>Download the archived data from both logins, confirm the Drive backup is complete, then cancel and check the next morning.</p></div>
   </div>
   <div class="callout good">Oct 17 renewal at $310.40 goes ahead as normal. Nothing else changes until approval.</div>
+</section>
+
+<section aria-labelledby="ev">
+  <span class="eyebrow">Evidence</span>
+  <h2 id="ev">Screenshots from the Scale Insights owner account</h2>
+  <figure>
+    <img src="evidence/ecotero-plan-card.jpg" alt="Scale Insights plan cards with Scale 50, $388 a month, 50 automated ASINs, marked Current Plan" loading="lazy">
+    <figcaption>Ecotero, Subscription tab: Scale 50 is the current plan, listed at $388/mo for 50 automated ASINs.</figcaption>
+  </figure>
+  <figure>
+    <img src="evidence/ecotero-active-subscription.jpg" alt="My active subscriptions: Active, 17-Sep-26 to 17-Oct-26, Scale 50 Monthly, $388.00 USD with 20% off" loading="lazy">
+    <figcaption>Ecotero, My active subscriptions: Scale 50 Monthly, $388 with the 20% discount, period Sep 17 – Oct 17, 2026.</figcaption>
+  </figure>
+  <figure>
+    <img src="evidence/automated-asins-us.jpg" alt="Automated ASINs page: You can automate 2001 ASINs with your Subscription Plan. ASINs automated: 222 (1779 remaining)" loading="lazy">
+    <figcaption>Automated ASINs page: 2,001 allowed, 222 automated, 1,779 remaining (the same counts show in the Canada view).</figcaption>
+  </figure>
+  <div class="evgrid">
+    <figure>
+      <div class="scroll"><img src="evidence/ecotero-transactions.jpg" alt="Ecotero transaction list from April 2022 to September 2026" loading="lazy"></div>
+      <figcaption>Ecotero transactions, Apr 2022 – Sep 2026 (scroll). Every charge since Jun 2025 is $310.40 for Scale 50 at $388/month.</figcaption>
+    </figure>
+    <figure>
+      <img src="evidence/inspiratek-header.jpg" alt="Scale Insights header showing the Inspiratek login" loading="lazy">
+      <div class="scroll"><img src="evidence/inspiratek-transactions.jpg" alt="Inspiratek transaction list ending March 9, 2025" loading="lazy"></div>
+      <figcaption>Inspiratek login: no active subscription, and the last charge was Mar 9, 2025 (scroll).</figcaption>
+    </figure>
+  </div>
 </section>
 
 <section aria-labelledby="src">
