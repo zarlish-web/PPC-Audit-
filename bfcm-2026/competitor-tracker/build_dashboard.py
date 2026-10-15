@@ -99,7 +99,7 @@ for pid, mkt, tname in br.TABS:
         "lift": lf.get("lift"), "tacos": lf.get("tacos_actual") if lf.get("tacos_actual") is not None else lf.get("tacos"),
         "preTacos": lf.get("pre_tacos_actual") if lf.get("pre_tacos_actual") is not None else lf.get("pre_tacos"),
         "hk": hk, "hkCut": (1 - hk["bf"] / hk["pre"]) if hk and hk.get("pre") and hk.get("bf") else None, "hkLine": hk_line,
-        "deals": deals, "stock": stock, "stockGap": gap, "sb": sbrows or None,
+        "deals": deals, "plan26": br.plan26_text(pid, mkt), "stock": stock, "stockGap": gap, "sb": sbrows or None,
         "vars": vrows, "colours": sorted(cols.values(), key=lambda c: -c["u28"]), "sizes": sorted(sizes.values(), key=lambda c: -c["u28"]),
     })
 
@@ -152,6 +152,8 @@ checks = [
      "detail": "Buy Box, List Price, Lightning Deal, Prime Exclusive and coupon days identical on the spot-checked ASINs (B01N9L2O9P, B0CRTM5ZDN). Daily rank differs slightly: the agent reads 23:59 UTC, the Command Center reads per Eastern day."},
     {"name": "Canadian competitors' Keepa", "compared": "Final keepa_history_ca.csv vs partial file + batches 1 – 4", "status": "Match",
      "detail": f"68 of 68 ASINs, 2,380 rows; every row identical to the earlier deliveries. Amazon.ca only, in CAD, kept apart from the US history (7 ASINs sell in both markets). {sum(1 for v in br.keepa25_ca.values() if v['bf_type'] == 'Not live in 2025')} were not yet tracked by Keepa in Nov 2025; B0FNR1QR4J now redirects to B0FNQW1YT4 and is not substituted."},
+    {"name": "Our BFCM 2026 deal plan", "compared": "BM's plan (Oct 15) vs Amazon's deal feed (Command Center amazon_promotions)", "status": "Difference noted",
+     "detail": "None of the planned US or CA deals for Nov 19 – 30, 2026 shows in Amazon's deal feed yet (0 deals Nov 15 – Dec 5 in both markets). Deal price, depth, variations and committed units are not in the plan yet."},
     {"name": "Our BFCM 2025 deals", "compared": "Deals file (DataHub) vs Command Center amazon_promotions", "status": "Match",
      "detail": "Same 31 US campaigns, dates and units: 6 Best Deals ran Nov 20 – Dec 1 (B4 4,890 units, S4 4,311, B6 2,927, Satin Fitted 1,865, SSS4 1,152, S6 1,008); 25 cancelled. No US coupons Nov 1 – Dec 5."},
     {"name": "Our hero prices, BFCM 2025", "compared": "Keepa price (Command Center) vs Best Deal start", "status": "Match",
@@ -177,6 +179,7 @@ sources = [
     {"data": "Canadian competitors' BFCM 2025 history", "source": "Keepa .ca (agent), CAD", "asof": "Nov 1 – Dec 5, 2025", "rows": len(br.keepa25_ca)},
     {"data": "Our live prices", "source": "Helium 10 Xray (US Oct 13, CA Oct 14), Amazon page, SellerBoard listing price", "asof": "2026-10-13 / 14", "rows": sum(1 for p in products for v in p["vars"] if v["live"])},
     {"data": "Our BFCM 2025 sales", "source": "SellerBoard (Ecotero account)", "asof": "Oct 21 – Dec 31, 2025", "rows": len(br.sellerboard)},
+    {"data": "Our BFCM 2026 deal plan", "source": "BM (Slack)", "asof": "2026-10-15", "rows": sum(len(v) for v in br.plan26.values())},
     {"data": "Our BFCM 2025 deals", "source": "DataHub promotions, checked against Command Center amazon_promotions", "asof": "2026-10-14", "rows": sum(len(v) for v in br.deals25.values())},
     {"data": "Our heroes' BFCM 2025 price and rank", "source": "Command Center keepa_history", "asof": "Nov 1 – Dec 5, 2025", "rows": len(br.hero25)},
     {"data": "Our BFCM 2025 stock", "source": "DataHub inventory + units sold on days with no snapshot", "asof": "Nov 15 – Dec 5, 2025", "rows": 27552},

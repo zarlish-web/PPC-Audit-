@@ -649,6 +649,20 @@ if os.path.exists(_dp):
         v_.sort(key=lambda c: c["start"])
     for row in csv.DictReader(open(f"{DATA}/deals/our_deals_bfcm2025_coverage.csv", encoding="utf-8-sig")):
         deals_cov[(int(row["product_id"]), row["marketplace"])] = row["coverage"]
+# Our BFCM 2026 deal plan (BM, Slack, Oct 15, 2026); not yet visible in Amazon's deal feed (Command Center amazon_promotions)
+plan26 = {}   # (pid, mkt) -> list of planned deals
+_pp = f"{DATA}/deals/our_deals_bfcm2026_plan.csv"
+if os.path.exists(_pp):
+    for row in csv.DictReader(open(_pp, encoding="utf-8-sig")):
+        if row["pid"]:
+            plan26.setdefault((int(row["pid"]), row["marketplace"]), []).append(row)
+def plan26_text(pid, mkt):
+    out = []
+    for d_ in plan26.get((pid, mkt)) or []:
+        s_, e_ = d_["start"][5:].replace("-", "/"), d_["end"][5:].replace("-", "/")
+        out.append(f"{d_['deal_type']} {s_}" + (f"-{e_}" if e_ != s_ else "") + (f" ({d_['status']}: {d_['note']})" if d_["status"] != "planned" else ""))
+    return "; ".join(out) or None
+
 ped_obs = {}   # (pid, mkt) -> Keepa price observations (not native campaigns)
 _po = f"{DATA}/deals/sleephoria_keepa_observations.csv"
 if os.path.exists(_po):
@@ -1296,6 +1310,13 @@ for pid, mkt, tname in TABS:
         c = ws.cell(row=r, column=1, value=txt); c.font = F(size=8.5, bold=True, color=C_INK); c.alignment = WRAP
         ws.row_dimensions[r].height = 30 if len(txt) > 180 else 18
         r += 1
+    p26 = plan26_text(pid, mkt)
+    ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
+    c = ws.cell(row=r, column=1, value=("BFCM 2026 plan (BM, Oct 15, 2026): " + p26 + ". Deal price and depth not yet given; not yet visible in Amazon's deal feed.")
+                if p26 else "BFCM 2026 plan (BM, Oct 15, 2026): no deal planned for this product.")
+    c.font = F(size=8.5, bold=True, color=("1F4E79" if p26 else "C00000")); c.alignment = WRAP
+    ws.row_dimensions[r].height = 18
+    r += 1
     hk = hero25.get((pid, mkt))
     if hk and (hk["pre"] or hk["rank_pre"]):
         ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
@@ -1847,6 +1868,8 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
       "Actual sales, units (organic / PPC / SD), ad cost, sessions and refunds per Amazon parent for the 30 days before, BFCM week and December, US and CA. Every file sums exactly to SellerBoard's period totals; 99%+ of US sales map to a tracked product. Actual lifts match the Command Center estimates (B4 4.25x, B6 2.49x, S4 2.64x). Amazon.ca amounts are in USD (SellerBoard converts)."),
      ("Our BFCM 2025 deals", "DataHub promotions (agent, v2), checked against Command Center amazon_promotions / amazon_coupons", "2026-10-14", None, "Exact", "",
       "Re-verified Oct 14 against the Command Center deal feed: the same 31 US campaigns, dates and units (6 Best Deals ran Nov 20 - Dec 1: B4 4,890 units, S4 4,311, B6 2,927, Satin Fitted 1,865, SSS4 1,152, S6 1,008; 3 Best Deals and 22 Lightning Deals cancelled). The Command Center coupon feed has no US coupons Nov 1 - Dec 5. Scheduled deal price is not in either feed; the hero child's actual price during the deal comes from Keepa (next row). Prime Exclusive Discounts on SL Bamboo 6pc and SL Cooling Comforter are Keepa observations only."),
+     ("Our BFCM 2026 deal plan", "BM (Slack, Oct 15, 2026); data/deals/our_deals_bfcm2026_plan.csv", "2026-10-15", sum(len(v) for v in plan26.values()), "Partial", "",
+      "US: 13 Best Deals Nov 19-30 (12 tracked products plus the Hanging Closet Organizer) and 3 Lightning Deals (S6 Nov 23 cancelled, trying for a Best Deal; Silk Pillowcase Nov 23; SL Cooling Fitted Nov 25). CA: 6 Best Deals Nov 19-30. Deal price, depth, variations and committed units not given yet. Command Center amazon_promotions shows no Nov 15 - Dec 5, 2026 deals in either market yet."),
      ("Our heroes' BFCM 2025 price and Best Seller Rank (US)", "Command Center keepa_history (data/keepa/keepa_history_ours_cc.csv)", "Nov 1 - Dec 5, 2025", len(hero25), "Exact", "",
       f"Daily Keepa for our {len(hero25)} US hero child ASINs, pulled Oct 14. Keepa holds no Buy Box series for our own ASINs, so price = lowest new offer (we are the only seller). Price drops on Nov 20 match the Best Deals start: B4 $74.99 to $71.24, B6 $79.99 to $75.99, S4 $29.95 to $25.46, S6 $33.95 to $32.25, Satin Fitted $16.95 to $15.15, SSS4 $33.95 to $31.41. No price history for Bamboo Fitted, Decolure Cooling 4pc, CL Pillowcases, Linen Curtains and Quilt Set in this window."),
      ("Our BFCM 2025 stock", "DataHub inventory, revision 2 (agent) + data/stock/our_stock_bfcm2025_missing_dates_bracketed.csv", "2026-10-14", None, "Partial", "", "US Nov 26, 27, Dec 1 and CA Nov 24, 29, 30 have no snapshot. Filled by inference (data/stock/our_stock_bfcm2025_missing_dates_combined.csv) from units sold that day (agent, DataHub amazon_sales, 1,761 variation-days with a sale) and the readings either side: 3,503 of 3,936 variation-days in stock, 39 out of stock, 386 unknown (low or no stock either side and no sale), and 8 sold despite 0 units on both sides (inbound stock arriving that day, e.g. B4 Queen Mid Grey B0BZQ18QJB sold 87 on Cyber Monday). Stock unit columns stay blank for these days."),
