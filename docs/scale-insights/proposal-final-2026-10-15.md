@@ -22,7 +22,7 @@ Sources:
   - No keyword-tracking plan.
 
 **2. What we get and use**
-• The account allows **2,001 automated ASINs, with 222 in use** (123 US, 98 CA, 1 MX). Scale 50 normally allows 50, so this is most likely carried over from our Scale 500 period. **We are not overpaying. We get far more than we pay for.**
+• The Automated ASINs page shows **2,001 slots, with 222 child ASINs in use** (123 US, 98 CA, 1 MX). Those 222 children belong to **about 30 parent products** (estimate from product names). Either Scale 50 counts parents (we use ~30 of 50), or the 2,001 limit is carried over from our Scale 500 period. **Either way we're within the plan, so there's no overpayment and no refund case.** I've asked Scale Insights which one it is.
 • We use **dayparting only** (the overnight pause, confirmed live in Marketing Stream Oct 6–7). The bid and budget rules that were overriding our manual changes (Aug 25 review) are all removed.
 • The 2022–2026 history is backed up to Drive (Shayan Rana, Oct 1): <https://drive.google.com/drive/folders/14jrmIifOSSjIWWuv2-dNAut6vaCywgZa|link>.
 
