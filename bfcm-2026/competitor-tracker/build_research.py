@@ -49,7 +49,7 @@ PINFO = {p[0]: p for p in PRODUCTS}
 # Scope confirmed by Shayan, Oct 14, 2026: the core BFCM set, and products not launched yet (no live price expected)
 CORE = {59, 30, 73, 37, 31, 38, 32, 39, 48, 45, 42, 43, 44}   # DC bamboo + satin, SS-B6, SS-S4, all cooling (DC + SL)
 NOT_LAUNCHED = {36, 74, 76, 40}                               # SL B4, SL Satin 6pc, SL Cooling 6pc, SL Bamboo Pillowcase
-LAUNCHING = {69}                                              # CL Cooling Sheets: only part of the family is live
+LAUNCHING = set()                                             # CL Cooling Sheets launched Oct 15, 2026 (all 60 children live)
 def scope_of(pid):
     return ("Core" if pid in CORE else "Not launched" if pid in NOT_LAUNCHED else "Launching (partly live)" if pid in LAUNCHING else "Other")
 
@@ -172,6 +172,12 @@ our_now_other = our_now
 our_now = {k: {"price": x["price"], "lp": None, "src": "Helium 10 Xray" + (" (Amazon.ca, CAD)" if k[0] == "CA" else ""), "date": x["date"],
                "rating": x["rating"], "reviews": x["reviews"]} for k, x in xray.items() if x.get("price") is not None}
 
+# Confirmed launch prices (launch thread, final confirmation Oct 15, 2026: live on all 60 children with the Buy Box)
+launch_price = {}
+for _f in sorted(glob.glob(f"{DATA}/ours/*_launch_price_*.csv")):
+    for _r in csv.DictReader(open(_f, encoding="utf-8-sig")):
+        launch_price[(_r["marketplace"], int(_r["pid"]), _r["size"])] = float(_r["price"])
+
 # Amazon page status of our own variations (page-check notes): redirects / no Buy Box
 our_page_flag = {}   # (mkt, asin) -> text
 for _f in sorted(glob.glob(f"{DATA}/our_prices/*_notes.txt")):
@@ -212,6 +218,16 @@ for _f in sorted(glob.glob(f"{DATA}/our_prices/*_stock_*.csv")):
 def now_txt(n):
     return f"{n['src']}, {n['date']}" if n else None
 
+# Launched since the catalog pull: the live launch title and stage (launch thread, Listing B, live Oct 15, 2026)
+LAUNCH_OVERRIDE = {(69, "US"): {"title": "COOLINENS Cooling Sheets Queen Size | 4 Piece Set for Hot Sleepers", "stage": "Launched Oct 15, 2026"}}
+def our_title_and_image(pid, mkt):
+    title, img, best, parent = _our_title_and_image(pid, mkt)
+    ov = LAUNCH_OVERRIDE.get((pid, mkt))
+    return ((ov["title"] if ov else title), img, best, parent)
+def our_stage(pid, mkt, p, o):
+    ov = LAUNCH_OVERRIDE.get((pid, mkt))
+    return ov["stage"] if ov else (p.get("stage") or o.get("stage"))
+
 def amazon_parent(pid, mkt):
     """Real Amazon parent ASIN: the parent the Data Dive catalog shows for our SKU children (Command Center's
     'parent_asin' is one of our child ASINs, not the Amazon parent)."""
@@ -226,10 +242,13 @@ def amazon_parent(pid, mkt):
 
 def our_headline_price(pid, mkt, best, cc_price):
     """Live price of the best-selling child when held; otherwise the Command Center blended price, labelled stale."""
-    n = our_now.get((mkt, best))
-    if n:
-        return n["price"], now_txt(n)
-    return None, "No Xray price for this child"
+    for v_ in our_variations(pid, mkt):
+        if v_["asin"] == best and v_.get("price_now") is not None:
+            return v_["price_now"], v_["now_src"]
+    lq = launch_price.get((mkt, pid, "Queen"))
+    if lq is not None:
+        return lq, "Queen launch price, live Oct 15, 2026"
+    return None, "No current price for this child"
 
 IMG_RE = re.compile(r"^https://[a-z0-9.-]*amazon\.com/images/I/[A-Za-z0-9+%._-]+\.(jpg|png|jpeg|gif)$")
 def good_img(u):
@@ -279,7 +298,7 @@ def fmt(x, kind="$"):
     return f"${x:,.2f}" if kind == "$" else f"{x:.0%}" if kind == "%" else f"{x:,.0f}"
 
 # ------------------------------------------------------------------ styles
-FONT = "Arial"
+FONT = "Comfortaa"   # agreed Oct 15, 2026; renders in Google Sheets and wherever the font is installed (Excel substitutes otherwise)
 def F(**k):
     k.setdefault("size", 9)
     return Font(name=FONT, **k)
@@ -384,7 +403,7 @@ def our_profile(pid, mkt):
     o = (cc.get((pid, mkt)) or cc.get((pid, "US")) or {}).get("our", {})
     return p, o
 
-def our_title_and_image(pid, mkt):
+def _our_title_and_image(pid, mkt):
     p, o = our_profile(pid, mkt)
     cat = catalog.get(mkt, {}) or {}
     best = (p.get("thumbnail") or {}).get("childAsin") or o.get("best_child_asin")
@@ -449,6 +468,9 @@ def our_variations(pid, mkt):
             r["be_acos"] = r["be_acos"] / 100
         n = our_now.get((mkt, r["asin"]))
         r["price_now"], r["now_src"] = (n["price"], now_txt(n)) if n else (None, None)
+        lp_ = launch_price.get((mkt, pid, r.get("size")))
+        if lp_ is not None:   # launched product: the confirmed launch price, live on every child (all colours) since Oct 15
+            r["price_now"], r["now_src"] = lp_, "launch price, live Oct 15, 2026"
         if (mkt, r["asin"]) in our_page_flag:
             r["status"] = our_page_flag[(mkt, r["asin"])]
         xr = xray.get((mkt, r["asin"]))
@@ -1190,8 +1212,72 @@ def stock_outlook(pid, mkt):
     stock26[(pid, mkt)] = out
     return out
 
+# ------------------------------------------------------------------ competitor classification: direct vs alternative
+# A competitor is DIRECT only when it sells the same product type in the same material family as ours. Material comes from
+# the competitor's own product page (material attribute) where checked, else from its title; product type from the title.
+OUR_MATERIAL = {   # (material class, how we know)
+    **{p: ("Bamboo viscose", "our listing: viscose from bamboo") for p in (59, 30, 32, 36, 73, 40)},
+    **{p: ("Satin (polyester)", "our listing: polyester satin") for p in (37, 31, 39, 74, 38)},
+    55: ("Silk", "our listing: mulberry silk"), 56: ("Silk", "our listing: silk"), 57: ("Silk", "our listing: silk"),
+    69: ("Synthetic cooling knit", "product spec: CooLoom, 90% nylon / 10% spandex"),
+    70: ("Synthetic cooling knit", "same CooLoom cooling fabric as the CooLinens sheets"),
+    **{p: ("Synthetic cooling knit", "BreezeWeave cooling fabric (nylon-spandex family, as CooLoom)") for p in (45, 76, 44, 42, 43)},
+    48: ("Microfiber / polyester", "different material from the Sleephoria cooling sheets: microfiber with some bamboo viscose"),
+}
+OUR_TYPE = {**{p: "Sheet set" for p in (59, 30, 32, 36, 37, 31, 39, 74, 48, 45, 76, 69)}, 73: "Fitted sheet", 38: "Fitted sheet", 44: "Fitted sheet",
+            40: "Pillowcase", 55: "Pillowcase", 70: "Pillowcase", 43: "Pillowcase", 42: "Comforter"}
+MAT_RULES = [   # order matters: first match wins
+    ("Synthetic cooling knit", r"nylon|spandex|elastane|polyamide|arc-?chill|blendtek|q-?max|ice silk|coolmax|cool-?touch fib"),
+    ("Lyocell / eucalyptus", r"lyocell|tencel|eucalyptus"),
+    ("Bamboo viscose", r"bamboo|rayon|viscose"),
+    ("Silk", r"\bsilk\b|mulberry"),
+    ("Satin (polyester)", r"satin"),
+    ("Linen", r"linen|flax"),
+    ("Cotton", r"cotton|percale|sateen weave|egyptian"),
+    ("Microfiber / polyester", r"microfiber|microfibre|polyester|brushed"),
+]
+def material_of(x):
+    page = ((comp_det.get(x["child"]) or {}).get("material") or "").strip()
+    for txt, how in ((page, "product page material"), (x.get("title") or "", "title")):
+        t = txt.lower()
+        for cls, pat in MAT_RULES:
+            if re.search(pat, t):
+                if cls == "Synthetic cooling knit" and re.search(r"bamboo|rayon|viscose", t) and not re.search(r"nylon|spandex|elastane|arc-?chill|blendtek", t):
+                    continue
+                return cls, f"{how}: {txt[:60]}"
+    return None, "material not stated on the page or in the title"
+def type_of(x):
+    t = (x.get("title") or "").lower()
+    if re.search(r"pillow ?cases?\b", t) and not re.search(r"sheet", t):
+        return "Pillowcase"
+    if re.search(r"comforter|duvet|blanket|quilt", t) and not re.search(r"sheet set|sheets set", t):
+        return "Comforter"
+    if re.search(r"fitted sheet only|fitted sheet\b", t) and not re.search(r"\bset\b|piece|pcs|\bpc\b|pillowcase", t):
+        return "Fitted sheet"
+    if re.search(r"sheet", t):
+        return "Sheet set" if re.search(r"\bset\b|piece|pcs|\bpc\b|sheets\b", t) else None
+    return None
+CLS_RANK = {"Direct": 0, "Material not verified": 1, "Alternative material": 2, "Different product type": 3, "Not classified": 4}
+for x in records:
+    om = OUR_MATERIAL.get(x["pid"])
+    ot = OUR_TYPE.get(x["pid"])
+    if not om or not ot:
+        x["cls"], x["cls_why"], x["mat"] = "Not classified", "Not a sheet, pillowcase or comforter product; competitors are compared on price and sales only.", None
+        continue
+    mat, how = material_of(x)
+    ct = type_of(x)
+    x["mat"] = mat
+    if ct and ct != ot:
+        x["cls"], x["cls_why"] = "Different product type", f"Sells a {ct.lower()}; ours is a {ot.lower()}."
+    elif mat is None:
+        x["cls"], x["cls_why"] = "Material not verified", f"{ot} like ours, but the material is not stated ({how}); verify before treating as direct."
+    elif mat == om[0]:
+        x["cls"], x["cls_why"] = "Direct", f"Same product ({ot.lower()}) in the same material family: {mat} ({how}); ours: {om[1]}."
+    else:
+        x["cls"], x["cls_why"] = "Alternative material", f"{ot} in {mat} ({how}); ours is {om[0]} ({om[1]}). Shopper may cross-shop, but not like-for-like."
+
 tier_rank = {"Aspirational": 0, "Beatable": 1, "Poor": 2, "Untiered": 3}
-records.sort(key=lambda r: ([p[0] for p in PRODUCTS].index(r["pid"]), tier_rank.get(r["tier"], 3), -(r["wk"] or 0)))
+records.sort(key=lambda r: ([p[0] for p in PRODUCTS].index(r["pid"]), CLS_RANK.get(r.get("cls"), 4), tier_rank.get(r["tier"], 3), -(r["wk"] or 0)))
 
 # our same-size price per product
 our_size_price, our_blend = {}, {}
@@ -1215,7 +1301,9 @@ def _live(pid, mkt, sz):
 for r in records:
     m_ = r["mkt"]
     bys = our_size_price.get((r["pid"], m_), {})
-    want = r["size"] if r["size"] else "Queen"
+    _m = re.match(r"\s*(California King|Cal King|Twin XL|King|Queen|Full|Twin)\b", r["size"] or "", re.I)
+    want = {"cal king": "California King"}.get(_m.group(1).lower(), _m.group(1).title()) if _m else ("Queen" if not r["size"] else r["size"])
+    want = {"Twin Xl": "Twin XL"}.get(want, want)
     lead = f"Same size ({want})" if r["size"] else "Size not stated - vs our Queen"
     if m_ == "CA":
         lead += ", CAD"
@@ -1246,6 +1334,9 @@ COMP_COLS = [
     ("brand", "Brand", 14, "id", None, None),
     ("title", "Product title", 34, "id", None, None),
     ("tier", "Tier", 9, "id", "Command Center mapping tier against this product.", None),
+    ("cls", "Competitor type", 12, "id", "Direct = same product type and same material family as ours. Alternative material = same product type, different material (cross-shopped, not like-for-like). Material not verified = no material on the page or title. Different product type = e.g. fitted sheet only vs our set.", None),
+    ("mat", "Material", 12, "id", "Material family from the competitor's product page where checked, else its title.", None),
+    ("cls_why", "Why this type", 30, "id", None, None),
     ("parent", "Parent ASIN", 11, "id", None, None),
     ("child", "Tracked child ASIN", 11, "id", None, None),
     ("size", "Size", 8, "id", "From the competitor's Amazon page (variation attributes, Oct 14, 2026) where captured; otherwise parsed from the title.", None),
@@ -1353,7 +1444,7 @@ for pid, mkt, tname in TABS:
     cc_asof = (cc_dates[-1] if cc_dates else "date unknown")
     facts = [
         ("Title", title or "Title not in catalog pull - see Data Gaps"), ("Brand", brand), ("Marketplace", "Amazon.com (US)" if mkt == "US" else "Amazon.ca (CA)"),
-        ("Parent ASIN (Amazon)", parent or "Not in catalog pull"), ("Best-selling child ASIN", best), ("Stage", p.get("stage") or o.get("stage")),
+        ("Parent ASIN (Amazon)", parent or "Not in catalog pull"), ("Best-selling child ASIN", best), ("Stage", our_stage(pid, mkt, p, o)),
         ("Total variations (SKUs)", p.get("skuCount") or o.get("sku_count")),
         ("Sizes", ", ".join(p.get("sizes") or o.get("sizes") or []) or None),
         ("Colours", ", ".join(p.get("colours") or []) or (f"{o.get('colour_count')} colours" if o.get("colour_count") else None)),
@@ -1655,7 +1746,7 @@ for pid, mkt, tname in TABS:
         vals = dict(x, listed=listed, seen=seen)
         for key, hdr, w, grp, com, nf in COMP_COLS[1:]:
             c = ws.cell(row=r, column=CK[key])
-            c.border = BOX; c.font = F(); c.alignment = WRAP if key in ("title", "hero", "top_kw", "basis") else Alignment(vertical="top")
+            c.border = BOX; c.font = F(); c.alignment = WRAP if key in ("title", "hero", "top_kw", "basis", "cls_why") else Alignment(vertical="top")
             if grp in ("kp", "str"):
                 c.fill = INPUT; c.font = F(color=BLUE)
                 if grp == "str" and vals.get(key) is not None:
@@ -1668,6 +1759,9 @@ for pid, mkt, tname in TABS:
                 c.value = vals[key]
             if nf:
                 c.number_format = nf
+        if "cls" in CK and x.get("cls"):
+            ws.cell(row=r, column=CK["cls"]).fill = PatternFill("solid", fgColor={"Direct": "C6EFCE", "Alternative material": "DDEBF7", "Material not verified": "FFEB9C", "Different product type": "EDEDED"}.get(x["cls"], "FFFFFF"))
+            ws.cell(row=r, column=CK["cls"]).font = F(bold=(x["cls"] == "Direct"))
         for key in ("parent", "child"):   # clickable product page on the competitor's own marketplace
             if vals.get(key):
                 c = ws.cell(row=r, column=CK[key])
@@ -1773,7 +1867,7 @@ dsh = wb.create_sheet("Data")
 DCOLS = ["match", "seq", "pid", "Product", "Marketplace", "Family", "Brand", "Tier", "Title", "Image URL", "Parent ASIN", "Child ASIN",
          "Variations", "Price", "List Price", "List % over", "Our price same size", "Gap vs ours", "BSR", "Est weekly units", "Rating", "Reviews",
          "Search traffic", "Organic share", "We win", "We lose", "KWs they advertise we don't", "PD26 vis lift", "Tab", "BFCM25 discount", "BFCM25 BSR lift", "Size", "Colour",
-         "match CA", "seq CA"]
+         "match CA", "seq CA", "Competitor type", "Why this type"]
 for j, h in enumerate(DCOLS, 1):
     c = dsh.cell(row=1, column=j, value=h); c.font = F(bold=True, color="FFFFFF"); c.fill = HDR
 DR0 = 2
@@ -1785,7 +1879,7 @@ for i, x in enumerate(records):
             x["var"], x["price"], x["lp"], None, x.get("our_same"), None, x["bsr"], x["wk"], x["rating"], x["reviews"],
             x["asi_tr"], x["org_pct"], x["we_win"], x["we_lose"], x["ppc_none"],
             (x["pd"] / x["pd_pre"]) if isinstance(x.get("pd"), (int, float)) and (x.get("pd_pre") or 0) >= 5 else None, tab,
-            ref("bf_disc"), ref("bsr_lift"), x.get("size"), x.get("colour")]
+            ref("bf_disc"), ref("bsr_lift"), x.get("size"), x.get("colour"), None, None, x.get("cls"), x.get("cls_why")]
     for j, v in enumerate(vals, 1):
         dsh.cell(row=rr, column=j, value=v).font = F(size=8)
     dsh[f"P{rr}"] = f'=IF(AND(ISNUMBER(O{rr}),ISNUMBER(N{rr}),N(N{rr})>0),O{rr}/N{rr}-1,"")'
@@ -1793,7 +1887,7 @@ for i, x in enumerate(records):
     # filter match against the Dashboard selectors (C4 product, C5 marketplace, C6 brand, C7 tier, C8 family)
     for mk_, sh_, mc_, sc_ in (("US", "US Dashboard", "A", "B"), ("CA", "CA Dashboard", "AH", "AI")):
         dsh[f"{mc_}{rr}"] = (f"=AND(E{rr}=\"{mk_}\",OR('{sh_}'!$C$4=\"All\",'{sh_}'!$C$4=D{rr}),OR('{sh_}'!$C$5=\"All\",'{sh_}'!$C$5=G{rr}),"
-                             f"OR('{sh_}'!$C$6=\"All\",'{sh_}'!$C$6=H{rr}),OR('{sh_}'!$C$7=\"All\",'{sh_}'!$C$7=F{rr}))")
+                             f"OR('{sh_}'!$C$6=\"All\",'{sh_}'!$C$6=H{rr}),OR('{sh_}'!$C$7=\"All\",'{sh_}'!$C$7=F{rr}),OR('{sh_}'!$C$8=\"All\",'{sh_}'!$C$8=AJ{rr}))")
         dsh[f"{sc_}{rr}"] = f"=IF({mc_}{rr},{(sc_ + str(rr - 1)) if rr > DR0 else '0'}+1,{(sc_ + str(rr - 1)) if rr > DR0 else '0'})"
 DR1 = DR0 + len(records) - 1
 dsh.freeze_panes = "C2"
@@ -1804,7 +1898,8 @@ lst = wb.create_sheet("Lists")
 lst.sheet_state = "hidden"
 brands = ["All"] + sorted({x["brand"] for x in records if x["brand"]}, key=str.lower)
 LISTS = (("Products_US", ["All"] + [PINFO[p][2] for p, m, t in TABS if m == "US"]), ("Products_CA", ["All"] + [PINFO[p][2] for p, m, t in TABS if m == "CA"]),
-         ("Brands", brands), ("Tiers", ["All", "Aspirational", "Beatable", "Poor", "Untiered"]), ("Families", ["All", "Bamboo", "Satin", "Silk", "Cooling", "Other"]))
+         ("Brands", brands), ("Tiers", ["All", "Aspirational", "Beatable", "Poor", "Untiered"]), ("Families", ["All", "Bamboo", "Satin", "Silk", "Cooling", "Other"]),
+         ("Types", ["All", "Direct", "Alternative material", "Material not verified", "Different product type", "Not classified"]))
 for j, (name, vals) in enumerate(LISTS, 1):
     for i, v in enumerate(vals, 1):
         lst.cell(row=i, column=j, value=v)
@@ -1854,9 +1949,9 @@ def build_dashboard(mkt, sname, mcol, scol, pos):
     c.fill = HDR; c.alignment = Alignment(vertical="center", indent=1)
     db.row_dimensions[1].height = 34
     db.merge_cells("B2:R2")
-    db["B2"] = "Pick a product in the yellow cell (brand, tier and family narrow the competitor list). Everything below updates instantly. Images show in Excel 365 and Google Sheets."
+    db["B2"] = "Pick a product in the yellow cell. Competitor type (Direct = same product and material as ours), brand, tier and family narrow the competitor list. Everything below updates instantly."
     db["B2"].font = F(italic=True, color=C_SUB)
-    for i, (lab, name) in enumerate((("Product", f"Products_{mkt}"), ("Brand", "Brands"), ("Tier", "Tiers"), ("Family", "Families")), 4):
+    for i, (lab, name) in enumerate((("Product", f"Products_{mkt}"), ("Brand", "Brands"), ("Tier", "Tiers"), ("Family", "Families"), ("Competitor type", "Types")), 4):
         a = db.cell(row=i, column=2, value=lab); a.font = F(bold=True, color=C_SUB)
         b = db.cell(row=i, column=3, value="DC B4" if lab == "Product" else "All")
         b.fill = INPUT; b.font = F(bold=True, size=10, color=BLUE); b.border = BOX
@@ -1911,10 +2006,11 @@ def build_dashboard(mkt, sname, mcol, scol, pos):
         else:
             b.value = fx
     GR = 14
+    stile = None
     db.merge_cells(f"B{GR - 1}:R{GR - 1}")
     db[f"B{GR - 1}"] = "COMPETITORS (first 80 matches, in tier then weekly-units order)"
     db[f"B{GR - 1}"].font = F(size=11, bold=True, color=C_NAVY); db[f"B{GR - 1}"].fill = SEC
-    GH = [("#", 1, None), ("Image", 10, None), ("Brand · Tier", 7, None), ("Title", 9, None), ("Our product", 4, None), ("Size · colour", None, None), ("Price", 14, money),
+    GH = [("#", 1, None), ("Image", 10, None), ("Brand · Tier", 7, None), ("Title", 9, None), ("Competitor type", 36, None), ("Size · colour", None, None), ("Price", 14, money),
           ("List Price", 15, money), ("List % over", 16, "0%"), ("vs our price", 18, "+0%;-0%;0%"), ("BSR", 19, "#,##0"), ("Wk units", 20, "#,##0"),
           ("Rating", 21, "0.0"), ("Reviews", 22, "#,##0"), ("Variations", 13, "#,##0"), ("BFCM 2025 discount", 30, "0%"), ("ASIN", 12, None)]
     for j, (h, src, nf) in enumerate(GH, 2):
@@ -1945,6 +2041,8 @@ def build_dashboard(mkt, sname, mcol, scol, pos):
     db.column_dimensions["E"].width = 34
     db.conditional_formatting.add(f"K{GR + 1}:K{GR + 80}", FormulaRule(formula=[f'AND(ISNUMBER(K{GR + 1}),K{GR + 1}<0)'], fill=FILL["flag"]))
     db.conditional_formatting.add(f"J{GR + 1}:J{GR + 80}", FormulaRule(formula=[f'AND(ISNUMBER(J{GR + 1}),J{GR + 1}>0,J{GR + 1}<=0.12)'], fill=FILL["ok"]))
+    for t_, col_ in (("Direct", "C6EFCE"), ("Alternative material", "DDEBF7"), ("Material not verified", "FFEB9C"), ("Different product type", "EDEDED")):
+        db.conditional_formatting.add(f"F{GR + 1}:F{GR + 80}", FormulaRule(formula=[f'F{GR + 1}="{t_}"'], fill=PatternFill("solid", fgColor=col_)))
     db.freeze_panes = f"A{GR + 1}"
     return db
 
@@ -2123,6 +2221,10 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
       f"Inventory: every page pulled (Amazon.com 2,177 rows, Amazon.ca 836); totals match SellerBoard's own account summary (US 70,217 FBA stock, 22,893 sent to FBA; CA 10,238 and 8,062). 78 open FBA shipments listed by Amazon status; SellerBoard has NO ETA field, so arrival dates are not shown and the outlook is given with and without inbound. No purchase orders in SellerBoard. Demand uses SellerBoard's velocity, which runs about 1.5x the 28-day units on the big products (includes Prime Big Deal Days and late-September deals), so the 28-day pace is shown beside it. BFCM lift = product's own 2025 lift where reliable, else ASSUMED at the account lift (US {ACCT_LIFT['US']:.2f}x, CA {ACCT_LIFT['CA']:.2f}x)."),
      ("Stock outlook cross-check (inventory planner)", "", "2026-10-15", 44, "Exact", "",
       "44 key variations (each product's best seller plus the biggest risks) checked against the inventory planner's own forecast: sales pace matches on every row; where we see a run-out before Nov 18, the planner's date is within 3 days on 17 of 19 (the other 2 within 15 days); where we show 'covered', the planner's run-out date is after Nov 30 on all 15. Our dates are earlier when the run-out falls in BFCM week because we add the BFCM lift."),
+     ("Competitor type: direct vs alternative material", "", "2026-10-15", len(records), "Current", "",
+      f"Every competitor is classified against our product: Direct = same product type and same material family ({sum(1 for x in records if x.get('cls') == 'Direct')} rows); Alternative material = same product, different material ({sum(1 for x in records if x.get('cls') == 'Alternative material')}); Material not verified = no material on the page or in the title ({sum(1 for x in records if x.get('cls') == 'Material not verified')}); Different product type = e.g. fitted sheet only vs our set ({sum(1 for x in records if x.get('cls') == 'Different product type')}). Materials: competitor's product page where checked, else its title. Ours: CooLinens and Sleephoria cooling = synthetic nylon-spandex cooling knit (CooLinens confirmed 90% nylon / 10% spandex); Decolure Cooling = microfiber blend (a different material from Sleephoria); bamboo = viscose from bamboo; satin = polyester satin; silk = mulberry silk. Direct rivals lead every list."),
+     ("CooLinens Cooling Sheets price", "", "2026-10-15", 5, "Current", "",
+      "Launch prices confirmed live with the Buy Box on all 60 children on Oct 15, 2026 (the latest confirmed figure, replacing the earlier $79.99 Queen planning price): Twin $69.99, Full $74.99, Queen $87.99, King $93.99, Cal King $95.99. Same price for all 12 colours of a size; used for our price and every price comparison on this product."),
      ("Our prices", "Helium 10 Xray only (US Oct 13, CA Oct 14)", "2026-10-14", len(our_now), "Current", "",
       "Agreed Oct 15: Xray is the single source for our price. Amazon page check, Data Dive and SellerBoard listing prices are no longer shown as our price; a variation missing from Xray shows no price."),
      ("Our BFCM 2026 deal plan", "BM (Slack, Oct 15, 2026); data/deals/our_deals_bfcm2026_plan.csv", "2026-10-15", sum(len(v) for v in plan26.values()), "Partial", "",

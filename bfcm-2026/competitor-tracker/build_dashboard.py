@@ -108,7 +108,7 @@ for pid, mkt, tname in br.TABS:
         "key": f"{pid}-{mkt}", "pid": pid, "mkt": mkt, "short": br.PINFO[pid][2], "scope": br.scope_of(pid), "family": br.PINFO[pid][1], "role": br.PINFO[pid][3],
         "brand": p.get("brand") or o.get("brand"), "name": p.get("name") or o.get("name"), "title": title, "parent": parent, "best": best,
         "bestLabel": " ".join(x for x in (bv.get("size"), bv.get("colour")) if x) or best, "img": img_for(best, mkt, False) or img_for(parent, mkt, False) or img_for(best, mkt),
-        "stage": p.get("stage") or o.get("stage"), "price": price, "priceSrc": psrc, "contrib": e["contribution"], "be": e["be_acos"], "u28": e["units_28d"],
+        "stage": br.our_stage(pid, mkt, p, o), "price": price, "priceSrc": psrc, "contrib": e["contribution"], "be": e["be_acos"], "u28": e["units_28d"],
         "lift": lf.get("lift"), "tacos": lf.get("tacos_actual") if lf.get("tacos_actual") is not None else lf.get("tacos"),
         "preTacos": lf.get("pre_tacos_actual") if lf.get("pre_tacos_actual") is not None else lf.get("pre_tacos"),
         "hk": hk, "hkCut": (1 - hk["bf"] / hk["pre"]) if hk and hk.get("pre") and hk.get("bf") else None, "hkLine": hk_line,
@@ -120,7 +120,7 @@ KEYS = ("pid", "mkt", "product", "tier", "brand", "title", "parent", "child", "p
         "var", "var_src", "size", "colour", "our_same", "basis", "listed", "dd30", "ful", "country", "asi_tr", "asi_kw", "org_pct", "ad_pct", "top_kw", "top_kw_pct",
         "r_sp", "r_sb", "r_sbv", "r_ac", "contested", "we_win", "we_lose", "theirs_only", "theirs_only_share", "ppc_none", "ppc_aggr", "hero",
         "pd", "pd_pre", "q2", "l30", "str_show", "str_label", "str_price", "deal_now", "stock_now", "str_checked",
-        "bf_type", "bf_dates", "bf_pre", "bf_low", "bf_disc_v", "bsr_pre", "bsr_bf", "bsr_lift_v", "bf_oos", "notes", "parent_cc", "brand_cc", "ro")
+        "bf_type", "bf_dates", "bf_pre", "bf_low", "bf_disc_v", "bsr_pre", "bsr_bf", "bsr_lift_v", "bf_oos", "notes", "parent_cc", "brand_cc", "ro", "cls", "cls_why", "mat")
 comps = []
 for i, x in enumerate(br.records):
     c = {k: x.get(k) for k in KEYS}

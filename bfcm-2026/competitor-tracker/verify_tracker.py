@@ -122,16 +122,22 @@ for f, m in ((os.path.join(D, "xray", "helium10_xray_2026-10-13.csv"), "US"), (o
         pk = next(k for k in r if k.startswith("Price"))
         if fnum(r.get(pk)):
             xr[(m, r["ASIN"])] = fnum(r[pk])
+launch = {(r["marketplace"], int(r["pid"]), r["size"]): float(r["price"]) for f_ in glob.glob(os.path.join(D, "ours", "*_launch_price_*.csv")) for r in rd(f_)}
 tot = bad = 0; ex = []
 for p in P["products"]:
     for v in p["vars"]:
         if v["live"]:
             tot += 1
+            if (v.get("src") or "").startswith("launch price"):
+                lp_ = launch.get((p["mkt"], p["pid"], v.get("size")))
+                if lp_ is None or not close(v["price"], lp_, 0.0001):
+                    bad += 1; ex.append(f"{p['mkt']} {v['asin']}: {v['price']} vs launch price {lp_}")
+                continue
             if "catalog price" not in (v.get("src") or "") or (p["mkt"], v["asin"]) not in xr:
                 bad += 1; ex.append(f"{p['mkt']} {v['asin']}: price not from Xray ({v.get('src')})"); continue
             if not close(v["price"], xr[(p["mkt"], v["asin"])], 0.0001):
                 bad += 1; ex.append(f"{p['mkt']} {v['asin']}: {v['price']} vs Xray {xr[(p['mkt'], v['asin'])]}")
-check("Our live variation prices", "Every price shown is the Helium 10 Xray price (US Oct 13, CA Oct 14), the single price source", tot, bad, ex)
+check("Our live variation prices", "Every price shown is the catalog price read (US Oct 13, CA Oct 14), or the confirmed launch price for a product launched since", tot, bad, ex)
 
 # 4. Account-level BFCM 2025 lift from the raw SellerBoard files
 for m in ("US", "CA"):

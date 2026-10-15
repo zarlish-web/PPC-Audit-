@@ -31,7 +31,7 @@
   {
    "name": "Price vs ours",
    "compared": "Workbook formula vs dashboard (their price \u00f7 our same-size price \u2212 1)",
-   "checked": 684,
+   "checked": 697,
    "mismatches": 0,
    "status": "Pass",
    "examples": [],
@@ -39,8 +39,8 @@
   },
   {
    "name": "Our live variation prices",
-   "compared": "Every price shown is the Helium 10 Xray price (US Oct 13, CA Oct 14), the single price source",
-   "checked": 1253,
+   "compared": "Every price shown is the catalog price read (US Oct 13, CA Oct 14), or the confirmed launch price for a product launched since",
+   "checked": 1307,
    "mismatches": 0,
    "status": "Pass",
    "examples": [],

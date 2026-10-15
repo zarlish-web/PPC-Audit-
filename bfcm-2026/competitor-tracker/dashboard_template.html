@@ -2,14 +2,14 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
 <style>
 /* Layout: sticky filter rail, our-product panel, KPI strip, competitor cards / table; a side sheet holds each competitor's full profile. Palette: indigo ink, sateen teal accent, linen neutrals. */
 :root{
   --bg:#f5f7f9; --panel:#ffffff; --ink:#18223a; --muted:#5b6880; --line:#dde2ea; --accent:#0f6f6b; --accent-ink:#ffffff; --accent-soft:#e1f1ef;
   --good:#1f7a3d; --good-bg:#e3f4e8; --warn:#8f5600; --warn-bg:#fdf0d8; --bad:#a3252b; --bad-bg:#fbe5e6; --deal:#6b3fa0; --deal-bg:#efe8f7; --chip:#eef1f6;
   --shadow:0 12px 40px rgba(16,28,44,.18);
-  --body:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --body:"Comfortaa","IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; --mono:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#10151f; --panel:#171e2b; --ink:#e7ebf3; --muted:#9aa6ba; --line:#2a3445; --accent:#4fc1b9; --accent-ink:#0d1a1a; --accent-soft:#163633;
@@ -52,6 +52,8 @@ select,input[type=search]{font:inherit;font-size:13px;color:var(--ink);backgroun
 .chip.ok{background:var(--good-bg);color:var(--good)}
 td.small{font-size:11px;line-height:1.35}
 p.note{font-size:12px;color:var(--muted);margin:6px 0}
+h3.grp-h{font-size:14px;font-weight:700;margin:22px 0 4px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+h3.grp-h span{font-weight:400;color:var(--muted);margin-left:6px}
 ul.notes{margin:6px 0 0;padding-left:18px;font-size:13px;line-height:1.5}
 ul.notes li{margin:4px 0}
 ul.notes .src{color:var(--muted);font-size:11.5px}
@@ -155,6 +157,7 @@ section.checks td{white-space:normal;vertical-align:top}
   <section class="filters" aria-label="Filters">
     <label for="f-product">Product<select id="f-product"></select></label>
     <select id="f-mkt" hidden aria-hidden="true"><option value="US">US</option><option value="CA">Canada</option></select>
+    <label for="f-cls">Competitor type<select id="f-cls"><option value="">All types</option><option>Direct</option><option>Alternative material</option><option>Material not verified</option><option>Different product type</option></select></label>
     <label for="f-brand">Competitor brand<select id="f-brand"></select></label>
     <label for="f-tier">Tier<select id="f-tier"><option value="">All tiers</option><option>Aspirational</option><option>Beatable</option><option>Poor</option><option>Untiered</option></select></label>
     <label for="f-deal">BFCM 2025 deal<select id="f-deal"><option value="">Any</option><option>Lightning Deal</option><option>Prime Exclusive Discount</option><option>Price cut only</option><option>Coupon only</option><option>None</option><option>Not live in 2025</option></select></label>
@@ -205,6 +208,10 @@ function imgBox(key, asin, cls = "", url = null) {
 }
 const STK = {"Covered to Nov 30": "ok", "Needs inbound in time": "warn", "Short even with inbound": "bad", "Out of stock now": "bad"};
 const fmtD = d => d ? new Date(d + "T12:00:00").toLocaleDateString("en-US", {month: "short", day: "numeric"}) : "—";
+const CLS_RANK = {"Direct": 0, "Material not verified": 1, "Alternative material": 2, "Different product type": 3, "Not classified": 4};
+const CLS_CHIP = {"Direct": "good", "Alternative material": "", "Material not verified": "warn", "Different product type": "", "Not classified": ""};
+const CLS_HEAD = {"Direct": "Direct competitors · same product and same material as ours", "Material not verified": "Same product, material not verified", "Alternative material": "Alternative-material competitors · same product, different material", "Different product type": "Different product type", "Not classified": "Competitors"};
+const clsChip = c => c.cls && c.cls !== "Not classified" ? `<span class="chip ${CLS_CHIP[c.cls] || ""}">${esc(c.cls)}${c.mat ? " · " + esc(c.mat) : ""}</span>` : "";
 const lpPct = c => (isNum(c.lp) && isNum(c.price) && c.price > 0) ? c.lp / c.price - 1 : null;
 const tierChip = t => `<span class="chip ${t === "Aspirational" ? "asp" : t === "Beatable" ? "good" : ""}">${esc(t || "Untiered")}</span>`;
 const DEAL = {"Lightning Deal": "deal", "Prime Exclusive Discount": "deal", "Price cut only": "warn", "Coupon only": "warn"};
@@ -290,6 +297,8 @@ function renderOurs(p) {
 function filtered(p) {
   const brand = $("#f-brand").value, tier = $("#f-tier").value, deal = $("#f-deal").value, pos = $("#f-pos").value, sv = $("#f-str").value, q = $("#f-q").value.trim().toLowerCase();
   let rows = D.comps.filter(c => p && c.pid === p.pid && c.mkt === p.mkt);
+  const cls = $("#f-cls").value;
+  if (cls) rows = rows.filter(c => c.cls === cls);
   if (brand) rows = rows.filter(c => c.brand === brand);
   if (tier) rows = rows.filter(c => (c.tier || "Untiered") === tier);
   if (deal) rows = rows.filter(c => c.bf_type === deal);
@@ -300,7 +309,7 @@ function filtered(p) {
   const s = $("#f-sort").value, tr = {Aspirational: 0, Beatable: 1, Poor: 2, Untiered: 3};
   const n = v => isNum(v) ? v : null;
   const by = {wk: c => -(n(c.wk) ?? -1), rev: c => -(n(c.rev) ?? -1), price: c => n(c.price) ?? 1e9, bsr: c => n(c.bsr) ?? 1e12, reviews: c => -(n(c.reviews) ?? -1), lose: c => -(n(c.we_lose) ?? -1), tier: c => (tr[c.tier] ?? 4) * 1e7 - (n(c.wk) ?? 0)}[s];
-  return rows.slice().sort((a, b) => by(a) - by(b));
+  return rows.slice().sort((a, b) => (CLS_RANK[a.cls] ?? 4) - (CLS_RANK[b.cls] ?? 4) || by(a) - by(b));
 }
 
 function renderBrands(p) {
@@ -322,7 +331,7 @@ function renderKpis(p, rows) {
   const strY = rows.filter(c => c.str_show === "Y").length, strK = rows.filter(c => c.str_show === "Y" || c.str_show === "N").length;
   const bf = rows.filter(c => c.bf_type).length;
   const k = [
-    ["Competitors", fmtN(rows.length), isCA ? "Amazon.ca page research, CAD" : "in this view"],
+    ["Competitors", fmtN(rows.length), `${fmtN(rows.filter(c => c.cls === "Direct").length)} direct · ${fmtN(rows.filter(c => c.cls === "Alternative material").length)} alternative material`],
     ["Median price", fmt$(med, m), p ? "ours " + fmt$(p.price, m) : ""],
     ["Priced below us", fmtN(below), "same size where we sell it"],
     ["Strikethrough on page", strK ? `${strY} of ${strK}` : "—", "Amazon page check"],
@@ -345,7 +354,7 @@ function card(c) {
     <div class="head"><div class="brand">${esc(c.brand || "Unknown brand")}</div>${tierChip(c.tier)}</div>
     <div class="title" title="${esc(c.title)}">${esc(c.title)}</div>
     <div class="asin">${esc(c.child || "—")}${c.size ? " · " + esc(c.size) : ""}${c.colour ? " · " + esc(c.colour) : ""}</div>
-    <div class="tags">${gChip}${strChip}${isNum(lpp) && lpp > 0 ? `<span class="chip">List ${fmtP(lpp)} over</span>` : ""}${c.stock_now === "N" ? '<span class="chip bad">Unavailable</span>' : ""}</div>
+    <div class="tags">${clsChip(c)}${gChip}${strChip}${isNum(lpp) && lpp > 0 ? `<span class="chip">List ${fmtP(lpp)} over</span>` : ""}${c.stock_now === "N" ? '<span class="chip bad">Unavailable</span>' : ""}</div>
     <div class="nums">
       <div><div class="k">Price</div><div class="v">${fmt$(c.price, m)}</div></div>
       <div><div class="k">List</div><div class="v">${fmt$(c.lp, m)}</div></div>
@@ -360,7 +369,7 @@ function card(c) {
 }
 
 function table(rows) {
-  const cols = [["", c => imgBox(c.img, "", "thumb")], ["Brand", c => esc(c.brand)], ["Tier", c => esc(c.tier || "Untiered")], ["Child ASIN", c => esc(c.child || "—")],
+  const cols = [["", c => imgBox(c.img, "", "thumb")], ["Brand", c => esc(c.brand)], ["Type", c => esc(c.cls || "—")], ["Material", c => esc(c.mat || "—")], ["Tier", c => esc(c.tier || "Untiered")], ["Child ASIN", c => esc(c.child || "—")],
     ["Size", c => esc(c.size || "—")], ["Colour", c => esc(c.colour || "—")],
     ["Price", c => fmt$(c.price, c.mkt), 1], ["List", c => fmt$(c.lp, c.mkt), 1], ["vs ours", c => isNum(c.gap) ? (c.gap > 0 ? "+" : "") + fmtP(c.gap) : "—", 1], ["Rank", c => fmtN(c.bsr), 1],
     ["Units / wk", c => fmtN(c.wk), 1], ["Revenue / mo", c => fmt0$(c.rev, c.mkt), 1], ["Rating", c => isNum(c.rating) ? c.rating.toFixed(1) : "—", 1], ["Reviews", c => fmtN(c.reviews), 1],
@@ -384,6 +393,7 @@ function openComp(uid) {
         <div class="asin" style="margin-top:4px">Child ${lnk(c.child, m)} · Parent ${lnk(c.parent, m)}</div></div>
       <button type="button" class="x" id="sh-x" aria-label="Close">×</button></div>
     <div class="sheet-b">
+      ${c.cls && c.cls !== "Not classified" ? `<div class="grp"><h3>Competitor type</h3><p class="note"><span class="chip ${CLS_CHIP[c.cls] || ""}">${esc(c.cls)}</span> ${esc(c.cls_why || "")}</p></div>` : ""}
       <div class="grp"><h3>Price and offer</h3>${kv([
         ["Price", fmt$(c.price, m), esc(c.price_src || "")],
         ["List price", fmt$(c.lp, m)],
@@ -472,11 +482,11 @@ function render() {
   $("#count").textContent = `Competitors · ${rows.length}`;
   $("#list").innerHTML = !p ? "" : rows.length === 0
     ? `<div class="empty">No competitors match these filters.</div>`
-    : (view === "cards" ? `<div class="grid">${rows.map(card).join("")}</div>` : table(rows));
+    : (view === "cards" ? [...new Set(rows.map(c => c.cls || "Not classified"))].map(k => { const g = rows.filter(c => (c.cls || "Not classified") === k); return `<h3 class="grp-h">${esc(CLS_HEAD[k] || k)} <span>${fmtN(g.length)}</span></h3><div class="grid">${g.map(card).join("")}</div>`; }).join("") : table(rows));
   $("#list").querySelectorAll("[data-uid]").forEach(el => { const go = () => openComp(el.dataset.uid); el.addEventListener("click", go); el.addEventListener("keydown", e => { if (e.key === "Enter") go(); }); });
   try { localStorage.setItem("bfcm-dash", JSON.stringify({product: pSel.value, mkt: $("#f-mkt").value, view})); } catch (e) {}
 }
-["#f-product", "#f-mkt", "#f-brand", "#f-tier", "#f-deal", "#f-str", "#f-pos", "#f-sort"].forEach(s => $(s).addEventListener("change", () => { if (s === "#f-product" || s === "#f-mkt") { $("#f-brand").value = ""; vcol = vsize = null; } render(); }));
+["#f-product", "#f-mkt", "#f-cls", "#f-brand", "#f-tier", "#f-deal", "#f-str", "#f-pos", "#f-sort"].forEach(s => $(s).addEventListener("change", () => { if (s === "#f-product" || s === "#f-mkt") { $("#f-brand").value = ""; vcol = vsize = null; } render(); }));
 $("#f-q").addEventListener("input", render);
 $("#v-cards").addEventListener("click", () => { view = "cards"; $("#v-cards").setAttribute("aria-pressed", "true"); $("#v-table").setAttribute("aria-pressed", "false"); render(); });
 $("#v-table").addEventListener("click", () => { view = "table"; $("#v-table").setAttribute("aria-pressed", "true"); $("#v-cards").setAttribute("aria-pressed", "false"); render(); });
