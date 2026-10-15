@@ -371,17 +371,31 @@ def put_image(ws, cell, url, role, product, mkt, brand, asin):
         pic.width = pic.height = 72
         ws.add_image(pic, cell)
 
-def section(ws, row, text, ncols, sub=None):
-    ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=ncols)
-    c = ws.cell(row=row, column=1, value=text)
-    c.font = F(size=11, bold=True, color=C_NAVY)
-    c.fill = SEC
-    c.alignment = Alignment(vertical="center")
-    ws.row_dimensions[row].height = 20
+SECTION_ROWS = {}   # tab -> [(row, title)] for the jump bar
+def section(ws, row, text, ncols, sub=None, banner=False):
+    """Section title without a merge: the number sits in the frozen image column and the title overflows to the right,
+    so Google Sheets and Excel both show it in full past the frozen column."""
+    num, _, title = text.partition(" · ")
+    for col in range(1, ncols + 1):
+        ws.cell(row=row, column=col).fill = SEC
+    a = ws.cell(row=row, column=1, value=f"{num} ▼" if title else text)
+    a.font = F(size=11, bold=True, color=C_NAVY); a.alignment = Alignment(vertical="center", horizontal="center")
+    b = ws.cell(row=row, column=2, value=title or None)
+    b.font = F(size=11, bold=True, color=C_NAVY); b.alignment = Alignment(vertical="center", wrap_text=False)
+    ws.row_dimensions[row].height = 22
+    SECTION_ROWS.setdefault(ws.title, []).append((row, text))
     if sub:
-        ws.merge_cells(start_row=row + 1, start_column=1, end_row=row + 1, end_column=ncols)
-        s = ws.cell(row=row + 1, column=1, value=sub)
-        s.font = F(size=8, italic=True, color=C_SUB)
+        fill = PatternFill("solid", fgColor="FFF2CC") if banner else None
+        for col in range(1, ncols + 1):
+            if fill:
+                ws.cell(row=row + 1, column=col).fill = fill
+        s = ws.cell(row=row + 1, column=2, value=sub)
+        s.font = F(size=9 if banner else 8, bold=banner, italic=not banner, color=("7F6000" if banner else C_SUB))
+        s.alignment = Alignment(vertical="center", wrap_text=False)
+        if banner:
+            ws.cell(row=row + 1, column=1, value="▼▼▼").font = F(size=10, bold=True, color="7F6000")
+            ws.cell(row=row + 1, column=1).alignment = Alignment(horizontal="center", vertical="center")
+            ws.row_dimensions[row + 1].height = 20
         return row + 2
     return row + 1
 
@@ -1418,9 +1432,12 @@ for pid, mkt, tname in TABS:
     pname = f"{brand or ''} {p.get('name') or o.get('name') or short}".strip()
 
     # ---- title band
-    ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=NC)
-    t = ws.cell(row=1, column=1, value=f"{pname}  ·  {('Amazon.com (US)' if mkt == 'US' else 'Amazon.ca (CA)')}  ·  {fam}  ·  BFCM role: {role}  ·  Scope: {scope_of(pid)}")
-    t.font = F(size=14, bold=True, color="FFFFFF"); t.fill = HDR; t.alignment = Alignment(vertical="center", indent=1)
+    for col in range(1, NC + 1):   # no merge: the title overflows from column B past the frozen image column
+        ws.cell(row=1, column=col).fill = HDR
+    ws.cell(row=1, column=1, value=mkt).font = F(size=14, bold=True, color="FFFFFF")
+    ws.cell(row=1, column=1).alignment = Alignment(horizontal="center", vertical="center")
+    t = ws.cell(row=1, column=2, value=f"{pname}  ·  {('Amazon.com (US)' if mkt == 'US' else 'Amazon.ca (CA)')}  ·  {fam}  ·  BFCM role: {role}  ·  Scope: {scope_of(pid)}")
+    t.font = F(size=14, bold=True, color="FFFFFF"); t.alignment = Alignment(vertical="center")
     ws.row_dimensions[1].height = 28
     if pid in NOT_LAUNCHED or pid in LAUNCHING:
         ws.merge_cells(start_row=2, start_column=3, end_row=2, end_column=NC)
@@ -1692,7 +1709,8 @@ for pid, mkt, tname in TABS:
 
     # ---- section 4: competitor landscape
     r = section(ws, r, f"4 · COMPETITOR LANDSCAPE ({len(comps)} mapped)", NC,
-                "Sorted by tier, then estimated weekly units. Green = Command Center price/sales; blue = Data Dive listing; purple = Command Center search strategy (ASINsight); yellow = fill from Keepa / page check.")
+                f"COMPETITOR DATA BELOW: one row per competitor ({sum(1 for x_ in comps if x_.get('cls') == 'Direct')} direct first, then alternative material). Scroll right for listing, search, strikethrough now and BFCM 2025 history (deal type, price, discount, rank change).",
+                banner=True)
     if mkt == "CA" and not comps:
         ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
         ws.cell(row=r, column=1, value="The Command Center holds no Amazon.ca competitor snapshots. Map the CA competitor set (Data Gaps #6) and pull Keepa .ca - see AGENT_PROMPTS Prompt 9.").font = F(bold=True, color="C00000")
@@ -2396,6 +2414,31 @@ stk.freeze_panes = stk.cell(row=d0, column=4)
 stk.auto_filter.ref = f"A{det_hdr}:T{d1}"
 
 # order: README, Dashboard, Product Index, product tabs..., Data Gaps, Data
+# jump bar on every product tab (row 2): click to go straight to a section
+SHORT_NAMES = {"1": "Our product", "2": "Our variations", "3": "Our BFCM 2025", "4": "COMPETITORS", "5": "What it means"}
+for pid_, mkt_, t_ in TABS:
+    ws_ = wb[t_]
+    secs = SECTION_ROWS.get(t_, [])
+    start = 2
+    for mr in list(ws_.merged_cells.ranges):   # launch notes in row 2 move right of the jump bar
+        if mr.min_row == 2 and mr.max_row == 2:
+            v_ = ws_.cell(row=2, column=mr.min_col).value
+            from copy import copy as _cp
+            ft = _cp(ws_.cell(row=2, column=mr.min_col).font); fl = _cp(ws_.cell(row=2, column=mr.min_col).fill)
+            ws_.unmerge_cells(str(mr))
+            ws_.cell(row=2, column=mr.min_col).value = None
+            ws_.cell(row=2, column=mr.min_col).fill = PatternFill(fill_type=None)
+            ws_.merge_cells(start_row=2, start_column=10, end_row=2, end_column=mr.max_col)
+            c_ = ws_.cell(row=2, column=10, value=v_); c_.font = ft; c_.fill = fl
+    lab = ws_.cell(row=2, column=start, value="Jump to ▸"); lab.font = F(size=9, bold=True, color=C_SUB)
+    for k, (row_, text_) in enumerate(secs[:5]):
+        num = text_.split(" · ")[0]
+        extra = (" (" + text_.split("(")[-1]) if "(" in text_ and num in ("4",) else ""
+        c_ = ws_.cell(row=2, column=start + 1 + k, value=f"{num} {SHORT_NAMES.get(num, text_)}{extra} ↓")
+        c_.hyperlink = f"#'{t_}'!A{row_}"
+        c_.font = F(size=9, bold=(num == "4"), color=("C00000" if num == "4" else "0563C1"), underline="single")
+    ws_.row_dimensions[2].height = 18
+
 # order: README, US Dashboard, CA Dashboard, Product Index, BFCM Stock, US product tabs, CA product tabs, Data Check, Data Gaps, data sheets
 _front = ["README", "US Dashboard", "CA Dashboard", "Product Index", "BFCM Stock"]
 _us = [t for p_, m_, t in TABS if m_ == "US"]
@@ -2410,6 +2453,15 @@ for t_ in _ca:
     wb[t_].sheet_properties.tabColor = "F4B183"
 wb["Data"].sheet_state = "hidden"
 wb.active = 0
+# internal links: store as a cell location (not a "#..." URL) so Excel and Google Sheets both jump inside the file
+from openpyxl.worksheet.hyperlink import Hyperlink as _HL
+from urllib.parse import unquote as _uq
+for ws_ in wb.worksheets:
+    for row_ in ws_.iter_rows():
+        for c_ in row_:
+            h_ = c_.hyperlink
+            if h_ is not None and (h_.target or "").startswith("#"):
+                c_.hyperlink = _HL(ref=c_.coordinate, location=_uq(h_.target[1:]), display=str(c_.value) if c_.value is not None else None)
 # never name a data source in the workbook (agreed Oct 15, 2026)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from scrub import scrub as _scrub
