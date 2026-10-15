@@ -14,7 +14,7 @@ Sources:
 <@Erik Fisher> sorry this is late. Here is the full Scale Insights analysis from the owner account (screenshots and files attached). **It corrects my Oct 13 post:** we are *not* on the 1% plan, and we do *not* need to remove ASINs.
 
 **1. What we pay**
-• **Ecotero: Scale 50 monthly, list price $388/mo.** With our 20% discount we've been charged **$310.40** every month since Jun 2025. The subscription shows "$388.00 USD – 20% off until" with no date shown, so the Oct 17 renewal may come through at **$388** if the discount has ended. My ~$1,350/mo estimate was wrong.
+• **Ecotero: Scale 50 monthly, $388 list, charged $310.40/mo** with our 20% discount on every invoice since Jun 2025. Renews **Oct 17**. My ~$1,350/mo estimate was wrong.
 • **Inspiratek: not active.** It's a separate login with no subscription, last charged **Mar 9, 2025**. There's nothing to cancel.
 • History:
   - We've been customers since **Apr 2022**, and have paid **$24,359** in total ($18,645 Ecotero + $5,714 Inspiratek).
@@ -41,16 +41,16 @@ Sources:
 3. **Move dayparting in-house, then cancel before the Nov 17 renewal.**
    - <@Joseph Fisher> builds the overnight pause and resume (SOP-45 and the dayparting runbook already exist; Joseph listed "Scale Insights daypart" as an open decision on Oct 12).
    - Run both side by side for 3 nights.
-   - Download the archived data and cancel. **Saving: $310.40–$388/mo ($3,725–$4,656/yr)**, depending on whether the 20% is still applied.
+   - Download the archived data and cancel. **Saving: $310.40/mo ($3,725/yr).**
    - This also removes the clash where the nightly bid snapshot runs inside the Scale Insights pause window (Oct 7).
-4. **Refund:** no basis, since we haven't overpaid. Asking would also draw attention to the 2,001 limit. If the Oct 17 charge is $388, ask Scale Insights to restore our 20% as a loyalty discount (4.5 years, $24.4K paid). Otherwise, optionally ask for a loyalty discount for the last month.
+4. **Refund:** no basis, since we haven't overpaid. Asking would also draw attention to the 2,001 limit. Optional: ask for a loyalty discount for the last month (4.5 years, $24.4K paid).
 5. **Before cancelling:** confirm the Drive backup is complete, as you asked on Jul 22. Download the Ecotero and Inspiratek archives from the "Download archived data" menu.
 
 **5. Needed from you**
 • Approve 2 (enable 24 ASINs) and 3 (keep Scale 50 until in-house dayparting is live, then cancel before Nov 17).
 • <@Joseph Fisher> what date can the in-house overnight pause be ready? It needs to be live by **about Nov 12** to leave 3 nights of parallel running before the Nov 17 renewal.
 
-_If there's no reply by Oct 16, 8 PM ET: Ecotero renews on Scale 50 ($310.40, or $388 if the discount has ended) and nothing else changes._
+_If there's no reply by Oct 16, 8 PM ET: Ecotero renews on Scale 50 at $310.40 and nothing else changes._
 
 ---
 
