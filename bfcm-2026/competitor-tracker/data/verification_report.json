@@ -111,7 +111,7 @@
   },
   {
    "name": "Assumed 2026 deal price arithmetic",
-   "compared": "Deal = reference \u00d7 (1 \u2212 discount)",
+   "compared": "Deal = today's price \u00d7 0.85 (Nov 19-26) and \u00d7 0.80 (Nov 27-30), Umair's rule",
    "checked": 21,
    "mismatches": 0,
    "status": "Pass",

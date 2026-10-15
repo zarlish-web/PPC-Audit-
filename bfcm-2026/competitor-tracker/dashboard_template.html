@@ -45,6 +45,7 @@ select,input[type=search]{font:inherit;font-size:13px;color:var(--ink);backgroun
 .facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px 18px;margin-top:12px}
 .fact .k{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-weight:500}
 .fact .v{font-family:var(--mono);font-size:14px;font-weight:500;overflow-wrap:anywhere}
+.fact.wide{grid-column:span 2}
 .fact .s{font-size:11.5px;color:var(--muted)}
 .chipset{margin-top:14px}
 .chipset .k{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-weight:500;margin-bottom:6px}
@@ -227,7 +228,7 @@ function renderOurs(p) {
         <div class="fact"><div class="k">Contribution per unit</div><div class="v">${fmt$(p.contrib, m)}</div></div>
         <div class="fact"><div class="k">Break-even ACoS</div><div class="v">${isNum(p.be) ? (p.be <= 1.5 ? fmtP(p.be, 1) : p.be.toFixed(1) + "%") : "—"}</div></div>
         <div class="fact"><div class="k">BFCM 2026 plan</div><div class="v" style="font-family:var(--body);font-size:13.5px">${p.plan26 ? esc(p.plan26) : '<span class="chip bad">Not in a deal</span>'}</div><div class="s">BM, Oct 15${p.plan26 ? "" : " · regular price through BFCM"}</div></div>
-        ${p.da ? `<div class="fact"><div class="k">Assumed 2026 deal price</div><div class="v">${isNum(p.da.ref) ? `${fmt$(p.da.ref, m)} → ${fmt$(p.da.deal, m)}` : "—"}</div><div class="s">${fmtP(p.da.depth)} off ${esc(p.da.asin || "")} · assumption until BM's final prices</div></div>` : ""}
+        ${p.da ? `<div class="fact wide"><div class="k">Assumed 2026 deal price</div><div class="v">${isNum(p.da.ref) ? `${fmt$(p.da.deal_std, m)} · ${fmt$(p.da.deal_peak, m)}` : "—"}</div><div class="s">From today's ${fmt$(p.da.ref, m)} (${esc(p.da.asin || "")}): ${fmtP(p.da.std)} off Nov 19–26, ${fmtP(p.da.peak)} off Nov 27–30 (Umair's rule). Evidence: ${p.da.ev25 ? `our US BFCM 2025 price on ${esc(p.da.ev25.asin)} ${fmt$(p.da.ev25.pre, "US")} → ${fmt$(p.da.ev25.bf, "US")} (${fmtP(p.da.ev25.depth)} off)` : "no 2025 deal history"}${p.da.comp25 ? ` · rivals' median 2025 cut ${fmtP(p.da.comp25.median)} (${p.da.comp25.n})` : ""}. Amazon may use a lower reference price. Assumption until BM's final prices.</div></div>` : ""}
         <div class="fact"><div class="k">BFCM 2025 sales lift</div><div class="v">${fmtX(p.lift)}</div><div class="s">BFCM week vs 30 days before</div></div>
         <div class="fact"><div class="k">BFCM 2025 TACoS</div><div class="v">${isNum(p.tacos) ? p.tacos.toFixed(1) + "%" : "—"}</div><div class="s">${isNum(p.preTacos) ? p.preTacos.toFixed(1) + "% before" : ""}</div></div>
         ${p.hk && isNum(p.hk.pre) && isNum(p.hk.bf) ? `<div class="fact"><div class="k">Hero price, BFCM 2025</div><div class="v">${fmt$(p.hk.pre, m)} → ${fmt$(p.hk.bf, m)}</div><div class="s">${p.hk.bf < p.hk.pre ? fmtP(1 - p.hk.bf / p.hk.pre) + " lower" : "no cut"}${p.hk.rank_pre && p.hk.rank_bf ? " · rank " + fmtX(p.hk.rank_pre / p.hk.rank_bf) : ""} · ${esc(p.hk.asin)}</div></div>` : ""}
@@ -404,7 +405,7 @@ function renderGuide() {
     ["What this is", "Every product we sell in the US and Canada, the competitors the Command Center maps to it, and what each did in BFCM 2025, to plan BFCM 2026 (Nov 19 – 30)."],
     ["Our price", "Live Amazon price of our best-selling variation (Helium 10 Xray Oct 13 US / Oct 14 CA, or the Amazon page). Variations without a live price are out of stock, have no Buy Box, or are not selling."],
     ["BFCM 2026 plan", "BM's deal list (Oct 15). Not yet visible in Amazon's deal feed."],
-    ["Assumed 2026 deal price", "Until BM sends prices: reference = today's live price of the hero variation, held to Nov 18 (Amazon sets the deal reference price the day before). Deal = last year's BFCM price of the same variation if the product ran a 2025 deal, otherwise the median price cut competitors used on this product in BFCM 2025. Canada uses the US product's discount."],
+    ["Assumed 2026 deal price", "Until BM sends final prices. Umair's rule (Oct 15): 15% off today's live price of the hero variation on Nov 19–26, 20% off on the high days, taken as Black Friday to Cyber Monday (Nov 27–30) until confirmed. Shown beside it as evidence: our own BFCM 2025 cut on that variation (Keepa) and the median cut of this product's competitors in BFCM 2025. Amazon sets the deal reference price the day before and it can be lower than today's price, which would lower the deal price."],
     ["BFCM 2025 sales lift", "Average daily sales in BFCM week (Nov 20 – Dec 1, 2025) ÷ average daily sales in the 30 days before. SellerBoard actual sales."],
     ["Competitor price", "Price of the competitor's tracked variation: the Amazon page (Oct 13 – 14) where checked, otherwise the Command Center snapshot (Oct 12)."],
     ["Units / wk, Revenue / mo", "Command Center estimate for the tracked variation; revenue = price × weekly units × 52 ÷ 12. The profile also shows the whole listing's X-Ray sales range."],

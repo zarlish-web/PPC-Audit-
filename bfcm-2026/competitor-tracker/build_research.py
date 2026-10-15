@@ -1046,7 +1046,13 @@ for r_ in records:            # CA rows lack the Command Center / ASINsight fiel
 # price the day before the deal). Deal price = last year's BFCM price for the same ASIN when the product ran a 2025 deal
 # (the price that produced the 2025 lift); otherwise the reference cut by the median discount competitors used on this
 # product in BFCM 2025 (price cuts). Canada takes the US product's discount on its own live CAD price.
+# BFCM 2026 discount rule (Umair Tahir, relayed by Shayan Rana, Oct 15, 2026): 20% off on the high days, 15% on the other
+# deal days. High days are taken as Black Friday to Cyber Monday (Nov 27-30, 2026) until Umair confirms the exact days.
+RULE26 = {"std": 0.15, "peak": 0.20, "peak_days": "Nov 27-30 (Black Friday to Cyber Monday)", "std_days": "Nov 19-26",
+          "src": "Umair Tahir via Shayan Rana, Oct 15, 2026"}
+
 def deal_assumption(pid, mkt):
+    """Assumed 2026 deal prices: today's live price of the hero ASIN cut by Umair's 15% / 20% rule, with the 2025 evidence beside it."""
     if not plan26.get((pid, mkt)):
         return None
     def live(m_, asin=None):
@@ -1060,26 +1066,29 @@ def deal_assumption(pid, mkt):
             vs = [v for v in vs if v["asin"] == best] or sorted(vs, key=lambda v: -(v.get("units_28d") or 0))[:1]
         return vs[0]["asin"], vs[0]["price_now"]
     hk = hero25.get((pid, "US")) or {}
-    us_asin, us_ref = live("US", hk.get("asin")) if hk.get("asin") else live("US")
-    ran25 = any(c["status"] == "ran" and c["start"] >= "2025-11-15" for c in deals25.get((pid, "US")) or []) or bool(hk.get("ped"))
-    comp = [x["bf_disc_v"] for x in records if x["pid"] == pid and x["mkt"] == "US" and x.get("bf_type") == "Price cut only" and isinstance(x.get("bf_disc_v"), float)]
-    if us_ref and ran25 and hk.get("bf") and hk["bf"] < us_ref:
-        depth, basis = 1 - hk["bf"] / us_ref, f"repeat the BFCM 2025 deal price of {hk['asin']} (${hk['bf']:,.2f})"
-    elif comp:
-        depth, basis = statistics.median(comp), f"median price cut of this product's competitors in BFCM 2025 ({len(comp)} rivals)"
-    else:
-        all_ = [x["bf_disc_v"] for x in records if x["mkt"] == "US" and x.get("bf_type") == "Price cut only" and isinstance(x.get("bf_disc_v"), float)]
-        depth, basis = (statistics.median(all_), "median price cut of all US competitors in BFCM 2025") if all_ else (None, None)
-    if depth is None:
-        return None
     if mkt == "US":
-        asin, ref = us_asin, us_ref
+        asin, ref = live("US", hk.get("asin")) if hk.get("asin") else live("US")
+        if not ref:
+            asin, ref = live("US")
     else:
         asin, ref = live("CA")
-        basis = f"same discount as the US product ({basis})"
-    if not ref:
-        return {"asin": asin, "ref": None, "deal": None, "depth": depth, "basis": basis}
-    return {"asin": asin, "ref": ref, "deal": round(ref * (1 - depth), 2), "depth": depth, "basis": basis}
+    ev = {"asin": hk["asin"], "pre": hk["pre"], "bf": hk["bf"], "depth": 1 - hk["bf"] / hk["pre"]} if hk.get("pre") and hk.get("bf") else None
+    comp = [x["bf_disc_v"] for x in records if x["pid"] == pid and x["mkt"] == "US" and x.get("bf_type") == "Price cut only" and isinstance(x.get("bf_disc_v"), float)]
+    out = {"asin": asin, "ref": ref, "std": RULE26["std"], "peak": RULE26["peak"],
+           "deal_std": round(ref * (1 - RULE26["std"]), 2) if ref else None, "deal_peak": round(ref * (1 - RULE26["peak"]), 2) if ref else None,
+           "ev25": ev, "comp25": {"median": statistics.median(comp), "n": len(comp)} if comp else None,
+           "basis": f"{RULE26['src']}: {RULE26['peak']:.0%} off on the high days ({RULE26['peak_days']}), {RULE26['std']:.0%} off on the other deal days ({RULE26['std_days']})"}
+    out["deal"], out["depth"] = out["deal_std"], out["std"]
+    return out
+
+def deal_evidence_text(da):
+    parts = []
+    if da.get("ev25"):
+        e = da["ev25"]
+        parts.append(f"our BFCM 2025 deal on {e['asin']} (US, Keepa): ${e['pre']:,.2f} before, ${e['bf']:,.2f} during, {e['depth']:.0%} off")
+    if da.get("comp25"):
+        parts.append(f"US competitors' median price cut in BFCM 2025: {da['comp25']['median']:.0%} ({da['comp25']['n']} rivals)")
+    return "; ".join(parts)
 
 tier_rank = {"Aspirational": 0, "Beatable": 1, "Poor": 2, "Untiered": 3}
 records.sort(key=lambda r: ([p[0] for p in PRODUCTS].index(r["pid"]), tier_rank.get(r["tier"], 3), -(r["wk"] or 0)))
@@ -1410,8 +1419,9 @@ for pid, mkt, tname in TABS:
     if da:
         cur_ = "C$" if mkt == "CA" else "$"
         ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
-        c = ws.cell(row=r, column=1, value=(f"ASSUMED 2026 deal price, until BM's final: {da['asin']} reference {cur_}{da['ref']:,.2f} (today's live price, held to Nov 18) → deal {cur_}{da['deal']:,.2f}, {da['depth']:.0%} off; basis: {da['basis']}."
-                                            if da.get("ref") else f"ASSUMED 2026 deal discount, until BM's final: {da['depth']:.0%} ({da['basis']}); no live price for the hero ASIN."))
+        c = ws.cell(row=r, column=1, value=(f"ASSUMED 2026 deal prices, until BM's final: {da['asin']} today {cur_}{da['ref']:,.2f}; {cur_}{da['deal_std']:,.2f} at {da['std']:.0%} off ({RULE26['std_days']}) and {cur_}{da['deal_peak']:,.2f} at {da['peak']:.0%} off ({RULE26['peak_days']}). "
+                                            f"Rule: {RULE26['src']}. Evidence: {deal_evidence_text(da) or 'no 2025 history'}. Amazon may use a lower reference price than today's (it sets it the day before the deal), which would lower the deal price."
+                                            if da.get("ref") else f"ASSUMED 2026 discount, until BM's final: {da['std']:.0%} / {da['peak']:.0%} ({RULE26['src']}); no live price for the hero ASIN."))
         c.font = F(size=8.5, italic=True, color="7F6000"); c.alignment = WRAP
         ws.row_dimensions[r].height = 18
         r += 1
@@ -1972,7 +1982,7 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
       (jl(f"{DATA}/verification_report.json", {}) or {}).get("total"), "Exact" if (jl(f"{DATA}/verification_report.json", {}) or {}).get("passed") == (jl(f"{DATA}/verification_report.json", {}) or {}).get("total") else "Check", "",
       "; ".join(f"{r_['name']}: {r_['checked']:,} checked, {r_['mismatches']} mismatches" for r_ in (jl(f"{DATA}/verification_report.json", {}) or {}).get("checks", []))),
      ("ASSUMED BFCM 2026 deal prices", "Tracker assumption (agreed Oct 15, 2026) until BM sends final prices", "2026-10-15", None, "Check", "",
-      "Why an assumption: BFCM 2026 pricing is not finalized yet because of price fluctuations (Umair Tahir, Slack, Oct 15, 2026), and Amazon fixes the deal reference price the day before the event. Reference = today's live price of the hero ASIN, assumed unchanged to Nov 18 (Amazon sets the deal reference price the day before). Deal price = the 2025 BFCM price of the same ASIN where a 2025 deal ran; otherwise the reference cut by the median competitor price cut on that product in BFCM 2025. Canada uses the US product's discount on its live CAD price. Replace with BM's prices when they arrive."),
+      "Why an assumption: BFCM 2026 pricing is not finalized yet because of price fluctuations (Umair Tahir, Slack, Oct 15, 2026), and Amazon fixes the deal reference price the day before the event. Rule (Umair Tahir via Shayan Rana, Oct 15): 20% off on the high days and 15% off on the other deal days; high days taken as Black Friday to Cyber Monday, Nov 27-30, until confirmed. Base = today's live price of the hero ASIN (US) or best seller (CA). Evidence beside each product: our own BFCM 2025 cut on the hero (Keepa median price Nov 1-19 vs Nov 20 - Dec 1) and the US competitors' median cut. Amazon's reference can be lower than today's price (B4 King White: live $94.99, Amazon reference $79.99, Oct 16 Lightning Deal max $67.99, per Umair Tahir, Oct 15), which would push the deal price lower. Replace with BM's prices when they arrive."),
      ("Our heroes' BFCM 2025 price and Best Seller Rank (US)", "Command Center keepa_history (data/keepa/keepa_history_ours_cc.csv)", "Nov 1 - Dec 5, 2025", len(hero25), "Exact", "",
       f"Daily Keepa for our {len(hero25)} US hero child ASINs, pulled Oct 14. Keepa holds no Buy Box series for our own ASINs, so price = lowest new offer (we are the only seller). Price drops on Nov 20 match the Best Deals start: B4 $74.99 to $71.24, B6 $79.99 to $75.99, S4 $29.95 to $25.46, S6 $33.95 to $32.25, Satin Fitted $16.95 to $15.15, SSS4 $33.95 to $31.41. No price history for Bamboo Fitted, Decolure Cooling 4pc, CL Pillowcases, Linen Curtains and Quilt Set in this window."),
      ("Our BFCM 2025 stock", "DataHub inventory, revision 2 (agent) + data/stock/our_stock_bfcm2025_missing_dates_bracketed.csv", "2026-10-14", None, "Partial", "", "US Nov 26, 27, Dec 1 and CA Nov 24, 29, 30 have no snapshot. Filled by inference (data/stock/our_stock_bfcm2025_missing_dates_combined.csv) from units sold that day (agent, DataHub amazon_sales, 1,761 variation-days with a sale) and the readings either side: 3,503 of 3,936 variation-days in stock, 39 out of stock, 386 unknown (low or no stock either side and no sale), and 8 sold despite 0 units on both sides (inbound stock arriving that day, e.g. B4 Queen Mid Grey B0BZQ18QJB sold 87 on Cyber Monday). Stock unit columns stay blank for these days."),

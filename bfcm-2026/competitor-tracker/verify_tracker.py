@@ -167,8 +167,10 @@ plan = rd(os.path.join(D, "deals", "our_deals_bfcm2026_plan.csv"))
 unm = [r["product_name"] for r in plan if r["pid"] and not any(p["pid"] == int(r["pid"]) and p["mkt"] == r["marketplace"] and p.get("plan26") for p in P["products"])]
 check("BFCM 2026 plan mapped", "Every planned deal for a tracked product shows on that product", sum(1 for r in plan if r["pid"]), len(unm), unm,
       f"{sum(1 for r in plan if not r['pid'])} planned deal(s) for a product not tracked here (Hanging Closet Organizer)")
-arith = [p["key"] for p in P["products"] if p.get("da") and p["da"].get("ref") and not close(p["da"]["deal"], round(p["da"]["ref"] * (1 - p["da"]["depth"]), 2), 0.0001)]
-check("Assumed 2026 deal price arithmetic", "Deal = reference × (1 − discount)", sum(1 for p in P["products"] if p.get("da") and p["da"].get("ref")), len(arith), arith)
+arith = [p["key"] for p in P["products"] if p.get("da") and p["da"].get("ref") and not (
+    close(p["da"]["deal_std"], round(p["da"]["ref"] * (1 - p["da"]["std"]), 2), 0.0001) and close(p["da"]["deal_peak"], round(p["da"]["ref"] * (1 - p["da"]["peak"]), 2), 0.0001)
+    and p["da"]["std"] == 0.15 and p["da"]["peak"] == 0.20)]
+check("Assumed 2026 deal price arithmetic", "Deal = today's price × 0.85 (Nov 19-26) and × 0.80 (Nov 27-30), Umair's rule", sum(1 for p in P["products"] if p.get("da") and p["da"].get("ref")), len(arith), arith)
 
 rep = {"generated": "2026-10-15", "checks": results, "passed": sum(1 for r in results if r["status"] == "Pass"), "total": len(results)}
 json.dump(rep, open(os.path.join(D, "verification_report.json"), "w"), indent=1)
