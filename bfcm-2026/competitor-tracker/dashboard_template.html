@@ -35,6 +35,9 @@ select,input[type=search]{font:inherit;font-size:13px;color:var(--ink);backgroun
 @media (max-width:720px){.ours{grid-template-columns:1fr}}
 .imgbox{aspect-ratio:1/1;width:100%;max-width:100%;border-radius:8px;background:var(--chip);display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid var(--line)}
 .imgbox img{width:100%;height:100%;object-fit:contain;background:#fff}
+.imgbox.soon{position:relative}
+.imgbox.soon .cap{position:absolute;left:0;right:0;bottom:3px;text-align:center;font-size:10px;line-height:1.2;color:var(--muted)}
+.imgbox.soon .cap a{background:rgba(255,255,255,.9);padding:1px 5px;border-radius:4px}
 .imgbox .pending{font-size:11px;color:var(--muted);text-align:center;padding:8px;line-height:1.35}
 .eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);font-weight:600}
 .ours h2{font-size:20px;font-weight:600;margin:2px 0 6px;line-height:1.25;text-wrap:balance}
@@ -174,9 +177,9 @@ const lnk = (a, m) => a ? `<a href="${amz(a, m)}" target="_blank" rel="noopener"
 
 function imgBox(key, asin, cls = "", url = null) {
   const src = key ? IMG[key] : null;
-  if (!src && url) return `<div class="imgbox ${cls}"><div class="pending"><a href="${esc(url)}" target="_blank" rel="noopener">Open photo ↗</a><br>${esc(asin || "")}</div></div>`;
   if (src) return `<div class="imgbox ${cls}"><img loading="lazy" src="${esc(src)}" alt="Product photo ${esc(asin || "")}"></div>`;
-  return `<div class="imgbox ${cls}"><div class="pending">Photo pending<br>${esc(asin || "")}</div></div>`;
+  const cap = url ? `<a href="${esc(url)}" target="_blank" rel="noopener">Open photo ↗</a>` : esc(asin || "");
+  return `<div class="imgbox soon ${cls}"><img loading="lazy" src="${esc(IMG.COMING_SOON || "")}" alt="Photo coming soon ${esc(asin || "")}"><div class="cap">${cap}</div></div>`;
 }
 const lpPct = c => (isNum(c.lp) && isNum(c.price) && c.price > 0) ? c.lp / c.price - 1 : null;
 const tierChip = t => `<span class="chip ${t === "Aspirational" ? "asp" : t === "Beatable" ? "good" : ""}">${esc(t || "Untiered")}</span>`;

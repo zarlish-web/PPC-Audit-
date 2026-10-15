@@ -15,6 +15,7 @@ from openpyxl.utils import get_column_letter as CL
 from openpyxl.worksheet.datavalidation import DataValidation
 from openpyxl.formatting.rule import FormulaRule
 from openpyxl.comments import Comment
+from openpyxl.drawing.image import Image as XLImage
 from openpyxl.workbook.defined_name import DefinedName
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -290,6 +291,7 @@ BLUE = "0000FF"
 WRAP = Alignment(wrap_text=True, vertical="top")
 CENTER = Alignment(horizontal="center", vertical="center", wrap_text=True)
 IMG_ROW_H = 62
+COMING_SOON = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets", "coming_soon_small.jpg")
 
 img_rows = []   # (role, product, marketplace, brand, asin, url) for the image download request
 
@@ -305,8 +307,12 @@ def put_image(ws, cell, url, role, product, mkt, brand, asin):
         else:
             c.value = f'=_xlfn.IMAGE("{u}")'
     else:
-        c.value = "IMAGE MISSING"
-        c.font = F(size=7, color="C00000", bold=True)
+        # no verified photo yet: show the Coming Soon placeholder (never another product's photo)
+        c.value = "COMING SOON"
+        c.font = F(size=6, color="808080")
+        pic = XLImage(COMING_SOON)
+        pic.width = pic.height = 72
+        ws.add_image(pic, cell)
 
 def section(ws, row, text, ncols, sub=None):
     ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=ncols)
@@ -1094,7 +1100,7 @@ rd.sheet_view.showGridLines = False
 # ================================================================== per-product tabs
 COMP_COLS = [
     # key, header, width, group, comment, numfmt
-    ("img", "Image", 11, "id", "Live product image (Excel 365 / Google Sheets IMAGE). 'IMAGE MISSING' = no verified image URL; see Data Gaps.", None),
+    ("img", "Image", 11, "id", "Live product image (Excel 365 / Google Sheets IMAGE). 'COMING SOON' picture = no verified image yet; see Data Gaps.", None),
     ("brand", "Brand", 14, "id", None, None),
     ("title", "Product title", 34, "id", None, None),
     ("tier", "Tier", 9, "id", "Command Center mapping tier against this product.", None),
@@ -1684,7 +1690,7 @@ def plook(col):
 if NO_IMAGE_FORMULA:
     db["E4"] = f'=IF($C$4="All","",{plook(4)})'
 else:
-    db["E4"] = f'=IF($C$4="All","",IFERROR(_xlfn.IMAGE({plook(4)}),"IMAGE MISSING"))'
+    db["E4"] = f'=IF($C$4="All","",IFERROR(_xlfn.IMAGE({plook(4)}),"IMAGE COMING SOON"))'
 db["E4"].alignment = CENTER; db["E4"].border = BOX
 for i, (lab, col, nf) in enumerate((("Our product", 3, None), ("Brand", 5, None), ("Parent ASIN", 6, None), ("Variations (SKUs)", 7, "#,##0"),
                                     ("Our price (best child; see Data Check)", 8, "$#,##0.00"), ("BFCM 2025 lift", 9, '0.00"x"')), 4):
@@ -1746,7 +1752,7 @@ for k in range(1, 81):
             c.value = f'=IF({k}<=COUNTIF({rng("A")},TRUE),{k},"")'
         elif h == "Image":
             c.alignment = CENTER
-            c.value = (f'=IF(B{rr}="","",{gv(10)})' if NO_IMAGE_FORMULA else f'=IF(B{rr}="","",IFERROR(_xlfn.IMAGE({gv(10)}),"IMAGE MISSING"))')
+            c.value = (f'=IF(B{rr}="","",{gv(10)})' if NO_IMAGE_FORMULA else f'=IF(B{rr}="","",IFERROR(_xlfn.IMAGE({gv(10)}),"IMAGE COMING SOON"))')
         elif h == "Brand · Tier":
             c.value = f'=IF(B{rr}="","",{gv(7)}&CHAR(10)&{gv(8)})'
             c.font = F(size=8, bold=True)
@@ -1805,7 +1811,7 @@ lines = [
     ("", None),
     ("Images", dict(bold=True, size=11)),
     ("Images are live IMAGE-function formulas pointing at the verified Amazon image URLs held by Data Dive (seller catalog for our variations, niche research for competitors) and the Command Center thumbnail. They render in Excel 365 (Windows / Mac / web) and Google Sheets; older Excel and LibreOffice show an error in those cells instead of the picture.", {}),
-    ("A cell reading IMAGE MISSING means no verified image URL was available - it is never replaced by an unrelated picture. The list of missing images is on Data Gaps; image_request.csv lists every image URL for download.", {}),
+    ("A COMING SOON picture means no verified image is available yet - it is never replaced by another product's photo. The list of missing images is on Data Gaps; image_request.csv lists every image URL for download.", {}),
     ("", None),
     ("Colour legend", dict(bold=True, size=11)),
     ("Green group = Command Center price/sales snapshot · Blue = Data Dive listing · Purple = Command Center search strategy (ASINsight) · Grey = formula · YELLOW / blue text = to fill (Keepa or page check).", {}),
@@ -1944,7 +1950,7 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
      ("Competitor image, size and colour (US)", "Amazon.com exact-ASIN pages (agent, Part A; data/competitor_details)", "2026-10-14", len(comp_det), "Current", "",
       f"257 US competitor ASINs that lacked an image, size or colour were checked on their own Amazon page (signed out, ZIP 10001). {len(comp_det)} kept their ASIN; 4 redirected to another ASIN and are left blank, not substituted (B0DG2HRZKK, B09G8P3X6L, B0D4PKVNWB, B0D1RBXBNG). Fills 165 of the 169 missing images. Size and colour come from the page's variation attributes, never the title. Brand and parent now follow Amazon as of Oct 14: B07M67HRKS is WETCAT (Command Center: Chakir Turkish) and B0D59BMBK7 is Fafua (CC: NORTHERN BROTHERS); 28 competitors have a new parent ASIN (Amazon re-parented them; the old Command Center parent is kept in the cell comment). Keepa (Command Center keepa_history) confirmed both brands and agreed with the page on all 11 tracked ASINs where Keepa lists a parent; the other 17 rest on the page alone."),
      ("Our product photos (web dashboard)", "Agent zip product_images_ours.zip, Part 1 (SHA-256 09da5421...c501d8d); product_images/manifest_ours.csv", "2026-10-15", 148, "Partial", "",
-      "Part 1 of 2: 148 exact-ASIN main images (26 US, 122 CA), all checked as 200 px RGB JPEGs matching the manifest. Sources: 129 cached Keepa main image for the exact ASIN and marketplace, 14 fresh Amazon pages, 5 saved Amazon pages. The other 2,343 of our ASINs are still pending (no placeholder used); on the dashboard they show an Open photo link to the Xray / catalog image URL until Part 2 arrives. In the workbook our images come from the Data Dive / Xray image URLs."),
+      "Part 1 of 2: 148 exact-ASIN main images (26 US, 122 CA), all checked as 200 px RGB JPEGs matching the manifest. Sources: 129 cached Keepa main image for the exact ASIN and marketplace, 14 fresh Amazon pages, 5 saved Amazon pages. The other 2,343 of our ASINs are still pending (no placeholder used); on the dashboard they show a COMING SOON picture with an Open photo link to the Xray / catalog image URL until Part 2 arrives. In the workbook our images come from the Data Dive / Xray image URLs."),
      ("Canada competitors", "Amazon.ca page research (agent, Prompt 9)", "2026-10-13", sum(len(v) for v in ca_comp.values()), "Partial" if ca_comp else "Missing", "",
       "Page-1 organic results per product keyword, same material and piece count, Queen selected (2 King), CAD, logged out Toronto. 15 rivals each for DC B4, S4, S6, SSS4 (reuses S4) and Satin Fitted; 8 for DC B6 (only 8 qualifying 6-piece bamboo sets). No Command Center fields (weekly units, ASINsight) exist for Canada; Keepa .ca BFCM 2025 history follows after the US pulls. Our Canadian comparison price is the live Amazon.ca price from Helium 10 Xray (Oct 14, CAD)."),
      ("Competitors' BFCM 2025 history (Canada)", "Keepa .ca via agent (" + ", ".join(os.path.basename(f_) for f_ in _kfiles_ca) + ")", "Nov 1 - Dec 5, 2025", len(keepa25_ca), "Partial" if _ca_pending else "Exact", "",

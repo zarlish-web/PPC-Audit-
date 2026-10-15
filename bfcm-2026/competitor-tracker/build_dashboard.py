@@ -197,7 +197,7 @@ payload = json.dumps({"products": products, "comps": comps, "summary": summary, 
                       "built": "2026-10-14", "imagesLoaded": len(used_img)}, separators=(",", ":"), default=str)
 import base64
 with open(os.path.join(os.path.dirname(os.path.abspath(OUT)), "images.js"), "w") as fh:
-    fh.write("window.IMG={" + ",".join(f'"{k}":"data:image/jpeg;base64,' + base64.b64encode(open(os.path.join(IMG_DIR, have_img[k]), "rb").read()).decode() + '"'
+    fh.write("window.IMG={" + '"COMING_SOON":"data:image/jpeg;base64,' + base64.b64encode(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets", "coming_soon.jpg"), "rb").read()).decode() + '",' + ",".join(f'"{k}":"data:image/jpeg;base64,' + base64.b64encode(open(os.path.join(IMG_DIR, have_img[k]), "rb").read()).decode() + '"'
                                       for k in sorted(used_img)) + "};")
 tpl = open(os.path.join(HERE, "dashboard_template.html")).read()
 open(OUT, "w").write(tpl.replace("/*__DATA__*/null", payload))
