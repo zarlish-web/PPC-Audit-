@@ -274,7 +274,7 @@ const s5 = [H1("5. BFCM 2026 deal prices", "s5"),
 const stockCols = [{ h: "Product", w: 2600 }, { h: "Mkt", w: 700 }, { h: "Sales / day", w: 1300, a: "r" }, { h: "Lift used", w: 1300, a: "r" }, { h: "At Amazon", w: 1400, a: "r" },
   { h: "Inbound", w: 1300, a: "r" }, { h: "Needed to Nov 30", w: 1600, a: "r" }, { h: "Covered", w: 1100, a: "r" }, { h: "Needs inbound", w: 1300, a: "r" }, { h: "Short", w: 900, a: "r" }, { h: "Out now", w: 900, a: "r" }];
 const stockRow = p => { const s = p.stock26, c = s.counts, sh = c["Short even with inbound"] || 0, oo = c["Out of stock now"] || 0;
-  return [p.short, p.mkt, isNum(s.vel) ? s.vel.toFixed(1) : "—", { v: x2(s.lift) + (String(s.liftSrc).includes("own") ? "" : " *") }, int(s.onHand), int(s.inbound), int(s.need),
+  return [p.short, p.mkt, isNum(s.vel) ? s.vel.toFixed(1) : "—", { v: x2(s.lift) + (!String(s.liftSrc).startsWith("ASSUMED") ? "" : " *") }, int(s.onHand), int(s.inbound), int(s.need),
     int(c["Covered to Nov 30"] || 0), int(c["Needs inbound in time"] || 0), { v: int(sh), color: sh ? C.bad : undefined, bold: !!sh }, { v: int(oo), color: oo ? C.bad : undefined, bold: !!oo }]; };
 const s6 = [H1("6. Stock to Nov 30", "s6"),
   P("For every variation: units needed = today's sales per day × 34 days (Oct 16 – Nov 18) + today's sales per day × the BFCM lift × 12 days (Nov 19–30). The lift is the product's own BFCM 2025 sales lift where it is reliable (0.8x to 8x); otherwise the account lift (US 2.74x, Canada 3.14x) is used and marked *."),
@@ -287,7 +287,7 @@ const s6 = [H1("6. Stock to Nov 30", "s6"),
   chart(CH.stock, 10, 6.0),
   H2("Stock by product"),
   table(stockCols, prods.filter(p => p.stock26).sort((a, b) => b.stock26.need - a.stock26.need).map(stockRow)),
-  small("* account lift used because the product's own BFCM 2025 lift was not reliable. Each product chapter lists the variations that are not covered."),
+  small("* account lift used because the product's own BFCM 2025 lift was not available or not reliable. Each product chapter lists the variations that are not covered."),
 ];
 
 // ---- 7/8. product chapters
@@ -357,7 +357,7 @@ function chapter(p, first) {
   // stock
   if (st) {
     out.push(H3("Stock to Nov 30"));
-    out.push(P(`Sales per day today ${isNum(st.vel) ? st.vel.toFixed(1) : "—"} · lift used ${x2(st.lift)} (${String(st.liftSrc).includes("own") ? "this product's own BFCM 2025 lift" : "account lift, assumed"}) · need to Nov 30 ${int(st.need)} units · at Amazon ${int(st.onHand)} · inbound ${int(st.inbound)}. Covered ${int(st.counts["Covered to Nov 30"] || 0)}, needs inbound in time ${int(st.counts["Needs inbound in time"] || 0)}, short ${int(sh)}, out of stock now ${int(oo)}.`));
+    out.push(P(`Sales per day today ${isNum(st.vel) ? st.vel.toFixed(1) : "—"} · lift used ${x2(st.lift)} (${!String(st.liftSrc).startsWith("ASSUMED") ? "this product's own BFCM 2025 lift" : "account lift, assumed"}) · need to Nov 30 ${int(st.need)} units · at Amazon ${int(st.onHand)} · inbound ${int(st.inbound)}. Covered ${int(st.counts["Covered to Nov 30"] || 0)}, needs inbound in time ${int(st.counts["Needs inbound in time"] || 0)}, short ${int(sh)}, out of stock now ${int(oo)}.`));
     if (p.risk.length) out.push(table([{ h: "Size", w: 1800 }, { h: "Colour", w: 2200 }, { h: "At Amazon", w: 1200, a: "r" }, { h: "Inbound", w: 1200, a: "r" }, { h: "Sales / day", w: 1200, a: "r" },
       { h: "Need to Nov 30", w: 1400, a: "r" }, { h: "Short by", w: 1200, a: "r" }, { h: "Runs out", w: 1300 }, { h: "Status", w: 2900 }],
       p.risk.map(x => [x.size || "—", x.colour || "—", int(x.oh), int(x.ib), isNum(x.vel) ? x.vel.toFixed(1) : "—", int(x.need), isNum(x.short) && x.short > 0 ? int(x.short) : "—",
