@@ -1157,11 +1157,12 @@ def stock_outlook(pid, mkt):
     if (pid, mkt) in stock26:
         return stock26[(pid, mkt)]
     lift, lift_src = stock_lift(pid, mkt)
-    rows = []
+    rows, seen_ = [], set()
     for v_ in our_variations(pid, mkt):
         inv = sb_inv.get((mkt, v_["asin"]))
-        if not inv:
+        if not inv or v_["asin"] in seen_:   # one row per ASIN (two SKU rows can share an ASIN)
             continue
+        seen_.add(v_["asin"])
         vel, vel_src = inv["vel"], "SellerBoard velocity"
         if not vel and (v_.get("units_28d") or 0) > 0:
             vel, vel_src = v_["units_28d"] / 28, "units last 28 days / 28 (no SellerBoard velocity: out of stock)"

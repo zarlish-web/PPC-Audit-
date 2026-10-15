@@ -121,7 +121,7 @@
   {
    "name": "BFCM 2026 stock per variation",
    "compared": "On hand, inbound and pace vs the raw SellerBoard file; units needed = pace \u00d7 34 + pace \u00d7 lift \u00d7 12",
-   "checked": 1384,
+   "checked": 1383,
    "mismatches": 0,
    "status": "Pass",
    "examples": [],

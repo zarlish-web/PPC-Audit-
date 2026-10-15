@@ -192,6 +192,8 @@ for p in P["products"]:
         if not raw or not close(x["oh"], raw[0], 0.0001) or not close(x["ib"], raw[1], 0.0001) or not close(x["need"], need, 0.0001) \
            or (x["velSrc"].startswith("SellerBoard") and not close(x["vel"], raw[2], 0.0001)):
             bad += 1; ex.append(f"{p['mkt']} {x['asin']}")
+dups = [f"{p['mkt']} {p['short']} {a}" for p in P["products"] if p.get("stock26") for a, n in __import__("collections").Counter(x["asin"] for x in p["stock26"]["rows"]).items() if n > 1]
+bad += len(dups); ex += dups
 check("BFCM 2026 stock per variation", "On hand, inbound and pace vs the raw SellerBoard file; units needed = pace × 34 + pace × lift × 12", tot, bad, ex)
 sws = wb["BFCM Stock"] if "BFCM Stock" in wb.sheetnames else None
 tot = bad = 0; ex = []
