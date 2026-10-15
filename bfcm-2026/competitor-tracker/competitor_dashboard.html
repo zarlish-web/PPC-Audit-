@@ -63,6 +63,20 @@ ul.notes .src{color:var(--muted);font-size:11.5px}
 .mkt-tabs button{font:inherit;font-weight:600;padding:9px 16px;border:1px solid var(--line);border-bottom:none;border-radius:8px 8px 0 0;background:var(--chip);color:var(--muted);cursor:pointer;margin-bottom:-1px}
 .mkt-tabs button span{font-weight:400;font-size:12px;margin-left:4px}
 .mkt-tabs button[aria-selected="true"]{background:var(--panel);color:var(--ink);border-color:var(--line)}
+.keybar{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:14px 0 4px}
+.kp{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:10px 12px;background:var(--accent-soft)}
+.kp .k{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.kp .v{font-family:var(--mono);font-size:18px;font-weight:700;color:var(--ink);line-height:1.25;margin-top:2px}
+.kp .v .arr{color:var(--muted);font-weight:400}
+.kp .s{font-size:11.5px;color:var(--muted);margin-top:2px}
+.kp.deal{border-left-color:var(--deal);background:var(--deal-bg)} .kp.deal .v{color:var(--deal)}
+.kp.plan{border-left-color:var(--accent)} .kp.plan .v{font-family:var(--body);font-size:15px}
+.kp.risk{border-left-color:var(--bad);background:var(--bad-bg)} .kp.risk .v{color:var(--bad);font-family:var(--body);font-size:15px}
+.kp.ok{border-left-color:var(--good);background:var(--good-bg)} .kp.ok .v{color:var(--good);font-family:var(--body);font-size:15px}
+.kp.muted{border-left-color:var(--line);background:var(--chip)} .kp.muted .v{font-family:var(--body);font-size:15px}
+.fact .s b{color:var(--ink);font-weight:700}
+.fact.key .v{font-size:16px;font-weight:700;color:var(--accent)}
+.fact.key.deal .v{color:var(--deal)}
 .fact.wide{grid-column:span 2}
 .fact .s{font-size:11.5px;color:var(--muted)}
 .chipset{margin-top:14px}
@@ -242,6 +256,23 @@ let view = "cards", vcol = null, vsize = null;
 try { const s = JSON.parse(localStorage.getItem("bfcm-dash") || "{}"); if (s.product) pSel.value = s.product; if (s.mkt) $("#f-mkt").value = s.mkt; if (s.view) view = s.view; } catch (e) {}
 fillProducts();
 
+function keyBar(p, m) {
+  const cs = D.comps.filter(c => c.pid === p.pid && c.mkt === p.mkt);
+  const dir = cs.filter(c => c.cls === "Direct"), base = dir.length ? dir : cs;
+  const pr = base.map(c => c.price).filter(isNum).sort((a, b) => a - b);
+  const med = pr.length ? (pr.length % 2 ? pr[pr.length >> 1] : (pr[pr.length / 2 - 1] + pr[pr.length / 2]) / 2) : null;
+  const below = base.filter(c => isNum(c.gap) && c.gap < 0).length;
+  const st = p.stock26, sc = st ? st.counts : {}, short = st ? (sc["Short even with inbound"] || 0) : 0, oos = st ? (sc["Out of stock now"] || 0) : 0;
+  const kp = (cls, k, v, sub) => `<div class="kp ${cls}"><div class="k">${k}</div><div class="v">${v}</div>${sub ? `<div class="s">${sub}</div>` : ""}</div>`;
+  return `<div class="keybar" aria-label="Key points">
+    ${kp("", "Our price", fmt$(p.price, m), esc(p.bestLabel || ""))}
+    ${p.da && isNum(p.da.ref) ? kp("deal", "Assumed BFCM 2026 deal", `${fmt$(p.da.deal_std, m)} <span class="arr">→</span> ${fmt$(p.da.deal_peak, m)}`, `${fmtP(p.da.std)} off Nov 19–26 · ${fmtP(p.da.peak)} off Nov 27–30`) : kp("muted", "BFCM 2026 deal", p.plan26 ? "Price not set" : "Not in a deal", p.plan26 ? "" : "regular price through BFCM")}
+    ${p.plan26 ? kp("plan", "BFCM 2026 plan", esc(p.plan26.split(" (")[0]), "") : ""}
+    ${st ? kp(short || oos ? "risk" : "ok", "Stock to Nov 30", short || oos ? `${fmtN(short)} short · ${fmtN(oos)} out now` : "Covered", `${fmtN(st.onHand)} at Amazon · need ${fmtN(st.need)}`) : ""}
+    ${isNum(p.lift) ? kp("", "BFCM 2025 lift", fmtX(p.lift), p.hk && isNum(p.hk.pre) && isNum(p.hk.bf) ? `hero ${fmt$(p.hk.pre, m)} → ${fmt$(p.hk.bf, m)}` : "") : ""}
+    ${cs.length ? kp("", dir.length ? "Direct competitors" : "Competitors", `${fmtN(base.length)}`, `median ${fmt$(med, m)} · ${fmtN(below)} below us`) : ""}
+  </div>`;
+}
 function current() { const short = pSel.value, mkt = $("#f-mkt").value; return products.find(p => p.short === short && p.mkt === mkt) || null; }
 
 function renderOurs(p) {
@@ -260,14 +291,15 @@ function renderOurs(p) {
       <div class="eyebrow">Our product · ${m === "US" ? "Amazon.com" : "Amazon.ca"} · ${esc(p.role)} · ${esc(p.scope || "")}</div>
       <h2>${esc(p.title || (p.brand + " " + p.name))}</h2>
       <div class="asin">Parent ${lnk(p.parent, m)} · Best seller ${lnk(p.best, m)} · Stage ${esc(p.stage || "—")}</div>
+      ${keyBar(p, m)}
       <div class="facts">
-        <div class="fact"><div class="k">Our price, best child</div><div class="v">${fmt$(p.price, m)}</div><div class="s">${esc(p.bestLabel)} · ${esc(p.priceSrc || "")}</div></div>
+        <div class="fact key"><div class="k">Our price, best child</div><div class="v">${fmt$(p.price, m)}</div><div class="s">${esc(p.bestLabel)} · ${esc(p.priceSrc || "")}</div></div>
         <div class="fact"><div class="k">Units, last 28 days</div><div class="v">${fmtN(p.u28)}</div><div class="s">${fmtN(p.vars.length)} variations</div></div>
         <div class="fact"><div class="k">Contribution per unit</div><div class="v">${fmt$(p.contrib, m)}</div></div>
         <div class="fact"><div class="k">Break-even ACoS</div><div class="v">${isNum(p.be) ? (p.be <= 1.5 ? fmtP(p.be, 1) : p.be.toFixed(1) + "%") : "—"}</div></div>
-        <div class="fact"><div class="k">BFCM 2026 plan</div><div class="v" style="font-family:var(--body);font-size:13.5px">${p.plan26 ? esc(p.plan26) : '<span class="chip bad">Not in a deal</span>'}</div><div class="s">Oct 15${p.plan26 ? "" : " · regular price through BFCM"}</div></div>
-        ${p.da ? `<div class="fact wide"><div class="k">Assumed 2026 deal price</div><div class="v">${isNum(p.da.ref) ? `${fmt$(p.da.deal_std, m)} · ${fmt$(p.da.deal_peak, m)}` : "—"}</div><div class="s">From today's ${fmt$(p.da.ref, m)} (${esc(p.da.asin || "")}): ${fmtP(p.da.std)} off Nov 19–26, ${fmtP(p.da.peak)} off Nov 27–30 (team rule). Evidence: ${p.da.ev25 ? `our US BFCM 2025 price on ${esc(p.da.ev25.asin)} ${fmt$(p.da.ev25.pre, "US")} → ${fmt$(p.da.ev25.bf, "US")} (${fmtP(p.da.ev25.depth)} off)` : "no 2025 deal history"}${p.da.comp25 ? ` · rivals' median 2025 cut ${fmtP(p.da.comp25.median)} (${p.da.comp25.n})` : ""}. Amazon may use a lower reference price. Assumption until final prices are set.</div></div>` : ""}
-        ${p.stock26 ? `<div class="fact wide"><div class="k">BFCM 2026 stock (Oct 15)</div><div class="v">${fmtN(p.stock26.onHand)} at Amazon · ${fmtN(p.stock26.inbound)} inbound</div><div class="s">Need about ${fmtN(p.stock26.need)} to Nov 30 (${fmtN(p.stock26.need28)} at the 28-day pace) with a ${fmtX(p.stock26.lift)} BFCM lift${/ASSUMED/.test(p.stock26.liftSrc) ? " (assumed: account 2025 lift)" : " (own 2025 lift)"}. <b class="${(p.stock26.counts["Short even with inbound"] || p.stock26.counts["Out of stock now"]) ? "neg" : ""}">${fmtN(p.stock26.counts["Short even with inbound"] || 0)} short, ${fmtN(p.stock26.counts["Out of stock now"] || 0)} out of stock now</b>, ${fmtN(p.stock26.counts["Needs inbound in time"] || 0)} need inbound in time, ${fmtN(p.stock26.counts["Covered to Nov 30"] || 0)} covered.</div></div>` : ""}
+        <div class="fact key"><div class="k">BFCM 2026 plan</div><div class="v" style="font-family:var(--body);font-size:13.5px">${p.plan26 ? esc(p.plan26) : '<span class="chip bad">Not in a deal</span>'}</div><div class="s">Oct 15${p.plan26 ? "" : " · regular price through BFCM"}</div></div>
+        ${p.da ? `<div class="fact wide key deal"><div class="k">Assumed 2026 deal price</div><div class="v">${isNum(p.da.ref) ? `${fmt$(p.da.deal_std, m)} · ${fmt$(p.da.deal_peak, m)}` : "—"}</div><div class="s">From today's <b>${fmt$(p.da.ref, m)}</b> (${esc(p.da.asin || "")}): <b>${fmtP(p.da.std)} off</b> Nov 19–26, <b>${fmtP(p.da.peak)} off</b> Nov 27–30 (team rule). Evidence: ${p.da.ev25 ? `our US BFCM 2025 price on ${esc(p.da.ev25.asin)} <b>${fmt$(p.da.ev25.pre, "US")} → ${fmt$(p.da.ev25.bf, "US")} (${fmtP(p.da.ev25.depth)} off)</b>` : "no 2025 deal history"}${p.da.comp25 ? ` · rivals' median 2025 cut <b>${fmtP(p.da.comp25.median)}</b> (${p.da.comp25.n})` : ""}. Amazon may use a lower reference price. Assumption until final prices are set.</div></div>` : ""}
+        ${p.stock26 ? `<div class="fact wide"><div class="k">BFCM 2026 stock (Oct 15)</div><div class="v">${fmtN(p.stock26.onHand)} at Amazon · ${fmtN(p.stock26.inbound)} inbound</div><div class="s">Need about <b>${fmtN(p.stock26.need)}</b> to Nov 30 (${fmtN(p.stock26.need28)} at the 28-day pace) with a <b>${fmtX(p.stock26.lift)}</b> BFCM lift${/ASSUMED/.test(p.stock26.liftSrc) ? " (assumed: account 2025 lift)" : " (own 2025 lift)"}. <b class="${(p.stock26.counts["Short even with inbound"] || p.stock26.counts["Out of stock now"]) ? "neg" : ""}">${fmtN(p.stock26.counts["Short even with inbound"] || 0)} short, ${fmtN(p.stock26.counts["Out of stock now"] || 0)} out of stock now</b>, ${fmtN(p.stock26.counts["Needs inbound in time"] || 0)} need inbound in time, ${fmtN(p.stock26.counts["Covered to Nov 30"] || 0)} covered.</div></div>` : ""}
         <div class="fact"><div class="k">BFCM 2025 sales lift</div><div class="v">${fmtX(p.lift)}</div><div class="s">BFCM week vs 30 days before</div></div>
         <div class="fact"><div class="k">BFCM 2025 TACoS</div><div class="v">${isNum(p.tacos) ? p.tacos.toFixed(1) + "%" : "—"}</div><div class="s">${isNum(p.preTacos) ? p.preTacos.toFixed(1) + "% before" : ""}</div></div>
         ${p.hk && isNum(p.hk.pre) && isNum(p.hk.bf) ? `<div class="fact"><div class="k">Hero price, BFCM 2025</div><div class="v">${fmt$(p.hk.pre, m)} → ${fmt$(p.hk.bf, m)}</div><div class="s">${p.hk.bf < p.hk.pre ? fmtP(1 - p.hk.bf / p.hk.pre) + " lower" : "no cut"}${p.hk.rank_pre && p.hk.rank_bf ? " · rank " + fmtX(p.hk.rank_pre / p.hk.rank_bf) : ""} · ${esc(p.hk.asin)}</div></div>` : ""}
