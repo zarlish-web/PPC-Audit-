@@ -183,7 +183,7 @@ for z in T['sizes']:
     zrows.append(dict(size=z['size'], campaigns=z['campaigns'], ad_sku_live=z['ad_sku_live'], ad_sku_recommended=z['ad_sku_recommended'],
                       ad_spend=sp, spend_day=sp / ads_days, plan_spend_day=z['plan_spend_day'], ad_clicks=cl, ad_orders=od, ad_sales=sa,
                       acos=(sp / sa) if sa else None, cvr=(od / cl) if cl else None, units_day_before=pre, units_day_after=post,
-                      rank_note=z['rank_note'], read=z['read']))
+                      plan_light_push_day=z.get('plan_light_push_day'), plan_light_share=z.get('plan_light_share'), rank_note=z['rank_note'], read=z['read']))
 dump('sizes', pd.DataFrame(zrows))
 dump('actions', pd.DataFrame(T['actions']))
 

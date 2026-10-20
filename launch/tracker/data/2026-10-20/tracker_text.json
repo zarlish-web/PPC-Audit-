@@ -11,7 +11,7 @@
   "2026-10-20": "Partial day. Sellerboard ad data not in yet; command-center shows $16.55 Sponsored Products spend so far."
  },
  "queen_campaign_reads": {
-  "SP-Cooling Sheet Queen-": "Queen's biggest keyword sits on Conversion with down-only bids: 0.21% top-of-search share and 28% of budget used. Bid-limited, not budget-limited. Plan: Ranking, fixed $2.24, Top-of-Search +75%.",
+  "SP-Cooling Sheet Queen-": "Queen's biggest keyword, held on Conversion/down-only by Joseph's rule 'heads on profit until the new order is dated': 0.21% top-of-search share, organic #68. Sleephoria out-bids it here (A2, A8).",
   "SP-Queen Cooling Sheet-": "Ranking, fixed, Top-of-Search +84%: 20% top-of-search share on low-volume wording. 6 clicks, 0 orders happens 57% of the time — too early.",
   "SBV-Rival Video Queen": "15 clicks, 0 orders: a 29% chance at 8% CVR. Too early; review at 30 clicks.",
   "SB-PC-Cooling Sheets Queen Shades": "2 orders on 8 clicks: the best Queen result so far.",
@@ -44,8 +44,8 @@
    "orders": 0,
    "spend": 36.6,
    "finding": "Queen's biggest keyword has two paths. The single campaign only reaches top of search 0.21% of the time; the tail catches a quarter of the clicks at its own bid.",
-   "proposal": "Move the single campaign to Ranking, fixed bid, Top-of-Search +75% (plan). In the same change, add 'cooling sheets queen' as negative exact in Queen Tail 18 so the ranking campaign owns it.",
-   "timing": "With the Queen restructure",
+   "proposal": "When the head moves to its ranking setup on the order date (A2), add 'cooling sheets queen' as negative exact in Queen Tail 18 in the same change (A3).",
+   "timing": "With A2 (order date)",
    "protects": "The tail keeps its own query 'cool sheet queen' (6 clicks). Nothing relevant is blocked: the same shoppers still see our ad through the ranking campaign."
   },
   {
@@ -142,11 +142,11 @@
    "id": "D01",
    "raised": "2026-10-20",
    "area": "Queen",
-   "decision": "Move 'cooling sheets queen' to Ranking objective, fixed bid $2.24, Top-of-Search +75% (the plan's setting).",
+   "decision": "Ask Joseph to switch 'cooling sheets queen' to the ranking setup on the day the new order is dated (his head rule), Queen first.",
    "evidence": "Queen's biggest keyword (5.7 of Queen's 13.5 planned clicks a day). Now Conversion with down-only bids: top-of-search share 0.21%, 28% of budget used, organic #68.",
-   "type": "Act now (setup)",
-   "gate": "None: it restores the plan's setting.",
-   "status": "Proposed",
+   "type": "Question for Joseph",
+   "gate": "Joseph's rule: heads stay on profit until the new order is dated.",
+   "status": "Question for Joseph",
    "review_on": "2026-10-27",
    "outcome": ""
   },
@@ -203,7 +203,7 @@
    "raised": "2026-10-20",
    "area": "King",
    "decision": "No change to King: no bid, budget or targeting changes.",
-   "evidence": "King SP: 13 orders, ACoS 40% over 4 days, but 9 of the 13 orders came on 18 Oct; without that day ACoS is 87%. King units: 4, 10, 19, 4 vs a 4.3 baseline.",
+   "evidence": "King SP: 13 orders, ACoS 40% over 4 days, but 9 of the 13 orders came on 18 Oct; without that day ACoS is 87%. King units: 4, 10, 19, 4 vs a 4.3 baseline. King is pushed at 35% in Joseph's plan, so its spend is planned.",
    "type": "Wait for gate",
    "gate": "7 full days: King SP ACoS ≤ 43.7% with orders on at least 4 of 7 days. Then decide with Zarlish whether King is assigned to CooLinens (push) or capped.",
    "status": "Waiting",
@@ -217,7 +217,7 @@
    "decision": "Keep rival-page campaigns running (only the relevance negatives in D04).",
    "evidence": "29 clicks, 0 orders: a 17% chance at 6% CVR, so not proof of failure. Decolure's history on rival pages: 42% ACoS.",
    "type": "Wait for gate",
-   "gate": "50 clicks per campaign or 30 Oct. Exit a target at 0 orders on 50 clicks (under 2% chance at 8% CVR).",
+   "gate": "The plan's test rules: two weeks, 3+ clicks/day per target, stop-loss at 2× break-even (CL-PC5); exit a target at 0 orders on 50 clicks.",
    "status": "Waiting",
    "review_on": "2026-10-30",
    "outcome": ""
@@ -239,7 +239,7 @@
    "raised": "2026-10-20",
    "area": "Spend",
    "decision": "Hold bids and modifiers; apply the plan's weekly rules on 27 Oct.",
-   "evidence": "Spend runs about $257/day vs the plan's $138; ranking-keyword Top-of-Search modifiers +65% to +302%. Four days are too few for the plan's REDUCE rule.",
+   "evidence": "Spend ~$290/day vs the plan's light push. Top-of-Search modifiers were raised deliberately to the ranking ceilings (Joseph's Oct 19 coverage call), so they are not a deviation.",
    "type": "Wait for gate",
    "gate": "Plan rule: step the modifier down 25 points where ACoS is above the ranking ceiling for 2 weeks, or CVR is under 60% of plan on 50+ clicks.",
    "status": "Waiting",
@@ -274,8 +274,8 @@
    "id": "D12",
    "raised": "2026-10-20",
    "area": "Full / Cal King",
-   "decision": "Change the Full ad SKU to Midnight Black (or Cool Grey) and Cal King to Graphite this week.",
-   "evidence": "Live Full Cream (29 units) and Cal King Regal Purple (30 units) are the weakest sellers for the sister brand; Full Midnight Black sold 9 units at 16.7% with no ads.",
+   "decision": "Change the Full ad SKU to Full Cool Grey, Twin to Graphite and Cal King to Graphite this week.",
+   "evidence": "Live Full Cream and Cal King Regal Purple have ~30 units each; Full Midnight Black runs out ~Dec 4 at the plan's pace, so Cool Grey (94) is the plan colour.",
    "type": "This week (low risk)",
    "gate": "None; check cover.",
    "status": "Proposed",
@@ -293,6 +293,42 @@
    "status": "Superseded",
    "review_on": "",
    "outcome": "Kept running; judged at their gates."
+  },
+  {
+   "id": "D13",
+   "raised": "2026-10-20",
+   "area": "Cal King",
+   "decision": "Hold the Cal King push until the bridge; build its 6 rank exacts ready.",
+   "evidence": "Spare 2 units after planned pushes; no rank exact live (plan CL-PC3).",
+   "type": "For approval",
+   "gate": "Bridge confirmed, 85% entry gate.",
+   "status": "Proposed",
+   "review_on": "2026-10-26",
+   "outcome": ""
+  },
+  {
+   "id": "D14",
+   "raised": "2026-10-20",
+   "area": "Light push read",
+   "decision": "Report the light push's spend per rank gained by size to ~Nov 2 for the push-cost calibration (Joseph's CL-PU8).",
+   "evidence": "Plan books $1,173/day of rank spend in October and ~$1,973/day in the light weeks; live all-type spend ~$290–435/day.",
+   "type": "Watch",
+   "gate": "Two weeks of the light push (to ~Nov 2).",
+   "status": "Waiting",
+   "review_on": "2026-11-02",
+   "outcome": ""
+  },
+  {
+   "id": "D15",
+   "raised": "2026-10-20",
+   "area": "Family",
+   "decision": "Raise Sleephoria out-bidding CooLinens on 'cooling sheets queen' for the shared top-of-search call (CL-PU5).",
+   "evidence": "Sleephoria 20 clicks / 3 orders at +145–160% TOS vs CooLinens 16 / 0 this week.",
+   "type": "Question for Joseph",
+   "gate": "Family page decision.",
+   "status": "Question for Joseph",
+   "review_on": "2026-10-27",
+   "outcome": ""
   }
  ],
  "log": [
@@ -355,6 +391,7 @@
     "Stock carries a Queen push: Queen Graphite 400 units ≈ 250 days at the plan's 1.2 ad orders/day plus current sales; all Queen colours 1,810 units."
    ],
    "observations": [
+    "Plan alignment (Joseph's full-year canvas, read Oct 20): every size is on a light push from Oct 19 (Queen 50%, King 35%, Full/Twin 60%), Cal King Oct 26, the head Nov 30; the four head keywords stay on profit until the new order is dated; top-of-search bids were raised to the ranking ceilings on purpose; rival pages, SB, video and Display are deliberate tests. Actions above were revised to fit those rules.",
     "Queen's main keyword 'cooling sheets queen' (organic #68) sits on Conversion with down-only bids and reaches top of search 0.21% of the time. The plan had it as a Ranking push. That, not budget, is why Queen gets so little top-of-search traffic.",
     "Queen rank: 'cooling sheets queen' #76 on 15 Oct → #68 on 20 Oct (target #15). Smaller Queen phrases reached page 1 on most of the last three days ('cooling sheet set queen', 'queen size cooling sheets', 'queen sheet set cooling'). Single-day #3 readings that do not repeat are crawl noise.",
     "Queen converts 1 order on 50 Sponsored Products clicks. That happens 6% of the time at plan CVR, so it is a warning, not yet proof; ads point to the White listing at $87.99 vs the plan's $79.99.",
@@ -363,8 +400,8 @@
     "Overlap is small: 6 of 89 search terms were bought by two of our campaigns; Sponsored Brands/Video do not compete in the Sponsored Products auction."
    ],
    "actions": [
-    "For Erik and Joseph to approve (Overview → Proposed actions): A1 re-point the Queen ads (25 campaigns) from Queen White to Queen Graphite; A2 put 'cooling sheets queen' on the plan's ranking setup; A3 two Queen tail negatives with A2; A4 cooling-sheet branded campaign; A5 negatives for unrelated searches; A6 plan colours for Full, Twin and Cal King this week.",
-    "Hold: King until 27 Oct (H1); rival-page ads, Auto, video ads, bids and modifiers until their gates (H2)."
+    "For Erik and Joseph (Overview → Proposed actions): A1 Queen ads to Queen Graphite; A2 question: switch 'cooling sheets queen' to ranking on the order date; A8 question: who takes top of search on shared Queen searches; A3 tail negatives with A2; A4 branded campaign; A5 unrelated-search negatives; A7 hold Cal King's push to the bridge; A6 plan colours for Full (Cool Grey), Twin and Cal King.",
+    "Hold: King to 27 Oct (H1); the plan's live tests to their two-week read (H2). Light-push read for the push-cost calibration by ~Nov 2 (D14)."
    ],
    "reasoning": [
     "Setup fixes restore the live plan and do not depend on four days of noisy data.",
@@ -382,25 +419,34 @@
    "ad_sku_recommended": "Queen Graphite (400 units)",
    "plan_spend_day": 49.3,
    "rank_note": "'cooling sheets queen' #76 → #68 (target #15). Smaller Queen phrases reached page 1 on most of the last 3 days.",
-   "read": "Priority. Fix setup first (A1–A3), then judge."
+   "read": "Priority. 50% light push since Oct 19, but its biggest keyword is held on profit and Sleephoria out-bids it: A1, A2, A8.",
+   "plan_full_push_day": 3864,
+   "plan_light_share": 0.5,
+   "plan_light_push_day": 1932.0
   },
   {
    "size": "King",
    "campaigns": 19,
    "ad_sku_live": "King Cool Grey (182)",
-   "ad_sku_recommended": "King Graphite (202)",
+   "ad_sku_recommended": "King Cool Grey (keep) or Graphite",
    "plan_spend_day": 42.0,
    "rank_note": "Not ranked before ads; now top 10 on several King terms ('king sheets cooling' and 'king size sheets set cooling' at #3 for 4 days).",
-   "read": "Working, but 9 of 13 SP orders came on one day. Hold until 27 Oct."
+   "read": "Pushed at 35% in the plan; outselling Queen 2.6×. 9 of 13 SP orders on one day: hold to 27 Oct.",
+   "plan_full_push_day": 3171,
+   "plan_light_share": 0.35,
+   "plan_light_push_day": 1109.85
   },
   {
    "size": "Full",
    "campaigns": 5,
    "ad_sku_live": "Full Cream (29)",
-   "ad_sku_recommended": "Full Midnight Black (74)",
+   "ad_sku_recommended": "Full Cool Grey (94)",
    "plan_spend_day": 13.7,
    "rank_note": "'cooling sheets full' #7, 'cooling sheets full size' #19.",
-   "read": "Working on small numbers. Change the ad SKU (A6)."
+   "read": "Pushed at 60% in the plan. Change the ad SKU to Cool Grey (A6); Midnight Black runs out ~Dec 4 at the plan pace.",
+   "plan_full_push_day": 1375,
+   "plan_light_share": 0.6,
+   "plan_light_push_day": 825.0
   },
   {
    "size": "Twin",
@@ -409,7 +455,10 @@
    "ad_sku_recommended": "Twin Graphite (56)",
    "plan_spend_day": 5.4,
    "rank_note": "Not ranked.",
-   "read": "Probe only until the re-order lands (plan)."
+   "read": "Probe only until the re-order lands (plan).",
+   "plan_full_push_day": 684,
+   "plan_light_share": 0.6,
+   "plan_light_push_day": 410.4
   },
   {
    "size": "Cal King",
@@ -418,7 +467,10 @@
    "ad_sku_recommended": "Cal King Graphite (72)",
    "plan_spend_day": 10.5,
    "rank_note": "Not ranked.",
-   "read": "Probe only. Spending under plan ($3/day vs $10.5); change the ad SKU (A6)."
+   "read": "Plan push Oct 26, but spare stock is 2 units and no rank exact exists: hold until the bridge (A7).",
+   "plan_full_push_day": 349,
+   "plan_light_share": 0.0,
+   "plan_light_push_day": 0.0
   },
   {
    "size": "No size / head terms",
@@ -427,7 +479,10 @@
    "ad_sku_recommended": "Queen Graphite",
    "plan_spend_day": 16.9,
    "rank_note": "'cooling sheets' #31, 'cooling bed sheets' #54, 'cooling sheet set' #7.",
-   "read": "Head terms are capped probes in the plan; spending $57/day vs $17. Moves to Queen Graphite with A1."
+   "read": "Heads on profit until the new order is dated (Joseph's rule); head push Nov 30 in the plan.",
+   "plan_full_push_day": 3752,
+   "plan_light_share": 0.0,
+   "plan_light_push_day": 0.0
   }
  ],
  "actions": [
@@ -447,17 +502,31 @@
   },
   {
    "id": "A2",
-   "priority": "1 · Act now",
+   "priority": "1 · Question for Joseph",
    "size": "Queen",
-   "action": "Put 'cooling sheets queen' on the plan's ranking setup",
-   "change": "Campaign 'Cooling Sheet Queen' (exact): objective Conversion → Ranking; bidding down-only → fixed; base bid $2.22 → $2.24; Top-of-Search +50% → +75% (top-of-search bid $3.33 → $3.92); budget $25 → $29.",
-   "why": "This is Queen's biggest keyword (5.7 of Queen's 13.5 planned clicks a day). Down-only bidding lets Amazon lower our bid on a new listing, so the ad rarely reaches the top of search, where ranking sales happen. Budget is not the limit.",
-   "evidence": "Top-of-search share 0.21%; 28% of budget used; 12 clicks, 0 orders; organic rank #68.",
-   "expected": "Top-of-search share rises and the keyword gets about 5.7 clicks a day at the top of search, about 0.5 orders a day at a 9.5% CVR, and about $22 a day of spend at an expected ~52% ACoS (inside the ranking ceiling). Plan rank path: #50 by week 2 → #30 by week 4 → #15 by week 8.",
-   "check": "27 Oct: top-of-search share, clicks/day, CVR and the rank trend. Plan rule: reduce if CVR < 60% of plan on 50+ clicks.",
-   "safe": "It restores the plan's own setting, and the $29 budget caps the cost.",
+   "action": "Switch 'cooling sheets queen' to the ranking setup on the day the new order is dated",
+   "change": "Today: Conversion objective, down-only bidding, Top-of-Search +50%, budget $25 (held on profit by the rule 'heads on profit until the new order is dated'). Proposed on the order date (model expects ~Oct 23): Ranking objective, fixed bid, Top-of-Search priced to the Queen ranking ceiling ($8.45 top-of-search price), full-day budget, as the plan's other rank exacts.",
+   "why": "It is Queen's biggest keyword and Queen is the priority size, but the head rule keeps it on a profit bid. Queen's push (50% light push since Oct 19) cannot move while its main keyword is not at the top of search. Sleephoria is ranking-bidding the same keyword now.",
+   "evidence": "'cooling sheets queen': CooLinens 16 clicks, 0 orders, top-of-search share 0.21%, organic #68. Sleephoria this week: 20 clicks, 3 orders at +145–160% Top-of-Search. The plan's own listing board: Queen median sponsored position #7 (slot 1 in 4% of hours) vs King #1 (37%).",
+   "expected": "Queen gets King-like top-of-search delivery on its biggest search; the light-push read for Queen becomes meaningful. Plan rank path for the head: #50 → #30 → #15.",
+   "check": "Day 3 after the switch: top-of-search clicks ≥ 80% of goal (the plan's day-3 read). Day 7: conversion vs the market.",
+   "safe": "Follows Joseph's own rule (waits for the order date); only asks to apply it to Queen's head first, not all four heads.",
    "ref": "D01",
-   "status": "For approval"
+   "status": "Question for Joseph"
+  },
+  {
+   "id": "A8",
+   "priority": "1 · For the family call",
+   "size": "Queen (shared with Sleephoria)",
+   "action": "Settle who takes top of search on the shared Queen searches",
+   "change": "Decided rule today: both brands bid top of search (CL-PU5 B). Proposal: on the searches CooLinens is pushing now (Queen, King), Sleephoria's Queen/King ranking exacts step back to rest of search until its own push weeks (Queen Jan 4, King Feb 15), as CL-PU5 option A describes.",
+   "why": "The plan says CooLinens takes the higher slot, but Sleephoria is out-bidding it on 'cooling sheets queen' now, outside its own push weeks.",
+   "evidence": "Sleephoria Queen ranking exacts on 'cooling sheets queen' this week: 20 clicks, 3 orders, +145–160% Top-of-Search; CooLinens 16 clicks, 0 orders.",
+   "expected": "CooLinens' Queen push reads cleanly; the two brands stop paying each other's top-of-search price.",
+   "check": "The plan's proposed read: CooLinens' top-of-search CPC, impression share and clicks on shared vs unshared searches.",
+   "safe": "Sleephoria keeps its rest-of-search presence and its own push weeks.",
+   "ref": "CL-PU5 / CL-PC2 (FAMILY)",
+   "status": "Question for Joseph"
   },
   {
    "id": "A3",
@@ -502,13 +571,27 @@
    "status": "For approval"
   },
   {
+   "id": "A7",
+   "priority": "2 · Before Oct 26",
+   "size": "Cal King",
+   "action": "Hold the Cal King push until the bridge lands (plan option B)",
+   "change": "Do not open the Cal King push on Oct 26. Keep Cal King on its profit tail campaign; build the 6 Cal King rank exacts ready to switch on when the bridge (Dec 22) restores spare stock.",
+   "why": "The plan's push needs spare units to carry the extra sales; Cal King's spare after the planned pushes is 2 units, and its only sellable ad colour is Graphite (72). No Cal King rank exact exists today.",
+   "evidence": "Plan PPC calls CL-PC3: 0 of 6 push keywords on a rank exact, spare 2 units. Live: Cal King 0.75 units a day, $3 a day of ads.",
+   "expected": "No stock-out from a push the stock cannot carry; the exacts are ready for the bridge.",
+   "check": "Bridge confirmed (CL-EC6) → open the push with the 85% entry gate.",
+   "safe": "Cal King is 3% of the plan's units; the plan values its push at $54k, the smallest group.",
+   "ref": "CL-PC3",
+   "status": "For approval"
+  },
+  {
    "id": "A6",
    "priority": "3 · This week",
    "size": "Full, Twin, Cal King",
    "action": "Point the smaller sizes at the plan colours",
-   "change": "Full: Full Cream → Full Midnight Black (74 units; backup Full Cool Grey, 94). Twin: Twin White → Twin Graphite (56). Cal King: Cal King Regal Purple → Cal King Graphite (72).",
-   "why": "The live colours are among the weakest sellers for the sister brand (Full Cream 3.7% of Full units, Cal King Regal Purple 5.6%), and Full Cream and Cal King Regal Purple have only about 30 units each.",
-   "evidence": "Full Midnight Black sold 9 units at 16.7% CVR with no ads, the best colour of launch week.",
+   "change": "Full: Full Cream → Full Cool Grey (94 units, the plan colour; ~376 days of cover). Twin: Twin White → Twin Graphite (56). Cal King: Cal King Regal Purple → Cal King Graphite (72).",
+   "why": "The live colours are among the weakest sellers for the sister brand, and Full Cream and Cal King Regal Purple have only ~30 units each. Full Midnight Black sells best organically but runs out ~Dec 4 at the plan's push pace (plan stock board), and the plan runs no ads on colours that run out before the bridge.",
+   "evidence": "Plan's Q4 board lists Full Cool Grey, Twin Graphite and Cal King Graphite among 'the colours to advertise now'; Full Midnight Black is on its 'run out before the bridge' list.",
    "expected": "Better conversion from the same clicks, and no stock-out risk behind the ads.",
    "check": "27 Oct.",
    "safe": "Same keywords, bids and budgets; small sizes on capped spend.",
@@ -521,10 +604,10 @@
    "size": "King",
    "action": "No change to King yet",
    "change": "None.",
-   "why": "King looks strong, but most of it is one day: 9 of 13 SP orders came on 18 Oct.",
+   "why": "King is part of the plan's light push (35% since Oct 19) and is outselling Queen 2.6×, but most of its ad orders came on one day: 9 of 13 SP orders on 18 Oct.",
    "evidence": "King SP ACoS 40%; without 18 Oct, 87%. King units 4, 10, 19, 4 vs a 4.3 baseline.",
    "expected": "A full week shows whether King holds.",
-   "check": "27 Oct: King ACoS ≤ 43.7% with orders on 4+ of 7 days. Then decide with Zarlish whether King is pushed or capped.",
+   "check": "27 Oct: King ACoS vs the plan's 39.1% refund-adjusted line with orders on 4+ of 7 days, plus rank held. This is also King's light-push read for the push-cost calibration (CL-PU8).",
    "safe": "No action.",
    "ref": "D06",
    "status": "Waiting"
@@ -533,12 +616,12 @@
    "id": "H2",
    "priority": "Hold",
    "size": "All",
-   "action": "Keep rival-page ads, Auto and the video ads running; hold bids and modifiers",
+   "action": "Keep the plan's live tests running: rival pages, Display, SB collections, rival videos, Auto",
    "change": "None.",
-   "why": "Four days are too few to call these failures.",
+   "why": "These are Joseph's deliberate tests ('test now, as profit lanes'). The plan reads each at two weeks with 3+ clicks a day per target and a stop-loss at 2× break-even (CL-PC5).",
    "evidence": "Rival-page ads: 0 orders on 29 clicks, a 17% chance even at a normal CVR. Auto: $3.10 spent. Queen rival video: 0 orders on 15 clicks, a 29% chance.",
    "expected": "A fair read at the gates.",
-   "check": "Rival-page ads at 50 clicks per campaign or 30 Oct. Video ads on 26 Oct (new video). Bids and modifiers on 27 Oct, using the plan's weekly rules.",
+   "check": "Two-week read (~Oct 30–Nov 1) per the plan's PC3/PC8 rules; video ads also on 26 Oct (new video).",
    "safe": "No action.",
    "ref": "D07–D09, D11",
    "status": "Waiting"

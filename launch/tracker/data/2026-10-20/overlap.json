@@ -6,8 +6,8 @@
 "orders": 0,
 "spend": 36.6,
 "finding": "Queen's biggest keyword has two paths. The single campaign only reaches top of search 0.21% of the time; the tail catches a quarter of the clicks at its own bid.",
-"proposal": "Move the single campaign to Ranking, fixed bid, Top-of-Search +75% (plan). In the same change, add 'cooling sheets queen' as negative exact in Queen Tail 18 so the ranking campaign owns it.",
-"timing": "With the Queen restructure",
+"proposal": "When the head moves to its ranking setup on the order date (A2), add 'cooling sheets queen' as negative exact in Queen Tail 18 in the same change (A3).",
+"timing": "With A2 (order date)",
 "protects": "The tail keeps its own query 'cool sheet queen' (6 clicks). Nothing relevant is blocked: the same shoppers still see our ad through the ranking campaign."
 },
 {

@@ -93,14 +93,14 @@ tr:last-child td { border-bottom: 0; }
   <section id="overview">
     <div><h2>Proposed actions for Erik and Joseph</h2><p class="sub">Each action shows the exact change, why, the evidence, the expected outcome and when we check it. "Act now" items are setup or relevance fixes that do not depend on early results. "Hold" items say what we are deliberately not changing yet, and why.</p></div>
     <div class="actions" id="actions"></div>
-    <div class="card"><h2>All live sizes</h2><p class="sub">Since ads started (Sellerboard, all ad types). Spend per day uses complete days only. Head-term campaigns have no size and advertise the Queen SKU.</p><div class="tbox"><table id="tb-sizes"></table></div></div>
+    <div class="card"><h2>All live sizes</h2><p class="sub">Since ads started (Sellerboard, all ad types). Spend per day uses complete days only. "Plan light push / day" is Joseph's full-year plan: each size's full push cost × its light-push share since Oct 19 (Queen 50%, King 35%, Full/Twin 60%; Cal King from Oct 26; the head from Nov 30). The gap between the two is the light-push read that calibrates the push cost (CL-PU8). Head-term campaigns advertise the Queen SKU.</p><div class="tbox"><table id="tb-sizes"></table></div></div>
     <div class="tiles" id="tiles"></div>
     <div class="grid">
       <div class="card"><h2>Units per day</h2><p class="sub">Ad-attributed orders vs units without an ad order. 13–15 Oct had no ads and set the baseline. Faded bars are partial days.</p><div class="legend" id="lg-units"></div><div class="chart" id="ch-units"></div></div>
       <div class="card"><h2>Ad spend and ad sales per day</h2><p class="sub">All ad types. Ad sales use 7-day attribution, so the newest days still fill in.</p><div class="legend" id="lg-spend"></div><div class="chart" id="ch-spend"></div></div>
     </div>
     <div class="grid">
-      <div class="card"><h2>ACoS</h2><p class="sub">Dashed line: 43.7% break-even.</p><div class="chart" id="ch-acos"></div></div>
+      <div class="card"><h2>ACoS</h2><p class="sub">Dashed line: the plan's 39.1% break-even after refunds (43.2% before refunds).</p><div class="chart" id="ch-acos"></div></div>
       <div class="card"><h2>Ad CVR</h2><p class="sub">Ad orders ÷ ad clicks. Plan expects 8.6%.</p><div class="chart" id="ch-cvr"></div></div>
       <div class="card"><h2>Ad CTR</h2><p class="sub">Clicks ÷ impressions.</p><div class="chart" id="ch-ctr"></div></div>
     </div>
@@ -158,7 +158,7 @@ const D = /*__DATA__*/null;
   const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const day = (s) => { const p = String(s).split('-'); return MON[+p[1] - 1] + ' ' + (+p[2]); };
   const el = (t, cls, txt) => { const e = document.createElement(t); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
-  const pillCls = (v) => /Act now|With A|Problem|Switch|bad/i.test(v) ? 'bad' : /week|Too early|Watch|Waiting|approval|gate/i.test(v) ? 'warn' : /Working|OK|Done|Approved/i.test(v) ? 'ok' : '';
+  const pillCls = (v) => /Act now|With A|Problem|Switch|bad/i.test(v) ? 'bad' : /week|Too early|Watch|Waiting|approval|gate|Question|Before/i.test(v) ? 'warn' : /Working|OK|Done|Approved/i.test(v) ? 'ok' : '';
 
   // ---- tabs
   const tabs = [...document.querySelectorAll('nav button')];
@@ -236,7 +236,7 @@ const D = /*__DATA__*/null;
   const T = { units: sum(ads, 'units'), sales: sum(ads, 'sales'), spend: sum(ads, 'ad_spend'), orders: sum(ads, 'ad_orders'), adsales: sum(ads, 'ad_sales'), clicks: sum(ads, 'ad_clicks') };
   const tiles = [['Units sold since ads started', int(T.units), 'Pre-ads baseline ' + one(sum(pre, 'units') / (pre.length || 1)) + ' / day'],
     ['Ad spend since ads started', money(T.spend), 'Plan $138 / day · live ' + money(sum(full, 'ad_spend') / (full.length || 1)) + ' / day'],
-    ['Ad orders', int(T.orders), 'CVR ' + pct(T.orders / T.clicks)], ['ACoS (ads)', pct(T.spend / T.adsales), 'Break-even 43.7%'],
+    ['Ad orders', int(T.orders), 'CVR ' + pct(T.orders / T.clicks)], ['ACoS (ads)', pct(T.spend / T.adsales), 'Plan line 39.1% after refunds (43.2% before)'],
     ['TACoS (ads ÷ all sales)', pct(T.spend / T.sales), 'All sales ' + money(T.sales)], ['Units without an ad order', int(T.units - T.orders), 'Share ' + pct((T.units - T.orders) / T.units)]];
   $('#tiles').replaceChildren(...tiles.map(([k, v, s]) => { const d = el('div', 'tile'); d.append(el('span', 'k', k), el('span', 'v', v), el('span', 's', s)); return d; }));
   $('#actions').replaceChildren(...D.actions.map((a) => {
@@ -259,14 +259,14 @@ const D = /*__DATA__*/null;
   function draw() {
     if (cur === 'overview') {
       table('tb-sizes', D.sizes, [{ f: 'size', l: 'Size' }, { f: 'campaigns', l: 'Campaigns', fmt: int }, { f: 'ad_sku_live', l: 'Ad SKU now' }, { f: 'ad_sku_recommended', l: 'Ad SKU proposed' },
-        { f: 'spend_day', l: 'Spend / day', fmt: money }, { f: 'plan_spend_day', l: 'Plan / day', fmt: money }, { f: 'ad_clicks', l: 'Clicks', fmt: int }, { f: 'ad_orders', l: 'Ad orders', fmt: int },
+        { f: 'spend_day', l: 'Spend / day now', fmt: money }, { f: 'plan_light_push_day', l: 'Plan light push / day', fmt: money }, { f: 'plan_spend_day', l: 'Launch workbook / day', fmt: money }, { f: 'ad_clicks', l: 'Clicks', fmt: int }, { f: 'ad_orders', l: 'Ad orders', fmt: int },
         { f: 'acos', l: 'ACoS', fmt: pct }, { f: 'cvr', l: 'CVR', fmt: pct }, { f: 'units_day_before', l: 'Units/day before', fmt: one }, { f: 'units_day_after', l: 'Units/day since', fmt: one },
         { f: 'rank_note', l: 'Rank', w: true }, { f: 'read', l: 'Read', w: true }]);
       const s1 = [{ f: 'ad_orders', l: 'Ad orders', c: 'var(--accent)' }, { f: 'non_ad_units', l: 'Units without an ad order', c: 'var(--muted-bar)' }];
       legend('lg-units', s1); bars('ch-units', D.daily, s1, { stack: true });
       const s2 = [{ f: 'ad_spend', l: 'Ad spend', c: 'var(--accent-2)', fmt: money }, { f: 'ad_sales', l: 'Ad sales', c: 'var(--accent)', fmt: money }];
       legend('lg-spend', s2); bars('ch-spend', D.daily, s2, { money: true });
-      line('ch-acos', ads, 'acos', { ref: 0.437, bad: true }); line('ch-cvr', ads, 'cvr', { ref: 0.086 }); line('ch-ctr', ads, 'ctr');
+      line('ch-acos', ads, 'acos', { ref: 0.391, bad: true }); line('ch-cvr', ads, 'cvr', { ref: 0.086 }); line('ch-ctr', ads, 'ctr');
       table('tb-daily', D.daily, [{ f: 'date', l: 'Date' }, { f: 'phase', l: 'Phase' }, { f: 'units', l: 'Units', fmt: int }, { f: 'sales', l: 'Sales', fmt: money }, { f: 'sessions', l: 'Sessions', fmt: int },
         { f: 'ad_spend', l: 'Ad spend', fmt: money }, { f: 'ad_impressions', l: 'Impr.', fmt: int }, { f: 'ad_clicks', l: 'Clicks', fmt: int }, { f: 'ctr', l: 'CTR', fmt: pct }, { f: 'cpc', l: 'CPC', fmt: money2 },
         { f: 'ad_orders', l: 'Ad orders', fmt: int }, { f: 'cvr', l: 'CVR', fmt: pct }, { f: 'ad_sales', l: 'Ad sales', fmt: money }, { f: 'acos', l: 'ACoS', fmt: pct }, { f: 'tacos', l: 'TACoS', fmt: pct },

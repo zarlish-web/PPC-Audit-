@@ -14,14 +14,16 @@
 "cvr": 0.04054054054054054,
 "units_day_before": 3.0,
 "units_day_after": 3.5,
+"plan_light_push_day": 1932.0,
+"plan_light_share": 0.5,
 "rank_note": "'cooling sheets queen' #76 \u2192 #68 (target #15). Smaller Queen phrases reached page 1 on most of the last 3 days.",
-"read": "Priority. Fix setup first (A1\u2013A3), then judge."
+"read": "Priority. 50% light push since Oct 19, but its biggest keyword is held on profit and Sleephoria out-bids it: A1, A2, A8."
 },
 {
 "size": "King",
 "campaigns": 19,
 "ad_sku_live": "King Cool Grey (182)",
-"ad_sku_recommended": "King Graphite (202)",
+"ad_sku_recommended": "King Cool Grey (keep) or Graphite",
 "ad_spend": 560.4499999999999,
 "spend_day": 140.11249999999998,
 "plan_spend_day": 42.0,
@@ -32,14 +34,16 @@
 "cvr": 0.11333333333333333,
 "units_day_before": 4.333333333333333,
 "units_day_after": 9.25,
+"plan_light_push_day": 1109.85,
+"plan_light_share": 0.35,
 "rank_note": "Not ranked before ads; now top 10 on several King terms ('king sheets cooling' and 'king size sheets set cooling' at #3 for 4 days).",
-"read": "Working, but 9 of 13 SP orders came on one day. Hold until 27 Oct."
+"read": "Pushed at 35% in the plan; outselling Queen 2.6\u00d7. 9 of 13 SP orders on one day: hold to 27 Oct."
 },
 {
 "size": "Full",
 "campaigns": 5,
 "ad_sku_live": "Full Cream (29)",
-"ad_sku_recommended": "Full Midnight Black (74)",
+"ad_sku_recommended": "Full Cool Grey (94)",
 "ad_spend": 81.44000000000001,
 "spend_day": 20.360000000000003,
 "plan_spend_day": 13.7,
@@ -50,8 +54,10 @@
 "cvr": 0.15,
 "units_day_before": 1.3333333333333333,
 "units_day_after": 3.0,
+"plan_light_push_day": 825.0,
+"plan_light_share": 0.6,
 "rank_note": "'cooling sheets full' #7, 'cooling sheets full size' #19.",
-"read": "Working on small numbers. Change the ad SKU (A6)."
+"read": "Pushed at 60% in the plan. Change the ad SKU to Cool Grey (A6); Midnight Black runs out ~Dec 4 at the plan pace."
 },
 {
 "size": "Twin",
@@ -68,6 +74,8 @@
 "cvr": 0.0625,
 "units_day_before": 1.0,
 "units_day_after": 0.75,
+"plan_light_push_day": 410.4,
+"plan_light_share": 0.6,
 "rank_note": "Not ranked.",
 "read": "Probe only until the re-order lands (plan)."
 },
@@ -86,8 +94,10 @@
 "cvr": 0.0,
 "units_day_before": 0.0,
 "units_day_after": 0.75,
+"plan_light_push_day": 0.0,
+"plan_light_share": 0.0,
 "rank_note": "Not ranked.",
-"read": "Probe only. Spending under plan ($3/day vs $10.5); change the ad SKU (A6)."
+"read": "Plan push Oct 26, but spare stock is 2 units and no rank exact exists: hold until the bridge (A7)."
 },
 {
 "size": "No size / head terms",
@@ -104,7 +114,9 @@
 "cvr": 0.056179775280898875,
 "units_day_before": null,
 "units_day_after": null,
+"plan_light_push_day": 0.0,
+"plan_light_share": 0.0,
 "rank_note": "'cooling sheets' #31, 'cooling bed sheets' #54, 'cooling sheet set' #7.",
-"read": "Head terms are capped probes in the plan; spending $57/day vs $17. Moves to Queen Graphite with A1."
+"read": "Heads on profit until the new order is dated (Joseph's rule); head push Nov 30 in the plan."
 }
 ]
