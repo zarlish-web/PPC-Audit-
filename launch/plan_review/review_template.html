@@ -1,0 +1,356 @@
+<title>CooLinens Plan Review</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a review memo. Header and key numbers, a summary of what needs answers, a sticky filter bar, then one item per finding grouped by plan section, then the appendices. */
+:root {
+  --bg: #f5f7f8;
+  --surface: #ffffff;
+  --ink: #14222b;
+  --muted: #586973;
+  --line: #d8e0e4;
+  --accent: #0f6e7a;
+  --accent-soft: #e0eff1;
+  --confirmed: #a3271f;
+  --confirmed-soft: #fbe6e3;
+  --gap: #8a5a00;
+  --gap-soft: #fbefd6;
+  --question: #1f58a3;
+  --question-soft: #e2ebf8;
+  --font-body: "Instrument Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f171c; --surface: #16222a; --ink: #e3ebef; --muted: #9aabb4; --line: #2a3a44;
+    --accent: #5cc3cf; --accent-soft: #163a40;
+    --confirmed: #ff9a8f; --confirmed-soft: #3d1c19; --gap: #f0b45a; --gap-soft: #3a2a10;
+    --question: #8bb5ef; --question-soft: #1a2c45;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f171c; --surface: #16222a; --ink: #e3ebef; --muted: #9aabb4; --line: #2a3a44;
+  --accent: #5cc3cf; --accent-soft: #163a40;
+  --confirmed: #ff9a8f; --confirmed-soft: #3d1c19; --gap: #f0b45a; --gap-soft: #3a2a10;
+  --question: #8bb5ef; --question-soft: #1a2c45;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.55; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap { max-width: 1000px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 64px; }
+h1 { font-size: 1.85rem; line-height: 1.2; margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
+h2 { font-size: 1.2rem; margin: 0; text-wrap: balance; }
+h3 { font-size: 1.05rem; margin: 0; line-height: 1.35; text-wrap: balance; }
+p { margin: 0; }
+a { color: var(--accent); overflow-wrap: anywhere; }
+.eyebrow { font-size: 0.72rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.lede { max-width: 70ch; color: var(--muted); }
+.mono { font-family: var(--font-mono); font-size: 0.82em; }
+header { display: grid; gap: 8px; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px 18px; color: var(--muted); font-size: 0.85rem; }
+.block { margin-top: 26px; display: grid; gap: 12px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; display: grid; gap: 10px; min-width: 0; }
+.legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px 18px; }
+.legend div { display: grid; gap: 4px; align-content: start; }
+.legend span:last-child { color: var(--muted); font-size: 0.88rem; }
+.kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; display: grid; gap: 3px; align-content: start; min-width: 0; }
+.kpi b { font-size: 1.35rem; font-variant-numeric: tabular-nums; line-height: 1.15; }
+.kpi .l { font-size: 0.78rem; color: var(--muted); font-weight: 600; letter-spacing: 0.02em; }
+.kpi .n { font-size: 0.82rem; color: var(--muted); }
+.kpi .s { font-size: 0.72rem; color: var(--muted); font-family: var(--font-mono); }
+.group-tag { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.counts { display: flex; flex-wrap: wrap; gap: 10px; }
+.count-tile { flex: 1 1 150px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; display: grid; gap: 2px; }
+.count-tile b { font-size: 1.5rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.count-tile span { font-size: 0.85rem; color: var(--muted); }
+.answers { border-left: 4px solid var(--confirmed); }
+.answers ol { margin: 0; padding-left: 20px; display: grid; gap: 8px; }
+.answers li { padding-left: 2px; }
+.answers button { all: unset; cursor: pointer; color: var(--accent); font-weight: 700; font-family: var(--font-mono); font-size: 0.85rem; }
+.answers button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.answers .who { color: var(--muted); font-size: 0.85rem; }
+.filters { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); padding-block: 12px; margin-top: 26px; border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.filters select, .filters input { font: inherit; font-size: 0.9rem; padding: 7px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--ink); min-width: 0; }
+.filters input { flex: 1 1 180px; }
+.chipset { display: flex; flex-wrap: wrap; gap: 6px; }
+.fchip { font: inherit; font-size: 0.82rem; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.fchip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.fchip:focus-visible, .copy:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.shown { color: var(--muted); font-size: 0.85rem; margin-left: auto; }
+.section { margin-top: 30px; display: grid; gap: 14px; }
+.section-head { display: flex; align-items: baseline; gap: 10px; border-bottom: 2px solid var(--ink); padding-bottom: 6px; }
+.section-head span { color: var(--muted); font-size: 0.85rem; }
+.item { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; display: grid; gap: 14px; min-width: 0; scroll-margin-top: 90px; }
+.item-top { display: flex; flex-wrap: wrap; gap: 8px 14px; justify-content: space-between; align-items: flex-start; }
+.item-title { display: grid; gap: 4px; min-width: 0; flex: 1 1 320px; }
+.item-id { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent); font-weight: 500; }
+.where { color: var(--muted); font-size: 0.84rem; overflow-wrap: anywhere; }
+.where .mono { color: var(--ink); }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { font-size: 0.74rem; font-weight: 700; padding: 3px 8px; border-radius: 4px; white-space: nowrap; }
+.c-confirmed { color: var(--confirmed); background: var(--confirmed-soft); }
+.c-gap { color: var(--gap); background: var(--gap-soft); }
+.c-question { color: var(--question); background: var(--question-soft); }
+.prio { border: 1px solid var(--line); color: var(--muted); }
+.prio.P1 { border-color: var(--confirmed); color: var(--confirmed); }
+.ref { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); border: 1px solid var(--line); padding: 2px 6px; border-radius: 4px; white-space: nowrap; }
+.fields { display: grid; grid-template-columns: 11.5rem minmax(0, 1fr); gap: 12px 18px; margin: 0; }
+.fields dt { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 700; padding-top: 3px; }
+.fields dd { margin: 0; min-width: 0; max-width: 76ch; }
+.fields ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+.src { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); overflow-wrap: anywhere; }
+dd.query { font-weight: 600; color: var(--question); }
+dd.rec { font-weight: 500; }
+.na { font-size: 0.88rem; border: 1px dashed var(--gap); border-radius: 6px; padding: 6px 10px; color: var(--ink); }
+.na b { color: var(--gap); }
+.item-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; border-top: 1px solid var(--line); padding-top: 10px; }
+.owner { font-size: 0.86rem; color: var(--muted); }
+.owner b { color: var(--ink); }
+.copy { font: inherit; font-size: 0.85rem; font-weight: 600; padding: 7px 14px; border-radius: 6px; border: 1px solid var(--accent); background: var(--accent-soft); color: var(--accent); cursor: pointer; }
+.copy.done { background: var(--accent); color: var(--surface); }
+.fallback { width: 100%; min-height: 180px; font-family: var(--font-mono); font-size: 0.8rem; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink); padding: 8px; }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+th, td { text-align: left; vertical-align: top; padding: 10px 14px; border-top: 1px solid var(--line); }
+thead th { border-top: 0; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+td:first-child { font-weight: 600; min-width: 12rem; }
+td.muted { color: var(--muted); }
+.empty { color: var(--muted); padding: 20px 0; }
+footer { margin-top: 36px; color: var(--muted); font-size: 0.85rem; display: grid; gap: 6px; }
+footer dl { margin: 0; display: grid; grid-template-columns: 9rem 1fr; gap: 4px 12px; }
+footer dt { font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink); }
+footer dd { margin: 0; }
+@media (max-width: 760px) {
+  .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  h1 { font-size: 1.5rem; }
+  .fields { grid-template-columns: 1fr; gap: 3px; }
+  .fields dd { margin-bottom: 10px; }
+  .shown { margin-left: 0; width: 100%; }
+  footer dl { grid-template-columns: 1fr; }
+  td:first-child { min-width: 9rem; }
+}
+@media (prefers-reduced-motion: no-preference) { .copy { transition: background 0.15s, color 0.15s; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">PPC team review · Joseph's full-year target plan</div>
+    <h1 id="h1"></h1>
+    <p class="lede" id="lede"></p>
+    <div class="meta" id="meta"></div>
+  </header>
+
+  <section class="block">
+    <div class="panel">
+      <p><b>How to respond.</b> The plan board is view-only, so this page carries our feedback. Each item is mapped to a plan section and board and has a short ID. Reply in the team thread with the ID (for example <span class="mono">F1</span>) and your answer or decision. <b>Copy for chat</b> on each item copies it as plain text.</p>
+      <div class="legend" id="legend"></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="group-tag">Key numbers · plan against live</div>
+    <div class="kpis" id="kpis"></div>
+  </section>
+
+  <section class="block">
+    <div class="group-tag">Summary</div>
+    <div class="counts" id="counts"></div>
+    <div class="panel answers">
+      <h2>Answers needed this week</h2>
+      <p class="lede">P1 items: due before the Oct 23 order, before Cal King's Oct 26 push date, or affecting live spend now.</p>
+      <ol id="answers"></ol>
+    </div>
+  </section>
+
+  <div class="filters" role="search">
+    <select id="f-section" aria-label="Section"></select>
+    <div class="chipset" id="f-class" aria-label="Status"></div>
+    <div class="chipset" id="f-prio" aria-label="Priority"></div>
+    <input id="f-q" type="search" placeholder="Search a board, call or number" aria-label="Search">
+    <span class="shown" id="shown"></span>
+  </div>
+
+  <main id="list"></main>
+
+  <section class="block" style="margin-top:40px">
+    <h2>Information not available</h2>
+    <p class="lede">Not in the plan files or not yet measurable. We have not assumed values for these.</p>
+    <div class="table-wrap"><table><thead><tr><th>Item</th><th>Where it would sit</th><th>Why it matters</th></tr></thead><tbody id="na"></tbody></table></div>
+  </section>
+
+  <section class="block">
+    <h2>Checked, no change needed</h2>
+    <p class="lede">These parts of the plan were checked against the boards and live data and hold.</p>
+    <div class="table-wrap"><table><tbody id="ok"></tbody></table></div>
+  </section>
+
+  <footer>
+    <p><b>How the numbers were checked.</b> Every figure quoted from a board was matched against that board's text. Live figures were re-pulled on 20 Oct (Sellerboard sales, ads and all 70 FBA SKUs; command-center campaign, search-term and placement data). Calculations are marked <span class="mono">Calc</span> and use only the figures named in the same item.</p>
+    <dl id="sources"></dl>
+  </footer>
+</div>
+
+<script>
+const DATA = /*__DATA__*/null;
+const CLASSES = { "Confirmed issue": "c-confirmed", "Potential gap": "c-gap", "Open question": "c-question" };
+const CLASS_TEXT = {
+  "Confirmed issue": "Verified on the boards or in live data: a contradiction, an error or a mismatch with what is running.",
+  "Potential gap": "A risk or an assumption that early data puts in doubt. Watch it or test it.",
+  "Open question": "Needs an answer or a decision from the team."
+};
+const PRIOS = { P1: "P1 · this week / before Oct 23", P2: "P2 · before targets are stored", P3: "P3 · clean-up" };
+const state = { section: "all", classes: new Set(), prios: new Set(), q: "" };
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function chatText(it) {
+  const refs = it.refs.length ? ` · ${it.refs.join(", ")}` : "";
+  const lines = [
+    `[${it.id}] ${it.section} · ${it.area}`,
+    `${it.class} · ${it.priority} · Board: ${it.board}${refs}`,
+    "",
+    "Current status & evidence:",
+    ...it.evidence.map((e) => `• ${e.t} (${e.src})`),
+    "",
+    `Our observation: ${it.observation}`,
+    `Our query: ${it.query}`,
+    `Our recommendation: ${it.rec}`,
+    `Expected outcome / next step: ${it.next} (Owner: ${it.owner})`,
+  ];
+  if (it.unavailable) lines.push(`Not available: ${it.unavailable}`);
+  return lines.join("\n");
+}
+
+function itemHtml(it) {
+  const also = it.also_on.length ? ` · also ${it.also_on.map((b) => `<span class="mono" title="${esc(DATA.titles[b])}">${esc(b)}</span>`).join(", ")}` : "";
+  return `<article class="item" id="${it.id}">
+    <div class="item-top">
+      <div class="item-title">
+        <span class="item-id">${esc(it.id)} · ${esc(it.section)}</span>
+        <h3>${esc(it.area)}</h3>
+        <span class="where">Board <span class="mono">${esc(it.board)}</span> (${esc(it.board_title)})${also}</span>
+      </div>
+      <div class="tags"><span class="tag ${CLASSES[it.class]}">${esc(it.class)}</span><span class="tag prio ${it.priority}">${esc(it.priority)}</span>${it.refs.map((r) => `<span class="ref">${esc(r)}</span>`).join("")}</div>
+    </div>
+    <dl class="fields">
+      <dt>Current status &amp; evidence</dt>
+      <dd><ul>${it.evidence.map((e) => `<li>${esc(e.t)} <span class="src">${esc(e.src)}</span></li>`).join("")}</ul></dd>
+      <dt>Our observation / concern</dt><dd>${esc(it.observation)}</dd>
+      <dt>Our query</dt><dd class="query">${esc(it.query)}</dd>
+      <dt>Our recommendation</dt><dd class="rec">${esc(it.rec)}</dd>
+      <dt>Expected outcome / next step</dt><dd>${esc(it.next)}</dd>
+    </dl>
+    ${it.unavailable ? `<p class="na"><b>Not available:</b> ${esc(it.unavailable)}</p>` : ""}
+    <div class="item-foot"><span class="owner">Owner: <b>${esc(it.owner)}</b></span><button class="copy" type="button" data-id="${it.id}">Copy for chat</button></div>
+  </article>`;
+}
+
+function matches(it) {
+  if (state.section !== "all" && it.section !== state.section) return false;
+  if (state.classes.size && !state.classes.has(it.class)) return false;
+  if (state.prios.size && !state.prios.has(it.priority)) return false;
+  if (state.q) {
+    const hay = [it.id, it.area, it.board, it.board_title, ...it.also_on, ...it.refs, it.owner, it.observation, it.query, it.rec, it.next, ...it.evidence.map((e) => e.t)].join(" ").toLowerCase();
+    if (!hay.includes(state.q)) return false;
+  }
+  return true;
+}
+
+function render() {
+  const shown = DATA.items.filter(matches);
+  $("shown").textContent = `${shown.length} of ${DATA.items.length} items`;
+  const html = DATA.sections.map((s) => {
+    const xs = shown.filter((it) => it.section === s);
+    if (!xs.length) return "";
+    return `<section class="section"><div class="section-head"><h2>${esc(s)}</h2><span>${xs.length} item${xs.length > 1 ? "s" : ""}</span></div>${xs.map(itemHtml).join("")}</section>`;
+  }).join("");
+  $("list").innerHTML = html || `<p class="empty">No items match these filters.</p>`;
+}
+
+function chip(box, value, label, set) {
+  const b = document.createElement("button");
+  b.type = "button"; b.className = "fchip"; b.textContent = label; b.setAttribute("aria-pressed", "false");
+  b.addEventListener("click", () => { set.has(value) ? set.delete(value) : set.add(value); b.setAttribute("aria-pressed", String(set.has(value))); render(); });
+  box.appendChild(b);
+}
+
+function init() {
+  const m = DATA.meta, items = DATA.items;
+  $("h1").textContent = m.title;
+  $("lede").textContent = `Our end-to-end review of the plan's sections, numbers, workflows and decisions, checked against live data. ${items.length} items, each mapped to the plan section and board it concerns. ${m.mode}`;
+  $("meta").innerHTML = [
+    `Prepared by: ${esc(m.prepared_by)}`,
+    `Plan: ${esc(m.plan_version)}`,
+    `Live data: ${esc(m.live_window)}`,
+    `<a href="${esc(m.plan_url)}" target="_blank" rel="noopener">Open the plan board</a>`,
+    `<a href="${esc(m.board_url)}" target="_blank" rel="noopener">Daily recommendation board</a>`,
+  ].map((x) => `<span>${x}</span>`).join("");
+  $("legend").innerHTML = Object.keys(CLASSES).map((c) => `<div><span class="tag ${CLASSES[c]}" style="justify-self:start">${esc(c)}</span><span>${esc(CLASS_TEXT[c])}</span></div>`).join("")
+    + `<div><span class="tag prio P1" style="justify-self:start">P1 · P2 · P3</span><span>P1 this week or before the Oct 23 order · P2 before targets are stored · P3 clean-up.</span></div>`;
+
+  $("kpis").innerHTML = DATA.kpis.map((k) => `<div class="kpi"><span class="l">${esc(k.label)}</span><b>${esc(k.value)}</b>${k.note ? `<span class="n">${esc(k.note)}</span>` : ""}<span class="s">${esc(k.src)}</span></div>`).join("");
+
+  const n = (f) => items.filter(f).length;
+  $("counts").innerHTML = [
+    [n((i) => i.class === "Confirmed issue"), "confirmed issues"],
+    [n((i) => i.class === "Potential gap"), "potential gaps"],
+    [n((i) => i.class === "Open question"), "open questions"],
+    [n((i) => i.priority === "P1"), "P1 · this week"],
+    [DATA.unavailable.length, "data not available"],
+  ].map(([v, l]) => `<div class="count-tile"><b>${v}</b><span>${esc(l)}</span></div>`).join("");
+
+  $("answers").innerHTML = items.filter((i) => i.priority === "P1").map((i) =>
+    `<li><button type="button" data-jump="${i.id}">${esc(i.id)}</button> ${esc(i.query)} <span class="who">· ${esc(i.owner)}</span></li>`).join("");
+
+  const sel = $("f-section");
+  sel.innerHTML = `<option value="all">All sections</option>` + DATA.sections.filter((s) => items.some((i) => i.section === s)).map((s) => `<option value="${esc(s)}">${esc(s)}</option>`).join("");
+  sel.addEventListener("change", () => { state.section = sel.value; render(); });
+  Object.keys(CLASSES).forEach((c) => chip($("f-class"), c, c, state.classes));
+  Object.keys(PRIOS).forEach((p) => chip($("f-prio"), p, PRIOS[p], state.prios));
+  $("f-q").addEventListener("input", (e) => { state.q = e.target.value.trim().toLowerCase(); render(); });
+
+  $("na").innerHTML = DATA.unavailable.map((u) => `<tr><td>${esc(u.item)}</td><td class="muted">${esc(u.where)}</td><td>${esc(u.impact)}</td></tr>`).join("");
+  $("ok").innerHTML = DATA.no_change.map((x) => `<tr><td>${esc(x.area)}</td><td>${esc(x.note)}</td></tr>`).join("");
+  $("sources").innerHTML = Object.entries(m.sources).map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("");
+
+  document.addEventListener("click", async (e) => {
+    const jump = e.target.closest("[data-jump]");
+    if (jump) {
+      state.section = "all"; state.classes.clear(); state.prios.clear(); state.q = "";
+      sel.value = "all"; $("f-q").value = "";
+      document.querySelectorAll(".fchip").forEach((b) => b.setAttribute("aria-pressed", "false"));
+      render();
+      document.getElementById(jump.dataset.jump)?.scrollIntoView({ block: "start" });
+      return;
+    }
+    const btn = e.target.closest(".copy");
+    if (!btn) return;
+    const text = chatText(items.find((x) => x.id === btn.dataset.id));
+    try {
+      await navigator.clipboard.writeText(text);
+      btn.textContent = "Copied"; btn.classList.add("done");
+      setTimeout(() => { btn.textContent = "Copy for chat"; btn.classList.remove("done"); }, 1800);
+    } catch (err) {
+      const foot = btn.closest(".item-foot");
+      if (!foot.querySelector("textarea")) {
+        const ta = document.createElement("textarea");
+        ta.className = "fallback"; ta.value = text; ta.readOnly = true; ta.setAttribute("aria-label", "Item text");
+        foot.appendChild(ta); ta.focus(); ta.select();
+      }
+      btn.textContent = "Select and copy below";
+    }
+  });
+
+  render();
+  const h = location.hash.slice(1);
+  if (h && document.getElementById(h)) document.getElementById(h).scrollIntoView();
+}
+init();
+</script>
