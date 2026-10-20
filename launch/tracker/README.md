@@ -1,6 +1,6 @@
 # CooLinens Launch Tracker
 
-Shareable page (data built in, opens for anyone it is shared with, no sign-in to the data store): https://claude.ai/artifact/BofUW9KoD7GxXXzuudiR4Z
+CooLinens Daily Recommendations, the shareable page (data built in, opens for anyone it is shared with, no sign-in to the data store): https://claude.ai/artifact/BofUW9KoD7GxXXzuudiR4Z
 Dashboard version (needs Claude sign-in): https://claude.ai/artifact/1MwntnQjbBBpMyt8cRSe6g
 
 - `shareable_template.html` + `build_static.py` — bake `data/<date>/*.json` into the shareable page: `python3 -I build_static.py data/<date> shareable_template.html out.html <date>`.
