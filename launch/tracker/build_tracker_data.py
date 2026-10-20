@@ -166,6 +166,27 @@ for _, r in inv.iterrows():
     rows.append(dict(size=r['size'], colour=r.colour, sku=r.SKU, role=role or 'Not advertised', fba=int(r.FBA), sales_day=vel, push_orders_day=push, cover_days_push=cover, status=status))
 dump('stock', pd.DataFrame(rows).sort_values(['size', 'fba'], ascending=[True, False]))
 
+
+# ---------------------------------------------------------------- sizes (all live sizes) and proposed actions
+scs = pd.read_csv(f'{S}/v6/sb_campaigns.csv'); scs = scs[scs.Name.str.startswith('CLCS4')]
+for c_ in ['AdSpend', 'Clicks', 'Orders', 'Sales']:
+    scs[c_] = pd.to_numeric(scs[c_], errors='coerce').abs()
+scs['size'] = scs.Name.map(size).replace({'No size / head': 'No size / head terms'})
+ads_days = daily[(daily.phase == 'Ads live') & (daily.complete == 'yes') & (daily.ad_impressions > 0)].shape[0] or 1
+zrows = []
+for z in T['sizes']:
+    x = scs[scs['size'] == z['size']]
+    sp, sa, cl, od = x.AdSpend.sum(), x.Sales.sum(), x.Clicks.sum(), x.Orders.sum()
+    u = sb[sb.scope == z['size']]
+    pre = u[u.date < '2026-10-16'].units.mean() if len(u) else None
+    post = u[(u.date >= '2026-10-16') & (u.date <= daily[daily.complete == 'yes'].date.max())].units.mean() if len(u) else None
+    zrows.append(dict(size=z['size'], campaigns=z['campaigns'], ad_sku_live=z['ad_sku_live'], ad_sku_recommended=z['ad_sku_recommended'],
+                      ad_spend=sp, spend_day=sp / ads_days, plan_spend_day=z['plan_spend_day'], ad_clicks=cl, ad_orders=od, ad_sales=sa,
+                      acos=(sp / sa) if sa else None, cvr=(od / cl) if cl else None, units_day_before=pre, units_day_after=post,
+                      rank_note=z['rank_note'], read=z['read']))
+dump('sizes', pd.DataFrame(zrows))
+dump('actions', pd.DataFrame(T['actions']))
+
 # ---------------------------------------------------------------- overlap, decisions, log
 dump('overlap', pd.DataFrame(T['overlap']))
 dump('decisions', pd.DataFrame(T['decisions']))

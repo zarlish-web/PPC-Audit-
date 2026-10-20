@@ -363,9 +363,8 @@
     "Overlap is small: 6 of 89 search terms were bought by two of our campaigns; Sponsored Brands/Video do not compete in the Sponsored Products auction."
    ],
    "actions": [
-    "Act now (setup and relevance only): D01 Queen head term to Ranking/fixed/+75%; D02 Queen ads to Graphite; D03 tail negatives for the two Queen head terms; D04 unrelated-search negatives; D05 cooling-sheet branded campaign.",
-    "Wait for evidence: D06 King (27 Oct), D07 rival-page ads (50 clicks or 30 Oct), D08 Auto (watch), D09 spend and modifiers (27 Oct, plan weekly rules), D10 Queen conversion (7 days after D01–D02), D11 SBV (26 Oct).",
-    "This week: D12 Full and Cal King ad SKUs."
+    "For Erik and Joseph to approve (Overview → Proposed actions): A1 re-point the Queen ads (25 campaigns) from Queen White to Queen Graphite; A2 put 'cooling sheets queen' on the plan's ranking setup; A3 two Queen tail negatives with A2; A4 cooling-sheet branded campaign; A5 negatives for unrelated searches; A6 plan colours for Full, Twin and Cal King this week.",
+    "Hold: King until 27 Oct (H1); rival-page ads, Auto, video ads, bids and modifiers until their gates (H2)."
    ],
    "reasoning": [
     "Setup fixes restore the live plan and do not depend on four days of noisy data.",
@@ -373,6 +372,176 @@
     "Queen gets the first fix because it is the priority size and its problem is structural (objective, bid type, ad colour), not budget.",
     "King is left alone until a full week confirms it."
    ]
+  }
+ ],
+ "sizes": [
+  {
+   "size": "Queen",
+   "campaigns": 16,
+   "ad_sku_live": "Queen White (197 units)",
+   "ad_sku_recommended": "Queen Graphite (400 units)",
+   "plan_spend_day": 49.3,
+   "rank_note": "'cooling sheets queen' #76 → #68 (target #15). Smaller Queen phrases reached page 1 on most of the last 3 days.",
+   "read": "Priority. Fix setup first (A1–A3), then judge."
+  },
+  {
+   "size": "King",
+   "campaigns": 19,
+   "ad_sku_live": "King Cool Grey (182)",
+   "ad_sku_recommended": "King Graphite (202)",
+   "plan_spend_day": 42.0,
+   "rank_note": "Not ranked before ads; now top 10 on several King terms ('king sheets cooling' and 'king size sheets set cooling' at #3 for 4 days).",
+   "read": "Working, but 9 of 13 SP orders came on one day. Hold until 27 Oct."
+  },
+  {
+   "size": "Full",
+   "campaigns": 5,
+   "ad_sku_live": "Full Cream (29)",
+   "ad_sku_recommended": "Full Midnight Black (74)",
+   "plan_spend_day": 13.7,
+   "rank_note": "'cooling sheets full' #7, 'cooling sheets full size' #19.",
+   "read": "Working on small numbers. Change the ad SKU (A6)."
+  },
+  {
+   "size": "Twin",
+   "campaigns": 4,
+   "ad_sku_live": "Twin White (53)",
+   "ad_sku_recommended": "Twin Graphite (56)",
+   "plan_spend_day": 5.4,
+   "rank_note": "Not ranked.",
+   "read": "Probe only until the re-order lands (plan)."
+  },
+  {
+   "size": "Cal King",
+   "campaigns": 1,
+   "ad_sku_live": "Cal King Regal Purple (30)",
+   "ad_sku_recommended": "Cal King Graphite (72)",
+   "plan_spend_day": 10.5,
+   "rank_note": "Not ranked.",
+   "read": "Probe only. Spending under plan ($3/day vs $10.5); change the ad SKU (A6)."
+  },
+  {
+   "size": "No size / head terms",
+   "campaigns": 14,
+   "ad_sku_live": "Queen White",
+   "ad_sku_recommended": "Queen Graphite",
+   "plan_spend_day": 16.9,
+   "rank_note": "'cooling sheets' #31, 'cooling bed sheets' #54, 'cooling sheet set' #7.",
+   "read": "Head terms are capped probes in the plan; spending $57/day vs $17. Moves to Queen Graphite with A1."
+  }
+ ],
+ "actions": [
+  {
+   "id": "A1",
+   "priority": "1 · Act now",
+   "size": "Queen + head terms",
+   "action": "Re-point the Queen ads from Queen White to Queen Graphite",
+   "change": "In the 25 live campaigns that advertise CL-COOLING-SHEET-QUEEN-WHITE (13 Queen Sponsored Products campaigns, 9 no-size/head-term campaigns, plus Auto, own-page product targeting and Display): add a product ad for CL-COOLING-SHEET-QUEEN-GRAPHITE (ASIN B0H6K1MKQW) in each ad group and pause the Queen White ad. Keywords, bids and budgets stay the same.",
+   "why": "Queen Graphite is the plan's Queen ad SKU. It has the deepest stock (400 units vs 197), it is the #1 Queen colour for both sister brands (Sleephoria 20%, Decolure 26% of Queen units), and the Batch 2 gate is measured on Queen Graphite's CVR. Shoppers still pick any colour on the page.",
+   "evidence": "This week Queen Graphite sold 3 units on 28 sessions with no ad of its own; Queen White sold 1 on 38 sessions as the ad face. That gap alone is not proof (1 of 38 happens 30% of the time), so the call rests on stock and sister-brand history.",
+   "expected": "Queen ad CVR moves from 4.1% toward the plan's 8–9.5%, and the Batch 2 gate (Queen Graphite CVR ≥ 7% on ≥ 100 clicks) can be read by about 3 Nov. Stock: about 250 days of cover at the plan's Queen push.",
+   "check": "27 Oct: Queen CVR and Queen units/day vs the 3.0 baseline. 3 Nov: Batch 2 gate.",
+   "safe": "Only the product shown changes. The White ad stays paused, not deleted, and can be switched back in one step.",
+   "ref": "D02",
+   "status": "For approval"
+  },
+  {
+   "id": "A2",
+   "priority": "1 · Act now",
+   "size": "Queen",
+   "action": "Put 'cooling sheets queen' on the plan's ranking setup",
+   "change": "Campaign 'Cooling Sheet Queen' (exact): objective Conversion → Ranking; bidding down-only → fixed; base bid $2.22 → $2.24; Top-of-Search +50% → +75% (top-of-search bid $3.33 → $3.92); budget $25 → $29.",
+   "why": "This is Queen's biggest keyword (5.7 of Queen's 13.5 planned clicks a day). Down-only bidding lets Amazon lower our bid on a new listing, so the ad rarely reaches the top of search, where ranking sales happen. Budget is not the limit.",
+   "evidence": "Top-of-search share 0.21%; 28% of budget used; 12 clicks, 0 orders; organic rank #68.",
+   "expected": "Top-of-search share rises and the keyword gets about 5.7 clicks a day at the top of search, about 0.5 orders a day at a 9.5% CVR, and about $22 a day of spend at an expected ~52% ACoS (inside the ranking ceiling). Plan rank path: #50 by week 2 → #30 by week 4 → #15 by week 8.",
+   "check": "27 Oct: top-of-search share, clicks/day, CVR and the rank trend. Plan rule: reduce if CVR < 60% of plan on 50+ clicks.",
+   "safe": "It restores the plan's own setting, and the $29 budget caps the cost.",
+   "ref": "D01",
+   "status": "For approval"
+  },
+  {
+   "id": "A3",
+   "priority": "1 · With A2",
+   "size": "Queen",
+   "action": "Stop two Queen tails from catching the head keywords",
+   "change": "Queen Tail 18: add negative exact 'cooling sheets queen'. Queen Tail 22: add negative exact 'cooling queen sheets'.",
+   "why": "Amazon matches the tail keywords 'cool sheet queen' and 'cool queen sheet' to the head searches, so part of the head traffic runs at the tail's bid and objective instead of the ranking campaign's.",
+   "evidence": "4 of 16 clicks on 'cooling sheets queen' and 1 of 2 on 'cooling queen sheets' went to the tails.",
+   "expected": "All head-keyword clicks route through the ranking campaign; the tails keep their own searches.",
+   "check": "Next search-term report: the tails no longer serve the head terms but still serve 'cool sheet queen'.",
+   "safe": "Same shoppers, same ad. Only the campaign that buys the click changes.",
+   "ref": "D03",
+   "status": "For approval"
+  },
+  {
+   "id": "A4",
+   "priority": "2 · Act now",
+   "size": "Brand",
+   "action": "Launch the cooling-sheet branded campaign",
+   "change": "New Sponsored Products exact campaign: keyword 'coolinens', advertised SKU Queen Graphite, fixed $2.14 bid, $10/day, Defensive. Add negative exact 'coolinens' in 'CooLinens Pillowcases (PAT) Defensive'.",
+   "why": "People searching our brand name now see pillowcase ads. The plan's branded campaign for the sheets was never launched.",
+   "evidence": "7 brand clicks went to pillowcase ads, 0 orders. Sleephoria's branded exact ran at 14% ACoS and 20% CVR.",
+   "expected": "Brand searches land on the sheets, at about 19% ACoS (plan).",
+   "check": "27 Oct: brand clicks and orders.",
+   "safe": "Brand searches are ours, so no discovery is lost.",
+   "ref": "D05",
+   "status": "For approval"
+  },
+  {
+   "id": "A5",
+   "priority": "2 · Act now",
+   "size": "All",
+   "action": "Negatives for searches that are not cooling sheets",
+   "change": "Cooling Rivals Queen/King/Twin (product targeting): negative exact silk bed sheets, tencel lyocell sheets, cooling comforter set, cooling blanket for bed, cooling blankets for hot sleepers, below zero cooling comforter, slumber cloud ultracool comforter, apartment essentials men, sleep number bed sheets. Negative phrase 'sleephoria' in the rival-page campaigns and Auto. Auto: negative exact bed cooling system, electronic cooling for menopause, under sheets bed fan.",
+   "why": "These searches are for other products or for our own sister brand. Relevance decides this, not click counts, so there is no need to wait.",
+   "evidence": "About $35 of clicks, 0 orders.",
+   "expected": "Saves roughly $5–8 a day. No relevant traffic is blocked: 'nylon spandex sheets', 'cooling sheets' and rival brand searches stay open.",
+   "check": "Next search-term report.",
+   "safe": "Only clearly unrelated searches are blocked.",
+   "ref": "D04",
+   "status": "For approval"
+  },
+  {
+   "id": "A6",
+   "priority": "3 · This week",
+   "size": "Full, Twin, Cal King",
+   "action": "Point the smaller sizes at the plan colours",
+   "change": "Full: Full Cream → Full Midnight Black (74 units; backup Full Cool Grey, 94). Twin: Twin White → Twin Graphite (56). Cal King: Cal King Regal Purple → Cal King Graphite (72).",
+   "why": "The live colours are among the weakest sellers for the sister brand (Full Cream 3.7% of Full units, Cal King Regal Purple 5.6%), and Full Cream and Cal King Regal Purple have only about 30 units each.",
+   "evidence": "Full Midnight Black sold 9 units at 16.7% CVR with no ads, the best colour of launch week.",
+   "expected": "Better conversion from the same clicks, and no stock-out risk behind the ads.",
+   "check": "27 Oct.",
+   "safe": "Same keywords, bids and budgets; small sizes on capped spend.",
+   "ref": "D12",
+   "status": "For approval"
+  },
+  {
+   "id": "H1",
+   "priority": "Hold",
+   "size": "King",
+   "action": "No change to King yet",
+   "change": "None.",
+   "why": "King looks strong, but most of it is one day: 9 of 13 SP orders came on 18 Oct.",
+   "evidence": "King SP ACoS 40%; without 18 Oct, 87%. King units 4, 10, 19, 4 vs a 4.3 baseline.",
+   "expected": "A full week shows whether King holds.",
+   "check": "27 Oct: King ACoS ≤ 43.7% with orders on 4+ of 7 days. Then decide with Zarlish whether King is pushed or capped.",
+   "safe": "No action.",
+   "ref": "D06",
+   "status": "Waiting"
+  },
+  {
+   "id": "H2",
+   "priority": "Hold",
+   "size": "All",
+   "action": "Keep rival-page ads, Auto and the video ads running; hold bids and modifiers",
+   "change": "None.",
+   "why": "Four days are too few to call these failures.",
+   "evidence": "Rival-page ads: 0 orders on 29 clicks, a 17% chance even at a normal CVR. Auto: $3.10 spent. Queen rival video: 0 orders on 15 clicks, a 29% chance.",
+   "expected": "A fair read at the gates.",
+   "check": "Rival-page ads at 50 clicks per campaign or 30 Oct. Video ads on 26 Oct (new video). Bids and modifiers on 27 Oct, using the plan's weekly rules.",
+   "safe": "No action.",
+   "ref": "D07–D09, D11",
+   "status": "Waiting"
   }
  ]
 }

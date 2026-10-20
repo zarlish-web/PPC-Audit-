@@ -40,6 +40,19 @@
 .lt-entry .when { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
 .lt-entry h4 { margin: var(--cds-gap-xs) 0 0; font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); }
 .lt-entry ul { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: .25rem; font-size: var(--cds-font-size-body); }
+.lt-actions { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 30rem), 1fr)); gap: var(--cds-gap-md); }
+.lt-act { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: flex; flex-direction: column; gap: var(--cds-gap-sm); min-width: 0; }
+.lt-act.hold { background: var(--color-bg); }
+.lt-act .top { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs); align-items: center; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.lt-act .id { font-weight: var(--cds-font-weight-medium); color: var(--color-fg); }
+.lt-act h3 { margin: 0; font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); text-wrap: balance; }
+.lt-act dl { margin: 0; display: grid; grid-template-columns: 8.5rem 1fr; gap: var(--cds-gap-xs) var(--cds-gap-sm); font-size: var(--cds-font-size-body); }
+.lt-act dt { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); padding-top: .15rem; }
+.lt-act dd { margin: 0; min-width: 0; }
+@media (max-width: 520px) { .lt-act dl { grid-template-columns: 1fr; } .lt-act dt { padding-top: var(--cds-gap-xs); } }
+.lt-sec-h { display: flex; flex-direction: column; gap: var(--cds-gap-xs); }
+.lt-sec-h h2 { margin: 0; font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); }
+.lt-sec-h p { margin: 0; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); max-width: 80ch; }
 [data-dash-source-state=empty] { color: transparent; }
 [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
 </style>
@@ -63,6 +76,11 @@
 
   <!-- OVERVIEW -->
   <section class="lt-page" id="overview" data-page-id="overview">
+    <div class="lt-sec-h" id="actions"><h2>Proposed actions for Erik and Joseph</h2>
+      <p>Each action shows the exact change, why we propose it, the evidence, the expected outcome and when we check it. "Act now" items are setup or relevance fixes that do not depend on early results; "Hold" items say what we are deliberately not changing yet, and why.</p></div>
+    <div class="lt-actions dash-skeleton" id="actions-list" data-source="actions"></div>
+    <div class="lt-card" id="card-sizes"><h2>All live sizes</h2><p class="note">Since ads started (Sellerboard, all ad types). Spend per day uses complete days only. Head-term campaigns have no size and advertise the Queen SKU.</p>
+      <div class="lt-tablebox"><table class="lt-table" id="tb-sizes" data-source="sizes" data-row-key="size"></table></div></div>
     <div class="lt-tiles" id="tiles">
       <div class="lt-tile"><span class="k">Units sold since ads started</span><span class="v dash-skeleton" data-source="totals" data-field="units"></span><span class="s">Pre-ads baseline <span data-source="totals" data-field="baseline_units_day"></span> / day</span></div>
       <div class="lt-tile"><span class="k">Ad spend since ads started</span><span class="v dash-skeleton" data-source="totals" data-field="ad_spend"></span><span class="s">Plan pace $138 / day · live <span data-source="totals" data-field="ad_spend_day"></span> / day</span></div>
@@ -294,6 +312,30 @@
     const daily = dash.data('daily'); const sd = dash.data('size_daily'); const log = dash.data('log');
     if (log.status === 'ok' && log.data.length) { const latest = log.data.slice().sort((a, b) => b.date.localeCompare(a.date))[0]; const el = $('#takeaway'); el.classList.remove('dash-skeleton'); el.textContent = latest.headline; el.dataset.where = 'date=' + latest.date; }
     if (current === 'overview') {
+      const ac = dash.data('actions'); const box = $('#actions-list');
+      if (ac.status === 'ok') {
+        box.classList.remove('dash-skeleton'); box.replaceChildren();
+        ac.data.forEach((a) => {
+          const art = document.createElement('article'); art.className = 'lt-act' + (/Hold/.test(a.priority) ? ' hold' : ''); art.id = 'action-' + a.id;
+          const top = document.createElement('div'); top.className = 'top';
+          const id = document.createElement('span'); id.className = 'id'; id.textContent = a.id;
+          const pr = document.createElement('span'); pr.className = 'lt-pill ' + (/Act now|With/.test(a.priority) ? 'bad' : /week/.test(a.priority) ? 'warn' : ''); pr.textContent = a.priority;
+          const sz = document.createElement('span'); sz.textContent = a.size;
+          const st = document.createElement('span'); st.className = 'lt-pill ' + (/approv/i.test(a.status) ? 'warn' : /Done|Approved/i.test(a.status) ? 'ok' : ''); st.textContent = a.status;
+          const rf = document.createElement('span'); rf.textContent = 'Decision ' + a.ref;
+          top.append(id, pr, sz, st, rf);
+          const h = document.createElement('h3'); h.textContent = a.action;
+          const dl = document.createElement('dl');
+          [['What changes', a.change], ['Why', a.why], ['Evidence', a.evidence], ['Expected outcome', a.expected], ['How we check', a.check], ['Why it is safe', a.safe]].forEach(([k, v]) => {
+            if (!v) return; const dt = document.createElement('dt'); dt.textContent = k; const dd = document.createElement('dd'); dd.textContent = v; dl.append(dt, dd); });
+          art.append(top, h, dl); box.appendChild(art);
+        });
+      }
+      table($('#tb-sizes'), 'sizes', [{ f: 'size', label: 'Size' }, { f: 'campaigns', label: 'Campaigns', fmt: int }, { f: 'ad_sku_live', label: 'Ad SKU now' },
+        { f: 'ad_sku_recommended', label: 'Ad SKU proposed' }, { f: 'spend_day', label: 'Spend / day', fmt: money }, { f: 'plan_spend_day', label: 'Plan / day', fmt: money },
+        { f: 'ad_clicks', label: 'Clicks', fmt: int }, { f: 'ad_orders', label: 'Ad orders', fmt: int }, { f: 'acos', label: 'ACoS', fmt: pct }, { f: 'cvr', label: 'CVR', fmt: pct },
+        { f: 'units_day_before', label: 'Units/day before ads', fmt: num1 }, { f: 'units_day_after', label: 'Units/day since', fmt: num1 },
+        { f: 'rank_note', label: 'Rank', wrap: true }, { f: 'read', label: 'Read', wrap: true }], ['size']);
       fill('#tiles [data-source="totals"]');
       if (daily.status === 'ok') {
         const s1 = [{ f: 'ad_orders', label: 'Ad orders', color: dash.colors[0] }, { f: 'non_ad_units', label: 'Units without an ad order', color: 'var(--cds-chart-muted)' }];
