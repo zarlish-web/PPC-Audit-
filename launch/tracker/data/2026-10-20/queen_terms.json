@@ -1,0 +1,178 @@
+[
+{
+"term": "cooling sheets queen",
+"plan": "Batch 1",
+"clicks": 16,
+"orders": 0,
+"spend": 36.6,
+"sales": 0.0,
+"acos": null,
+"rank": "70",
+"read": "Too early \u2014 0 orders on 16 clicks happens 23% of the time"
+},
+{
+"term": "queen cooling sheets",
+"plan": "Batch 1",
+"clicks": 6,
+"orders": 0,
+"spend": 26.34,
+"sales": 0.0,
+"acos": null,
+"rank": "17",
+"read": "Too early \u2014 0 orders on 6 clicks happens 58% of the time"
+},
+{
+"term": "cooling queen sheets",
+"plan": "Batch 1",
+"clicks": 2,
+"orders": 0,
+"spend": 9.91,
+"sales": 0.0,
+"acos": null,
+"rank": "35",
+"read": "Too early \u2014 0 orders on 2 clicks happens 83% of the time"
+},
+{
+"term": "queen bed sheets cooling",
+"plan": "Batch 1",
+"clicks": 1,
+"orders": 0,
+"spend": 5.49,
+"sales": 0.0,
+"acos": null,
+"rank": "42",
+"read": "Too early \u2014 0 orders on 1 clicks happens 91% of the time"
+},
+{
+"term": "queen sheet set cooling",
+"plan": "Batch 2",
+"clicks": 2,
+"orders": 1,
+"spend": 5.25,
+"sales": 87.99,
+"acos": 0.05966587112171838,
+"rank": "70",
+"read": "Working"
+},
+{
+"term": "queen size cooling sheets",
+"plan": "Excluded",
+"clicks": 2,
+"orders": 0,
+"spend": 5.23,
+"sales": 0.0,
+"acos": null,
+"rank": "44",
+"read": "Too early \u2014 0 orders on 2 clicks happens 83% of the time"
+},
+{
+"term": "cooling bed sheets queen",
+"plan": "Excluded",
+"clicks": 1,
+"orders": 0,
+"spend": 5.14,
+"sales": 0.0,
+"acos": null,
+"rank": "5",
+"read": "Too early \u2014 0 orders on 1 clicks happens 91% of the time"
+},
+{
+"term": "cooling bed set queen",
+"plan": "Excluded",
+"clicks": 2,
+"orders": 0,
+"spend": 4.44,
+"sales": 0.0,
+"acos": null,
+"rank": null,
+"read": "Too early \u2014 0 orders on 2 clicks happens 83% of the time"
+},
+{
+"term": "queen cooling sheets deep pockets",
+"plan": "Excluded",
+"clicks": 1,
+"orders": 0,
+"spend": 3.33,
+"sales": 0.0,
+"acos": null,
+"rank": null,
+"read": "Too early \u2014 0 orders on 1 clicks happens 91% of the time"
+},
+{
+"term": "cooling sheet set queen",
+"plan": "Batch 2",
+"clicks": 1,
+"orders": 0,
+"spend": 3.33,
+"sales": 0.0,
+"acos": null,
+"rank": "78",
+"read": "Too early \u2014 0 orders on 1 clicks happens 91% of the time"
+},
+{
+"term": "queen sheets cooling",
+"plan": "Batch 1",
+"clicks": 1,
+"orders": 0,
+"spend": 2.67,
+"sales": 0.0,
+"acos": null,
+"rank": "7",
+"read": "Too early \u2014 0 orders on 1 clicks happens 91% of the time"
+},
+{
+"term": "cooling sheets for queen",
+"plan": "Not in plan",
+"clicks": 1,
+"orders": 0,
+"spend": 2.22,
+"sales": 0.0,
+"acos": null,
+"rank": null,
+"read": "Too early \u2014 0 orders on 1 clicks happens 91% of the time"
+},
+{
+"term": "deep pocket cooling queen sheets",
+"plan": "Batch 2",
+"clicks": 1,
+"orders": 0,
+"spend": 2.22,
+"sales": 0.0,
+"acos": null,
+"rank": "3",
+"read": "Too early \u2014 0 orders on 1 clicks happens 91% of the time"
+},
+{
+"term": "cooling sheets queen size",
+"plan": "Batch 1",
+"clicks": 1,
+"orders": 0,
+"spend": 2.22,
+"sales": 0.0,
+"acos": null,
+"rank": "3",
+"read": "Too early \u2014 0 orders on 1 clicks happens 91% of the time"
+},
+{
+"term": "queen size cooling sheets deep pocket",
+"plan": "Excluded",
+"clicks": 1,
+"orders": 0,
+"spend": 2.22,
+"sales": 0.0,
+"acos": null,
+"rank": "123",
+"read": "Too early \u2014 0 orders on 1 clicks happens 91% of the time"
+},
+{
+"term": "miracle sheets queen size silver infused",
+"plan": "Not in plan",
+"clicks": 1,
+"orders": 0,
+"spend": 2.2,
+"sales": 0.0,
+"acos": null,
+"rank": null,
+"read": "Too early \u2014 0 orders on 1 clicks happens 91% of the time"
+}
+]

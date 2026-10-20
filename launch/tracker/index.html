@@ -1,0 +1,378 @@
+<style>
+#dash-root { --lt-gap: var(--cds-gap-md); }
+.lt { display: flex; flex-direction: column; gap: var(--cds-gap-lg); font-family: var(--font-anthropic-sans); }
+.lt-head h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
+.lt-take { color: var(--color-fg-muted); font-size: var(--cds-font-size-body); margin: var(--cds-gap-xs) 0 0; max-width: 75ch; }
+.lt-meta { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin-top: var(--cds-gap-xs); }
+.lt-tabs { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs); border-bottom: 1px solid var(--color-border-line); }
+.lt-tab { appearance: none; background: none; border: 0; border-bottom: 2px solid transparent; padding: var(--cds-pad-xs) var(--cds-pad-sm); font: inherit; font-size: var(--cds-font-size-body); color: var(--color-fg-muted); cursor: pointer; }
+.lt-tab[aria-selected="true"] { color: var(--color-fg); border-bottom-color: var(--color-fg); }
+.lt-tab:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+.lt-page { display: flex; flex-direction: column; gap: var(--cds-gap-lg); }
+.lt-page[hidden] { display: none; }
+.lt-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr)); gap: var(--cds-gap-md); }
+.lt-tile { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-md); display: flex; flex-direction: column; gap: var(--cds-gap-xs); min-width: 0; }
+.lt-tile .k { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.lt-tile .v { font-family: var(--font-anthropic-serif); font-size: var(--cds-font-size-title); font-variant-numeric: tabular-nums; }
+.lt-tile .s { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); font-variant-numeric: tabular-nums; }
+.lt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: var(--cds-gap-md); }
+.lt-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); min-width: 0; display: flex; flex-direction: column; gap: var(--cds-gap-sm); }
+.lt-card h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+.lt-card .note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0; }
+.lt-chart { position: relative; min-height: 220px; }
+.lt-chart svg { display: block; }
+.lt-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); white-space: nowrap; z-index: 2; }
+.lt-tip .d { color: var(--cds-text-secondary); }
+.lt-legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.lt-legend i { display: inline-block; width: .6rem; height: .6rem; border-radius: 2px; margin-right: .3rem; vertical-align: middle; }
+.lt-tablebox { overflow: auto; max-height: 34rem; }
+.lt-table { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.lt-table th { position: sticky; top: 0; background: var(--color-panel); text-align: left; font-weight: var(--cds-font-weight-medium); padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); cursor: pointer; white-space: nowrap; }
+.lt-table td { padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); vertical-align: top; }
+.lt-table td.num { text-align: right; white-space: nowrap; }
+.lt-table td.wrap { min-width: 16rem; max-width: 34rem; white-space: normal; }
+.lt-pill { display: inline-block; padding: 0 .45rem; border-radius: 999px; border: 1px solid var(--color-border-line); white-space: nowrap; }
+.lt-pill.ok { color: var(--color-ok); } .lt-pill.warn { color: var(--color-warn); } .lt-pill.bad { color: var(--color-bad); }
+.lt-search { font: inherit; font-size: var(--cds-font-size-caption); padding: var(--cds-pad-xs) var(--cds-pad-sm); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-bg); color: var(--color-fg); max-width: 20rem; }
+.lt-log { display: flex; flex-direction: column; gap: var(--cds-gap-md); }
+.lt-entry { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: flex; flex-direction: column; gap: var(--cds-gap-sm); }
+.lt-entry h3 { margin: 0; font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); }
+.lt-entry .when { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.lt-entry h4 { margin: var(--cds-gap-xs) 0 0; font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); }
+.lt-entry ul { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: .25rem; font-size: var(--cds-font-size-body); }
+[data-dash-source-state=empty] { color: transparent; }
+[data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+</style>
+
+<div class="lt">
+  <header class="lt-head" id="top">
+    <h1>CooLinens Launch Tracker</h1>
+    <p class="lt-take dash-skeleton" id="takeaway" data-source="log" data-field="headline"></p>
+    <div class="lt-meta">Cooling Sheets 4PC · Amazon US · PPC live 16 Oct 2026 · owner Shayan Rana · updated daily</div>
+  </header>
+
+  <nav class="lt-tabs" role="tablist" aria-label="Tracker sections">
+    <button class="lt-tab" role="tab" id="tab-overview" data-page="overview" aria-selected="true">Overview</button>
+    <button class="lt-tab" role="tab" id="tab-queen" data-page="queen" aria-selected="false">Queen</button>
+    <button class="lt-tab" role="tab" id="tab-king" data-page="king" aria-selected="false">King check</button>
+    <button class="lt-tab" role="tab" id="tab-overlap" data-page="overlap" aria-selected="false">Overlap &amp; negatives</button>
+    <button class="lt-tab" role="tab" id="tab-stock" data-page="stock" aria-selected="false">Stock</button>
+    <button class="lt-tab" role="tab" id="tab-decisions" data-page="decisions" aria-selected="false">Decisions</button>
+    <button class="lt-tab" role="tab" id="tab-log" data-page="log" aria-selected="false">Daily log</button>
+  </nav>
+
+  <!-- OVERVIEW -->
+  <section class="lt-page" id="overview" data-page-id="overview">
+    <div class="lt-tiles" id="tiles">
+      <div class="lt-tile"><span class="k">Units sold since ads started</span><span class="v dash-skeleton" data-source="totals" data-field="units"></span><span class="s">Pre-ads baseline <span data-source="totals" data-field="baseline_units_day"></span> / day</span></div>
+      <div class="lt-tile"><span class="k">Ad spend since ads started</span><span class="v dash-skeleton" data-source="totals" data-field="ad_spend"></span><span class="s">Plan pace $138 / day · live <span data-source="totals" data-field="ad_spend_day"></span> / day</span></div>
+      <div class="lt-tile"><span class="k">Ad orders</span><span class="v dash-skeleton" data-source="totals" data-field="ad_orders"></span><span class="s">CVR <span data-source="totals" data-field="cvr"></span></span></div>
+      <div class="lt-tile"><span class="k">ACoS (ads)</span><span class="v dash-skeleton" data-source="totals" data-field="acos"></span><span class="s">Break-even 43.7%</span></div>
+      <div class="lt-tile"><span class="k">TACoS (ads ÷ all sales)</span><span class="v dash-skeleton" data-source="totals" data-field="tacos"></span><span class="s">All sales <span data-source="totals" data-field="sales"></span></span></div>
+      <div class="lt-tile"><span class="k">Units without an ad order</span><span class="v dash-skeleton" data-source="totals" data-field="non_ad_units"></span><span class="s">Share <span data-source="totals" data-field="non_ad_share"></span></span></div>
+    </div>
+    <div class="lt-grid">
+      <div class="lt-card" id="card-units"><h2>Units per day</h2><p class="note">Ad-attributed orders vs the rest. 13–15 Oct had no ads and set the baseline. The newest day is partial.</p>
+        <div class="lt-legend" id="leg-units"></div><div class="lt-chart dash-skeleton" id="ch-units" data-source="daily"></div></div>
+      <div class="lt-card" id="card-spend"><h2>Ad spend and ad sales per day</h2><p class="note">All ad types (Sponsored Products, Brands, Brands Video, Display). Ad sales use 7-day attribution, so the last days still fill in.</p>
+        <div class="lt-legend" id="leg-spend"></div><div class="lt-chart dash-skeleton" id="ch-spend" data-source="daily"></div></div>
+    </div>
+    <div class="lt-grid">
+      <div class="lt-card" id="card-acos"><h2>ACoS</h2><p class="note">Dashed line: 43.7% break-even.</p><div class="lt-chart dash-skeleton" id="ch-acos" data-source="daily"></div></div>
+      <div class="lt-card" id="card-cvr"><h2>Ad CVR</h2><p class="note">Ad orders ÷ ad clicks. Plan expects 8.6%.</p><div class="lt-chart dash-skeleton" id="ch-cvr" data-source="daily"></div></div>
+      <div class="lt-card" id="card-ctr"><h2>Ad CTR</h2><p class="note">Clicks ÷ impressions. Falls as impressions widen.</p><div class="lt-chart dash-skeleton" id="ch-ctr" data-source="daily"></div></div>
+    </div>
+    <div class="lt-card" id="card-daily"><h2>Day by day</h2><p class="note">One row per day. Sessions arrive in Sellerboard with a 2-day lag.</p>
+      <div class="lt-tablebox"><table class="lt-table" id="tb-daily" data-source="daily" data-row-key="date"></table></div></div>
+    <div class="lt-card" id="card-size"><h2>Units by size per day</h2><p class="note">Plan share of spend: Queen 48% · King 30% · Full 10% · Cal King 8% · Twin 4%.</p>
+      <div class="lt-tablebox"><table class="lt-table" id="tb-size" data-source="size_daily" data-row-key="date,size"></table></div></div>
+  </section>
+
+  <!-- QUEEN -->
+  <section class="lt-page" id="queen" data-page-id="queen" hidden>
+    <div class="lt-grid">
+      <div class="lt-card" id="card-q-units"><h2>Queen units per day</h2><p class="note">Dashed line: 3.0 a day, Queen's average before ads. Hover a day for Queen ad spend. A working ranking push lifts the bars above the line.</p><div class="lt-chart dash-skeleton" id="ch-q" data-source="size_daily"></div></div>
+      <div class="lt-card" id="card-q-clicks"><h2>Queen keyword clicks per day vs plan</h2><p class="note">Sponsored Products clicks on Queen searches. Dashed line: the plan's 13.5 clicks a day.</p>
+        <div class="lt-chart dash-skeleton" id="ch-qc" data-source="size_daily"></div></div>
+    </div>
+    <div class="lt-card" id="card-q-terms"><h2>Queen search terms</h2><p class="note">What shoppers typed, totals since ads started.</p>
+      <div class="lt-tablebox"><table class="lt-table" id="tb-qterms" data-source="queen_terms" data-row-key="term"></table></div></div>
+    <div class="lt-card" id="card-q-camps"><h2>Queen campaigns</h2><p class="note">Top-of-search share is where ranking sales happen. Budget used = spend ÷ budget over the days live.</p>
+      <div class="lt-tablebox"><table class="lt-table" id="tb-qcamps" data-source="queen_campaigns" data-row-key="campaign"></table></div></div>
+    <div class="lt-card" id="card-q-rank"><h2>Queen organic rank</h2><p class="note">Crawler reading per day. NR = not in the crawl. Single-day readings at exactly #3 are crawl noise until they repeat.</p>
+      <div class="lt-tablebox"><table class="lt-table" id="tb-qrank" data-source="ranks" data-row-key="keyword"></table></div></div>
+  </section>
+
+  <!-- KING -->
+  <section class="lt-page" id="king" data-page-id="king" hidden>
+    <div class="lt-grid">
+      <div class="lt-card" id="card-k-units"><h2>King units per day</h2><p class="note">Dashed line: 4.3 a day, King's average before ads. Hover a day for King ad spend.</p><div class="lt-chart dash-skeleton" id="ch-k" data-source="size_daily"></div></div>
+      <div class="lt-card" id="card-k-sp"><h2>King ad orders per day</h2><p class="note">Sponsored Products orders on King searches. One strong day can make a week look good.</p>
+        <div class="lt-chart dash-skeleton" id="ch-ko" data-source="size_daily"></div></div>
+    </div>
+    <div class="lt-card" id="card-k-terms"><h2>King search terms</h2><p class="note">Totals since ads started.</p>
+      <div class="lt-tablebox"><table class="lt-table" id="tb-kterms" data-source="king_terms" data-row-key="term"></table></div></div>
+  </section>
+
+  <!-- OVERLAP -->
+  <section class="lt-page" id="overlap" data-page-id="overlap" hidden>
+    <div class="lt-card" id="card-overlap"><h2>Search terms bought by more than one campaign, and proposed negatives</h2>
+      <p class="note">Evidence, relevance and whether the action can wait. A negative is proposed only where it removes a duplicate path or irrelevant traffic, never on a relevant discovery term with too few clicks to judge.</p>
+      <div class="lt-tablebox"><table class="lt-table" id="tb-overlap" data-source="overlap" data-row-key="item"></table></div></div>
+  </section>
+
+  <!-- STOCK -->
+  <section class="lt-page" id="stock" data-page-id="stock" hidden>
+    <div class="lt-card" id="card-stock"><h2>Can stock carry the push?</h2>
+      <p class="note">Days of cover = FBA units ÷ (current sales a day + the plan's ad orders a day if this child is the ad SKU). Rule: switch to the backup below 21 days.</p>
+      <div class="lt-tablebox"><table class="lt-table" id="tb-stock" data-source="stock" data-row-key="sku"></table></div></div>
+  </section>
+
+  <!-- DECISIONS -->
+  <section class="lt-page" id="decisions" data-page-id="decisions" hidden>
+    <div class="lt-card" id="card-dec"><h2>Decisions and their outcomes</h2>
+      <p class="note">Every recommendation, the evidence behind it, the gate it waits for, and what happened. Nothing changes in the account until it is approved.</p>
+      <input class="lt-search" id="dec-search" type="search" placeholder="Search decisions" aria-label="Search decisions">
+      <div class="lt-tablebox"><table class="lt-table" id="tb-dec" data-source="decisions" data-row-key="id"></table></div></div>
+  </section>
+
+  <!-- LOG -->
+  <section class="lt-page" id="log" data-page-id="log" hidden>
+    <div class="lt-log" id="log-list" data-source="log"></div>
+  </section>
+</div>
+
+<script>
+(function () {
+  const $ = (s, r = document) => r.querySelector(s);
+  const money = (v) => v == null || isNaN(v) ? '—' : '$' + d3.format(',.0f')(v);
+  const money2 = (v) => v == null || isNaN(v) ? '—' : '$' + d3.format(',.2f')(v);
+  const pct = (v) => v == null || isNaN(v) ? '—' : d3.format('.1%')(v);
+  const int = (v) => v == null || isNaN(v) ? '—' : d3.format(',')(Math.round(v));
+  const num1 = (v) => v == null || isNaN(v) ? '—' : d3.format(',.1f')(v);
+  const day = (s) => d3.utcFormat('%b %-d')(new Date(s + 'T00:00:00Z'));
+  window.ltFmt = { money, money2, pct, int, num1, day };
+
+  // ---------- tabs
+  const tabs = Array.from(document.querySelectorAll('.lt-tab'));
+  let current = 'overview';
+  function show(id) {
+    if (!document.getElementById(id)) return;
+    current = id;
+    tabs.forEach((t) => t.setAttribute('aria-selected', String(t.dataset.page === id)));
+    document.querySelectorAll('.lt-page').forEach((p) => { p.hidden = p.id !== id; });
+    dash.setLink(id);
+    draw();
+  }
+  tabs.forEach((t) => t.addEventListener('click', () => show(t.dataset.page)));
+  window.ltCurrent = () => current;
+
+  // ---------- totals since ads started
+  dash.calc('totals', {
+    inputs: ['daily'],
+    title: 'Launch totals since ads started',
+    description: 'Sums the days from 16 Oct (first ad day); baseline is the 13–15 Oct average.',
+    fn: (daily) => {
+      const n = (x) => Number(x) || 0;
+      const pre = daily.filter((r) => r.phase === 'Before ads');
+      const post = daily.filter((r) => r.phase !== 'Before ads');
+      const s = (k, rows = post) => rows.reduce((a, r) => a + n(r[k]), 0);
+      const fullDays = post.filter((r) => r.complete === 'yes').length || 1;
+      const spendFull = post.filter((r) => r.complete === 'yes').reduce((a, r) => a + n(r.ad_spend), 0);
+      return [{
+        units: s('units'), sales: s('sales'), ad_spend: s('ad_spend'), ad_orders: s('ad_orders'), ad_sales: s('ad_sales'),
+        ad_clicks: s('ad_clicks'), non_ad_units: s('units') - s('ad_orders'),
+        non_ad_share: s('units') ? (s('units') - s('ad_orders')) / s('units') : null,
+        acos: s('ad_sales') ? s('ad_spend') / s('ad_sales') : null,
+        tacos: s('sales') ? s('ad_spend') / s('sales') : null,
+        cvr: s('ad_clicks') ? s('ad_orders') / s('ad_clicks') : null,
+        ad_spend_day: spendFull / fullDays,
+        baseline_units_day: pre.length ? s('units', pre) / pre.length : null,
+      }];
+    },
+  });
+
+  // ---------- generic table
+  function table(el, id, cols, keyCols, keep) {
+    const res = dash.data(id);
+    el.replaceChildren();
+    if (res.status !== 'ok') return;
+    const rows = res.data.filter((r) => !keep || keep(r));
+    const st = el._sort || null;
+    if (st) rows.sort((a, b) => { const x = a[st.f], y = b[st.f]; const nx = Number(x), ny = Number(y);
+      const c = (!isNaN(nx) && !isNaN(ny) && x !== '' && y !== '') ? nx - ny : String(x ?? '').localeCompare(String(y ?? '')); return st.dir * c; });
+    const thead = el.createTHead(); const hr = thead.insertRow();
+    cols.forEach((c) => {
+      const th = document.createElement('th'); th.textContent = c.label; th.dataset.field = c.f;
+      if (c.src) th.dataset.source = c.src;
+      th.setAttribute('aria-sort', st && st.f === c.f ? (st.dir > 0 ? 'ascending' : 'descending') : 'none');
+      th.addEventListener('click', () => { el._sort = { f: c.f, dir: st && st.f === c.f ? -st.dir : (c.fmt ? -1 : 1) }; table(el, id, cols, keyCols, keep); });
+      hr.appendChild(th);
+    });
+    const tb = el.createTBody();
+    const q = (el._filter || '').toLowerCase();
+    rows.forEach((r) => {
+      if (q && !cols.some((c) => String(r[c.f] ?? '').toLowerCase().includes(q))) return;
+      const tr = tb.insertRow();
+      if (keyCols.length > 1) tr.dataset.key = keyCols.map((k) => encodeURIComponent(r[k])).join(',');
+      cols.forEach((c) => {
+        const td = tr.insertCell(); const v = r[c.f];
+        if (c.pill) { const sp = document.createElement('span'); sp.className = 'lt-pill ' + (c.pill(v) || ''); sp.textContent = v ?? ''; td.appendChild(sp); }
+        else td.textContent = c.fmt ? c.fmt(v === '' || v == null ? null : Number(v)) : (v ?? '');
+        if (c.fmt) td.className = 'num'; if (c.wrap) td.className = 'wrap';
+      });
+    });
+  }
+  window.ltTable = table;
+
+  // ---------- charts
+  const tip = (box) => { let t = box.querySelector('.lt-tip'); if (!t) { t = document.createElement('div'); t.className = 'lt-tip'; t.hidden = true; box.appendChild(t); } return t; };
+  function axisStyle(g) { g.attr('font-size', null).attr('font-family', null); g.selectAll('text').attr('fill', 'var(--color-fg-muted)').style('font-size', 'var(--cds-font-size-caption)'); g.selectAll('.domain').attr('stroke', 'var(--cds-chart-axis)'); g.selectAll('.tick line').attr('stroke', 'var(--cds-chart-grid)'); }
+
+  function bars(box, rows, x, series, opts = {}) {
+    box.replaceChildren(); box.classList.remove('dash-skeleton');
+    const W = box.clientWidth || 600, H = 220, m = { t: 10, r: 10, b: 26, l: 44 };
+    const svg = d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    const xs = d3.scaleBand(rows.map((r) => r[x]), [m.l, W - m.r]).padding(0.25);
+    const stacked = opts.stack;
+    const maxV = d3.max(rows, (r) => stacked ? d3.sum(series, (s) => +r[s.f] || 0) : d3.max(series, (s) => +r[s.f] || 0)) || 1;
+    const ys = d3.scaleLinear([0, Math.max(maxV, opts.ref || 0) * 1.1], [H - m.b, m.t]).nice();
+    svg.append('g').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(ys).ticks(4).tickSize(-(W - m.l - m.r)).tickFormat(opts.yfmt || d3.format('~s'))).call(axisStyle).call((g) => g.select('.domain').remove());
+    svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(xs).tickFormat(day).tickSize(0).tickPadding(8)).call(axisStyle);
+    const inner = d3.scaleBand(series.map((s) => s.f), [0, xs.bandwidth()]).padding(0.1);
+    rows.forEach((r) => {
+      let acc = 0;
+      series.forEach((s, i) => {
+        const v = +r[s.f] || 0; const w = stacked ? Math.min(xs.bandwidth(), 32) : Math.min(inner.bandwidth(), 24);
+        const x0 = stacked ? xs(r[x]) + (xs.bandwidth() - w) / 2 : xs(r[x]) + inner(s.f) + (inner.bandwidth() - w) / 2;
+        const y0 = ys(acc + v), y1 = ys(acc);
+        svg.append('rect').attr('x', x0).attr('width', w).attr('y', y0).attr('height', Math.max(0, y1 - y0)).attr('rx', stacked ? 2 : 4).attr('fill', s.color).attr('opacity', r.complete === 'no' ? 0.45 : 1);
+        if (stacked) acc += v;
+      });
+    });
+    if (opts.ref) svg.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', ys(opts.ref)).attr('y2', ys(opts.ref)).attr('stroke', 'var(--cds-chart-reference)').attr('stroke-dasharray', '4 3');
+    const t = tip(box);
+    svg.append('g').selectAll('rect').data(rows).join('rect').attr('x', (r) => xs(r[x])).attr('width', xs.bandwidth()).attr('y', m.t).attr('height', H - m.t - m.b).attr('fill', 'transparent')
+      .on('mousemove', (ev, r) => { t.hidden = false; t.replaceChildren(); const d0 = document.createElement('div'); d0.className = 'd'; d0.textContent = day(r[x]) + (r.complete === 'no' ? ' (partial)' : ''); t.appendChild(d0);
+        series.concat(opts.tip || []).forEach((s) => { const l = document.createElement('div'); l.textContent = s.label + ': ' + (s.fmt || int)(+r[s.f]); t.appendChild(l); });
+        const [px, py] = d3.pointer(ev, box); t.style.left = Math.min(px + 12, box.clientWidth - t.offsetWidth - 4) + 'px'; t.style.top = Math.max(0, py - 10) + 'px'; })
+      .on('mouseleave', () => { t.hidden = true; });
+  }
+  function line(box, rows, x, f, opts = {}) {
+    box.replaceChildren(); box.classList.remove('dash-skeleton');
+    const W = box.clientWidth || 400, H = 180, m = { t: 12, r: 14, b: 26, l: 44 };
+    const pts = rows.filter((r) => r[f] !== '' && r[f] != null && !isNaN(+r[f]));
+    const svg = d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    const xs = d3.scalePoint(rows.map((r) => r[x]), [m.l + 8, W - m.r - 8]);
+    const ys = d3.scaleLinear([0, Math.max(d3.max(pts, (r) => +r[f]) || 0, opts.ref || 0) * 1.15 || 1], [H - m.b, m.t]).nice();
+    svg.append('g').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(ys).ticks(4).tickSize(-(W - m.l - m.r)).tickFormat(d3.format('.0%'))).call(axisStyle).call((g) => g.select('.domain').remove());
+    svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(xs).tickFormat(day).tickSize(0).tickPadding(8)).call(axisStyle);
+    if (opts.ref) svg.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', ys(opts.ref)).attr('y2', ys(opts.ref)).attr('stroke', 'var(--cds-chart-reference)').attr('stroke-dasharray', '4 3');
+    svg.append('path').datum(pts).attr('fill', 'none').attr('stroke', dash.colors[0]).attr('stroke-width', 2).attr('stroke-linecap', 'round').attr('stroke-linejoin', 'round')
+      .attr('d', d3.line().x((r) => xs(r[x])).y((r) => ys(+r[f])));
+    svg.append('g').selectAll('circle').data(pts).join('circle').attr('cx', (r) => xs(r[x])).attr('cy', (r) => ys(+r[f])).attr('r', 3.5)
+      .attr('fill', (r) => opts.ref && +r[f] > opts.ref && opts.badAbove ? 'var(--cds-chart-status-critical)' : dash.colors[0]);
+    const t = tip(box);
+    svg.append('g').selectAll('circle').data(pts).join('circle').attr('cx', (r) => xs(r[x])).attr('cy', (r) => ys(+r[f])).attr('r', 12).attr('fill', 'transparent')
+      .on('mousemove', (ev, r) => { t.hidden = false; t.replaceChildren(); const d0 = document.createElement('div'); d0.className = 'd'; d0.textContent = day(r[x]); const l = document.createElement('div'); l.textContent = pct(+r[f]); t.append(d0, l);
+        const [px, py] = d3.pointer(ev, box); t.style.left = Math.min(px + 12, box.clientWidth - t.offsetWidth - 4) + 'px'; t.style.top = Math.max(0, py - 10) + 'px'; })
+      .on('mouseleave', () => { t.hidden = true; });
+  }
+  function legend(el, items) { el.replaceChildren(...items.map((s) => { const sp = document.createElement('span'); const i = document.createElement('i'); i.style.background = s.color; sp.append(i, document.createTextNode(s.label)); return sp; })); }
+
+  // ---------- draw
+  function fill(selector, id) {
+    document.querySelectorAll(selector).forEach((el) => {
+      const res = dash.data(el.dataset.source);
+      if (res.status !== 'ok' || !res.data.length) { el.textContent = '—'; return; }
+      el.classList.remove('dash-skeleton');
+      const r = res.data[0]; const f = el.dataset.field; const v = r[f];
+      el.textContent = /acos|tacos|cvr|share/.test(f) ? pct(v) : /spend|sales/.test(f) ? money(v) : /baseline/.test(f) ? num1(v) : int(v);
+    });
+  }
+  function draw() {
+    const daily = dash.data('daily'); const sd = dash.data('size_daily'); const log = dash.data('log');
+    if (log.status === 'ok' && log.data.length) { const latest = log.data.slice().sort((a, b) => b.date.localeCompare(a.date))[0]; const el = $('#takeaway'); el.classList.remove('dash-skeleton'); el.textContent = latest.headline; el.dataset.where = 'date=' + latest.date; }
+    if (current === 'overview') {
+      fill('#tiles [data-source="totals"]');
+      if (daily.status === 'ok') {
+        const s1 = [{ f: 'ad_orders', label: 'Ad orders', color: dash.colors[0] }, { f: 'non_ad_units', label: 'Units without an ad order', color: 'var(--cds-chart-muted)' }];
+        legend($('#leg-units'), s1); bars($('#ch-units'), daily.data, 'date', s1, { stack: true });
+        const s2 = [{ f: 'ad_spend', label: 'Ad spend', color: dash.colors[1], fmt: money }, { f: 'ad_sales', label: 'Ad sales', color: dash.colors[0], fmt: money }];
+        legend($('#leg-spend'), s2); bars($('#ch-spend'), daily.data, 'date', s2, { yfmt: (v) => '$' + d3.format('~s')(v) });
+        const ads = daily.data.filter((r) => r.phase !== 'Before ads');
+        line($('#ch-acos'), ads, 'date', 'acos', { ref: 0.437, badAbove: true });
+        line($('#ch-cvr'), ads, 'date', 'cvr', { ref: 0.086 });
+        line($('#ch-ctr'), ads, 'date', 'ctr');
+      }
+      table($('#tb-daily'), 'daily', [
+        { f: 'date', label: 'Date' }, { f: 'phase', label: 'Phase' }, { f: 'units', label: 'Units', fmt: int }, { f: 'sales', label: 'Sales', fmt: money },
+        { f: 'sessions', label: 'Sessions', fmt: int }, { f: 'ad_spend', label: 'Ad spend', fmt: money }, { f: 'ad_impressions', label: 'Impr.', fmt: int },
+        { f: 'ad_clicks', label: 'Clicks', fmt: int }, { f: 'ctr', label: 'CTR', fmt: pct }, { f: 'cpc', label: 'CPC', fmt: money2 }, { f: 'ad_orders', label: 'Ad orders', fmt: int },
+        { f: 'cvr', label: 'CVR', fmt: pct }, { f: 'ad_sales', label: 'Ad sales', fmt: money }, { f: 'acos', label: 'ACoS', fmt: pct }, { f: 'tacos', label: 'TACoS', fmt: pct },
+        { f: 'non_ad_units', label: 'Units w/o ad order', fmt: int }, { f: 'note', label: 'What happened', wrap: true }], ['date']);
+      table($('#tb-size'), 'size_daily', [
+        { f: 'date', label: 'Date' }, { f: 'size', label: 'Size' }, { f: 'units', label: 'Units', fmt: int }, { f: 'ad_spend', label: 'Ad spend (all types)', fmt: money },
+        { f: 'sp_clicks', label: 'SP clicks', fmt: int }, { f: 'sp_orders', label: 'SP orders', fmt: int }, { f: 'sp_spend', label: 'SP spend', fmt: money }], ['date', 'size']);
+    }
+    if (current === 'queen' || current === 'king') {
+      const S = current === 'queen' ? 'Queen' : 'King';
+      if (sd.status === 'ok') {
+        const rows = sd.data.filter((r) => r.size === S);
+        const base = S === 'Queen' ? 3.0 : 4.3;
+        bars($(current === 'queen' ? '#ch-q' : '#ch-k'), rows, 'date', [{ f: 'units', label: S + ' units', color: dash.colors[0] }], { ref: base, tip: [{ f: 'ad_spend', label: S + ' ad spend', fmt: money }, { f: 'sp_orders', label: 'SP orders', fmt: int }] });
+        const ads = rows.filter((r) => r.phase !== 'Before ads');
+        if (current === 'queen') bars($('#ch-qc'), ads, 'date', [{ f: 'sp_clicks', label: 'Queen SP clicks', color: dash.colors[0] }], { ref: 13.5 });
+        else bars($('#ch-ko'), ads, 'date', [{ f: 'sp_orders', label: 'King SP orders', color: dash.colors[0] }]);
+      }
+      const termCols = (src) => [{ f: 'term', label: 'Search term' }, { f: 'plan', label: 'Plan' }, { f: 'clicks', label: 'Clicks', fmt: int }, { f: 'orders', label: 'Orders', fmt: int },
+        { f: 'spend', label: 'Spend', fmt: money2 }, { f: 'sales', label: 'Sales', fmt: money }, { f: 'acos', label: 'ACoS', fmt: pct }, { f: 'rank', label: 'Organic rank' },
+        { f: 'read', label: 'Read', pill: (v) => /Working|on track/i.test(v) ? 'ok' : /Too early|Watch/i.test(v) ? 'warn' : /Problem|Under/i.test(v) ? 'bad' : '' }];
+      if (current === 'queen') {
+        table($('#tb-qterms'), 'queen_terms', termCols('queen_terms'), ['term']);
+        table($('#tb-qcamps'), 'queen_campaigns', [{ f: 'campaign', label: 'Campaign' }, { f: 'objective', label: 'Objective' }, { f: 'budget', label: 'Budget / day', fmt: money },
+          { f: 'budget_used', label: 'Budget used', fmt: pct }, { f: 'tos_share', label: 'Top-of-search share', fmt: pct }, { f: 'impressions', label: 'Impr.', fmt: int },
+          { f: 'clicks', label: 'Clicks', fmt: int }, { f: 'orders', label: 'Orders', fmt: int }, { f: 'spend', label: 'Spend', fmt: money2 }, { f: 'read', label: 'Read', wrap: true }], ['campaign']);
+        const rk = dash.data('ranks');
+        if (rk.status === 'ok') {
+          const dates = (rk.columns || Object.keys(rk.data[0] || {})).filter((c) => /^\d{4}-\d{2}-\d{2}$/.test(c)).sort();
+          table($('#tb-qrank'), 'ranks', [{ f: 'keyword', label: 'Keyword' }, { f: 'plan', label: 'Plan' }, { f: 'target_rank', label: 'Target rank' },
+            ...dates.map((d) => ({ f: d, label: day(d) }))], ['keyword'], (r) => r.size === 'Queen' || r.size === 'No size');
+        }
+      } else table($('#tb-kterms'), 'king_terms', termCols('king_terms'), ['term']);
+    }
+    if (current === 'overlap') table($('#tb-overlap'), 'overlap', [{ f: 'item', label: 'Search term / campaign' }, { f: 'served_by', label: 'Served by', wrap: true },
+      { f: 'clicks', label: 'Clicks', fmt: int }, { f: 'orders', label: 'Orders', fmt: int }, { f: 'spend', label: 'Spend', fmt: money2 },
+      { f: 'finding', label: 'Finding', wrap: true }, { f: 'proposal', label: 'Proposed change', wrap: true },
+      { f: 'timing', label: 'When', pill: (v) => /now/i.test(v) ? 'bad' : /gate|wait/i.test(v) ? 'warn' : 'ok' }, { f: 'protects', label: 'Why it is safe', wrap: true }], ['item']);
+    if (current === 'stock') table($('#tb-stock'), 'stock', [{ f: 'size', label: 'Size' }, { f: 'colour', label: 'Colour' }, { f: 'sku', label: 'SKU' }, { f: 'role', label: 'Role' },
+      { f: 'fba', label: 'FBA units', fmt: int }, { f: 'sales_day', label: 'Sales / day now', fmt: num1 }, { f: 'push_orders_day', label: 'Plan ad orders / day', fmt: num1 },
+      { f: 'cover_days_push', label: 'Days of cover in push', fmt: int }, { f: 'status', label: 'Status', pill: (v) => /OK/i.test(v) ? 'ok' : /Watch/i.test(v) ? 'warn' : 'bad' }], ['sku']);
+    if (current === 'decisions') {
+      const el = $('#tb-dec'); el._filter = $('#dec-search').value;
+      table(el, 'decisions', [{ f: 'id', label: '#' }, { f: 'raised', label: 'Raised' }, { f: 'area', label: 'Area' }, { f: 'decision', label: 'Recommendation', wrap: true },
+        { f: 'evidence', label: 'Evidence', wrap: true }, { f: 'type', label: 'Type', pill: (v) => /Act now/i.test(v) ? 'bad' : /gate/i.test(v) ? 'warn' : 'ok' },
+        { f: 'gate', label: 'Gate before acting', wrap: true }, { f: 'status', label: 'Status', pill: (v) => /Done|Approved/i.test(v) ? 'ok' : /Proposed|Waiting/i.test(v) ? 'warn' : '' },
+        { f: 'review_on', label: 'Review on' }, { f: 'outcome', label: 'Outcome', wrap: true }], ['id']);
+    }
+    if (current === 'log' && log.status === 'ok') {
+      const box = $('#log-list'); box.replaceChildren();
+      log.data.slice().sort((a, b) => b.date.localeCompare(a.date)).forEach((e) => {
+        const art = document.createElement('article'); art.className = 'lt-entry'; art.id = 'log-' + e.date;
+        const h = document.createElement('h3'); h.textContent = e.headline;
+        const w = document.createElement('div'); w.className = 'when'; w.textContent = day(e.date) + ' · ' + (e.kind || 'Daily update');
+        art.append(w, h);
+        [['Results', e.results], ['What we saw', e.observations], ['Recommended actions', e.actions], ['Why', e.reasoning], ['Decisions reviewed', e.followups]].forEach(([t, txt]) => {
+          if (!txt) return; const h4 = document.createElement('h4'); h4.textContent = t; const ul = document.createElement('ul');
+          String(txt).split('\n').filter(Boolean).forEach((li) => { const x = document.createElement('li'); x.textContent = li; ul.appendChild(x); });
+          art.append(h4, ul);
+        });
+        box.appendChild(art);
+      });
+    }
+  }
+  $('#dec-search').addEventListener('input', () => { if (current === 'decisions') draw(); });
+  dash.onData(draw);
+  const named = location.hash.slice(1); if (named && document.getElementById(named) && named !== current) show(named);
+})();
+</script>
