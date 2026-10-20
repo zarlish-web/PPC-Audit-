@@ -1,0 +1,951 @@
+{
+  "meta": {
+    "plan": "Target Planning · Cooling Family canvas, row 2 (CooLinens Cooling 4 Pc, 69)",
+    "plan_url": "https://claude.ai/artifact/D1d1dBp4ZtqdH8AHm8ggRY",
+    "plan_version": "published version of 20 Oct 2026",
+    "live_window": "13–20 Oct 2026 (ads from 16 Oct; 20 Oct is a partial day)",
+    "sources": "Plan boards (quoted by board name); Sellerboard daily sales and ads; command-center keywords, campaigns, ranks and search terms; daily recommendation board",
+    "board_url": "https://claude.ai/artifact/BofUW9KoD7GxXXzuudiR4Z",
+    "reviewer": "PPC",
+    "mode": "Read-only. Nothing was changed in the ad account or the plan."
+  },
+  "comments": [
+    {
+      "id": "R01",
+      "headline": "Label $5.57M as gross at list; the P&L headline is $5.40M",
+      "section": "The growth plan",
+      "board": "TCC_X_Money",
+      "also_on": [
+        "TCC_Main",
+        "TCC_IN_7_Rollup"
+      ],
+      "refs": [],
+      "type": "Clarify",
+      "priority": "P2",
+      "owner": "Joseph (plan)",
+      "issue": "\"$5.57M revenue\" is gross at list price. The boards' P&L headline is $5.40M net of deal discounts ($5.15M after refunds), and the 14% TACoS is calculated on $5.40M. Stretch also reads $4.28M on some boards and $4.29M on others.",
+      "rec": "Label $5.57M as \"gross at list\" or lead with $5.40M. Use one stretch figure on every board.",
+      "evidence": "45,923 units × $121.28 average list = $5.57M. $753.4k ads ÷ $5.40M = 13.95% TACoS (on $5.57M it would read 13.5%). Stretch: $4.29M (TCC_RU_Year, TCC_IN_7_Rollup), $4,284k (TCC_PP_Plan), $4,285k (TCC_PR_Scenarios), $4.28M (TCC_IN_4_Pricing).",
+      "outcome": "The revenue figure stored in Target Setting matches the P&L it was built from.",
+      "needs": "Text fix only."
+    },
+    {
+      "id": "R02",
+      "headline": "Show next to the headline that about half the CM4 rests on borrowed assumptions",
+      "section": "The growth plan",
+      "board": "TCC_Road",
+      "also_on": [
+        "TCC_RU_Calls",
+        "TCC_Decisions_Rules_2"
+      ],
+      "refs": [
+        "CL-K6",
+        "CL-K2"
+      ],
+      "type": "Clarify",
+      "priority": "P2",
+      "owner": "Joseph (plan)",
+      "issue": "About half of the $1.92M CM4 rests on two assumptions that are not CooLinens readings. The family floor on what a rank sells (FAM_CAL, borrowed from Sleephoria) is worth +$983k. The #1 launch goals are worth about +$420k.",
+      "rec": "Keep both decisions (CL-K6 and CL-K2 are decided). Show the sensitivity next to the headline: $1.92M plan, $939k without FAM_CAL, $1.497M without the #1 goals, $648k conservative floor. Replace FAM_CAL with CooLinens' own calibration once its first ranks are held (the light-push read from about 2 Nov).",
+      "evidence": "TCC_RU_Calls: CM4 $939k without FAM_CAL. TCC_KC_Calls and TCC_Decisions_Rules_2: $1.497M without the #1 launch goals.",
+      "outcome": "Whoever approves the targets sees which half of the profit is measured and which half is borrowed.",
+      "needs": "Presentation only. No change to the decisions."
+    },
+    {
+      "id": "R03",
+      "headline": "Add a weekly check of actual units against the plan and conservative lines",
+      "section": "The growth plan",
+      "board": "TCC_RU_Glide",
+      "also_on": [
+        "TCC_X_Targets"
+      ],
+      "refs": [
+        "R7"
+      ],
+      "type": "Follow-up",
+      "priority": "P1",
+      "owner": "PPC + Joseph",
+      "issue": "October matches the live pace, but November and December need a steep ramp. The plan's re-plan trigger (R7: two weeks under the conservative line) has no weekly reading behind it yet.",
+      "rec": "Add a weekly check of actual units against the plan line and the conservative line, by size. Our daily recommendation board will report it every Monday so the R7 trigger fires from data.",
+      "evidence": "Plan October 17.8 units a day; live 16–19 Oct 17.25 a day with ads, 9.7 a day before ads. Plan November 54 a day (3.1× today) and December 115 a day (6.7× today).",
+      "outcome": "A shortfall shows up within two weeks, before December's stock and ad budget are committed.",
+      "needs": "Agree that the daily board is the weekly read for R7."
+    },
+    {
+      "id": "R04",
+      "headline": "Use one refund rate (4.6% vs 4.5%) and date its replacement",
+      "section": "Returns and ratings",
+      "board": "TCC_RR_Calls",
+      "also_on": [
+        "TCC_PP_Q4",
+        "TCC_PP_Rules"
+      ],
+      "refs": [
+        "CL-RR1"
+      ],
+      "type": "Fix",
+      "priority": "P3",
+      "owner": "Joseph (plan)",
+      "issue": "The borrowed refund rate is 4.6% on most boards and 4.5% on TCC_PP_Q4 and TCC_PP_Rules. That is why the after-refund break-even reads 39.1% on some boards and 38.7% on others.",
+      "rec": "Use one refund rate on every board. Set a date to replace it with CooLinens' own rate (CL-RR1) once 30 days of orders have had time to come back.",
+      "evidence": "Each point of refund rate moves CM4 by $55.7k (TCC_RR_Calls). TCC_PP_Rules: 38.7% after a 4.5% refund rate; TCC_S1: 39.1%.",
+      "outcome": "One break-even line for the profit lanes, and a dated switch to measured refunds.",
+      "needs": "Text and model fix."
+    },
+    {
+      "id": "R05",
+      "headline": "Make the boards match CL-L1, but fix the 4°F tag and the size chart now",
+      "section": "The market",
+      "board": "TCC_Listing",
+      "also_on": [
+        "TCC_Decisions_Rules",
+        "TCC_IN_1_Market",
+        "TCC_Tests",
+        "TCC_PO_Explore"
+      ],
+      "refs": [
+        "CL-L1",
+        "P5",
+        "CL-L4",
+        "CL-L5"
+      ],
+      "type": "Decision",
+      "priority": "P1",
+      "owner": "Owner call",
+      "issue": "The boards disagree on whether the listing fixes gate anything. CL-L1 was decided on Oct 20 as \"yes, not a priority\" (normal queue, not gating the rungs). The same board's strategy still says \"by Oct 29 and before any rung\". TCC_Decisions_Rules says the defects are \"fixed first (CL-L1)\". Rule P5 says a fix precedes any push, but the pushes started Oct 19 without them.",
+      "rec": "Edit the boards to match the decided CL-L1. Separately, fix two items regardless of priority: the unsourced \"VERIFIED 4°F COOLER\" tag (remove it unless the claims review sources it) and the Queen fitted sheet listed as 60×75 on the size chart.",
+      "evidence": "TCC_Listing: CL-L1 \"DECIDED · OCT 20 · yes, not a priority\", next to \"One deadline for the verified defects, by Oct 29 and before any rung\". The size chart is a return-reason risk, and each point of refunds is $55.7k of CM4 (TCC_RR_Calls).",
+      "outcome": "One rule the team can follow, and the two defects that carry claim or return risk are gone before the December volume.",
+      "needs": "Confirm CL-L1 as written, and confirm the two exceptions."
+    },
+    {
+      "id": "R06",
+      "headline": "One date for Queen $129.99; Feb 11 is path L",
+      "section": "The market",
+      "board": "TCC_Market",
+      "also_on": [
+        "TCC_S1",
+        "TCC_PO_Idea",
+        "TCC_Decisions_Rules_2"
+      ],
+      "refs": [
+        "CL-PR3",
+        "CL-DL1"
+      ],
+      "type": "Fix",
+      "priority": "P3",
+      "owner": "Joseph (plan)",
+      "issue": "The boards give three dates for Queen reaching $129.99. \"From Feb 11\" is path L's last rung, not path R's. Path R gives Apr 5 or Apr 8. With the deals kept (CL-DL1, decided), the executable calendar only reaches $129.99 around Aug 26.",
+      "rec": "Show the path R date and the executable date (about Aug 26) on every board. Remove Feb 11.",
+      "evidence": "TCC_Market and TCC_S1: Feb 11. TCC_PO_Idea, TCC_PO_Explore, TCC_Road: Apr 5. TCC_Decisions_Rules_2: Apr 8. CL-DL1 (keep the deals) slides the ladder to Aug 26.",
+      "outcome": "The price tier check against Sleephoria (at least $5 over) uses the date the price actually lands.",
+      "needs": "Text fix."
+    },
+    {
+      "id": "R07",
+      "headline": "164 in the top 3, not 165; explain the \"133\"",
+      "section": "Keyword grading",
+      "board": "TCC_IN_3_Keywords",
+      "also_on": [
+        "TCC_Dest",
+        "TCC_Market",
+        "TCC_Decisions_Rules"
+      ],
+      "refs": [],
+      "type": "Clarify",
+      "priority": "P3",
+      "owner": "Joseph (plan)",
+      "issue": "The Slack summary says 165 searches in the top 3, but every board says 164. Some boards say \"#1 on 128 of 133\", while others say 129 searches are held at the launch goal. The 133 is never explained.",
+      "rec": "Use 164 in the summary. Say what the 133 counts, or replace it with 129.",
+      "evidence": "164 on TCC_IN_3_Keywords, TCC_X_Targets, TCC_Dest, TCC_KC_Method and TCC_Stages. The only 165 in the files is Bedsure's \"top 10 on 165 cooling searches\" (TCC_Market).",
+      "outcome": "The target counts in the summary match the boards.",
+      "needs": "Text fix."
+    },
+    {
+      "id": "R08",
+      "headline": "Start ranks are 10-day bests; use the 7-day median",
+      "section": "Keyword grading",
+      "board": "TCC_Dest",
+      "also_on": [
+        "TCC_KC_Method",
+        "TCC_KC_Gap",
+        "TCC_PPC_Rivals"
+      ],
+      "refs": [
+        "CL-K4"
+      ],
+      "type": "Fix",
+      "priority": "P1",
+      "owner": "Joseph (plan)",
+      "issue": "The \"now\" ranks are DataRova's best rank over 10 days, so one-day crawl spikes make the starting points look much better than they are. The plan's own rival board shows the deeper ranks.",
+      "rec": "Use the 7-day median rank as \"now\". That is the same basis CL-PC1 proposes for ending the honeymoon. Then re-run the gap and the push length, since a push runs two weeks per step from its start.",
+      "evidence": "cooling sheets queen: plan #25, live #76 (15 Oct) to #68 (20 Oct), TCC_PPC_Rivals #71. cooling bed sheets: plan #16, live #54, TCC_PPC_Rivals #48. cooling sheets queen size: plan #3, live about #55. cooling sheets: plan #21, live #31. These readings match: cooling sheet set #7, king sheets cooling #3, king size sheets set cooling #3. The live crawls show the effect: cooling sheets queen size read #3 on Oct 18 only, then #54 and #58, and the plan carries it as #3 now.",
+      "outcome": "Queen and the head are sized from where they really start, so their push cost and timing are not understated.",
+      "needs": "Model run (with CL-K4)."
+    },
+    {
+      "id": "R09",
+      "headline": "When the order is dated, move \"cooling sheets queen\" to ranking first",
+      "section": "Keyword grading",
+      "board": "TCC_KC_Cooling_Queen",
+      "also_on": [
+        "TCC_PP_Calls",
+        "TCC_PPC_Today"
+      ],
+      "refs": [
+        "Heads rule (Oct 19)",
+        "W2"
+      ],
+      "type": "Decision",
+      "priority": "P1",
+      "owner": "Owner call",
+      "issue": "Queen's biggest keyword, \"cooling sheets queen\" (30,225 searches a month), targets #3. It is held on profit bids by the heads rule until the new order is dated, so the Queen light push cannot move it.",
+      "rec": "Keep the rule. On the day the order is dated, move this head to its ranking setup first, ahead of the other three heads, because Queen is the priority size. Track it against an interim waypoint (#15 by about Dec 10) rather than #3.",
+      "evidence": "Live: organic #68, top-of-search share 0.21%, 16 clicks and 0 orders since launch. TCC_Listing: Queen median sponsored position #7 (slot 1 in 4% of hours) against King #1 (37%).",
+      "outcome": "Queen gets the top-of-search delivery that King already has on its head, and the Queen light-push read becomes meaningful.",
+      "needs": "Confirm Queen-first when the order is dated (expected Oct 23)."
+    },
+    {
+      "id": "R10",
+      "headline": "Drop goals on off-product terms; make bamboo and low-converting terms tests",
+      "section": "Keyword grading",
+      "board": "TCC_KC_Cooling",
+      "also_on": [
+        "TCC_KC_Calls",
+        "TCC_KC_Cooling_Queen",
+        "TCC_KC_Cooling_King"
+      ],
+      "refs": [
+        "CL-K5"
+      ],
+      "type": "Decision",
+      "priority": "P2",
+      "owner": "Owner call",
+      "issue": "Several targeted searches are ones this product is unlikely to convert. Bamboo-qualified searches are targeted on a nylon knit. Two searches Sleephoria already paid for with almost no sales are targeted at #1. Off-product terms still carry goals.",
+      "rec": "Remove the goals from the off-product terms now (CL-K5). Mark the bamboo terms, \"cold sheets\" and \"cooling sheets for hot sleepers\" as tests with no rank goal, judged on CooLinens' own clicks.",
+      "evidence": "Bamboo: bamboo cooling sheets (8,166 a month) → #12, bamboo viscose bed sheets cooling → #2, cooling bamboo sheets → #5, bamboo cooling sheets queen → #5. Our keyword validation excluded every bamboo-qualified term. Sleephoria: cold sheets 0 orders on 28 clicks; cooling sheets for hot sleepers 1.2% on 80 clicks. Off-product: hot pocket, under sheet bed cooling fan, bed fan under sheets cooling, phf cooling sheets, full xl sheets cooling, king size comforter set cooling, cooling queen comforter.",
+      "outcome": "Push money and the target count only cover searches a cooling sheet set can win.",
+      "needs": "Approve CL-K5 with this split."
+    },
+    {
+      "id": "R11",
+      "headline": "Add the live Batch 1 keywords that are on no board",
+      "section": "Keyword grading",
+      "board": "TCC_KC_Groups",
+      "also_on": [
+        "TCC_KC_Cooling_Full",
+        "TCC_KC_Cooling_King",
+        "TCC_KC_Cooling_Twin",
+        "TCC_KC_Cooling_California_King"
+      ],
+      "refs": [],
+      "type": "Fix",
+      "priority": "P2",
+      "owner": "Joseph (plan) + PPC",
+      "issue": "Some keywords that run in the live launch campaigns (Batch 1) are on no plan board, so they have no goal and no push read.",
+      "rec": "Add them to their size groups, or note why they were left out.",
+      "evidence": "Hero: full cooling sheets (590 a month; the Full board lists all 14 of its keywords) and king size bed sheets cooling (819; the King board lists down to 580). Halo: twin size cooling sheets, cooling sheets twin size, twin sheets set cooling, cal king sheets cooling (the Twin and Cal King boards list every keyword).",
+      "outcome": "Every live keyword has a goal, so the daily read and the push calibration cover the whole spend.",
+      "needs": "Model run or a note per keyword."
+    },
+    {
+      "id": "R12",
+      "headline": "One statement of the honeymoon evidence and of Sleephoria's goals",
+      "section": "Keyword grading",
+      "board": "TCC_KC_Calls",
+      "also_on": [
+        "TCC_Decisions_Rules",
+        "TCC_IN_3_Keywords",
+        "TCC_X_Targets"
+      ],
+      "refs": [
+        "HM",
+        "CL-PU2",
+        "CL-K3"
+      ],
+      "type": "Clarify",
+      "priority": "P3",
+      "owner": "Joseph (plan)",
+      "issue": "Two facts are stated differently on different boards. The pillowcase push evidence behind the honeymoon odds is one. Sleephoria's median goals by group are the other.",
+      "rec": "Use one statement of each on every board.",
+      "evidence": "Honeymoon: TCC_KC_Calls says gains of 16, 19, 43 and 45 ranks (median 31) with one reaching the top 10; rule HM says median #36 → #14 with none in the top 10. Sleephoria's goals: TCC_IN_3 says Cooling #2, Queen #3, King #2; TCC_X_Targets and TCC_Dest say #5, #4, #3.",
+      "outcome": "The honeymoon context for CL-PU8 rests on one reading.",
+      "needs": "Text fix."
+    },
+    {
+      "id": "R13",
+      "headline": "Keep the light-push shares until the Nov 2 read",
+      "section": "The push plan",
+      "board": "TCC_PP_Calls",
+      "also_on": [
+        "TCC_Decisions_Rules"
+      ],
+      "refs": [
+        "CL-PU1",
+        "CL-PU8"
+      ],
+      "type": "Follow-up",
+      "priority": "P1",
+      "owner": "PPC",
+      "issue": "King outsells Queen 2.6× since ads started, so it will be tempting to raise King's light-push share above 35%. The data does not support that yet.",
+      "rec": "No change to the light-push shares now. Re-decide them at the CL-PU8 calibration (about Nov 2), using spend per rank gained by size on 7-day median ranks. King's first full-week read is Oct 27.",
+      "evidence": "King 9.3 units a day with ads against 4.3 before. But 9 of King's 13 Sponsored Products orders came on one day (Oct 18). Without that day King's ACoS is 87%. King units by day: 4, 10, 19, 4.",
+      "outcome": "The push mix changes on two weeks of data, not on one good day.",
+      "needs": "None. Shown so the hold is visible."
+    },
+    {
+      "id": "R14",
+      "headline": "Push totals ($917k) exceed the year's ads ($753k)",
+      "section": "The push plan",
+      "board": "TCC_PP_Plan",
+      "also_on": [
+        "TCC_RU_PnL"
+      ],
+      "refs": [],
+      "type": "Fix",
+      "priority": "P2",
+      "owner": "Joseph (plan)",
+      "issue": "The push totals on this board are larger than the whole year's ad budget, and the to-Aug-30 figure does not match the P&L's rank stack.",
+      "rec": "Reconcile the push totals with TCC_RU_PnL before the months are stored.",
+      "evidence": "Push totals: $744,685 + $14,675 + $157,599 = $917k, against $753.4k of ads for the year. \"$507.3k to Aug 30\" here, against a $689.4k rank stack on TCC_RU_PnL.",
+      "outcome": "The ad budget that gets stored adds up across boards.",
+      "needs": "Model check."
+    },
+    {
+      "id": "R15",
+      "headline": "One stock basis for the push gate and deal rule",
+      "section": "The push plan",
+      "board": "TCC_PP_Stock",
+      "also_on": [
+        "TCC_RU_Stock",
+        "TCC_PR_Evidence",
+        "TCC_DL_Rules",
+        "TCC_PP_Q4"
+      ],
+      "refs": [
+        "S2",
+        "Deal rule 5"
+      ],
+      "type": "Fix",
+      "priority": "P1",
+      "owner": "Joseph (plan)",
+      "issue": "The boards use two different stock pictures before the bridge. The push gate (S2) and the deal stock rule use the optimistic one.",
+      "rec": "Use one stock basis on every board: live stock by colour, with the plan pace as the stress case. Re-run push gate S2 and deal rule 5 on it.",
+      "evidence": "TCC_RU_Stock: King short Nov 2, Full Nov 30, Queen Dec 21. TCC_PR_Evidence: no size sells out before Dec 22 (spare King 1,022). TCC_PP_Stock: spare King 454. S2 uses a King pace of 1.8 a day; TCC_PP_Q4 uses 9.0 a day; live King is 9.3 a day. Live King stock is 1,102 units.",
+      "outcome": "Pushes and deals only open where the stock can carry them, and King does not run out in December.",
+      "needs": "Model run."
+    },
+    {
+      "id": "R16",
+      "headline": "Sleephoria is ranking-bidding Queen outside its push weeks",
+      "section": "The push plan",
+      "board": "TCC_PP_Own",
+      "also_on": [
+        "TCC_PPC_Stack",
+        "TCC_PPC_Calls"
+      ],
+      "refs": [
+        "CL-PU5",
+        "C-PU4",
+        "CL-PC2"
+      ],
+      "type": "Decision",
+      "priority": "P1",
+      "owner": "Family page",
+      "issue": "Sleephoria is ranking-bidding Queen's head now, outside its own push weeks. Its plan books $0 of rank money while CooLinens pushes Queen, and its own Queen push is Jan 4.",
+      "rec": "Bring Sleephoria's live Queen and King ranking exacts in line with its own plan: profit or hold bids until its push weeks (Queen Jan 4, King Feb 15). CL-PU5 (both brands bid top of search when both push) still applies to the Full overlap from Dec 21. This change does not alter it.",
+      "evidence": "\"cooling sheets queen\" this week: Sleephoria 20 clicks and 3 orders at +145–160% top-of-search; CooLinens 16 clicks and 0 orders. TCC_PPC_Stack: \"CooLinens pushes, Sleephoria holds $0\".",
+      "outcome": "CooLinens' Queen push is not bid against by its sister brand, and the Queen light-push read is clean.",
+      "needs": "Family-page decision. It changes Sleephoria's campaigns, not CooLinens'."
+    },
+    {
+      "id": "R17",
+      "headline": "Point Full, Twin and Cal King ads at the plan colours",
+      "section": "The push plan",
+      "board": "TCC_PP_Q4",
+      "also_on": [
+        "TCC_RR_Colour"
+      ],
+      "refs": [
+        "A6"
+      ],
+      "type": "Follow-up",
+      "priority": "P1",
+      "owner": "PPC (for approval)",
+      "issue": "The live ads for Full, Twin and Cal King show colours that are not on this board's \"colours to advertise now\" list.",
+      "rec": "Point the ads at the plan colours: Full Cream to Full Cool Grey (94 units), Twin White to Twin Graphite (56), Cal King Regal Purple to Cal King Graphite (72). Keep Full Midnight Black off ads, because it runs out about Dec 4 at the plan's pace.",
+      "evidence": "Full Cream and Cal King Regal Purple have about 30 units each. Full Cool Grey, Twin Graphite and Cal King Graphite are on this board's list.",
+      "outcome": "The same clicks land on colours with stock behind them.",
+      "needs": "Approve the swap. Keywords, bids and budgets stay the same."
+    },
+    {
+      "id": "R18",
+      "headline": "Correct push-order and stock statements to the decided calendar",
+      "section": "The push plan",
+      "board": "TCC_RR_Colour",
+      "also_on": [
+        "TCC_Decisions_Rules",
+        "TCC_Tests",
+        "TCC_Road",
+        "TCC_Stages"
+      ],
+      "refs": [
+        "CL-PU3"
+      ],
+      "type": "Clarify",
+      "priority": "P3",
+      "owner": "Joseph (plan)",
+      "issue": "Several statements about the push calendar and stock contradict the decided calendar.",
+      "rec": "Correct them to the decided calendar: Queen, King, Full and Twin on Oct 19, Cal King Oct 26, the head Nov 30.",
+      "evidence": "TCC_RR_Colour: \"the Twin and California King pushes first, then Queen\". CL-PU3 says Queen \"pushes in June\" while also scheduling it for Oct 19. Children out by Dec 31: 6 (TCC_Road) against 11 (TCC_Stages, TCC_Tests). TCC_Tests: \"823 days at the plan's pace (5 a day)\" against a plan that sells about 126 a day.",
+      "outcome": "One calendar on every board.",
+      "needs": "Text fix."
+    },
+    {
+      "id": "R19",
+      "headline": "Profit lanes run at 40.2% against a 39.1% after-refund line",
+      "section": "Pricing",
+      "board": "TCC_S1",
+      "also_on": [
+        "TCC_PP_Rules",
+        "TCC_RU_PnL",
+        "TCC_PP_Fitted"
+      ],
+      "refs": [
+        "CL-PR3"
+      ],
+      "type": "Fix",
+      "priority": "P2",
+      "owner": "Joseph (plan)",
+      "issue": "The profit lanes are judged on the refund-free 43.2% line, but the true after-refund break-even is 39.1%. The size-level break-evens also differ between boards.",
+      "rec": "Use one after-refund break-even per size on every board, and price the profit lanes to it.",
+      "evidence": "TCC_S1: profit lanes at 40.2% ACoS against 43.2% (39.1% after refunds), so above the true line. Per size: TCC_RU_PnL gives King 42.9%, Queen 45.1%, Full 40.6% before refunds; TCC_S1 gives Queen 41.0%, Full 36.6%. The model prices profit lanes at 95% of the refund-free line, about 41%.",
+      "outcome": "The profit lanes stop running about 1–2 points over break-even.",
+      "needs": "Model run."
+    },
+    {
+      "id": "R20",
+      "headline": "Re-price the summer at prices the calendar can reach (CL-PR4)",
+      "section": "Pricing",
+      "board": "TCC_PR_Scenarios",
+      "also_on": [
+        "TCC_PR_Calendar",
+        "TCC_PR_Calls"
+      ],
+      "refs": [
+        "CL-PR4",
+        "CL-DL1",
+        "CL-PR1"
+      ],
+      "type": "Decision",
+      "priority": "P2",
+      "owner": "Owner call",
+      "issue": "Summer revenue is priced at the end prices from Apr 8. With the deals kept (CL-DL1, decided), the executable calendar reaches those prices much later.",
+      "rec": "Approve CL-PR4 (a sliding calendar with the deals kept) and re-price May–Aug before the months are stored, together with CL-PR1.",
+      "evidence": "Average list price of $128.05 assumed in summer. The executable calendar reaches Queen $117.99 on May 27, $124.99 on Jul 22 and $129.99 on Aug 26. May–Aug gross is $3.29M, which is roughly 5–15% too high before any unit response. May–Aug is 71% of the year's CM4 ($1.37M).",
+      "outcome": "The summer months, where most of the profit sits, are stored at prices the calendar can reach.",
+      "needs": "Approve CL-PR4."
+    },
+    {
+      "id": "R21",
+      "headline": "Price Lightning Deals at their own ×0.99 read, not ×1.48",
+      "section": "Promotions",
+      "board": "TCC_DL_Money",
+      "also_on": [
+        "TCC_DL_Evidence",
+        "TCC_DL_Calls"
+      ],
+      "refs": [],
+      "type": "Decision",
+      "priority": "P2",
+      "owner": "Owner call",
+      "issue": "The deals add 18% of the plan's CM4, and all of it rests on Sleephoria's event lift. Sleephoria's only Lightning Deal read showed no lift, and 28 of the 38 slots are Lightning Deals.",
+      "rec": "Price the Lightning Deals at their own read (×0.99) and the events at ×1.48 until CooLinens has its own. Treat the Nov 12 Lightning Deal as CooLinens' first read.",
+      "evidence": "Deals add +$342k CM4 at ×1.48. Sleephoria's one Lightning Deal read ×0.99. At no lift the deal days lose −$126.7k (TCC_DL_Calls). Slots: 28 Lightning Deals, 8 Best Deals, 2 events.",
+      "outcome": "The deal line in the targets is no more optimistic than the evidence behind it.",
+      "needs": "Decide the lift basis."
+    },
+    {
+      "id": "R22",
+      "headline": "BFCM is skipped as \"not submitted\"; confirm or find an alternative",
+      "section": "Promotions",
+      "board": "TCC_DL_Rules",
+      "also_on": [
+        "TCC_DL_Calendar"
+      ],
+      "refs": [
+        "PR7"
+      ],
+      "type": "Decision",
+      "priority": "P1",
+      "owner": "Owner call",
+      "issue": "Black Friday / Cyber Monday (Nov 19–30) is skipped because no deal was submitted. Rule PR7 quotes \"we obviously can't not participate\".",
+      "rec": "Confirm the skip. If BFCM is wanted, check this week whether a coupon can still run on those dates.",
+      "evidence": "TCC_DL_Rules: BFCM skipped as \"not submitted\", +$6,541 forgone on the plan's own numbers.",
+      "outcome": "BFCM is a deliberate choice, not a missed submission.",
+      "needs": "Owner decision this week."
+    },
+    {
+      "id": "R23",
+      "headline": "Settle the overlapping deal days with Sleephoria before Nov 12",
+      "section": "Promotions",
+      "board": "TCC_DL_Calls",
+      "also_on": [
+        "TCC_DL_Calendar"
+      ],
+      "refs": [
+        "CL-DL4"
+      ],
+      "type": "Decision",
+      "priority": "P1",
+      "owner": "Family page",
+      "issue": "CooLinens and Sleephoria are on deal on almost the same days, on the same cooling searches. A deal on one brand takes sales from the other.",
+      "rec": "Settle CL-DL4 before the first Lightning Deal on Nov 12.",
+      "evidence": "138 of CooLinens' 151 deal days are Sleephoria deal days (TCC_DL_Calls).",
+      "outcome": "The two brands' deals add sales to the family rather than moving them between brands.",
+      "needs": "Family-page decision before Nov 12."
+    },
+    {
+      "id": "R24",
+      "headline": "Step 2 delivered $435 against ~$980 expected; calibrate on delivered spend",
+      "section": "The PPC plan",
+      "board": "TCC_PPC_Today",
+      "also_on": [
+        "TCC_PPC_Calls"
+      ],
+      "refs": [
+        "CL-PU8",
+        "Step 2"
+      ],
+      "type": "Follow-up",
+      "priority": "P1",
+      "owner": "PPC",
+      "issue": "Step 2 is carried as \"expected ~$980 a day\" with $1,913 of budgets. The step-2 day delivered less than half of the expected spend. If that holds, the bids are the limit, not the budgets.",
+      "rec": "Replace the estimate with delivered spend each day from Oct 20, the first full day after step 2. Calibrate CL-PU8 on delivered spend and top-of-search share, not on budgets.",
+      "evidence": "Sellerboard, all ad types: Oct 18 $470 (142 clicks, 14 orders); Oct 19 $435 (127 clicks, 8 orders, still being attributed). That is 44% of the ~$980 estimate and 23% of budgets.",
+      "outcome": "The push cost behind the December budget comes from what the account actually spends.",
+      "needs": "None. Our daily board reports delivered spend."
+    },
+    {
+      "id": "R25",
+      "headline": "Name who confirms the order date that releases the heads",
+      "section": "The PPC plan",
+      "board": "TCC_PPC_Today",
+      "also_on": [
+        "TCC_Decisions_Open"
+      ],
+      "refs": [
+        "W2"
+      ],
+      "type": "Clarify",
+      "priority": "P1",
+      "owner": "Owner call",
+      "issue": "The order date is the trigger for several changes, but the board does not say who confirms it or where it is recorded.",
+      "rec": "Name who confirms the date and where it is recorded, so PPC can act the same day.",
+      "evidence": "The order date moves the four head keywords from profit to ranking and releases 7 held campaigns (DI-02, SV-03, SV-04, SV-07, SV-09, SD-02, SD-04). The model's Oct 23 is \"the expected date, not a confirmation\" (desk W2).",
+      "outcome": "The head pushes start on the day the order is dated, not days later.",
+      "needs": "An owner and a place for the confirmation."
+    },
+    {
+      "id": "R26",
+      "headline": "Give Queen's 8 and King's 11 lane-less push keywords a lane",
+      "section": "The PPC plan",
+      "board": "TCC_PPC_Stack",
+      "also_on": [
+        "TCC_IN_3b_Push"
+      ],
+      "refs": [
+        "CL-PU8",
+        "CL-PC3"
+      ],
+      "type": "Decision",
+      "priority": "P1",
+      "owner": "Owner call",
+      "issue": "Most of the light push's keywords have no ranking lane, so the light push cannot move them, and the CL-PU8 read will measure these gaps rather than the push.",
+      "rec": "Map every push keyword to a delivery lane: its own rank exact, or a named keyword in a tail group with its own goal. Start with Queen's 8 and King's 11 that have no lane, in the same way CL-PC3 proposes for Twin. Send it as one new slate through the Change Loader for your go.",
+      "evidence": "This board: Queen 7 of 40 push keywords on a rank exact, 25 in a profit tail group, 8 with no lane. King 6 of 37 on a rank exact, 20 in a tail group, 11 with no lane.",
+      "outcome": "The Nov 2 calibration reads a real push on Queen and King.",
+      "needs": "Approve building the lanes."
+    },
+    {
+      "id": "R27",
+      "headline": "Switch Queen ads from White to Graphite",
+      "section": "The PPC plan",
+      "board": "TCC_PPC_Stack",
+      "also_on": [
+        "TCC_RR_Colour",
+        "TCC_Market"
+      ],
+      "refs": [
+        "A1"
+      ],
+      "type": "Follow-up",
+      "priority": "P1",
+      "owner": "PPC (for approval)",
+      "issue": "Queen's ads show Queen White, not the lead colour.",
+      "rec": "Add Queen Graphite as the product ad in each of these campaigns and pause the Queen White ad. Keywords, bids and budgets stay the same, and the switch can be reversed in one step.",
+      "evidence": "Queen White is advertised in 25 live campaigns. Queen Graphite carries 53% of Queen units (TCC_Market) and has 400 units against White's 197. Queen ads have 1 order on 50 clicks; that happens about 6% of the time at the plan's CVR, so it is a warning, not proof.",
+      "outcome": "Queen ad CVR moves toward the plan's 8–9%, and the Queen gate can be read on Graphite by about Nov 3.",
+      "needs": "Approve the swap."
+    },
+    {
+      "id": "R28",
+      "headline": "Update the CL-PC2 card to the decided CL-PU5 B",
+      "section": "The PPC plan",
+      "board": "TCC_PPC_Calls",
+      "also_on": [
+        "TCC_PP_Calls"
+      ],
+      "refs": [
+        "CL-PC2",
+        "CL-PU5"
+      ],
+      "type": "Fix",
+      "priority": "P2",
+      "owner": "Joseph (plan)",
+      "issue": "The CL-PC2 card still says \"Proposed: CL-PU5's A\", but CL-PU5 was decided as B on Oct 20.",
+      "rec": "Update the card to B. Keep the proposed measurement: top-of-search CPC, impression share and clicks on shared against unshared goal searches, in the same weeks.",
+      "evidence": "TCC_PP_Calls, CL-PU5: \"DECIDED · OCT 20 · B\". Owner: \"if we are trying to rank a product we should be using TOS\".",
+      "outcome": "The PPC card matches the decision.",
+      "needs": "Text fix."
+    },
+    {
+      "id": "R29",
+      "headline": "Cal King: build the exacts now, push when the bridge lands (B)",
+      "section": "The PPC plan",
+      "board": "TCC_PPC_Calls",
+      "also_on": [
+        "TCC_PPC_Stack"
+      ],
+      "refs": [
+        "CL-PC3"
+      ],
+      "type": "Decision",
+      "priority": "P1",
+      "owner": "Owner call",
+      "issue": "Cal King's push is planned for Oct 26, but there is almost no spare stock and no rank exact exists.",
+      "rec": "Choose option B for Cal King: build its 6 rank exacts now and switch them on when the bridge lands (Dec 22) and the 85% gate passes. Keep option A's Twin part, which maps each of Twin's 7 keywords to a lane.",
+      "evidence": "Spare after the planned pushes: Cal King 2 units (Twin 340). Cal King has 0 of 6 push keywords on a rank exact. Live Cal King sales are 0.75 units a day on $3 a day of ads.",
+      "outcome": "No Cal King stock-out from a push the stock cannot carry, and the campaigns are ready when the bridge lands.",
+      "needs": "Decide CL-PC3 before Oct 26."
+    },
+    {
+      "id": "R30",
+      "headline": "SB and video on the head and top 3 per group first (B)",
+      "section": "The PPC plan",
+      "board": "TCC_PPC_Calls",
+      "also_on": [
+        "TCC_PPC_Stack",
+        "TCC_PPC_Lanes69"
+      ],
+      "refs": [
+        "CL-PC4",
+        "R47",
+        "PC5"
+      ],
+      "type": "Decision",
+      "priority": "P2",
+      "owner": "Owner call",
+      "issue": "Option A builds about 276 SB and SB video campaigns, but the format costs it relies on come from five days and a handful of orders. The model also files 0% video, although the 60 / 20 / 20 stack is decided.",
+      "rec": "Choose option B: SB video and SB collection on the head and the top 3 searches of each group first, then scale each format on its two-week read (CL-PC5). Fix the model to book the video share.",
+      "evidence": "SB collection 26.8% ACoS on 2 campaigns ($10 a day). SB video 41.7–46%. Cost per order: SB $24.10, SB video $41.39, SP exact $52.57, on five days.",
+      "outcome": "Each format's real cost is known before it is rolled out across 140 push keywords.",
+      "needs": "Decide CL-PC4."
+    },
+    {
+      "id": "R31",
+      "headline": "End the honeymoon on the observable gate, read on 7-day medians (A)",
+      "section": "The PPC plan",
+      "board": "TCC_PPC_Calls",
+      "also_on": [
+        "TCC_PP_Calls"
+      ],
+      "refs": [
+        "CL-PC1",
+        "CL-PU6"
+      ],
+      "type": "Decision",
+      "priority": "P2",
+      "owner": "Owner call",
+      "issue": "The honeymoon has three possible end rules on the boards, and the plan needs one.",
+      "rec": "Choose option A, the observable gate per search, and read rank on the 7-day median. Single-day crawls are noise.",
+      "evidence": "Live crawls show one- and two-day #3 spikes that do not hold: cooling sheets queen #76, then #3 on Oct 17–18, then #70 and #68; cooling bed sheets #32, #3 on Oct 18, then #49 and #54; cooling sheets #45, #3 on Oct 18, then #26 and #31. CooLinens has 79 top-of-search clicks so far; the conversion read needs 400+ per group.",
+      "outcome": "The taper starts when a rank is actually held. $126.7k of rank money is booked to Dec 14.",
+      "needs": "Decide CL-PC1 together with CL-PU6."
+    },
+    {
+      "id": "R32",
+      "headline": "Read the live tests once at two weeks; drop the model's duplicate (A)",
+      "section": "The PPC plan",
+      "board": "TCC_PPC_Calls",
+      "also_on": [
+        "TCC_PPC_Lanes69"
+      ],
+      "refs": [
+        "CL-PC5"
+      ],
+      "type": "Decision",
+      "priority": "P2",
+      "owner": "Owner call",
+      "issue": "The live tests are already running, and the model books its own copy of them on top.",
+      "rec": "Choose option A: read the live lanes once at two weeks, with a stop-loss at 2× break-even. Our daily board already does this. Add negatives for the unrelated searches the rival-page campaigns serve on. That is a relevance fix, not a performance judgement.",
+      "evidence": "The model books $5,564 of duplicate tests. Rival pages so far: 29 clicks and 0 orders (a 17% chance at 6% CVR, so not yet a stop). They have also served on silk bed sheets, tencel lyocell sheets, cooling comforter set, cooling blanket and other searches that are not cooling sheet sets.",
+      "outcome": "The tests are counted once and read on their own clicks.",
+      "needs": "Decide CL-PC5."
+    },
+    {
+      "id": "R33",
+      "headline": "Store the months only after the Nov 2 push-cost calibration",
+      "section": "The PPC plan",
+      "board": "TCC_PPC_Money",
+      "also_on": [
+        "TCC_PPC_Lanes69",
+        "TCC_PPC_Calls",
+        "TCC_RU_PnL"
+      ],
+      "refs": [
+        "CL-PC6",
+        "CL-RU2",
+        "CL-PU8"
+      ],
+      "type": "Decision",
+      "priority": "P2",
+      "owner": "Owner call",
+      "issue": "The monthly ad budgets are much larger than what the account spends today. The board already marks them as a draft.",
+      "rec": "Choose option A for CL-PC6 and CL-RU2, but store the months only after the CL-PU8 calibration (about Nov 2) has re-priced the pushes.",
+      "evidence": "Plan, all lanes: Oct $1,293 a day, Nov $2,246 a day, Dec $5,555 a day. Live 16–19 Oct: $67–470 a day (about $290 on average). That puts the plan at roughly 4×, 8× and 19× live. Live ACoS is 46% against the 39.1% line.",
+      "outcome": "Target Setting stores budgets the account can deliver, and the step-up engine starts from realistic goals.",
+      "needs": "Decide CL-PC6 and CL-RU2 after Nov 2."
+    },
+    {
+      "id": "R34",
+      "headline": "Re-run the bridge at the decided ~1,810 sets (King ~790)",
+      "section": "COGS and fees",
+      "board": "TCC_EC_Calls",
+      "also_on": [
+        "TCC_RU_Colour",
+        "TCC_EC_Bridge",
+        "TCC_Reconcile"
+      ],
+      "refs": [
+        "CL-EC6"
+      ],
+      "type": "Fix",
+      "priority": "P1",
+      "owner": "Joseph (plan)",
+      "issue": "CL-EC6 holds the bridge at about 1,810 sets, but the model still runs 1,797 sets, with fewer King units than decided. King is the size that runs short first.",
+      "rec": "Re-run the stock boards with the decided split.",
+      "evidence": "CL-EC6 (decided Oct 20): about 1,810 sets, Queen about 990 and King about 790. TCC_RU_Colour, TCC_EC_Bridge and TCC_Reconcile #4: 1,797 sets, King 586 and Queen 900.",
+      "outcome": "January King cover is shown correctly, which decides whether King runs out before Fastest lands on Jan 23.",
+      "needs": "Model run."
+    },
+    {
+      "id": "R35",
+      "headline": "Fastest lands after King runs out at plan pace; read the low-inventory fee",
+      "section": "COGS and fees",
+      "board": "TCC_EC_Freight",
+      "also_on": [
+        "TCC_RU_Colour",
+        "TCC_EC_Fees"
+      ],
+      "refs": [
+        "CL-EC1"
+      ],
+      "type": "Follow-up",
+      "priority": "P1",
+      "owner": "Inventory",
+      "issue": "At the plan's pace, King and Queen run out about 11 days before the Fastest shipment is sellable. The low-inventory-level fee has not been read.",
+      "rec": "Either move part of King's gap to a faster mode, or accept a slower King push in that window. Read the low-inventory-level fee before December.",
+      "evidence": "Fastest is sellable about Jan 23. At the plan's pace, King runs out pooled about Jan 12 (after the bridge) and Queen about Jan 11. 6 children run out by Dec 31 (TCC_RU_Colour). TCC_EC_Fees lists the low-inventory fee as not read.",
+      "outcome": "No stock gap during the January hold weeks, and no surprise fee.",
+      "needs": "Inventory decision with the Oct 23 order."
+    },
+    {
+      "id": "R36",
+      "headline": "Re-split the Oct 23 conservative order toward King",
+      "section": "The financial plan",
+      "board": "TCC_RU_Stock",
+      "also_on": [
+        "TCC_RU_Colour",
+        "TCC_PP_Calls"
+      ],
+      "refs": [
+        "CL-RU1",
+        "CL-PU7"
+      ],
+      "type": "Decision",
+      "priority": "P1",
+      "owner": "Owner call + Inventory",
+      "issue": "The units by size are Queen-led, but sales are King-led, both before and after ads. The conservative order of 17,175 units follows the plan's Queen-led mix.",
+      "rec": "Before the Oct 23 order, re-split the conservative 17,175 toward King. At minimum use the pre-ads ratio of 1.4× King to Queen; the with-ads 2.6× is not yet proven. Keep the total and move units from Queen to King. Re-check on Oct 27 with a full week of data.",
+      "evidence": "Plan units: Queen 21,027 (46%) and King 13,974 (30%). Conservative order: Queen 7,571 and King 5,112. Live before ads: King 4.3 a day, Queen 3.0. With ads: King 9.3, Queen 3.5. At the plan's pace King runs out pooled about Dec 13. At the live pace Queen has about 517 days of cover.",
+      "outcome": "Less risk of a King stock-out in the season peak and less Queen overstock, at the same order value.",
+      "needs": "Decision before the Oct 23 order."
+    },
+    {
+      "id": "R37",
+      "headline": "One need figure, not \"~48,000\"",
+      "section": "The financial plan",
+      "board": "TCC_RU_Calls",
+      "also_on": [
+        "TCC_PP_Calls",
+        "TCC_RU_Stock",
+        "TCC_RU_Colour",
+        "TCC_Reconcile",
+        "TCC_PP_Stock",
+        "TCC_IN_7_Rollup"
+      ],
+      "refs": [
+        "CL-RU1",
+        "CL-PU7"
+      ],
+      "type": "Fix",
+      "priority": "P1",
+      "owner": "Joseph (plan)",
+      "issue": "The top-up line is quoted as \"~48,000\", which matches no figure in the model. Some boards also say the conservative colour run \"is not run\", although CL-RU1 commits it.",
+      "rec": "Quote one need figure, and update the \"not run\" text.",
+      "evidence": "Need: 38,047 by colour, 39,691 pooled (TCC_RU_Colour, TCC_Reconcile) and 40,371 pooled (TCC_RU_Stock). TCC_PP_Stock, TCC_PP_Calls and TCC_IN_7_Rollup say the conservative run \"is not run\", while CL-RU1 commits child-cons.json at 17,175.",
+      "outcome": "The inventory team receives one number.",
+      "needs": "Text fix before Oct 23."
+    },
+    {
+      "id": "R38",
+      "headline": "Push-switch and factory-saving values differ between boards",
+      "section": "The financial plan",
+      "board": "TCC_RU_Calls",
+      "also_on": [
+        "TCC_PP_Calls",
+        "TCC_EC_Calls"
+      ],
+      "refs": [
+        "ER6",
+        "CL-EC3"
+      ],
+      "type": "Fix",
+      "priority": "P2",
+      "owner": "Joseph (plan)",
+      "issue": "The value of the push switches and of the factory saving differs between boards.",
+      "rec": "Check the switch test runs, and use one figure for the factory saving.",
+      "evidence": "TCC_RU_Calls: four different push switches each read +$0.7k, while ER6 (TCC_PP_Calls) values the head push at $519k. Factory −5%: +$43.8k on TCC_RU_Calls, +$42.1k on the TCC_EC boards.",
+      "outcome": "The value of each call is stated once.",
+      "needs": "Model check."
+    },
+    {
+      "id": "R39",
+      "headline": "Keyword sales at goal are 210–288% of the market's purchases",
+      "section": "Seasonality",
+      "board": "TCC_SE_Share",
+      "also_on": [
+        "TCC_SE_Engine"
+      ],
+      "refs": [
+        "CL-SE2"
+      ],
+      "type": "Fix",
+      "priority": "P2",
+      "owner": "Joseph (plan)",
+      "issue": "In every group, the plan's keyword sales at goal are more than twice the market's total purchases. The summer units, where most of the profit sits, depend on this basis.",
+      "rec": "Resolve CL-SE2 before the summer months are stored.",
+      "evidence": "Keyword sales at goal are 210%, 214%, 257%, 249%, 224% and 288% of SQP purchases in the 6 groups. Sleephoria held 6.8% at ranks #1–3. May–Aug is $1.37M of CM4 (71%).",
+      "outcome": "The summer units cannot exceed the market they are drawn from.",
+      "needs": "Model run."
+    },
+    {
+      "id": "R40",
+      "headline": "December's season index is given as 0.84 and 1.07",
+      "section": "Seasonality",
+      "board": "TCC_Decisions_Rules_2",
+      "also_on": [
+        "TCC_SE_Index"
+      ],
+      "refs": [],
+      "type": "Clarify",
+      "priority": "P3",
+      "owner": "Joseph (plan)",
+      "issue": "One board gives two different values for December's season index.",
+      "rec": "Use one index value for the Dec 14 honeymoon end.",
+      "evidence": "\"Dec 14 … falls in the low season (index 0.84)\", against a December index of 1.07 on the same board and on TCC_SE_Index.",
+      "outcome": "The honeymoon end is described consistently.",
+      "needs": "Text fix."
+    },
+    {
+      "id": "R41",
+      "headline": "Unfilled template text on several boards",
+      "section": "Decisions",
+      "board": "TCC_Decisions",
+      "also_on": [
+        "TCC_IN_4_Pricing",
+        "TCC_IN_5_Deals",
+        "TCC_IN_6_Econ",
+        "TCC_IN_7_Rollup"
+      ],
+      "refs": [],
+      "type": "Fix",
+      "priority": "P3",
+      "owner": "Joseph (plan)",
+      "issue": "Some boards show unfilled template text.",
+      "rec": "Fix the template, then re-publish.",
+      "evidence": "\"${BORROW}\" appears on 15 boards, including TCC_IN_4_Pricing, TCC_IN_5_Deals, TCC_IN_7_Rollup, TCC_PR_Calls, TCC_DL_Calls and TCC_SE_Share. \"cut as 0 4 Pc sets\" appears on TCC_IN_6_Econ.",
+      "outcome": "Clean boards for the target session.",
+      "needs": "Template fix."
+    }
+  ],
+  "no_change": [
+    {
+      "area": "Ranking ceilings",
+      "note": "List × 12% × 80% checks for every size: King $9.02, Queen $8.45, Full $7.20, Twin $6.72, Cal King $9.22."
+    },
+    {
+      "area": "Launch prices",
+      "note": "The boards' launch prices match the live prices (King $93.99, Queen $87.99, Full $74.99, Twin $69.99, Cal King $95.99)."
+    },
+    {
+      "area": "P&L chain",
+      "note": "Net revenue → CM1 → CM4 reconciles. TACoS = $753.4k ÷ $5.40M. The Nov–Jan push and hold spend ($307.7k) matches TCC_PP_Q4. The deal count (38) matches on every board."
+    },
+    {
+      "area": "October pace",
+      "note": "The plan's 17.8 units a day matches the live 17.25 with ads."
+    },
+    {
+      "area": "Rank first at today's price (CL-PR3)",
+      "note": "This fits the launch: ACoS is 46% against a 39.1% line, so a price rise now would slow the push the honeymoon rewards."
+    },
+    {
+      "area": "Light push as the pilot (CL-PU8)",
+      "note": "Right approach. The daily recommendation board reports spend per rank gained by size until about Nov 2."
+    },
+    {
+      "area": "Every type tested now, held lanes waiting for the order date",
+      "note": "Correct. Rival pages, Display, SB, SB video and Auto are live as the plan's tests (see R32 for how they are read)."
+    },
+    {
+      "area": "Stack 60 / 20 / 20 and top-of-search on rank lanes",
+      "note": "Decided and consistent with the live set-up. Only the model's video share is off (R30)."
+    },
+    {
+      "area": "CooLinens owns every shared group (C-PU4, CL-K1, CL-PU10)",
+      "note": "Clear decisions. PPC will align its launch workbook, which had capped King, Full, Twin and Cal King. No board change needed."
+    },
+    {
+      "area": "Fitted-sheet separation (F1 · C-K7)",
+      "note": "Working. CooLinens has spent $0 on fitted searches since launch."
+    },
+    {
+      "area": "Push entry and pause gates (85% / 75%)",
+      "note": "Sound. Only the stock basis behind them needs fixing (R15)."
+    },
+    {
+      "area": "Colour as a conversion lever (CL-PO6)",
+      "note": "Supported. Colour searches are under 1% of volume, so colour work is for conversion, not traffic."
+    },
+    {
+      "area": "Competitor mapping fixes (CL-C3, CL-C4, CL-C5)",
+      "note": "Agree as proposed. Apply them before the grades are written (CL-C6)."
+    },
+    {
+      "area": "Decolure on the shared searches (CL-PC7 / CL-PU9)",
+      "note": "Agree with B. $56 against $28 is too small a sample to move the Decolure's posture."
+    }
+  ]
+}

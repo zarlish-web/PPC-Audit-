@@ -1,0 +1,300 @@
+<title>CooLinens Plan Review</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column; a summary band, a sticky filter bar, then comment cards grouped by plan section in canvas order. */
+:root {
+  --bg: #f6f8f9;
+  --surface: #ffffff;
+  --ink: #15232c;
+  --muted: #5a6b75;
+  --line: #d9e1e5;
+  --accent: #0f6e7a;
+  --accent-soft: #e1f0f1;
+  --decision: #9a5b00;
+  --decision-soft: #fbefd9;
+  --fix: #1f5aa6;
+  --fix-soft: #e3ecf8;
+  --clarify: #55626b;
+  --clarify-soft: #eaeef0;
+  --follow: #11735a;
+  --follow-soft: #def2ea;
+  --p1: #b3261e;
+  --font-body: "Instrument Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f171c; --surface: #16222a; --ink: #e3ebef; --muted: #9aabb4; --line: #2a3a44;
+    --accent: #5cc3cf; --accent-soft: #163a40;
+    --decision: #f0b45a; --decision-soft: #3a2a10; --fix: #8bb5ef; --fix-soft: #1a2c45;
+    --clarify: #b3c0c7; --clarify-soft: #25323a; --follow: #6fd3b0; --follow-soft: #143429; --p1: #ff8a80;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f171c; --surface: #16222a; --ink: #e3ebef; --muted: #9aabb4; --line: #2a3a44;
+  --accent: #5cc3cf; --accent-soft: #163a40;
+  --decision: #f0b45a; --decision-soft: #3a2a10; --fix: #8bb5ef; --fix-soft: #1a2c45;
+  --clarify: #b3c0c7; --clarify-soft: #25323a; --follow: #6fd3b0; --follow-soft: #143429; --p1: #ff8a80;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.55; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap { max-width: 960px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 64px; }
+h1 { font-size: 1.9rem; line-height: 1.2; margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
+h2 { font-size: 1.15rem; margin: 0; text-wrap: balance; }
+.eyebrow { font-size: 0.72rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.lede { max-width: 68ch; color: var(--muted); margin: 10px 0 0; }
+a { color: var(--accent); overflow-wrap: anywhere; }
+.mono { font-family: var(--font-mono); font-size: 0.82em; }
+header { display: grid; gap: 6px; }
+.note { min-width: 0; overflow-wrap: anywhere; margin-top: 18px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); display: grid; gap: 6px; max-width: 72ch; }
+.note p { margin: 0; }
+.summary { margin-top: 22px; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; display: grid; gap: 2px; }
+.stat b { font-size: 1.5rem; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.stat span { color: var(--muted); font-size: 0.85rem; }
+.urgent { margin-top: 18px; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--p1); border-radius: 8px; padding: 14px 16px; display: grid; gap: 8px; }
+.urgent ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+.urgent button { all: unset; cursor: pointer; color: var(--accent); font-weight: 600; }
+.urgent button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.filters { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); padding-block: 12px; margin-top: 22px; border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.filters select, .filters input { font: inherit; font-size: 0.9rem; padding: 7px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--ink); min-width: 0; }
+.filters input { flex: 1 1 180px; }
+.chipset { display: flex; flex-wrap: wrap; gap: 6px; }
+.fchip { font: inherit; font-size: 0.82rem; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.fchip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.fchip:focus-visible, .copy:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.count { color: var(--muted); font-size: 0.85rem; margin-left: auto; }
+.section { margin-top: 28px; display: grid; gap: 12px; }
+.section-head { display: flex; align-items: baseline; gap: 10px; }
+.section-head span { color: var(--muted); font-size: 0.85rem; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; display: grid; gap: 12px; min-width: 0; scroll-margin-top: 80px; }
+.card-top { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: flex-start; justify-content: space-between; }
+.where { display: grid; gap: 2px; min-width: 0; }
+.where .code { font-family: var(--font-mono); font-size: 0.85rem; font-weight: 500; color: var(--accent); word-break: break-word; }
+.where .title { color: var(--muted); font-size: 0.88rem; }
+.where .also { color: var(--muted); font-size: 0.82rem; word-break: break-word; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { font-size: 0.75rem; font-weight: 600; padding: 3px 8px; border-radius: 4px; letter-spacing: 0.02em; white-space: nowrap; }
+.t-Decision { color: var(--decision); background: var(--decision-soft); }
+.t-Fix { color: var(--fix); background: var(--fix-soft); }
+.t-Clarify { color: var(--clarify); background: var(--clarify-soft); }
+.t-Follow-up { color: var(--follow); background: var(--follow-soft); }
+.p { border: 1px solid var(--line); color: var(--muted); }
+.p-P1 { border-color: var(--p1); color: var(--p1); }
+.ref { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); background: var(--clarify-soft); padding: 3px 6px; border-radius: 4px; }
+dl { margin: 0; display: grid; grid-template-columns: 9.5rem 1fr; gap: 8px 14px; }
+dt { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; padding-top: 3px; }
+dd { margin: 0; min-width: 0; max-width: 72ch; }
+dd.rec { font-weight: 500; }
+.card-foot { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 10px; }
+.owner { font-size: 0.85rem; color: var(--muted); }
+.owner b { color: var(--ink); font-weight: 600; }
+.copy { font: inherit; font-size: 0.85rem; font-weight: 600; padding: 7px 14px; border-radius: 6px; border: 1px solid var(--accent); background: var(--accent-soft); color: var(--accent); cursor: pointer; }
+.copy.done { background: var(--accent); color: var(--surface); }
+.fallback { width: 100%; min-height: 160px; font-family: var(--font-mono); font-size: 0.8rem; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink); padding: 8px; }
+.nochange { margin-top: 36px; display: grid; gap: 10px; }
+.nc-list { display: grid; gap: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+.headline { margin: 0; font-size: 1.05rem; font-weight: 600; line-height: 1.35; text-wrap: balance; max-width: 72ch; }
+.nc { display: grid; grid-template-columns: 15rem 1fr; gap: 4px 16px; padding: 10px 16px; border-top: 1px solid var(--line); }
+.nc:first-child { border-top: 0; }
+.nc b { font-weight: 600; }
+.nc span { color: var(--muted); }
+.empty { color: var(--muted); padding: 20px 0; }
+footer { margin-top: 36px; color: var(--muted); font-size: 0.85rem; display: grid; gap: 4px; }
+@media (max-width: 640px) {
+  h1 { font-size: 1.5rem; }
+  dl { grid-template-columns: 1fr; gap: 2px; }
+  dd { margin-bottom: 8px; }
+  .nc { grid-template-columns: 1fr; }
+  .summary { grid-template-columns: 1fr 1fr; }
+  .stat:last-child { grid-column: 1 / -1; }
+  .count { margin-left: 0; width: 100%; }
+}
+@media (prefers-reduced-motion: no-preference) { .copy { transition: background 0.15s, color 0.15s; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">PPC review · CooLinens Cooling 4 Pc (69) · full-year plan</div>
+    <h1>Comments for the full-year plan board</h1>
+    <p class="lede" id="lede"></p>
+  </header>
+
+  <div class="note">
+    <p><b>How to use this page.</b> Each card names the board to pin it on, in the board's own code (for example <span class="mono">TCC_RU_Stock</span>) and title. Open the plan, find that board, add a comment, and paste the card with <b>Copy comment</b>.</p>
+    <p>We could not post these straight onto the board. The board is published from outside our workspace, and comments can only be added there by someone viewing it in Claude. If Joseph shares the board with edit access, we can post replies from here.</p>
+    <p id="links"></p>
+  </div>
+
+  <div class="summary" id="summary"></div>
+  <div class="urgent" id="urgent"></div>
+
+  <div class="filters" role="search">
+    <select id="f-section" aria-label="Section"></select>
+    <div class="chipset" id="f-type" aria-label="Type"></div>
+    <div class="chipset" id="f-prio" aria-label="Priority"></div>
+    <input id="f-q" type="search" placeholder="Search a board, call or keyword" aria-label="Search">
+    <span class="count" id="count"></span>
+  </div>
+
+  <main id="list"></main>
+
+  <section class="nochange">
+    <h2>Checked, no change needed</h2>
+    <p class="lede" style="margin:0">These parts of the plan were checked against the live data and hold. They need no comment.</p>
+    <div class="nc-list" id="nochange"></div>
+  </section>
+
+  <footer id="foot"></footer>
+</div>
+
+<script>
+const DATA = /*__DATA__*/null;
+const TYPES = ["Decision", "Fix", "Clarify", "Follow-up"];
+const PRIOS = { P1: "P1 · this week / before Oct 23", P2: "P2 · before targets are stored", P3: "P3 · clean-up" };
+const state = { section: "all", types: new Set(), prios: new Set(), q: "" };
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function pasteText(c) {
+  const refs = c.refs.length ? " · " + c.refs.join(", ") : "";
+  return [
+    `PPC review ${c.id} · ${c.type} · ${c.priority}${refs}`,
+    c.headline,
+    `Issue: ${c.issue}`,
+    `Recommendation: ${c.rec}`,
+    `Evidence: ${c.evidence}`,
+    `Expected outcome: ${c.outcome}`,
+    `Needs: ${c.needs} (owner: ${c.owner})`,
+  ].join("\n");
+}
+
+function card(c) {
+  const also = c.also_on.length ? `<div class="also">Also relevant on ${c.also_on.map((b) => `<span class="mono" title="${esc(DATA.titles[b])}">${esc(b)}</span>`).join(", ")}</div>` : "";
+  const refs = c.refs.map((r) => `<span class="ref">${esc(r)}</span>`).join("");
+  return `<article class="card" id="${c.id}">
+    <div class="card-top">
+      <div class="where">
+        <span class="code">${esc(c.board)} · ${esc(c.id)}</span>
+        <span class="title">${esc(c.board_title)}</span>
+        ${also}
+      </div>
+      <div class="tags"><span class="tag t-${c.type}">${esc(c.type)}</span><span class="tag p p-${c.priority}">${esc(c.priority)}</span>${refs}</div>
+    </div>
+    <p class="headline">${esc(c.headline)}</p>
+    <dl>
+      <dt>Issue</dt><dd>${esc(c.issue)}</dd>
+      <dt>Recommendation</dt><dd class="rec">${esc(c.rec)}</dd>
+      <dt>Evidence</dt><dd>${esc(c.evidence)}</dd>
+      <dt>Expected outcome</dt><dd>${esc(c.outcome)}</dd>
+      <dt>Needs</dt><dd>${esc(c.needs)}</dd>
+    </dl>
+    <div class="card-foot">
+      <span class="owner">Owner: <b>${esc(c.owner)}</b></span>
+      <button class="copy" type="button" data-id="${c.id}">Copy comment</button>
+    </div>
+  </article>`;
+}
+
+function matches(c) {
+  if (state.section !== "all" && c.section !== state.section) return false;
+  if (state.types.size && !state.types.has(c.type)) return false;
+  if (state.prios.size && !state.prios.has(c.priority)) return false;
+  if (state.q) {
+    const hay = [c.id, c.headline, c.board, c.board_title, ...c.also_on, ...c.refs, c.issue, c.rec, c.evidence, c.owner].join(" ").toLowerCase();
+    if (!hay.includes(state.q)) return false;
+  }
+  return true;
+}
+
+function render() {
+  const shown = DATA.comments.filter(matches);
+  $("count").textContent = `${shown.length} of ${DATA.comments.length} comments`;
+  const html = DATA.sections.map((s) => {
+    const cs = shown.filter((c) => c.section === s);
+    if (!cs.length) return "";
+    return `<section class="section"><div class="section-head"><h2>${esc(s)}</h2><span>${cs.length} comment${cs.length > 1 ? "s" : ""}</span></div>${cs.map(card).join("")}</section>`;
+  }).join("");
+  $("list").innerHTML = html || `<p class="empty">No comments match these filters.</p>`;
+}
+
+function chip(container, value, label, set) {
+  const b = document.createElement("button");
+  b.type = "button"; b.className = "fchip"; b.textContent = label; b.setAttribute("aria-pressed", "false");
+  b.addEventListener("click", () => {
+    set.has(value) ? set.delete(value) : set.add(value);
+    b.setAttribute("aria-pressed", String(set.has(value)));
+    render();
+  });
+  container.appendChild(b);
+}
+
+function init() {
+  const m = DATA.meta, cs = DATA.comments;
+  $("lede").textContent = `${cs.length} comments on the ${m.plan}, ${m.plan_version}, checked against live data from ${m.live_window}. Every comment states the issue, our recommendation, the evidence and the expected outcome, and says what it needs from the team. ${m.mode}`;
+  $("links").innerHTML = `Plan board: <a href="${esc(m.plan_url)}" target="_blank" rel="noopener">${esc(m.plan_url)}</a><br>Daily recommendation board: <a href="${esc(m.board_url)}" target="_blank" rel="noopener">${esc(m.board_url)}</a>`;
+
+  const n = (f) => cs.filter(f).length;
+  $("summary").innerHTML = [
+    [n((c) => c.type === "Decision"), "need a decision"],
+    [n((c) => c.type === "Fix"), "plan fixes"],
+    [n((c) => c.type === "Clarify"), "need clarifying"],
+    [n((c) => c.type === "Follow-up"), "follow-ups"],
+    [n((c) => c.priority === "P1"), "P1: this week or before the Oct 23 order"],
+  ].map(([v, l]) => `<div class="stat"><b>${v}</b><span>${esc(l)}</span></div>`).join("");
+
+  const urgent = cs.filter((c) => c.priority === "P1" && (c.type === "Decision" || c.type === "Fix"));
+  $("urgent").innerHTML = `<div class="eyebrow" style="color:var(--p1)">Decide or fix first</div>
+    <ul>${urgent.map((c) => `<li><button type="button" data-jump="${c.id}">${esc(c.id)}</button> <span class="mono">${esc(c.board)}</span>: ${esc(c.headline)}</li>`).join("")}</ul>`;
+
+  const sel = $("f-section");
+  sel.innerHTML = `<option value="all">All sections</option>` + DATA.sections.map((s) => `<option value="${esc(s)}">${esc(s)}</option>`).join("");
+  sel.addEventListener("change", () => { state.section = sel.value; render(); });
+  TYPES.forEach((t) => chip($("f-type"), t, t, state.types));
+  Object.keys(PRIOS).forEach((p) => chip($("f-prio"), p, PRIOS[p], state.prios));
+  $("f-q").addEventListener("input", (e) => { state.q = e.target.value.trim().toLowerCase(); render(); });
+
+  $("nochange").innerHTML = DATA.no_change.map((x) => `<div class="nc"><b>${esc(x.area)}</b><span>${esc(x.note)}</span></div>`).join("");
+  $("foot").innerHTML = `<div>Sources: ${esc(m.sources)}.</div><div>Board names and codes are the plan canvas's own. Priorities: P1 this week or before the Oct 23 order; P2 before targets are stored in Target Setting; P3 clean-up.</div>`;
+
+  document.addEventListener("click", async (e) => {
+    const jump = e.target.closest("[data-jump]");
+    if (jump) {
+      state.section = "all"; state.types.clear(); state.prios.clear(); state.q = "";
+      sel.value = "all"; $("f-q").value = "";
+      document.querySelectorAll(".fchip").forEach((b) => b.setAttribute("aria-pressed", "false"));
+      render();
+      document.getElementById(jump.dataset.jump)?.scrollIntoView({ block: "start" });
+      return;
+    }
+    const btn = e.target.closest(".copy");
+    if (!btn) return;
+    const c = cs.find((x) => x.id === btn.dataset.id);
+    const text = pasteText(c);
+    try {
+      await navigator.clipboard.writeText(text);
+      btn.textContent = "Copied"; btn.classList.add("done");
+      setTimeout(() => { btn.textContent = "Copy comment"; btn.classList.remove("done"); }, 1800);
+    } catch (err) {
+      const foot = btn.closest(".card-foot");
+      if (!foot.querySelector("textarea")) {
+        const ta = document.createElement("textarea");
+        ta.className = "fallback"; ta.value = text; ta.readOnly = true; ta.setAttribute("aria-label", "Comment text");
+        foot.appendChild(ta);
+        ta.focus(); ta.select();
+      }
+      btn.textContent = "Select and copy below";
+    }
+  });
+
+  render();
+  if (location.hash && document.getElementById(location.hash.slice(1))) document.getElementById(location.hash.slice(1)).scrollIntoView();
+}
+init();
+</script>
