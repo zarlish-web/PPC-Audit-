@@ -561,7 +561,7 @@
           "src": "TCC_PPC_Rivals"
         },
         {
-          "t": "Daily crawls: cooling sheets queen #76 (15 Oct), #3 on 17–18 Oct, then #70 and #68. cooling bed sheets #32, #3 on 18 Oct, then #49 and #54. cooling sheets queen size #3 on 18 Oct only, then #54 and #58.",
+          "t": "Daily crawls: cooling sheets queen #76 (15 Oct), #3 on 17–18 Oct, then #70 and #68. cooling bed sheets #32, #3 on 18 Oct, then #49 and #54. cooling sheets queen size (plan \"now\" #3) read #7 and #3 on 17–18 Oct, then #54 and #58.",
           "src": "Rank crawls"
         },
         {
@@ -719,12 +719,10 @@
     {
       "id": "K6",
       "section": "Keyword grading",
-      "area": "Facts stated two ways",
+      "area": "Honeymoon evidence stated two ways",
       "board": "TCC_KC_Calls",
       "also_on": [
-        "TCC_Decisions_Rules",
-        "TCC_IN_3_Keywords",
-        "TCC_X_Targets"
+        "TCC_Decisions_Rules"
       ],
       "refs": [
         "HM",
@@ -736,17 +734,17 @@
       "owner": "Joseph (plan model)",
       "evidence": [
         {
-          "t": "Pillowcase pushes: gains of 16, 19, 43 and 45 ranks (median 31), one reaching the top 10 (TCC_KC_Calls), against \"median #36 → #14, none reaching the top 10\" (rule HM).",
-          "src": "TCC_KC_Calls, TCC_Decisions_Rules"
+          "t": "TCC_KC_Calls: the pillowcase's 4 launch pushes gained 16, 19, 43 and 45 ranks (median 31); 1 reached the top 10.",
+          "src": "TCC_KC_Calls"
         },
         {
-          "t": "Sleephoria's median goals: Cooling #2, Queen #3, King #2 (TCC_IN_3) against #5, #4, #3 (TCC_X_Targets, TCC_Dest).",
-          "src": "Boards named"
+          "t": "Rule HM: the same 4 pushes moved \"a median #36 → #14 (19 ranks), 0 reaching the top 10\".",
+          "src": "TCC_Decisions_Rules"
         }
       ],
-      "observation": "The honeymoon evidence behind CL-PU2 / CL-K3 is quoted two ways.",
-      "query": "Which reading is correct?",
-      "rec": "Use one statement of each.",
+      "observation": "The evidence behind the honeymoon odds (CL-PU2, CL-K3) is quoted two ways: a median gain of 31 ranks with one top-10, or 19 ranks with none.",
+      "query": "Which reading of the pillowcase pushes is correct?",
+      "rec": "Use one statement on every board.",
       "next": "Joseph corrects. Expected result: the honeymoon context for CL-PU8 rests on one reading."
     },
     {
@@ -1022,7 +1020,7 @@
           "src": "TCC_Decisions_Rules"
         },
         {
-          "t": "Children out by Dec 31: 6 (TCC_Road) against 11 (TCC_Stages, TCC_Tests). TCC_Tests: \"823 days at the plan's pace (5 a day)\".",
+          "t": "Children out by Dec 31: 6 on TCC_Road (scenario C) and 11 on TCC_Stages and TCC_Tests (scenario A, today's stock). Both are labelled, but the summary boards do not say which scenario the plan uses. TCC_Tests also says \"823 days at the plan's pace (5 a day)\".",
           "src": "Boards named"
         },
         {
@@ -1030,7 +1028,7 @@
           "src": "TCC_X_Money"
         }
       ],
-      "observation": "Leftover text from earlier runs.",
+      "observation": "Leftover text from earlier runs, and two stock scenarios quoted without saying which one is the plan's.",
       "query": "None. These are corrections.",
       "rec": "Correct the text to the decided calendar and current figures.",
       "next": "Joseph corrects. Expected result: one calendar on every board."
@@ -1058,7 +1056,7 @@
           "src": "TCC_S1"
         },
         {
-          "t": "Per size before refunds: King 42.9%, Queen 45.1%, Full 40.6% (TCC_RU_PnL), against Queen 41.0%, Full 36.6% on TCC_S1.",
+          "t": "Per size before refunds: King 42.9%, Queen 45.1%, Full 40.6% (TCC_RU_PnL). After refunds: Queen 41.0%, Full 36.6% (TCC_S1).",
           "src": "TCC_RU_PnL, TCC_S1"
         },
         {
@@ -1066,9 +1064,9 @@
           "src": "TCC_PPC_Lanes69"
         }
       ],
-      "observation": "The profit lanes run about one point above the true after-refund break-even, and the size-level lines differ between boards.",
+      "observation": "The profit lanes run about one point above the after-refund break-even. Boards quote break-evens before and after refunds side by side, which makes the two easy to mix.",
       "query": "Which per-size break-even (after refunds) is the line for the profit lanes?",
-      "rec": "Publish one after-refund break-even per size and price the profit lanes to it.",
+      "rec": "Publish one after-refund break-even per size, label every break-even as before or after refunds, and price the profit lanes to the after-refund line.",
       "next": "Joseph aligns. Expected result: profit lanes stop running above break-even."
     },
     {
@@ -1136,7 +1134,7 @@
         },
         {
           "t": "38 slots: 28 Lightning Deals, 8 Best Deals, 2 events.",
-          "src": "TCC_DL_Rules"
+          "src": "TCC_DL_Rules, TCC_IN_5_Deals"
         }
       ],
       "observation": "18% of the plan's CM4 rests on a lift Sleephoria's own Lightning Deal did not show.",
@@ -1322,7 +1320,7 @@
         }
       ],
       "observation": "The stock cannot carry a Cal King push before the bridge.",
-      "query": "Option A (push Oct 26) or option B (wait for the bridge)?",
+      "query": "Does Cal King push on Oct 26 as modelled (option A), or wait for the Dec 22 bridge (option B)?",
       "rec": "Option B for Cal King: build the 6 exacts now and switch them on after Dec 22 if the 85% gate passes. Keep option A's Twin mapping.",
       "next": "Erik / Joseph decide before Oct 26. Expected result: no stock-out from a push the stock cannot carry."
     },
@@ -1358,7 +1356,7 @@
         }
       ],
       "observation": "276 campaigns would be built on five days of format costs. The model also books no video, although video is decided.",
-      "query": "Option A (all push keywords) or option B (head plus top 3 per group first)?",
+      "query": "Does SB and SB video go on every push keyword from the first push (option A, about 276 campaigns), or on the head and top 3 searches per group first (option B)?",
       "rec": "Option B, scaling each format on its two-week read (CL-PC5). Fix the model to book the video share.",
       "next": "Erik / Joseph decide; Joseph fixes the model. Expected result: each format's real cost is known before roll-out."
     },
@@ -1392,7 +1390,7 @@
         }
       ],
       "observation": "A date-based end ignores whether a rank is held; a single-day reading would end it on noise.",
-      "query": "Option A, B or C?",
+      "query": "Which bar ends the honeymoon push: an observable gate per search (A), the same gate per syntax group (B), or no taper before Dec 14 and then the gate (C)?",
       "rec": "Option A (an observable gate per search), with ranks read on the 7-day median.",
       "next": "Erik / Joseph decide with CL-PU6. Expected result: the taper starts when a rank is actually held."
     },
@@ -1425,7 +1423,7 @@
         }
       ],
       "observation": "The tests are counted twice, and the rival pages leak to unrelated searches.",
-      "query": "Option A (read the live lanes once)?",
+      "query": "Will the live lanes be the single test read (option A), so the model's duplicate test is dropped?",
       "rec": "Option A: read the live lanes at two weeks with a 2× break-even stop-loss. Add negatives for the unrelated searches now; that is relevance, not a performance call.",
       "next": "Erik / Joseph decide; PPC adds the negatives on approval. Expected result: tests counted once and read on their own clicks."
     },
@@ -1596,8 +1594,7 @@
         "TCC_RU_Stock",
         "TCC_RU_Colour",
         "TCC_Reconcile",
-        "TCC_PP_Stock",
-        "TCC_IN_7_Rollup"
+        "TCC_PP_Stock"
       ],
       "refs": [
         "CL-RU1",
@@ -1616,8 +1613,8 @@
           "src": "TCC_RU_Stock, TCC_RU_Colour"
         },
         {
-          "t": "TCC_PP_Stock and TCC_IN_7_Rollup say the conservative colour run \"is not run\", while CL-RU1 commits it at 17,175.",
-          "src": "TCC_PP_Stock, TCC_IN_7_Rollup"
+          "t": "TCC_PP_Stock and TCC_PP_Calls say \"the conservative colour chain is not run\", while CL-RU1 commits it at 17,175.",
+          "src": "TCC_PP_Stock, TCC_PP_Calls"
         }
       ],
       "observation": "No figure in the model matches 48,000.",
@@ -1721,12 +1718,14 @@
       "id": "T1",
       "section": "Decisions and template",
       "area": "Unfilled template text",
-      "board": "TCC_Decisions",
+      "board": "TCC_IN_4_Pricing",
       "also_on": [
-        "TCC_IN_4_Pricing",
         "TCC_IN_5_Deals",
         "TCC_IN_6_Econ",
-        "TCC_IN_7_Rollup"
+        "TCC_IN_7_Rollup",
+        "TCC_PR_Calls",
+        "TCC_DL_Calls",
+        "TCC_SE_Share"
       ],
       "refs": [],
       "class": "Confirmed issue",
@@ -1772,7 +1771,7 @@
     {
       "item": "Low-inventory-level fee",
       "where": "TCC_EC_Fees",
-      "impact": "Not read; 6 children run out by Dec 31 in the plan."
+      "impact": "Not read; 6 colour × size children run out by Dec 31 in the plan (scenario C)."
     },
     {
       "item": "Duty, converted bridge price, new order PI, bag cost",
@@ -1837,7 +1836,7 @@
     },
     {
       "area": "Colour as a conversion lever (CL-PO6)",
-      "note": "Supported. Colour searches are under 1% of volume."
+      "note": "Supported as proposed: colour accuracy first, before any signature palette."
     },
     {
       "area": "Decolure on the shared searches (CL-PC7 / CL-PU9)",
@@ -1845,7 +1844,7 @@
     },
     {
       "area": "Season index wording on TCC_Decisions_Rules_2",
-      "note": "Checked and correct. \"0.84\" is the average of Oct–Dec (0.58, 0.86, 1.07), not December's index. Our earlier draft flagged it in error."
+      "note": "Checked and correct. \"0.84\" is the average season index for Oct–Dec (0.58, 0.86, 1.07), not December's own index (1.07)."
     }
   ],
   "corrections": [

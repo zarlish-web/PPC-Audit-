@@ -242,7 +242,7 @@ Confirmed issue · P1 · Board: TCC_Dest (also TCC_KC_Method, TCC_KC_Gap, TCC_PP
 - "Now" is DataRova's best rank over 10 days. _(TCC_KC_Method)_
 - Plan "now": cooling sheets queen #25, cooling bed sheets #16, cooling sheets #21. _(TCC_Dest)_
 - The plan's own rival board: cooling sheets queen #71, cooling bed sheets #48, cooling sheets #23 organic. _(TCC_PPC_Rivals)_
-- Daily crawls: cooling sheets queen #76 (15 Oct), #3 on 17–18 Oct, then #70 and #68. cooling bed sheets #32, #3 on 18 Oct, then #49 and #54. cooling sheets queen size #3 on 18 Oct only, then #54 and #58. _(Rank crawls)_
+- Daily crawls: cooling sheets queen #76 (15 Oct), #3 on 17–18 Oct, then #70 and #68. cooling bed sheets #32, #3 on 18 Oct, then #49 and #54. cooling sheets queen size (plan "now" #3) read #7 and #3 on 17–18 Oct, then #54 and #58. _(Rank crawls)_
 - Readings that match the plan: cooling sheet set #7, king sheets cooling #3. _(TCC_Dest, Rank crawls)_
 
 **Our observation / concern:** One- and two-day #3 spikes do not hold the next day. A 10-day best carries them as the starting rank, so Queen and the head start much deeper than the plan assumes.
@@ -318,18 +318,18 @@ Confirmed issue · P3 · Board: TCC_IN_3_Keywords (also TCC_Dest, TCC_Market, TC
 
 **Expected outcome / next step:** Joseph corrects. Expected result: counts match. (Owner: Joseph (plan model))
 
-### K6 · Facts stated two ways
-Confirmed issue · P3 · Board: TCC_KC_Calls (also TCC_Decisions_Rules, TCC_IN_3_Keywords, TCC_X_Targets) · HM, CL-PU2, CL-K3
+### K6 · Honeymoon evidence stated two ways
+Confirmed issue · P3 · Board: TCC_KC_Calls (also TCC_Decisions_Rules) · HM, CL-PU2, CL-K3
 
 **Current status & evidence**
-- Pillowcase pushes: gains of 16, 19, 43 and 45 ranks (median 31), one reaching the top 10 (TCC_KC_Calls), against "median #36 → #14, none reaching the top 10" (rule HM). _(TCC_KC_Calls, TCC_Decisions_Rules)_
-- Sleephoria's median goals: Cooling #2, Queen #3, King #2 (TCC_IN_3) against #5, #4, #3 (TCC_X_Targets, TCC_Dest). _(Boards named)_
+- TCC_KC_Calls: the pillowcase's 4 launch pushes gained 16, 19, 43 and 45 ranks (median 31); 1 reached the top 10. _(TCC_KC_Calls)_
+- Rule HM: the same 4 pushes moved "a median #36 → #14 (19 ranks), 0 reaching the top 10". _(TCC_Decisions_Rules)_
 
-**Our observation / concern:** The honeymoon evidence behind CL-PU2 / CL-K3 is quoted two ways.
+**Our observation / concern:** The evidence behind the honeymoon odds (CL-PU2, CL-K3) is quoted two ways: a median gain of 31 ranks with one top-10, or 19 ranks with none.
 
-**Our query:** Which reading is correct?
+**Our query:** Which reading of the pillowcase pushes is correct?
 
-**Our recommendation:** Use one statement of each.
+**Our recommendation:** Use one statement on every board.
 
 **Expected outcome / next step:** Joseph corrects. Expected result: the honeymoon context for CL-PU8 rests on one reading. (Owner: Joseph (plan model))
 
@@ -454,10 +454,10 @@ Confirmed issue · P3 · Board: TCC_RR_Colour (also TCC_Decisions_Rules, TCC_Tes
 **Current status & evidence**
 - TCC_RR_Colour: "the Twin and California King pushes first, then Queen". Decided: Queen, King, Full, Twin Oct 19; Cal King Oct 26; the head Nov 30. _(TCC_RR_Colour, TCC_PPC_Stack)_
 - CL-PU3 says Queen "pushes in June" while scheduling it for Oct 19. _(TCC_Decisions_Rules)_
-- Children out by Dec 31: 6 (TCC_Road) against 11 (TCC_Stages, TCC_Tests). TCC_Tests: "823 days at the plan's pace (5 a day)". _(Boards named)_
+- Children out by Dec 31: 6 on TCC_Road (scenario C) and 11 on TCC_Stages and TCC_Tests (scenario A, today's stock). Both are labelled, but the summary boards do not say which scenario the plan uses. TCC_Tests also says "823 days at the plan's pace (5 a day)". _(Boards named)_
 - TCC_X_Money: October's 17.8 a day "start under the launch's own pace" of 16.0 a day; 17.8 is above it. _(TCC_X_Money)_
 
-**Our observation / concern:** Leftover text from earlier runs.
+**Our observation / concern:** Leftover text from earlier runs, and two stock scenarios quoted without saying which one is the plan's.
 
 **Our query:** None. These are corrections.
 
@@ -472,14 +472,14 @@ Confirmed issue · P2 · Board: TCC_S1 (also TCC_PP_Rules, TCC_RU_PnL, TCC_PP_Fi
 
 **Current status & evidence**
 - Profit lanes: 40.2% ACoS against 43.2% (the app's line, no refunds); 39.1% at the plan's refund rate. _(TCC_S1)_
-- Per size before refunds: King 42.9%, Queen 45.1%, Full 40.6% (TCC_RU_PnL), against Queen 41.0%, Full 36.6% on TCC_S1. _(TCC_RU_PnL, TCC_S1)_
+- Per size before refunds: King 42.9%, Queen 45.1%, Full 40.6% (TCC_RU_PnL). After refunds: Queen 41.0%, Full 36.6% (TCC_S1). _(TCC_RU_PnL, TCC_S1)_
 - The model prices profit lanes at 95% of the refund-free line. _(TCC_PPC_Lanes69)_
 
-**Our observation / concern:** The profit lanes run about one point above the true after-refund break-even, and the size-level lines differ between boards.
+**Our observation / concern:** The profit lanes run about one point above the after-refund break-even. Boards quote break-evens before and after refunds side by side, which makes the two easy to mix.
 
 **Our query:** Which per-size break-even (after refunds) is the line for the profit lanes?
 
-**Our recommendation:** Publish one after-refund break-even per size and price the profit lanes to it.
+**Our recommendation:** Publish one after-refund break-even per size, label every break-even as before or after refunds, and price the profit lanes to the after-refund line.
 
 **Expected outcome / next step:** Joseph aligns. Expected result: profit lanes stop running above break-even. (Owner: Joseph (plan model))
 
@@ -508,7 +508,7 @@ Potential gap · P2 · Board: TCC_DL_Money (also TCC_DL_Evidence, TCC_DL_Calls)
 **Current status & evidence**
 - Every slot borrows Sleephoria's response: events ×1.48; its one Lightning Deal ×0.99. _(TCC_DL_Evidence)_
 - Taken slots add +$342k CM4; at half the lift +$127,555 and at no lift −$126,698 on deal days. _(TCC_DL_Calls)_
-- 38 slots: 28 Lightning Deals, 8 Best Deals, 2 events. _(TCC_DL_Rules)_
+- 38 slots: 28 Lightning Deals, 8 Best Deals, 2 events. _(TCC_DL_Rules, TCC_IN_5_Deals)_
 
 **Our observation / concern:** 18% of the plan's CM4 rests on a lift Sleephoria's own Lightning Deal did not show.
 
@@ -607,7 +607,7 @@ Open question · P1 · Board: TCC_PPC_Calls (also TCC_PPC_Stack) · CL-PC3
 
 **Our observation / concern:** The stock cannot carry a Cal King push before the bridge.
 
-**Our query:** Option A (push Oct 26) or option B (wait for the bridge)?
+**Our query:** Does Cal King push on Oct 26 as modelled (option A), or wait for the Dec 22 bridge (option B)?
 
 **Our recommendation:** Option B for Cal King: build the 6 exacts now and switch them on after Dec 22 if the 85% gate passes. Keep option A's Twin mapping.
 
@@ -623,7 +623,7 @@ Open question · P2 · Board: TCC_PPC_Calls (also TCC_PPC_Stack, TCC_PPC_Lanes69
 
 **Our observation / concern:** 276 campaigns would be built on five days of format costs. The model also books no video, although video is decided.
 
-**Our query:** Option A (all push keywords) or option B (head plus top 3 per group first)?
+**Our query:** Does SB and SB video go on every push keyword from the first push (option A, about 276 campaigns), or on the head and top 3 searches per group first (option B)?
 
 **Our recommendation:** Option B, scaling each format on its two-week read (CL-PC5). Fix the model to book the video share.
 
@@ -639,7 +639,7 @@ Open question · P2 · Board: TCC_PPC_Calls (also TCC_PP_Calls) · CL-PC1, CL-PU
 
 **Our observation / concern:** A date-based end ignores whether a rank is held; a single-day reading would end it on noise.
 
-**Our query:** Option A, B or C?
+**Our query:** Which bar ends the honeymoon push: an observable gate per search (A), the same gate per syntax group (B), or no taper before Dec 14 and then the gate (C)?
 
 **Our recommendation:** Option A (an observable gate per search), with ranks read on the 7-day median.
 
@@ -655,7 +655,7 @@ Open question · P2 · Board: TCC_PPC_Calls (also TCC_PPC_Lanes69) · CL-PC5
 
 **Our observation / concern:** The tests are counted twice, and the rival pages leak to unrelated searches.
 
-**Our query:** Option A (read the live lanes once)?
+**Our query:** Will the live lanes be the single test read (option A), so the model's duplicate test is dropped?
 
 **Our recommendation:** Option A: read the live lanes at two weeks with a 2× break-even stop-loss. Add negatives for the unrelated searches now; that is relevance, not a performance call.
 
@@ -737,12 +737,12 @@ Open question · P1 · Board: TCC_RU_Stock (also TCC_RU_Colour, TCC_PP_Calls) ·
 **Not available:** The conservative split by size (child-cons.json) is not shown on the boards; only the total of 17,175.
 
 ### F2 · The top-up figure
-Confirmed issue · P1 · Board: TCC_RU_Calls (also TCC_PP_Calls, TCC_RU_Stock, TCC_RU_Colour, TCC_Reconcile, TCC_PP_Stock, TCC_IN_7_Rollup) · CL-RU1, CL-PU7
+Confirmed issue · P1 · Board: TCC_RU_Calls (also TCC_PP_Calls, TCC_RU_Stock, TCC_RU_Colour, TCC_Reconcile, TCC_PP_Stock) · CL-RU1, CL-PU7
 
 **Current status & evidence**
 - CL-PU7 and CL-RU1 call the plan-line top-up "~48,000". _(TCC_PP_Calls)_
 - The need reads 38,047 by colour, 40,371 pooled on TCC_RU_Stock and 39,691 pooled on TCC_RU_Colour. _(TCC_RU_Stock, TCC_RU_Colour)_
-- TCC_PP_Stock and TCC_IN_7_Rollup say the conservative colour run "is not run", while CL-RU1 commits it at 17,175. _(TCC_PP_Stock, TCC_IN_7_Rollup)_
+- TCC_PP_Stock and TCC_PP_Calls say "the conservative colour chain is not run", while CL-RU1 commits it at 17,175. _(TCC_PP_Stock, TCC_PP_Calls)_
 
 **Our observation / concern:** No figure in the model matches 48,000.
 
@@ -804,7 +804,7 @@ Potential gap · P2 · Board: TCC_SE_Engine (also TCC_SE_Index, TCC_SE_Months) �
 ## Decisions and template
 
 ### T1 · Unfilled template text
-Confirmed issue · P3 · Board: TCC_Decisions (also TCC_IN_4_Pricing, TCC_IN_5_Deals, TCC_IN_6_Econ, TCC_IN_7_Rollup)
+Confirmed issue · P3 · Board: TCC_IN_4_Pricing (also TCC_IN_5_Deals, TCC_IN_6_Econ, TCC_IN_7_Rollup, TCC_PR_Calls, TCC_DL_Calls, TCC_SE_Share)
 
 **Current status & evidence**
 - "${BORROW}" appears unrendered on 15 boards, including TCC_IN_4_Pricing, TCC_IN_5_Deals, TCC_IN_7_Rollup, TCC_PR_Calls, TCC_DL_Calls and TCC_SE_Share. _(Boards named)_
@@ -826,7 +826,7 @@ Confirmed issue · P3 · Board: TCC_Decisions (also TCC_IN_4_Pricing, TCC_IN_5_D
 | CooLinens' own return rate | TCC_RR_Trend | Break-even uses a borrowed 4.6%; mature from Jan 18 at the earliest. |
 | CooLinens' own price response, deal response and SQP season | TCC_PR_Evidence, TCC_DL_Evidence, TCC_SE_Index | Ladder, deal lift (+$342k) and season shape are all borrowed from Sleephoria. |
 | Dollar market size | TCC_PO_Idea | Only search volume (329,851 a month tracked) is given; share of market in dollars cannot be checked. |
-| Low-inventory-level fee | TCC_EC_Fees | Not read; 6 children run out by Dec 31 in the plan. |
+| Low-inventory-level fee | TCC_EC_Fees | Not read; 6 colour × size children run out by Dec 31 in the plan (scenario C). |
 | Duty, converted bridge price, new order PI, bag cost | TCC_EC_Calls (CL-EC4, CL-EC5), TCC_RU_PnL | Landed cost after the launch PO is provisional. |
 | Conservative order split by size | TCC_RU_Stock (child-cons.json) | Only the 17,175 total is shown, so the King/Queen split of the order cannot be checked against live sales. |
 | Oct 20 ad data and a full week after step 2 | Sellerboard | Step 2's delivered spend can only be read from Oct 21; King's full-week read is Oct 27. |
@@ -844,6 +844,6 @@ Confirmed issue · P3 · Board: TCC_Decisions (also TCC_IN_4_Pricing, TCC_IN_5_D
 - **CooLinens owns every shared group (C-PU4, CL-K1, CL-PU10):** Clear decisions. PPC will align its launch workbook, which had capped King, Full, Twin and Cal King.
 - **Fitted-sheet separation (F1 · C-K7):** Working: $0 on fitted searches since launch.
 - **Push entry and pause gates (85% / 75%):** Sound. Only the stock basis behind them needs fixing (P3).
-- **Colour as a conversion lever (CL-PO6):** Supported. Colour searches are under 1% of volume.
+- **Colour as a conversion lever (CL-PO6):** Supported as proposed: colour accuracy first, before any signature palette.
 - **Decolure on the shared searches (CL-PC7 / CL-PU9):** Agree with option B: $56 against $28 is too small a sample to act on.
-- **Season index wording on TCC_Decisions_Rules_2:** Checked and correct. "0.84" is the average of Oct–Dec (0.58, 0.86, 1.07), not December's index. Our earlier draft flagged it in error.
+- **Season index wording on TCC_Decisions_Rules_2:** Checked and correct. "0.84" is the average season index for Oct–Dec (0.58, 0.86, 1.07), not December's own index (1.07).
