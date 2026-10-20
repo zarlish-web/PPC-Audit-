@@ -1,6 +1,9 @@
 # CooLinens Launch Tracker
 
-Live page: https://claude.ai/artifact/1MwntnQjbBBpMyt8cRSe6g (Dashboard artifact, owner Shayan Rana).
+Shareable page (data built in, opens for anyone it is shared with, no sign-in to the data store): https://claude.ai/artifact/BofUW9KoD7GxXXzuudiR4Z
+Dashboard version (needs Claude sign-in): https://claude.ai/artifact/1MwntnQjbBBpMyt8cRSe6g
+
+- `shareable_template.html` + `build_static.py` — bake `data/<date>/*.json` into the shareable page: `python3 -I build_static.py data/<date> shareable_template.html out.html <date>`.
 
 - `data/<date>/` — the datasets published to the tracker that day, plus `tracker_text.json` (day notes, overlap findings, decisions, daily log).
 - `source/` — raw pulls the datasets are built from (Sellerboard daily sales and ads, command-center campaigns, search terms and ranks).

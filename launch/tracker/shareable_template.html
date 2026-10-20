@@ -1,0 +1,302 @@
+<title>CooLinens Launch Tracker</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one column dashboard; sticky tab bar; cards in an auto-fit grid. Linen-and-ink palette with a cool slate accent (cooling sheets). */
+:root {
+  --bg: #f6f5f1; --panel: #ffffff; --ink: #1d2328; --muted: #5f6870; --line: #dcdcd4; --accent: #2f5d7c; --accent-2: #c46a3c; --muted-bar: #b9bfc2;
+  --ok: #2d7a4f; --warn: #a86a12; --bad: #b2402f; --ok-bg: #e5f2ea; --warn-bg: #f8eedb; --bad-bg: #f7e4e0; --chip: #eef0ec;
+  --f-display: "Fraunces", Georgia, "Times New Roman", serif; --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif; --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121518; --panel: #1a1f23; --ink: #e7e9e6; --muted: #9aa3aa; --line: #2c3338; --accent: #7fb0d1; --accent-2: #e09068; --muted-bar: #4a535a;
+  --ok: #7fc79c; --warn: #e2b061; --bad: #ee8b79; --ok-bg: #1e3227; --warn-bg: #352a17; --bad-bg: #3a221e; --chip: #232a2f; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #121518; --panel: #1a1f23; --ink: #e7e9e6; --muted: #9aa3aa; --line: #2c3338; --accent: #7fb0d1; --accent-2: #e09068; --muted-bar: #4a535a;
+  --ok: #7fc79c; --warn: #e2b061; --bad: #ee8b79; --ok-bg: #1e3227; --warn-bg: #352a17; --bad-bg: #3a221e; --chip: #232a2f; color-scheme: dark; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.5; }
+.wrap { max-width: 1280px; margin: 0 auto; padding-block: 28px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-direction: column; gap: 24px; }
+header h1 { font-family: var(--f-display); font-weight: 400; font-size: clamp(28px, 4vw, 40px); margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
+.take { margin: 8px 0 0; max-width: 78ch; font-size: 17px; }
+.meta { margin-top: 8px; color: var(--muted); font-size: 13px; display: flex; flex-wrap: wrap; gap: 6px 14px; }
+.meta b { font-weight: 500; color: var(--ink); }
+nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+nav button { appearance: none; border: 0; background: none; font: inherit; font-size: 14px; color: var(--muted); padding: 10px 12px; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; }
+nav button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); font-weight: 500; }
+nav button:focus-visible, .chipbtn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+section[hidden] { display: none !important; }
+section { display: flex; flex-direction: column; gap: 20px; }
+h2 { font-size: 18px; font-weight: 600; margin: 0; }
+.sub { color: var(--muted); font-size: 13px; margin: 4px 0 0; max-width: 85ch; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 16px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 18px; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 10.5rem), 1fr)); gap: 12px; }
+.tile { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.tile .k { font-size: 12px; color: var(--muted); letter-spacing: .02em; }
+.tile .v { font-family: var(--f-display); font-size: 30px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.tile .s { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.actions { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 30rem), 1fr)); gap: 16px; }
+.act { background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--bad); border-radius: 10px; padding: 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.act.p3 { border-left-color: var(--warn); } .act.hold { border-left-color: var(--muted-bar); background: transparent; }
+.act .top { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 12px; color: var(--muted); }
+.act .id { font-family: var(--f-mono); font-weight: 500; color: var(--ink); }
+.act h3 { margin: 0; font-size: 17px; font-weight: 600; text-wrap: balance; }
+.act dl { margin: 0; display: grid; grid-template-columns: 9rem 1fr; gap: 6px 12px; font-size: 14px; }
+.act dt { color: var(--muted); font-size: 12px; padding-top: 2px; text-transform: uppercase; letter-spacing: .04em; }
+.act dd { margin: 0; min-width: 0; }
+@media (max-width: 560px) { .act dl { grid-template-columns: 1fr; } .act dt { padding-top: 6px; } }
+.pill { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 12px; background: var(--chip); white-space: nowrap; }
+.pill.bad { background: var(--bad-bg); color: var(--bad); } .pill.warn { background: var(--warn-bg); color: var(--warn); } .pill.ok { background: var(--ok-bg); color: var(--ok); }
+.tbox { overflow: auto; max-height: 34rem; border: 1px solid var(--line); border-radius: 8px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
+th { position: sticky; top: 0; background: var(--panel); text-align: left; font-weight: 600; padding: 8px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; cursor: pointer; z-index: 1; }
+th[aria-sort="ascending"]::after { content: " ▲"; font-size: 10px; } th[aria-sort="descending"]::after { content: " ▼"; font-size: 10px; }
+td { padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+td.n { text-align: right; white-space: nowrap; }
+td.w { min-width: 15rem; max-width: 32rem; }
+tr:last-child td { border-bottom: 0; }
+.chart { position: relative; width: 100%; min-height: 200px; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart text { fill: var(--muted); font-size: 11px; font-family: var(--f-body); }
+.tip { position: absolute; pointer-events: none; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; box-shadow: 0 4px 14px rgba(0,0,0,.12); padding: 6px 9px; font-size: 12px; white-space: nowrap; z-index: 3; }
+.tip .d { color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 12px; color: var(--muted); }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+.search { font: inherit; font-size: 13px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--ink); max-width: 22rem; }
+.log { display: flex; flex-direction: column; gap: 16px; }
+.entry { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 18px; display: flex; flex-direction: column; gap: 8px; }
+.entry .when { font-size: 12px; color: var(--muted); font-family: var(--f-mono); }
+.entry h3 { margin: 0; font-size: 17px; font-weight: 600; text-wrap: balance; }
+.entry h4 { margin: 6px 0 0; font-size: 13px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.entry ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; }
+.foot { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line); padding-top: 12px; }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>CooLinens Launch Tracker</h1>
+    <p class="take" id="take"></p>
+    <div class="meta"><span><b>Cooling Sheets 4PC</b> · Amazon US</span><span>PPC live 16 Oct 2026</span><span>Owner Shayan Rana</span><span>Data to <b id="asof"></b></span></div>
+  </header>
+  <nav role="tablist" aria-label="Tracker sections">
+    <button role="tab" data-p="overview" aria-selected="true" id="t-overview">Overview</button>
+    <button role="tab" data-p="queen" aria-selected="false" id="t-queen">Queen</button>
+    <button role="tab" data-p="king" aria-selected="false" id="t-king">King check</button>
+    <button role="tab" data-p="overlap" aria-selected="false" id="t-overlap">Overlap &amp; negatives</button>
+    <button role="tab" data-p="stock" aria-selected="false" id="t-stock">Stock</button>
+    <button role="tab" data-p="decisions" aria-selected="false" id="t-decisions">Decisions</button>
+    <button role="tab" data-p="log" aria-selected="false" id="t-log">Daily log</button>
+  </nav>
+
+  <section id="overview">
+    <div><h2>Proposed actions for Erik and Joseph</h2><p class="sub">Each action shows the exact change, why, the evidence, the expected outcome and when we check it. "Act now" items are setup or relevance fixes that do not depend on early results. "Hold" items say what we are deliberately not changing yet, and why.</p></div>
+    <div class="actions" id="actions"></div>
+    <div class="card"><h2>All live sizes</h2><p class="sub">Since ads started (Sellerboard, all ad types). Spend per day uses complete days only. Head-term campaigns have no size and advertise the Queen SKU.</p><div class="tbox"><table id="tb-sizes"></table></div></div>
+    <div class="tiles" id="tiles"></div>
+    <div class="grid">
+      <div class="card"><h2>Units per day</h2><p class="sub">Ad-attributed orders vs units without an ad order. 13–15 Oct had no ads and set the baseline. Faded bars are partial days.</p><div class="legend" id="lg-units"></div><div class="chart" id="ch-units"></div></div>
+      <div class="card"><h2>Ad spend and ad sales per day</h2><p class="sub">All ad types. Ad sales use 7-day attribution, so the newest days still fill in.</p><div class="legend" id="lg-spend"></div><div class="chart" id="ch-spend"></div></div>
+    </div>
+    <div class="grid">
+      <div class="card"><h2>ACoS</h2><p class="sub">Dashed line: 43.7% break-even.</p><div class="chart" id="ch-acos"></div></div>
+      <div class="card"><h2>Ad CVR</h2><p class="sub">Ad orders ÷ ad clicks. Plan expects 8.6%.</p><div class="chart" id="ch-cvr"></div></div>
+      <div class="card"><h2>Ad CTR</h2><p class="sub">Clicks ÷ impressions.</p><div class="chart" id="ch-ctr"></div></div>
+    </div>
+    <div class="card"><h2>Day by day</h2><p class="sub">Sessions reach Sellerboard about two days late.</p><div class="tbox"><table id="tb-daily"></table></div></div>
+    <div class="card"><h2>Units by size per day</h2><div class="tbox"><table id="tb-sizeday"></table></div></div>
+  </section>
+
+  <section id="queen" hidden>
+    <div class="grid">
+      <div class="card"><h2>Queen units per day</h2><p class="sub">Dashed line: 3.0 a day, Queen's average before ads. Hover a day for Queen ad spend.</p><div class="chart" id="ch-q"></div></div>
+      <div class="card"><h2>Queen keyword clicks per day vs plan</h2><p class="sub">Sponsored Products clicks on Queen campaigns. Dashed line: the plan's 13.5 a day.</p><div class="chart" id="ch-qc"></div></div>
+    </div>
+    <div class="card"><h2>Queen search terms</h2><p class="sub">What shoppers typed, since ads started. "Too early" means 0 orders is still likely to be chance at the plan CVR.</p><div class="tbox"><table id="tb-qterms"></table></div></div>
+    <div class="card"><h2>Queen campaigns</h2><p class="sub">Top-of-search share is where ranking sales happen. Budget used = spend ÷ budget over the days live.</p><div class="tbox"><table id="tb-qcamps"></table></div></div>
+    <div class="card"><h2>Queen and head-term organic rank</h2><p class="sub">Crawler reading per day. NR = not ranked, blank = not crawled. Single-day #3 readings that do not repeat are crawl noise.</p><div class="tbox"><table id="tb-qrank"></table></div></div>
+  </section>
+
+  <section id="king" hidden>
+    <div class="grid">
+      <div class="card"><h2>King units per day</h2><p class="sub">Dashed line: 4.3 a day, King's average before ads.</p><div class="chart" id="ch-k"></div></div>
+      <div class="card"><h2>King ad orders per day</h2><p class="sub">Sponsored Products orders on King campaigns. One strong day can make a week look good.</p><div class="chart" id="ch-ko"></div></div>
+    </div>
+    <div class="card"><h2>King search terms</h2><div class="tbox"><table id="tb-kterms"></table></div></div>
+    <div class="card"><h2>King organic rank</h2><div class="tbox"><table id="tb-krank"></table></div></div>
+  </section>
+
+  <section id="overlap" hidden>
+    <div class="card"><h2>Search terms bought by more than one campaign, and proposed negatives</h2><p class="sub">A negative is proposed only where it removes a duplicate path or traffic for another product, never on a relevant discovery term with too few clicks to judge.</p><div class="tbox"><table id="tb-overlap"></table></div></div>
+  </section>
+
+  <section id="stock" hidden>
+    <div class="card"><h2>Can stock carry the push?</h2><p class="sub">Days of cover = FBA units ÷ (current sales a day + the plan's ad orders a day if this child is an ad SKU). Rule: switch to the backup below 21 days.</p><div class="tbox"><table id="tb-stock"></table></div></div>
+  </section>
+
+  <section id="decisions" hidden>
+    <div class="card"><h2>Decisions and their outcomes</h2><p class="sub">Every recommendation, its evidence, the gate it waits for and what happened. Nothing changes in the account until it is approved.</p>
+      <input class="search" id="dec-q" type="search" placeholder="Search decisions" aria-label="Search decisions"><div class="tbox"><table id="tb-dec"></table></div></div>
+  </section>
+
+  <section id="log" hidden><div class="log" id="loglist"></div></section>
+
+  <div class="foot">Sources: Sellerboard (sales, sessions, all ad types, inventory) and the Ecotero command center (Sponsored Products campaigns, search terms, organic rank). Ad sales use 7-day attribution. Read-only analysis; no changes are made to the ad account from this page. Updated daily.</div>
+</div>
+
+<script>
+const D = /*__DATA__*/null;
+(function () {
+  const $ = (s) => document.querySelector(s);
+  const nf = new Intl.NumberFormat('en-US');
+  const money = (v) => v == null || isNaN(v) ? '—' : '$' + Math.round(v).toLocaleString('en-US');
+  const money2 = (v) => v == null || isNaN(v) ? '—' : '$' + Number(v).toFixed(2);
+  const pct = (v) => v == null || isNaN(v) ? '—' : (v * 100).toFixed(1) + '%';
+  const int = (v) => v == null || isNaN(v) ? '—' : nf.format(Math.round(v));
+  const one = (v) => v == null || isNaN(v) ? '—' : Number(v).toFixed(1);
+  const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const day = (s) => { const p = String(s).split('-'); return MON[+p[1] - 1] + ' ' + (+p[2]); };
+  const el = (t, cls, txt) => { const e = document.createElement(t); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+  const pillCls = (v) => /Act now|With A|Problem|Switch|bad/i.test(v) ? 'bad' : /week|Too early|Watch|Waiting|approval|gate/i.test(v) ? 'warn' : /Working|OK|Done|Approved/i.test(v) ? 'ok' : '';
+
+  // ---- tabs
+  const tabs = [...document.querySelectorAll('nav button')];
+  let cur = 'overview';
+  function show(id) { if (!document.getElementById(id)) return; cur = id; tabs.forEach((t) => t.setAttribute('aria-selected', String(t.dataset.p === id)));
+    document.querySelectorAll('.wrap > section').forEach((s) => { s.hidden = s.id !== id; }); try { history.replaceState(null, '', '#' + id); } catch (e) {} draw(); }
+  tabs.forEach((t) => t.addEventListener('click', () => show(t.dataset.p)));
+
+  // ---- table
+  function table(id, rows, cols, keep) {
+    const t = document.getElementById(id); const st = t._s;
+    let r = rows.filter((x) => !keep || keep(x));
+    if (st) r = r.slice().sort((a, b) => { const x = a[st.f], y = b[st.f]; const nx = parseFloat(x), ny = parseFloat(y);
+      const c = (!isNaN(nx) && !isNaN(ny)) ? nx - ny : String(x ?? '').localeCompare(String(y ?? '')); return st.d * c; });
+    const q = (t._q || '').toLowerCase(); if (q) r = r.filter((x) => cols.some((c) => String(x[c.f] ?? '').toLowerCase().includes(q)));
+    t.replaceChildren(); const hr = t.createTHead().insertRow();
+    cols.forEach((c) => { const th = el('th', '', c.l); th.setAttribute('aria-sort', st && st.f === c.f ? (st.d > 0 ? 'ascending' : 'descending') : 'none');
+      th.addEventListener('click', () => { t._s = { f: c.f, d: st && st.f === c.f ? -st.d : (c.fmt ? -1 : 1) }; table(id, rows, cols, keep); }); hr.appendChild(th); });
+    const tb = t.createTBody();
+    r.forEach((x) => { const tr = tb.insertRow(); cols.forEach((c) => { const td = tr.insertCell(); const v = x[c.f];
+      if (c.pill) { if (v) { const s = el('span', 'pill ' + pillCls(v), v); td.appendChild(s); } }
+      else td.textContent = c.fmt ? c.fmt(v === '' || v == null ? null : Number(v)) : (v ?? '');
+      if (c.fmt) td.className = 'n'; if (c.w) td.className = 'w'; }); });
+  }
+
+  // ---- charts (hand-drawn SVG)
+  const NS = 'http://www.w3.org/2000/svg';
+  const S = (t, a) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); return e; };
+  function nice(m) { if (m <= 0) return 1; const p = Math.pow(10, Math.floor(Math.log10(m))); const f = m / p; return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 5 ? 5 : 10) * p; }
+  function tipOn(box, ev, lines) { let t = box.querySelector('.tip'); if (!t) { t = el('div', 'tip'); box.appendChild(t); } t.hidden = false; t.replaceChildren();
+    lines.forEach((l, i) => t.appendChild(el('div', i ? '' : 'd', l))); const r = box.getBoundingClientRect();
+    let x = ev.clientX - r.left + 12; if (x + t.offsetWidth > r.width) x = ev.clientX - r.left - t.offsetWidth - 12; t.style.left = Math.max(0, x) + 'px'; t.style.top = Math.max(0, ev.clientY - r.top - 10) + 'px'; }
+  function tipOff(box) { const t = box.querySelector('.tip'); if (t) t.hidden = true; }
+  function bars(id, rows, series, o = {}) {
+    const box = document.getElementById(id); box.replaceChildren(); const W = Math.max(box.clientWidth, 280), H = 210, m = { t: 10, r: 8, b: 24, l: o.money ? 46 : 32 };
+    const svg = S('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img' }); box.appendChild(svg);
+    const tot = rows.map((r) => o.stack ? series.reduce((a, s) => a + (+r[s.f] || 0), 0) : Math.max(...series.map((s) => +r[s.f] || 0)));
+    const ymax = nice(Math.max(...tot, o.ref || 0) * 1.08), ih = H - m.t - m.b, iw = W - m.l - m.r, bw = iw / rows.length;
+    const y = (v) => m.t + ih - (v / ymax) * ih;
+    for (let i = 0; i <= 4; i++) { const v = ymax * i / 4; svg.appendChild(S('line', { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: 'var(--line)' }));
+      const tx = S('text', { x: m.l - 6, y: y(v) + 4, 'text-anchor': 'end' }); tx.textContent = o.money ? '$' + (v >= 1000 ? (v / 1000) + 'k' : v) : (o.pct ? Math.round(v * 100) + '%' : v); svg.appendChild(tx); }
+    rows.forEach((r, i) => {
+      const cx = m.l + bw * i + bw / 2; const tx = S('text', { x: cx, y: H - 6, 'text-anchor': 'middle' }); tx.textContent = day(r.date); if (rows.length > 8 && i % 2) tx.textContent = ''; svg.appendChild(tx);
+      let acc = 0; const n = o.stack ? 1 : series.length; const w = Math.min(28, (bw * 0.7) / n);
+      series.forEach((s, j) => { const v = +r[s.f] || 0; const x0 = o.stack ? cx - w / 2 : cx - (w * n) / 2 + w * j;
+        const top = y(acc + v), bot = y(acc); svg.appendChild(S('rect', { x: x0, y: top, width: Math.max(1, w - 2), height: Math.max(0, bot - top), rx: 3, fill: s.c, opacity: r.complete === 'no' ? 0.4 : 1 }));
+        if (o.stack) acc += v; });
+      const hit = S('rect', { x: m.l + bw * i, y: m.t, width: bw, height: ih, fill: 'transparent' });
+      hit.addEventListener('mousemove', (ev) => tipOn(box, ev, [day(r.date) + (r.complete === 'no' ? ' (partial)' : '')].concat(series.concat(o.tip || []).map((s) => s.l + ': ' + (s.fmt || int)(+r[s.f])))));
+      hit.addEventListener('mouseleave', () => tipOff(box)); svg.appendChild(hit); });
+    if (o.ref) svg.appendChild(S('line', { x1: m.l, x2: W - m.r, y1: y(o.ref), y2: y(o.ref), stroke: 'var(--muted)', 'stroke-dasharray': '4 3' }));
+  }
+  function line(id, rows, f, o = {}) {
+    const box = document.getElementById(id); box.replaceChildren(); const W = Math.max(box.clientWidth, 260), H = 170, m = { t: 10, r: 12, b: 24, l: 40 };
+    const pts = rows.map((r, i) => ({ i, r, v: r[f] == null ? null : +r[f] })).filter((p) => p.v != null && !isNaN(p.v));
+    const svg = S('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img' }); box.appendChild(svg);
+    const ymax = nice(Math.max(...pts.map((p) => p.v), o.ref || 0) * 1.1), ih = H - m.t - m.b, iw = W - m.l - m.r;
+    const x = (i) => m.l + (rows.length === 1 ? iw / 2 : (iw * i) / (rows.length - 1)); const y = (v) => m.t + ih - (v / ymax) * ih;
+    for (let i = 0; i <= 4; i++) { const v = ymax * i / 4; svg.appendChild(S('line', { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: 'var(--line)' }));
+      const tx = S('text', { x: m.l - 6, y: y(v) + 4, 'text-anchor': 'end' }); tx.textContent = Math.round(v * 100) + '%'; svg.appendChild(tx); }
+    rows.forEach((r, i) => { const tx = S('text', { x: x(i), y: H - 6, 'text-anchor': 'middle' }); tx.textContent = day(r.date); svg.appendChild(tx); });
+    if (o.ref) svg.appendChild(S('line', { x1: m.l, x2: W - m.r, y1: y(o.ref), y2: y(o.ref), stroke: 'var(--muted)', 'stroke-dasharray': '4 3' }));
+    svg.appendChild(S('path', { d: pts.map((p, k) => (k ? 'L' : 'M') + x(p.i) + ' ' + y(p.v)).join(' '), fill: 'none', stroke: 'var(--accent)', 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }));
+    pts.forEach((p) => { const c = S('circle', { cx: x(p.i), cy: y(p.v), r: 4, fill: o.bad && p.v > o.ref ? 'var(--bad)' : 'var(--accent)' }); svg.appendChild(c);
+      const h = S('circle', { cx: x(p.i), cy: y(p.v), r: 13, fill: 'transparent' }); h.addEventListener('mousemove', (ev) => tipOn(box, ev, [day(p.r.date), pct(p.v)])); h.addEventListener('mouseleave', () => tipOff(box)); svg.appendChild(h); });
+  }
+  const legend = (id, items) => { const b = document.getElementById(id); b.replaceChildren(...items.map((s) => { const sp = el('span'); const i = el('i'); i.style.background = s.c; sp.append(i, document.createTextNode(s.l)); return sp; })); };
+
+  // ---- static parts
+  const latest = D.log.slice().sort((a, b) => b.date.localeCompare(a.date))[0];
+  $('#take').textContent = latest.headline; $('#asof').textContent = day(D.asof);
+  const ads = D.daily.filter((r) => r.phase !== 'Before ads'), pre = D.daily.filter((r) => r.phase === 'Before ads');
+  const sum = (rows, k) => rows.reduce((a, r) => a + (+r[k] || 0), 0);
+  const full = ads.filter((r) => r.complete === 'yes');
+  const T = { units: sum(ads, 'units'), sales: sum(ads, 'sales'), spend: sum(ads, 'ad_spend'), orders: sum(ads, 'ad_orders'), adsales: sum(ads, 'ad_sales'), clicks: sum(ads, 'ad_clicks') };
+  const tiles = [['Units sold since ads started', int(T.units), 'Pre-ads baseline ' + one(sum(pre, 'units') / (pre.length || 1)) + ' / day'],
+    ['Ad spend since ads started', money(T.spend), 'Plan $138 / day · live ' + money(sum(full, 'ad_spend') / (full.length || 1)) + ' / day'],
+    ['Ad orders', int(T.orders), 'CVR ' + pct(T.orders / T.clicks)], ['ACoS (ads)', pct(T.spend / T.adsales), 'Break-even 43.7%'],
+    ['TACoS (ads ÷ all sales)', pct(T.spend / T.sales), 'All sales ' + money(T.sales)], ['Units without an ad order', int(T.units - T.orders), 'Share ' + pct((T.units - T.orders) / T.units)]];
+  $('#tiles').replaceChildren(...tiles.map(([k, v, s]) => { const d = el('div', 'tile'); d.append(el('span', 'k', k), el('span', 'v', v), el('span', 's', s)); return d; }));
+  $('#actions').replaceChildren(...D.actions.map((a) => {
+    const art = el('article', 'act' + (/Hold/.test(a.priority) ? ' hold' : /week/.test(a.priority) ? ' p3' : '')); art.id = 'action-' + a.id;
+    const top = el('div', 'top'); top.append(el('span', 'id', a.id), el('span', 'pill ' + pillCls(a.priority), a.priority), el('span', '', a.size), el('span', 'pill ' + pillCls(a.status), a.status), el('span', '', 'Decision ' + a.ref));
+    const dl = el('dl'); [['What changes', a.change], ['Why', a.why], ['Evidence', a.evidence], ['Expected outcome', a.expected], ['How we check', a.check], ['Why it is safe', a.safe]]
+      .forEach(([k, v]) => { if (v) dl.append(el('dt', '', k), el('dd', '', v)); });
+    art.append(top, el('h3', '', a.action), dl); return art; }));
+  const logBox = $('#loglist');
+  D.log.slice().sort((a, b) => b.date.localeCompare(a.date)).forEach((e) => { const a = el('article', 'entry'); a.append(el('div', 'when', day(e.date) + ' · ' + (e.kind || 'Daily update')), el('h3', '', e.headline));
+    [['Results', e.results], ['What we saw', e.observations], ['Recommended actions', e.actions], ['Why', e.reasoning], ['Decisions reviewed', e.followups]].forEach(([t, x]) => {
+      if (!x) return; a.appendChild(el('h4', '', t)); const ul = el('ul'); String(x).split('\n').filter(Boolean).forEach((li) => ul.appendChild(el('li', '', li))); a.appendChild(ul); }); logBox.appendChild(a); });
+  $('#dec-q').addEventListener('input', (e) => { $('#tb-dec')._q = e.target.value; draw(); });
+
+  function rankCols(rows) { const ds = Object.keys(rows[0] || {}).filter((k) => /^\d{4}-\d{2}-\d{2}$/.test(k)).sort();
+    return [{ f: 'keyword', l: 'Keyword' }, { f: 'plan', l: 'Plan' }, { f: 'target_rank', l: 'Target', fmt: int }].concat(ds.map((d) => ({ f: d, l: day(d) }))); }
+  const termCols = [{ f: 'term', l: 'Search term' }, { f: 'plan', l: 'Plan' }, { f: 'clicks', l: 'Clicks', fmt: int }, { f: 'orders', l: 'Orders', fmt: int }, { f: 'spend', l: 'Spend', fmt: money2 },
+    { f: 'sales', l: 'Sales', fmt: money }, { f: 'acos', l: 'ACoS', fmt: pct }, { f: 'rank', l: 'Organic rank' }, { f: 'read', l: 'Read', pill: true }];
+
+  function draw() {
+    if (cur === 'overview') {
+      table('tb-sizes', D.sizes, [{ f: 'size', l: 'Size' }, { f: 'campaigns', l: 'Campaigns', fmt: int }, { f: 'ad_sku_live', l: 'Ad SKU now' }, { f: 'ad_sku_recommended', l: 'Ad SKU proposed' },
+        { f: 'spend_day', l: 'Spend / day', fmt: money }, { f: 'plan_spend_day', l: 'Plan / day', fmt: money }, { f: 'ad_clicks', l: 'Clicks', fmt: int }, { f: 'ad_orders', l: 'Ad orders', fmt: int },
+        { f: 'acos', l: 'ACoS', fmt: pct }, { f: 'cvr', l: 'CVR', fmt: pct }, { f: 'units_day_before', l: 'Units/day before', fmt: one }, { f: 'units_day_after', l: 'Units/day since', fmt: one },
+        { f: 'rank_note', l: 'Rank', w: true }, { f: 'read', l: 'Read', w: true }]);
+      const s1 = [{ f: 'ad_orders', l: 'Ad orders', c: 'var(--accent)' }, { f: 'non_ad_units', l: 'Units without an ad order', c: 'var(--muted-bar)' }];
+      legend('lg-units', s1); bars('ch-units', D.daily, s1, { stack: true });
+      const s2 = [{ f: 'ad_spend', l: 'Ad spend', c: 'var(--accent-2)', fmt: money }, { f: 'ad_sales', l: 'Ad sales', c: 'var(--accent)', fmt: money }];
+      legend('lg-spend', s2); bars('ch-spend', D.daily, s2, { money: true });
+      line('ch-acos', ads, 'acos', { ref: 0.437, bad: true }); line('ch-cvr', ads, 'cvr', { ref: 0.086 }); line('ch-ctr', ads, 'ctr');
+      table('tb-daily', D.daily, [{ f: 'date', l: 'Date' }, { f: 'phase', l: 'Phase' }, { f: 'units', l: 'Units', fmt: int }, { f: 'sales', l: 'Sales', fmt: money }, { f: 'sessions', l: 'Sessions', fmt: int },
+        { f: 'ad_spend', l: 'Ad spend', fmt: money }, { f: 'ad_impressions', l: 'Impr.', fmt: int }, { f: 'ad_clicks', l: 'Clicks', fmt: int }, { f: 'ctr', l: 'CTR', fmt: pct }, { f: 'cpc', l: 'CPC', fmt: money2 },
+        { f: 'ad_orders', l: 'Ad orders', fmt: int }, { f: 'cvr', l: 'CVR', fmt: pct }, { f: 'ad_sales', l: 'Ad sales', fmt: money }, { f: 'acos', l: 'ACoS', fmt: pct }, { f: 'tacos', l: 'TACoS', fmt: pct },
+        { f: 'non_ad_units', l: 'Units w/o ad order', fmt: int }, { f: 'note', l: 'What happened', w: true }]);
+      table('tb-sizeday', D.size_daily, [{ f: 'date', l: 'Date' }, { f: 'size', l: 'Size' }, { f: 'units', l: 'Units', fmt: int }, { f: 'ad_spend', l: 'Ad spend (all types)', fmt: money },
+        { f: 'sp_clicks', l: 'SP clicks', fmt: int }, { f: 'sp_orders', l: 'SP orders', fmt: int }, { f: 'sp_spend', l: 'SP spend', fmt: money }]);
+    }
+    if (cur === 'queen' || cur === 'king') {
+      const Z = cur === 'queen' ? 'Queen' : 'King'; const rows = D.size_daily.filter((r) => r.size === Z);
+      bars(cur === 'queen' ? 'ch-q' : 'ch-k', rows, [{ f: 'units', l: Z + ' units', c: 'var(--accent)' }], { ref: Z === 'Queen' ? 3.0 : 4.3, tip: [{ f: 'ad_spend', l: Z + ' ad spend', fmt: money }, { f: 'sp_orders', l: 'SP orders', fmt: int }] });
+      const live = rows.filter((r) => r.phase !== 'Before ads');
+      if (cur === 'queen') {
+        bars('ch-qc', live, [{ f: 'sp_clicks', l: 'Queen SP clicks', c: 'var(--accent)' }], { ref: 13.5, tip: [{ f: 'sp_spend', l: 'SP spend', fmt: money }] });
+        table('tb-qterms', D.queen_terms, termCols);
+        table('tb-qcamps', D.queen_campaigns, [{ f: 'campaign', l: 'Campaign' }, { f: 'objective', l: 'Objective' }, { f: 'budget', l: 'Budget / day', fmt: money }, { f: 'budget_used', l: 'Budget used', fmt: pct },
+          { f: 'tos_share', l: 'Top-of-search share', fmt: pct }, { f: 'impressions', l: 'Impr.', fmt: int }, { f: 'clicks', l: 'Clicks', fmt: int }, { f: 'orders', l: 'Orders', fmt: int }, { f: 'spend', l: 'Spend', fmt: money2 }, { f: 'read', l: 'Read', w: true }]);
+        table('tb-qrank', D.ranks, rankCols(D.ranks), (r) => r.size === 'Queen' || r.size === 'No size');
+      } else {
+        bars('ch-ko', live, [{ f: 'sp_orders', l: 'King SP orders', c: 'var(--accent)' }], { tip: [{ f: 'sp_spend', l: 'SP spend', fmt: money }, { f: 'sp_clicks', l: 'SP clicks', fmt: int }] });
+        table('tb-kterms', D.king_terms, termCols); table('tb-krank', D.ranks, rankCols(D.ranks), (r) => r.size === 'King');
+      }
+    }
+    if (cur === 'overlap') table('tb-overlap', D.overlap, [{ f: 'item', l: 'Search term / campaign' }, { f: 'served_by', l: 'Served by', w: true }, { f: 'clicks', l: 'Clicks', fmt: int }, { f: 'orders', l: 'Orders', fmt: int },
+      { f: 'spend', l: 'Spend', fmt: money2 }, { f: 'finding', l: 'Finding', w: true }, { f: 'proposal', l: 'Proposed change', w: true }, { f: 'timing', l: 'When', pill: true }, { f: 'protects', l: 'Why it is safe', w: true }]);
+    if (cur === 'stock') table('tb-stock', D.stock, [{ f: 'size', l: 'Size' }, { f: 'colour', l: 'Colour' }, { f: 'sku', l: 'SKU' }, { f: 'role', l: 'Role' }, { f: 'fba', l: 'FBA units', fmt: int },
+      { f: 'sales_day', l: 'Sales / day now', fmt: one }, { f: 'push_orders_day', l: 'Plan ad orders / day', fmt: one }, { f: 'cover_days_push', l: 'Days of cover in push', fmt: int }, { f: 'status', l: 'Status', pill: true }]);
+    if (cur === 'decisions') table('tb-dec', D.decisions, [{ f: 'id', l: '#' }, { f: 'raised', l: 'Raised' }, { f: 'area', l: 'Area' }, { f: 'decision', l: 'Recommendation', w: true }, { f: 'evidence', l: 'Evidence', w: true },
+      { f: 'type', l: 'Type', pill: true }, { f: 'gate', l: 'Gate before acting', w: true }, { f: 'status', l: 'Status', pill: true }, { f: 'review_on', l: 'Review on' }, { f: 'outcome', l: 'Outcome', w: true }]);
+  }
+  let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(draw, 150); });
+  const h = (location.hash || '').slice(1); if (h && document.getElementById(h) && tabs.some((t) => t.dataset.p === h)) show(h); else draw();
+})();
+</script>
