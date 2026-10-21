@@ -161,9 +161,9 @@
    "evidence": "Graphite: 400 units, #1 Queen colour for both sister brands; the Batch 2 gate is measured on Queen Graphite. White: 197 units. This week's colour CVRs (White 1/38, Graphite 3/28) are too small to decide on alone.",
    "type": "Act now (setup)",
    "gate": "None: plan SKU; check cover the same day.",
-   "status": "Proposed",
+   "status": "Not applied yet (checked 21 Oct)",
    "review_on": "2026-10-27",
-   "outcome": ""
+   "outcome": "21 Oct check: not applied. Queen Graphite had $0 ad spend on 20–21 Oct; the Queen ads still run on Queen White (Queen White SP spend $101 on 20–21 Oct)."
   },
   {
    "id": "D03",
@@ -185,9 +185,9 @@
    "evidence": "About $35 of clicks on searches for other products or our sister brand.",
    "type": "Act now (relevance)",
    "gate": "None: relevance decided, not performance.",
-   "status": "Proposed",
+   "status": "Not applied yet (checked 21 Oct)",
    "review_on": "2026-10-27",
-   "outcome": ""
+   "outcome": "21 Oct check: not applied. On 20 Oct ads still paid for 'sleephoria', 'cooling blanket' and 'purple cooling comforter' (3 clicks, $3.52)."
   },
   {
    "id": "D05",
@@ -197,9 +197,9 @@
    "evidence": "Brand searches now show pillowcase ads (7 clicks).",
    "type": "Act now (setup)",
    "gate": "None.",
-   "status": "Proposed",
+   "status": "Not applied yet (checked 21 Oct)",
    "review_on": "2026-10-27",
-   "outcome": ""
+   "outcome": "21 Oct check: not applied. No cooling-sheet branded campaign among the 64 live CLCS4 campaigns; 'coolinens' still served by the existing ads (3 clicks, 1 order on 20 Oct)."
   },
   {
    "id": "D06",
@@ -281,9 +281,9 @@
    "evidence": "Live Full Cream and Cal King Regal Purple have ~30 units each; Full Midnight Black runs out ~Dec 4 at the plan's pace, so Cool Grey (94) is the plan colour.",
    "type": "This week (low risk)",
    "gate": "None; check cover.",
-   "status": "Proposed",
+   "status": "Not applied yet (checked 21 Oct)",
    "review_on": "2026-10-27",
-   "outcome": ""
+   "outcome": "21 Oct check: not applied. Full Cool Grey, Twin Graphite and Cal King Graphite had $0 ad spend on 20–21 Oct; Full Cream, Twin White and Cal King Regal Purple are still the advertised colours."
   },
   {
    "id": "D00",
@@ -343,7 +343,7 @@
    "gate": "Passed on 21 Oct (87 clicks).",
    "status": "For approval",
    "review_on": "2026-10-27",
-   "outcome": ""
+   "outcome": "21 Oct: waits on A1 (Queen ads to Graphite), which is not applied yet."
   },
   {
    "id": "D17",
@@ -457,7 +457,8 @@
     "King ranks hold: 'cooling sheets king size' median #3 over 17–21 Oct. 'king sheets cooling' read #3 for four days and #76 on 21 Oct (likely crawl noise; check tomorrow). 'king size cooling sheets' slipped to #40–44.",
     "Queen long-tails stay on page 1: 'cooling sheet set queen' and 'queen size cooling sheets' at #3, 'queen sheets cooling' #7. 'cooling sheets' drifts #26 → #31 → #36.",
     "Rival-page ads: 47 clicks, 0 orders, $105 across five campaigns. That is a 5% chance at 6% CVR, so the test reached its gate before the two-week read.",
-    "Best converters so far: King Tail 13 (5 orders on 20 clicks, ACoS 12%), SB collections (2 of 13 and 2 of 12, ACoS 30–34%), King rival video (3 of 16, ACoS 24%)."
+    "Best converters so far: King Tail 13 (5 orders on 20 clicks, ACoS 12%), SB collections (2 of 13 and 2 of 12, ACoS 30–34%), King rival video (3 of 16, ACoS 24%).",
+    "Changes check (21 Oct): none of the changes proposed on 20 Oct are live yet: A1 Queen ads to Graphite, A4 branded campaign, A5 relevance negatives, A6 smaller-size colours. Queen Graphite, Full Cool Grey, Twin Graphite and Cal King Graphite had $0 ad spend on 20–21 Oct, and irrelevant searches still took paid clicks on 20 Oct."
    ],
    "actions": [
     "Top priority: A1, switch Queen ads to Queen Graphite (evidence now passes the gate; D16).",
@@ -468,9 +469,11 @@
    "reasoning": [
     "Queen and the rival pages now pass the click-count gate. Queen's fix is the ad colour, not a spend cut: its keywords and rank work continue.",
     "King is close to break-even overall (ACoS 46%), so one weak day does not change the hold.",
-    "Spend changes wait for the light-push read (~Nov 2), as Joseph's CL-PU8 decided."
+    "Spend changes wait for the light-push read (~Nov 2), as Joseph's CL-PU8 decided.",
+    "Every day A1 waits, Queen SP keeps spending about $53/day (16–20 Oct average) on the Queen White listing, which converts 3 of 87 clicks. The other three are small in money but A4 and A5 are relevance fixes with no evidence gate, so they need no further data."
    ],
    "followups": [
+    "Confirm who applies A1, A4, A5 and A6 and by when; re-check the live account in tomorrow's update.",
     "D01 / A2: no change; the order date is not yet confirmed (expected Oct 23). The head campaign is still Conversion, fixed bids, Top-of-Search +50%.",
     "D02 / A1: not applied (ads still Queen White). Gate evidence now met: 3 orders on 87 clicks (D16).",
     "D03 / A3, D04 / A5, D05 / A4, D12 / A6, D13 / A7: not applied; still for approval.",
@@ -571,7 +574,7 @@
    "check": "27 Oct: Queen CVR and Queen units/day vs the 3.0 baseline. 3 Nov: Batch 2 gate.",
    "safe": "Only the product shown changes. The White ad stays paused, not deleted, and can be switched back in one step.",
    "ref": "D02",
-   "status": "For approval"
+   "status": "Not applied yet (checked 21 Oct)"
   },
   {
    "id": "A2",
@@ -627,7 +630,7 @@
    "check": "27 Oct: brand clicks and orders.",
    "safe": "Brand searches are ours, so no discovery is lost.",
    "ref": "D05",
-   "status": "For approval"
+   "status": "Not applied yet (checked 21 Oct)"
   },
   {
    "id": "A5",
@@ -641,7 +644,7 @@
    "check": "Next search-term report.",
    "safe": "Only clearly unrelated searches are blocked.",
    "ref": "D04",
-   "status": "For approval"
+   "status": "Not applied yet (checked 21 Oct)"
   },
   {
    "id": "A7",
@@ -669,7 +672,7 @@
    "check": "27 Oct.",
    "safe": "Same keywords, bids and budgets; small sizes on capped spend.",
    "ref": "D12",
-   "status": "For approval"
+   "status": "Not applied yet (checked 21 Oct)"
   },
   {
    "id": "H1",

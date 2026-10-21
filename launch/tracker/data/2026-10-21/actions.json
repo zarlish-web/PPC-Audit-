@@ -11,7 +11,7 @@
 "check": "27 Oct: Queen CVR and Queen units/day vs the 3.0 baseline. 3 Nov: Batch 2 gate.",
 "safe": "Only the product shown changes. The White ad stays paused, not deleted, and can be switched back in one step.",
 "ref": "D02",
-"status": "For approval"
+"status": "Not applied yet (checked 21 Oct)"
 },
 {
 "id": "A2",
@@ -67,7 +67,7 @@
 "check": "27 Oct: brand clicks and orders.",
 "safe": "Brand searches are ours, so no discovery is lost.",
 "ref": "D05",
-"status": "For approval"
+"status": "Not applied yet (checked 21 Oct)"
 },
 {
 "id": "A5",
@@ -81,7 +81,7 @@
 "check": "Next search-term report.",
 "safe": "Only clearly unrelated searches are blocked.",
 "ref": "D04",
-"status": "For approval"
+"status": "Not applied yet (checked 21 Oct)"
 },
 {
 "id": "A7",
@@ -109,7 +109,7 @@
 "check": "27 Oct.",
 "safe": "Same keywords, bids and budgets; small sizes on capped spend.",
 "ref": "D12",
-"status": "For approval"
+"status": "Not applied yet (checked 21 Oct)"
 },
 {
 "id": "H1",

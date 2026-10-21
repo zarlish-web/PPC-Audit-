@@ -158,7 +158,7 @@ const D = /*__DATA__*/null;
   const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const day = (s) => { const p = String(s).split('-'); return MON[+p[1] - 1] + ' ' + (+p[2]); };
   const el = (t, cls, txt) => { const e = document.createElement(t); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
-  const pillCls = (v) => /Act now|With A|Problem|Switch|bad/i.test(v) ? 'bad' : /week|Too early|Watch|Waiting|approval|gate|Question|Before/i.test(v) ? 'warn' : /Working|OK|Done|Approved/i.test(v) ? 'ok' : '';
+  const pillCls = (v) => /Act now|With A|Problem|Switch|Not applied|bad/i.test(v) ? 'bad' : /week|Too early|Watch|Waiting|approval|gate|Question|Before/i.test(v) ? 'warn' : /Working|OK|Done|Approved/i.test(v) ? 'ok' : '';
 
   // ---- tabs
   const tabs = [...document.querySelectorAll('nav button')];
