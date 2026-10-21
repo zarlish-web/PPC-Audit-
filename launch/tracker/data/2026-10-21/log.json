@@ -1,0 +1,62 @@
+[
+{
+"date": "2026-10-16",
+"kind": "Day 1 (reconstructed)",
+"headline": "Ads start: $67 spend, 4 ad orders at 19% ACoS; total units in line with baseline.",
+"results": "Units 10 (baseline 9.7) \u00b7 sales $907 \u00b7 ad spend $67 \u00b7 23 clicks \u00b7 CTR 5.3% \u00b7 4 ad orders \u00b7 CVR 17% \u00b7 ACoS 19%.",
+"observations": "Only Sponsored Products live; impressions small (432) as campaigns ramp.",
+"actions": null,
+"reasoning": null,
+"followups": null
+},
+{
+"date": "2026-10-17",
+"kind": "Day 2 (reconstructed)",
+"headline": "Spend almost triples as Sponsored Brands Video goes live; 3 ad orders, ACoS 78%.",
+"results": "Units 15 \u00b7 sales $1,331 \u00b7 ad spend $187 \u00b7 61 clicks \u00b7 CTR 2.3% \u00b7 3 ad orders \u00b7 CVR 4.9% \u00b7 ACoS 78%.",
+"observations": "CTR halves as impressions grow 6\u00d7: normal as ads reach wider placements.\nKing units jump to 10 (baseline 4.3); Queen 2.",
+"actions": null,
+"reasoning": null,
+"followups": null
+},
+{
+"date": "2026-10-18",
+"kind": "Day 3 (reconstructed)",
+"headline": "Best day: 30 units and 14 ad orders at 36% ACoS, driven by King.",
+"results": "Units 30 \u00b7 sales $2,679 \u00b7 ad spend $470 \u00b7 142 clicks \u00b7 CTR 1.5% \u00b7 14 ad orders \u00b7 CVR 9.9% \u00b7 ACoS 36%.",
+"observations": "King 19 units and 9 King ad orders; 'cooling sheets king size' alone brought several.\nQueen 4 units on $176 of Queen ad spend.\nAll ad types now live: Sponsored Brands, SBV broad, Sponsored Display.",
+"actions": null,
+"reasoning": null,
+"followups": null
+},
+{
+"date": "2026-10-19",
+"kind": "Day 4 (reconstructed)",
+"headline": "Spend steady at $435 but ad orders fall to 8 (ACoS 68%); King back to baseline.",
+"results": "Units 14 \u00b7 sales $1,191 \u00b7 ad spend $435 \u00b7 127 clicks \u00b7 CTR 1.5% \u00b7 8 ad orders \u00b7 CVR 6.3% \u00b7 ACoS 68%.",
+"observations": "King 4 units on $221 of King ad spend; Queen 5 units.\nThis day's orders are still being attributed (7-day window), so ACoS will likely improve.",
+"actions": null,
+"reasoning": null,
+"followups": null
+},
+{
+"date": "2026-10-20",
+"kind": "Initial assessment",
+"headline": "Day 5: ads add about 7 units a day, almost all in King. Queen, the priority size, has not moved yet; fix its setup before judging its results.",
+"results": "16\u201319 Oct: 69 units vs a 39-unit baseline (9.7/day \u00d7 4) \u2192 about 30 extra units, matching the 29 ad orders. Ads look incremental, not replacing organic sales.\nAd spend $1,158 \u00b7 29 ad orders \u00b7 ACoS 46% (break-even 43.7%) \u00b7 CVR 8.2% (plan 8.6%) \u00b7 TACoS 13%.\nQueen 14 units after ads vs 9 in the 3 days before (3.5/day vs 3.0/day). King 37 vs 13 (9.3/day vs 4.3/day).\nStock carries a Queen push: Queen Graphite 400 units \u2248 250 days at the plan's 1.2 ad orders/day plus current sales; all Queen colours 1,810 units.",
+"observations": "Plan alignment (Joseph's full-year canvas, read Oct 20): every size is on a light push from Oct 19 (Queen 50%, King 35%, Full/Twin 60%), Cal King Oct 26, the head Nov 30; the four head keywords stay on profit until the new order is dated; top-of-search bids were raised to the ranking ceilings on purpose; rival pages, SB, video and Display are deliberate tests. Actions above were revised to fit those rules.\nQueen's main keyword 'cooling sheets queen' (organic #68) sits on Conversion with down-only bids and reaches top of search 0.21% of the time. The plan had it as a Ranking push. That, not budget, is why Queen gets so little top-of-search traffic.\nQueen rank: 'cooling sheets queen' #76 on 15 Oct \u2192 #68 on 20 Oct (target #15). Smaller Queen phrases reached page 1 on most of the last three days ('cooling sheet set queen', 'queen size cooling sheets', 'queen sheet set cooling'). Single-day #3 readings that do not repeat are crawl noise.\nQueen converts 1 order on 50 Sponsored Products clicks. That happens 6% of the time at plan CVR, so it is a warning, not yet proof; ads point to the White listing at $87.99 vs the plan's $79.99.\nKing's result depends on one day (18 Oct). Without it, King ACoS is 87%.\nRival-page ads: 29 clicks, 0 orders, a 17% chance at 6% CVR. Too early to judge, but they also show on unrelated searches (silk, tencel, comforters).\nOverlap is small: 6 of 89 search terms were bought by two of our campaigns; Sponsored Brands/Video do not compete in the Sponsored Products auction.",
+"actions": "For Erik and Joseph (Overview \u2192 Proposed actions): A1 Queen ads to Queen Graphite; A2 question: switch 'cooling sheets queen' to ranking on the order date; A8 question: who takes top of search on shared Queen searches; A3 tail negatives with A2; A4 branded campaign; A5 unrelated-search negatives; A7 hold Cal King's push to the bridge; A6 plan colours for Full (Cool Grey), Twin and Cal King.\nHold: King to 27 Oct (H1); the plan's live tests to their two-week read (H2). Light-push read for the push-cost calibration by ~Nov 2 (D14).",
+"reasoning": "Setup fixes restore the live plan and do not depend on four days of noisy data.\nPauses and cuts wait for click counts at which 0 orders or high ACoS is unlikely to be chance.\nQueen gets the first fix because it is the priority size and its problem is structural (objective, bid type, ad colour), not budget.\nKing is left alone until a full week confirms it.",
+"followups": null
+},
+{
+"date": "2026-10-21",
+"kind": "Daily update",
+"headline": "Step 2's first full day spent $636 and sold 21 units; Queen had its best day (8). But Queen's own ads have now passed the gate for under-converting (3 orders on 87 clicks), so the Queen ad switch to Graphite (A1) moves to the top.",
+"results": "Oct 20: 21 units ($1,883) vs 14 on Oct 19 and 9.7/day before ads. Ads $636 all types (SP $501, SB $43, video $92); 185 clicks; 7 ad orders so far (still being attributed).\nFive full days with ads (16\u201320 Oct): 90 units = 18.0/day vs 9.7 before ads. 36 ad orders, so 54 units (10.8/day) came without an ad: ads are adding sales, not replacing organic ones.\nAds 16\u201320 Oct: $1,777, 542 clicks, 36 orders, $3,128 ad sales, ACoS 56.8% (break-even 39.1%), TACoS 22.2%. Oct 19\u201320 orders are still filling in.\nQueen: 8 units on Oct 20 (best day); 4.4/day over 16\u201320 vs 3.0 before ads. Queen SP campaigns: 87 clicks, 3 orders, $266 (ACoS 101%).\nKing: 11 units on Oct 20 after 4 on Oct 19; 9.6/day vs 4.3 before ads. King SP: 163 clicks, 15 orders, ACoS 46%.\nFull 2.6/day vs 1.3 before ads; Twin 0.8 vs 1.0; Cal King 0.6 vs 0.\nFBA stock 21 Oct: 4,352 units (Queen 1,804, King 1,092, Full 597, Twin 426, Cal King 433).",
+"observations": "Step 2 delivered $636 on its first full day: 65% of the ~$980 estimate and 33% of the $1,913 budgets. Impressions doubled (9.3k \u2192 19.3k) but CTR fell from 1.40% to 0.96%. Budgets are still not the limit.\nQueen's ads under-convert: 3 orders on 87 SP clicks (3.4%), a 5% chance at the plan's 8.8%. Queen's extra units are mostly non-ad. Most Queen ads show Queen White.\nQueen head: the first order on 'cooling sheets queen' came on Oct 20 (10 clicks on 20\u201321 Oct). Sleephoria took only 1 click there on 20\u201321 Oct. Organic #68 \u2192 #75.\nKing ranks hold: 'cooling sheets king size' median #3 over 17\u201321 Oct. 'king sheets cooling' read #3 for four days and #76 on 21 Oct (likely crawl noise; check tomorrow). 'king size cooling sheets' slipped to #40\u201344.\nQueen long-tails stay on page 1: 'cooling sheet set queen' and 'queen size cooling sheets' at #3, 'queen sheets cooling' #7. 'cooling sheets' drifts #26 \u2192 #31 \u2192 #36.\nRival-page ads: 47 clicks, 0 orders, $105 across five campaigns. That is a 5% chance at 6% CVR, so the test reached its gate before the two-week read.\nBest converters so far: King Tail 13 (5 orders on 20 clicks, ACoS 12%), SB collections (2 of 13 and 2 of 12, ACoS 30\u201334%), King rival video (3 of 16, ACoS 24%).",
+"actions": "Top priority: A1, switch Queen ads to Queen Graphite (evidence now passes the gate; D16).\nNew A9 (question for Joseph): rival-page test reached its gate early; stop-loss now, or a ~30% bid cut to the two-week read.\nStill for approval: A3, A4, A5, A6, A7 (Cal King's plan push date is Oct 26). Questions: A2 (order date expected Oct 23), A8.\nHold: King to 27 Oct (H1); other tests to their two-week read (H2).",
+"reasoning": "Queen and the rival pages now pass the click-count gate. Queen's fix is the ad colour, not a spend cut: its keywords and rank work continue.\nKing is close to break-even overall (ACoS 46%), so one weak day does not change the hold.\nSpend changes wait for the light-push read (~Nov 2), as Joseph's CL-PU8 decided.",
+"followups": "D01 / A2: no change; the order date is not yet confirmed (expected Oct 23). The head campaign is still Conversion, fixed bids, Top-of-Search +50%.\nD02 / A1: not applied (ads still Queen White). Gate evidence now met: 3 orders on 87 clicks (D16).\nD03 / A3, D04 / A5, D05 / A4, D12 / A6, D13 / A7: not applied; still for approval.\nD06 / H1: King 163 clicks, 15 orders, ACoS 46%; holding to 27 Oct.\nD07: superseded by D17 / A9 (rival pages 0 on 47 clicks).\nD08: Auto 15 clicks, 0 orders, $11.69; low cost, keep.\nD09: hold to 27 Oct. D10: sample reached; review after the Graphite switch.\nD11: Queen rival video 0 on 23 (15% chance, under the gate); King rival video 3 on 16.\nD14: Oct 20 delivered $636 vs the ~$980 estimate; read continues to ~Nov 2.\nD15 / A8: Sleephoria eased on 20\u201321 Oct (1 click); still open for the family page."
+}
+]

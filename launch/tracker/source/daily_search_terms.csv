@@ -91,44 +91,96 @@ date,term,relevancy,searchVolume,impressions,clicks,orders,spend,sales,rank,synt
 2026-10-18,bed cooling system,Not Relevant,2936,6,1,0,0.83,0,,
 2026-10-18,cool linens for hot sleepers,Highly Relevant,,1,1,0,0.72,0,,
 2026-10-18,under sheets bed fan,Lower Relevant,,1,1,0,0.72,0,,
-2026-10-19,cooling sheets king,Highly Relevant,2630,590,13,0,63.47,0,17,Cooling|King
-2026-10-19,cooling sheets,Highly Relevant,77377,1276,11,1,28.86,87.99,26,Cooling
-2026-10-19,king size sheets set cooling,Highly Relevant,3492,50,4,0,24.9,0,3,Cooling|King
-2026-10-19,cooling sheets king size,Highly Relevant,19413,1796,9,1,24.73,39.99,3,Cooling|King
-2026-10-19,cooling sheets full size,Highly Relevant,6228,70,5,1,23.73,74.99,19,Cooling|Full
-2026-10-19,king size cooling sheets,Highly Relevant,4967,113,3,0,17.84,0,3,Cooling|King
-2026-10-19,full size cooling sheets,Highly Relevant,1735,34,3,1,13.09,74.99,35,Cooling|Full
-2026-10-19,queen cooling sheets,Highly Relevant,4728,95,2,0,11.05,0,17,Cooling|Queen
-2026-10-19,king sheets cooling,Highly Relevant,4954,152,2,0,10.96,0,3,Cooling|King
-2026-10-19,cooling sheets twin,Highly Relevant,2976,51,2,0,7.52,0,NR,Cooling|Twin
-2026-10-19,king cooling sheets,Highly Relevant,3271,94,1,0,6.75,0,3,Cooling|King
-2026-10-19,cooling bed sheets,Highly Relevant,12715,67,3,0,6.66,0,49,Cooling
+2026-10-19,cooling sheets king,Highly Relevant,2630,606,13,0,63.47,0,17,Cooling|King
+2026-10-19,cooling sheets,Highly Relevant,77377,1321,14,1,36.61,87.99,26,Cooling
+2026-10-19,cooling sheets king size,Highly Relevant,19413,1837,11,1,29.23,39.99,3,Cooling|King
+2026-10-19,king size sheets set cooling,Highly Relevant,3492,51,4,0,24.9,0,3,Cooling|King
+2026-10-19,cooling sheets full size,Highly Relevant,6228,76,5,1,23.73,74.99,19,Cooling|Full
+2026-10-19,king size cooling sheets,Highly Relevant,4967,121,3,0,17.84,0,3,Cooling|King
+2026-10-19,king cooling sheets,Highly Relevant,3271,99,2,0,13.5,0,3,Cooling|King
+2026-10-19,full size cooling sheets,Highly Relevant,1735,30,3,1,13.09,74.99,35,Cooling|Full
+2026-10-19,queen cooling sheets,Highly Relevant,4728,92,2,0,11.05,0,17,Cooling|Queen
+2026-10-19,king sheets cooling,Highly Relevant,4954,150,2,0,10.96,0,3,Cooling|King
+2026-10-19,cooling sheets twin,Highly Relevant,2976,46,2,0,7.52,0,NR,Cooling|Twin
+2026-10-19,cooling bed sheets,Highly Relevant,12715,81,3,0,6.66,0,49,Cooling
 2026-10-19,cooling bed sheets queen,Highly Relevant,2976,18,1,0,5.14,0,5,Cooling|Queen
-2026-10-19,cooling bed sheets king,Highly Relevant,1961,73,1,0,4.62,0,28,Cooling|King
+2026-10-19,cooling sheet set,Highly Relevant,1669,20,1,0,5.02,0,3,Cooling
+2026-10-19,cooling bed sheets king,Highly Relevant,1961,58,1,0,4.62,0,28,Cooling|King
 2026-10-19,coolinens,Not Relevant,107,17,5,0,4.55,0,,
-2026-10-19,moisture wicking sheets,Highly Relevant,535,10,2,0,4.44,0,NR,Cooling
-2026-10-19,silk bed sheets,Not Relevant,12374,120,2,0,4.4,0,,
+2026-10-19,cooling sheets full,Highly Relevant,1216,38,1,0,4.52,0,7,Cooling|Full
+2026-10-19,cooling sheets queen,Highly Relevant,30225,511,2,0,4.44,0,70,Cooling|Queen
+2026-10-19,moisture wicking sheets,Highly Relevant,535,8,2,0,4.44,0,NR,Cooling
+2026-10-19,silk bed sheets,Not Relevant,12374,143,2,0,4.4,0,,
 2026-10-19,cal king cooling sheets,Highly Relevant,672,10,1,0,3.4,0,NR,Cooling|California King
+2026-10-19,california king cooling sheets,Highly Relevant,924,3,1,0,3.4,0,NR,Cooling|California King
 2026-10-19,cooling bed sets,Lower Relevant,277,3,1,0,3.35,0,,
-2026-10-19,cold sheets,Highly Relevant,924,31,1,0,3.33,0,134,Cooling
-2026-10-19,twin cooling sheets,Highly Relevant,1305,20,1,0,3.07,0,NR,Cooling|Twin
-2026-10-19,cooling king size sheets,Highly Relevant,1023,10,1,0,2.25,0,7,Cooling|King
-2026-10-19,king sheet set cooling,Highly Relevant,1023,22,1,0,2.25,0,103,Cooling|King
+2026-10-19,cold sheets,Highly Relevant,924,34,1,0,3.33,0,134,Cooling
+2026-10-19,twin cooling sheets,Highly Relevant,1305,16,1,0,3.07,0,NR,Cooling|Twin
+2026-10-19,cooling king size sheets,Highly Relevant,1023,8,1,1,2.25,93.99,7,Cooling|King
+2026-10-19,king sheet set cooling,Highly Relevant,1023,19,1,0,2.25,0,103,Cooling|King
 2026-10-19,king size deep pocket cooling sheets,Highly Relevant,476,1,1,0,2.25,0,,Cooling|King
 2026-10-19,best cooling sheets,Highly Relevant,1023,10,1,0,2.22,0,3,Cooling
+2026-10-19,cool sheets,Highly Relevant,2203,8,1,0,2.22,0,88,Cooling
 2026-10-19,cooling sheets for queen,Lower Relevant,,2,1,0,2.22,0,,
-2026-10-19,cooling sheets queen,Highly Relevant,30225,410,1,0,2.22,0,70,Cooling|Queen
+2026-10-19,queen size sheets cooling,Highly Relevant,1023,3,1,0,2.22,0,110,Cooling|Queen
 2026-10-19,b0ctklfgpg,,,5,1,0,2.2,0,,
-2026-10-19,below zero cooling comforter,,,62,1,0,2.2,0,,
+2026-10-19,below zero cooling comforter,,,57,1,0,2.2,0,,
 2026-10-19,breescape cooling sheets,Branded,592,18,1,0,2.2,0,,
 2026-10-19,cooling full size sheets,Highly Relevant,822,8,1,0,2.2,0,3,Cooling|Full
-2026-10-19,cooling silk sheets,Relevant,479,10,1,0,2.2,0,,Cooling
+2026-10-19,cooling silk sheets,Relevant,479,11,1,0,2.2,0,,Cooling
 2026-10-19,miracle sheets queen size silver infused,Branded,3310,52,1,0,2.2,0,,
 2026-10-19,sleep number bed sheets,,,5,1,0,2.2,0,,
-2026-10-19,slumber cloud ultracool comforter,Branded,179,12,1,0,2.2,0,,
-2026-10-19,cooling king sheets,Highly Relevant,2637,33,1,0,1.95,0,36,Cooling|King
+2026-10-19,slumber cloud ultracool comforter,Branded,179,10,1,0,2.2,0,,
+2026-10-19,cooling king sheets,Highly Relevant,2637,34,1,0,1.95,0,36,Cooling|King
 2026-10-19,electronic cooling for menopause,,,3,1,0,0.83,0,,
-2026-10-20,cooling queen sheets,Highly Relevant,2635,5,1,0,6.58,0,35,Cooling|Queen
-2026-10-20,cooling sheets,Highly Relevant,77377,82,2,0,4.42,0,31,Cooling
-2026-10-20,cooling sheets full size,Highly Relevant,6228,12,1,0,3.86,0,19,Cooling|Full
-2026-10-20,cooling bed sheets full,Highly Relevant,924,3,1,0,1.69,0,3,Cooling|Full
+2026-10-19,cooling blanket,,,87,1,0,0.77,0,,
+2026-10-20,cooling sheets,Highly Relevant,77377,2982,28,1,76.73,69.99,31,Cooling
+2026-10-20,cooling sheets king,Highly Relevant,2630,454,8,0,35.66,0,43,Cooling|King
+2026-10-20,cooling sheets king size,Highly Relevant,19413,1105,12,0,33.56,0,7,Cooling|King
+2026-10-20,king size cooling sheets,Highly Relevant,4967,123,4,0,28.92,0,44,Cooling|King
+2026-10-20,cooling bed sheets queen,Highly Relevant,2976,84,6,1,28.2,87.99,19,Cooling|Queen
+2026-10-20,cooling sheets full size,Highly Relevant,6228,125,5,0,23.35,0,19,Cooling|Full
+2026-10-20,cooling sheets queen,Highly Relevant,30225,1382,10,1,22.2,87.99,68,Cooling|Queen
+2026-10-20,cooling queen sheets,Highly Relevant,2635,131,3,0,19.4,0,31,Cooling|Queen
+2026-10-20,queen sheets cooling,Highly Relevant,4964,67,2,0,11.98,0,7,Cooling|Queen
+2026-10-20,cooling bed sheets,Highly Relevant,12715,204,4,0,9.69,0,42,Cooling
+2026-10-20,full size cooling sheets,Highly Relevant,1735,50,2,0,8.84,0,45,Cooling|Full
+2026-10-20,cooling bed sheets king,Highly Relevant,1961,84,2,0,8.55,0,19,Cooling|King
+2026-10-20,breescape cooling sheets,Branded,592,54,4,0,8.09,0,,
+2026-10-20,king sheets cooling,Highly Relevant,4954,142,2,1,7.56,93.99,3,Cooling|King
+2026-10-20,cold sheets for hot sleepers,Highly Relevant,822,24,3,0,7.42,0,3,Cooling
+2026-10-20,twin cooling sheets,Highly Relevant,1305,23,2,0,6.49,0,NR,Cooling|Twin
+2026-10-20,king size sheets set cooling,Highly Relevant,3492,48,1,0,6.43,0,3,Cooling|King
+2026-10-20,king cooling sheets,Highly Relevant,3271,120,1,0,6.26,0,3,Cooling|King
+2026-10-20,cooling sheets california king,Highly Relevant,1025,11,2,0,5.51,0,NR,Cooling|California King
+2026-10-20,king bed sheets cooling,Highly Relevant,1109,31,1,0,4.7,0,15,Cooling|King
+2026-10-20,cooling king sheets,Highly Relevant,2637,36,1,0,4.62,0,3,Cooling|King
+2026-10-20,queen size cooling sheets,Highly Relevant,2632,16,1,0,3.91,0,3,Cooling|Queen
+2026-10-20,cool sheets for hot sleepers,Highly Relevant,1961,14,1,0,3.73,0,3,Cooling
+2026-10-20,bed sheets king size cooling,Highly Relevant,580,2,1,0,3.37,0,69,Cooling|King
+2026-10-20,king size bed set cooling,Lower Relevant,463,4,1,0,3.37,0,,
+2026-10-20,queen bed cooling sheets,Highly Relevant,588,12,1,0,3.33,0,89,Cooling|Queen
+2026-10-20,sheets cooling,Highly Relevant,924,31,1,1,3.33,87.99,43,Cooling
+2026-10-20,coolinens,Not Relevant,107,20,3,1,3.13,87.99,,
+2026-10-20,cold sheets,Highly Relevant,924,27,1,0,3.08,0,76,Cooling
+2026-10-20,deep pocket cooling sheets,Highly Relevant,901,8,1,0,2.75,0,104,Cooling
+2026-10-20,queen bed sheets cooling,Highly Relevant,2630,115,1,0,2.7,0,66,Cooling|Queen
+2026-10-20,cooling sheets full,Highly Relevant,1216,18,1,0,2.54,0,7,Cooling|Full
+2026-10-20,cooling fitted sheets queen,Lower Relevant,385,2,1,0,2.31,0,,
+2026-10-20,cooling queen,,,1,1,0,2.31,0,,
+2026-10-20,sábanas frescas para el calor,Highly Relevant,396,2,1,0,2.27,0,,
+2026-10-20,king size bed sheets cooling,Highly Relevant,819,65,1,0,2.25,0,3,Cooling|King
+2026-10-20,breathable bed sheets,Relevant,598,3,1,0,2.22,0,NR,Cooling
+2026-10-20,cooling bedsheet,Highly Relevant,405,3,1,0,2.22,0,,Cooling
+2026-10-20,warming sheets,,,4,1,0,2.2,0,,
+2026-10-20,sleephoria,Branded,924,12,1,0,1.98,0,,
+2026-10-20,cooling bed sheets full,Highly Relevant,924,7,1,0,1.69,0,3,Cooling|Full
+2026-10-20,b0h5wwmpnn,,,10,1,0,1.43,0,,
+2026-10-20,cooling bed sheets for split king bed,,,2,1,0,0.77,0,,
+2026-10-20,cooling bedding,Lower Relevant,582,6,1,0,0.77,0,,
+2026-10-20,cooling blanket,,,347,1,0,0.77,0,,
+2026-10-20,mattress cover waterproof cooling queen size bedcheese grater,,,1,1,0,0.77,0,,
+2026-10-20,purple cooling comforter,,,1,1,0,0.77,0,,
+2026-10-20,weighted king cooling sheet,,,2,1,0,0.77,0,,
+2026-10-21,cold bed sheets,Highly Relevant,924,2,1,0,3.33,0,3,Cooling
+2026-10-21,cooling sheets,Highly Relevant,77377,47,1,0,2.22,0,36,Cooling
