@@ -50,8 +50,9 @@ for dt, r in allr.iterrows():
         a = ppc.loc[dt]; spend, impr, clk, orders, adsales = a.ad_spend, a.impressions, a.clicks, a.ad_orders, a.ad_sales
     elif not pre and dt in cc.index:  # Sellerboard not ingested yet: SP only from the command center
         a = cc.loc[dt]; spend, impr, clk, orders, adsales = r.ad_spend_alloc, a.impressions, a.clicks, a.orders, a.sales
-    else:
-        spend = impr = clk = orders = adsales = 0
+    else:  # no campaign-level ad data yet (e.g. today's partial day): all-type spend from the profit dashboard
+        impr = clk = orders = adsales = 0
+        spend = 0 if pre else float(r.ad_spend_alloc)
     complete = 'no' if dt == T['partial_day'] else 'yes'
     rows.append(dict(date=dt, phase='Before ads' if pre else 'Ads live', complete=complete, units=int(r.units), sales=float(r.sales),
                      sessions=None if pd.isna(r.sessions) else int(r.sessions), ad_spend=float(spend), ad_impressions=int(impr), ad_clicks=int(clk),
@@ -112,7 +113,7 @@ dump('queen_terms', q[cols]); dump('king_terms', k[cols])
 sc = pd.read_csv(f'{S}/v6/sb_campaigns.csv'); sc = sc[sc.Name.str.startswith('CLCS4') & sc.Name.str.contains('Queen')]
 for c_ in ['AdSpend', 'Clicks', 'Orders', 'Impressions', 'dailyBudget', 'topOfSearch', 'startDate']:
     sc[c_] = pd.to_numeric(sc[c_], errors='coerce').abs()
-END = pd.Timestamp('2026-10-21 12:00', tz='UTC').timestamp()
+END = pd.Timestamp('2026-10-22 12:00', tz='UTC').timestamp()
 sc['days'] = ((END - sc.startDate) / 86400).clip(lower=1)
 sc['budget_used'] = sc.AdSpend / (sc.dailyBudget * sc.days)
 sc['objective'] = sc.Name.str.extract(r'-\((Ranking|Conversion|Conquest|Profit)\)-')[0] + sc.Name.map(lambda x: ' · fixed bids' if '-FIX-' in x else ' · down-only bids')
