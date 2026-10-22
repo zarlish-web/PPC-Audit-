@@ -13,4 +13,4 @@ Dashboard version (needs Claude sign-in): https://claude.ai/artifact/1MwntnQjbBB
 
 Each daily update adds a dated entry to the log and a new `data/<date>/` folder; decisions keep their id and get their status and outcome updated.
 
-Days follow US Eastern time, as Sellerboard's own dashboard does. The Sellerboard API returns UTC days, so units, sales and profit per day are re-counted from the order list with `orders_to_et.py` (writes `source/orders_et.csv`). Ad spend, clicks and ad orders are date-level and are used as pulled.
+Scope: every CooLinens cooling-sheet SKU (search CL-COOLING-SHEET). Sellerboard's parent view B0HN51LPQ1 leaves out 4 SKUs it lists outside the parent (Queen Light Grey, Full Beige, Queen Midnight Black, Twin Cream), so the tracker can show more units and ad spend than that view; the day report notes the reconciliation. Days are the same as in Sellerboard.

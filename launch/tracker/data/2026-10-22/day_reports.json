@@ -3,26 +3,26 @@
 "date": "2026-10-21",
 "prev_date": "2026-10-20",
 "pnl": {
-"sales": 1491.83,
-"product_costs": 494.0,
-"amazon_fees": 379.31,
+"sales": 1641.81,
+"product_costs": 543.22,
+"amazon_fees": 418.99,
 "ad_spend": 822.21,
-"net_profit": -203.69
+"net_profit": -142.61
 },
 "summary": [
 {
 "metric": "Units",
-"day": 18,
-"prev": 22,
-"change": -0.18181818181818182,
+"day": 20,
+"prev": 21,
+"change": -0.047619047619047616,
 "fmt": "int",
 "better": "up"
 },
 {
 "metric": "Sales",
-"day": 1491.83,
-"prev": 1938.78,
-"change": -0.2305315714005715,
+"day": 1641.81,
+"prev": 1882.79,
+"change": -0.12799090711125513,
 "fmt": "money",
 "better": "up"
 },
@@ -100,25 +100,25 @@
 },
 {
 "metric": "TACoS (ads \u00f7 all sales)",
-"day": 0.5511418861398417,
-"prev": 0.32795366158099426,
-"change": 0.6805480490228556,
+"day": 0.5007948544594076,
+"prev": 0.33770627632396605,
+"change": 0.48293025498581077,
 "fmt": "pct",
 "better": "down"
 },
 {
 "metric": "Units without an ad order",
-"day": 3,
-"prev": 14,
-"change": -0.7857142857142857,
+"day": 5,
+"prev": 13,
+"change": -0.6153846153846154,
 "fmt": "int",
 "better": "up"
 },
 {
 "metric": "Net profit",
-"day": -203.69,
-"prev": 208.07,
-"change": -1.978949392031528,
+"day": -142.61,
+"prev": 187.24,
+"change": -1.761642811365093,
 "fmt": "money",
 "better": "up"
 }
@@ -198,10 +198,10 @@
 },
 {
 "size": "Full",
-"units": 4,
-"sales": 299.96,
+"units": 6,
+"sales": 449.94,
 "ad_spend": 72.78,
-"net_profit": 48.18,
+"net_profit": 109.26,
 "camp_spend": 72.78,
 "camp_clicks": 16,
 "camp_orders": 3,
@@ -1823,6 +1823,7 @@
 }
 ],
 "notes": [
+"Sellerboard check: the parent B0HN51LPQ1 view in Sellerboard shows 18 units, $1,478.83 sales, $731.32 ads and \u2212$122.50 net profit for 21 Oct. This report covers every CooLinens cooling-sheet SKU, which adds 4 SKUs Sellerboard lists outside that parent: Queen Light Grey (1 unit, $87.99), Full Beige (1 unit, $74.99), Queen Midnight Black ($87.55 of ad spend, 0 units) and Twin Cream ($3.34 of ad spend). Together: +2 units, +$162.98 sales, +$90.89 ads, so 20 units and \u2212$142.61 here.",
 "Two campaigns spent about twice their daily budget, so they are limited by budget: 'Cooling Sheet' (main term) $92 on a $45 budget (ACoS 35% on the day, 45% over 16\u201321 Oct) and King Tail 13 $51 on a $25 budget (ACoS 19% over 16\u201321 Oct). The plan holds spend changes to the review dates, so King Tail 13 is flagged for the 27 Oct weekly review.",
 "Queen is still the weak spot: Queen keyword campaigns had 32 clicks and 0 orders on the day, and all of them still advertise Queen White (A1 not applied yet).",
 "Rival product pages: another 21 clicks and 0 orders (decision waits on Joseph, A9).",

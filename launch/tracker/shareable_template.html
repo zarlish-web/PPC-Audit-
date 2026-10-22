@@ -95,7 +95,7 @@ tr:last-child td { border-bottom: 0; }
   <header>
     <h1>CooLinens Daily Recommendations</h1>
     <p class="take" id="take"></p>
-    <div class="meta"><span><b>Cooling Sheets 4PC</b> · Amazon US</span><span>PPC live 16 Oct 2026</span><span>Owner Shayan Rana</span><span>Data to <b id="asof"></b> · days in US Eastern time, as in Sellerboard</span></div>
+    <div class="meta"><span><b>Cooling Sheets 4PC</b> · Amazon US</span><span>PPC live 16 Oct 2026</span><span>Owner Shayan Rana</span><span>Data to <b id="asof"></b> · all CooLinens cooling-sheet SKUs (parent B0HN51LPQ1 plus 4 SKUs Sellerboard lists outside it)</span></div>
   </header>
   <nav role="tablist" aria-label="Tracker sections">
     <button role="tab" data-p="overview" aria-selected="true" id="t-overview">Overview</button>
@@ -153,7 +153,7 @@ tr:last-child td { border-bottom: 0; }
 
   <section id="king" hidden>
     <div class="grid">
-      <div class="card"><h2>King units per day</h2><p class="sub">Dashed line: 4.7 a day, King's average before ads.</p><div class="chart" id="ch-k"></div></div>
+      <div class="card"><h2>King units per day</h2><p class="sub">Dashed line: 4.3 a day, King's average before ads.</p><div class="chart" id="ch-k"></div></div>
       <div class="card"><h2>King ad orders per day</h2><p class="sub">Sponsored Products orders on King campaigns. One strong day can make a week look good.</p><div class="chart" id="ch-ko"></div></div>
     </div>
     <div class="card"><h2>King search terms</h2><div class="tbox"><table id="tb-kterms"></table></div></div>
@@ -355,7 +355,7 @@ const D = /*__DATA__*/null;
     }
     if (cur === 'queen' || cur === 'king') {
       const Z = cur === 'queen' ? 'Queen' : 'King'; const rows = D.size_daily.filter((r) => r.size === Z);
-      bars(cur === 'queen' ? 'ch-q' : 'ch-k', rows, [{ f: 'units', l: Z + ' units', c: 'var(--accent)' }], { ref: Z === 'Queen' ? 3.0 : 4.7, tip: [{ f: 'ad_spend', l: Z + ' ad spend', fmt: money }, { f: 'sp_orders', l: 'SP orders', fmt: int }] });
+      bars(cur === 'queen' ? 'ch-q' : 'ch-k', rows, [{ f: 'units', l: Z + ' units', c: 'var(--accent)' }], { ref: Z === 'Queen' ? 3.0 : 4.3, tip: [{ f: 'ad_spend', l: Z + ' ad spend', fmt: money }, { f: 'sp_orders', l: 'SP orders', fmt: int }] });
       const live = rows.filter((r) => r.phase !== 'Before ads');
       if (cur === 'queen') {
         bars('ch-qc', live, [{ f: 'sp_clicks', l: 'Queen SP clicks', c: 'var(--accent)' }], { ref: 13.5, tip: [{ f: 'sp_spend', l: 'SP spend', fmt: money }] });

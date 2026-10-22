@@ -32,12 +32,12 @@
 "ad_sales": 2201.76,
 "acos": 0.4955263062277449,
 "cvr": 0.0851063829787234,
-"units_day_before": 4.666666666666667,
-"units_day_after": 9.166666666666666,
+"units_day_before": 4.333333333333333,
+"units_day_after": 9.333333333333334,
 "plan_light_push_day": 1109.85,
 "plan_light_share": 0.35,
 "rank_note": "As of 21 Oct (not refreshed 22 Oct): 'cooling sheets king size' median #3 over 17\u201321 Oct; 'king size cooling sheets' #40\u201344.",
-"read": "On target: 19 orders on 194 keyword clicks (CVR 9.8%), ACoS 46%; 8 units on Oct 21 (9.2/day vs 4.7 before ads). Hold to 27 Oct (H1)."
+"read": "On target: 19 orders on 194 keyword clicks (CVR 9.8%), ACoS 46%; 8 units on Oct 21. Hold to 27 Oct (H1)."
 },
 {
 "size": "Full",
@@ -57,7 +57,7 @@
 "plan_light_push_day": 825.0,
 "plan_light_share": 0.6,
 "rank_note": "As of 21 Oct: 'cooling sheets full' #3\u20137; 'cooling sheets full size' #18\u201319. 'cooling sheets full size' searches: 2 orders on 11 clicks on Oct 21.",
-"read": "4 units on Oct 21; 3.2/day vs 1.3 before ads. 6 orders on 51 SP clicks, ACoS 47%. Switch the ad SKU to Cool Grey (A6, not applied yet)."
+"read": "Best Full day on Oct 21 (6 units); 6 orders on 51 SP clicks, ACoS 47%. Switch the ad SKU to Cool Grey (A6, not applied yet)."
 },
 {
 "size": "Twin",
