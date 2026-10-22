@@ -3,14 +3,14 @@
  "day_notes": {
   "2026-10-13": "No ads. 11 units sold on organic demand alone; this and the next two days set the baseline.",
   "2026-10-14": "No ads. 7 units.",
-  "2026-10-15": "No ads. 11 units. Baseline before ads: 9.7 units a day (Queen 3.0, King 4.3).",
-  "2026-10-16": "Day 1 of ads, Sponsored Products only. $67 spend, 4 ad orders at 19% ACoS. Total units 10, the same as baseline.",
-  "2026-10-17": "Sponsored Brands Video added; spend almost 3×. 3 ad orders, ACoS 78%. Units 15.",
+  "2026-10-15": "No ads. 12 units. Baseline before ads: 10.0 units a day (Queen 3.0, King 4.7).",
+  "2026-10-16": "Day 1 of ads, Sponsored Products only. $67 spend, 4 ad orders at 19% ACoS. Total units 12, close to baseline.",
+  "2026-10-17": "Sponsored Brands Video added; spend almost 3×. 3 ad orders, ACoS 78%. Units 13.",
   "2026-10-18": "Every ad type live (SB, SBV broad, Display). Best day: 30 units, 14 ad orders, ACoS 36%. King made it: 19 King units, 9 King ad orders.",
   "2026-10-19": "Spend $445 (all types), 131 clicks, 8 ad orders so far (ACoS 69%). King back to 4 units; Queen 5. Orders for this day are still being attributed.",
-  "2026-10-20": "Step 2's first full day: ad spend $636 (all types), impressions doubled to 18.9k, CTR fell to 1.03%. 21 units: Queen 8 (its best day), King 11. 8 ad orders once attribution filled in, so 13 units came without an ad.",
-  "2026-10-21": "Highest spend so far: $822 all types (SP $603, video $186). Impressions fell to 13.8k but CTR rose to 1.68%: 232 clicks, 15 ad orders, ACoS 65%. 20 units: King 8, Queen 6, Full 6 (Full's best day). Net profit −$143 (Sellerboard), the first loss day.",
-  "2026-10-22": "Partial day (data to about 12:00 UTC): 1 unit, $71 of ad spend so far."
+  "2026-10-20": "Step 2's first full day: ad spend $636 (all types), impressions doubled to 18.9k, CTR fell to 1.03%. 22 units: Queen 8 (its best day), King 10. 8 ad orders, so 14 units came without an ad.",
+  "2026-10-21": "Highest spend so far: $822 all types (SP $603, video $186). Impressions fell to 13.8k but CTR rose to 1.68%: 232 clicks, 15 ad orders, ACoS 65%. 18 units: King 8, Queen 6, Full 4. Net profit −$204 (Sellerboard), the first loss day.",
+  "2026-10-22": "Partial day (US Eastern, to about 09:00): 5 units, $71 of ad spend so far."
  },
  "queen_campaign_reads": {
   "SP-Cooling Sheet Queen-": "Queen's biggest keyword, still Conversion (Top-of-Search +50%) under Joseph's heads rule: 36 clicks, 1 order, $82.79 over 16–21 Oct; 0.51% top-of-search share. Across all campaigns the search 'cooling sheets queen' took 17 clicks and 1 order on Oct 21.",
@@ -502,14 +502,14 @@
   {
    "date": "2026-10-22",
    "kind": "Daily update",
-   "headline": "Oct 21 was the highest-spend day ($822) and the first day at a net loss (−$143), on 20 units. None of the four proposed changes is live yet, and Queen's own ads now convert 3 of 103 clicks (a 2% chance at plan CVR), so A1 (Queen ads to Graphite) stays the top fix.",
+   "headline": "Oct 21 was the highest-spend day ($822) and the first day at a net loss (−$204), on 18 units. None of the four proposed changes is live yet, and Queen's own ads now convert 3 of 103 clicks (a 2% chance at plan CVR), so A1 (Queen ads to Graphite) stays the top fix.",
    "results": [
-    "Oct 21: 20 units ($1,642) vs 21 on Oct 20 and 9.7/day before ads. Ads $822 all types (SP $603, SB $32, video $186, Display $1); 232 clicks, 15 ad orders, ACoS 65%. Net profit −$143 (Sellerboard): the first loss day.",
-    "Six full days with ads (16–21 Oct): 110 units = 18.3/day vs 9.7 before ads. 54 ad orders, so 56 units (9.3/day) came without an ad: organic sales are holding at the pre-ads level and the ads add about 9/day on top.",
-    "Ads 16–21 Oct (CLCS4 campaigns): $2,627, 784 clicks, 54 orders, $4,657 ad sales, ACoS 56.4% (break-even 39.1% after refunds), TACoS 27.3%. Earlier days' orders rose as attribution filled in (Oct 20: 7 → 8).",
+    "Oct 21: 18 units ($1,492) vs 22 on Oct 20 and 10.0/day before ads. Ads $822 all types (SP $603, SB $32, video $186, Display $1); 232 clicks, 15 ad orders, ACoS 65%. Net profit −$204 (Sellerboard): the first loss day.",
+    "Six full days with ads (16–21 Oct): 109 units = 18.2/day vs 10.0 before ads. 54 ad orders, so 55 units (9.2/day) came without an ad: organic sales are about at the pre-ads level and the ads add about 8–9/day on top.",
+    "Ads 16–21 Oct (CLCS4 campaigns): $2,627, 784 clicks, 54 orders, $4,657 ad sales, ACoS 56.4% (break-even 39.1% after refunds), TACoS 27.5%. Earlier days' orders rose as attribution filled in (Oct 20: 7 → 8).",
     "Queen: 6 units on Oct 21 (8 on Oct 20); 4.7/day over 16–21 vs 3.0 before ads. Queen keyword SP campaigns: 103 clicks, 3 orders, $344 (ACoS 130%), with 0 orders on 32 clicks on Oct 21. The search 'cooling sheets queen' took 17 clicks and 1 order on Oct 21.",
-    "King: 8 units on Oct 21; 9.3/day vs 4.3 before ads. King keyword SP: 194 clicks, 19 orders, ACoS 45.9% (CVR 9.8%, at plan). King Tail 13: 6 orders on 34 clicks, ACoS 19%.",
-    "Full: 6 units on Oct 21 (best day), 3.2/day vs 1.3; 6 orders on 51 SP clicks, ACoS 47%. Twin 0.7/day vs 1.0; Cal King 0.5 vs 0.",
+    "King: 8 units on Oct 21; 9.2/day vs 4.7 before ads. King keyword SP: 194 clicks, 19 orders, ACoS 45.9% (CVR 9.8%, at plan). King Tail 13: 6 orders on 34 clicks, ACoS 19%.",
+    "Full: 4 units on Oct 21; 3.2/day vs 1.3 before ads; 6 orders on 51 SP clicks, ACoS 47%. Twin 0.7/day vs 1.0; Cal King 0.5 vs 0.",
     "FBA stock 22 Oct: 4,340 units (Queen 1,808, King 1,081, Full 591, Twin 427, Cal King 433). Queen Graphite 397, Queen White 194."
    ],
    "observations": [
@@ -520,7 +520,8 @@
     "Queen rival video reached its 30-click read: 1 order on 40 clicks, $157, ACoS 178%, above the plan's stop-loss (2× break-even, about 78%). On clicks alone it is not yet proof (16% chance at 8%), so it goes to Joseph (D18 / A10).",
     "Search terms on Oct 21 (Sellerboard): 'cooling sheets' 3 orders on 38 clicks (ACoS 41%), 'cooling sheets full size' 2 on 11 (36%), 'cooling sheets king size' 1 on 22 (84%).",
     "Stock watch: Full Navy Blue (not advertised) has 31 units and sells about 1.1/day, roughly a month left; Sellerboard flags it for reorder. It does not affect the ad SKUs.",
-    "Data gap: the command center did not connect today, so organic ranks, Sleephoria's bids and the full search-term report were not refreshed. The rank and search-term tables still show data to the morning of 21 Oct; sales, campaign and stock data come from Sellerboard and are complete to 21 Oct."
+    "Data gap: the command center did not connect today, so organic ranks, Sleephoria's bids and the full search-term report were not refreshed. The rank and search-term tables still show data to the morning of 21 Oct; sales, campaign and stock data come from Sellerboard and are complete to 21 Oct.",
+    "Days now follow US Eastern time, as Sellerboard's own dashboard does (22 Oct). Units, sales and profit per day were re-counted from Sellerboard's order list: 21 Oct is 18 units (was 20 on UTC days) and 20 Oct is 22 (was 21). Ad spend, clicks and ad orders are date-level and do not change."
    ],
    "actions": [
     "Top priority unchanged: A1, switch the Queen ads to Queen Graphite (gate passed; now 3 orders on 103 clicks).",
@@ -569,7 +570,7 @@
    "ad_sku_recommended": "King Cool Grey (keep) or Graphite",
    "plan_spend_day": 42.0,
    "rank_note": "As of 21 Oct (not refreshed 22 Oct): 'cooling sheets king size' median #3 over 17–21 Oct; 'king size cooling sheets' #40–44.",
-   "read": "On target: 19 orders on 194 keyword clicks (CVR 9.8%), ACoS 46%; 8 units on Oct 21. Hold to 27 Oct (H1).",
+   "read": "On target: 19 orders on 194 keyword clicks (CVR 9.8%), ACoS 46%; 8 units on Oct 21 (9.2/day vs 4.7 before ads). Hold to 27 Oct (H1).",
    "plan_full_push_day": 3171,
    "plan_light_share": 0.35,
    "plan_light_push_day": 1109.85
@@ -581,7 +582,7 @@
    "ad_sku_recommended": "Full Cool Grey (92)",
    "plan_spend_day": 13.7,
    "rank_note": "As of 21 Oct: 'cooling sheets full' #3–7; 'cooling sheets full size' #18–19. 'cooling sheets full size' searches: 2 orders on 11 clicks on Oct 21.",
-   "read": "Best Full day on Oct 21 (6 units); 6 orders on 51 SP clicks, ACoS 47%. Switch the ad SKU to Cool Grey (A6, not applied yet).",
+   "read": "4 units on Oct 21; 3.2/day vs 1.3 before ads. 6 orders on 51 SP clicks, ACoS 47%. Switch the ad SKU to Cool Grey (A6, not applied yet).",
    "plan_full_push_day": 1375,
    "plan_light_share": 0.6,
    "plan_light_push_day": 825.0
@@ -743,7 +744,7 @@
    "action": "No change to King yet",
    "change": "None.",
    "why": "King is part of the plan's light push (35% since Oct 19) and is outselling Queen 2.6×, but most of its ad orders came on one day: 9 of 13 SP orders on 18 Oct.",
-   "evidence": "King keyword SP 16–21 Oct: 194 clicks, 19 orders, ACoS 45.9%, CVR 9.8%. King units 4, 10, 19, 4, 11, 8 vs a 4.3 baseline.",
+   "evidence": "King keyword SP 16–21 Oct: 194 clicks, 19 orders, ACoS 45.9%, CVR 9.8%. King units 4, 9, 19, 5, 10, 8 (US Eastern days) vs a 4.7 baseline.",
    "expected": "A full week shows whether King holds.",
    "check": "27 Oct: King ACoS vs the plan's 39.1% refund-adjusted line with orders on 4+ of 7 days, plus rank held. This is also King's light-push read for the push-cost calibration (CL-PU8).",
    "safe": "No action.",

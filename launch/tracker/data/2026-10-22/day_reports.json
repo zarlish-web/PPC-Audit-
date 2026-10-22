@@ -3,26 +3,26 @@
 "date": "2026-10-21",
 "prev_date": "2026-10-20",
 "pnl": {
-"sales": 1641.81,
-"product_costs": 543.22,
-"amazon_fees": 418.99,
+"sales": 1491.83,
+"product_costs": 494.0,
+"amazon_fees": 379.31,
 "ad_spend": 822.21,
-"net_profit": -142.61
+"net_profit": -203.69
 },
 "summary": [
 {
 "metric": "Units",
-"day": 20,
-"prev": 21,
-"change": -0.047619047619047616,
+"day": 18,
+"prev": 22,
+"change": -0.18181818181818182,
 "fmt": "int",
 "better": "up"
 },
 {
 "metric": "Sales",
-"day": 1641.81,
-"prev": 1882.79,
-"change": -0.12799090711125513,
+"day": 1491.83,
+"prev": 1938.78,
+"change": -0.2305315714005715,
 "fmt": "money",
 "better": "up"
 },
@@ -100,25 +100,25 @@
 },
 {
 "metric": "TACoS (ads \u00f7 all sales)",
-"day": 0.5007948544594076,
-"prev": 0.33770627632396605,
-"change": 0.48293025498581077,
+"day": 0.5511418861398417,
+"prev": 0.32795366158099426,
+"change": 0.6805480490228556,
 "fmt": "pct",
 "better": "down"
 },
 {
 "metric": "Units without an ad order",
-"day": 5,
-"prev": 13,
-"change": -0.6153846153846154,
+"day": 3,
+"prev": 14,
+"change": -0.7857142857142857,
 "fmt": "int",
 "better": "up"
 },
 {
 "metric": "Net profit",
-"day": -142.61,
-"prev": 187.24,
-"change": -1.761642811365093,
+"day": -203.69,
+"prev": 208.07,
+"change": -1.978949392031528,
 "fmt": "money",
 "better": "up"
 }
@@ -198,10 +198,10 @@
 },
 {
 "size": "Full",
-"units": 6,
-"sales": 449.94,
+"units": 4,
+"sales": 299.96,
 "ad_spend": 72.78,
-"net_profit": 109.26,
+"net_profit": 48.18,
 "camp_spend": 72.78,
 "camp_clicks": 16,
 "camp_orders": 3,
