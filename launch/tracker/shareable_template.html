@@ -72,6 +72,23 @@ tr:last-child td { border-bottom: 0; }
 .entry h4 { margin: 6px 0 0; font-size: 13px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
 .entry ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; }
 .foot { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line); padding-top: 12px; }
+.dayrep { border-top: 4px solid var(--accent); gap: 16px; }
+.dayrep .hd { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: baseline; justify-content: space-between; }
+.dayrep h2 { font-family: var(--f-display); font-weight: 400; font-size: 26px; }
+.dayrep h3 { margin: 0; font-size: 15px; font-weight: 600; }
+.dayrep select { font: inherit; font-size: 13px; padding: 5px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--ink); }
+.dtiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr)); gap: 10px; }
+.dtile { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.dtile .k { font-size: 12px; color: var(--muted); }
+.dtile .v { font-size: 22px; font-weight: 500; font-variant-numeric: tabular-nums; line-height: 1.2; }
+.dtile .s { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.dtile .s.good { color: var(--ok); } .dtile .s.bad { color: var(--bad); }
+@media (max-width: 560px) { .dtiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } .dtile .v { font-size: 19px; } }
+.pnl { font-size: 14px; background: var(--chip); border-radius: 8px; padding: 10px 12px; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.pnl b.neg { color: var(--bad); } .pnl b.pos { color: var(--ok); }
+.dsub { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.dayrep .tbox { max-height: 26rem; }
+.notes { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; }
 </style>
 
 <div class="wrap">
@@ -91,6 +108,22 @@ tr:last-child td { border-bottom: 0; }
   </nav>
 
   <section id="overview">
+    <div class="card dayrep" id="dayrep">
+      <div class="hd"><div><h2 id="dr-title">Day report</h2><p class="sub" id="dr-sub"></p></div>
+        <label class="sub">Day <select id="dr-pick" aria-label="Choose a day report"></select></label></div>
+      <div class="dtiles" id="dr-tiles"></div>
+      <div class="pnl" id="dr-pnl"></div>
+      <div class="grid">
+        <div class="dsub"><h3>Spend by ad type</h3><div class="tbox"><table id="tb-dr-types"></table></div></div>
+        <div class="dsub"><h3>By size</h3><p class="sub">Units, sales, ad spend and net profit by size (Sellerboard, by product). Campaign columns count only campaigns named for that size; the main-term campaigns with no size advertise Queen White.</p><div class="tbox"><table id="tb-dr-sizes"></table></div></div>
+      </div>
+      <div class="dsub"><h3>By campaign group</h3><div class="tbox"><table id="tb-dr-groups"></table></div></div>
+      <div class="dsub"><h3>Every campaign that spent</h3><p class="sub">Budget used = the day's spend ÷ daily budget (Amazon can spend up to twice the budget on one day). Click a column to sort.</p><div class="tbox"><table id="tb-dr-camps"></table></div></div>
+      <div class="dsub"><h3>Search terms</h3><p class="sub" id="dr-terms-sub"></p><div class="tbox"><table id="tb-dr-buckets"></table></div>
+        <input class="search" id="dr-q" type="search" placeholder="Search terms" aria-label="Search the day's search terms"><div class="tbox"><table id="tb-dr-terms"></table></div></div>
+      <div class="dsub"><h3>Organic rank</h3><p class="sub">Crawler reading for the day before, the day and the day after. Ranks swing a lot from day to day; read them as trends.</p><div class="tbox"><table id="tb-dr-ranks"></table></div></div>
+      <div class="dsub"><h3>Points to note</h3><ul class="notes" id="dr-notes"></ul></div>
+    </div>
     <div><h2>Proposed actions for Erik and Joseph</h2><p class="sub">Each action shows the exact change, why, the evidence, the expected outcome and when we check it. "Act now" items are setup or relevance fixes that do not depend on early results. "Hold" items say what we are deliberately not changing yet, and why.</p></div>
     <div class="actions" id="actions"></div>
     <div class="card"><h2>All live sizes</h2><p class="sub">Since ads started (Sellerboard, all ad types). Spend per day uses complete days only. "Plan light push / day" is Joseph's full-year plan: each size's full push cost × its light-push share since Oct 19 (Queen 50%, King 35%, Full/Twin 60%; Cal King from Oct 26; the head from Nov 30). The gap between the two is the light-push read that calibrates the push cost (CL-PU8). Head-term campaigns advertise the Queen SKU.</p><div class="tbox"><table id="tb-sizes"></table></div></div>
@@ -150,15 +183,15 @@ const D = /*__DATA__*/null;
 (function () {
   const $ = (s) => document.querySelector(s);
   const nf = new Intl.NumberFormat('en-US');
-  const money = (v) => v == null || isNaN(v) ? '—' : '$' + Math.round(v).toLocaleString('en-US');
-  const money2 = (v) => v == null || isNaN(v) ? '—' : '$' + Number(v).toFixed(2);
+  const money = (v) => v == null || isNaN(v) ? '—' : (v < 0 ? '−$' : '$') + Math.abs(Math.round(v)).toLocaleString('en-US');
+  const money2 = (v) => v == null || isNaN(v) ? '—' : (v < 0 ? '−$' : '$') + Math.abs(Number(v)).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   const pct = (v) => v == null || isNaN(v) ? '—' : (v * 100).toFixed(1) + '%';
   const int = (v) => v == null || isNaN(v) ? '—' : nf.format(Math.round(v));
   const one = (v) => v == null || isNaN(v) ? '—' : Number(v).toFixed(1);
   const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const day = (s) => { const p = String(s).split('-'); return MON[+p[1] - 1] + ' ' + (+p[2]); };
   const el = (t, cls, txt) => { const e = document.createElement(t); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
-  const pillCls = (v) => /Act now|With A|Problem|Switch|Not applied|bad/i.test(v) ? 'bad' : /week|Too early|Watch|Waiting|approval|gate|Question|Before/i.test(v) ? 'warn' : /Working|OK|Done|Approved/i.test(v) ? 'ok' : '';
+  const pillCls = (v) => /Act now|With A|Problem|Switch|Not applied|Not a cooling|No orders|Rival product|Sister brand|bad/i.test(v) ? 'bad' : /week|Too early|Watch|Waiting|approval|gate|Question|Before|Budget-capped|no order yet/i.test(v) ? 'warn' : /Working|OK|Done|Approved|Converted|Profitable|Our brand/i.test(v) ? 'ok' : '';
 
   // ---- tabs
   const tabs = [...document.querySelectorAll('nav button')];
@@ -251,6 +284,51 @@ const D = /*__DATA__*/null;
       if (!x) return; a.appendChild(el('h4', '', t)); const ul = el('ul'); String(x).split('\n').filter(Boolean).forEach((li) => ul.appendChild(el('li', '', li))); a.appendChild(ul); }); logBox.appendChild(a); });
   $('#dec-q').addEventListener('input', (e) => { $('#tb-dec')._q = e.target.value; draw(); });
 
+  // ---- day report (newest complete day at the top)
+  const DR = (D.day_reports || []).slice().sort((a, b) => b.date.localeCompare(a.date));
+  let drI = 0;
+  const WD = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const wday = (s) => WD[new Date(s + 'T12:00:00Z').getUTCDay()] + ' ' + day(s);
+  const F = { int, money: money2, money2, pct };
+  const sgnMoney = (v) => (v < 0 ? '−$' : '$') + Math.abs(v).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  if (!DR.length) $('#dayrep').hidden = true;
+  else {
+    $('#dr-pick').replaceChildren(...DR.map((r, i) => { const o = el('option', '', wday(r.date)); o.value = i; return o; }));
+    $('#dr-pick').addEventListener('change', (e) => { drI = +e.target.value; drStatic(); draw(); });
+    $('#dr-q').addEventListener('input', (e) => { $('#tb-dr-terms')._q = e.target.value; draw(); });
+  }
+  function drStatic() {
+    const r = DR[drI]; if (!r) return;
+    $('#dr-title').textContent = 'Day report · ' + wday(r.date);
+    $('#dr-sub').textContent = 'Complete day, compared with ' + day(r.prev_date) + '. Sellerboard (sales, ads, search terms) and the command center (rank). Read-only: nothing here changes the ad account.';
+    $('#dr-tiles').replaceChildren(...r.summary.map((s) => { const d = el('div', 'dtile'); const f = s.metric === 'Net profit' ? sgnMoney : (F[s.fmt] || int);
+      let cls = ''; if (s.change != null && Math.abs(s.change) >= 0.005) { const up = s.day > s.prev; cls = (up === (s.better === 'up')) ? 'good' : 'bad'; }
+      const ch = s.change == null ? '' : ' (' + (s.change > 0 ? '+' : '−') + Math.abs(s.change * 100).toFixed(0) + '%)';
+      d.append(el('span', 'k', s.metric), el('span', 'v', f(s.day)), el('span', 's ' + cls, day(r.prev_date) + ': ' + f(s.prev) + ch)); return d; }));
+    const p = r.pnl; const b = el('b', p.net_profit < 0 ? 'neg' : 'pos', sgnMoney(p.net_profit));
+    $('#dr-pnl').replaceChildren(document.createTextNode('Profit and loss: sales ' + sgnMoney(p.sales) + ' − product cost ' + sgnMoney(p.product_costs) + ' − Amazon fees ' + sgnMoney(p.amazon_fees) + ' − ads ' + sgnMoney(p.ad_spend) + ' = net profit '), b);
+    $('#dr-terms-sub').textContent = 'Every search term that got a click or an order. The report covers Sponsored Products and Sponsored Brands (' + money2(r.terms_cover.spend) + '); video and display spend (' + money2(r.terms_cover.not_split) + ') is not split by search term. "Not a cooling-sheet search" is what the relevance negatives (A5) would remove.';
+    $('#dr-notes').replaceChildren(...(r.notes || []).map((n) => el('li', '', n)));
+  }
+  drStatic();
+  const perfCols = [{ f: 'impressions', l: 'Impr.', fmt: int }, { f: 'clicks', l: 'Clicks', fmt: int }, { f: 'ctr', l: 'CTR', fmt: pct }, { f: 'cpc', l: 'CPC', fmt: money2 },
+    { f: 'orders', l: 'Orders', fmt: int }, { f: 'cvr', l: 'CVR', fmt: pct }, { f: 'spend', l: 'Spend', fmt: money2 }, { f: 'sales', l: 'Ad sales', fmt: money2 }, { f: 'acos', l: 'ACoS', fmt: pct }];
+  function drawDay() {
+    const r = DR[drI]; if (!r) return;
+    table('tb-dr-types', r.types, [{ f: 'type', l: 'Ad type' }].concat(perfCols));
+    table('tb-dr-sizes', r.sizes, [{ f: 'size', l: 'Size' }, { f: 'units', l: 'Units', fmt: int }, { f: 'sales', l: 'Sales', fmt: money2 }, { f: 'ad_spend', l: 'Ad spend (by product)', fmt: money2 },
+      { f: 'net_profit', l: 'Net profit', fmt: money2 }, { f: 'camp_spend', l: 'Campaign spend', fmt: money2 }, { f: 'camp_clicks', l: 'Clicks', fmt: int }, { f: 'camp_orders', l: 'Orders', fmt: int }, { f: 'camp_acos', l: 'ACoS', fmt: pct }]);
+    table('tb-dr-groups', r.groups, [{ f: 'group', l: 'Group' }].concat(perfCols));
+    table('tb-dr-camps', r.campaigns, [{ f: 'campaign', l: 'Campaign' }, { f: 'type', l: 'Type' }, { f: 'size', l: 'Size' }, { f: 'budget', l: 'Budget', fmt: money }, { f: 'budget_used', l: 'Budget used', fmt: pct },
+      { f: 'impressions', l: 'Impr.', fmt: int }, { f: 'clicks', l: 'Clicks', fmt: int }, { f: 'ctr', l: 'CTR', fmt: pct }, { f: 'orders', l: 'Orders', fmt: int }, { f: 'spend', l: 'Spend', fmt: money2 },
+      { f: 'sales', l: 'Ad sales', fmt: money2 }, { f: 'acos', l: 'ACoS', fmt: pct }, { f: 'flag', l: 'Flag', pill: true }]);
+    table('tb-dr-buckets', r.term_buckets, [{ f: 'bucket', l: 'Kind of search', pill: true }, { f: 'terms', l: 'Terms', fmt: int }, { f: 'clicks', l: 'Clicks', fmt: int }, { f: 'orders', l: 'Orders', fmt: int },
+      { f: 'spend', l: 'Spend', fmt: money2 }, { f: 'sales', l: 'Ad sales', fmt: money2 }]);
+    table('tb-dr-terms', r.terms, [{ f: 'term', l: 'Search term' }, { f: 'bucket', l: 'Kind', pill: true }, { f: 'impressions', l: 'Impr.', fmt: int }, { f: 'clicks', l: 'Clicks', fmt: int },
+      { f: 'orders', l: 'Orders', fmt: int }, { f: 'spend', l: 'Spend', fmt: money2 }, { f: 'sales', l: 'Ad sales', fmt: money2 }, { f: 'acos', l: 'ACoS', fmt: pct }]);
+    table('tb-dr-ranks', r.ranks, [{ f: 'keyword', l: 'Keyword' }].concat(r.rank_dates.map((d) => ({ f: d, l: day(d) + (d === r.date ? ' (day)' : '') }))));
+  }
+
   function rankCols(rows) { const ds = Object.keys(rows[0] || {}).filter((k) => /^\d{4}-\d{2}-\d{2}$/.test(k)).sort();
     return [{ f: 'keyword', l: 'Keyword' }, { f: 'plan', l: 'Plan' }, { f: 'target_rank', l: 'Target', fmt: int }].concat(ds.map((d) => ({ f: d, l: day(d) }))); }
   const termCols = [{ f: 'term', l: 'Search term' }, { f: 'plan', l: 'Plan' }, { f: 'clicks', l: 'Clicks', fmt: int }, { f: 'orders', l: 'Orders', fmt: int }, { f: 'spend', l: 'Spend', fmt: money2 },
@@ -258,6 +336,7 @@ const D = /*__DATA__*/null;
 
   function draw() {
     if (cur === 'overview') {
+      drawDay();
       table('tb-sizes', D.sizes, [{ f: 'size', l: 'Size' }, { f: 'campaigns', l: 'Campaigns', fmt: int }, { f: 'ad_sku_live', l: 'Ad SKU now' }, { f: 'ad_sku_recommended', l: 'Ad SKU proposed' },
         { f: 'spend_day', l: 'Spend / day now', fmt: money }, { f: 'plan_light_push_day', l: 'Plan light push / day', fmt: money }, { f: 'plan_spend_day', l: 'Launch workbook / day', fmt: money }, { f: 'ad_clicks', l: 'Clicks', fmt: int }, { f: 'ad_orders', l: 'Ad orders', fmt: int },
         { f: 'acos', l: 'ACoS', fmt: pct }, { f: 'cvr', l: 'CVR', fmt: pct }, { f: 'units_day_before', l: 'Units/day before', fmt: one }, { f: 'units_day_after', l: 'Units/day since', fmt: one },
