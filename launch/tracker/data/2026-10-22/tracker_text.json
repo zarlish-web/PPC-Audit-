@@ -521,7 +521,9 @@
     "Search terms on Oct 21 (Sellerboard): 'cooling sheets' 3 orders on 38 clicks (ACoS 41%), 'cooling sheets full size' 2 on 11 (36%), 'cooling sheets king size' 1 on 22 (84%).",
     "Stock watch: Full Navy Blue (not advertised) has 31 units and sells about 1.1/day, roughly a month left; Sellerboard flags it for reorder. It does not affect the ad SKUs.",
     "Data gap: the command center did not connect today, so organic ranks, Sleephoria's bids and the full search-term report were not refreshed. The rank and search-term tables still show data to the morning of 21 Oct; sales, campaign and stock data come from Sellerboard and are complete to 21 Oct.",
-    "Sellerboard reconciliation (22 Oct): Sellerboard's parent B0HN51LPQ1 view excludes 4 CooLinens cooling-sheet SKUs that sit outside the parent: Queen Light Grey, Full Beige, Queen Midnight Black and Twin Cream. On 21 Oct they had 2 units ($162.98) and $90.89 of ad spend ($87.55 on Queen Midnight Black). The tracker counts all cooling-sheet SKUs, so it shows 20 units where the parent view shows 18. Worth checking in Seller Central whether these 4 children are still in the variation family."
+    "Sellerboard reconciliation (22 Oct): Sellerboard's parent B0HN51LPQ1 view excludes 4 CooLinens cooling-sheet SKUs that sit outside the parent: Queen Light Grey, Full Beige, Queen Midnight Black and Twin Cream. On 21 Oct they had 2 units ($162.98) and $90.89 of ad spend ($87.55 on Queen Midnight Black). The tracker counts all cooling-sheet SKUs, so it shows 20 units where the parent view shows 18. Worth checking in Seller Central whether these 4 children are still in the variation family.",
+    "SKU check from the Sponsored Products bulk files (18–21 Oct and 21 Oct): every CooLinens campaign has one ad group, and all 274 product ads are enabled. All 25 ranking campaigns have one exact keyword but 3–5 colour SKUs, and the 4 single-keyword conversion campaigns have 5 each, so Amazon spreads each search's spend across colours (A11). On 21 Oct, 12 of the 19 ranking campaigns that spent split it across 2–4 SKUs.",
+    "Negatives in the bulk file: Auto has all our exact keywords as negative exact (the launch setup). None of the proposed negatives (A3 tail negatives, A4 'coolinens', A5 relevance negatives and 'sleephoria') is in the file yet."
    ],
    "actions": [
     "Top priority unchanged: A1, switch the Queen ads to Queen Graphite (gate passed; now 3 orders on 103 clicks).",
@@ -627,6 +629,20 @@
  ],
  "actions": [
   {
+   "id": "A11",
+   "priority": "1 · Act now",
+   "size": "All sizes",
+   "action": "One preferred SKU in every single-keyword campaign (exact match)",
+   "change": "In the 25 ranking campaigns, the 4 single-keyword conversion campaigns and the 6 product-page campaigns (rival pages and our pillowcase pages), keep one product ad enabled, the preferred SKU of the keyword's size, and pause the other colour ads in the ad group. Keywords with no size use the Queen preferred SKU. The 24 long-tail (halo) campaigns and Auto keep several SKUs. Keywords, bids and budgets stay the same. Joseph picks the preferred and backup variation for each size by stock depth and conversion.",
+   "why": "Each of these campaigns bids on one search (or one set of product pages), but its single ad group holds 3–5 colours, so Amazon spreads that search's clicks and sales across several children of the variation family and no child builds rank on it. The plan runs one SKU per ranking campaign; the backup variation of the same size is switched in only if the preferred one runs low on stock.",
+   "evidence": "Sponsored Products bulk files (18–21 Oct and 21 Oct): 60 CooLinens campaigns, each with one ad group; 274 product ads, all enabled. All 25 ranking campaigns have one exact keyword and 3–5 SKUs. 18–21 Oct: the ranking and single-keyword conversion campaigns took $1,377.60 of $1,815.88 SP spend (76%). On 21 Oct, 12 of the 19 ranking campaigns that spent split it across 2–4 SKUs; e.g. 'king size cooling sheet' spent $44.41 almost evenly on 3 colours with 0 orders, and Queen ranking spent $74.22 over 5 colours for 1 order. Auto already has all 25 ranking keywords as negative exact, and no keyword sits in two campaigns.",
+   "expected": "Each search's ad clicks and orders land on one child per size, which is what builds its keyword rank; spend stops going to colours that do not convert on that search.",
+   "check": "Next bulk file: one enabled product ad in each of the 35 single-keyword and product-page ad groups. Then a week of rank and CVR on the ranking keywords.",
+   "safe": "Only product ads are paused, not deleted; campaigns, keywords, bids and budgets are untouched, and any ad can be re-enabled in one step.",
+   "ref": "Bulk 18–21 Oct",
+   "status": "Proposed 22 Oct"
+  },
+  {
    "id": "A1",
    "priority": "1 · Act now",
    "size": "Queen + head terms",
@@ -638,7 +654,7 @@
    "check": "27 Oct: Queen CVR and Queen units/day vs the 3.0 baseline. 3 Nov: Batch 2 gate.",
    "safe": "Only the product shown changes. The White ad stays paused, not deleted, and can be switched back in one step.",
    "ref": "D02",
-   "status": "Not applied yet (checked 22 Oct)"
+   "status": "Replaced by A11 (22 Oct)"
   },
   {
    "id": "A2",
@@ -736,7 +752,7 @@
    "check": "27 Oct.",
    "safe": "Same keywords, bids and budgets; small sizes on capped spend.",
    "ref": "D12",
-   "status": "Not applied yet (checked 22 Oct)"
+   "status": "Replaced by A11 (22 Oct)"
   },
   {
    "id": "H1",
@@ -793,6 +809,20 @@
    "safe": "A video test lane, not a ranking lane; Queen's keyword ads and Sponsored Brands collection ads keep Queen's search coverage.",
    "ref": "D18",
    "status": "Question for Joseph"
+  },
+  {
+   "id": "A12",
+   "priority": "3 · Can wait",
+   "size": "No size",
+   "action": "Give the colour search 'pink cooling sheet' a matching SKU",
+   "change": "Move 'pink cooling sheet' out of No Size Tail 05 into its own single-keyword exact campaign that advertises a pink SKU, and add it as negative exact in No Size Tail 05.",
+   "why": "No Size Tail 05 advertises five Queen colours and none of them is pink, so a shopper searching for pink sees a different colour.",
+   "evidence": "18–21 Oct: 1 click, $2.22, 0 orders. A pink Queen SKU is in stock but is not advertised in any campaign.",
+   "expected": "Small volume; the point is that a colour search shows that colour.",
+   "check": "After the change: the term's clicks and orders in its own campaign.",
+   "safe": "A low-volume keyword; nothing else in No Size Tail 05 changes.",
+   "ref": "Bulk 18–21 Oct",
+   "status": "Proposed 22 Oct"
   }
  ]
 }
