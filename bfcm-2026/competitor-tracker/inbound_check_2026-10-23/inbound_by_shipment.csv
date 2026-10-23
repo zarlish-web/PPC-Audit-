@@ -1,0 +1,27 @@
+shipment,mkt,status_now,units,received_so_far,eta,sellable_by_est,sellable_range,window,batch
+FBA19N7XSBR9,US,IN_TRANSIT,598,0,by 24 Oct (only shipment firmly before the 28 Oct cutoff),2026-10-29,2026-10-27 to 2026-10-31,Sellable before Nov 19,
+FBA19N7WSG18,US,IN_TRANSIT,822,0,25-31 Oct,2026-11-05,2026-11-03 to 2026-11-07,Sellable before Nov 19,
+FBA19QLK9CYH,US,SHIPPED,658,0,moved from 18-24 Oct to 8-14 Nov,2026-11-19,2026-11-17 to 2026-11-21,Tight: sellable around Nov 19-21,
+FBA19QLJLR1F,US,SHIPPED,1026,0,moved from 18-24 Oct to 8-14 Nov,2026-11-19,2026-11-17 to 2026-11-21,Tight: sellable around Nov 19-21,
+FBA19RS0N5K2,US,SHIPPED,608,0,8-14 Nov,2026-11-19,2026-11-17 to 2026-11-21,Tight: sellable around Nov 19-21,
+FBA19RRY6QFT,US,SHIPPED,984,0,8-14 Nov,2026-11-19,2026-11-17 to 2026-11-21,Tight: sellable around Nov 19-21,
+FBA19RS1HC4F,US,SHIPPED,956,0,8-14 Nov,2026-11-19,2026-11-17 to 2026-11-21,Tight: sellable around Nov 19-21,
+FBA19RRYCGHJ,US,SHIPPED,1060,0,8-14 Nov,2026-11-19,2026-11-17 to 2026-11-21,Tight: sellable around Nov 19-21,
+FBA19R4G23HZ,US,SHIPPED,516,0,8-14 Nov,2026-11-19,2026-11-17 to 2026-11-21,Tight: sellable around Nov 19-21,
+FBA19RRY5FBL,US,SHIPPED,1086,0,29 Nov - 5 Dec,2026-12-10,2026-12-08 to 2026-12-12,After Nov 30 (outside the deal),
+FBA19STRJMC3,US,SHIPPED,1446,0,around 4 Dec,2026-12-09,2026-12-07 to 2026-12-11,After Nov 30 (outside the deal),
+FBA19SV47PX1,US,SHIPPED,1838,0,around 4 Dec,2026-12-09,2026-12-07 to 2026-12-11,After Nov 30 (outside the deal),
+FBA19SV1CLVT,US,SHIPPED,1799,0,around 4 Dec,2026-12-09,2026-12-07 to 2026-12-11,After Nov 30 (outside the deal),
+FBA19STYQSF4,US,SHIPPED,1120,0,around 4 Dec,2026-12-09,2026-12-07 to 2026-12-11,After Nov 30 (outside the deal),
+FBA19STZ9LHZ,US,SHIPPED,1847,0,around 4 Dec,2026-12-09,2026-12-07 to 2026-12-11,After Nov 30 (outside the deal),
+FBA19N82086K,CA,IN_TRANSIT,1734,0,carrier ETA 25 Oct; forwarder ETA 3 Nov,2026-11-08,2026-11-06 to 2026-11-10,Sellable before Nov 19,
+FBA19QLVD3FK,CA,RECEIVING,2536,1912,22 Oct - 5 Nov (receiving),2026-11-10,2026-11-08 to 2026-11-12,Sellable before Nov 19,
+FBA19MV0YVFX,CA,SHIPPED,760,0,by 16 Nov,2026-11-21,2026-11-19 to 2026-11-23,Tight: sellable around Nov 19-21,
+FBA19RSBKFGZ,CA,SHIPPED,688,0,25 Nov,2026-11-30,2026-11-28 to 2026-12-02,Sellable during the deal (Nov 22-30),
+FBA19SV5KWMR,CA,SHIPPED,1462,0,1 Dec,2026-12-06,2026-12-04 to 2026-12-08,After Nov 30 (outside the deal),
+FBA19TYN6F53,US,READY_TO_SHIP,863,0,USA260 batch: pickup 24 Oct; Air 5-9 Nov / Fastest 22-27 Nov / Fast 27 Nov-2 Dec (mode pending),,,Mode pending,USA260
+FBA19TYJLJTD,US,READY_TO_SHIP,743,0,USA260 batch: mode pending,,,Mode pending,USA260
+FBA19TYMGSYP,US,READY_TO_SHIP,440,0,USA260 batch: mode pending,,,Mode pending,USA260
+FBA19TYKXYBF,US,READY_TO_SHIP,676,0,USA260 batch: mode pending,,,Mode pending,USA260
+FBA19TYJQZDK,US,READY_TO_SHIP,842,0,USA260 batch: mode pending,,,Mode pending,USA260
+FBA19TY7ML4M,CA,READY_TO_SHIP,286,0,CA0108 batch: pickup 24 Oct; mode pending,,,Mode pending,CA0108
