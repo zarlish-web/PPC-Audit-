@@ -95,7 +95,7 @@ tr:last-child td { border-bottom: 0; }
   <header>
     <h1>CooLinens Daily Recommendations</h1>
     <p class="take" id="take"></p>
-    <div class="meta"><span><b>Cooling Sheets 4PC</b> · Amazon US</span><span>PPC live 16 Oct 2026</span><span>Owner Shayan Rana</span><span>Data to <b id="asof"></b> · all CooLinens cooling-sheet SKUs (parent B0HN51LPQ1 plus 4 SKUs Sellerboard lists outside it)</span></div>
+    <div class="meta"><span><b>Cooling Sheets 4PC</b> · Amazon US</span><span>PPC live 16 Oct 2026</span><span>Owner Shayan Rana</span><span>Data to <b id="asof"></b> · all CooLinens cooling-sheet SKUs (parent B0HN51LPQ1 plus the SKUs Sellerboard lists outside it; see the day report)</span></div>
   </header>
   <nav role="tablist" aria-label="Tracker sections">
     <button role="tab" data-p="overview" aria-selected="true" id="t-overview">Overview</button>
@@ -300,7 +300,7 @@ const D = /*__DATA__*/null;
   function drStatic() {
     const r = DR[drI]; if (!r) return;
     $('#dr-title').textContent = 'Day report · ' + wday(r.date);
-    $('#dr-sub').textContent = 'Complete day, compared with ' + day(r.prev_date) + '. Sellerboard (sales, ads, search terms) and the command center (rank). Read-only: nothing here changes the ad account.';
+    $('#dr-sub').textContent = 'Complete day, compared with ' + day(r.prev_date) + '. Sales and profit from Sellerboard; ad and search-term rows from Sellerboard and the command center; rank from the command center. Read-only: nothing here changes the ad account.';
     $('#dr-tiles').replaceChildren(...r.summary.map((s) => { const d = el('div', 'dtile'); const f = s.metric === 'Net profit' ? sgnMoney : (F[s.fmt] || int);
       let cls = ''; if (s.change != null && Math.abs(s.change) >= 0.005) { const up = s.day > s.prev; cls = (up === (s.better === 'up')) ? 'good' : 'bad'; }
       const ch = s.change == null ? '' : ' (' + (s.change > 0 ? '+' : '−') + Math.abs(s.change * 100).toFixed(0) + '%)';
