@@ -113,7 +113,7 @@ dump('queen_terms', q[cols]); dump('king_terms', k[cols])
 sc = pd.read_csv(f'{S}/v6/sb_campaigns.csv'); sc = sc[sc.Name.str.startswith('CLCS4') & sc.Name.str.contains('Queen')]
 for c_ in ['AdSpend', 'Clicks', 'Orders', 'Impressions', 'dailyBudget', 'topOfSearch', 'startDate']:
     sc[c_] = pd.to_numeric(sc[c_], errors='coerce').abs()
-END = pd.Timestamp('2026-10-23 12:00', tz='UTC').timestamp()
+END = pd.Timestamp('2026-10-24 12:00', tz='UTC').timestamp()
 sc['days'] = ((END - sc.startDate) / 86400).clip(lower=1)
 sc['budget_used'] = sc.AdSpend / (sc.dailyBudget * sc.days)
 sc['objective'] = sc.Name.str.extract(r'-\((Ranking|Conversion|Conquest|Profit)\)-')[0] + sc.Name.map(lambda x: ' · fixed bids' if '-FIX-' in x else ' · down-only bids')
