@@ -8,6 +8,10 @@ month 4 of selling; Canada follows on the same SKUs, the UK is a later selective
 
 | File | What it is |
 | --- | --- |
+| **`Bedding_Market_Entry_Feasibility_Consolidated_Report.docx` / `.pdf`** | **Start here.** The single consolidated report (41 pages): Study A (internal-account-led) and Study B (Independent Bedding Market Intelligence) merged, reconciled, with all 14 figures and a figure index |
+| `Bedding_Market_Entry_Feasibility_Consolidated_Workbook.xlsx` | Study A's 20 numbered tabs (live formulas) plus every Study B tab copied as values (prefixed `B_`) |
+| `Study_B_Bedding_Market_Intelligence.xlsx`, `study_b_originals/` | Study B originals as supplied: workbook with live formulas, 23-page report, decision memo, chart PDF and evidence archive |
+| `charts/independent/` | Study B's six figures extracted for the consolidated report |
 | `report.md` | Executive report + decision memo (Deliverables A, D, E). Live, editable version: the Claude doc "Bedding Market Entry Feasibility — Amazon US, Canada & UK" |
 | `Bedding_Market_Entry_Feasibility_Workbook.xlsx` | Deliverable B — 20 numbered worksheets plus supporting data tabs and charts; economics, budget, scenarios and the go/no-go dashboard are formula-driven |
 | `charts/` | Deliverable C — eight evidence charts (PNG) |
