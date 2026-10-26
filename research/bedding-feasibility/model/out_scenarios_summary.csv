@@ -1,0 +1,4 @@
+scenario,units_12m,revenue_12m,ad_spend_12m,tacos_12m,contribution_12m,one_time_costs,initial_inventory_landed,contingency_pct,peak_cash_need,reorders,cash_breakeven_month,inventory_end
+Conservative,2970,195481,83327,0.426,-26084,14500,30502,0.1,96078,2,>12,1530
+Base,7875,537327,129214,0.24,28611,27000,50838,0.15,142172,3,12,990
+Upside,12921,883300,125244,0.142,134900,40000,81340,0.2,197184,4,7,1350

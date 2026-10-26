@@ -1,0 +1,301 @@
+product_id,marketplace,rank,keyword,state,addressability,segment,consensus_rivals_ranking,rival_traffic_avg,rival_traffic_max,rival_traffic_sum,top3_rivals,our_traffic,our_ad_traffic,our_organic_rank,our_sp_rank,our_placements,ppc_opportunity,our_export_date
+59,US,1,bamboo sheets,contested,addressable,Bamboo,27,55886,333270,1564818,Pure Bamboo:333270;Bedsure:316117;Love's cabin:198249,18594,3511,38,12,OR|SP|SB|SBV|SOR,they_are_more_aggressive,2026-10-26
+59,US,2,king size sheets set,contested,addressable,"Matched, no owner",20,19731,114269,453819,BC BELLA COTERIE:114269;Pure Bamboo:76466;Bedsure:54899,8541,1477,82,,OR|SBV,they_are_more_aggressive,2026-10-26
+59,US,3,miracle sheets,contested,disqualified,Unclassified,15,2565,10293,43608,Bedsure:10293;Bedsure:7977;Pure Bamboo:5282,4068,2756,128,8,OR|SP|SBV|SOR,,2026-10-26
+59,US,4,silk sheets,contested,disqualified,Unclassified,20,4133,38334,99203,Bedsure:38334;Bedsure:13075;BC BELLA COTERIE:10806,3810,3794,93,14,OR|SP|SB|SBV|SOR,,2026-10-26
+59,US,5,cooling sheets,contested,addressable,Cooling,24,8335,74565,233381,Bedsure:74565;Pure Bamboo:49382;Bambaw:18780,3377,1689,57,17,OR|SP|SB|SBV|SOR,,2026-10-26
+59,US,6,bed sheets full size,contested,addressable,"Matched, no owner",10,1799,7623,23388,TRUE BAMBOO:7623;Bedsure:5504;Pure Bamboo:4868,3132,714,40,17,OR|SP|SBV|SOR,they_are_more_aggressive,2026-10-26
+59,US,7,king bed sheets,contested,addressable,"Matched, no owner",18,2463,11069,51715,Bedsure:11069;Pure Bamboo:9858;TRUE BAMBOO:6409,2779,287,55,,OR|SB|SBV|SOR,they_are_more_aggressive,2026-10-26
+59,US,8,california king sheets,contested,addressable,"Matched, no owner",13,1615,10766,27448,Bedsure:10766;TRUE BAMBOO:4646;Pure Bamboo:4291,2264,369,43,,OR|SBV,they_are_more_aggressive,2026-10-26
+59,US,9,bamboo sheets queen size,contested,addressable,Bamboo|Queen,27,8912,39574,249522,Bedsure:39574;Pure Bamboo:37178;Love's cabin:29836,2188,567,87,17,OR|SP|SB|SBV,they_are_more_aggressive,2026-10-26
+59,US,10,decolure bamboo sheets,contested,addressable,"Matched, no owner",25,120,549,3132,Pure Bamboo:549;BC BELLA COTERIE:424;TRUE BAMBOO:269,2158,534,1,1,OR|SP|SB|SBV|SOR|AC,they_are_more_aggressive,2026-10-26
+59,US,11,california king sheet sets,contested,addressable,"Matched, no owner",13,4418,28619,79521,Bedsure:28619;BC BELLA COTERIE:10969;Pure Bamboo:10846,2147,966,76,,OR|SBV,they_are_more_aggressive,2026-10-26
+59,US,12,house of david,contested,disqualified,Unclassified,2,4974,11490,19896,KARISSA MAE:11490;BC BELLA COTERIE:8406;Bedsure:0,1944,1944,,2,SP,,2026-10-26
+59,US,13,bed sheets,contested,addressable,Unclassified,21,6925,75418,173124,Pure Bamboo:75418;Bedsure:49544;Love's cabin:19636,1910,1910,51,20,OR|SP|SB|SOR,,2026-10-26
+59,US,14,full size sheet sets,contested,addressable,"Matched, no owner",9,1464,5314,17571,Love's cabin:5314;Pure Bamboo:4092;TRUE BAMBOO:2440,1875,1870,70,20,OR|SP|SBV|SOR,,2026-10-26
+59,US,15,bedding,contested,addressable,Unclassified,10,4411,35693,57346,Pure Bamboo:35693;Bedsure:15327;TRUE BAMBOO:3808,1808,1808,,9,SP|SOR,,2026-10-26
+59,US,16,cooling sheets king size,contested,addressable,Cooling|King,24,2824,15803,70605,Bedsure:15803;Pure Bamboo:10764;Bedsure:6676,1793,1084,70,22,OR|SP|SB|SBV|SOR,,2026-10-26
+59,US,17,bamboo sheets king size,contested,addressable,Bamboo|King,26,5143,34107,144010,Pure Bamboo:34107;Bedsure:22157;BC BELLA COTERIE:13174,1683,441,27,12,OR|SP|SBV|SOR,they_are_more_aggressive,2026-10-26
+59,US,18,full size sheets,contested,addressable,"Matched, no owner",9,4832,18742,62810,Pure Bamboo:18742;Bedsure:17023;Love's cabin:15297,1610,1610,,20,SP|SBV|SOR,,2026-10-26
+59,US,19,full sheet set,contested,addressable,"Matched, no owner",12,1123,4248,19091,Pure Bamboo:4248;Bedsure:4112;Love's cabin:4111,1591,1591,,16,SP|SBV|SOR,,2026-10-26
+59,US,20,sheets king size,contested,addressable,"Matched, no owner",18,3184,16361,66873,Pure Bamboo:16361;Bedsure:15300;KRIMANO:6266,1544,202,69,21,OR|SP|SB|SBV,they_are_more_aggressive,2026-10-26
+59,US,21,cooling bed sheets,contested,addressable,Cooling,26,1666,14009,44989,Bedsure:14009;Bedsure:7543;Pure Bamboo:6047,1453,612,45,7,OR|SP|SB|SBV|SOR,they_are_more_aggressive,2026-10-26
+59,US,22,king sheets deep pocket,contested,addressable,"Matched, no owner",18,2290,7143,43504,Pure Bamboo:7143;SONORO KATE:6340;Bedsure:6193,1333,0,53,,OR|SBV,we_run_none,2026-10-26
+59,US,23,bamboo sheets king,contested,addressable,Bamboo|King,28,2506,14669,72668,Bedsure:14669;Pure Bamboo:13683;Love's cabin:6425,1215,167,29,9,OR|SP|SB|SBV|SOR,they_are_more_aggressive,2026-10-26
+59,US,24,king sheets,contested,addressable,"Matched, no owner",20,6056,27106,139287,Pure Bamboo:27106;Bedsure:27083;TRUE BAMBOO:18299,1208,971,80,11,OR|SP|SB|SBV|SOR,,2026-10-26
+59,US,25,sheets,contested,addressable,Unclassified,19,11887,95198,285277,Pure Bamboo:95198;Bedsure:59544;BC BELLA COTERIE:27268,1122,460,96,19,OR|SP|SB|SBV|SOR,they_are_more_aggressive,2026-10-26
+59,US,26,twin sheets,contested,addressable,"Matched, no owner",10,2183,13188,30563,Pure Bamboo:13188;Bedsure:10562;KARISSA MAE:3001,998,998,,,SBV,,2026-10-26
+59,US,27,twin bed sheets,contested,addressable,"Matched, no owner",9,1754,7855,21046,Bedsure:7855;Pure Bamboo:7604;Love's cabin:2190,977,977,,17,SP|SBV|SOR,,2026-10-26
+59,US,28,sheet & pillowcase sets,contested,disqualified,Unclassified,15,1750,12254,35000,Pure Bamboo:12254;Bedsure:10255;Love's cabin:4515,968,968,,10,SP|SBV|SOR,,2026-10-26
+59,US,29,quince bedding,contested,disqualified,Unclassified,14,2379,13463,38057,Pure Bamboo:13463;Bedsure:7595;Bedsure:3718,942,942,125,8,OR|SP|SBV|SOR,,2026-10-26
+59,US,30,sheets twin size bed set,contested,addressable,"Matched, no owner",8,215,842,2361,Pure Bamboo:842;California Design Den:749;Bedsure:348,908,121,27,,OR|SBV,they_are_more_aggressive,2026-10-26
+59,US,31,full size bed sheets,contested,addressable,"Matched, no owner",10,3436,11963,37791,Bedsure:11963;TRUE BAMBOO:9427;Love's cabin:7456,854,854,,13,SP|SBV|SOR,,2026-10-26
+59,US,32,cooling sheets queen,contested,addressable,Cooling|Queen,25,3850,23613,103938,Bedsure:23613;Bedsure:13012;Love's cabin:11043,794,303,70,12,OR|SP|SB|SBV,they_are_more_aggressive,2026-10-26
+59,US,33,twin sheets set,contested,addressable,"Matched, no owner",9,3034,13470,36412,Pure Bamboo:13470;Bedsure:8646;BC BELLA COTERIE:7760,771,771,,19,SP|SBV|SOR,,2026-10-26
+59,US,34,full bed sheets,contested,addressable,"Matched, no owner",7,1655,6084,18209,TRUE BAMBOO:6084;Pure Bamboo:3864;Bedsure:3154,752,752,,14,SP|SBV|SOR,,2026-10-26
+59,US,35,bamboo cooling sheets,contested,addressable,Bamboo|Cooling,26,1558,10360,43638,Bedsure:10360;Love's cabin:7013;Pure Bamboo:6671,692,164,38,8,OR|SP|SBV|SOR,they_are_more_aggressive,2026-10-26
+59,US,36,100% bamboo sheets,contested,addressable,Bamboo,26,997,6847,27922,Pure Bamboo:6847;Bedsure:4504;Love's cabin:4497,614,57,59,10,OR|SP|SBV|SOR,they_are_more_aggressive,2026-10-26
+59,US,37,king sheets cooling,contested,addressable,Cooling|King,23,702,4116,16848,Bedsure:4116;Bedsure:2640;Pure Bamboo:1858,606,148,34,,OR|SB|SBV,they_are_more_aggressive,2026-10-26
+59,US,38,queen 4 piece boho botanical floral sheet set - soft & cooling - rosebud,ours_only,unknown,"Matched, no owner",0,,,0,,556,556,,14,SP,,2026-10-26
+59,US,39,cozy earth sheets,contested,disqualified,Unclassified,17,552,4205,12706,Pure Bamboo:4205;BC BELLA COTERIE:2073;Bedsure:1075,553,216,52,7,OR|SP|SBV|SOR,,2026-10-26
+59,US,40,cozy earth bamboo sheets,contested,disqualified,"Matched, no owner",26,2324,18770,60414,Pure Bamboo:18770;Bedsure:5150;BC BELLA COTERIE:4993,523,24,67,7,OR|SP|SB|SBV|SOR,they_are_more_aggressive,2026-10-26
+59,US,41,silk sheets king,contested,disqualified,"Matched, no owner",19,1065,9534,23438,Bedsure:9534;Bedsure:5165;BC BELLA COTERIE:4860,487,481,135,21,OR|SP|SB|SBV|SOR,,2026-10-26
+59,US,42,king bamboo sheets,contested,addressable,Bamboo|King,25,1092,7324,28399,Pure Bamboo:7324;Bedsure:5419;Love's cabin:3152,479,60,32,,OR|SBV|SOR,they_are_more_aggressive,2026-10-26
+59,US,43,silk bed sheets,contested,disqualified,Unclassified,18,1678,18777,35248,Bedsure:18777;BC BELLA COTERIE:3453;Love's cabin:3096,461,461,,26,SP|SB|SBV|SOR,,2026-10-26
+59,US,44,bamboo viscose sheets,contested,addressable,Bamboo,26,851,4552,23841,Pure Bamboo:4552;Bedsure:3518;Love's cabin:2730,437,274,48,5,OR|SP|SBV|SOR,,2026-10-26
+59,US,45,online shopping,contested,disqualified,Unclassified,1,6,25,25,Pure Bamboo:25;Hotel Sheets Direct:0;BC BELLA COTERIE:0,433,433,,5,SP|SOR,,2026-10-26
+59,US,46,sheets full size bed,contested,addressable,"Matched, no owner",11,1400,5144,16795,Pure Bamboo:5144;Bedsure:4039;Love's cabin:3116,409,409,,20,SP|SBV|SOR,,2026-10-26
+59,US,47,sheets king,contested,addressable,"Matched, no owner",14,263,1384,5004,Pure Bamboo:1384;Bedsure:1093;BC BELLA COTERIE:959,398,46,50,,OR|SBV,they_are_more_aggressive,2026-10-26
+59,US,48,cooling sheets full size,contested,addressable,Cooling|Full,18,444,2403,8427,Bedsure:2403;Love's cabin:2080;Kickoff Home:796,396,310,88,9,OR|SP|SB|SBV,,2026-10-26
+59,US,49,bamboo sheets full,contested,addressable,Bamboo|Full,24,981,6267,25502,Love's cabin:6267;Bedsure:6191;Pure Bamboo:5073,392,4,23,6,OR|SP|SBV,they_are_more_aggressive,2026-10-26
+59,US,50,bamboo sheets twin,contested,addressable,Bamboo|Twin,19,553,4628,11061,Bedsure:4628;Pure Bamboo:1725;Hotel Sheets Direct:947,386,129,22,2,OR|SP|SBV,they_are_more_aggressive,2026-10-26
+59,US,51,king sheets bamboo,contested,addressable,Bamboo|King,24,724,3938,18095,Bedsure:3938;Pure Bamboo:3384;Love's cabin:1953,376,55,34,19,OR|SP|SBV,they_are_more_aggressive,2026-10-26
+59,US,52,satin sheets,contested,disqualified,Unclassified,11,1201,8650,14413,Bedsure:8650;Love's cabin:1803;BC BELLA COTERIE:1394,370,370,,14,SP|SBV,,2026-10-26
+59,US,53,cariloha bamboo sheets,contested,disqualified,"Matched, no owner",20,407,1430,9768,Pure Bamboo:1430;BC BELLA COTERIE:1257;Bedsure:791,358,94,44,8,OR|SP|SOR,they_are_more_aggressive,2026-10-26
+59,US,54,deep pocket king sheet set,contested,addressable,"Matched, no owner",19,1575,7021,37790,Bedsure:7021;TRUE BAMBOO:6669;SONORO KATE:6596,352,352,,13,SP|SBV,,2026-10-26
+59,US,55,king size bamboo sheets set,contested,addressable,Bamboo|King,24,1201,7246,32418,Bedsure:7246;Pure Bamboo:5944;Love's cabin:4231,345,0,51,7,OR|SP,we_run_none,2026-10-26
+59,US,56,bamboo king sheets,contested,addressable,Bamboo|King,24,960,6356,24968,Pure Bamboo:6356;Bedsure:4781;Love's cabin:2612,342,0,28,,OR,we_run_none,2026-10-26
+59,US,57,bed set,contested,addressable,Unclassified,9,2003,13681,22032,Pure Bamboo:13681;Bedsure:5597;Love's cabin:708,334,334,,18,SP|SOR,,2026-10-26
+59,US,58,queen size sheets deep pocket,contested,addressable,"Matched, no owner",18,314,1713,7228,TRUE BAMBOO:1713;Bedsure:1326;Bedsure:986,328,0,42,,OR,we_run_none,2026-10-26
+59,US,59,pure bamboo sheets,contested,disqualified,"Matched, no owner",25,967,10555,25151,Pure Bamboo:10555;Bedsure:2448;TRUE BAMBOO:1918,325,0,39,17,OR|SP,we_run_none,2026-10-26
+59,US,60,sijo airyweight eucalyptus sheet set,contested,disqualified,Unclassified,13,195,845,3322,Bedsure:845;Bedsure:545;Hotel Sheets Direct:385,324,156,35,8,OR|SP|SB|SBV,,2026-10-26
+59,US,61,silk sheets full,contested,disqualified,"Matched, no owner",15,161,2050,3373,Bedsure:2050;Love's cabin:281;Pure Bamboo:254,321,294,143,18,OR|SP|SB|SBV,,2026-10-26
+59,US,62,cosy house bamboo sheets,contested,disqualified,"Matched, no owner",26,606,3976,16360,Pure Bamboo:3976;Bedsure:1720;Bedsure:1264,317,22,46,,OR|SBV,they_are_more_aggressive,2026-10-26
+59,US,63,purple sheets,contested,addressable,Unclassified,11,768,6395,12281,Pure Bamboo:6395;Bedsure:2582;Love's cabin:1708,304,253,135,20,OR|SP|SBV|SOR,,2026-10-26
+59,US,64,bamboo bed sheets,contested,addressable,Bamboo,26,1379,7484,37229,Pure Bamboo:7484;Bedsure:6175;Love's cabin:6033,297,297,78,15,OR|SP|SBV|SOR,,2026-10-26
+59,US,65,viscose bamboo sheets,contested,addressable,Bamboo,26,499,2924,13970,Pure Bamboo:2924;Bedsure:2129;Love's cabin:1233,292,159,55,12,OR|SP|SBV|SOR,,2026-10-26
+59,US,66,cooling sheets king,contested,addressable,Cooling|King,23,444,2821,10658,Bedsure:2821;Bedsure:1795;Pure Bamboo:1120,291,68,31,,OR|SBV,they_are_more_aggressive,2026-10-26
+59,US,67,bed sheets twin,contested,addressable,"Matched, no owner",8,431,1989,4314,Pure Bamboo:1989;Love's cabin:1172;Bedsure:1071,273,273,,19,SP|SBV,,2026-10-26
+59,US,68,tencel lyocell sheets,contested,disqualified,Unclassified,17,626,3974,12522,Pillcase:3974;Bedsure:3948;Hotel Sheets Direct:836,271,211,67,7,OR|SP|SBV,,2026-10-26
+59,US,69,black sheets,contested,addressable,Unclassified,11,858,4531,15446,Pure Bamboo:4531;Love's cabin:4392;Bedsure:4321,266,266,,19,SP|SOR,,2026-10-26
+59,US,70,king sheet set,contested,addressable,"Matched, no owner",17,1721,8555,37867,Pure Bamboo:8555;Bedsure:8420;BC BELLA COTERIE:4585,261,261,,19,SP|SB|SBV|SOR,,2026-10-26
+59,US,71,bamboo king size sheets set,contested,addressable,Bamboo|King,23,502,2799,13050,Bedsure:2799;Pure Bamboo:2328;Love's cabin:1333,260,30,22,18,OR|SP|SOR,they_are_more_aggressive,2026-10-26
+59,US,72,bamboo sheets full size,contested,addressable,Bamboo|Full,21,464,2692,10666,Love's cabin:2692;Bedsure:2373;Pure Bamboo:1607,250,66,30,9,OR|SP|SBV,they_are_more_aggressive,2026-10-26
+59,US,73,bamboo twin sheets,contested,addressable,Bamboo|Twin,17,388,2926,7380,Bedsure:2926;Hotel Sheets Direct:1082;Pure Bamboo:1074,243,77,22,7,OR|SP|SB|SOR,they_are_more_aggressive,2026-10-26
+59,US,74,bamboo cooling sheets king size,contested,addressable,Bamboo|Cooling,23,366,2063,9888,Bedsure:2063;Pure Bamboo:1611;Bedsure:1115,241,9,30,21,OR|SP|SBV|SOR,they_are_more_aggressive,2026-10-26
+59,US,75,sheets with corner straps,contested,addressable,Unclassified,15,663,3186,10602,GOKOTTA:3186;Pure Bamboo:1822;BC BELLA COTERIE:1508,239,180,136,16,OR|SP|SBV,,2026-10-26
+59,US,76,king size cooling sheets,contested,addressable,Cooling|King,21,690,4792,16569,Bedsure:4792;Bedsure:3245;Pure Bamboo:1269,228,68,39,12,OR|SP|SB,they_are_more_aggressive,2026-10-26
+59,US,77,cal king sheet set,contested,addressable,"Matched, no owner",12,1315,6068,19727,Bedsure:6068;Pure Bamboo:3655;BC BELLA COTERIE:3543,220,220,,,SBV,,2026-10-26
+59,US,78,breescape cooling sheets,contested,disqualified,"Matched, no owner",13,228,1173,3646,Bedsure:1173;Pure Bamboo:725;Bedsure:297,216,216,,5,SP|SBV,,2026-10-26
+59,US,79,brooklinen sheets,contested,disqualified,Unclassified,13,1142,9069,15981,Pure Bamboo:9069;Bedsure:2229;Bedsure:1450,215,215,,19,SP|SBV,,2026-10-26
+59,US,80,full sheets,contested,addressable,"Matched, no owner",9,1145,5247,16026,Bedsure:5247;Pure Bamboo:3393;Love's cabin:3160,205,205,138,23,OR|SP|SB|SBV,,2026-10-26
+59,US,81,black bamboo sheets,contested,addressable,Bamboo,23,332,1410,7959,Bedsure:1410;Pure Bamboo:1376;Love's cabin:1302,204,32,17,12,OR|SP|SOR,they_are_more_aggressive,2026-10-26
+59,US,82,full size sheets set,contested,addressable,"Matched, no owner",11,239,708,2871,Pillcase:708;Love's cabin:476;DOZ by SIJO:473,203,203,,22,SP|SBV,,2026-10-26
+59,US,83,burgundy sheets,contested,addressable,Unclassified,10,284,1191,3690,Bedsure:1191;Pure Bamboo:790;Hotel Sheets Direct:656,202,0,70,,OR,we_run_none,2026-10-26
+59,US,84,cooling bamboo sheets,contested,addressable,Bamboo|Cooling,27,235,904,6576,Bedsure:904;Pure Bamboo:813;Love's cabin:751,189,27,39,8,OR|SP|SBV,they_are_more_aggressive,2026-10-26
+59,US,85,cooling bed sheets king,contested,addressable,Cooling|King,22,335,2229,7363,Bedsure:2229;Bedsure:1331;Pure Bamboo:1030,188,49,55,,OR|SB|SBV,they_are_more_aggressive,2026-10-26
+59,US,86,full size bamboo sheets,contested,addressable,Bamboo|Full,23,339,2308,8131,Bedsure:2308;Love's cabin:1728;Pure Bamboo:1156,186,51,28,10,OR|SP,they_are_more_aggressive,2026-10-26
+59,US,87,boll and branch sheets,contested,disqualified,Unclassified,14,1178,7008,18840,Pure Bamboo:7008;Bedsure:3429;BC BELLA COTERIE:2475,181,156,131,6,OR|SP|SBV|SOR,,2026-10-26
+59,US,88,shee,contested,disqualified,Unclassified,8,11415,74146,148392,Pure Bamboo:74146;BC BELLA COTERIE:57268;KARISSA MAE:11553,181,181,,4,SP|SBV,,2026-10-26
+59,US,89,twin sheet,contested,addressable,"Matched, no owner",8,213,1482,2561,Bedsure:1482;BC BELLA COTERIE:502;Pure Bamboo:352,179,179,,28,SP|SBV,,2026-10-26
+59,US,90,king size sheets,contested,addressable,"Matched, no owner",20,2873,13292,66081,Bedsure:13292;Pure Bamboo:11927;KRIMANO:9384,178,178,,22,SP|SBV|SOR,,2026-10-26
+59,US,91,white sheets,contested,addressable,Unclassified,14,2264,16510,40749,Pure Bamboo:16510;Bedsure:10459;Bedsure:4626,177,177,,,SBV,,2026-10-26
+59,US,92,decolure bamboo sheets king size,contested,addressable,"Matched, no owner",21,55,239,1271,Bedsure:239;Bedsure:194;Pure Bamboo:157,175,27,2,2,OR|SP|SBV|SOR|AC,they_are_more_aggressive,2026-10-26
+59,US,93,twin bamboo bed sheets,contested,addressable,Bamboo|Twin,18,373,2868,7833,Bedsure:2868;Hotel Sheets Direct:1216;Pure Bamboo:913,174,55,23,21,OR|SP|SB|SOR,they_are_more_aggressive,2026-10-26
+59,US,94,king bamboo sheets deep pocket,contested,addressable,Bamboo|King,25,282,1587,7608,Bedsure:1587;Pure Bamboo:1424;SONORO KATE:769,171,44,24,8,OR|SP|SOR,they_are_more_aggressive,2026-10-26
+59,US,95,full size sheet set,contested,addressable,"Matched, no owner",12,356,1156,4979,Love's cabin:1156;TRUE BAMBOO:870;KARISSA MAE:793,170,170,,22,SP|SBV|SOR,,2026-10-26
+59,US,96,bamboo sheets california king,contested,addressable,Bamboo|California King,22,468,3079,10754,Bedsure:3079;Pure Bamboo:1927;Love's cabin:967,169,0,20,,OR|SBV,we_run_none,2026-10-26
+59,US,97,cooling king sheets,contested,addressable,Cooling|King,23,386,2861,9271,Bedsure:2861;Bedsure:1664;Pure Bamboo:706,168,58,51,,OR|SBV,they_are_more_aggressive,2026-10-26
+59,US,98,king size bamboo sheets,contested,addressable,Bamboo|King,23,379,2550,10242,Bedsure:2550;Pure Bamboo:1588;Love's cabin:1226,168,45,46,6,OR|SP,they_are_more_aggressive,2026-10-26
+59,US,99,pure bamboo sheets king,contested,disqualified,"Matched, no owner",25,493,5013,12336,Pure Bamboo:5013;Bedsure:1896;TRUE BAMBOO:805,167,0,31,,OR|SBV|SOR,we_run_none,2026-10-26
+59,US,100,queen bamboo sheets,contested,addressable,Bamboo|Queen,26,508,2694,13716,Bedsure:2694;Love's cabin:2136;Pure Bamboo:2104,166,33,69,4,OR|SP|SBV,they_are_more_aggressive,2026-10-26
+37,US,1,satin sheets,contested,addressable,Satin,20,10827,59663,216540,BEDELITE:59663;Love's cabin:29452;MR&HM:26416,11119,4595,7,21,OR|SP|SB|SBV|OOR|SOR,,2026-10-19
+37,US,2,silk sheets,contested,addressable,Silk,20,11413,73427,228268,BEDELITE:73427;Love's cabin:40306;MR&HM:28556,9192,3460,29,4,OR|SP|SB|SBV|OOR|SOR,,2026-10-19
+37,US,3,satin sheets queen size,contested,addressable,Satin|Queen,20,3179,11787,63580,BEDELITE:11787;Love's cabin:9858;Lanest Housing:8496,7335,3696,8,3,OR|SP|SB|SBV|OOR|SOR,,2026-10-19
+37,US,4,silk sheets queen,contested,addressable,Silk|Queen,20,4112,16100,82238,BEDELITE:16100;Love's cabin:15035;Lanest Housing:13730,6479,3277,12,1,OR|SP|SB|SBV|SOR,,2026-10-19
+37,US,5,silk bed sheets,contested,addressable,Silk,20,4043,24780,80857,BEDELITE:24780;Love's cabin:15178;MR&HM:13804,3658,1110,14,10,OR|SP|SB|SBV|OOR|SOR,,2026-10-19
+37,US,6,black silk sheets,contested,addressable,Silk,20,2949,12012,58989,BEDELITE:12012;MR&HM:10322;CozyLux:8487,3094,1450,4,20,OR|SP|SB|SBV|OOR|SOR,,2026-10-19
+37,US,7,satin sheets full,contested,addressable,Satin|Full,20,1272,5086,25432,BEDELITE:5086;Love's cabin:4841;MR&HM:2799,2653,1740,7,3,OR|SP|SB|SBV|OOR|SOR,,2026-10-19
+37,US,8,silk sheets king,contested,addressable,Silk|King,20,1420,9188,28402,BEDELITE:9188;MR&HM:4666;P Pothuiny:2356,2426,1152,14,10,OR|SP|SB|SBV|OOR|SOR,,2026-10-19
+37,US,9,bed sheets,contested,addressable,Unclassified,8,4115,28529,45265,BEDELITE:28529;MR&HM:7092;Love's cabin:5962,1863,1863,112,,OR|SOR,,2026-10-19
+37,US,10,satin sheets king,contested,addressable,Satin|King,20,1132,6920,22644,BEDELITE:6920;MR&HM:2873;FreshCulture:1753,1794,533,33,11,OR|SP|SB|SBV|SOR,,2026-10-19
+37,US,11,silk sheets full,contested,addressable,Silk|Full,20,2435,8796,48696,Love's cabin:8796;BEDELITE:8563;MR&HM:6947,1568,328,9,4,OR|SP|SBV|OOR|SOR,they_are_more_aggressive,2026-10-19
+37,US,12,satin bed sheets,contested,addressable,Satin,20,1846,10543,36924,BEDELITE:10543;Love's cabin:6615;MR&HM:5387,1398,458,26,9,OR|SP|SBV|SOR,,2026-10-19
+37,US,13,black satin sheets,contested,addressable,Satin,19,1216,4713,24311,BEDELITE:4713;MR&HM:3779;CozyLux:3310,979,67,4,12,OR|SP|OOR|SOR,they_are_more_aggressive,2026-10-19
+37,US,14,full size bed sheets,contested,addressable,"Matched, no owner",8,2235,18448,24581,BEDELITE:18448;Love's cabin:2330;FreshCulture:1695,932,0,79,,OR,we_run_none,2026-10-19
+37,US,15,silk bed sheets queen,contested,addressable,Silk|Queen,19,1026,4230,20514,BEDELITE:4230;Love's cabin:3216;Lanest Housing:3026,899,166,13,,OR|SBV,they_are_more_aggressive,2026-10-19
+37,US,16,king size satin sheets,contested,addressable,Satin|King,20,240,1220,4805,BEDELITE:1220;MR&HM:774;FreshCulture:417,877,407,22,12,OR|SP|SB|SBV|OOR|SOR,,2026-10-19
+37,US,17,full size sheet sets,contested,addressable,"Matched, no owner",8,550,3369,6046,BEDELITE:3369;Lanest Housing:837;Love's cabin:766,864,0,70,,OR,we_run_none,2026-10-19
+37,US,18,full size satin sheet set,contested,addressable,Satin|Full,19,146,731,2917,Love's cabin:731;BEDELITE:566;Lanest Housing:259,746,584,7,8,OR|SP|SB|SBV|SOR,,2026-10-19
+37,US,19,queen silk sheets set,contested,addressable,Silk|Queen,20,830,3133,16591,BEDELITE:3133;Love's cabin:2085;Lanest Housing:2082,716,150,8,,OR|SBV|SOR,they_are_more_aggressive,2026-10-19
+37,US,20,sheets,contested,addressable,Unclassified,6,3456,23130,31100,BEDELITE:23130;MR&HM:4576;Love's cabin:3086,662,662,,,SOR,,2026-10-19
+37,US,21,king silk sheets,contested,addressable,Silk|King,20,266,1689,5322,BEDELITE:1689;MR&HM:608;CozyLux:411,654,241,10,7,OR|SP|SB|SBV|SOR,,2026-10-19
+37,US,22,king satin sheets,contested,addressable,Satin|King,20,318,1934,6367,BEDELITE:1934;MR&HM:950;FreshCulture:488,634,317,30,5,OR|SP|SB|SBV|SOR,,2026-10-19
+37,US,23,bed sheets full size,contested,addressable,"Matched, no owner",7,653,3918,7188,BEDELITE:3918;Love's cabin:1152;Bedsure:787,629,0,95,,OR|SOR,we_run_none,2026-10-19
+37,US,24,silk king sheets set,contested,addressable,Silk|King,20,206,1285,4112,BEDELITE:1285;MR&HM:475;FreshCulture:453,624,225,17,,OR|SB|SBV,,2026-10-19
+37,US,25,silk queen bed sheets set,contested,addressable,Silk|Queen,19,851,3937,17025,BEDELITE:3937;Love's cabin:2681;Lanest Housing:2059,610,0,13,,OR|SOR,we_run_none,2026-10-19
+37,US,26,satin bed sheets full,contested,addressable,Satin|Full,20,266,969,5324,BEDELITE:969;Love's cabin:957;Lanest Housing:677,600,453,7,1,OR|SP|SB|SBV|SOR,,2026-10-19
+37,US,27,satin sheets king size,contested,addressable,Satin|King,20,131,596,2614,BEDELITE:596;MR&HM:373;Bedsure:174,566,257,6,7,OR|SP|SB|SBV|OOR|SOR,,2026-10-19
+37,US,28,queen satin sheet set,contested,addressable,Satin|Queen,20,580,2287,11610,BEDELITE:2287;Love's cabin:2061;Lanest Housing:1195,519,110,10,12,OR|SP|SB|SBV,,2026-10-19
+37,US,29,king size silk sheets set,contested,addressable,Silk|King,19,365,2252,7298,BEDELITE:2252;MR&HM:975;P Pothuiny:677,485,237,20,,OR|SB|SOR,,2026-10-19
+37,US,30,silk bed sheets full,contested,addressable,Silk|Full,19,579,2512,11571,BEDELITE:2512;Love's cabin:2341;MR&HM:1397,481,150,6,,OR|SBV,,2026-10-19
+37,US,31,full size satin sheets,contested,addressable,Satin|Full,20,341,1265,6820,Love's cabin:1265;BEDELITE:1234;Lanest Housing:803,469,349,6,11,OR|SP|SB|SBV|SOR,,2026-10-19
+37,US,32,black silk sheets queen,contested,addressable,Silk|Queen,19,304,970,5777,BEDELITE:970;MR&HM:898;Lanest Housing:833,467,30,5,12,OR|SP|SB|OOR|SOR,they_are_more_aggressive,2026-10-19
+37,US,33,queen satin sheets,contested,addressable,Satin|Queen,20,261,955,5225,Love's cabin:955;BEDELITE:906;Lanest Housing:619,466,277,6,5,OR|SP|SB|SBV|OOR|SOR,,2026-10-19
+37,US,34,satin sheets queen,contested,addressable,Satin|Queen,20,461,1776,9226,Love's cabin:1776;BEDELITE:1697;Lanest Housing:1012,442,102,7,10,OR|SP|SB|SBV|SOR,,2026-10-19
+37,US,35,king size silk sheets,contested,addressable,Silk|King,20,185,973,3697,BEDELITE:973;MR&HM:513;CozyLux:415,428,168,5,12,OR|SP|SBV|OOR|SOR,,2026-10-19
+37,US,36,satin king sheets set,contested,addressable,Satin|King,20,188,1190,3754,BEDELITE:1190;MR&HM:507;FreshCulture:376,406,171,11,16,OR|SP|SB|SBV|SOR,,2026-10-19
+37,US,37,satin sheets twin,contested,addressable,Satin|Twin,19,505,2666,9596,MR&HM:2666;Love's cabin:1404;BEDELITE:1277,400,206,112,3,OR|SP|SBV|OOR|SOR,,2026-10-19
+37,US,38,sábanas de seda queen,contested,addressable,Silk|Queen,20,159,581,3180,Lanest Housing:581;BEDELITE:505;CozyLux:439,391,19,7,12,OR|SP|SB|SBV|SOR,they_are_more_aggressive,2026-10-19
+37,US,39,silk satin sheets,contested,addressable,Satin,20,309,1235,6189,BEDELITE:1235;Love's cabin:952;Lanest Housing:938,388,159,7,6,OR|SP|SB|OOR|SOR,,2026-10-19
+37,US,40,satin bed sheets queen,contested,addressable,Satin|Queen,20,474,1892,9485,BEDELITE:1892;Love's cabin:1663;Lanest Housing:1015,387,95,9,10,OR|SP|SB|SBV|OOR,,2026-10-19
+37,US,41,queen silk sheets,contested,addressable,Silk|Queen,18,384,1667,7679,BEDELITE:1667;Love's cabin:1322;Lanest Housing:911,385,0,7,,OR,we_run_none,2026-10-19
+37,US,42,red satin sheets,contested,addressable,Satin,19,186,673,3724,Cobedzy:673;BEDELITE:439;P Pothuiny:423,372,224,18,1,OR|SP|SBV|OOR|SOR,,2026-10-19
+37,US,43,satin king sheets,contested,addressable,Satin|King,20,82,489,1646,BEDELITE:489;MR&HM:251;CozyLux:132,366,213,11,7,OR|SP|SB|SBV|OOR|SOR,,2026-10-19
+37,US,44,silk sheets twin,contested,addressable,Silk|Twin,19,687,4048,13061,MR&HM:4048;BEDELITE:1787;Love's cabin:1532,360,0,79,8,OR|SP|SBV,we_run_none,2026-10-19
+37,US,45,silk black sheets,contested,addressable,Silk,18,205,694,4106,BEDELITE:694;MR&HM:679;CozyLux:678,357,107,6,4,OR|SP|SBV|OOR|SOR,,2026-10-19
+37,US,46,satin queen sheets set,contested,addressable,Satin|Queen,20,468,1640,9355,BEDELITE:1640;Love's cabin:1569;Lanest Housing:838,348,61,9,10,OR|SP|SB|SBV,they_are_more_aggressive,2026-10-19
+37,US,47,pink silk sheets,contested,addressable,Silk,18,628,4898,12562,Love's cabin:4898;Cobedzy:1598;MR&HM:1122,342,0,21,,OR,we_run_none,2026-10-19
+37,US,48,king size satin sheet set,contested,addressable,Satin|King,20,198,1098,3966,BEDELITE:1098;MR&HM:507;FreshCulture:355,339,142,4,18,OR|SP|SB|SBV|SOR,,2026-10-19
+37,US,49,king silk sheet set,contested,addressable,Silk|King,20,112,727,2231,BEDELITE:727;MR&HM:241;FreshCulture:204,332,186,11,9,OR|SP|SB|SOR,,2026-10-19
+37,US,50,red silk sheets,contested,addressable,Silk,18,303,992,5759,Cobedzy:992;P Pothuiny:971;BEDELITE:770,319,25,6,,OR|SBV|OOR|SOR,they_are_more_aggressive,2026-10-19
+37,US,51,full satin sheets set,contested,addressable,Satin|Full,20,149,624,2973,Love's cabin:624;BEDELITE:370;CozyLux:354,318,230,12,10,OR|SP|SB|SBV|SOR,,2026-10-19
+37,US,52,silk bedding,contested,addressable,"Matched, no owner",20,486,2658,9724,BEDELITE:2658;Love's cabin:1830;MR&HM:1224,310,0,43,,OR,we_run_none,2026-10-19
+37,US,53,white silk sheets,contested,addressable,Silk,18,468,2356,9369,Love's cabin:2356;CozyLux:1065;BEDELITE:1015,309,0,22,,OR,we_run_none,2026-10-19
+37,US,54,silk bed set,contested,addressable,"Matched, no owner",19,468,3385,9356,BEDELITE:3385;Love's cabin:1482;MR&HM:1398,306,0,20,,OR|SBV,we_run_none,2026-10-19
+37,US,55,queen size silk sheets set,contested,addressable,Silk|Queen,20,263,1191,5259,BEDELITE:1191;Love's cabin:716;Lanest Housing:614,305,39,10,,OR|SBV,they_are_more_aggressive,2026-10-19
+37,US,56,queen size satin sheets,contested,addressable,Satin|Queen,20,200,824,4009,BEDELITE:824;Love's cabin:647;Lanest Housing:508,302,102,4,10,OR|SP|SB|SBV|SOR,,2026-10-19
+37,US,57,silk bed sheets king,contested,addressable,Silk|King,18,212,1325,4023,BEDELITE:1325;MR&HM:689;FreshCulture:315,300,0,27,3,OR|SP|SOR,we_run_none,2026-10-19
+37,US,58,satin bed sheets king,contested,addressable,Satin|King,20,153,936,3065,BEDELITE:936;MR&HM:418;FreshCulture:232,297,117,2,10,OR|SP|SB|SBV|SOR,,2026-10-19
+37,US,59,black satin sheets full,contested,addressable,Satin|Full,20,130,395,2595,Lanest Housing:395;BEDELITE:392;MR&HM:346,297,159,38,9,OR|SP|SB|SBV|OOR|SOR,,2026-10-19
+37,US,60,satin full size bed sheets,contested,addressable,Satin|Full,19,160,730,3193,Love's cabin:730;BEDELITE:587;Lanest Housing:329,295,159,15,7,OR|SP|SB|SBV|SOR,,2026-10-19
+37,US,61,silk sheets full size,contested,addressable,Silk|Full,19,315,1342,6298,Love's cabin:1342;BEDELITE:1256;Lanest Housing:999,294,141,21,2,OR|SP|SBV|SOR,,2026-10-19
+37,US,62,full size silk bed sheets,contested,addressable,Silk|Full,19,166,627,3324,BEDELITE:627;Lanest Housing:618;Love's cabin:574,281,149,5,1,OR|SP|SBV|OOR|SOR,,2026-10-19
+37,US,63,king size sheets set silk,contested,addressable,Silk|King,19,98,571,1967,BEDELITE:571;CozyLux:213;MR&HM:212,277,147,7,,OR|SB|SOR,,2026-10-19
+37,US,64,silk sheet set,contested,addressable,Silk,20,268,1382,5354,BEDELITE:1382;Love's cabin:1159;MR&HM:716,275,0,13,,OR|SB|OOR,we_run_none,2026-10-19
+37,US,65,pink satin sheets,contested,addressable,Satin,20,512,3531,10231,Love's cabin:3531;VACVELT:1329;Cobedzy:955,270,29,9,,OR|SOR,they_are_more_aggressive,2026-10-19
+37,US,66,satin sheets full size,contested,addressable,Satin|Full,19,232,995,4630,Love's cabin:995;BEDELITE:896;MR&HM:515,267,119,6,9,OR|SP|SB|SBV|OOR|SOR,,2026-10-19
+37,US,67,slik bed sheet set,contested,addressable,Unclassified,19,536,2212,10728,BEDELITE:2212;Love's cabin:1637;MR&HM:1345,263,30,30,10,OR|SP,they_are_more_aggressive,2026-10-19
+37,US,68,black silk bed sheets,contested,addressable,Silk,18,100,457,1908,CozyLux:457;BEDELITE:369;MR&HM:285,256,50,12,24,OR|SP|SB|SBV|SOR,they_are_more_aggressive,2026-10-19
+37,US,69,satin sheet set,contested,addressable,Satin,20,274,1360,5487,BEDELITE:1360;Love's cabin:1075;MR&HM:538,254,93,19,11,OR|SP|OOR|SOR,,2026-10-19
+37,US,70,silky sheets,contested,addressable,Silk,20,239,1338,4776,BEDELITE:1338;Lanest Housing:594;Love's cabin:579,252,39,21,,OR|SB|SOR,they_are_more_aggressive,2026-10-19
+37,US,71,full size silk sheets,contested,addressable,Silk|Full,19,458,2003,9159,Love's cabin:2003;BEDELITE:1981;MR&HM:1473,251,71,10,10,OR|SP|SBV|SOR,,2026-10-19
+37,US,72,silk sheets king size,contested,addressable,Silk|King,19,105,565,1990,BEDELITE:565;MR&HM:317;CozyLux:201,249,54,10,8,OR|SP|SB|SBV|SOR,,2026-10-19
+37,US,73,satin bed set,contested,addressable,"Matched, no owner",20,353,2156,7065,BEDELITE:2156;Love's cabin:1121;MR&HM:632,248,33,50,8,OR|SP,they_are_more_aggressive,2026-10-19
+37,US,74,black satin sheets king,contested,addressable,Satin|King,19,84,320,1685,BEDELITE:320;MR&HM:284;Lanest Housing:141,243,148,4,4,OR|SP|SB|SBV|OOR|SOR,,2026-10-19
+37,US,75,black silk sheets king,contested,addressable,Silk|King,18,101,419,2018,BEDELITE:419;MR&HM:353;Lanest Housing:149,238,68,22,11,OR|SP|SB|SBV|SOR,,2026-10-19
+37,US,76,satin sheet,contested,addressable,Satin,20,274,1724,5478,BEDELITE:1724;Love's cabin:649;MR&HM:513,237,46,10,21,OR|SP|SBV|OOR|SOR,they_are_more_aggressive,2026-10-19
+37,US,77,white satin sheets,contested,addressable,Satin,20,180,925,3600,Love's cabin:925;CozyLux:511;MR&HM:394,232,69,5,2,OR|SP|SOR,,2026-10-19
+37,US,78,silk bedsheets,contested,addressable,Silk,19,242,1584,4830,BEDELITE:1584;MR&HM:735;Lanest Housing:708,228,42,9,10,OR|SP|OOR|SOR,they_are_more_aggressive,2026-10-19
+37,US,79,silk bed sheets twin,contested,addressable,Silk|Twin,19,236,1477,4488,MR&HM:1477;BEDELITE:776;Love's cabin:578,223,121,67,18,OR|SP|SBV|SOR,,2026-10-19
+37,US,80,black silk sheets full,contested,addressable,Silk|Full,19,199,645,3971,BEDELITE:645;MR&HM:613;Lanest Housing:413,218,28,26,6,OR|SP|SBV|OOR|SOR,they_are_more_aggressive,2026-10-19
+37,US,81,purple silk sheets,contested,addressable,Silk,20,140,629,2795,Love's cabin:629;BEDELITE:290;CozyLux:267,212,7,17,2,OR|SP|SOR,they_are_more_aggressive,2026-10-19
+37,US,82,silk sheet,contested,addressable,Silk,18,333,2032,6655,BEDELITE:2032;Love's cabin:1231;MR&HM:820,211,24,19,,OR|SBV,they_are_more_aggressive,2026-10-19
+37,US,83,black satin sheets queen,contested,addressable,Satin|Queen,19,230,678,4374,Lanest Housing:678;BEDELITE:647;MR&HM:555,207,14,4,,OR|OOR|SOR,they_are_more_aggressive,2026-10-19
+37,US,84,black sheets,contested,addressable,Unclassified,14,879,7291,13182,BEDELITE:7291;Pure Bedding:2117;CozyLux:2069,206,31,116,8,OR|SP|SOR,they_are_more_aggressive,2026-10-19
+37,US,85,king satin sheets set,contested,addressable,Satin|King,20,88,497,1762,BEDELITE:497;MR&HM:191;FreshCulture:161,206,54,9,7,OR|SP|SB|SBV|SOR,,2026-10-19
+37,US,86,queen size satin sheets set,contested,addressable,Satin|Queen,20,95,375,1907,BEDELITE:375;Love's cabin:271;MR&HM:169,206,41,6,5,OR|SP|SB|SBV|SOR,,2026-10-19
+37,US,87,queen bed sheets silk,contested,addressable,Silk|Queen,19,177,802,3532,BEDELITE:802;Love's cabin:576;Lanest Housing:453,205,39,9,3,OR|SP|SBV|OOR|SOR,,2026-10-19
+37,US,88,satin queen sheets,contested,addressable,Satin|Queen,20,193,734,3861,Love's cabin:734;BEDELITE:586;CozyLux:454,204,79,7,12,OR|SP|SB|SBV|SOR,,2026-10-19
+37,US,89,queen sheets silk,contested,addressable,Silk|Queen,19,193,691,3863,BEDELITE:691;Lanest Housing:681;Love's cabin:675,200,56,11,11,OR|SP|SOR,,2026-10-19
+37,US,90,queen sheets satin,contested,addressable,Satin|Queen,20,121,475,2419,Love's cabin:475;BEDELITE:377;CozyLux:369,192,101,6,10,OR|SP|SB|SBV|SOR,,2026-10-19
+37,US,91,black sheets queen,contested,addressable,"Matched, no owner",13,467,2114,6074,BEDELITE:2114;MR&HM:947;Pure Bedding:752,192,0,74,,OR,we_run_none,2026-10-19
+37,US,92,silk queen sheets,contested,addressable,Silk|Queen,20,236,873,4728,BEDELITE:873;Love's cabin:763;Lanest Housing:758,186,18,9,12,OR|SP|SOR,they_are_more_aggressive,2026-10-19
+37,US,93,silk sheets queen size,contested,addressable,Silk|Queen,20,178,758,3550,BEDELITE:758;Lanest Housing:568;Love's cabin:525,185,24,8,3,OR|SP|SBV|SOR,they_are_more_aggressive,2026-10-19
+37,US,94,twin satin sheets,contested,addressable,Satin|Twin,19,221,1031,4192,MR&HM:1031;Love's cabin:747;BEDELITE:545,183,107,69,3,OR|SP|SBV|OOR|SOR,,2026-10-19
+37,US,95,purple satin sheets,contested,addressable,Satin,20,113,324,2253,CozyLux:324;Love's cabin:298;BEDELITE:238,180,33,17,12,OR|SP|OOR|SOR,,2026-10-19
+37,US,96,blue silk sheets,contested,addressable,Silk,19,104,522,2081,MR&HM:522;BEDELITE:268;CozyLux:263,179,17,30,10,OR|SP|OOR|SOR,they_are_more_aggressive,2026-10-19
+37,US,97,silk full size bed sheets,contested,addressable,Silk|Full,19,246,1084,4925,Love's cabin:1084;BEDELITE:1020;Lanest Housing:635,177,43,8,5,OR|SP|SBV|SOR,,2026-10-19
+37,US,98,black queen sheets,contested,addressable,"Matched, no owner",7,325,1230,3899,BEDELITE:1230;Pure Bedding:856;CozyLux:740,175,0,81,,OR,we_run_none,2026-10-19
+37,US,99,sábanas de satin queen,contested,addressable,Satin|Queen,20,17,62,341,Lanest Housing:62;CozyLux:51;Love's cabin:46,174,113,11,1,OR|SP|SB|SBV|SOR,,2026-10-19
+37,US,100,full size bed sheets silk,contested,addressable,Silk|Full,19,247,1050,4937,BEDELITE:1050;Love's cabin:927;Lanest Housing:723,172,63,5,1,OR|SP|SBV|OOR|SOR,,2026-10-19
+30,US,1,bamboo sheets,contested,addressable,Bamboo,27,55886,333270,1564818,Pure Bamboo:333270;Bedsure:316117;Love's cabin:198249,32137,11335,31,11,OR|SP|SB|SBV|SOR,they_are_more_aggressive,2026-10-26
+30,US,2,queen sheets,contested,addressable,"Matched, no owner",18,11287,65840,248312,Bedsure:65840;TRUE BAMBOO:41251;BEDELITE:31077,11998,1253,44,,OR|SB|SBV,they_are_more_aggressive,2026-10-26
+30,US,3,bed sheets,contested,addressable,Unclassified,21,6925,75418,173124,Pure Bamboo:75418;Bedsure:49544;Love's cabin:19636,11197,8125,48,16,OR|SP|SBV|SOR,,2026-10-26
+30,US,4,sheets,contested,addressable,Unclassified,19,11887,95198,285277,Pure Bamboo:95198;Bedsure:59544;BC BELLA COTERIE:27268,7914,3738,82,13,OR|SP|SBV|SOR,they_are_more_aggressive,2026-10-26
+30,US,5,cooling sheets,contested,addressable,Cooling,24,8335,74565,233381,Bedsure:74565;Pure Bamboo:49382;Bambaw:18780,6580,6284,135,3,OR|SP|SB|SBV|SOR,,2026-10-26
+30,US,6,miracle sheets,contested,disqualified,Unclassified,15,2565,10293,43608,Bedsure:10293;Bedsure:7977;Pure Bamboo:5282,6232,4312,72,9,OR|SP|SB|SBV|SOR,,2026-10-26
+30,US,7,silk sheets,contested,disqualified,Unclassified,20,4133,38334,99203,Bedsure:38334;Bedsure:13075;BC BELLA COTERIE:10806,5467,4322,107,13,OR|SP|SB|SBV|SOR,,2026-10-26
+30,US,8,deep pocket queen sheets,contested,addressable,"Matched, no owner",17,1988,8029,39753,TRUE BAMBOO:8029;SONORO KATE:7567;Bedsure:5035,5078,75,36,,OR|SBV,they_are_more_aggressive,2026-10-26
+30,US,9,sheets queen size bed set,contested,addressable,"Matched, no owner",19,4448,23255,97860,Bedsure:23255;TRUE BAMBOO:14520;BEDELITE:10694,5010,222,50,10,OR|SP|SB|SBV|SOR,they_are_more_aggressive,2026-10-26
+30,US,10,shee,contested,disqualified,Unclassified,8,11415,74146,148392,Pure Bamboo:74146;BC BELLA COTERIE:57268;KARISSA MAE:11553,4830,4830,,4,SP|SBV|SOR,,2026-10-26
+30,US,11,bamboo sheets king size,contested,addressable,Bamboo|King,26,5143,34107,144010,Pure Bamboo:34107;Bedsure:22157;BC BELLA COTERIE:13174,4620,1881,26,9,OR|SP|SB|SBV|SOR,,2026-10-26
+30,US,12,cooling sheets queen,contested,addressable,Cooling|Queen,25,3850,23613,103938,Bedsure:23613;Bedsure:13012;Love's cabin:11043,4338,1845,24,17,OR|SP|SB|SBV|SOR,they_are_more_aggressive,2026-10-26
+30,US,13,king size sheets set,contested,addressable,"Matched, no owner",20,19731,114269,453819,BC BELLA COTERIE:114269;Pure Bamboo:76466;Bedsure:54899,4319,886,96,,OR|SBV|SOR,they_are_more_aggressive,2026-10-26
+30,US,14,queen sheet set,contested,addressable,"Matched, no owner",18,9545,66901,238623,Pure Bamboo:66901;Bedsure:58154;TRUE BAMBOO:34594,4215,924,92,19,OR|SP|SB|SBV|SOR,they_are_more_aggressive,2026-10-26
+30,US,15,bamboo sheets queen size,contested,addressable,Bamboo|Queen,27,8912,39574,249522,Bedsure:39574;Pure Bamboo:37178;Love's cabin:29836,4002,318,25,10,OR|SP|SB|SBV|SOR,they_are_more_aggressive,2026-10-26
+30,US,16,king sheets,contested,addressable,"Matched, no owner",20,6056,27106,139287,Pure Bamboo:27106;Bedsure:27083;TRUE BAMBOO:18299,3314,1160,82,20,OR|SP|SBV|SOR,they_are_more_aggressive,2026-10-26
+30,US,17,queen sheets deep pocket,contested,addressable,"Matched, no owner",15,1533,8158,36789,Bedsure:8158;Love's cabin:5220;SONORO KATE:4735,2938,168,45,10,OR|SP|SB|SBV|SOR,they_are_more_aggressive,2026-10-26
+30,US,18,twin sheets,contested,addressable,"Matched, no owner",10,2183,13188,30563,Pure Bamboo:13188;Bedsure:10562;KARISSA MAE:3001,2321,2321,,12,SP|SBV,,2026-10-26
+30,US,19,decolure bamboo sheets,contested,addressable,"Matched, no owner",25,120,549,3132,Pure Bamboo:549;BC BELLA COTERIE:424;TRUE BAMBOO:269,2164,668,2,2,OR|SP|SB|SBV|SOR|AC,they_are_more_aggressive,2026-10-26
+30,US,20,cooling sheets king size,contested,addressable,Cooling|King,24,2824,15803,70605,Bedsure:15803;Pure Bamboo:10764;Bedsure:6676,2152,937,81,19,OR|SP|SB|SBV|SOR,,2026-10-26
+30,US,21,full sheets,contested,addressable,"Matched, no owner",9,1145,5247,16026,Bedsure:5247;Pure Bamboo:3393;Love's cabin:3160,2094,1102,48,,OR|SB|SBV,,2026-10-26
+30,US,22,twin bed sheets,contested,addressable,"Matched, no owner",9,1754,7855,21046,Bedsure:7855;Pure Bamboo:7604;Love's cabin:2190,2063,2013,61,,OR|SBV|SOR,,2026-10-26
+30,US,23,sheet & pillowcase sets,contested,addressable,Unclassified,15,1750,12254,35000,Pure Bamboo:12254;Bedsure:10255;Love's cabin:4515,2030,1110,70,16,OR|SP|SB|SBV|SOR,,2026-10-26
+30,US,24,queen bed sheets,contested,addressable,"Matched, no owner",17,5855,23562,122961,Bedsure:23562;TRUE BAMBOO:21501;Love's cabin:12471,1986,1802,110,7,OR|SP|SB|SBV|SOR,,2026-10-26
+30,US,25,silk bed sheets,contested,disqualified,Unclassified,18,1678,18777,35248,Bedsure:18777;BC BELLA COTERIE:3453;Love's cabin:3096,1952,1797,109,6,OR|SP|SB|SBV|SOR,,2026-10-26
+30,US,26,bamboo sheets king,contested,addressable,Bamboo|King,28,2506,14669,72668,Bedsure:14669;Pure Bamboo:13683;Love's cabin:6425,1898,774,22,2,OR|SP|SB|SBV|SOR,they_are_more_aggressive,2026-10-26
+30,US,27,100% cotton sheets,contested,disqualified,Unclassified,10,761,5338,10656,Bedsure:5338;Bedsure:2115;Pure Bamboo:1370,1869,13,60,12,OR|SP|SOR,they_are_more_aggressive,2026-10-26
+30,US,28,bed sheets queen size,contested,addressable,"Matched, no owner",19,2334,12028,51340,Bedsure:12028;TRUE BAMBOO:11070;Pure Bamboo:8916,1847,790,80,,OR|SB|SBV,,2026-10-26
+30,US,29,shet,contested,disqualified,Unclassified,6,666,2552,7327,BC BELLA COTERIE:2552;KARISSA MAE:1952;Bamboo Bay:1264,1839,1839,,4,SP,,2026-10-26
+30,US,30,silk sheets king,contested,disqualified,"Matched, no owner",19,1065,9534,23438,Bedsure:9534;Bedsure:5165;BC BELLA COTERIE:4860,1814,1736,107,12,OR|SP|SB|SBV|SOR,,2026-10-26
+30,US,31,satin sheets,contested,disqualified,Unclassified,11,1201,8650,14413,Bedsure:8650;Love's cabin:1803;BC BELLA COTERIE:1394,1794,1762,131,17,OR|SP|SB|SBV|SOR,,2026-10-26
+30,US,32,silk sheets queen,contested,disqualified,"Matched, no owner",21,2199,19202,50585,Bedsure:19202;Bedsure:6814;BC BELLA COTERIE:5525,1736,1599,116,14,OR|SP|SB|SBV|SOR,,2026-10-26
+30,US,33,boll and branch sheets,contested,disqualified,Unclassified,14,1178,7008,18840,Pure Bamboo:7008;Bedsure:3429;BC BELLA COTERIE:2475,1620,208,66,20,OR|SP|SB|SBV,they_are_more_aggressive,2026-10-26
+30,US,34,bedding,contested,addressable,Unclassified,10,4411,35693,57346,Pure Bamboo:35693;Bedsure:15327;TRUE BAMBOO:3808,1582,1582,,24,SP|SOR,,2026-10-26
+30,US,35,sheets full size bed,contested,addressable,"Matched, no owner",11,1400,5144,16795,Pure Bamboo:5144;Bedsure:4039;Love's cabin:3116,1549,1549,,14,SP|SBV|SOR,,2026-10-26
+30,US,36,bed sheets full size,contested,addressable,"Matched, no owner",10,1799,7623,23388,TRUE BAMBOO:7623;Bedsure:5504;Pure Bamboo:4868,1422,1414,143,2,OR|SP|SBV,,2026-10-26
+30,US,37,twin sheets set,contested,addressable,"Matched, no owner",9,3034,13470,36412,Pure Bamboo:13470;Bedsure:8646;BC BELLA COTERIE:7760,1398,1398,,,SBV|SOR,,2026-10-26
+30,US,38,cooling bed sheets,contested,addressable,Cooling,26,1666,14009,44989,Bedsure:14009;Bedsure:7543;Pure Bamboo:6047,1391,1145,81,15,OR|SP|SB|SBV|SOR,,2026-10-26
+30,US,39,full size bed sheets,contested,addressable,"Matched, no owner",10,3436,11963,37791,Bedsure:11963;TRUE BAMBOO:9427;Love's cabin:7456,1362,1340,122,,OR|SB|SBV|SOR,,2026-10-26
+30,US,40,white sheets,contested,addressable,Unclassified,14,2264,16510,40749,Pure Bamboo:16510;Bedsure:10459;Bedsure:4626,1262,1262,,16,SP|SB|SBV|SOR,,2026-10-26
+30,US,41,100% bamboo sheets,contested,addressable,Bamboo,26,997,6847,27922,Pure Bamboo:6847;Bedsure:4504;Love's cabin:4497,1227,451,24,18,OR|SP|SB|SOR,,2026-10-26
+30,US,42,full sheet set,contested,addressable,"Matched, no owner",12,1123,4248,19091,Pure Bamboo:4248;Bedsure:4112;Love's cabin:4111,1112,1112,,,SBV,,2026-10-26
+30,US,43,full size sheets,contested,addressable,"Matched, no owner",9,4832,18742,62810,Pure Bamboo:18742;Bedsure:17023;Love's cabin:15297,1094,1094,128,,OR|SBV,,2026-10-26
+30,US,44,bamboo cooling sheets,contested,addressable,Bamboo|Cooling,26,1558,10360,43638,Bedsure:10360;Love's cabin:7013;Pure Bamboo:6671,1091,363,25,11,OR|SP|SB|SBV|SOR,,2026-10-26
+30,US,45,silk sheets full,contested,disqualified,"Matched, no owner",15,161,2050,3373,Bedsure:2050;Love's cabin:281;Pure Bamboo:254,1068,949,36,20,OR|SP|SB|SBV|SOR,,2026-10-26
+30,US,46,california king sheet sets,contested,addressable,"Matched, no owner",13,4418,28619,79521,Bedsure:28619;BC BELLA COTERIE:10969;Pure Bamboo:10846,1053,1053,,15,SP|SBV|SOR,,2026-10-26
+30,US,47,queen size sheets,contested,addressable,"Matched, no owner",19,1918,13322,46022,Bedsure:13322;Love's cabin:8658;Pure Bamboo:7745,1039,42,33,6,OR|SP|SB|SBV|SOR,they_are_more_aggressive,2026-10-26
+30,US,48,quince bedding,contested,disqualified,Unclassified,14,2379,13463,38057,Pure Bamboo:13463;Bedsure:7595;Bedsure:3718,1025,956,125,2,OR|SP|SB|SBV|SOR,,2026-10-26
+30,US,49,full bed sheets,contested,addressable,"Matched, no owner",7,1655,6084,18209,TRUE BAMBOO:6084;Pure Bamboo:3864;Bedsure:3154,1017,1017,,,SBV,,2026-10-26
+30,US,50,pink sheets,contested,addressable,Unclassified,10,1289,4148,12886,Bedsure:4148;Pure Bamboo:3168;Bedsure:2741,1000,997,105,23,OR|SP|SB|SBV|SOR,,2026-10-26
+30,US,51,king sheet set,contested,addressable,"Matched, no owner",17,1721,8555,37867,Pure Bamboo:8555;Bedsure:8420;BC BELLA COTERIE:4585,999,211,78,,OR|SBV|SOR,they_are_more_aggressive,2026-10-26
+30,US,52,black silk sheets,contested,disqualified,Unclassified,17,558,4843,10606,Bedsure:4843;Pure Bamboo:1618;Love's cabin:1376,958,928,126,14,OR|SP|SB|SBV|SOR,,2026-10-26
+30,US,53,bamboo bed sheets,contested,addressable,Bamboo,26,1379,7484,37229,Pure Bamboo:7484;Bedsure:6175;Love's cabin:6033,924,200,19,10,OR|SP|SB|SBV|SOR,they_are_more_aggressive,2026-10-26
+30,US,54,full size bedding sets,contested,addressable,"Matched, no owner",4,231,1179,1387,Love's cabin:1179;Bedsure:159;Pure Bamboo:32,913,913,,,SB|SBV,,2026-10-26
+30,US,55,deep pocket queen sheet set,contested,addressable,"Matched, no owner",16,438,2272,8322,Bedsure:2272;Love's cabin:1196;SONORO KATE:1193,872,0,33,19,OR|SP|SB|SOR,we_run_none,2026-10-26
+30,US,56,bedsheets,contested,addressable,Unclassified,16,2230,19349,37906,Pure Bamboo:19349;Bedsure:7716;Love's cabin:3136,859,859,,15,SP|SBV|SOR,,2026-10-26
+30,US,57,queen 4 piece boho botanical floral sheet set - soft & cooling - rosebud,ours_only,unknown,"Matched, no owner",0,,,0,,858,858,,8,SP|SB,,2026-10-26
+30,US,58,bamboo sheets full,contested,addressable,Bamboo|Full,24,981,6267,25502,Love's cabin:6267;Bedsure:6191;Pure Bamboo:5073,797,338,19,14,OR|SP|SB|SBV,,2026-10-26
+30,US,59,clearance,contested,disqualified,Unclassified,2,717,1286,1434,KARISSA MAE:1286;BC BELLA COTERIE:148,797,797,,11,SP,,2026-10-26
+30,US,60,juego de sábanas queen,contested,addressable,"Matched, no owner",10,327,1052,4249,Hotel Sheets Direct:1052;DOZ by SIJO:930;BC BELLA COTERIE:587,792,792,,13,SP|SB|SBV|SOR,,2026-10-26
+30,US,61,silk bedding,contested,disqualified,Unclassified,9,248,2007,3471,Bedsure:2007;Love's cabin:385;DOZ by SIJO:345,785,768,105,6,OR|SP|SB|SBV|SOR,,2026-10-26
+30,US,62,full size sheet sets,contested,addressable,"Matched, no owner",9,1464,5314,17571,Love's cabin:5314;Pure Bamboo:4092;TRUE BAMBOO:2440,762,762,,,SBV,,2026-10-26
+30,US,63,king size cooling sheets,contested,addressable,Cooling|King,21,690,4792,16569,Bedsure:4792;Bedsure:3245;Pure Bamboo:1269,700,333,26,8,OR|SP|SB|SBV,,2026-10-26
+30,US,64,bamboo queen sheets,contested,addressable,Bamboo|Queen,26,989,5499,25715,Bedsure:5499;Love's cabin:3853;Pure Bamboo:2793,674,109,24,12,OR|SP|SB|SOR,they_are_more_aggressive,2026-10-26
+30,US,65,bamboo viscose sheets,contested,addressable,Bamboo,26,851,4552,23841,Pure Bamboo:4552;Bedsure:3518;Love's cabin:2730,660,271,24,2,OR|SP|SB|SBV|SOR,,2026-10-26
+30,US,66,cooling sheets full size,contested,addressable,Cooling|Full,18,444,2403,8427,Bedsure:2403;Love's cabin:2080;Kickoff Home:796,660,556,102,10,OR|SP|SB|SBV,,2026-10-26
+30,US,67,black sheets,contested,addressable,Unclassified,11,858,4531,15446,Pure Bamboo:4531;Love's cabin:4392;Bedsure:4321,655,655,,,SBV,,2026-10-26
+30,US,68,king size bamboo sheets set,contested,addressable,Bamboo|King,24,1201,7246,32418,Bedsure:7246;Pure Bamboo:5944;Love's cabin:4231,642,149,35,12,OR|SP|SB|SBV|SOR,they_are_more_aggressive,2026-10-26
+30,US,69,satin sheets king,contested,disqualified,"Matched, no owner",11,632,4080,8854,Bedsure:4080;Bedsure:2791;BC BELLA COTERIE:650,589,552,127,19,OR|SP|SB|SBV,,2026-10-26
+30,US,70,bamboo king sheets,contested,addressable,Bamboo|King,24,960,6356,24968,Pure Bamboo:6356;Bedsure:4781;Love's cabin:2612,564,176,21,3,OR|SP|SOR,they_are_more_aggressive,2026-10-26
+30,US,71,white queen sheets,contested,addressable,"Matched, no owner",9,200,1060,2800,Bedsure:1060;Pure Bamboo:595;Bedsure:565,563,89,34,,OR|SBV,they_are_more_aggressive,2026-10-26
+30,US,72,sabanas,contested,addressable,Unclassified,15,975,6257,14624,Pure Bamboo:6257;Bedsure:2997;Hotel Sheets Direct:1420,550,525,116,15,OR|SP|SB|SBV|SOR,,2026-10-26
+30,US,73,king bamboo sheets,contested,addressable,Bamboo|King,25,1092,7324,28399,Pure Bamboo:7324;Bedsure:5419;Love's cabin:3152,534,69,28,10,OR|SP|SOR,they_are_more_aggressive,2026-10-26
+30,US,74,silver infused bed sheets,contested,disqualified,Unclassified,7,235,733,1883,Bedsure:733;Pure Bamboo:498;KRIMANO:286,534,534,,10,SP|SB|SOR,,2026-10-26
+30,US,75,brown sheets,contested,disqualified,Unclassified,14,1278,9335,21723,Pure Bamboo:9335;Bedsure:6341;DOZ by SIJO:2108,532,532,,22,SP|SB|SOR,,2026-10-26
+30,US,76,cozy earth sheets,contested,disqualified,Unclassified,17,552,4205,12706,Pure Bamboo:4205;BC BELLA COTERIE:2073;Bedsure:1075,521,234,51,9,OR|SP|SBV,,2026-10-26
+30,US,77,queen bamboo sheet set,contested,addressable,Bamboo|Queen,26,1000,4644,26994,Love's cabin:4644;Bedsure:4518;Pure Bamboo:4137,513,168,20,8,OR|SP|SOR,,2026-10-26
+30,US,78,california design den sheets,contested,disqualified,Unclassified,10,645,3882,9036,Pure Bamboo:3882;California Design Den:2469;Bedsure:805,512,481,138,,OR|SB|SBV,,2026-10-26
+30,US,79,cariloha bamboo sheets,contested,disqualified,"Matched, no owner",20,407,1430,9768,Pure Bamboo:1430;BC BELLA COTERIE:1257;Bedsure:791,504,106,43,9,OR|SP|SOR,they_are_more_aggressive,2026-10-26
+30,US,80,king sheet,contested,addressable,"Matched, no owner",13,170,1420,3227,Bedsure:1420;Pure Bamboo:616;Bedsure:299,499,75,30,,OR|SBV,they_are_more_aggressive,2026-10-26
+30,US,81,bamboo sheets full size,contested,addressable,Bamboo|Full,21,464,2692,10666,Love's cabin:2692;Bedsure:2373;Pure Bamboo:1607,498,318,28,5,OR|SP|SB|SBV|SOR,,2026-10-26
+30,US,82,black satin sheets,contested,disqualified,Unclassified,8,187,1221,2056,Bedsure:1221;BC BELLA COTERIE:238;Pure Bamboo:227,482,482,,,SB|SBV,,2026-10-26
+30,US,83,bedsure,contested,disqualified,Unclassified,9,2231,19639,22307,Bedsure:19639;Pure Bamboo:1668;Bedsure:594,472,472,,12,SP|SOR,,2026-10-26
+30,US,84,cooling sheets king,contested,addressable,Cooling|King,23,444,2821,10658,Bedsure:2821;Bedsure:1795;Pure Bamboo:1120,471,153,29,9,OR|SP|SB|SBV,they_are_more_aggressive,2026-10-26
+30,US,85,bamboo sheets twin,contested,addressable,Bamboo|Twin,19,553,4628,11061,Bedsure:4628;Pure Bamboo:1725;Hotel Sheets Direct:947,469,179,19,2,OR|SP|SB|SBV|SOR,they_are_more_aggressive,2026-10-26
+30,US,86,queen sheets cooling,contested,addressable,Cooling|Queen,24,606,3816,15142,Bedsure:3816;Bedsure:3064;Love's cabin:1573,469,227,36,26,OR|SP|SB|SBV|SOR,they_are_more_aggressive,2026-10-26
+30,US,87,full bed sheets set,contested,addressable,"Matched, no owner",8,223,681,2006,Love's cabin:681;Bedsure:517;Pure Bamboo:335,465,465,,,SBV,,2026-10-26
+30,US,88,queen sheet,contested,addressable,"Matched, no owner",14,359,2290,7534,Bedsure:2290;Love's cabin:1228;TRUE BAMBOO:1134,464,456,127,,OR|SB|SBV,,2026-10-26
+30,US,89,queen size bed sheets,contested,addressable,"Matched, no owner",17,1495,8707,32891,Bedsure:8707;KRIMANO:3936;Bedsure:3788,461,159,100,9,OR|SP|SB|SBV|SOR,they_are_more_aggressive,2026-10-26
+30,US,90,bed sheets twin,contested,addressable,"Matched, no owner",8,431,1989,4314,Pure Bamboo:1989;Love's cabin:1172;Bedsure:1071,444,444,,11,SP|SBV,,2026-10-26
+30,US,91,6 piece queen bed sheets set,contested,addressable,"Matched, no owner",9,174,715,1910,KARISSA MAE:715;Bedsure:460;BC BELLA COTERIE:326,426,161,31,11,OR|SP|SB|SBV|SOR,they_are_more_aggressive,2026-10-26
+30,US,92,soft sheets,contested,addressable,Unclassified,19,465,2801,11149,Pure Bamboo:2801;Bedsure:2562;Bedsure:1593,426,381,118,27,OR|SP|SBV|SOR,,2026-10-26
+30,US,93,king sheets bamboo,contested,addressable,Bamboo|King,24,724,3938,18095,Bedsure:3938;Pure Bamboo:3384;Love's cabin:1953,425,59,19,12,OR|SP|SBV|SOR,they_are_more_aggressive,2026-10-26
+30,US,94,cotton sheets queen,contested,disqualified,"Matched, no owner",11,437,2371,5678,Pure Bamboo:2371;Bedsure:1858;Love's cabin:879,419,394,58,6,OR|SP|SBV|SOR,,2026-10-26
+30,US,95,sheet set,contested,addressable,Unclassified,17,1761,18910,42273,Pure Bamboo:18910;Bedsure:9262;Love's cabin:4063,418,404,123,17,OR|SP|SB|SBV|SOR,,2026-10-26
+30,US,96,king bed sheets,contested,addressable,"Matched, no owner",18,2463,11069,51715,Bedsure:11069;Pure Bamboo:9858;TRUE BAMBOO:6409,412,412,,4,SP|SB|SBV|SOR,,2026-10-26
+30,US,97,bamboo sheet set,contested,addressable,Bamboo,27,487,2475,13636,Love's cabin:2475;Bedsure:2430;Pure Bamboo:2419,398,208,41,4,OR|SP|SB|SBV|SOR,,2026-10-26
+30,US,98,sheets with corner straps,contested,addressable,Unclassified,15,663,3186,10602,GOKOTTA:3186;Pure Bamboo:1822;BC BELLA COTERIE:1508,398,323,83,7,OR|SP|SB,,2026-10-26
+30,US,99,pure bamboo sheets,contested,addressable,"Matched, no owner",25,967,10555,25151,Pure Bamboo:10555;Bedsure:2448;TRUE BAMBOO:1918,394,61,41,23,OR|SP|SB,they_are_more_aggressive,2026-10-26
+30,US,100,tencel lyocell sheets,contested,disqualified,Unclassified,17,626,3974,12522,Pillcase:3974;Bedsure:3948;Hotel Sheets Direct:836,394,231,69,12,OR|SP|SB|SBV|SOR,,2026-10-26

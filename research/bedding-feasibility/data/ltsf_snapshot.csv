@@ -1,0 +1,16 @@
+product_id,product,brand,lifecycle,aged_units_us,aged_units_ca,monthly_surcharge_us_usd,monthly_surcharge_ca_cad,horizon6m_usd_equiv,sku_count_us
+37,Satin Sheets 4pc,Decolure,Maintenance,3479,442,2780.31,181.11,13944.11,36
+39,Satin Sheets 4pc,Sleephoria,Maintenance,2866,80,2451.52,181.67,10322.90,70
+32,Bamboo Sheets 6pc,Sleephoria,Re-Launch,966,,1981.57,,9104.37,36
+30,Bamboo Sheets 6pc,Decolure,Re-Launch,1250,49,1939.65,112.57,6568.38,14
+53,Linen Curtains,Decolure,Liquidation,465,2,705.63,2.61,4372.86,33
+31,Satin Sheets 6pc,Decolure,Maintenance,900,240,825.51,244.45,4278.13,49
+59,Bamboo Sheets 4pc,Decolure,Re-Launch,680,95,896.49,226.68,3702.01,17
+42,Cooling Comforter,Sleephoria,Re-Launch,153,,491.25,,3435.94,2
+48,Cooling Sheets 4pc,Decolure,Re-Launch,439,,569.68,,3355.16,21
+38,Satin Fitted Sheet,Decolure,Maintenance,1429,189,916.16,60.04,3108.33,31
+55,Silk Pillowcase,Decolure,Re-Launch,1970,,422.46,,2738.81,13
+46,Quilt Set,Sleephoria,Liquidation,19,,84.37,,479.61,3
+45,Cooling Sheets 4pc,Sleephoria,Re-Launch,62,,18.15,,446.11,4
+44,Cooling Fitted Sheet,Sleephoria,Re-Launch,172,,199.47,,418.78,10
+TOTAL_ALL_22_PRODUCTS,,,,15809,1098,15134.97,1011.47,69673.87,

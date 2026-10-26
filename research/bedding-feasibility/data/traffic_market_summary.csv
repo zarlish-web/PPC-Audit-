@@ -1,0 +1,4 @@
+product_id,marketplace,our_export_date,rivals_mapped,rivals_with_export,export_spread_days,comparable,tracked_traffic_7d,our_traffic_7d,our_share_of_tracked,keywords_total,our_keywords,contested_kw,contested_we_lose,contested_we_win,theirs_only_kw,theirs_only_share_of_tracked,ours_only_kw
+59,US,2026-10-26,60,29,36,False,11061805,129208,0.0115,15116,1514,1490,1457,25,13602,0.186,24
+37,US,2026-10-19,26,20,21,False,2759567,97449,0.0341,7157,1090,1017,944,48,6067,0.2226,73
+30,US,2026-10-26,60,29,36,False,11061805,280400,0.0247,15181,2533,2444,2329,93,12648,0.0913,89

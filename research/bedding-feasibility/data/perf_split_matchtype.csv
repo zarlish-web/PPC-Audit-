@@ -1,0 +1,157 @@
+scope,product_id,marketplace,currency,window,start,end,dimension,key,campaigns,spend,sales,orders,clicks,impressions,acos_pct,cpc,cvr_pct,share_pct,coverage_pct,note
+account,,CA,CAD,180d,2026-04-30,2026-10-26,objective,Ranking,,95811.17,313125.16,,,,30.6,,,39.26,,"verdict=under band; target band [50, 80]"
+account,,CA,CAD,180d,2026-04-30,2026-10-26,objective,Defensive,,10218.98,66614.75,,,,15.34,,,4.19,,"verdict=over band; target band [10, 15]"
+account,,CA,CAD,180d,2026-04-30,2026-10-26,objective,Conquesting,,3526.05,14810.82,,,,23.81,,,1.44,,"verdict=over band; target band [10, 15]"
+account,,CA,CAD,180d,2026-04-30,2026-10-26,objective,Conversions,,27787.49,103693.44,,,,26.8,,,11.39,,"verdict=over band; target band [15, 25]"
+account,,CA,CAD,180d,2026-04-30,2026-10-26,objective,Discovery,,70717.35,325243.22,,,,21.74,,,28.98,,"verdict=in band; target band [15, 30]"
+account,,CA,CAD,180d,2026-04-30,2026-10-26,objective,Liquidation,,27467.94,137179.15,,,,20.02,,,11.25,,verdict=not judged on ACoS; target band None
+account,,CA,CAD,180d,2026-04-30,2026-10-26,objective,No objective declared,,8526.7,25583.35,,,,33.33,,,3.49,,verdict=undeclared; target band None
+account,,US,USD,180d,2026-04-30,2026-10-26,objective,Ranking,,261167.99,570139.21,,,,45.81,,,31.74,,"verdict=under band; target band [50, 80]"
+account,,US,USD,180d,2026-04-30,2026-10-26,objective,Defensive,,34277.17,238238.33,,,,14.39,,,4.17,,"verdict=in band; target band [10, 15]"
+account,,US,USD,180d,2026-04-30,2026-10-26,objective,Conquesting,,28817.88,86237.05,,,,33.42,,,3.5,,"verdict=over band; target band [10, 15]"
+account,,US,USD,180d,2026-04-30,2026-10-26,objective,Conversions,,287437.46,724179.4,,,,39.69,,,34.94,,"verdict=over band; target band [15, 25]"
+account,,US,USD,180d,2026-04-30,2026-10-26,objective,Discovery,,118892.35,422496.85,,,,28.14,,,14.45,,"verdict=in band; target band [15, 30]"
+account,,US,USD,180d,2026-04-30,2026-10-26,objective,Liquidation,,81100.31,242279.99,,,,33.47,,,9.86,,verdict=not judged on ACoS; target band None
+account,,US,USD,180d,2026-04-30,2026-10-26,objective,No objective declared,,11068.07,29312.59,,,,37.76,,,1.35,,verdict=undeclared; target band None
+product,30,CA,CAD,180d,2026-04-30,2026-10-26,ad_product,Sponsored Products,234,91413.05,398372.96,4403,37041,8218173,22.95,2.468,11.89,94.19,,
+product,30,CA,CAD,180d,2026-04-30,2026-10-26,ad_product,not declared,20,5640.73,29982.33,329,2093,539175,18.81,2.695,15.72,5.81,,no ad product reported in the period
+product,30,CA,CAD,180d,2026-04-30,2026-10-26,match_type,BROAD,,53103.7,232979.62,2561,23565,5640698,22.79,2.253,10.87,55.46,98.66,share = % of keyword-targeted SP spend only
+product,30,CA,CAD,180d,2026-04-30,2026-10-26,match_type,EXACT,,42647.44,184259.61,2040,14072,2365259,23.15,3.031,14.5,44.54,98.66,share = % of keyword-targeted SP spend only
+product,30,CA,CAD,180d,2026-04-30,2026-10-26,objective,Discovery,4,54844.33,237992.06,2614,23979,5727514,23.04,2.287,10.9,56.51,,
+product,30,CA,CAD,180d,2026-04-30,2026-10-26,objective,Ranking,187,24010.85,86877.76,968,7201,923589,27.64,3.334,13.44,24.74,,
+product,30,CA,CAD,180d,2026-04-30,2026-10-26,objective,Conversions,46,12706.23,56334.03,619,4467,975299,22.56,2.844,13.86,13.09,,
+product,30,CA,CAD,180d,2026-04-30,2026-10-26,objective,Defensive,7,3695.69,32558.36,361,1778,312422,11.35,2.079,20.3,3.81,,
+product,30,CA,CAD,180d,2026-04-30,2026-10-26,objective,Conquesting,1,774.48,3684.1,39,312,23714,21.02,2.482,12.5,0.8,,
+product,30,CA,CAD,180d,2026-04-30,2026-10-26,objective,Liquidation,6,582.58,8635.74,106,1218,734078,6.75,0.478,8.7,0.6,,
+product,30,CA,CAD,180d,2026-04-30,2026-10-26,objective,not declared,3,439.62,2273.24,25,179,60732,19.34,2.456,13.97,0.45,,undeclared in campaign registry
+product,30,CA,CAD,180d,2026-04-30,2026-10-26,total,TOTAL (campaign lens),,97053.78,428355.29,4732,39134,,22.66,2.48,12.09,,,campaign-lens total; can exceed product-day spend when campaigns are shared across products
+product,30,US,USD,180d,2026-04-30,2026-10-26,ad_product,Sponsored Products,280,129203.62,448291.28,6395,57134,14131306,28.82,2.261,11.19,90.89,,
+product,30,US,USD,180d,2026-04-30,2026-10-26,ad_product,not declared,183,12950.29,61214.94,743,7809,4412612,21.16,1.658,9.51,9.11,,no ad product reported in the period
+product,30,US,USD,180d,2026-04-30,2026-10-26,match_type,EXACT,,105280.69,311310.85,3790,27921,9369705,33.82,3.771,13.57,93.39,79.3,share = % of keyword-targeted SP spend only
+product,30,US,USD,180d,2026-04-30,2026-10-26,match_type,BROAD,,7383.98,53076.21,658,3513,612324,13.91,2.102,18.73,6.55,79.3,share = % of keyword-targeted SP spend only
+product,30,US,USD,180d,2026-04-30,2026-10-26,match_type,PHRASE,,66.74,264.97,3,55,16409,25.19,1.213,5.45,0.06,79.3,share = % of keyword-targeted SP spend only
+product,30,US,USD,180d,2026-04-30,2026-10-26,objective,Conversions,233,66230.32,187570.92,2299,18329,6465314,35.31,3.613,12.54,46.59,,
+product,30,US,USD,180d,2026-04-30,2026-10-26,objective,Ranking,140,39575.54,106189.97,1266,10006,3330752,37.27,3.955,12.65,27.84,,
+product,30,US,USD,180d,2026-04-30,2026-10-26,objective,Liquidation,6,13310,58564.37,1097,19499,3521414,22.73,0.683,5.63,9.36,,
+product,30,US,USD,180d,2026-04-30,2026-10-26,objective,Discovery,40,11216.25,75323.75,933,7173,3801784,14.89,1.564,13.01,7.89,,
+product,30,US,USD,180d,2026-04-30,2026-10-26,objective,Defensive,21,10307.46,77222.86,1491,9363,1168316,13.35,1.101,15.92,7.25,,
+product,30,US,USD,180d,2026-04-30,2026-10-26,objective,Conquesting,19,1513.31,4634.35,52,572,256196,32.65,2.646,9.09,1.06,,
+product,30,US,USD,180d,2026-04-30,2026-10-26,objective,not declared,4,1.03,0,0,1,142,,1.03,0.0,0.0,,undeclared in campaign registry
+product,30,US,USD,180d,2026-04-30,2026-10-26,total,TOTAL (campaign lens),,142153.91,509506.22,7138,64943,,27.9,2.189,10.99,,,campaign-lens total; can exceed product-day spend when campaigns are shared across products
+product,31,CA,CAD,180d,2026-04-30,2026-10-26,ad_product,Sponsored Products,224,38769.09,157602.78,3192,33301,8213794,24.6,1.164,9.59,92.52,,
+product,31,CA,CAD,180d,2026-04-30,2026-10-26,ad_product,not declared,29,3134.08,12131.66,266,1621,322247,25.83,1.933,16.41,7.48,,no ad product reported in the period
+product,31,CA,CAD,180d,2026-04-30,2026-10-26,match_type,EXACT,,11289.82,28330.52,616,4428,1099438,39.85,2.55,13.91,71.77,37.54,share = % of keyword-targeted SP spend only
+product,31,CA,CAD,180d,2026-04-30,2026-10-26,match_type,BROAD,,4440.77,18628.35,439,3604,269095,23.84,1.232,12.18,28.23,37.54,share = % of keyword-targeted SP spend only
+product,31,CA,CAD,180d,2026-04-30,2026-10-26,objective,Liquidation,11,26092.66,123003.85,2409,26809,7123642,21.21,0.973,8.99,62.27,,
+product,31,CA,CAD,180d,2026-04-30,2026-10-26,objective,Ranking,190,10272.79,30314.3,698,5614,685654,33.89,1.83,12.43,24.52,,
+product,31,CA,CAD,180d,2026-04-30,2026-10-26,objective,Conversions,43,5028.55,14350.69,303,2106,627602,35.04,2.388,14.39,12.0,,
+product,31,CA,CAD,180d,2026-04-30,2026-10-26,objective,Discovery,6,451.7,1919.63,45,337,88090,23.53,1.34,13.35,1.08,,
+product,31,CA,CAD,180d,2026-04-30,2026-10-26,objective,Defensive,1,34.05,145.97,3,47,4715,23.33,0.724,6.38,0.08,,
+product,31,CA,CAD,180d,2026-04-30,2026-10-26,objective,not declared,2,23.42,0,0,9,6338,,2.602,0.0,0.06,,undeclared in campaign registry
+product,31,CA,CAD,180d,2026-04-30,2026-10-26,total,TOTAL (campaign lens),,41903.17,169734.44,3458,34922,,24.69,1.2,9.9,,,campaign-lens total; can exceed product-day spend when campaigns are shared across products
+product,31,US,USD,180d,2026-04-30,2026-10-26,ad_product,Sponsored Products,355,55478.9,206138.58,6287,68956,9330977,26.91,0.805,9.12,99.36,,
+product,31,US,USD,180d,2026-04-30,2026-10-26,ad_product,not declared,27,359.74,1558.05,48,433,103449,23.09,0.831,11.09,0.64,,no ad product reported in the period
+product,31,US,USD,180d,2026-04-30,2026-10-26,match_type,EXACT,,20031.07,49724.48,1513,8999,1860006,40.28,2.226,16.81,95.36,37.62,share = % of keyword-targeted SP spend only
+product,31,US,USD,180d,2026-04-30,2026-10-26,match_type,BROAD,,905.37,4748.51,150,1543,400058,19.07,0.587,9.72,4.31,37.62,share = % of keyword-targeted SP spend only
+product,31,US,USD,180d,2026-04-30,2026-10-26,match_type,PHRASE,,68.5,122.61,4,129,25928,55.87,0.531,3.1,0.33,37.62,share = % of keyword-targeted SP spend only
+product,31,US,USD,180d,2026-04-30,2026-10-26,objective,Liquidation,7,19234.99,79678.38,2499,39807,4430420,24.14,0.483,6.28,34.45,,
+product,31,US,USD,180d,2026-04-30,2026-10-26,objective,Conversions,283,14021.84,36023.7,1103,6687,1458944,38.92,2.097,16.49,25.11,,
+product,31,US,USD,180d,2026-04-30,2026-10-26,objective,Discovery,34,9375.58,37844.75,1186,11908,1989255,24.77,0.787,9.96,16.79,,
+product,31,US,USD,180d,2026-04-30,2026-10-26,objective,Defensive,9,6439.1,37802.29,1051,7784,957820,17.03,0.827,13.5,11.53,,
+product,31,US,USD,180d,2026-04-30,2026-10-26,objective,Ranking,44,6116.16,14648.38,441,2641,506551,41.75,2.316,16.7,10.95,,
+product,31,US,USD,180d,2026-04-30,2026-10-26,objective,Conquesting,2,603.45,1699.13,55,500,88533,35.52,1.207,11.0,1.08,,
+product,31,US,USD,180d,2026-04-30,2026-10-26,objective,not declared,3,47.52,0,0,62,2903,,0.766,0.0,0.09,,undeclared in campaign registry
+product,31,US,USD,180d,2026-04-30,2026-10-26,total,TOTAL (campaign lens),,55838.64,207696.63,6335,69389,,26.88,0.805,9.13,,,campaign-lens total; can exceed product-day spend when campaigns are shared across products
+product,37,CA,CAD,180d,2026-04-30,2026-10-26,ad_product,Sponsored Products,268,59226.49,234769.56,4977,51051,12663273,25.23,1.16,9.75,91.51,,
+product,37,CA,CAD,180d,2026-04-30,2026-10-26,ad_product,not declared,36,5493.51,16845.25,383,2906,858764,32.61,1.89,13.18,8.49,,no ad product reported in the period
+product,37,CA,CAD,180d,2026-04-30,2026-10-26,match_type,EXACT,,19698.59,53369.15,1218,8294,1923692,36.91,2.375,14.69,63.86,47.66,share = % of keyword-targeted SP spend only
+product,37,CA,CAD,180d,2026-04-30,2026-10-26,match_type,BROAD,,10286.79,44894.63,1028,9140,1469622,22.91,1.125,11.25,33.35,47.66,share = % of keyword-targeted SP spend only
+product,37,CA,CAD,180d,2026-04-30,2026-10-26,match_type,PHRASE,,860.34,2828.12,62,596,37216,30.42,1.444,10.4,2.79,47.66,share = % of keyword-targeted SP spend only
+product,37,CA,CAD,180d,2026-04-30,2026-10-26,objective,Liquidation,11,25555.3,118548.51,2312,25930,6964201,21.56,0.986,8.92,39.49,,
+product,37,CA,CAD,180d,2026-04-30,2026-10-26,objective,Ranking,184,17435.85,52987.3,1231,9071,1164098,32.91,1.922,13.57,26.94,,
+product,37,CA,CAD,180d,2026-04-30,2026-10-26,objective,Discovery,8,12050.18,51083.98,1189,14707,4040802,23.59,0.819,8.08,18.62,,
+product,37,CA,CAD,180d,2026-04-30,2026-10-26,objective,Conversions,85,4143.21,13536.25,307,1981,341959,30.61,2.091,15.5,6.4,,
+product,37,CA,CAD,180d,2026-04-30,2026-10-26,objective,not declared,11,2992.76,5488.65,123,1085,644562,54.53,2.758,11.34,4.62,,undeclared in campaign registry
+product,37,CA,CAD,180d,2026-04-30,2026-10-26,objective,Defensive,1,2352.4,9045.32,178,1034,358776,26.01,2.275,17.21,3.63,,
+product,37,CA,CAD,180d,2026-04-30,2026-10-26,objective,Conquesting,4,190.3,924.8,20,149,7639,20.58,1.277,13.42,0.29,,
+product,37,CA,CAD,180d,2026-04-30,2026-10-26,total,TOTAL (campaign lens),,64720.0,251614.81,5360,53957,,25.72,1.199,9.93,,,campaign-lens total; can exceed product-day spend when campaigns are shared across products
+product,37,US,USD,180d,2026-04-30,2026-10-26,ad_product,Sponsored Products,551,120713.85,352872.56,11324,94272,14646840,34.21,1.28,12.01,95.5,,
+product,37,US,USD,180d,2026-04-30,2026-10-26,ad_product,not declared,104,5687.74,16510.3,543,4022,791492,34.45,1.414,13.5,4.5,,no ad product reported in the period
+product,37,US,USD,180d,2026-04-30,2026-10-26,match_type,EXACT,,74713.76,178971.75,5809,35220,4938706,41.75,2.121,16.49,82.32,71.8,share = % of keyword-targeted SP spend only
+product,37,US,USD,180d,2026-04-30,2026-10-26,match_type,BROAD,,11392.02,44321.33,1431,10157,1746566,25.7,1.122,14.09,12.55,71.8,share = % of keyword-targeted SP spend only
+product,37,US,USD,180d,2026-04-30,2026-10-26,match_type,PHRASE,,4650.63,11552.21,379,3247,452151,40.26,1.432,11.67,5.12,71.8,share = % of keyword-targeted SP spend only
+product,37,US,USD,180d,2026-04-30,2026-10-26,objective,Ranking,301,52332.54,122912.65,3998,23246,3085761,42.58,2.251,17.2,41.4,,
+product,37,US,USD,180d,2026-04-30,2026-10-26,objective,Conversions,213,22673.22,55777.09,1810,12732,2062078,40.65,1.781,14.22,17.94,,
+product,37,US,USD,180d,2026-04-30,2026-10-26,objective,Discovery,78,22619.27,72654.25,2367,23664,5495838,31.13,0.956,10.0,17.89,,
+product,37,US,USD,180d,2026-04-30,2026-10-26,objective,Conquesting,27,11113.73,38461.12,1258,8990,781081,28.9,1.236,13.99,8.79,,
+product,37,US,USD,180d,2026-04-30,2026-10-26,objective,Liquidation,7,9619.7,33742.92,1125,20902,2844801,28.51,0.46,5.38,7.61,,
+product,37,US,USD,180d,2026-04-30,2026-10-26,objective,Defensive,19,7881.11,45374.57,1294,8672,1147619,17.37,0.909,14.92,6.23,,
+product,37,US,USD,180d,2026-04-30,2026-10-26,objective,not declared,10,162.02,460.26,15,88,21154,35.2,1.841,17.05,0.13,,undeclared in campaign registry
+product,37,US,USD,180d,2026-04-30,2026-10-26,total,TOTAL (campaign lens),,126401.59,369382.86,11867,98294,,34.22,1.286,12.07,,,campaign-lens total; can exceed product-day spend when campaigns are shared across products
+product,38,CA,CAD,180d,2026-04-30,2026-10-26,ad_product,Sponsored Products,67,5102.75,15212.01,617,4031,404396,33.54,1.266,15.31,92.3,,
+product,38,CA,CAD,180d,2026-04-30,2026-10-26,ad_product,not declared,4,425.98,667.39,25,133,42213,63.83,3.203,18.8,7.7,,no ad product reported in the period
+product,38,CA,CAD,180d,2026-04-30,2026-10-26,match_type,EXACT,,2967.49,5651.49,230,1462,308256,52.51,2.03,15.73,99.88,53.74,share = % of keyword-targeted SP spend only
+product,38,CA,CAD,180d,2026-04-30,2026-10-26,match_type,BROAD,,3.58,70.94,2,8,1786,5.05,0.448,25.0,0.12,53.74,share = % of keyword-targeted SP spend only
+product,38,CA,CAD,180d,2026-04-30,2026-10-26,objective,Conquesting,10,2558.87,10156.97,410,2695,136376,25.19,0.949,15.21,46.28,,
+product,38,CA,CAD,180d,2026-04-30,2026-10-26,objective,Ranking,57,2543.88,5055.04,207,1336,268020,50.32,1.904,15.49,46.01,,
+product,38,CA,CAD,180d,2026-04-30,2026-10-26,objective,Conversions,1,422.4,596.45,23,125,40198,70.82,3.379,18.4,7.64,,
+product,38,CA,CAD,180d,2026-04-30,2026-10-26,objective,not declared,3,3.58,70.94,2,8,2015,5.05,0.448,25.0,0.06,,undeclared in campaign registry
+product,38,CA,CAD,180d,2026-04-30,2026-10-26,total,TOTAL (campaign lens),,5528.73,15879.4,642,4164,,34.82,1.328,15.42,,,campaign-lens total; can exceed product-day spend when campaigns are shared across products
+product,38,US,USD,180d,2026-04-30,2026-10-26,ad_product,Sponsored Products,234,51351.93,141428.45,6206,54356,5681067,36.31,0.945,11.42,99.76,,
+product,38,US,USD,180d,2026-04-30,2026-10-26,ad_product,not declared,34,123.56,261.4,11,131,14200,47.27,0.943,8.4,0.24,,no ad product reported in the period
+product,38,US,USD,180d,2026-04-30,2026-10-26,match_type,EXACT,,27115.83,46852.2,2290,14845,1708479,57.88,1.827,15.43,99.67,52.85,share = % of keyword-targeted SP spend only
+product,38,US,USD,180d,2026-04-30,2026-10-26,match_type,BROAD,,90.55,353.25,15,151,20731,25.63,0.6,9.93,0.33,52.85,share = % of keyword-targeted SP spend only
+product,38,US,USD,180d,2026-04-30,2026-10-26,match_type,PHRASE,,0,0,0,0,110,,,,0,52.85,share = % of keyword-targeted SP spend only
+product,38,US,USD,180d,2026-04-30,2026-10-26,objective,Ranking,89,13666.88,20498.12,1005,7930,771651,66.67,1.723,12.67,26.55,,
+product,38,US,USD,180d,2026-04-30,2026-10-26,objective,Conversions,147,13515.56,26645.73,1299,7052,955790,50.72,1.917,18.42,26.26,,
+product,38,US,USD,180d,2026-04-30,2026-10-26,objective,Discovery,14,12783.93,41289.58,2041,26630,2668993,30.96,0.48,7.66,24.83,,
+product,38,US,USD,180d,2026-04-30,2026-10-26,objective,Defensive,4,5845.49,35762.04,989,7319,901621,16.35,0.799,13.51,11.36,,
+product,38,US,USD,180d,2026-04-30,2026-10-26,objective,Conquesting,9,5598.71,17365.68,878,5497,392820,32.24,1.019,15.97,10.88,,
+product,38,US,USD,180d,2026-04-30,2026-10-26,objective,not declared,4,42.8,17.95,1,25,2140,238.44,1.712,4.0,0.08,,undeclared in campaign registry
+product,38,US,USD,180d,2026-04-30,2026-10-26,objective,Liquidation,1,22.12,110.75,4,34,2252,19.97,0.651,11.76,0.04,,
+product,38,US,USD,180d,2026-04-30,2026-10-26,total,TOTAL (campaign lens),,51475.49,141689.85,6217,54487,,36.33,0.945,11.41,,,campaign-lens total; can exceed product-day spend when campaigns are shared across products
+product,39,CA,CAD,180d,2026-04-30,2026-10-26,ad_product,Sponsored Products,45,4943.68,15808.62,351,1784,371012,31.27,2.771,19.67,97.3,,
+product,39,CA,CAD,180d,2026-04-30,2026-10-26,ad_product,not declared,10,137.11,339.32,8,61,19472,40.41,2.248,13.11,2.7,,no ad product reported in the period
+product,39,CA,CAD,180d,2026-04-30,2026-10-26,match_type,EXACT,,5078.63,16198.97,360,1837,386720,31.35,2.765,19.6,100,99.96,share = % of keyword-targeted SP spend only
+product,39,CA,CAD,180d,2026-04-30,2026-10-26,objective,Ranking,44,4941.28,15763.67,350,1779,368967,31.35,2.778,19.67,97.25,,
+product,39,CA,CAD,180d,2026-04-30,2026-10-26,objective,Conversions,10,137.11,339.32,8,61,19472,40.41,2.248,13.11,2.7,,
+product,39,CA,CAD,180d,2026-04-30,2026-10-26,objective,Conquesting,1,2.4,44.95,1,5,2045,5.34,0.48,20.0,0.05,,
+product,39,CA,CAD,180d,2026-04-30,2026-10-26,total,TOTAL (campaign lens),,5080.79,16147.94,359,1845,,31.46,2.754,19.46,,,campaign-lens total; can exceed product-day spend when campaigns are shared across products
+product,39,US,USD,180d,2026-04-30,2026-10-26,ad_product,Sponsored Products,482,104596.15,261606.57,8036,64260,9490686,39.98,1.628,12.51,97.17,,
+product,39,US,USD,180d,2026-04-30,2026-10-26,ad_product,not declared,70,3042.35,6935.03,213,1551,282105,43.87,1.962,13.73,2.83,,no ad product reported in the period
+product,39,US,USD,180d,2026-04-30,2026-10-26,match_type,EXACT,,62941.25,127080.31,3920,22768,3997494,49.53,2.764,17.22,71.85,81.38,share = % of keyword-targeted SP spend only
+product,39,US,USD,180d,2026-04-30,2026-10-26,match_type,BROAD,,20519.09,53991.09,1683,13862,2077163,38.0,1.48,12.14,23.42,81.38,share = % of keyword-targeted SP spend only
+product,39,US,USD,180d,2026-04-30,2026-10-26,match_type,PHRASE,,4136.79,12089.7,396,3594,492795,34.22,1.151,11.02,4.72,81.38,share = % of keyword-targeted SP spend only
+product,39,US,USD,180d,2026-04-30,2026-10-26,objective,Ranking,232,34961.19,72474.98,2247,12630,2138176,48.24,2.768,17.79,32.48,,
+product,39,US,USD,180d,2026-04-30,2026-10-26,objective,Conversions,90,22282.11,44862.74,1348,7394,1154854,49.67,3.014,18.23,20.7,,
+product,39,US,USD,180d,2026-04-30,2026-10-26,objective,Liquidation,93,20757.41,56859.2,1843,24631,3463771,36.51,0.843,7.48,19.28,,
+product,39,US,USD,180d,2026-04-30,2026-10-26,objective,Discovery,106,18775.97,46009.94,1420,10957,1835287,40.81,1.714,12.96,17.44,,
+product,39,US,USD,180d,2026-04-30,2026-10-26,objective,Defensive,8,5811.63,34939.26,993,7264,883480,16.63,0.8,13.67,5.4,,
+product,39,US,USD,180d,2026-04-30,2026-10-26,objective,Conquesting,12,4547.95,12683.54,376,2794,274494,35.86,1.628,13.46,4.23,,
+product,39,US,USD,180d,2026-04-30,2026-10-26,objective,not declared,11,502.24,711.94,22,141,22729,70.55,3.562,15.6,0.47,,undeclared in campaign registry
+product,39,US,USD,180d,2026-04-30,2026-10-26,total,TOTAL (campaign lens),,107638.5,268541.6,8249,65811,,40.08,1.636,12.53,,,campaign-lens total; can exceed product-day spend when campaigns are shared across products
+product,59,CA,CAD,180d,2026-04-30,2026-10-26,ad_product,Sponsored Products,222,65036.47,273295.73,3321,32338,8606043,23.8,2.011,10.27,92.65,,
+product,59,CA,CAD,180d,2026-04-30,2026-10-26,ad_product,not declared,26,5161.19,18554.56,206,2187,735015,27.82,2.36,9.42,7.35,,no ad product reported in the period
+product,59,CA,CAD,180d,2026-04-30,2026-10-26,match_type,EXACT,,42072.26,143660.06,1536,12054,2229942,29.29,3.49,12.74,84.72,70.74,share = % of keyword-targeted SP spend only
+product,59,CA,CAD,180d,2026-04-30,2026-10-26,match_type,BROAD,,7586.29,34138.42,381,3795,1041921,22.22,1.999,10.04,15.28,70.74,share = % of keyword-targeted SP spend only
+product,59,CA,CAD,180d,2026-04-30,2026-10-26,objective,Ranking,174,40468.8,137051.56,1465,11787,2265341,29.53,3.433,12.43,57.65,,
+product,59,CA,CAD,180d,2026-04-30,2026-10-26,objective,Liquidation,8,12957.89,65599.45,1067,12720,3913487,19.75,1.019,8.39,18.46,,
+product,59,CA,CAD,180d,2026-04-30,2026-10-26,objective,Conversions,49,5030.09,17280.13,187,1633,308694,29.11,3.08,11.45,7.17,,
+product,59,CA,CAD,180d,2026-04-30,2026-10-26,objective,Defensive,5,4136.84,24865.1,277,2311,445443,16.64,1.79,11.99,5.89,,
+product,59,CA,CAD,180d,2026-04-30,2026-10-26,objective,not declared,6,3458.42,9122.4,102,996,94540,37.91,3.472,10.24,4.93,,undeclared in campaign registry
+product,59,CA,CAD,180d,2026-04-30,2026-10-26,objective,Discovery,5,3371.14,34247.55,390,4766,2289839,9.84,0.707,8.18,4.8,,
+product,59,CA,CAD,180d,2026-04-30,2026-10-26,objective,Conquesting,1,774.48,3684.1,39,312,23714,21.02,2.482,12.5,1.1,,
+product,59,CA,CAD,180d,2026-04-30,2026-10-26,total,TOTAL (campaign lens),,70197.66,291850.29,3527,34525,,24.05,2.033,10.22,,,campaign-lens total; can exceed product-day spend when campaigns are shared across products
+product,59,US,USD,180d,2026-04-30,2026-10-26,ad_product,Sponsored Products,297,144030.74,432932.9,6216,56853,13167678,33.27,2.533,10.93,86.04,,
+product,59,US,USD,180d,2026-04-30,2026-10-26,ad_product,not declared,166,23377.17,81005.39,1048,10919,2885147,28.86,2.141,9.6,13.96,,no ad product reported in the period
+product,59,US,USD,180d,2026-04-30,2026-10-26,match_type,EXACT,,104828.34,232802.55,2993,25153,7517772,45.03,4.168,11.9,77.76,80.53,share = % of keyword-targeted SP spend only
+product,59,US,USD,180d,2026-04-30,2026-10-26,match_type,BROAD,,29274.64,118499.87,1477,12835,2360229,24.7,2.281,11.51,21.72,80.53,share = % of keyword-targeted SP spend only
+product,59,US,USD,180d,2026-04-30,2026-10-26,match_type,PHRASE,,708.79,2450.18,34,394,75446,28.93,1.799,8.63,0.53,80.53,share = % of keyword-targeted SP spend only
+product,59,US,USD,180d,2026-04-30,2026-10-26,objective,Conversions,331,99688.88,245367.65,3162,25906,6922574,40.63,3.848,12.21,59.55,,
+product,59,US,USD,180d,2026-04-30,2026-10-26,objective,Ranking,58,18063.2,32679.4,423,4829,1610579,55.27,3.741,8.76,10.79,,
+product,59,US,USD,180d,2026-04-30,2026-10-26,objective,Defensive,13,17000.51,117955.69,1984,12140,1585681,14.41,1.4,16.34,10.16,,
+product,59,US,USD,180d,2026-04-30,2026-10-26,objective,Discovery,24,15980.44,54431.13,691,8841,2634902,29.36,1.808,7.82,9.55,,
+product,59,US,USD,180d,2026-04-30,2026-10-26,objective,Liquidation,9,15313.07,60934.89,973,15426,3164980,25.13,0.993,6.31,9.15,,
+product,59,US,USD,180d,2026-04-30,2026-10-26,objective,Conquesting,20,755.81,1099.88,12,355,91613,68.72,2.129,3.38,0.45,,
+product,59,US,USD,180d,2026-04-30,2026-10-26,objective,not declared,8,606,1469.65,19,275,42496,41.23,2.204,6.91,0.36,,undeclared in campaign registry
+product,59,US,USD,180d,2026-04-30,2026-10-26,total,TOTAL (campaign lens),,167407.91,513938.29,7264,67772,,32.57,2.47,10.72,,,campaign-lens total; can exceed product-day spend when campaigns are shared across products

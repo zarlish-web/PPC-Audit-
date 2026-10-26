@@ -1,0 +1,360 @@
+{
+ "P": {
+  "P1_US_percale": {
+   "name": "Pre-washed 100% long-staple cotton percale sheet set (4-pc)",
+   "mkt": "US",
+   "cur": "USD",
+   "mix": {
+    "Full": 0.15,
+    "Queen": 0.4,
+    "King": 0.45
+   },
+   "price": {
+    "Full": 59.99,
+    "Queen": 64.99,
+    "King": 69.99
+   },
+   "fob_usd": {
+    "Full": 13.0,
+    "Queen": 14.0,
+    "King": 15.5
+   },
+   "landed_mult": 1.4,
+   "fba": {
+    "Full": 8.8,
+    "Queen": 9.2,
+    "King": 9.2
+   },
+   "referral": 0.15,
+   "refund": 0.065,
+   "unsellable_share": 0.4,
+   "storage_inbound": 1.0,
+   "promo": 0.03,
+   "vat": 0.0,
+   "cpc": 2.4,
+   "cvr": 0.08
+  },
+  "P2_US_waffle_duvet": {
+   "name": "100% cotton waffle-weave duvet cover set (cover + 2 shams)",
+   "mkt": "US",
+   "cur": "USD",
+   "mix": {
+    "Queen": 0.5,
+    "King": 0.5
+   },
+   "price": {
+    "Queen": 74.99,
+    "King": 79.99
+   },
+   "fob_usd": {
+    "Queen": 17.5,
+    "King": 19.5
+   },
+   "landed_mult": 1.4,
+   "fba": {
+    "Queen": 9.5,
+    "King": 9.8
+   },
+   "referral": 0.15,
+   "refund": 0.065,
+   "unsellable_share": 0.4,
+   "storage_inbound": 1.25,
+   "promo": 0.03,
+   "vat": 0.0,
+   "cpc": 1.6,
+   "cvr": 0.07
+  },
+  "P3_CA_percale": {
+   "name": "Pre-washed cotton percale sheet set (4-pc), Canada",
+   "mkt": "CA",
+   "cur": "CAD",
+   "mix": {
+    "Full": 0.15,
+    "Queen": 0.4,
+    "King": 0.45
+   },
+   "price": {
+    "Full": 84.99,
+    "Queen": 89.99,
+    "King": 94.99
+   },
+   "fob_usd": {
+    "Full": 13.0,
+    "Queen": 14.0,
+    "King": 15.5
+   },
+   "landed_mult": 1.38,
+   "fba": {
+    "Full": 12.6,
+    "Queen": 13.0,
+    "King": 13.0
+   },
+   "referral": 0.15,
+   "refund": 0.075,
+   "unsellable_share": 0.4,
+   "storage_inbound": 1.4,
+   "promo": 0.03,
+   "vat": 0.0,
+   "cpc": 1.93,
+   "cvr": 0.09
+  },
+  "P4_UK_percale_duvet": {
+   "name": "Cotton percale duvet cover set, UK sizes (cover + 2 pillowcases)",
+   "mkt": "UK",
+   "cur": "GBP",
+   "mix": {
+    "Double": 0.4,
+    "King": 0.4,
+    "Super King": 0.2
+   },
+   "price": {
+    "Double": 34.99,
+    "King": 39.99,
+    "Super King": 44.99
+   },
+   "fob_usd": {
+    "Double": 10.5,
+    "King": 12.0,
+    "Super King": 13.5
+   },
+   "landed_mult": 1.18,
+   "fba": {
+    "Double": 4.4,
+    "King": 4.6,
+    "Super King": 4.9
+   },
+   "referral": 0.15,
+   "refund": 0.05,
+   "unsellable_share": 0.4,
+   "storage_inbound": 0.8,
+   "promo": 0.03,
+   "vat": 0.2,
+   "cpc": 1.0,
+   "cvr": 0.08
+  }
+ },
+ "ONE_TIME": {
+  "Conservative": {
+   "samples_testing": 3000,
+   "branding_trademark": 3000,
+   "photo_video_aplus": 3000,
+   "listing_localisation": 1000,
+   "setup_ior_bond_3pl": 2500,
+   "vine_launch_promos": 2000
+  },
+  "Base": {
+   "samples_testing": 6000,
+   "branding_trademark": 5000,
+   "photo_video_aplus": 6000,
+   "listing_localisation": 1500,
+   "setup_ior_bond_3pl": 4500,
+   "vine_launch_promos": 4000
+  },
+  "Upside": {
+   "samples_testing": 9000,
+   "branding_trademark": 7000,
+   "photo_video_aplus": 10000,
+   "listing_localisation": 2000,
+   "setup_ior_bond_3pl": 6000,
+   "vine_launch_promos": 6000
+  }
+ },
+ "SCEN": {
+  "Conservative": {
+   "ramp": [
+    2,
+    4,
+    6,
+    7,
+    8,
+    9,
+    9,
+    10,
+    10,
+    11,
+    11,
+    12
+   ],
+   "cvr": [
+    0.06,
+    0.065,
+    0.07,
+    0.07,
+    0.075,
+    0.075,
+    0.08,
+    0.08,
+    0.08,
+    0.08,
+    0.08,
+    0.08
+   ],
+   "cpc": 2.8,
+   "organic": [
+    0.08,
+    0.12,
+    0.15,
+    0.18,
+    0.2,
+    0.22,
+    0.24,
+    0.25,
+    0.26,
+    0.28,
+    0.29,
+    0.3
+   ],
+   "price_disc": [
+    0.15,
+    0.1,
+    0.05,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "p2": false,
+   "initial_units": 1500,
+   "reorder_units": 1500
+  },
+  "Base": {
+   "ramp": [
+    3,
+    7,
+    11,
+    14,
+    17,
+    19,
+    21,
+    23,
+    24,
+    25,
+    26,
+    27
+   ],
+   "cvr": [
+    0.07,
+    0.075,
+    0.08,
+    0.085,
+    0.09,
+    0.09,
+    0.095,
+    0.095,
+    0.1,
+    0.1,
+    0.1,
+    0.1
+   ],
+   "cpc": 2.4,
+   "organic": [
+    0.1,
+    0.15,
+    0.2,
+    0.25,
+    0.29,
+    0.32,
+    0.35,
+    0.38,
+    0.4,
+    0.42,
+    0.44,
+    0.45
+   ],
+   "price_disc": [
+    0.1,
+    0.05,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "p2": true,
+   "initial_units": 2500,
+   "reorder_units": 2500
+  },
+  "Upside": {
+   "ramp": [
+    4,
+    10,
+    16,
+    22,
+    27,
+    31,
+    35,
+    38,
+    40,
+    42,
+    44,
+    46
+   ],
+   "cvr": [
+    0.08,
+    0.09,
+    0.1,
+    0.105,
+    0.11,
+    0.11,
+    0.115,
+    0.12,
+    0.12,
+    0.12,
+    0.12,
+    0.12
+   ],
+   "cpc": 2.1,
+   "organic": [
+    0.15,
+    0.22,
+    0.3,
+    0.36,
+    0.4,
+    0.44,
+    0.47,
+    0.5,
+    0.52,
+    0.53,
+    0.54,
+    0.55
+   ],
+   "price_disc": [
+    0.1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "p2": true,
+   "initial_units": 4000,
+   "reorder_units": 4000
+  }
+ },
+ "CONT": {
+  "Conservative": 0.1,
+  "Base": 0.15,
+  "Upside": 0.2
+ },
+ "FX": {
+  "USD_PKR": 276.82,
+  "USD_CAD": 1.3993,
+  "GBP_USD": 1.3367
+ }
+}

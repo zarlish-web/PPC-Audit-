@@ -1,0 +1,43 @@
+# Bedding review themes: Amazon US and UK (compiled 2026-10-26)
+
+## Read this first: access and sampling
+
+- **Amazon blocked every request.** `amazon.com` and `amazon.co.uk` failed at the network layer. The desktop pages (`/dp/`), the mobile pages (`/gp/aw/d/`) and the UK Bedding Best Sellers page all failed. WebFetch returned `getaddrinfo ENOTFOUND`, and curl through the agent proxy got `CONNECT 403`. Which?, Consumer Reports, Wirecutter, Good Housekeeping, The Guardian, HGTV and Tom's Guide could not be fetched either.
+- **What is missing because of that:** no "Customers say" summaries, no aspect chips with positive/negative mention counts, and no rating histograms. So there is no 1–2★ share. The `positive_mentions`, `negative_mentions` and `pct_1_2_star` columns are **NA throughout**. Nothing was estimated or filled in.
+- **What was used instead:**
+  1. **Marketplace metrics (US only).** Brand, ASIN, price, star rating, ratings count and claims in the title came from **DataDive** niche competitor snapshots, using niches in the user's account. Each snapshot has its own research date, between 2025-06-02 and 2026-10-26, recorded per row. For 6 ASINs, **Keepa** (ecotero-command-center) supplied the price, rating, ratings count and "bought in past month" on 2026-10-26.
+  2. **Complaint themes.** These are qualitative and come from web-search summaries of editorial and lab tests (CR, GH via third parties, Tom's Guide, Sleep Foundation, Which? methodology, Expert Reviews, Ideal Home). Some come from retailer review summaries or Fakespot review excerpts. The web-search budget ran out before every segment was covered. Pillowcases and the UK fitted-sheet and duvet segments are thin.
+- **Coverage:** **55 US products** across 11 segments (5 each), carrying **2,781,109 listing ratings**. Note that ratings are often shared across a whole variation family, so this figure is not a count of distinct reviews. **UK: 2 products.** Both are Utopia Bedding items found through press and deal pages, with no ASIN. There is no UK DataDive niche, and Keepa does not cover the UK.
+- **Ranking caveat:** without mention counts, the themes below are ordered by **how many independent sources raised them** and how credible each source is (lab test > editorial test > retailer review summary > single review). They are **not** ordered by negative mention volume.
+
+## US segments
+
+| Segment | Products | Listing ratings | Star range | Top complaint themes (ordered by evidence) | Spec that addresses them |
+|---|---|---|---|---|---|
+| 100% cotton percale | 5 | 80,167 | 4.2–4.5 | 1) Shrinkage leaving fitted pockets too shallow (CR, HGTV). 2) Pilling after 1–2 years (HGTV). 3) Crisp, textured feel that some sleepers dislike. 4) Wrinkling out of the dryer | Pre-shrunk/pre-washed long-staple cotton; 15–16" pocket with all-round elastic, sized 2–3" deeper than the mattress (CR); disclose GSM/TC; position as "crisp/cool" |
+| Cotton sateen | 5 | 146,865 | 4.3–4.5 | 1) Wrinkles (GH lab, editorial). 2) Sleeps warmer than percale. 3) Pillowcases slide off the pillow | Long-staple 300–400TC single-ply rather than inflated TC; envelope-closure pillowcases; "wrinkle-release" finish |
+| Bamboo viscose | 5 | 137,767 | 4.4–4.5 | 1) Pilling within the first year (retailer blog, brand admits it is possible). 2) Seam/thread quality. 3) Heat build-up despite "cooling" claims, and doubts about whether it is really 100% bamboo (Amazon reviewers quoted in press) | Higher GSM twill; double-stitched seams; lyocell or a blend for better pill resistance; OEKO-TEX plus accurate "viscose from bamboo" labelling |
+| Microfiber (Mellanni, Amazon Basics, Utopia, CGK, Bare Home) | 5 | 1,590,725 | 4.4–4.6 | 1) Heat retention (Sleep Foundation). 2) Pilling after a few washes (GH lab on a brushed microfiber-style sheet). 3) Static. 4) Thin sheets that bunch. 5) Shows oil stains (Mellanni owner) | Double-brushed, higher-GSM (≥90) fabric; anti-pill finish; 16"+ pocket; promote as soft and value, not cooling |
+| Satin (polyester) | 5 | 71,677 | 4.3–4.4 | 1) **Too slippery: the fitted sheet and pillows slide off** (raised in several retailer summaries). 2) Elastic too loose. 3) Snags and tears; thin fabric rips in the wash. 4) Not breathable | Elastic corner straps plus all-round elastic (MR&HM, Bedsure already do this); heavier charmeuse; zippered or envelope pillowcases; CR shows a poly satin can score top for fit, shrinkage and strength (Bare Home) |
+| Linen | 5 | 20,133 | 4.2–4.5 | 1) **Shedding and lint** in the first washes (3 sources). 2) Scratchy at first. 3) Pilling. 4) Wrinkling. 5) Slips off corners, or the fitted sheet stops fitting after washing (Simple&Opulence review) | Stonewashed or pre-shrunk European flax; tell buyers to "wash separately first"; 16" pocket with full elastic plus a shrink allowance |
+| Duvet cover set | 5 | 140,646 | 4.2–4.5 | 1) Zipper snags; colour bleeds on the first wash (Bedsure microfiber cons). 2) Cotton versions wrinkle. **Praise:** 8 corner ties that stop the insert shifting (Bedsure, Utopia) | 8 corner ties plus a hidden YKK-type zipper; colourfast dyeing; clear "comforter not included" note |
+| Quilt set | 5 | 44,373 | 4.4–4.6 | 1) Thinner or flimsier than expected. 2) Colour differs from photos. 3) Lint at stitching; broken sham stitching (excerpts from non-sampled brands) | State GSM and weight; true-colour photography; denser stitch pattern and QC |
+| Waterproof mattress protector | 5 | 252,634 | 3.9–4.6 | 1) **Crinkle and noise** (most often cited). 2) Sleeps hot. 3) Waterproofing fades over time (budget). 4) Slippery top so sheets slide. 5) Skirt tears | TPU membrane (not vinyl or PVC); terry or jersey top; deep stretch skirt; publish spill-test results. DMI's vinyl-type encasement is the low outlier at 3.9★ |
+| Mattress topper | 5 | 233,823 | 4.0–4.4 | 1) Odor or off-gassing (≥48h). 2) Compression and flattening over time. 3) Heat (gel foam). 4) Shifts on the bed. 5) Smaller than the stated size | CertiPUR-US plus a vacuum-pack airing note; higher-density foam; non-slip base and straps; accurate dimensions |
+| Pillowcases | 5 | 62,299 | 4.3–4.4 | No independent evidence found. "Cooling" and "no-pilling" are seller claims only. The sateen and satin issue of cases sliding off the pillow applies here too | Envelope closure; publish Q-max or cooling test data if you claim cooling |
+
+## UK segments
+
+| Segment | Products | Evidence | Themes |
+|---|---|---|---|
+| Fitted sheet (percale/polycotton) | 1 (Utopia Bedding microfibre fitted sheet, 4.6★, ~127,000 ratings, top-selling in Amazon UK homeware early 2026, £10.99 list) | Press and listing data only | The best seller is **microfibre, not polycotton**. No UK fitted-sheet test was retrieved. Apply the US shrinkage and pocket-depth guidance: a 35cm pocket is standard |
+| Duvet cover set | 1 (Utopia microfibre single, £10.99, no rating visible) | Deal page | No UK complaint data was retrieved. The US duvet themes (zipper, colour bleed, corner ties) are the closest proxy |
+| Mattress protector | 0 products | Which? method; Expert Reviews (2026-05-18); Ideal Home | Which? scores waterproofing (water and coffee pour), **noise when rolling**, and fit (stretchy corners). Editorial tests flag rustle on polyester protectors. Simba was rated quiet but expensive |
+| 100% cotton / Egyptian cotton set | 0 products | Mumsnet tester (Tielle 600TC); GH lab | Creasing is the dominant drawback. Some shrinkage. Requires ironing for a smooth finish |
+
+## Sampling note
+
+- **Product selection:** for each US segment, the 5 listings with the most ratings in the matching DataDive niche: Organic Cotton, Sheet & Pillowcase Sets, Bamboo Rank Radar, Decolure Satin, Linen, Duvet Covers Solid, Sleephoria Quilt Set, Zipper Mattress Protector, Mattress Pad, Single-layer Cooling Topper and Cooling Pillowcases. These niches were built around the user's own competitive sets, so the sample leans toward DECOLURE-adjacent competitors and may not match today's Best Sellers pages.
+- **Dates:** metrics date from 2025-06-02 (linen) to 2026-10-26 (bamboo; Keepa rows). Prices and ratings may have moved since.
+- **What the evidence is and isn't:** theme evidence is qualitative and often comes from a single source. Some sources are affiliate or brand-owned, and each row's `evidence_type` says which. Product-specific complaint rows exist for only 9 sampled listings (plus one non-sampled Linenspa model). For everything else the themes are segment-level (`asin = SEGMENT`).
+- **To get the requested aspect counts and histograms**, run this again from an environment that can reach amazon.com and amazon.co.uk (a browser session, or an approved Amazon data API). Then fill the NA columns in `review_themes.csv`.

@@ -1,0 +1,57 @@
+product_id,marketplace,kind,date,end_date,type,title
+48,US,event,2026-10-20,,price_change,Price change · Listing Change Loader (LC-0158)
+59,US,event,2026-07-03,,image_change,Main Image Update — Decolure — Bamboo Sheets 4 Piece
+59,US,event,2026-07-20,,image_change,Main Image Update — Decolure — Bamboo Sheets 4 Piece
+59,US,event,2026-08-01,,price_change,Pricing Update — Decolure — Bamboo Sheets 4 Piece
+59,US,event,2026-08-01,,price_change,Pricing Update — Decolure — Bamboo Sheets 4 Piece
+59,US,event,2026-08-01,,price_change,Pricing Update — Decolure — Bamboo Sheets 4 Piece
+59,US,event,2026-08-01,,price_change,Pricing Update — Decolure — Bamboo Sheets 4 Piece
+59,US,event,2026-08-01,,price_change,Pricing Update — Decolure — Bamboo Sheets 4 Piece
+59,US,event,2026-08-15,,title_change,Title / Copy Update — Decolure — Bamboo Sheets 4 Piece
+59,US,event,2026-08-23,,image_change,New Main Image
+59,US,event,2026-08-26,,other,Swatch Images
+59,US,event,2026-09-08,,image_change,Secondary Images
+59,US,event,2026-09-08,,title_change,Title & Item Highlights
+59,US,event,2026-10-01,,price_change,Price Increase
+59,US,event,2026-10-01,,title_change,Title & Item Highlights
+59,US,event,2026-10-08,,price_change,"Price change · Listing Change Loader (LC-0003, LC-0005)"
+59,US,event,2026-10-14,,description_change,Brand story · Creative Loader (CL-0268)
+59,US,event,2026-10-18,,description_change,"A+ content · Creative Loader (80 changes, CL-0558 to CL-0637)"
+59,US,event,2026-10-18,,image_change,"Main image · Creative Loader (32 changes, CL-0638 to CL-0819)"
+59,US,event,2026-10-18,,image_change,"Secondary images · Creative Loader (144 changes, CL-0640 to CL-0828)"
+59,US,event,2026-10-18,,other,"Swatch images · Creative Loader (16 changes, CL-0649 to CL-0829)"
+59,US,event,2026-10-19,,price_change,"Price change · Listing Change Loader (LC-0148, LC-0149)"
+59,US,event,2026-10-20,,price_change,"Price change · Listing Change Loader (LC-0151, LC-0153, LC-0155)"
+69,US,event,2026-09-29,,image_change,Vine Launch Main Image
+69,US,event,2026-09-29,,image_change,Vine Launch Secondary Images
+69,US,event,2026-09-29,,price_change,Vine Launch Pricing
+69,US,event,2026-10-12,,image_change,Listing video · Creative Loader (CL-0102)
+69,US,event,2026-10-13,,description_change,"A+ content · Creative Loader (60 changes, CL-0105 to CL-0164)"
+69,US,event,2026-10-13,,image_change,"Secondary images · Creative Loader (84 changes, CL-0177 to CL-0260)"
+69,US,event,2026-10-13,,image_change,"Main image · Creative Loader (CL-0261, CL-0262)"
+69,US,event,2026-10-13,,description_change,Brand story · Creative Loader (CL-0265)
+69,US,event,2026-10-15,,image_change,"Secondary images · Creative Loader (24 changes, CL-0269 to CL-0292)"
+69,US,event,2026-10-15,,other,"Swatch images · Creative Loader (16 changes, CL-0293 to CL-0308)"
+70,US,event,2026-10-01,,description_change,EBC
+70,US,event,2026-10-02,,image_change,New Main Image
+70,US,event,2026-10-02,,image_change,New Secondary Images
+70,US,event,2026-10-02,,other,Listing Merge
+70,US,event,2026-10-03,,price_change,Launch Price update
+70,US,event,2026-10-03,,title_change,Title & Item Highlights
+70,US,event,2026-10-03,,bullet_change,Bullet Points
+70,US,event,2026-10-03,,description_change,Description
+70,US,event,2026-10-03,,backend_keywords_change,Backend Keywords
+70,US,event,2026-10-05,,title_change,Adjusted Title & Item Highlights
+70,US,event,2026-10-06,,description_change,A+ content · Creative Loader (CL-0003)
+70,US,event,2026-10-12,,price_change,Price change · Listing Change Loader (LC-0113)
+70,US,event,2026-10-13,,description_change,"A+ content · Creative Loader (12 changes, CL-0165 to CL-0176)"
+70,US,event,2026-10-13,,description_change,Brand story · Creative Loader (CL-0266)
+70,US,event,2026-10-19,,price_change,Price change · Listing Change Loader (LC-0146)
+73,US,event,2026-07-07,,image_change,Main Image Update — Decolure — Bamboo Fitted Sheet
+73,US,event,2026-07-18,,price_change,Pricing Update — Decolure — Bamboo Fitted Sheet
+73,US,event,2026-08-02,,price_change,Pricing Update — Decolure — Bamboo Fitted Sheet
+73,US,event,2026-08-02,,price_change,Pricing Update — Decolure — Bamboo Fitted Sheet
+73,US,event,2026-08-15,,price_change,Pricing Update — Decolure — Bamboo Fitted Sheet
+73,US,event,2026-08-15,,price_change,Pricing Update — Decolure — Bamboo Fitted Sheet
+73,US,event,2026-08-25,,price_change,Price Increase by $2
+73,US,event,2026-08-28,,other,Swatch Images

@@ -1,0 +1,156 @@
+plan_id,plan_date,plan_number,plan_status,plan_units,plan_units_received,n_shipments,shipment_statuses,shipment_units,shipment_units_received,sort_centers,awd,top_families,is_test
+wf3577e229-3893-4115-912f-667322ce99c0,2025-10-29,FBA STA (2025-10-28 23:23),SHIPPED,1010,1010,5,CLOSED,1010,1010,"AVP1,GYR2,FTW1,FWA4,LAX9",False,bamboo sheet set:1010,False
+wf51c77a83-a4a2-40c5-ac9a-ba2c5e5827d2,2025-11-04,FBA STA (2025-11-04 05:42),SHIPPED,1178,1184,5,CLOSED,1178,1184,"FTW1,SMF3,FWA4,AVP1,MEM1",False,satin sheet set:918; satin fitted sheet:260,False
+wf7aca418a-251d-4fb4-9d87-c5618513d94f,2025-11-06,FBA STA (2025-11-06 06:23),SHIPPED,626,625,1,CLOSED,626,625,YXU1,False,satin fitted sheet:380; satin sheet set:246,False
+wfa09e381f-6dba-4a38-ae61-bfe023a274f1,2025-11-08,FBA STA (2025-11-08 03:52),SHIPPED,3786,3768,5,CLOSED,3786,3768,"BNA6,LAX9,SWF2,FTW1,RFD2",False,bamboo sheet set:3786,False
+wf032dfe8c-97d3-4042-9b49-86deae32cea3,2025-11-13,FBA STA (2025-11-13 01:32),SHIPPED,1380,1349,1,CLOSED,1380,1349,TMB8,False,silk pillowcase:1380,False
+wf7b476d3a-4519-4104-b36c-23026dd37ad0,2025-11-13,FBA STA (2025-11-12 21:47),SHIPPED,1260,1241,6,CLOSED,1260,1241,"FWA4,IAH3,LAN2,MEM1,SMF3,ABQ2",False,satin sheet set:660; satin fitted sheet:600,False
+wf4642d3ea-e83f-401c-bcd9-2ee5f4a35d0e,2025-11-18,FBA STA (2025-11-18 04:35),SHIPPED,96,96,1,CLOSED,96,96,YXU1,False,satin sheet set:96,False
+wf43c58fa8-6771-4ed2-b2f7-610cd4a47f2c,2025-11-18,FBA STA (2025-11-17 23:04),SHIPPED,3766,3261,5,CLOSED,3766,3261,"FWA4,IND9,LAX9,TEB9,BNA6",False,satin sheet set:3486; satin fitted sheet:280,False
+wf3ff29fa1-1e44-437e-8c73-528d4fecd6df,2025-11-18,FBA STA (2025-11-17 20:52),SHIPPED,5332,5147,5,CLOSED,5332,5147,"LAX9,AVP1,MEM1,FWA4,IAH3",False,bamboo sheet set:5332,False
+wfb6715bbf-8713-453b-af8a-942fc361b7b8,2025-11-19,FBA STA (2025-11-19 00:35),SHIPPED,5294,5288,5,CLOSED,5294,5288,"SBD1,BNA6,SCK4,SWF2,ORF2",False,bamboo sheet set:5294,False
+wf3048ef58-1aca-4fba-a30c-e4293ccaeebe,2025-11-20,FBA STA (2025-11-20 03:14),SHIPPED,598,598,1,CLOSED,598,598,YYC4,False,bamboo sheet set:598,False
+wf327af4b0-f649-49a7-a0cd-0ed693b6536c,2025-11-26,FBA STA (2025-11-26 04:26),SHIPPED,3930,3903,5,CLOSED,3930,3903,"LAX9,TEB9,RFD2,IND9,CLT2",False,cooling sheet set:3930,False
+wf001ca9dc-b774-4461-b460-c56cd16c6882,2025-11-26,FBA STA (2025-11-26 02:56),SHIPPED,2247,2233,5,CLOSED,2247,2233,"MEM1,LAX9,AVP1,IND9,RFD2",False,satin sheet set:1206; comforter:1041,False
+wf3305ddd4-4c3b-4c35-a1ca-7e8e3458dd73,2025-11-27,FBA STA (2025-11-27 01:10),SHIPPED,370,370,1,CLOSED,370,370,YXU1,False,satin sheet set:330; satin fitted sheet:40,False
+wfd965a55e-e351-4ff3-a80e-d9cd079aff95,2025-12-08,FBA STA (2025-12-08 07:10),SHIPPED,1692,1692,1,CLOSED,1692,1692,YOW3,False,satin sheet set:1632; satin fitted sheet:60,False
+wf692f4f50-da50-40c3-80f7-4c26b7c1d0ed,2025-12-08,FBA STA (2025-12-08 05:48),SHIPPED,2722,2722,5,CLOSED,2722,2722,"LAX9,RDU4,CLT2,FWA4,IAH3",False,satin sheet set:2622; satin fitted sheet:100,False
+wfe0191894-ddbb-4cea-b51b-a3fb87c17e2d,2025-12-09,FBA STA (2025-12-09 04:05),SHIPPED,1650,1649,5,CLOSED,1650,1649,"RDU4,RMN3,LAS1,CLT2,SBD1",False,pillowcase:1200; silk pillowcase:450,False
+wf3a435234-59de-422d-bba8-944960398640,2025-12-10,FBA STA (2025-12-10 02:46),SHIPPED,96,0,1,CLOSED,96,0,YXU1,False,bamboo sheet set:78; satin sheet set:18,False
+wf73bf4d1d-5da0-4ecd-b830-2e20f69d72b5,2025-12-12,FBA STA (2025-12-12 09:35),SHIPPED,3448,3440,5,CLOSED,3448,3440,"LAX9,MEM1,MQJ1,LAN2,FTW1",False,satin sheet set:3348; satin fitted sheet:100,False
+wff297cbfb-962c-4894-a8b6-d214657cdbfa,2025-12-13,FBA STA (2025-12-13 02:31),SHIPPED,344,344,1,CLOSED,344,344,YYC4,False,satin sheet set:324; satin fitted sheet:20,False
+wf68cdcb43-6441-476f-9caf-a50c7b9295a2,2025-12-18,FBA STA (2025-12-18 06:18),SHIPPED,380,380,1,CLOSED,380,380,YOW3,False,satin sheet set:360; satin fitted sheet:20,False
+wfb3adef90-022f-48a3-88ff-239cbc212987,2025-12-18,FBA STA (2025-12-18 01:19),SHIPPED,3592,3585,5,CLOSED,3592,3585,"FTW1,LAX9,FWA4,BNA6,AVP1",False,satin sheet set:3492; satin fitted sheet:100,False
+wf3b4193e0-7735-4ab4-8d30-09309cdb91f8,2025-12-24,FBA STA (2025-12-24 03:01),SHIPPED,450,0,5,CLOSED,450,0,"FWA4,FTW1,SCK4,CLT2,AVP1",False,silk pillowcase:450,False
+wf9de27af1-dd6b-4af0-9b3b-ddfc595394d3,2025-12-26,FBA STA (2025-12-26 06:11),ACTIVE,450,0,0,,0,0,,False,silk pillowcase:450,False
+wf9dff4ddb-7bba-46cc-82cf-23bebe318a44,2025-12-29,FBA STA (2025-12-29 07:33),SHIPPED,322,322,1,CLOSED,322,322,YOW3,False,satin sheet set:222; satin fitted sheet:100,False
+wf6ca369c6-45c0-4318-aadc-c0acf75332a8,2025-12-29,FBA STA (2025-12-29 01:38),SHIPPED,1452,1458,5,CLOSED,1452,1458,"SCK4,GYR3,LAS1,CLT2,ORF2",False,satin sheet set:1452,False
+wf075fa17e-b1f3-4ba9-886f-69dc96a26d01,2026-01-02,FBA STA (2026-01-02 04:10),SHIPPED,3822,3802,5,CLOSED,3822,3802,"IND9,GYR3,LAS1,LGB8,ABE8",False,bamboo sheet set:3822,False
+wffd95efa6-6747-4c88-866c-5678272766e4,2026-01-04,FBA STA (2026-01-04 06:55),SHIPPED,520,307,1,CLOSED,520,307,YHM1,False,bamboo sheet set:520,False
+wff99ede75-d3c3-4204-8f8d-1250d752a7a5,2026-01-07,FBA STA (2026-01-07 07:40),SHIPPED,708,707,1,CLOSED,708,707,YYC4,False,satin fitted sheet:420; satin sheet set:288,False
+wfa35af0de-fffa-49c1-959c-eb3a5632d015,2026-01-13,FBA STA (2026-01-13 09:28),SHIPPED,470,470,1,CLOSED,470,470,PBI3,False,satin sheet set:270; satin fitted sheet:200,False
+wf31a3ccdb-dc77-4bb6-b8f0-665c3a8b5822,2026-01-14,FBA STA (2026-01-13 23:52),SHIPPED,564,565,1,CLOSED,564,565,YYZ7,False,satin fitted sheet:360; satin sheet set:204,False
+wfd9b10100-7151-4d03-8830-04afeec8287e,2026-01-21,FBA STA (2026-01-21 05:35),SHIPPED,340,340,1,CLOSED,340,340,YYC4,False,bamboo sheet set:340,False
+wf6b38c24f-757e-4ebb-bb93-4b5d3fd69892,2026-01-22,FBA STA (2026-01-22 04:04),SHIPPED,402,401,1,CLOSED,402,401,YXU1,False,satin sheet set:282; satin fitted sheet:120,False
+wf5a9777d0-9153-450b-be1c-4e06927f331f,2026-01-22,FBA STA (2026-01-22 02:47),SHIPPED,958,938,5,CLOSED,958,938,"LAS1,ABE8,FTW1,LGB8,CLT2",False,satin fitted sheet:700; satin sheet set:258,False
+wfb11203d9-c4e2-4577-8023-e1a7f22dc75e,2026-01-22,FBA STA (2026-01-21 23:15),ACTIVE,268,0,0,,0,0,,False,bamboo sheet set:268,False
+wf7c14c2b0-fe42-4109-a71a-63fc483f8621,2026-01-25,FBA STA (2026-01-25 03:28),SHIPPED,268,267,3,CLOSED,268,267,"FWA4,GYR3,MEM1",False,bamboo sheet set:268,False
+wf1110d36e-c426-4aec-8011-727fae02d896,2026-02-02,FBA STA (2026-02-01 20:40),SHIPPED,158,158,1,CLOSED,158,158,YYZ7,False,satin fitted sheet:140; satin sheet set:18,False
+wf85e40390-f8c7-476e-a588-9416072bf488,2026-02-02,FBA STA (2026-02-01 20:00),SHIPPED,326,326,4,CLOSED,326,326,"LAN2,FTW1,LAS1,MCC1",False,satin fitted sheet:200; satin sheet set:126,False
+wf75ffac47-8573-467b-87bd-d517b49eb1e2,2026-02-03,FBA STA (2026-02-02 20:45),SHIPPED,4188,4167,5,CLOSED,4188,4167,"IND9,FWA4,LAN2,LGB8,FTW1",False,cooling sheet set:4188,False
+wf4946df02-b921-4ce0-a079-08701230bd14,2026-02-04,FBA STA (2026-02-04 02:16),ACTIVE,5088,0,0,,0,0,,False,satin sheet set:4788; satin fitted sheet:300,False
+wfc12d8588-1fa3-4968-b3bd-d2bab08ac5f2,2026-02-05,FBA STA (2026-02-05 07:36),SHIPPED,676,673,1,CLOSED,676,673,YYZ7,False,satin fitted sheet:340; satin sheet set:336,False
+wfdd8e1776-1f2b-4d6c-856c-794fc3499880,2026-02-05,FBA STA (2026-02-05 05:24),SHIPPED,5994,5990,5,CLOSED,5994,5990,"LAX9,AVP1,LGB8,LAS1,IND9",False,satin sheet set:5694; satin fitted sheet:300,False
+wf8a1572d5-de91-4810-9e45-cb604e543710,2026-03-04,FBA STA (2026-03-03 16:51),SHIPPED,6878,6870,6,CLOSED,6878,6870,"GEU2,LAX9,RFD2,AVP1,LGB8,MEM1",False,bamboo sheet set:6878,False
+wf5b94e0cf-6795-4589-9ae6-2621a8561dac,2026-03-11,FBA STA (2026-03-11 13:41),SHIPPED,1872,1726,1,CLOSED,1872,1726,YYC4,False,satin sheet set:1452; satin fitted sheet:420,False
+wf485cb9bf-abe4-47dd-a48b-3ef19cba131a,2026-03-11,FBA STA (2026-03-11 04:09),SHIPPED,4872,4799,6,CLOSED,4872,4799,"ABQ2,LGB8,RFD2,MEM1,GYR3,AVP1",False,satin sheet set:4452; satin fitted sheet:420,False
+wfefd76f03-ec18-49be-affe-c0a399fece6f,2026-03-14,FBA STA (2026-03-14 06:53),SHIPPED,590,599,1,CLOSED,590,599,PSC2,False,pillowcase:440; silk pillowcase:150,False
+wf0739b55e-5c58-4e23-ac14-9194081b5aa9,2026-03-18,FBA STA (2026-03-17 22:09),SHIPPED,820,820,1,CLOSED,820,820,YYZ4,False,satin sheet set:720; satin fitted sheet:100,False
+wf2a00c1a2-4209-4e60-9a26-537b897165c0,2026-03-18,FBA STA (2026-03-17 20:15),SHIPPED,2512,2509,6,CLOSED,2512,2509,"TCY1,LAN2,LGB8,MEM1,LAX9,LAS1",False,satin sheet set:1872; satin fitted sheet:640,False
+wf61d4d5f8-4005-4115-9ffb-bb53cbef67d2,2026-03-26,FBA STA (2026-03-25 19:51),SHIPPED,956,955,6,CLOSED,956,955,"TMB8,LGB8,ABE8,MEM1,LAX9,VGT2",False,pillowcase:656; silk pillowcase:300,False
+wf5909e648-165b-4a49-871d-8d5d49fe2bfb,2026-03-31,FBA STA (2026-03-30 23:55),SHIPPED,754,749,1,CLOSED,754,749,YVR4,False,satin fitted sheet:400; satin sheet set:354,False
+wf507c93f9-85e5-4e74-a42d-101ba6725aec,2026-03-31,FBA STA (2026-03-30 23:05),SHIPPED,514,510,1,CLOSED,514,510,QXY8,False,satin sheet set:294; satin fitted sheet:220,False
+wf7f67e3b8-e7f6-4d28-9387-3792d3fa99df,2026-04-01,FBA STA (2026-04-01 01:59),SHIPPED,560,556,1,CLOSED,560,556,YYZ4,False,satin fitted sheet:320; satin sheet set:240,False
+wf1f1eed3b-a1c8-46cd-9efe-15e837be63e9,2026-04-01,FBA STA (2026-03-31 23:47),SHIPPED,1788,1773,5,CLOSED,1788,1773,"PSP3,MQJ1,LAS1,IND9,SCK4",False,satin sheet set:1248; satin fitted sheet:540,False
+wfedc62c96-fe81-4dbe-b5de-06dbd4594853,2026-04-01,FBA STA (2026-03-31 22:54),SHIPPED,360,359,1,CLOSED,360,359,PSC2,False,throw blanket:360,False
+wf4cd9fe7c-75a8-429c-8852-c818418ff317,2026-04-01,FBA STA (2026-03-31 22:35),SHIPPED,4400,4399,5,CLOSED,4400,4399,"LAN2,PSP3,MCC1,IND9,FWA4",False,throw blanket:4400,False
+wf8688f4b2-c866-432e-9d47-b9d41fa032d4,2026-04-02,FBA STA (2026-04-02 06:23),SHIPPED,2998,2983,5,CLOSED,2998,2983,"PSP3,LGB8,RMN3,LAS1,IND9",False,satin sheet set:1830; comforter:868; satin fitted sheet:300,False
+wfa04c4718-d7bf-43cb-9977-21e8440720f7,2026-04-02,FBA STA (2026-04-02 05:03),SHIPPED,434,433,1,CLOSED,434,433,YYC4,False,bamboo sheet set:434,False
+wf8186fca6-916f-4571-8b5d-178b3559f49b,2026-04-02,FBA STA (2026-04-02 02:41),SHIPPED,5048,5048,5,CLOSED,5048,5048,"LGB8,FWA4,IND9,MQJ1,PSP3",False,bamboo fitted sheet:4140; bamboo sheet set:908,False
+wf30cffb14-5798-409e-b20d-042b885be14b,2026-04-02,FBA STA (2026-04-02 00:34),ACTIVE,492,0,0,,0,0,,False,comforter:492,False
+wf8efda53e-bc7e-4ee5-8be2-695ac9963618,2026-04-09,FBA STA (2026-04-08 22:31),SHIPPED,460,460,1,CLOSED,460,460,LBE1,False,silk pillowcase:300; pillowcase:160,False
+wf5ca5a366-2850-486e-b903-f4636200634d,2026-04-10,FBA STA (2026-04-10 05:14),SHIPPED,7060,7050,6,CLOSED,7060,7050,"TEB9,ABQ2,IND9,FWA4,LAX9,SCK4",False,bamboo sheet set:4618; satin sheet set:1662; satin fitted sheet:780,False
+wfd3a19209-f564-450b-9abf-ea3243b9b001,2026-04-10,FBA STA (2026-04-10 04:03),SHIPPED,1220,1220,1,CLOSED,1220,1220,YYC4,False,bamboo sheet set:858; satin fitted sheet:200; satin sheet set:162,False
+wfe93f6fc3-3f05-43ea-a317-0d1a12903c72,2026-04-16,FBA STA (2026-04-16 04:27),SHIPPED,504,504,1,CLOSED,504,504,RYY2,False,bamboo sheet set:504,False
+wf657d6634-a064-41e0-9d19-683ba9ad2cba,2026-04-17,FBA STA (2026-04-16 22:45),ACTIVE,1078,0,0,,0,0,,False,bamboo sheet set:724; satin sheet set:294; satin fitted sheet:60,False
+wf5088abdb-2230-4cba-ae45-cac0a68d076d,2026-04-22,FBA STA (2026-04-22 05:52),SHIPPED,202,196,1,CLOSED,202,196,YYZ7,False,bamboo sheet set:138; satin fitted sheet:40; satin sheet set:24,False
+wf309a62f5-588c-491e-8939-d97310935332,2026-04-22,FBA STA (2026-04-22 04:54),SHIPPED,450,450,1,CLOSED,450,450,LBE1,False,silk pillowcase:450,False
+wf8ca02a9a-348a-4e04-8bea-12235fb54dc0,2026-04-22,FBA STA (2026-04-22 03:53),SHIPPED,1018,1018,5,CLOSED,1018,1018,"SMF3,PSP3,IND9,RMN3,LAS1",False,bamboo sheet set:724; satin sheet set:294,False
+wf22197912-c0c1-4315-9038-0187c79b6a1e,2026-04-22,FBA STA (2026-04-22 08:19),SHIPPED,348,348,1,CLOSED,348,348,HIA1,False,bamboo sheet set:348,False
+wf1bd27023-81ea-4ece-ba64-666870376387,2026-04-29,FBA STA (2026-04-29 04:51),SHIPPED,661,661,1,CLOSED,661,661,YYC4,False,bamboo sheet set:652; comforter:9,False
+wf2e521db7-4da1-43c5-baff-d2c5c8cbb926,2026-04-29,FBA STA (2026-04-29 02:17),SHIPPED,3778,3762,6,CLOSED,3778,3762,"HGR6,GYR2,IND9,RFD2,SBD1,ORF2",False,bamboo sheet set:3248; comforter:530,False
+wf82cf2db6-c006-431d-ac32-f412e09ac6ad,2026-05-05,FBA STA (2026-05-05 04:13),SHIPPED,250,245,5,CLOSED,250,245,"MCE1,SLC2,IGQ2,PDX7,HSV1",False,other (non-bedding):250,False
+wf2047e405-80ca-4077-82fd-ee317c3a9bdf,2026-05-08,FBA STA (2026-05-08 08:13),SHIPPED,358,358,1,CLOSED,358,358,YYC4,False,bamboo sheet set:210; satin fitted sheet:100; comforter:30; satin sheet set:18,False
+wf7442094c-7dfb-4d0e-9a97-96c2cfc5c3d9,2026-05-08,FBA STA (2026-05-08 05:58),SHIPPED,234,228,1,CLOSED,234,228,PSC2,False,satin fitted sheet:200; satin sheet set:18; comforter:16,False
+wfa3ecad1a-bc99-4c3c-8e3d-1f704a7dce48,2026-05-08,FBA STA (2026-05-08 02:29),SHIPPED,1684,1686,5,CLOSED,1684,1686,"VGT2,SMF3,MEM1,LAX9,RMN3",False,bamboo sheet set:602; satin fitted sheet:540; comforter:362; satin sheet set:180,False
+wf8347227f-b0ac-441a-8c27-15a6f07e5104,2026-05-15,FBA STA (2026-05-15 05:27),ACTIVE,476,0,0,,0,0,,False,satin sheet set:456; satin fitted sheet:20,False
+wff982b38c-3813-49f9-b7dd-17890123afb8,2026-05-19,FBA STA (2026-05-19 06:34),SHIPPED,504,504,1,CLOSED,504,504,YXU1,False,satin sheet set:504,False
+wf0ecec089-ca1b-4692-a442-db8e8b5d0f51,2026-05-19,FBA STA (2026-05-19 05:15),SHIPPED,4584,4572,6,CLOSED,4584,4572,"RYY2,LGB8,IND9,RFD2,GYR3,MQJ1",False,satin sheet set:4584,False
+wf671169ea-741c-4e1f-904f-0de791819dfe,2026-05-19,FBA STA (2026-05-18 23:35),SHIPPED,260,264,1,CLOSED,260,264,HLI2,False,bamboo sheet set:158; satin sheet set:54; satin fitted sheet:40; comforter:8,False
+wf165e71ed-4e3f-4a38-9f73-affe0bc02854,2026-05-19,FBA STA (2026-05-18 22:17),SHIPPED,4934,4884,5,CLOSED,4934,4884,"MQJ1,RFD2,MEM1,PSP3,LGB8",False,bamboo sheet set:4514; satin sheet set:216; comforter:204,False
+wf928e1689-0e76-428b-af33-2da9d2a5f7b3,2026-05-19,FBA STA (2026-05-18 21:17),SHIPPED,1516,1510,1,CLOSED,1516,1510,YVR4,False,bamboo sheet set:1400; satin fitted sheet:80; satin sheet set:30; comforter:6,False
+wfa2b407c4-b8d4-464c-a357-b06e5dda8a7d,2026-05-22,FBA STA (2026-05-21 18:33),SHIPPED,2158,2181,6,CLOSED,2158,2181,"BNA6,LAS1,ABE8,TOL3,PSP3,LGB8",False,bamboo sheet set:2158,False
+wf4594744e-54f2-47f1-8162-591b3c5039f3,2026-05-26,FBA STA (2026-05-26 01:04),SHIPPED,598,592,1,CLOSED,598,592,YHM1,False,bamboo sheet set:598,False
+wf6593c8b0-a6c8-4cd8-bc77-a05ef34b989a,2026-05-29,FBA STA (2026-05-28 21:54),SHIPPED,1794,1797,5,CLOSED,1794,1797,"LAS1,SBD1,IND9,MQJ1,PSP3",False,bamboo sheet set:1794,False
+wfd99568b9-09ca-4cd2-b5aa-37997eab1f77,2026-05-29,FBA STA (2026-05-28 22:41),SHIPPED,186,186,1,CLOSED,186,186,YYZ7,False,bamboo sheet set:186,False
+wf8e18954e-273b-425c-9543-c0b973fe207d,2026-06-02,FBA STA (2026-06-02 03:50),SHIPPED,1318,1311,1,CLOSED,1318,1311,YYZ4,False,satin sheet set:768; satin fitted sheet:460; cooling fitted sheet:84; cooling sheet set:6,False
+wf88a0e4d6-6237-4451-ac43-226024906554,2026-06-02,FBA STA (2026-06-02 00:15),SHIPPED,14102,14016,6,CLOSED,14102,14016,"PSP3,LAS1,BNA6,IND9,SBD1,ORF2",False,cooling sheet set:5070; satin sheet set:4512; satin fitted sheet:2360; cooling fitted sheet:2160,False
+wf185355aa-9bad-48da-8b3e-56132926793c,2026-06-08,FBA STA (2026-06-08 08:16),ACTIVE,30,0,0,,0,0,,False,bamboo sheet set:30,False
+wfdcd90d79-a601-427c-abcd-57a2bb7e1e63,2026-06-08,FBA STA (2026-06-08 06:54),SHIPPED,11086,11073,1,CLOSED,11086,11073,HLI2,False,bamboo sheet set:6196; satin sheet set:2064; cooling sheet set:1998; cooling fitted sheet:528,False
+wfbc55e641-00c3-4474-b226-5673e9e76f93,2026-06-10,FBA STA (2026-06-10 10:19),SHIPPED,2290,2279,1,CLOSED,2290,2279,YYC4,False,bamboo sheet set:1742; satin sheet set:348; satin fitted sheet:200,False
+wf2eb8424b-a22c-4281-afff-9b777871ce1b,2026-06-12,FBA STA (2026-06-12 07:35),ACTIVE,1100,0,0,,0,0,,False,bamboo sheet set:800; satin sheet set:300,False
+wf38ac0fff-365e-44bf-8ae8-9f5d83df27dd,2026-06-12,FBA STA (2026-06-12 00:54),ACTIVE,1200,0,0,,0,0,,False,satin sheet set:1200,False
+wf3fb6199b-90d3-40e2-b68b-f66609faad8a,2026-06-12,FBA STA (2026-06-12 15:42),ACTIVE,6096,0,0,,0,0,,,,False
+wf41a1f9d7-f3c8-4aa9-a1ec-f26a1ed1ac72,2026-06-12,FBA STA (2026-06-12 15:35),ACTIVE,300,0,0,,0,0,,,satin sheet set:300,False
+wfec676e48-43be-4f06-a90f-b7d25bce0bb4,2026-06-12,FBA STA (2026-06-12 07:36),ACTIVE,300,0,0,,0,0,,,satin sheet set:300,False
+wfe59b4883-54c4-4ce0-9e58-d24ae72e7157,2026-06-13,FBA STA (2026-06-13 03:40),ACTIVE,300,0,0,,0,0,,,satin sheet set:300,False
+wf8096aceb-fc6b-4aa3-a350-0391169fce3e,2026-06-15,FBA STA (2026-06-15 12:42),ACTIVE,300,0,0,,0,0,,,satin sheet set:300,False
+wf387b9b4c-be19-42ae-aab8-c89835ee8ff9,2026-06-17,FBA STA (2026-06-17 13:05),ACTIVE,310,0,0,,0,0,,,satin sheet set:310,False
+wfb257072e-b466-4d91-af01-a8185f650e26,2026-06-17,FBA STA (2026-06-17 02:39),ACTIVE,300,0,0,,0,0,,,satin sheet set:300,False
+wf049eabd4-46ac-4d99-a3ed-43b7c8939531,2026-06-17,FBA STA (2026-06-16 23:33),ACTIVE,300,0,0,,0,0,,,satin sheet set:300,False
+wf4da0381b-4374-4f7b-9309-68c96fb6ab96,2026-06-18,FBA STA (2026-06-18 10:26),SHIPPED,1510,1474,1,CLOSED,1510,1474,YYZ7,False,bamboo sheet set:930; satin sheet set:480; satin fitted sheet:100,False
+wf0d7d8f38-9dc1-4de9-bd56-74089734ba10,2026-06-18,FBA STA (2026-06-18 02:42),ACTIVE,300,0,0,,0,0,,False,satin sheet set:300,False
+wfbf37f611-ee3b-4f31-85c4-1a95805a30cf,2026-06-18,FBA STA (2026-06-18 01:26),SHIPPED,5394,5152,1,CLOSED,5394,5152,GEU3,False,bamboo sheet set:3108; satin sheet set:1332; cooling sheet set:534; satin fitted sheet:300,False
+wf74fc2361-8ee3-47ee-ab1d-93390b2928ec,2026-06-23,FBA STA (2026-06-23 01:35),ACTIVE,450,0,0,,0,0,,False,satin sheet set:450,False
+wfc023124b-0147-4f4c-97cf-11520600ad0e,2026-06-30,FBA STA (2026-06-30 11:06),SHIPPED,976,976,1,CLOSED,976,976,XYY4,False,satin sheet set:414; bamboo sheet set:338; satin fitted sheet:200; cooling fitted sheet:24,False
+wf46282e59-a7b5-464e-aa04-dae993e2e230,2026-06-30,FBA STA (2026-06-30 06:55),SHIPPED,798,791,1,CLOSED,798,791,PSC2,False,cooling sheet set:480; satin sheet set:186; bamboo sheet set:72; cooling fitted sheet:60,False
+wfe0c2e663-7afa-4edf-80d3-f386c3996f8b,2026-07-03,FBA STA (2026-07-03 03:33),ACTIVE,138,0,0,,0,0,,False,bamboo sheet set:138,False
+wf5ffa47d1-b08b-49ec-9181-b1bd4703f37e,2026-07-06,FBA STA (2026-07-06 06:45),SHIPPED,504,504,1,CLOSED,504,504,YYC4,False,bamboo sheet set:504,False
+wff80312f7-a03b-4636-9b52-7e55daadc21f,2026-07-06,FBA STA (2026-07-06 04:58),SHIPPED,2016,1996,1,CLOSED,2016,1996,PSC2,False,bamboo sheet set:2016,False
+wf495e8ef2-0ae3-435f-b35b-f16188c3d689,2026-07-08,FBA STA (2026-07-08 09:13),SHIPPED,464,410,1,CLOSED,464,410,YYC4,False,bamboo sheet set:416; comforter:48,False
+wf973abe61-7b30-429c-8166-1e23cb85e652,2026-07-08,FBA STA (2026-07-08 08:15),SHIPPED,401,401,1,CLOSED,401,401,PSC2,False,bamboo sheet set:208; comforter:169; cooling sheet set:24,False
+wf3ba974b5-7ffd-4925-b79b-06d6d490a2d8,2026-07-09,FBA STA (2026-07-09 04:38),SHIPPED,112,112,1,RECEIVING,112,112,RYY2,False,bamboo sheet set:112,False
+wffef4aa2f-7a19-45d9-b8b7-52b3fb14e6a4,2026-07-13,FBA STA (2026-07-13 04:26),SHIPPED,1008,991,6,CLOSED|RECEIVING,1008,991,"PSC2,TOL3,SBD1,MDW2,AVP1,IAH3",False,satin sheet set:738; comforter:144; bamboo sheet set:126,False
+wf9b7b1bfb-4d61-4257-9a3b-78f613c87f35,2026-07-13,FBA STA (2026-07-13 03:55),SHIPPED,190,195,1,RECEIVING,190,195,YEG2,False,bamboo sheet set:190,False
+wfdedcf49a-6806-4810-aa1c-b6daff01460f,2026-07-20,FBA STA (2026-07-19 23:35),SHIPPED,554,546,1,RECEIVING,554,546,XYY4,False,satin sheet set:378; satin fitted sheet:100; bamboo sheet set:76,False
+wfa8d70c53-3b32-4f37-a443-37dba067ab2c,2026-07-22,FBA STA (2026-07-22 07:20),SHIPPED,648,641,1,CLOSED,648,641,YYZ7,False,bamboo sheet set:298; satin sheet set:270; satin fitted sheet:80,False
+wfc0e1fbfe-dbd0-4d1b-b48a-d4c15e275964,2026-07-22,FBA STA (2026-07-22 06:39),SHIPPED,476,470,6,CLOSED,476,470,"BJC1,FTW1,SBD1,MCI4,SWF2,GEU3",False,bamboo sheet set:244; satin sheet set:132; comforter:100,False
+wfe6de7320-fc93-42c0-9caf-abcd37081e1c,2026-07-23,FBA STA (2026-07-23 10:11),SHIPPED,570,570,1,RECEIVING,570,570,XYY4,False,bamboo sheet set:498; satin sheet set:72,False
+wf853ea727-bb05-491d-8b2e-8e89225c85b5,2026-07-23,FBA STA (2026-07-23 07:18),SHIPPED,494,486,1,RECEIVING,494,486,GEU2,False,bamboo sheet set:306; satin fitted sheet:80; satin sheet set:72; cooling fitted sheet:36,False
+wfd7b4f565-5bbb-4939-b5e6-a7319de41c2f,2026-07-23,FBA STA (2026-07-23 01:06),SHIPPED,3772,3769,5,CLOSED,3772,3769,"BJC1,ORF2,LAX9,MCI4,MCC1",False,pillowcase:3772,False
+wf70c7dab6-8e89-4b09-aa44-518a222d4bf5,2026-07-30,FBA STA (2026-07-30 06:57),SHIPPED,2288,0,1,SHIPPED,2288,0,YYZ7,False,satin sheet set:2288,False
+wf8a53b2d1-93c3-41fc-a215-5f82d849f74f,2026-07-30,FBA STA (2026-07-30 06:25),ACTIVE,2287,0,0,,0,0,,False,satin sheet set:2287,False
+wfd1ef4ffb-7296-4b7b-a2b7-625e03511f1b,2026-07-30,FBA STA (2026-07-30 02:10),SHIPPED,194,195,1,RECEIVING,194,195,YYZ7,False,satin sheet set:114; satin fitted sheet:80,False
+wf3d666166-ad05-4ba4-b785-ce827e887d23,2026-07-30,FBA STA (2026-07-30 01:32),SHIPPED,790,778,5,CLOSED|RECEIVING,790,778,"SBD1,IND9,SWF2,PSP3,MDW2",False,satin sheet set:582; comforter:108; satin fitted sheet:100,False
+wf19f7a8b2-dcb0-499c-ac1b-00a8f0760198,2026-08-07,FBA STA (2026-08-06 20:54),SHIPPED,580,562,1,CLOSED,580,562,TCY2,False,satin sheet set:372; comforter:84; bamboo sheet set:62; cooling fitted sheet:36,False
+wf33614e21-115a-4aa8-8c46-15bba33c25ef,2026-08-10,FBA STA (2026-08-10 09:57),SHIPPED,446,427,1,CLOSED,446,427,YXU1,False,bamboo sheet set:202; satin fitted sheet:160; satin sheet set:84,False
+wfac6ccdec-8312-4f09-a3d8-40be47f07ba7,2026-08-11,FBA STA (2026-08-11 02:50),SHIPPED,5346,5336,5,CLOSED,5346,5336,"BJC1,IND9,PSP3,SCK4,ORF2",False,cooling sheet set:5346,False
+wf94e9f185-cbd6-49c5-9663-1d7eeb84ed59,2026-08-12,FBA STA (2026-08-11 23:40),ACTIVE,108,0,0,,0,0,,False,bamboo sheet set:108,False
+wfc9dca5f5-accf-40da-aeb0-372cc0b82a9d,2026-08-12,FBA STA (2026-08-11 22:36),ACTIVE,348,0,0,,0,0,,False,satin sheet set:340; bamboo sheet set:8,False
+wfde06ca51-1c65-4d78-b5a8-38283fd3c9f5,2026-08-13,FBA STA (2026-08-13 01:56),SHIPPED,1164,1164,1,RECEIVING,1164,1164,YYZ7,False,bamboo sheet set:1164,False
+wfb48582d0-e4c5-4559-bab7-94fac79650a3,2026-08-13,FBA STA (2026-08-13 01:13),SHIPPED,132,132,1,RECEIVING,132,132,GEU3,False,bamboo sheet set:132,False
+wfdfbc5d59-d3a4-4ae3-a5fd-9588e568c061,2026-08-13,FBA STA (2026-08-13 00:03),SHIPPED,1872,1858,5,CLOSED|RECEIVING,1872,1858,"ABE8,IAH3,SBD1,MQJ1,RFD2",False,bamboo sheet set:1872,False
+wf3d9999fe-e8e8-4520-9805-ef0ddab7183a,2026-08-17,FBA STA (2026-08-17 12:04),SHIPPED,2376,2364,1,CLOSED,2376,2364,YYC4,False,satin sheet set:1872; bamboo sheet set:504,False
+wf140bf32c-f55b-4303-922d-45e574c72fe8,2026-08-17,FBA STA (2026-08-17 03:00),SHIPPED,8778,8731,6,CLOSED,8778,8731,"AVP1,PSP3,MIT2,SBD1,IND9,BJC1",False,satin sheet set:8574; comforter:116; bamboo sheet set:82; cooling sheet set:6,False
+wfb4971253-729e-4af5-a8f8-a268cf86c180,2026-08-18,FBA STA (2026-08-18 10:22),ACTIVE,36,0,0,,0,0,,False,bamboo sheet set:36,False
+wf4c348752-fac9-43f8-a2ac-a11a184aacc1,2026-08-20,FBA STA (2026-08-20 05:04),SHIPPED,338,329,1,RECEIVING,338,329,GEU3,False,satin sheet set:330; bamboo sheet set:8,False
+wfbab9160b-b32a-4e7a-ad79-22593ef5389a,2026-08-20,FBA STA (2026-08-20 03:50),SHIPPED,108,94,1,RECEIVING,108,94,YYC4,False,bamboo sheet set:108,False
+wf70f35902-b896-4614-9b92-5b9cd711d213,2026-08-22,FBA STA (2026-08-22 04:05),SHIPPED,7726,7658,6,RECEIVING,7726,7658,"MQJ1,TOL3,LGB8,PSP3,LAS1,BNA6",False,bamboo sheet set:2914; satin sheet set:2682; cooling fitted sheet:1968; satin fitted sheet:120,False
+wf9fc779d4-3255-42b1-a511-54bc2f8161d9,2026-08-25,FBA STA (2026-08-25 02:23),SHIPPED,760,0,1,SHIPPED,760,0,YYZ7,False,satin sheet set:444; bamboo sheet set:276; satin fitted sheet:40,False
+wfe53c5ae2-c339-48e0-b220-c9188c8e0354,2026-08-28,FBA STA (2026-08-28 12:31),SHIPPED,1734,0,1,IN_TRANSIT,1734,0,XYY4,False,bamboo sheet set:1374; satin sheet set:300; satin fitted sheet:60,False
+wfcb98652b-38af-4594-87ae-34bba990eed2,2026-08-28,FBA STA (2026-08-28 11:35),SHIPPED,598,592,1,RECEIVING,598,592,HLI2,False,satin fitted sheet:220; satin sheet set:174; cooling fitted sheet:120; bamboo sheet set:78,False
+wf0b565260-a2a8-40af-92cd-57b9001ba019,2026-08-28,FBA STA (2026-08-28 10:04),SHIPPED,5400,4587,5,IN_TRANSIT|RECEIVING,5400,4587,"BJC1,TOL3,MCC1,ITX3,IND9",False,bamboo sheet set:4512; satin sheet set:516; cooling fitted sheet:372,False
+wf7c1b329e-34cb-4aec-811e-af3e3ebefa7c,2026-09-02,FBA STA (2026-09-02 10:09),SHIPPED,644,638,1,RECEIVING,644,638,POC2,False,pillowcase:644,False
+wf5979fbc7-d435-4507-9c23-15ccccf5a030,2026-09-08,FBA STA (2026-09-07 23:04),SHIPPED,588,587,1,CLOSED,588,587,YHM1,False,bamboo sheet set:396; satin fitted sheet:120; satin sheet set:72,False
+wfe1d43a19-8e21-4cea-8849-f2132bcab079,2026-09-08,FBA STA (2026-09-07 22:35),SHIPPED,324,325,1,RECEIVING,324,325,POC3,False,satin fitted sheet:240; satin sheet set:66; cooling fitted sheet:12; bamboo sheet set:6,False
+wfac03d593-facb-4b6f-a121-0499ac6ab483,2026-09-08,FBA STA (2026-09-07 21:46),SHIPPED,4120,4114,5,CLOSED|RECEIVING,4120,4114,"MDW2,MEM1,ITX3,IPA1,IWA6",False,bamboo sheet set:3610; satin sheet set:318; cooling fitted sheet:192,False
+wfdde8d13a-cdf3-4f59-80c8-c6303ab53efe,2026-09-21,FBA STA (2026-09-20 23:09),SHIPPED,2536,2378,1,RECEIVING,2536,2378,YVR4,False,bamboo sheet set:2484; satin fitted sheet:40; satin sheet set:12,False
+wf2de4ad16-70fb-4fda-9028-6e49f4b5a1dd,2026-09-21,FBA STA (2026-09-20 21:56),SHIPPED,4254,2545,5,RECEIVING|SHIPPED,4254,2545,"FTW1,MQJ1,MCC1,RMN3,MQY2",False,bamboo sheet set:3756; cooling fitted sheet:420; satin sheet set:78,False
+wfcc9edf5f-54fc-49f2-8ae0-2d360898035f,2026-09-25,FBA STA (2026-09-25 05:49),SHIPPED,516,0,1,SHIPPED,516,0,GEU3,False,pillowcase:516,False
+wf2f3155e1-edad-4568-b7f0-91fdd6a4bfc1,2026-09-30,FBA STA (2026-09-29 17:47),SHIPPED,8050,0,5,SHIPPED,8050,0,"MDW2,TOL3,RDU2,PSP3,LGB8",False,bamboo sheet set:6270; comforter:1122; cooling sheet set:402; satin sheet set:156,False
+wfeb6cbea4-f08b-4e3b-afa1-bf501076484f,2026-10-01,FBA STA (2026-10-01 06:47),SHIPPED,688,0,1,SHIPPED,688,0,YYZ7,False,satin sheet set:264; bamboo sheet set:224; satin fitted sheet:200,False
+wffdc9b95f-e57c-4bc7-919d-e07ce5e4e388,2026-10-01,FBA STA (2026-10-01 03:23),SHIPPED,4694,0,5,SHIPPED,4694,0,"IAH3,AVP1,SBD1,IND9,LAS1",False,cooling sheet set:2334; bamboo sheet set:1120; cooling fitted sheet:648; satin sheet set:492,False
+wf8dfbbc0a-1690-43ee-b849-edab638e5c40,2026-10-12,FBA STA (2026-10-12 03:12),SHIPPED,1462,0,1,SHIPPED,1462,0,XYY4,False,bamboo sheet set:1184; satin sheet set:258; satin fitted sheet:20,False
+wf9841dbeb-8e14-4075-af2c-eeef7e353ae3,2026-10-21,FBA STA (2026-10-21 07:46),SHIPPED,3564,0,5,SHIPPED,3564,0,"MQJ1,PSP3,MCC1,SWF2,MQY2",False,bamboo sheet set:1984; cooling sheet set:576; comforter:570; satin sheet set:294,False
+wf40a5b557-1f0d-489b-92c9-448af9a87281,2026-10-21,FBA STA (2026-10-21 02:31),SHIPPED,286,0,1,SHIPPED,286,0,YYZ7,False,bamboo sheet set:248; satin fitted sheet:20; satin sheet set:18,False
+wf569f55ca-6513-4fc7-b6c7-7bbc80179570,2026-10-26,TEST — do not ship — Plan #328 · US,ACTIVE,5976,0,5,WORKING,5976,0,"RDU2,SBD1,PSP3,FWA4,TOL3",False,bamboo sheet set:4998; satin sheet set:714; cooling sheet set:264,True

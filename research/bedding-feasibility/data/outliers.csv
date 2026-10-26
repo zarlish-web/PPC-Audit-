@@ -1,0 +1,5 @@
+product_id,product_name,brand,marketplace,currency,size,colour,sku,asin,landedCost,size_median_landed,ratio_to_median,direction,units28d,sku_contribution,sku_breakeven_acos
+59,Bamboo Sheets 4 Piece,Decolure,US,USD,California King,Black,BAMBOO-CALIFKING-BLACK,B0BZQ1G5B8,51.71,30.6633,1.686,HIGH >1.6x median,11,14.5027,15.268
+59,Bamboo Sheets 4 Piece,Decolure,US,USD,Queen,Light Blue,BAMBOO-QUEEN-LIGHTBLUE,B08KQKXQLS,60.8867,25.87,2.354,HIGH >1.6x median,75,1.829,2.033
+73,Bamboo Fitted Sheet,Decolure,US,USD,King,Light Blue,DC-BAMBOO-FITTED-KING-LIGHT-BLUE-1PC,B0FX2RXZNM,2,12.75,0.157,LOW <0.5x median (extra check),3,21.9688,54.991
+73,Bamboo Fitted Sheet,Decolure,US,USD,Queen,Light Blue,DC-BAMBOO-FITTED-QUEEN-LIGHT-BLUE-1PC,B0FX2RBQXN,1.83,10.98,0.167,LOW <0.5x median (extra check),7,20.705,54.559

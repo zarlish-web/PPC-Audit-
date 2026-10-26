@@ -1,0 +1,359 @@
+segment,marketplace,variant,rank,brand,n_listings,est_units_month,est_revenue_month,unit_share_of_mapped,top_listing_parent,top_listing_price,top_listing_reviews,top_listing_rating,top_listing_bsr,max_reviews_any_listing,tiers,units_basis,roster_scrape_week
+bamboo sheets,US,all_mapped,1,Bedsure,2,37180,2255014,0.191,B07YKCZHGK,55.99,65191,4.4,534,65191,Aspirational;Beatable,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,2,Pure Bamboo,1,34675,3467186,0.1781,B07MZ9223H,99.99,23582,4.5,155,23582,Aspirational,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,3,Love's cabin,1,20037,720943,0.1029,B0DN1H6C88,35.98,2007,4.4,551,2007,Beatable,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,4,BC BELLA COTERIE,1,11314,1527321,0.0581,B09RKQWND2,134.99,5940,4.4,2365,5940,Beatable,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,5,Hotel Sheets Direct,1,7254,507707,0.0373,B01N9L2O9P,69.99,37110,4.4,4861,37110,Aspirational,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,6,DOZ by SIJO,1,6712,570548,0.0345,B0B8JLLT45,85,1915,4.4,5165,1915,Beatable,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,7,BAMPURE,3,5794,492404,0.0298,B082K71SBP,84.99,8488,4.4,41940,8488,Beatable,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,8,TRUE BAMBOO,1,5672,567176,0.0291,B0H5WYMXJK,99.99,209,4.6,1443,209,Beatable,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,9,CGK Unlimited,1,5642,338464,0.029,B0D428ZXXP,59.99,1219,4.4,4585,1219,UNGRADED,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,10,SONORO KATE,2,5529,413865,0.0284,B0F486MGJ1,89.99,3787,4.5,9955,3920,Beatable,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,11,KRIMANO,1,5464,344198,0.0281,B0FT7LZ2CD,62.99,311,4.4,7789,311,Beatable,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,12,Shilucheng,4,5196,246484,0.0267,B0FWY1TGFK,45.9,24373,4.3,7254,24373,Poor;UNGRADED,xray_bracket_estimate,2026-09-20;2026-10-25
+bamboo sheets,US,all_mapped,13,KARISSA MAE,1,5083,660739,0.0261,B0F9X8TCWF,129.99,497,4.3,14959,497,Beatable,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,14,Bambaw,1,4871,511372,0.025,B0DR98HVG3,104.99,2802,4.3,11303,2802,Beatable,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,15,Kickoff Home,1,3176,139727,0.0163,B0CHN6N986,43.99,707,4.5,38216,707,Poor,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,16,GOKOTTA,1,2743,285272,0.0141,B08F3HFQ6X,104,3389,4.4,22966,3389,Beatable,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,17,Amazon Basics,1,2275,50027,0.0117,B0GFHGS4DP,21.99,52,4.5,63784,52,UNGRADED,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,18,Cariloha,1,2266,224367,0.0116,B0DJV6KG1V,99,443,4.4,32911,443,Poor,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,19,California Design Den,1,2188,175045,0.0112,B0GWHFGLVL,79.99,88,4.6,28842,88,Beatable,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,20,Pillcase,4,2078,149454,0.0107,B0H9K6WK34,78.99,277,4.9,23415,277,Beatable,bsr_model_estimate_2026-10 (fitted on our sales);xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,21,Cosy House Collection,1,2015,98715,0.0104,B0B4F4NTBL,48.99,7958,4.4,26711,7958,UNGRADED,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,22,MR&HM,1,1993,93667,0.0102,B0DL5NCTYF,46.99,629,4.4,24819,629,UNGRADED,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,23,LB Luxury Bamboo Market,1,1803,234239,0.0093,B0CH7P7RNY,129.94,519,4.5,59671,519,Poor,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,24,HOT SLEEPER SHEETS,1,1434,94651,0.0074,B0D3XQM7DL,65.99,684,4.5,52083,684,Poor,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,25,Cozy Earth,1,1391,470158,0.0071,B0F22JR4S8,338,429,3.9,66929,429,Poor,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,26,KAKIJUMN,1,1378,33058,0.0071,B0H1MLK863,23.99,79,4,64452,79,UNGRADED,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,27,ACCURATEX,1,1291,77467,0.0066,B0CJ57JHKZ,59.99,1056,4.3,62379,1056,Poor,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,28,CozyLux,1,1226,61304,0.0063,B0GC5CJGWC,49.99,97,4.5,43798,97,UNGRADED,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,29,Bamtek,1,1079,76598,0.0055,B0D8NL51RG,70.99,645,4.5,108904,645,Poor,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,30,AiAngu,1,1075,67049,0.0055,B0F844GTWM,62.39,128,4.6,48150,128,Poor,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,31,MCO,1,1010,21193,0.0052,B0FW51LMYP,20.99,485,4,100992,485,UNGRADED,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,32,JSD,1,862,39659,0.0044,B0DSZTLBV1,45.99,287,4.4,81472,287,Poor,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,33,TWK,6,772,74236,0.004,B0GVP3B7LS,109,113,5,74321,123,Beatable;Poor,bsr_model_estimate_2026-10 (fitted on our sales);xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,34,BEDELITE,1,767,76692,0.0039,B0GT8Z4X5D,99.99,115,4.5,62208,115,Beatable,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,35,DREAMCARE,1,559,30739,0.0029,B0CF2MND41,54.99,2265,4.5,74238,2265,Poor,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,36,Bamboo Bay,2,345,40962,0.0018,B0777SFXZK,136.99,2694,4.5,128515,2694,Beatable;Poor,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+bamboo sheets,US,all_mapped,37,Davmabcjy,1,308,18457,0.0016,B0GXJYQR7H,59.99,12,5,462893,12,Beatable,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,all_mapped,38,Tafts,1,88,7919,0.0005,B07YSW4HCT,89.99,3186,4.4,291952,3186,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+bamboo sheets,US,all_mapped,39,TOSMO,1,34,4386,0.0002,B0DWXNH24Z,129,53,4.4,606810,53,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+bamboo sheets,US,all_mapped,40,Vipfree,1,31,1084,0.0002,B0DF7NK85K,34.98,437,4.4,649134,437,UNGRADED,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+bamboo sheets,US,all_mapped,41,LBRO2M,1,16,960,0.0001,B0F9FKFDK1,59.97,40,4.1,1026077,40,Poor,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+bamboo sheets,US,all_mapped,42,Vesta,1,14,1950,0.0001,B0C3B6TRW9,139.3,35,4.3,1159144,35,Poor,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+bamboo sheets,US,all_mapped,43,Brooklyn Loom,1,9,585,0.0,B0FQ876M85,64.99,13,4,1600338,13,UNGRADED,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+bamboo sheets,US,all_mapped,44,MRIDU,1,4,320,0.0,B0GSXKPHYL,79.99,30,4,2665287,30,UNGRADED,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+bamboo sheets,US,excl_adjacent,1,Bedsure,2,37180,2255014,0.2105,B07YKCZHGK,55.99,65191,4.4,534,65191,Aspirational;Beatable,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,excl_adjacent,2,Pure Bamboo,1,34675,3467186,0.1963,B07MZ9223H,99.99,23582,4.5,155,23582,Aspirational,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,excl_adjacent,3,Love's cabin,1,20037,720943,0.1134,B0DN1H6C88,35.98,2007,4.4,551,2007,Beatable,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,excl_adjacent,4,BC BELLA COTERIE,1,11314,1527321,0.064,B09RKQWND2,134.99,5940,4.4,2365,5940,Beatable,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,excl_adjacent,5,Hotel Sheets Direct,1,7254,507707,0.0411,B01N9L2O9P,69.99,37110,4.4,4861,37110,Aspirational,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,excl_adjacent,6,DOZ by SIJO,1,6712,570548,0.038,B0B8JLLT45,85,1915,4.4,5165,1915,Beatable,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,excl_adjacent,7,BAMPURE,3,5794,492404,0.0328,B082K71SBP,84.99,8488,4.4,41940,8488,Beatable,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,excl_adjacent,8,TRUE BAMBOO,1,5672,567176,0.0321,B0H5WYMXJK,99.99,209,4.6,1443,209,Beatable,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,excl_adjacent,9,SONORO KATE,2,5529,413865,0.0313,B0F486MGJ1,89.99,3787,4.5,9955,3920,Beatable,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,excl_adjacent,10,KRIMANO,1,5464,344198,0.0309,B0FT7LZ2CD,62.99,311,4.4,7789,311,Beatable,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,excl_adjacent,11,KARISSA MAE,1,5083,660739,0.0288,B0F9X8TCWF,129.99,497,4.3,14959,497,Beatable,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,excl_adjacent,12,Bambaw,1,4871,511372,0.0276,B0DR98HVG3,104.99,2802,4.3,11303,2802,Beatable,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,excl_adjacent,13,Kickoff Home,1,3176,139727,0.018,B0CHN6N986,43.99,707,4.5,38216,707,Poor,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,excl_adjacent,14,GOKOTTA,1,2743,285272,0.0155,B08F3HFQ6X,104,3389,4.4,22966,3389,Beatable,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,excl_adjacent,15,Amazon Basics,1,2275,50027,0.0129,B0GFHGS4DP,21.99,52,4.5,63784,52,UNGRADED,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,excl_adjacent,16,Cariloha,1,2266,224367,0.0128,B0DJV6KG1V,99,443,4.4,32911,443,Poor,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,excl_adjacent,17,California Design Den,1,2188,175045,0.0124,B0GWHFGLVL,79.99,88,4.6,28842,88,Beatable,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,excl_adjacent,18,Pillcase,4,2078,149454,0.0118,B0H9K6WK34,78.99,277,4.9,23415,277,Beatable,bsr_model_estimate_2026-10 (fitted on our sales);xray_bracket_estimate,2026-10-25
+bamboo sheets,US,excl_adjacent,19,LB Luxury Bamboo Market,1,1803,234239,0.0102,B0CH7P7RNY,129.94,519,4.5,59671,519,Poor,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,excl_adjacent,20,HOT SLEEPER SHEETS,1,1434,94651,0.0081,B0D3XQM7DL,65.99,684,4.5,52083,684,Poor,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,excl_adjacent,21,Cozy Earth,1,1391,470158,0.0079,B0F22JR4S8,338,429,3.9,66929,429,Poor,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,excl_adjacent,22,ACCURATEX,1,1291,77467,0.0073,B0CJ57JHKZ,59.99,1056,4.3,62379,1056,Poor,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,excl_adjacent,23,Bamtek,1,1079,76598,0.0061,B0D8NL51RG,70.99,645,4.5,108904,645,Poor,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,excl_adjacent,24,AiAngu,1,1075,67049,0.0061,B0F844GTWM,62.39,128,4.6,48150,128,Poor,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,excl_adjacent,25,JSD,1,862,39659,0.0049,B0DSZTLBV1,45.99,287,4.4,81472,287,Poor,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,excl_adjacent,26,TWK,6,772,74236,0.0044,B0GVP3B7LS,109,113,5,74321,123,Beatable;Poor,bsr_model_estimate_2026-10 (fitted on our sales);xray_bracket_estimate,2026-10-25
+bamboo sheets,US,excl_adjacent,27,BEDELITE,1,767,76692,0.0043,B0GT8Z4X5D,99.99,115,4.5,62208,115,Beatable,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,excl_adjacent,28,DREAMCARE,1,559,30739,0.0032,B0CF2MND41,54.99,2265,4.5,74238,2265,Poor,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,excl_adjacent,29,Shilucheng,2,503,32160,0.0028,B09PYKYCCF,54.9,6633,4.4,31602,6633,Poor,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,excl_adjacent,30,Bamboo Bay,2,345,40962,0.002,B0777SFXZK,136.99,2694,4.5,128515,2694,Beatable;Poor,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+bamboo sheets,US,excl_adjacent,31,Davmabcjy,1,308,18457,0.0017,B0GXJYQR7H,59.99,12,5,462893,12,Beatable,xray_bracket_estimate,2026-10-25
+bamboo sheets,US,excl_adjacent,32,Tafts,1,88,7919,0.0005,B07YSW4HCT,89.99,3186,4.4,291952,3186,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+bamboo sheets,US,excl_adjacent,33,TOSMO,1,34,4386,0.0002,B0DWXNH24Z,129,53,4.4,606810,53,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+bamboo sheets,US,excl_adjacent,34,LBRO2M,1,16,960,0.0001,B0F9FKFDK1,59.97,40,4.1,1026077,40,Poor,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+bamboo sheets,US,excl_adjacent,35,Vesta,1,14,1950,0.0001,B0C3B6TRW9,139.3,35,4.3,1159144,35,Poor,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+bamboo sheets,US,excl_adjacent,36,MRIDU,1,4,320,0.0,B0GSXKPHYL,79.99,30,4,2665287,30,UNGRADED,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+comforter,US,all_mapped,1,Bedsure,3,16507,811197,0.4065,B0BN5TKJ8D,47.99,13144,4.5,1056,13144,Beatable;UNGRADED,bsr_model_estimate_2026-10 (fitted on our sales);xray_bracket_estimate,2026-10-25
+comforter,US,all_mapped,2,REST,1,8381,1439380,0.2064,B0B5TGDD9S,171.75,4146,4.3,4746,4146,Beatable,xray_bracket_estimate,2026-10-25
+comforter,US,all_mapped,3,Cozy Bliss,2,5048,294942,0.1243,B0BVQQQQM6,59.99,2726,4.5,13144,2726,Aspirational;Beatable,xray_bracket_estimate,2026-10-25
+comforter,US,all_mapped,4,HOMFINE,1,2578,112415,0.0635,B0C3RB67HV,43.6,1589,4.5,31873,1589,Beatable,xray_bracket_estimate,2026-10-25
+comforter,US,all_mapped,5,DOWNCOOL,1,1920,65634,0.0473,B0DPWY4G43,34.19,917,4.4,27983,917,UNGRADED,xray_bracket_estimate,2026-10-25
+comforter,US,all_mapped,6,Vine Voice,1,1811,81727,0.0446,B0DX28BS7G,45.12,904,4.4,30491,904,Beatable,xray_bracket_estimate,2026-10-25
+comforter,US,all_mapped,7,bedsmile,1,1434,108995,0.0353,B0DWNGBNPB,75.99,757,4.3,28737,757,Beatable,xray_bracket_estimate,2026-10-25
+comforter,US,all_mapped,8,EASELAND,1,1092,49162,0.0269,B0BQ6YY21S,45.02,1106,4.5,52601,1106,Beatable,xray_bracket_estimate,2026-10-25
+comforter,US,all_mapped,9,Gehtmnl,1,555,29947,0.0137,B0DY174L9Z,53.99,572,4.4,69015,572,Beatable,xray_bracket_estimate,2026-10-25
+comforter,US,all_mapped,10,Breescape,1,533,47965,0.0131,B0DSPZQ9JG,89.99,351,4.4,123619,351,Beatable,xray_bracket_estimate,2026-10-25
+comforter,US,all_mapped,11,Elegear,1,381,15246,0.0094,B094C72SZ4,39.98,1493,4.2,115253,1493,Beatable,xray_bracket_estimate,2026-10-25
+comforter,US,all_mapped,12,Bedtter,1,289,40171,0.0071,B0CZ7BHMW2,139,309,4.6,109533,309,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+comforter,US,all_mapped,13,Wolliwa,1,32,912,0.0008,B0DYNSQ783,28.49,388,4.5,628499,388,UNGRADED,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+comforter,US,all_mapped,14,MASVIS,1,25,648,0.0006,B0DRYKJBSH,25.91,212,4.6,744758,212,UNGRADED,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+comforter,US,all_mapped,15,jiaao,1,21,420,0.0005,B0GR4L84HS,19.99,85,4.5,856785,85,UNGRADED,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+comforter,US,excl_adjacent,1,REST,1,8381,1439380,0.3638,B0B5TGDD9S,171.75,4146,4.3,4746,4146,Beatable,xray_bracket_estimate,2026-10-25
+comforter,US,excl_adjacent,2,Cozy Bliss,2,5048,294942,0.2191,B0BVQQQQM6,59.99,2726,4.5,13144,2726,Aspirational;Beatable,xray_bracket_estimate,2026-10-25
+comforter,US,excl_adjacent,3,HOMFINE,1,2578,112415,0.1119,B0C3RB67HV,43.6,1589,4.5,31873,1589,Beatable,xray_bracket_estimate,2026-10-25
+comforter,US,excl_adjacent,4,Vine Voice,1,1811,81727,0.0786,B0DX28BS7G,45.12,904,4.4,30491,904,Beatable,xray_bracket_estimate,2026-10-25
+comforter,US,excl_adjacent,5,bedsmile,1,1434,108995,0.0623,B0DWNGBNPB,75.99,757,4.3,28737,757,Beatable,xray_bracket_estimate,2026-10-25
+comforter,US,excl_adjacent,6,EASELAND,1,1092,49162,0.0474,B0BQ6YY21S,45.02,1106,4.5,52601,1106,Beatable,xray_bracket_estimate,2026-10-25
+comforter,US,excl_adjacent,7,Bedsure,2,933,63801,0.0405,B0G3W85TSH,69.99,150,4.5,76668,287,Beatable,bsr_model_estimate_2026-10 (fitted on our sales);xray_bracket_estimate,2026-10-25
+comforter,US,excl_adjacent,8,Gehtmnl,1,555,29947,0.0241,B0DY174L9Z,53.99,572,4.4,69015,572,Beatable,xray_bracket_estimate,2026-10-25
+comforter,US,excl_adjacent,9,Breescape,1,533,47965,0.0231,B0DSPZQ9JG,89.99,351,4.4,123619,351,Beatable,xray_bracket_estimate,2026-10-25
+comforter,US,excl_adjacent,10,Elegear,1,381,15246,0.0165,B094C72SZ4,39.98,1493,4.2,115253,1493,Beatable,xray_bracket_estimate,2026-10-25
+comforter,US,excl_adjacent,11,Bedtter,1,289,40171,0.0125,B0CZ7BHMW2,139,309,4.6,109533,309,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+cooling sheets,US,all_mapped,1,Bedsure,3,37239,2256489,0.1958,B07YKCZHGK,55.99,65191,4.4,534,65191,Beatable;Poor,bsr_model_estimate_2026-10 (fitted on our sales);xray_bracket_estimate,2026-10-25
+cooling sheets,US,all_mapped,2,Pure Bamboo,1,34675,3467186,0.1824,B07MZ9223H,99.99,23582,4.5,155,23582,Aspirational,xray_bracket_estimate,2026-10-25
+cooling sheets,US,all_mapped,3,Love's cabin,1,20037,720943,0.1054,B0DN1H6C88,35.98,2007,4.4,551,2007,UNGRADED,xray_bracket_estimate,2026-10-25
+cooling sheets,US,all_mapped,4,BC BELLA COTERIE,1,11314,1527321,0.0595,B09RKQWND2,134.99,5940,4.4,2365,5940,Beatable,xray_bracket_estimate,2026-10-25
+cooling sheets,US,all_mapped,5,REST,2,8463,2189830,0.0445,B0BLYSGFRW,349,1163,4.3,13601,1163,Beatable,xray_bracket_estimate,2026-10-25
+cooling sheets,US,all_mapped,6,Hotel Sheets Direct,1,7254,507707,0.0382,B01N9L2O9P,69.99,37110,4.4,4861,37110,Aspirational,xray_bracket_estimate,2026-10-25
+cooling sheets,US,all_mapped,7,DOZ by SIJO,1,6712,570548,0.0353,B0B8JLLT45,85,1915,4.4,5165,1915,Beatable,xray_bracket_estimate,2026-10-25
+cooling sheets,US,all_mapped,8,Shilucheng,4,5950,297412,0.0313,B0FWY1TGFK,45.9,24373,4.3,7254,24373,Beatable;UNGRADED,bsr_model_estimate_2026-10 (fitted on our sales);xray_bracket_estimate,2026-09-20;2026-10-25
+cooling sheets,US,all_mapped,9,TRUE BAMBOO,1,5672,567176,0.0298,B0H5WYMXJK,99.99,209,4.6,1443,209,UNGRADED,xray_bracket_estimate,2026-10-25
+cooling sheets,US,all_mapped,10,Comfort Spaces,1,5633,180210,0.0296,B09GV8SK79,31.99,23014,4.2,26839,23014,UNGRADED,xray_bracket_estimate,2026-10-25
+cooling sheets,US,all_mapped,11,SONORO KATE,2,5529,413865,0.0291,B0F486MGJ1,89.99,3787,4.5,9955,3920,Beatable,xray_bracket_estimate,2026-10-25
+cooling sheets,US,all_mapped,12,KRIMANO,1,5464,344198,0.0287,B0FT7LZ2CD,62.99,311,4.4,7789,311,Beatable,xray_bracket_estimate,2026-10-25
+cooling sheets,US,all_mapped,13,KARISSA MAE,1,5083,660739,0.0267,B0F9X8TCWF,129.99,497,4.3,14959,497,UNGRADED,xray_bracket_estimate,2026-10-25
+cooling sheets,US,all_mapped,14,Bambaw,1,4871,511372,0.0256,B0DR98HVG3,104.99,2802,4.3,11303,2802,Beatable,xray_bracket_estimate,2026-10-25
+cooling sheets,US,all_mapped,15,BAMPURE,2,4273,363134,0.0225,B082K71SBP,84.99,8488,4.4,41940,8488,Aspirational,xray_bracket_estimate,2026-10-25
+cooling sheets,US,all_mapped,16,Bedlifes,1,4177,90189,0.022,B0FJLMC1FR,21.59,13246,4.6,7284,13246,Aspirational,xray_bracket_estimate,2026-10-25
+cooling sheets,US,all_mapped,17,Breescape,3,3783,513189,0.0199,B0DSPZH54Q,152.99,603,4.2,49127,603,Beatable;UNGRADED,xray_bracket_estimate,2026-10-25
+cooling sheets,US,all_mapped,18,Kickoff Home,1,3176,139727,0.0167,B0CHN6N986,43.99,707,4.5,38216,707,Poor,xray_bracket_estimate,2026-10-25
+cooling sheets,US,all_mapped,19,GOKOTTA,1,2743,285272,0.0144,B08F3HFQ6X,104,3389,4.4,22966,3389,Beatable,xray_bracket_estimate,2026-10-25
+cooling sheets,US,all_mapped,20,California Design Den,1,2188,175045,0.0115,B0GWHFGLVL,79.99,88,4.6,28842,88,UNGRADED,xray_bracket_estimate,2026-10-25
+cooling sheets,US,all_mapped,21,Pillcase,4,2080,150210,0.0109,B0H9K6WK34,78.99,277,4.9,23415,277,Poor;UNGRADED,bsr_model_estimate_2026-10 (fitted on our sales);xray_bracket_estimate,2026-10-25
+cooling sheets,US,all_mapped,22,Degrees of Comfort,1,1317,42141,0.0069,B08YS6WZRR,31.99,7340,4.1,50177,7340,UNGRADED,xray_bracket_estimate,2026-10-25
+cooling sheets,US,all_mapped,23,SHEEX,1,815,202853,0.0043,B00EWJHJU4,249,3258,4.4,106311,3258,Beatable,xray_bracket_estimate,2026-10-25
+cooling sheets,US,all_mapped,24,BEDELITE,1,767,76692,0.004,B0GT8Z4X5D,99.99,115,4.5,62208,115,UNGRADED,xray_bracket_estimate,2026-10-25
+cooling sheets,US,all_mapped,25,Davmabcjy,1,308,18457,0.0016,B0GXJYQR7H,59.99,12,5,462893,12,UNGRADED,xray_bracket_estimate,2026-10-25
+cooling sheets,US,all_mapped,26,OMERAI,1,273,8187,0.0014,B09SPRMT9F,29.99,124,4,90495,124,UNGRADED,xray_bracket_estimate,2026-10-25
+cooling sheets,US,all_mapped,27,TWK,2,153,11790,0.0008,B0H35S6VLR,75,123,4.8,196433,123,Poor;UNGRADED,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+cooling sheets,US,all_mapped,28,Elegear,1,106,7048,0.0006,B0GCGXW1WT,66.49,134,4.3,251504,134,Poor,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+cooling sheets,US,all_mapped,29,Brookstone,1,42,2520,0.0002,B0CTKKMKR3,59.99,184,4.1,519223,184,Poor,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+cooling sheets,US,all_mapped,30,CGK Unlimited,1,29,1885,0.0002,B0FT575735,64.99,121,4.1,681968,121,Poor,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+cooling sheets,US,all_mapped,31,David's Home,1,13,260,0.0001,B0D1RBXBNG,19.99,169,4.3,1215169,169,UNGRADED,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+cooling sheets,US,all_mapped,32,DOWNCOOL,1,4,560,0.0,B0F93XRVSZ,139.99,6,4.2,2798999,6,Poor,bsr_model_estimate_2026-10 (fitted on our sales),2026-09-13
+cooling sheets,US,excl_adjacent,1,Bedsure,3,37239,2256489,0.2815,B07YKCZHGK,55.99,65191,4.4,534,65191,Beatable;Poor,bsr_model_estimate_2026-10 (fitted on our sales);xray_bracket_estimate,2026-10-25
+cooling sheets,US,excl_adjacent,2,Pure Bamboo,1,34675,3467186,0.2621,B07MZ9223H,99.99,23582,4.5,155,23582,Aspirational,xray_bracket_estimate,2026-10-25
+cooling sheets,US,excl_adjacent,3,BC BELLA COTERIE,1,11314,1527321,0.0855,B09RKQWND2,134.99,5940,4.4,2365,5940,Beatable,xray_bracket_estimate,2026-10-25
+cooling sheets,US,excl_adjacent,4,REST,2,8463,2189830,0.064,B0BLYSGFRW,349,1163,4.3,13601,1163,Beatable,xray_bracket_estimate,2026-10-25
+cooling sheets,US,excl_adjacent,5,Hotel Sheets Direct,1,7254,507707,0.0548,B01N9L2O9P,69.99,37110,4.4,4861,37110,Aspirational,xray_bracket_estimate,2026-10-25
+cooling sheets,US,excl_adjacent,6,DOZ by SIJO,1,6712,570548,0.0507,B0B8JLLT45,85,1915,4.4,5165,1915,Beatable,xray_bracket_estimate,2026-10-25
+cooling sheets,US,excl_adjacent,7,Bambaw,1,4871,511372,0.0368,B0DR98HVG3,104.99,2802,4.3,11303,2802,Beatable,xray_bracket_estimate,2026-10-25
+cooling sheets,US,excl_adjacent,8,BAMPURE,2,4273,363134,0.0323,B082K71SBP,84.99,8488,4.4,41940,8488,Aspirational,xray_bracket_estimate,2026-10-25
+cooling sheets,US,excl_adjacent,9,Bedlifes,1,4177,90189,0.0316,B0FJLMC1FR,21.59,13246,4.6,7284,13246,Aspirational,xray_bracket_estimate,2026-10-25
+cooling sheets,US,excl_adjacent,10,SONORO KATE,1,4134,372019,0.0313,B0F486MGJ1,89.99,3787,4.5,9955,3787,Beatable,xray_bracket_estimate,2026-10-25
+cooling sheets,US,excl_adjacent,11,Breescape,3,3783,513189,0.0286,B0DSPZH54Q,152.99,603,4.2,49127,603,Beatable;UNGRADED,xray_bracket_estimate,2026-10-25
+cooling sheets,US,excl_adjacent,12,GOKOTTA,1,2743,285272,0.0207,B08F3HFQ6X,104,3389,4.4,22966,3389,Beatable,xray_bracket_estimate,2026-10-25
+cooling sheets,US,excl_adjacent,13,Shilucheng,3,1335,85583,0.0101,B09PYQ2VQL,64.9,6633,4.4,31600,24335,Beatable;UNGRADED,bsr_model_estimate_2026-10 (fitted on our sales);xray_bracket_estimate,2026-09-20;2026-10-25
+cooling sheets,US,excl_adjacent,14,SHEEX,1,815,202853,0.0062,B00EWJHJU4,249,3258,4.4,106311,3258,Beatable,xray_bracket_estimate,2026-10-25
+cooling sheets,US,excl_adjacent,15,OMERAI,1,273,8187,0.0021,B09SPRMT9F,29.99,124,4,90495,124,UNGRADED,xray_bracket_estimate,2026-10-25
+cooling sheets,US,excl_adjacent,16,Elegear,1,106,7048,0.0008,B0GCGXW1WT,66.49,134,4.3,251504,134,Poor,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+cooling sheets,US,excl_adjacent,17,Brookstone,1,42,2520,0.0003,B0CTKKMKR3,59.99,184,4.1,519223,184,Poor,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+cooling sheets,US,excl_adjacent,18,CGK Unlimited,1,29,1885,0.0002,B0FT575735,64.99,121,4.1,681968,121,Poor,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+cooling sheets,US,excl_adjacent,19,David's Home,1,13,260,0.0001,B0D1RBXBNG,19.99,169,4.3,1215169,169,UNGRADED,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+cooling sheets,US,excl_adjacent,20,Pillcase,1,10,1100,0.0001,B0FLDYD61P,109.98,35,4.5,1393149,35,Poor,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+cooling sheets,US,excl_adjacent,21,TWK,1,9,990,0.0001,B0DYT2QWLC,109.99,40,4.5,1497185,40,Poor,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+cooling sheets,US,excl_adjacent,22,DOWNCOOL,1,4,560,0.0,B0F93XRVSZ,139.99,6,4.2,2798999,6,Poor,bsr_model_estimate_2026-10 (fitted on our sales),2026-09-13
+fitted sheets,US,all_mapped,1,Bedsure,4,37229,2256574,0.1987,B07YKCZHGK,55.99,65191,4.4,534,65191,Beatable;Poor;UNGRADED,bsr_model_estimate_2026-10 (fitted on our sales);xray_bracket_estimate,2026-09-13;2026-10-25
+fitted sheets,US,all_mapped,2,BEDELITE,3,37028,1173075,0.1977,B0CSFTRP2X,35.99,6798,4.3,358,6798,Beatable;UNGRADED,xray_bracket_estimate,2026-10-25
+fitted sheets,US,all_mapped,3,Pure Bamboo,1,34675,3467186,0.1851,B07MZ9223H,99.99,23582,4.5,155,23582,Aspirational,xray_bracket_estimate,2026-10-25
+fitted sheets,US,all_mapped,4,Love's cabin,2,14493,289663,0.0774,B0BNMC5G8R,19.99,5813,4.5,1226,5813,Poor;UNGRADED,bsr_model_estimate_2026-10 (fitted on our sales);xray_bracket_estimate,2026-10-25
+fitted sheets,US,all_mapped,5,BC BELLA COTERIE,2,12554,1589276,0.067,B09RKQWND2,134.99,5940,4.4,2365,5940,Beatable;UNGRADED,xray_bracket_estimate,2026-10-25
+fitted sheets,US,all_mapped,6,MR&HM,1,10331,330478,0.0551,B08HM6WT6X,31.99,17945,4.4,1860,17945,UNGRADED,xray_bracket_estimate,2026-10-25
+fitted sheets,US,all_mapped,7,DOZ by SIJO,1,6712,570548,0.0358,B0B8JLLT45,85,1915,4.4,5165,1915,Beatable,xray_bracket_estimate,2026-10-25
+fitted sheets,US,all_mapped,8,REST,2,5906,1698839,0.0315,B0BLYSGFRW,349,1163,4.3,13601,1163,Beatable;UNGRADED,xray_bracket_estimate,2026-10-25
+fitted sheets,US,all_mapped,9,Bambaw,1,4871,511372,0.026,B0DR98HVG3,104.99,2802,4.3,11303,2802,Beatable,xray_bracket_estimate,2026-10-25
+fitted sheets,US,all_mapped,10,SONORO KATE,1,4134,372019,0.0221,B0F486MGJ1,89.99,3787,4.5,9955,3787,Beatable,xray_bracket_estimate,2026-10-25
+fitted sheets,US,all_mapped,11,Zaizaihome,1,4056,117583,0.0217,B0CXPL68WG,28.99,1054,4.3,12257,1054,Beatable,xray_bracket_estimate,2026-10-25
+fitted sheets,US,all_mapped,12,Kickoff Home,1,3176,139727,0.017,B0CHN6N986,43.99,707,4.5,38216,707,Poor,xray_bracket_estimate,2026-10-25
+fitted sheets,US,all_mapped,13,Homiest,1,3055,42739,0.0163,B09WH4B2BD,13.99,680,4.4,15862,680,Beatable,xray_bracket_estimate,2026-10-25
+fitted sheets,US,all_mapped,14,VACVELT,2,2288,41404,0.0122,B0BWJ4MLLZ,18.99,758,4.2,41238,758,Beatable,xray_bracket_estimate,2026-10-25
+fitted sheets,US,all_mapped,15,GOKOTTA,1,2119,82005,0.0113,B0B6PCXT9Y,38.7,982,4.6,26345,982,Aspirational,xray_bracket_estimate,2026-10-25
+fitted sheets,US,all_mapped,16,BAMPURE,1,1933,164258,0.0103,B07XFP6BY2,84.99,8488,4.4,41940,8488,UNGRADED,xray_bracket_estimate,2026-10-25
+fitted sheets,US,all_mapped,17,Bedshe,1,1075,50284,0.0057,B0FW38KM4S,46.79,176,4.4,27007,176,Beatable,xray_bracket_estimate,2026-10-25
+fitted sheets,US,all_mapped,18,NSGZ,1,888,13316,0.0047,B0BF5GW83G,14.99,610,4.4,66108,610,Poor,xray_bracket_estimate,2026-10-25
+fitted sheets,US,all_mapped,19,OMERAI,1,273,8187,0.0015,B09SPRMT9F,29.99,124,4,90495,124,Beatable,xray_bracket_estimate,2026-10-25
+fitted sheets,US,all_mapped,20,Cozy Bliss,1,195,16573,0.001,B0DMNQDZNB,84.99,459,4.5,153163,459,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+fitted sheets,US,all_mapped,21,P Pothuiny,1,152,1518,0.0008,B0BCKFZ6B1,9.99,413,4.4,188516,413,Poor,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+fitted sheets,US,all_mapped,22,JUWENIN,1,136,1359,0.0007,B0B1DZ5834,9.99,257,4.4,206282,257,UNGRADED,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+fitted sheets,US,all_mapped,23,Lirex,1,59,884,0.0003,B0D62WPM82,14.99,748,4.5,396013,748,Poor,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+fitted sheets,US,excl_adjacent,1,BEDELITE,2,9750,191328,0.3639,B0CSFV4FXW,17.99,1879,4.4,3715,1879,Beatable,xray_bracket_estimate,2026-10-25
+fitted sheets,US,excl_adjacent,2,Zaizaihome,1,4056,117583,0.1514,B0CXPL68WG,28.99,1054,4.3,12257,1054,Beatable,xray_bracket_estimate,2026-10-25
+fitted sheets,US,excl_adjacent,3,Homiest,1,3055,42739,0.114,B09WH4B2BD,13.99,680,4.4,15862,680,Beatable,xray_bracket_estimate,2026-10-25
+fitted sheets,US,excl_adjacent,4,VACVELT,2,2288,41404,0.0854,B0BWJ4MLLZ,18.99,758,4.2,41238,758,Beatable,xray_bracket_estimate,2026-10-25
+fitted sheets,US,excl_adjacent,5,GOKOTTA,1,2119,82005,0.0791,B0B6PCXT9Y,38.7,982,4.6,26345,982,Aspirational,xray_bracket_estimate,2026-10-25
+fitted sheets,US,excl_adjacent,6,REST,1,1577,188018,0.0589,B0C14BKYXL,119.2,671,4.4,36991,671,Beatable,xray_bracket_estimate,2026-10-25
+fitted sheets,US,excl_adjacent,7,BC BELLA COTERIE,1,1239,61954,0.0462,B0CZY1WZHS,49.99,342,4.5,13156,342,UNGRADED,xray_bracket_estimate,2026-10-25
+fitted sheets,US,excl_adjacent,8,Bedshe,1,1075,50284,0.0401,B0FW38KM4S,46.79,176,4.4,27007,176,Beatable,xray_bracket_estimate,2026-10-25
+fitted sheets,US,excl_adjacent,9,NSGZ,1,888,13316,0.0331,B0BF5GW83G,14.99,610,4.4,66108,610,Poor,xray_bracket_estimate,2026-10-25
+fitted sheets,US,excl_adjacent,10,OMERAI,1,273,8187,0.0102,B09SPRMT9F,29.99,124,4,90495,124,Beatable,xray_bracket_estimate,2026-10-25
+fitted sheets,US,excl_adjacent,11,Cozy Bliss,1,195,16573,0.0073,B0DMNQDZNB,84.99,459,4.5,153163,459,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+fitted sheets,US,excl_adjacent,12,P Pothuiny,1,152,1518,0.0057,B0BCKFZ6B1,9.99,413,4.4,188516,413,Poor,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+fitted sheets,US,excl_adjacent,13,Lirex,1,59,884,0.0022,B0D62WPM82,14.99,748,4.5,396013,748,Poor,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+fitted sheets,US,excl_adjacent,14,Bedsure,2,49,1559,0.0018,B0DG2HRZKK,21.95,223,4.5,732930,223,Poor,bsr_model_estimate_2026-10 (fitted on our sales),2026-09-13;2026-10-25
+fitted sheets,US,excl_adjacent,15,Love's cabin,1,15,255,0.0006,B0FGCPQ4FY,16.99,81,4.5,1111110,81,Poor,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+pillowcases,US,all_mapped,1,INFIIXSO,2,51762,2285688,0.2106,B0BBSSRNHM,64.95,10553,4.5,735,10553,Aspirational;UNGRADED,xray_bracket_estimate,2026-10-25
+pillowcases,US,all_mapped,2,DKBslik,1,42744,382559,0.1739,B0B8DXN3K2,8.95,21988,4.5,328,21988,UNGRADED,xray_bracket_estimate,2026-10-25
+pillowcases,US,all_mapped,3,Gabire,1,38029,581468,0.1547,B0CKPLRQB1,15.29,3291,4.6,132,3291,UNGRADED,xray_bracket_estimate,2026-10-25
+pillowcases,US,all_mapped,4,ZIMASILK,3,26169,978469,0.1065,B01LVU7THF,36.99,52278,4.6,573,52278,Aspirational;Beatable,xray_bracket_estimate,2026-10-25
+pillowcases,US,all_mapped,5,Suatien,1,14348,172029,0.0584,B09BFQG17F,11.99,41773,4.5,532,41773,UNGRADED,xray_bracket_estimate,2026-10-25
+pillowcases,US,all_mapped,6,BLISSFORD,1,8818,149823,0.0359,B07BL5BJNL,16.99,55071,4.6,3171,55071,UNGRADED,xray_bracket_estimate,2026-10-25
+pillowcases,US,all_mapped,7,WISHSMILE,1,6942,138771,0.0282,B09BKY53J5,19.99,7255,4.4,3720,7255,Aspirational,xray_bracket_estimate,2026-10-25
+pillowcases,US,all_mapped,8,Serta,1,5551,121400,0.0226,B098TRFLHZ,21.87,3567,4.3,9002,3567,Aspirational,xray_bracket_estimate,2026-10-25
+pillowcases,US,all_mapped,9,Fishers Finery,2,4221,301531,0.0172,B07VPWYH56,65.99,9044,4.6,13589,9044,Aspirational;Beatable,xray_bracket_estimate,2026-10-25
+pillowcases,US,all_mapped,10,J JIMOO,1,4125,119181,0.0168,B07RGFS927,28.89,31722,4.5,8519,31722,UNGRADED,xray_bracket_estimate,2026-10-25
+pillowcases,US,all_mapped,11,SIYUAN,1,3813,48010,0.0155,B092881Z5V,12.59,9849,4.5,16017,9849,UNGRADED,xray_bracket_estimate,2026-10-25
+pillowcases,US,all_mapped,12,PROMEED,1,3783,71839,0.0154,B0B4RH938T,18.99,2006,4.6,18738,2006,Aspirational,xray_bracket_estimate,2026-10-25
+pillowcases,US,all_mapped,13,Casbrove,1,3415,68259,0.0139,B0BXP2FQYZ,19.99,3906,4.5,7791,3906,UNGRADED,xray_bracket_estimate,2026-10-25
+pillowcases,US,all_mapped,14,REST,1,3315,196414,0.0135,B0C141VGM6,59.25,1242,4.4,6484,1242,Beatable,xray_bracket_estimate,2026-10-25
+pillowcases,US,all_mapped,15,Avolare,2,3276,48508,0.0133,B08TBL21VT,15.19,3823,4.4,13281,3888,Aspirational,xray_bracket_estimate,2026-08-30;2026-10-25
+pillowcases,US,all_mapped,16,Adubor,1,2760,55179,0.0112,B08CDXK5BS,19.99,18988,4.4,11461,18988,UNGRADED,xray_bracket_estimate,2026-10-25
+pillowcases,US,all_mapped,17,INSSL,1,2297,41317,0.0093,B07VT43CPF,17.99,11669,4.5,13534,11669,UNGRADED,xray_bracket_estimate,2026-10-25
+pillowcases,US,all_mapped,18,Ravmix,1,2106,61053,0.0086,B07GF2PYF1,28.99,33606,4.5,17644,33606,UNGRADED,xray_bracket_estimate,2026-10-25
+pillowcases,US,all_mapped,19,ELIBABA,1,2028,36484,0.0083,B0CQK3KHHH,17.99,1631,4.3,16420,1631,Beatable,xray_bracket_estimate,2026-10-25
+pillowcases,US,all_mapped,20,ALASKA BEAR,1,1850,55491,0.0075,B01MZ4GNDS,29.99,25292,4.6,18589,25292,Aspirational,xray_bracket_estimate,2026-10-25
+pillowcases,US,all_mapped,21,Coop Home Goods,2,1738,57989,0.0071,B0CMG59TLG,33.15,513,4.5,17098,1163,Beatable,xray_bracket_estimate,2026-10-25
+pillowcases,US,all_mapped,22,CHOSHOME,1,1655,26585,0.0067,B08X2KBD67,16.06,1778,4.4,20226,1778,Beatable,xray_bracket_estimate,2026-10-25
+pillowcases,US,all_mapped,23,WLOSJ,1,1404,28066,0.0057,B0C1CL74GW,19.99,1506,4.3,27879,1506,UNGRADED,xray_bracket_estimate,2026-10-25
+pillowcases,US,all_mapped,24,LUXEAR,1,1144,18247,0.0047,B07V6SKZ7V,15.95,6721,4.2,59925,6721,Aspirational,xray_bracket_estimate,2026-10-25
+pillowcases,US,all_mapped,25,ROSEWARD,1,1023,47033,0.0042,B0BXBRMZZ5,45.99,1050,4.4,38334,1050,Beatable,xray_bracket_estimate,2026-10-25
+pillowcases,US,all_mapped,26,Elegear,1,1014,17116,0.0041,B086V7TPDQ,16.88,8409,4.3,49196,8409,Aspirational,xray_bracket_estimate,2026-10-25
+pillowcases,US,all_mapped,27,HOMFINE,1,875,8307,0.0036,B0BLT2MCT6,9.49,828,4.4,94661,828,Beatable,xray_bracket_estimate,2026-10-25
+pillowcases,US,all_mapped,28,Slpbaby,1,782,21888,0.0032,B07XHL46XX,27.99,21426,4.7,44267,21426,UNGRADED,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+pillowcases,US,all_mapped,29,QUTOOL,1,776,14730,0.0032,B0DL9Y3JVW,18.99,781,4.4,48374,781,Beatable,xray_bracket_estimate,2026-10-25
+pillowcases,US,all_mapped,30,Colorado Home Co,1,726,43553,0.003,B083J32BSW,59.99,1971,4.6,47484,1971,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+pillowcases,US,all_mapped,31,RENESSY,1,704,28118,0.0029,B09G8P3X6L,39.94,2544,4.6,48889,2544,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+pillowcases,US,all_mapped,32,Cozy Bliss,1,698,13946,0.0028,B0CH87Q3JX,19.99,713,4.5,62093,713,Beatable,xray_bracket_estimate,2026-10-25
+pillowcases,US,all_mapped,33,Jocoku,1,394,8664,0.0016,B07JMJDK2B,21.99,14841,4.4,83391,14841,UNGRADED,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+pillowcases,US,all_mapped,34,Kinself,1,360,7549,0.0015,B0CKLDTY87,20.99,1471,4.4,87180,1471,UNGRADED,xray_bracket_estimate,2026-10-25
+pillowcases,US,all_mapped,35,Breescape,1,360,15822,0.0015,B0DSQ112N7,43.99,309,4.4,135161,309,Beatable,xray_bracket_estimate,2026-10-25
+pillowcases,US,all_mapped,36,Fittia,1,270,5397,0.0011,B099J7KMK5,19.99,1347,4.3,115889,1347,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+pillowcases,US,all_mapped,37,JOGJUE,1,212,5298,0.0009,B07S2XV6PC,24.99,8039,4.4,142315,8039,UNGRADED,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+pillowcases,US,all_mapped,38,Bedsure,1,109,2030,0.0004,B0CP3P1HRF,18.62,684,4.5,246598,684,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+pillowcases,US,all_mapped,39,Marchpower,1,57,1332,0.0002,B08B7VPPND,23.36,1247,4.3,410871,1247,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+pillowcases,US,all_mapped,40,Rifens,1,44,616,0.0002,B0DJ933TY2,13.99,224,4.4,501176,224,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+pillowcases,US,all_mapped,41,Brooklinen,1,35,2590,0.0001,B09NP639B5,74,148,4.4,593537,148,Poor,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+pillowcases,US,all_mapped,42,SGMSILK,1,26,491,0.0001,B0CM9N244T,18.89,675,4.5,732374,675,UNGRADED,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+pillowcases,US,all_mapped,43,Niagara Sleep Solution,1,11,130,0.0,B0CZB5B67X,11.83,109,4.4,1385628,109,Poor,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+pillowcases,US,all_mapped,44,Topcee,1,11,186,0.0,B0BR9J5DGW,16.88,227,4.3,1322481,227,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+pillowcases,US,excl_adjacent,1,ZIMASILK,3,26169,978469,0.2769,B01LVU7THF,36.99,52278,4.6,573,52278,Aspirational;Beatable,xray_bracket_estimate,2026-10-25
+pillowcases,US,excl_adjacent,2,INFIIXSO,1,26113,1696018,0.2763,B0BBSSRNHM,64.95,10553,4.5,735,10553,Aspirational,xray_bracket_estimate,2026-10-25
+pillowcases,US,excl_adjacent,3,WISHSMILE,1,6942,138771,0.0735,B09BKY53J5,19.99,7255,4.4,3720,7255,Aspirational,xray_bracket_estimate,2026-10-25
+pillowcases,US,excl_adjacent,4,Serta,1,5551,121400,0.0587,B098TRFLHZ,21.87,3567,4.3,9002,3567,Aspirational,xray_bracket_estimate,2026-10-25
+pillowcases,US,excl_adjacent,5,Fishers Finery,2,4221,301531,0.0447,B07VPWYH56,65.99,9044,4.6,13589,9044,Aspirational;Beatable,xray_bracket_estimate,2026-10-25
+pillowcases,US,excl_adjacent,6,PROMEED,1,3783,71839,0.04,B0B4RH938T,18.99,2006,4.6,18738,2006,Aspirational,xray_bracket_estimate,2026-10-25
+pillowcases,US,excl_adjacent,7,REST,1,3315,196414,0.0351,B0C141VGM6,59.25,1242,4.4,6484,1242,Beatable,xray_bracket_estimate,2026-10-25
+pillowcases,US,excl_adjacent,8,Avolare,2,3276,48508,0.0347,B08TBL21VT,15.19,3823,4.4,13281,3888,Aspirational,xray_bracket_estimate,2026-08-30;2026-10-25
+pillowcases,US,excl_adjacent,9,ELIBABA,1,2028,36484,0.0215,B0CQK3KHHH,17.99,1631,4.3,16420,1631,Beatable,xray_bracket_estimate,2026-10-25
+pillowcases,US,excl_adjacent,10,ALASKA BEAR,1,1850,55491,0.0196,B01MZ4GNDS,29.99,25292,4.6,18589,25292,Aspirational,xray_bracket_estimate,2026-10-25
+pillowcases,US,excl_adjacent,11,Coop Home Goods,2,1738,57989,0.0184,B0CMG59TLG,33.15,513,4.5,17098,1163,Beatable,xray_bracket_estimate,2026-10-25
+pillowcases,US,excl_adjacent,12,CHOSHOME,1,1655,26585,0.0175,B08X2KBD67,16.06,1778,4.4,20226,1778,Beatable,xray_bracket_estimate,2026-10-25
+pillowcases,US,excl_adjacent,13,LUXEAR,1,1144,18247,0.0121,B07V6SKZ7V,15.95,6721,4.2,59925,6721,Aspirational,xray_bracket_estimate,2026-10-25
+pillowcases,US,excl_adjacent,14,ROSEWARD,1,1023,47033,0.0108,B0BXBRMZZ5,45.99,1050,4.4,38334,1050,Beatable,xray_bracket_estimate,2026-10-25
+pillowcases,US,excl_adjacent,15,Elegear,1,1014,17116,0.0107,B086V7TPDQ,16.88,8409,4.3,49196,8409,Aspirational,xray_bracket_estimate,2026-10-25
+pillowcases,US,excl_adjacent,16,HOMFINE,1,875,8307,0.0093,B0BLT2MCT6,9.49,828,4.4,94661,828,Beatable,xray_bracket_estimate,2026-10-25
+pillowcases,US,excl_adjacent,17,QUTOOL,1,776,14730,0.0082,B0DL9Y3JVW,18.99,781,4.4,48374,781,Beatable,xray_bracket_estimate,2026-10-25
+pillowcases,US,excl_adjacent,18,Colorado Home Co,1,726,43553,0.0077,B083J32BSW,59.99,1971,4.6,47484,1971,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+pillowcases,US,excl_adjacent,19,RENESSY,1,704,28118,0.0074,B09G8P3X6L,39.94,2544,4.6,48889,2544,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+pillowcases,US,excl_adjacent,20,Cozy Bliss,1,698,13946,0.0074,B0CH87Q3JX,19.99,713,4.5,62093,713,Beatable,xray_bracket_estimate,2026-10-25
+pillowcases,US,excl_adjacent,21,Breescape,1,360,15822,0.0038,B0DSQ112N7,43.99,309,4.4,135161,309,Beatable,xray_bracket_estimate,2026-10-25
+pillowcases,US,excl_adjacent,22,Fittia,1,270,5397,0.0029,B099J7KMK5,19.99,1347,4.3,115889,1347,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+pillowcases,US,excl_adjacent,23,Bedsure,1,109,2030,0.0012,B0CP3P1HRF,18.62,684,4.5,246598,684,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+pillowcases,US,excl_adjacent,24,Marchpower,1,57,1332,0.0006,B08B7VPPND,23.36,1247,4.3,410871,1247,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+pillowcases,US,excl_adjacent,25,Rifens,1,44,616,0.0005,B0DJ933TY2,13.99,224,4.4,501176,224,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+pillowcases,US,excl_adjacent,26,Brooklinen,1,35,2590,0.0004,B09NP639B5,74,148,4.4,593537,148,Poor,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+pillowcases,US,excl_adjacent,27,Niagara Sleep Solution,1,11,130,0.0001,B0CZB5B67X,11.83,109,4.4,1385628,109,Poor,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+pillowcases,US,excl_adjacent,28,Topcee,1,11,186,0.0001,B0BR9J5DGW,16.88,227,4.3,1322481,227,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+quilt sets,US,all_mapped,1,Love's cabin,1,26056,703260,0.3109,B08LDD8HBW,26.99,9544,4.6,368,9544,Aspirational,xray_bracket_estimate,2026-10-25
+quilt sets,US,all_mapped,2,WDCOZY,1,17407,783141,0.2077,B0DJ6WWZP2,44.99,5967,4.3,626,5967,Beatable,xray_bracket_estimate,2026-10-25
+quilt sets,US,all_mapped,3,Exclusivo Mezcla,1,5594,139802,0.0668,B07S6N5C5P,24.99,17386,4.5,3911,17386,Aspirational,xray_bracket_estimate,2026-10-25
+quilt sets,US,all_mapped,4,WRENSONGE,1,5261,284024,0.0628,B0CQT8LKMK,53.99,976,4.5,3566,976,Beatable,xray_bracket_estimate,2026-10-25
+quilt sets,US,all_mapped,5,HORIMOTE HOME,1,4511,180395,0.0538,B085DLHZQ1,39.99,9114,4.6,5574,9114,Aspirational,xray_bracket_estimate,2026-10-25
+quilt sets,US,all_mapped,6,FLYMME,1,3991,107717,0.0476,B0D8JF6DDS,26.99,1529,4.4,8718,1529,Aspirational,xray_bracket_estimate,2026-10-25
+quilt sets,US,all_mapped,7,akkialla,1,3857,107948,0.046,B0DD3YKGCZ,27.99,1438,4.4,13531,1438,Beatable,xray_bracket_estimate,2026-10-25
+quilt sets,US,all_mapped,8,EverGrace,1,3592,245392,0.0429,B0D14LPTLP,68.31,1121,4.5,9336,1121,Beatable,xray_bracket_estimate,2026-10-25
+quilt sets,US,all_mapped,9,Mybedsoul,1,3506,157720,0.0418,B0BGS9VP2S,44.99,4420,4.6,6818,4420,Aspirational,xray_bracket_estimate,2026-10-25
+quilt sets,US,all_mapped,10,Maple&Stone,1,2253,67577,0.0269,B09P3NKL53,29.99,2769,4.4,32210,2769,Aspirational,xray_bracket_estimate,2026-10-25
+quilt sets,US,all_mapped,11,Hansleep,1,1790,71569,0.0214,B089VSSTD9,39.99,5937,4.6,31441,5937,Aspirational,xray_bracket_estimate,2026-10-25
+quilt sets,US,all_mapped,12,Tyrot,1,1391,63972,0.0166,B0CY5BYX7W,45.99,1873,4.7,26435,1873,Beatable,xray_bracket_estimate,2026-10-25
+quilt sets,US,all_mapped,13,Joyreap,1,1330,51870,0.0159,B0D1KGZ5FH,38.99,1626,4.6,29114,1626,Beatable,xray_bracket_estimate,2026-10-25
+quilt sets,US,all_mapped,14,Bedsure,1,1044,59516,0.0125,B0BN63WPQ8,56.99,1302,4.6,51557,1302,Beatable,xray_bracket_estimate,2026-10-25
+quilt sets,US,all_mapped,15,Wake In Cloud,1,1023,26579,0.0122,B0CRPTQZL3,25.99,529,4.6,29722,529,Aspirational,xray_bracket_estimate,2026-10-25
+quilt sets,US,all_mapped,16,Anibedding,1,997,37863,0.0119,B0F83BLJBB,37.99,381,4.7,80923,381,Poor,xray_bracket_estimate,2026-10-25
+quilt sets,US,all_mapped,17,DJY,1,165,5171,0.002,B0DZ5YJCXS,31.34,426,4.6,175667,426,Poor,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+quilt sets,US,all_mapped,18,Ycosy,1,27,1161,0.0003,B0FC6F1X62,42.99,1265,4.5,705518,1265,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+quilt sets,US,all_mapped,19,Luxudecor,1,8,272,0.0001,B0FWQB61X1,33.99,42,4.6,1638552,42,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+quilt sets,US,excl_adjacent,1,Love's cabin,1,26056,703260,0.3109,B08LDD8HBW,26.99,9544,4.6,368,9544,Aspirational,xray_bracket_estimate,2026-10-25
+quilt sets,US,excl_adjacent,2,WDCOZY,1,17407,783141,0.2077,B0DJ6WWZP2,44.99,5967,4.3,626,5967,Beatable,xray_bracket_estimate,2026-10-25
+quilt sets,US,excl_adjacent,3,Exclusivo Mezcla,1,5594,139802,0.0668,B07S6N5C5P,24.99,17386,4.5,3911,17386,Aspirational,xray_bracket_estimate,2026-10-25
+quilt sets,US,excl_adjacent,4,WRENSONGE,1,5261,284024,0.0628,B0CQT8LKMK,53.99,976,4.5,3566,976,Beatable,xray_bracket_estimate,2026-10-25
+quilt sets,US,excl_adjacent,5,HORIMOTE HOME,1,4511,180395,0.0538,B085DLHZQ1,39.99,9114,4.6,5574,9114,Aspirational,xray_bracket_estimate,2026-10-25
+quilt sets,US,excl_adjacent,6,FLYMME,1,3991,107717,0.0476,B0D8JF6DDS,26.99,1529,4.4,8718,1529,Aspirational,xray_bracket_estimate,2026-10-25
+quilt sets,US,excl_adjacent,7,akkialla,1,3857,107948,0.046,B0DD3YKGCZ,27.99,1438,4.4,13531,1438,Beatable,xray_bracket_estimate,2026-10-25
+quilt sets,US,excl_adjacent,8,EverGrace,1,3592,245392,0.0429,B0D14LPTLP,68.31,1121,4.5,9336,1121,Beatable,xray_bracket_estimate,2026-10-25
+quilt sets,US,excl_adjacent,9,Mybedsoul,1,3506,157720,0.0418,B0BGS9VP2S,44.99,4420,4.6,6818,4420,Aspirational,xray_bracket_estimate,2026-10-25
+quilt sets,US,excl_adjacent,10,Maple&Stone,1,2253,67577,0.0269,B09P3NKL53,29.99,2769,4.4,32210,2769,Aspirational,xray_bracket_estimate,2026-10-25
+quilt sets,US,excl_adjacent,11,Hansleep,1,1790,71569,0.0214,B089VSSTD9,39.99,5937,4.6,31441,5937,Aspirational,xray_bracket_estimate,2026-10-25
+quilt sets,US,excl_adjacent,12,Tyrot,1,1391,63972,0.0166,B0CY5BYX7W,45.99,1873,4.7,26435,1873,Beatable,xray_bracket_estimate,2026-10-25
+quilt sets,US,excl_adjacent,13,Joyreap,1,1330,51870,0.0159,B0D1KGZ5FH,38.99,1626,4.6,29114,1626,Beatable,xray_bracket_estimate,2026-10-25
+quilt sets,US,excl_adjacent,14,Bedsure,1,1044,59516,0.0125,B0BN63WPQ8,56.99,1302,4.6,51557,1302,Beatable,xray_bracket_estimate,2026-10-25
+quilt sets,US,excl_adjacent,15,Wake In Cloud,1,1023,26579,0.0122,B0CRPTQZL3,25.99,529,4.6,29722,529,Aspirational,xray_bracket_estimate,2026-10-25
+quilt sets,US,excl_adjacent,16,Anibedding,1,997,37863,0.0119,B0F83BLJBB,37.99,381,4.7,80923,381,Poor,xray_bracket_estimate,2026-10-25
+quilt sets,US,excl_adjacent,17,DJY,1,165,5171,0.002,B0DZ5YJCXS,31.34,426,4.6,175667,426,Poor,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+quilt sets,US,excl_adjacent,18,Ycosy,1,27,1161,0.0003,B0FC6F1X62,42.99,1265,4.5,705518,1265,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+quilt sets,US,excl_adjacent,19,Luxudecor,1,8,272,0.0001,B0FWQB61X1,33.99,42,4.6,1638552,42,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+satin sheets,US,all_mapped,1,BEDELITE,2,33843,1099851,0.2998,B0CSFTRP2X,35.99,6798,4.3,358,6798,Aspirational,xray_bracket_estimate,2026-10-25
+satin sheets,US,all_mapped,2,Love's cabin,1,14478,289409,0.1282,B0BNMC5G8R,19.99,5813,4.5,1226,5813,Aspirational,xray_bracket_estimate,2026-10-25
+satin sheets,US,all_mapped,3,MR&HM,1,10331,330478,0.0915,B08HM6WT6X,31.99,17945,4.4,1860,17945,Aspirational,xray_bracket_estimate,2026-10-25
+satin sheets,US,all_mapped,4,CozyLux,1,8554,213764,0.0758,B08P16XLP2,24.99,7128,4.3,2984,7128,Beatable,xray_bracket_estimate,2026-10-25
+satin sheets,US,all_mapped,5,Lanest Housing,1,6331,202529,0.0561,B082B4Z5QB,31.99,5875,4.3,5433,5875,Beatable,xray_bracket_estimate,2026-10-25
+satin sheets,US,all_mapped,6,Sasttie,1,4515,103807,0.04,B0F2H8LPB3,22.99,987,4.4,97110,987,UNGRADED,xray_bracket_estimate,2026-10-25
+satin sheets,US,all_mapped,7,Homiest,2,4338,124089,0.0384,B07VTMDK79,27.99,12133,4.4,29905,12133,Beatable,xray_bracket_estimate,2026-10-25
+satin sheets,US,all_mapped,8,VACVELT,3,3688,65184,0.0327,B0C1GJZB6F,16.99,1026,4.5,66638,1026,Beatable;Poor,xray_bracket_estimate,2026-10-25
+satin sheets,US,all_mapped,9,Pure Bedding,1,3423,89623,0.0303,B07MXRGV7B,26.18,9835,4.4,53958,9835,Beatable,xray_bracket_estimate,2026-10-25
+satin sheets,US,all_mapped,10,GOLAL,1,3389,94849,0.03,B09G17XZC5,27.99,3970,4.4,28173,3970,Poor,xray_bracket_estimate,2026-10-25
+satin sheets,US,all_mapped,11,FreshCulture,1,2977,75884,0.0264,B0D9BCKF76,25.49,819,4.4,19808,819,Beatable,xray_bracket_estimate,2026-10-25
+satin sheets,US,all_mapped,12,Madison Park,1,2951,76696,0.0261,B09HVDQ982,25.99,5359,4.2,87145,5359,Poor,xray_bracket_estimate,2026-10-25
+satin sheets,US,all_mapped,13,SiinvdaBZX,1,2695,47141,0.0239,B08JP9DG5Z,17.49,6994,4.4,20917,6994,Beatable,xray_bracket_estimate,2026-10-25
+satin sheets,US,all_mapped,14,MK Home,1,2028,38512,0.018,B00MLG1YHE,18.99,10768,4.3,23993,10768,Poor,xray_bracket_estimate,2026-10-25
+satin sheets,US,all_mapped,15,P Pothuiny,1,2002,52032,0.0177,B08QMYV2YR,25.99,4049,4.4,18513,4049,Poor,xray_bracket_estimate,2026-10-25
+satin sheets,US,all_mapped,16,Bedsure,1,1998,57912,0.0177,B0CL4FSC1R,28.99,2767,4.3,15743,2767,Poor,xray_bracket_estimate,2026-10-25
+satin sheets,US,all_mapped,17,HommxJF,1,1400,33578,0.0124,B09V52BVJB,23.99,1034,4.3,144268,1034,Poor,xray_bracket_estimate,2026-10-25
+satin sheets,US,all_mapped,18,Vonty,1,966,26081,0.0086,B0BDDM73P9,26.99,910,4.2,101196,910,Poor,xray_bracket_estimate,2026-10-25
+satin sheets,US,all_mapped,19,Cobedzy,1,845,23652,0.0075,B087CSRQQ4,27.99,1670,4.5,87584,1670,Beatable,xray_bracket_estimate,2026-10-25
+satin sheets,US,all_mapped,20,Horbaunal,1,728,19649,0.0064,B0B4MQ1PP1,26.99,777,4.4,112724,777,Beatable,xray_bracket_estimate,2026-10-25
+satin sheets,US,all_mapped,21,YMF Carpets Inc.,1,506,17518,0.0045,B09NP9WVDR,34.62,457,4.4,66431,457,Poor,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+satin sheets,US,all_mapped,22,Martex,1,468,13834,0.0041,B07X26MTP9,29.56,2263,4.3,71289,2263,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+satin sheets,US,all_mapped,23,LIFCOM,1,283,7921,0.0025,B0DCC78S4N,27.99,368,4.2,111238,368,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+satin sheets,US,all_mapped,24,Manyshofu,1,105,3044,0.0009,B09S5WTKY7,28.99,910,4.3,253994,910,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+satin sheets,US,all_mapped,25,Candoury,1,55,879,0.0005,B08JKWGXZ9,15.99,5277,4.3,420044,5277,UNGRADED,bsr_model_estimate_2026-10 (fitted on our sales),2026-09-13
+satin sheets,US,excl_adjacent,1,BEDELITE,2,33843,1099851,0.2998,B0CSFTRP2X,35.99,6798,4.3,358,6798,Aspirational,xray_bracket_estimate,2026-10-25
+satin sheets,US,excl_adjacent,2,Love's cabin,1,14478,289409,0.1282,B0BNMC5G8R,19.99,5813,4.5,1226,5813,Aspirational,xray_bracket_estimate,2026-10-25
+satin sheets,US,excl_adjacent,3,MR&HM,1,10331,330478,0.0915,B08HM6WT6X,31.99,17945,4.4,1860,17945,Aspirational,xray_bracket_estimate,2026-10-25
+satin sheets,US,excl_adjacent,4,CozyLux,1,8554,213764,0.0758,B08P16XLP2,24.99,7128,4.3,2984,7128,Beatable,xray_bracket_estimate,2026-10-25
+satin sheets,US,excl_adjacent,5,Lanest Housing,1,6331,202529,0.0561,B082B4Z5QB,31.99,5875,4.3,5433,5875,Beatable,xray_bracket_estimate,2026-10-25
+satin sheets,US,excl_adjacent,6,Sasttie,1,4515,103807,0.04,B0F2H8LPB3,22.99,987,4.4,97110,987,UNGRADED,xray_bracket_estimate,2026-10-25
+satin sheets,US,excl_adjacent,7,Homiest,2,4338,124089,0.0384,B07VTMDK79,27.99,12133,4.4,29905,12133,Beatable,xray_bracket_estimate,2026-10-25
+satin sheets,US,excl_adjacent,8,VACVELT,3,3688,65184,0.0327,B0C1GJZB6F,16.99,1026,4.5,66638,1026,Beatable;Poor,xray_bracket_estimate,2026-10-25
+satin sheets,US,excl_adjacent,9,Pure Bedding,1,3423,89623,0.0303,B07MXRGV7B,26.18,9835,4.4,53958,9835,Beatable,xray_bracket_estimate,2026-10-25
+satin sheets,US,excl_adjacent,10,GOLAL,1,3389,94849,0.03,B09G17XZC5,27.99,3970,4.4,28173,3970,Poor,xray_bracket_estimate,2026-10-25
+satin sheets,US,excl_adjacent,11,FreshCulture,1,2977,75884,0.0264,B0D9BCKF76,25.49,819,4.4,19808,819,Beatable,xray_bracket_estimate,2026-10-25
+satin sheets,US,excl_adjacent,12,Madison Park,1,2951,76696,0.0261,B09HVDQ982,25.99,5359,4.2,87145,5359,Poor,xray_bracket_estimate,2026-10-25
+satin sheets,US,excl_adjacent,13,SiinvdaBZX,1,2695,47141,0.0239,B08JP9DG5Z,17.49,6994,4.4,20917,6994,Beatable,xray_bracket_estimate,2026-10-25
+satin sheets,US,excl_adjacent,14,MK Home,1,2028,38512,0.018,B00MLG1YHE,18.99,10768,4.3,23993,10768,Poor,xray_bracket_estimate,2026-10-25
+satin sheets,US,excl_adjacent,15,P Pothuiny,1,2002,52032,0.0177,B08QMYV2YR,25.99,4049,4.4,18513,4049,Poor,xray_bracket_estimate,2026-10-25
+satin sheets,US,excl_adjacent,16,Bedsure,1,1998,57912,0.0177,B0CL4FSC1R,28.99,2767,4.3,15743,2767,Poor,xray_bracket_estimate,2026-10-25
+satin sheets,US,excl_adjacent,17,HommxJF,1,1400,33578,0.0124,B09V52BVJB,23.99,1034,4.3,144268,1034,Poor,xray_bracket_estimate,2026-10-25
+satin sheets,US,excl_adjacent,18,Vonty,1,966,26081,0.0086,B0BDDM73P9,26.99,910,4.2,101196,910,Poor,xray_bracket_estimate,2026-10-25
+satin sheets,US,excl_adjacent,19,Cobedzy,1,845,23652,0.0075,B087CSRQQ4,27.99,1670,4.5,87584,1670,Beatable,xray_bracket_estimate,2026-10-25
+satin sheets,US,excl_adjacent,20,Horbaunal,1,728,19649,0.0064,B0B4MQ1PP1,26.99,777,4.4,112724,777,Beatable,xray_bracket_estimate,2026-10-25
+satin sheets,US,excl_adjacent,21,YMF Carpets Inc.,1,506,17518,0.0045,B09NP9WVDR,34.62,457,4.4,66431,457,Poor,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+satin sheets,US,excl_adjacent,22,Martex,1,468,13834,0.0041,B07X26MTP9,29.56,2263,4.3,71289,2263,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+satin sheets,US,excl_adjacent,23,LIFCOM,1,283,7921,0.0025,B0DCC78S4N,27.99,368,4.2,111238,368,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+satin sheets,US,excl_adjacent,24,Manyshofu,1,105,3044,0.0009,B09S5WTKY7,28.99,910,4.3,253994,910,Beatable,bsr_model_estimate_2026-10 (fitted on our sales),2026-10-25
+satin sheets,US,excl_adjacent,25,Candoury,1,55,879,0.0005,B08JKWGXZ9,15.99,5277,4.3,420044,5277,UNGRADED,bsr_model_estimate_2026-10 (fitted on our sales),2026-09-13

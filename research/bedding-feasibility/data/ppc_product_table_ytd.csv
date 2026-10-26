@@ -1,0 +1,52 @@
+marketplace,currency,window_start,window_end,product_id,product_name,in_bedding_set,impressions,clicks,ctr_pct,orders,cvr_pct,spend,ad_sales,acos_pct,roas,cpc,units,tacos_pct,spend_share_pct,drillable,note
+CA,CAD,2026-01-01,2026-10-26,ACCOUNT,All products,,48011308,208042,0.43,23747,11.41,402456.83,1542083.96,26.1,3.83,1.93,24290,14.829,100,,
+CA,CAD,2026-01-01,2026-10-26,30,Decolure Bamboo Sheets 6 Piece,Y,13724227,57133,0.42,6860,12.01,142489.45,607690.75,23.4,4.26,2.49,7057,,35.405,True,
+CA,CAD,2026-01-01,2026-10-26,59,Decolure Bamboo Sheets 4 Piece,Y,11198184,44742,0.4,5058,11.3,110116.87,448777.33,24.5,4.08,2.46,5187,,27.361,True,
+CA,CAD,2026-01-01,2026-10-26,37,Decolure Satin Sheets 4 Piece,Y,14289755,65114,0.46,7094,10.89,89085.26,289865.98,30.7,3.25,1.37,7215,,22.135,True,
+CA,CAD,2026-01-01,2026-10-26,31,Decolure Satin Sheets 6 Piece,Y,7887381,34810,0.44,3708,10.65,49513.88,162576.18,30.5,3.28,1.42,3772,,12.303,True,
+CA,CAD,2026-01-01,2026-10-26,38,Decolure Satin Fitted Sheet,Y,471614,4209,0.89,645,15.32,5634.89,15973.2,35.3,2.83,1.34,672,,1.4,True,
+CA,CAD,2026-01-01,2026-10-26,39,Sleephoria Satin Sheets 4 Piece,Y,440147,2034,0.46,382,18.78,5616.48,17200.52,32.7,3.06,2.76,387,,1.396,True,
+CA,CAD,2026-01-01,2026-10-26,49,Decolure Beach Towel,N,0,0,,0,,0,0,,,,0,,0,True,no ad spend in window (sold without advertising or inactive)
+CA,CAD,2026-01-01,2026-10-26,50,Decolure Chair Mat,N,0,0,,0,,0,0,,,,0,,0,False,no ad spend in window (sold without advertising or inactive)
+CA,CAD,2026-01-01,2026-10-26,48,Decolure Cooling Sheets 4 Piece,Y,0,0,,0,,0,0,,,,0,,0,True,no ad spend in window (sold without advertising or inactive)
+CA,CAD,2026-01-01,2026-10-26,52,Decolure Hanging Closet Organizer,N,0,0,,0,,0,0,,,,0,,0,False,no ad spend in window (sold without advertising or inactive)
+CA,CAD,2026-01-01,2026-10-26,53,Decolure Linen Curtains,N,0,0,,0,,0,0,,,,0,,0,True,no ad spend in window (sold without advertising or inactive)
+CA,CAD,2026-01-01,2026-10-26,54,Decolure Shower Mat,N,0,0,,0,,0,0,,,,0,,0,False,no ad spend in window (sold without advertising or inactive)
+CA,CAD,2026-01-01,2026-10-26,55,Decolure Silk Pillowcase,Y,0,0,,0,,0,0,,,,0,,0,True,no ad spend in window (sold without advertising or inactive)
+CA,CAD,2026-01-01,2026-10-26,33,Decolure Waterproof Chair Cover,N,0,0,,0,,0,0,,,,0,,0,False,no ad spend in window (sold without advertising or inactive)
+CA,CAD,2026-01-01,2026-10-26,42,Sleephoria Cooling Comforter,Y,0,0,,0,,0,0,,,,0,,0,True,no ad spend in window (sold without advertising or inactive)
+CA,CAD,2026-01-01,2026-10-26,44,Sleephoria Cooling Fitted Sheet,Y,0,0,,0,,0,0,,,,0,,0,True,no ad spend in window (sold without advertising or inactive)
+CA,CAD,2026-01-01,2026-10-26,43,Sleephoria Cooling Pillowcases,Y,0,0,,0,,0,0,,,,0,,0,False,no ad spend in window (sold without advertising or inactive)
+CA,CAD,2026-01-01,2026-10-26,45,Sleephoria Cooling Sheets 4 Piece,Y,0,0,,0,,0,0,,,,0,,0,True,no ad spend in window (sold without advertising or inactive)
+CA,CAD,2026-01-01,2026-10-26,46,Sleephoria Quilt Set,Y,0,0,,0,,0,0,,,,0,,0,True,no ad spend in window (sold without advertising or inactive)
+CA,CAD,2026-01-01,2026-10-26,56,Sleephoria Silk Sleep Mask - Contoured,N,0,0,,0,,0,0,,,,0,,0,False,no ad spend in window (sold without advertising or inactive)
+CA,CAD,2026-01-01,2026-10-26,57,Sleephoria Silk Sleep Mask - Velcro,N,0,0,,0,,0,0,,,,0,,0,False,no ad spend in window (sold without advertising or inactive)
+US,USD,2026-01-01,2026-10-26,ACCOUNT,All products,,127360145,744118,0.58,82697,11.11,1332509.67,3873873.38,34.4,2.91,1.79,85135,14.769,100,,
+US,USD,2026-01-01,2026-10-26,59,Decolure Bamboo Sheets 4 Piece,Y,25437741,91073,0.36,10797,11.86,282126.1,835175.66,33.8,2.96,3.1,11140,,21.173,True,
+US,USD,2026-01-01,2026-10-26,30,Decolure Bamboo Sheets 6 Piece,Y,22675278,74052,0.33,10471,14.14,250941.3,853724.25,29.4,3.4,3.39,10832,,18.832,True,
+US,USD,2026-01-01,2026-10-26,37,Decolure Satin Sheets 4 Piece,Y,22626405,134731,0.6,17322,12.86,183798.03,538148.35,34.2,2.93,1.36,17595,,13.793,True,
+US,USD,2026-01-01,2026-10-26,39,Sleephoria Satin Sheets 4 Piece,Y,10445555,67800,0.65,9806,14.46,139008.02,326462.21,42.6,2.35,2.05,9954,,10.432,True,
+US,USD,2026-01-01,2026-10-26,32,Sleephoria Bamboo Sheets 6 Piece,Y,5181166,30028,0.58,3821,12.72,102987.09,267164.23,38.5,2.59,3.43,3950,,7.729,True,
+US,USD,2026-01-01,2026-10-26,31,Decolure Satin Sheets 6 Piece,Y,10237929,75832,0.74,7817,10.31,70917.97,251797.13,28.2,3.55,0.94,7936,,5.322,True,
+US,USD,2026-01-01,2026-10-26,38,Decolure Satin Fitted Sheet,Y,6559576,66205,1.01,8340,12.6,66249.86,169783.41,39,2.56,1,8625,,4.972,True,
+US,USD,2026-01-01,2026-10-26,42,Sleephoria Cooling Comforter,Y,4509037,56034,1.24,2099,3.75,42429.7,131244.84,32.3,3.09,0.76,2133,,3.184,True,
+US,USD,2026-01-01,2026-10-26,45,Sleephoria Cooling Sheets 4 Piece,Y,2275708,19065,0.84,2262,11.86,39839.35,150848.85,26.4,3.79,2.09,2311,,2.99,True,
+US,USD,2026-01-01,2026-10-26,44,Sleephoria Cooling Fitted Sheet,Y,1298360,15699,1.21,2541,16.19,32905.64,88853.34,37,2.7,2.1,2619,,2.469,True,
+US,USD,2026-01-01,2026-10-26,46,Sleephoria Quilt Set,Y,3472229,32429,0.93,958,2.95,23381.71,35941.72,65.1,1.54,0.72,1025,,1.755,True,
+US,USD,2026-01-01,2026-10-26,55,Decolure Silk Pillowcase,Y,5017115,11877,0.24,894,7.53,21353.72,51639.31,41.4,2.42,1.8,1075,,1.603,True,
+US,USD,2026-01-01,2026-10-26,48,Decolure Cooling Sheets 4 Piece,Y,1342342,18473,1.38,905,4.9,16369.26,35652.97,45.9,2.18,0.89,918,,1.228,True,
+US,USD,2026-01-01,2026-10-26,43,Sleephoria Cooling Pillowcases,Y,1122373,8127,0.72,1865,22.95,9544.43,54394.04,17.5,5.7,1.17,1986,,0.716,False,
+US,USD,2026-01-01,2026-10-26,70,CooLinens Cooling Pillowcases 2 Piece,Y,237040,3204,1.35,594,18.54,8420.98,13057.6,64.5,1.55,2.63,641,,0.632,True,
+US,USD,2026-01-01,2026-10-26,57,Sleephoria Silk Sleep Mask - Velcro,N,295457,2168,0.73,338,15.59,6263.42,5877.41,106.6,0.94,2.89,344,,0.47,False,
+US,USD,2026-01-01,2026-10-26,52,Decolure Hanging Closet Organizer,N,1299439,12378,0.95,355,2.87,5701.01,14048.76,40.6,2.46,0.46,404,,0.428,False,
+US,USD,2026-01-01,2026-10-26,53,Decolure Linen Curtains,N,363830,2298,0.63,74,3.22,4710.68,3947.31,119.3,0.84,2.05,129,,0.354,True,
+US,USD,2026-01-01,2026-10-26,69,CooLinens Cooling Sheets 4 Piece,Y,136631,1383,1.01,113,8.17,4669.57,9853.87,47.4,2.11,3.38,113,,0.35,True,
+US,USD,2026-01-01,2026-10-26,33,Decolure Waterproof Chair Cover,N,1558940,8495,0.54,559,6.58,4578.08,12570.6,36.4,2.75,0.54,601,,0.344,False,
+US,USD,2026-01-01,2026-10-26,49,Decolure Beach Towel,N,331726,2563,0.77,123,4.8,4099.8,2717.33,150.9,0.66,1.6,137,,0.308,True,
+US,USD,2026-01-01,2026-10-26,73,Decolure Bamboo Fitted Sheet,Y,70728,1804,2.55,377,20.9,3803.82,13670.22,27.8,3.59,2.11,391,,0.285,True,
+US,USD,2026-01-01,2026-10-26,58,Decolure Front Door Welcome Sign,N,342985,3710,1.08,79,2.13,3358.59,2629.79,127.7,0.78,0.91,82,,0.252,False,
+US,USD,2026-01-01,2026-10-26,56,Sleephoria Silk Sleep Mask - Contoured,N,259698,965,0.37,131,13.58,2897.65,2384.07,121.5,0.82,3,133,,0.217,False,
+US,USD,2026-01-01,2026-10-26,41,Sleephoria Boho Blanket,N,187017,3112,1.66,34,1.09,1664.22,1072.65,155.2,0.64,0.53,35,,0.125,False,
+US,USD,2026-01-01,2026-10-26,54,Decolure Shower Mat,N,63753,575,0.9,22,3.83,433.77,1213.46,35.7,2.8,0.75,26,,0.033,False,
+US,USD,2026-01-01,2026-10-26,50,Decolure Chair Mat,N,12087,38,0.31,0,0,55.9,0,,0,1.47,0,,0.004,False,acos blank: zero sales
+US,USD,2026-01-01,2026-10-26,51,Decolure Criss Cross Chair,N,0,0,,0,,0,0,,,,0,,0,False,no ad spend in window (sold without advertising or inactive)
