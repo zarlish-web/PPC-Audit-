@@ -357,9 +357,9 @@
    "evidence": "47 clicks, 0 orders, $105.39 across five rival-page campaigns (5% chance at 6% CVR).",
    "type": "Question for Joseph",
    "gate": "Passed on 21 Oct (47 clicks).",
-   "status": "Recommended: pause (gate still met 25 Oct)",
-   "review_on": "2026-10-23",
-   "outcome": "25 Oct: 138 clicks, 2 orders, $334 across the rival-page campaigns (under 1% chance at 6% CVR); still running."
+   "status": "Watch: read on 30 Oct (no early decisions)",
+   "review_on": "2026-10-30",
+   "outcome": "25 Oct: 138 clicks, 2 orders, $334 across the rival-page campaigns (under 1% chance at 6% CVR); still running. 26 Oct: moved to watch under the team's no-early-decisions rule; read on 30 Oct."
   },
   {
    "id": "D18",
@@ -369,9 +369,21 @@
    "evidence": "16–21 Oct: 40 clicks, 1 order, $157.00, ACoS 178% (the plan's stop-loss is 2× break-even, about 78%). On clicks alone it is not yet proof: 1 or fewer orders on 40 clicks happens 16% of the time at 8% CVR.",
    "type": "Question for Joseph",
    "gate": "30 clicks (D11): reached. Plan stop-loss CL-PC5: breached.",
-   "status": "Watch: gate no longer met (24 Oct)",
-   "review_on": "2026-10-26",
+   "status": "Watch: read on 30 Oct (no early decisions)",
+   "review_on": "2026-10-30",
    "outcome": "25 Oct: 4 orders on 18 clicks on Oct 24. Since 16 Oct: 5 orders on 104 clicks, $381.91, ACoS 87% (15% chance at 8% CVR). Pause no longer recommended; read again on 26 Oct."
+  },
+  {
+   "id": "D19",
+   "raised": "2026-10-26",
+   "area": "Process",
+   "decision": "No pause, negative or budget-cut decisions on early data. Before a campaign or keyword has 14 full days, it is reported as Watch with a read date. At the read, a change is recommended only if the gate holds on settled data (leaving out the last 2 days) for 3 daily reads in a row. Relevance negatives for searches that are not cooling-sheet searches (A5) are not affected.",
+   "evidence": "On 23–24 Oct the Queen rival video was recommended for pause (1 order on 86 clicks). On 24 Oct it took 4 orders on 18 clicks, and the gate no longer held.",
+   "type": "Team rule",
+   "gate": "14 full days live + settled data + 3 daily reads in a row.",
+   "status": "In force (26 Oct)",
+   "review_on": "2026-10-30",
+   "outcome": "26 Oct: A9 (rival pages) and A10 (Queen rival video) moved to Watch, read on 30 Oct."
   }
  ],
  "log": [
@@ -672,8 +684,7 @@
     "Ranks (DataRova, volatile): 'cooling sheets' #3 on 22–24 Oct. 'cooling sheets queen' #3. 'king cooling sheets' #65 → #13. 'cooling sheets king' #35 → #16. 'cooling sheets king size' #3 → #7."
    ],
    "actions": [
-    "A9 still recommended: pause the rival-page product-targeting campaigns (option 1) and keep own-page defence. The gate is still met: 2 orders in 138 clicks.",
-    "A10 moved to watch: keep the Queen rival video running to 26 Oct. Pause it if it returns to 0 orders.",
+    "Updated 26 Oct: team rule, no pause decisions on early data (D19). A9 (rival pages) and A10 (Queen rival video) are on watch until the two-week read on 30 Oct.",
     "Setup fixes waiting on Joseph: A11 (one preferred SKU per single-keyword campaign) with A12; A5 relevance negatives and A4 branded campaign; A3 waits on A2.",
     "Hold: King to 27 Oct (H1); Queen keyword campaigns run on; Cal King push held (A7). No budget changes."
    ],
@@ -785,34 +796,6 @@
    "status": "Sent to Joseph 22 Oct; not applied (checked 25 Oct)"
   },
   {
-   "id": "A9",
-   "priority": "1 · Act now",
-   "size": "All",
-   "action": "Decide the rival-page test early: stop-loss now or a lower bid to the two-week read",
-   "change": "Option 1 (stop-loss): pause the five 'Cooling Rivals' product-targeting campaigns (Queen, King, Full, Twin, Cal King); keep the own-page defence (CooLinens Pillowcases PAT). Option 2: cut their bids by about 30% (from ~$2.20 CPC) and read at two weeks (~Oct 30). Either way, apply the A5 relevance negatives.",
-   "why": "The rival-page lane now fails its gate as well as the plan's stop-loss (2× break-even). Own-page defence (CooLinens Pillowcases PAT) is a different lane and stays.",
-   "evidence": "16–23 Oct: 109 clicks, 1 order, $263, ACoS 279%. 1 or fewer orders in 109 clicks happens under 1% of the time at 6% CVR. Oct 23: 19 clicks, 0 orders; Cooling Rivals King ran past its $22 budget with no order.",
-   "expected": "Option 1 saves about $25/day; option 2 about $7/day while keeping the read.",
-   "check": "Joseph's answer; if no answer, read again at 60 clicks.",
-   "safe": "Rival pages are a test lane, not a ranking lane; no push keyword depends on them.",
-   "ref": "D17",
-   "status": "Recommended: pause; not applied (checked 25 Oct)"
-  },
-  {
-   "id": "A1",
-   "priority": "1 · Act now",
-   "size": "Queen + head terms",
-   "action": "Re-point the Queen ads from Queen White to Queen Graphite",
-   "change": "In the 25 live campaigns that advertise CL-COOLING-SHEET-QUEEN-WHITE (13 Queen Sponsored Products campaigns, 9 no-size/head-term campaigns, plus Auto, own-page product targeting and Display): add a product ad for CL-COOLING-SHEET-QUEEN-GRAPHITE (ASIN B0H6K1MKQW) in each ad group and pause the Queen White ad. Keywords, bids and budgets stay the same.",
-   "why": "Queen Graphite is the plan's Queen ad SKU. It has the deepest stock (397 units vs 194), it is the #1 Queen colour for both sister brands (Sleephoria 20%, Decolure 26% of Queen units), and the Batch 2 gate is measured on Queen Graphite's CVR. Shoppers still pick any colour on the page.",
-   "evidence": "Queen keyword SP campaigns, 16–21 Oct: 103 clicks, 3 orders, $344 (ACoS 130%). At the plan's 8.8% CVR, 3 or fewer orders on 103 clicks happens about 2% of the time, so the gap is unlikely to be chance. Queen Graphite 397 units vs Queen White 194.",
-   "expected": "Queen ad CVR moves from 2.9% toward the plan's 8–9.5%, and the Batch 2 gate (Queen Graphite CVR ≥ 7% on ≥ 100 clicks) can be read by about 3 Nov. Stock: about 250 days of cover at the plan's Queen push.",
-   "check": "27 Oct: Queen CVR and Queen units/day vs the 3.0 baseline. 3 Nov: Batch 2 gate.",
-   "safe": "Only the product shown changes. The White ad stays paused, not deleted, and can be switched back in one step.",
-   "ref": "D02",
-   "status": "Replaced by A11 (22 Oct)"
-  },
-  {
    "id": "A2",
    "priority": "1 · Question for Joseph",
    "size": "Queen",
@@ -883,18 +866,32 @@
    "status": "Not applied yet (checked 25 Oct)"
   },
   {
+   "id": "A9",
+   "priority": "2 · Watch",
+   "size": "All",
+   "action": "Watch the rival-page product targeting to its two-week read (30 Oct)",
+   "change": "No change for now. Keep the rival-page product-targeting campaigns running and read them on 30 Oct, after 14 full days. Recommend a change then only if the gate still holds on settled data (leaving out the last 2 days) for 3 daily reads in a row.",
+   "why": "Team rule set 26 Oct: no pause, negative or budget-cut decisions on early data. The Queen rival video showed why: it looked like a clear failure on 23 Oct and took 4 orders on 18 clicks the next day.",
+   "evidence": "16–24 Oct: 138 clicks, 2 orders, $334, ACoS 198% (under 1% chance at 6% CVR). The gate is met today, but this is only 9 days of data.",
+   "expected": "No change before 30 Oct.",
+   "check": "Two-week read on 30 Oct.",
+   "safe": "Nothing changes in the account.",
+   "ref": "D17",
+   "status": "Watch: read on 30 Oct (no early decisions)"
+  },
+  {
    "id": "A10",
    "priority": "2 · Watch",
    "size": "Queen",
    "action": "Watch the Queen rival video (pause no longer recommended)",
-   "change": "No change for now. Keep 'SBV-Rival Video Queen' (budget $75/day) running and read it again on 26 Oct, when the new video from the studio day is due. Pause it if it falls back under the gate.",
+   "change": "No change. Keep 'SBV-Rival Video Queen' running and read it on 30 Oct, after 14 full days, with the new video's first days included.",
    "why": "24 Oct brought 4 orders on 18 clicks. With those orders, the low result could be chance, so the pause gate is no longer met.",
    "evidence": "16–24 Oct: 104 clicks, 5 orders, $381.91, $439.95 sales, ACoS 87% (plan stop-loss about 78%). 5 or fewer orders in 104 clicks happens 15% of the time at 8% CVR. Oct 24: 18 clicks, 4 orders, $67.45. King rival video: 13 orders on 116 clicks (ACoS 36%).",
-   "expected": "No saving claimed. If 25–26 Oct return to 0 orders, the pause case comes back.",
-   "check": "Read again on 26 Oct with the new video.",
+   "expected": "No change before 30 Oct.",
+   "check": "Read on 30 Oct (two-week read), with the new video's first days.",
    "safe": "A video test lane, not a ranking lane; Queen's keyword ads and Sponsored Brands collection ads keep Queen's search coverage.",
    "ref": "D18",
-   "status": "Watch: gate no longer met; still running"
+   "status": "Watch: read on 30 Oct (no early decisions)"
   },
   {
    "id": "A7",
@@ -909,6 +906,20 @@
    "safe": "Cal King is 3% of the plan's units; the plan values its push at $54k, the smallest group.",
    "ref": "CL-PC3",
    "status": "For approval"
+  },
+  {
+   "id": "A1",
+   "priority": "1 · Act now",
+   "size": "Queen + head terms",
+   "action": "Re-point the Queen ads from Queen White to Queen Graphite",
+   "change": "In the 25 live campaigns that advertise CL-COOLING-SHEET-QUEEN-WHITE (13 Queen Sponsored Products campaigns, 9 no-size/head-term campaigns, plus Auto, own-page product targeting and Display): add a product ad for CL-COOLING-SHEET-QUEEN-GRAPHITE (ASIN B0H6K1MKQW) in each ad group and pause the Queen White ad. Keywords, bids and budgets stay the same.",
+   "why": "Queen Graphite is the plan's Queen ad SKU. It has the deepest stock (397 units vs 194), it is the #1 Queen colour for both sister brands (Sleephoria 20%, Decolure 26% of Queen units), and the Batch 2 gate is measured on Queen Graphite's CVR. Shoppers still pick any colour on the page.",
+   "evidence": "Queen keyword SP campaigns, 16–21 Oct: 103 clicks, 3 orders, $344 (ACoS 130%). At the plan's 8.8% CVR, 3 or fewer orders on 103 clicks happens about 2% of the time, so the gap is unlikely to be chance. Queen Graphite 397 units vs Queen White 194.",
+   "expected": "Queen ad CVR moves from 2.9% toward the plan's 8–9.5%, and the Batch 2 gate (Queen Graphite CVR ≥ 7% on ≥ 100 clicks) can be read by about 3 Nov. Stock: about 250 days of cover at the plan's Queen push.",
+   "check": "27 Oct: Queen CVR and Queen units/day vs the 3.0 baseline. 3 Nov: Batch 2 gate.",
+   "safe": "Only the product shown changes. The White ad stays paused, not deleted, and can be switched back in one step.",
+   "ref": "D02",
+   "status": "Replaced by A11 (22 Oct)"
   },
   {
    "id": "A6",

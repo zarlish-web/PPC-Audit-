@@ -211,9 +211,9 @@
 "evidence": "47 clicks, 0 orders, $105.39 across five rival-page campaigns (5% chance at 6% CVR).",
 "type": "Question for Joseph",
 "gate": "Passed on 21 Oct (47 clicks).",
-"status": "Recommended: pause (gate still met 25 Oct)",
-"review_on": "2026-10-23",
-"outcome": "25 Oct: 138 clicks, 2 orders, $334 across the rival-page campaigns (under 1% chance at 6% CVR); still running."
+"status": "Watch: read on 30 Oct (no early decisions)",
+"review_on": "2026-10-30",
+"outcome": "25 Oct: 138 clicks, 2 orders, $334 across the rival-page campaigns (under 1% chance at 6% CVR); still running. 26 Oct: moved to watch under the team's no-early-decisions rule; read on 30 Oct."
 },
 {
 "id": "D18",
@@ -223,8 +223,20 @@
 "evidence": "16\u201321 Oct: 40 clicks, 1 order, $157.00, ACoS 178% (the plan's stop-loss is 2\u00d7 break-even, about 78%). On clicks alone it is not yet proof: 1 or fewer orders on 40 clicks happens 16% of the time at 8% CVR.",
 "type": "Question for Joseph",
 "gate": "30 clicks (D11): reached. Plan stop-loss CL-PC5: breached.",
-"status": "Watch: gate no longer met (24 Oct)",
-"review_on": "2026-10-26",
+"status": "Watch: read on 30 Oct (no early decisions)",
+"review_on": "2026-10-30",
 "outcome": "25 Oct: 4 orders on 18 clicks on Oct 24. Since 16 Oct: 5 orders on 104 clicks, $381.91, ACoS 87% (15% chance at 8% CVR). Pause no longer recommended; read again on 26 Oct."
+},
+{
+"id": "D19",
+"raised": "2026-10-26",
+"area": "Process",
+"decision": "No pause, negative or budget-cut decisions on early data. Before a campaign or keyword has 14 full days, it is reported as Watch with a read date. At the read, a change is recommended only if the gate holds on settled data (leaving out the last 2 days) for 3 daily reads in a row. Relevance negatives for searches that are not cooling-sheet searches (A5) are not affected.",
+"evidence": "On 23\u201324 Oct the Queen rival video was recommended for pause (1 order on 86 clicks). On 24 Oct it took 4 orders on 18 clicks, and the gate no longer held.",
+"type": "Team rule",
+"gate": "14 full days live + settled data + 3 daily reads in a row.",
+"status": "In force (26 Oct)",
+"review_on": "2026-10-30",
+"outcome": "26 Oct: A9 (rival pages) and A10 (Queen rival video) moved to Watch, read on 30 Oct."
 }
 ]
