@@ -1,0 +1,27 @@
+shipment_id,mkt,eta_from,eta_to,eta_note
+FBA19N7XSBR9,US,2026-10-24,2026-10-24,arrived; 592 of 598 received by Oct 24 (receiving)
+FBA19N7WSG18,US,2026-10-25,2026-10-31,"Amazon ETA Oct 25; delivering Oct 25-31 (Haroon, Oct 27)"
+FBA19QLK9CYH,US,2026-11-08,2026-11-14,moved from 18-24 Oct to 8-14 Nov
+FBA19QLJLR1F,US,2026-11-08,2026-11-14,moved from 18-24 Oct to 8-14 Nov
+FBA19RS0N5K2,US,2026-11-08,2026-11-14,8-14 Nov
+FBA19RRY6QFT,US,2026-11-08,2026-11-14,8-14 Nov
+FBA19RS1HC4F,US,2026-11-08,2026-11-14,8-14 Nov
+FBA19RRYCGHJ,US,2026-11-08,2026-11-14,8-14 Nov
+FBA19R4G23HZ,US,2026-11-08,2026-11-14,8-14 Nov
+FBA19RRY5FBL,US,2026-11-22,2026-11-28,"22-28 Nov, lands mid-deal (Haroon, Oct 27)"
+FBA19STRJMC3,US,2026-12-04,2026-12-04,around 4 Dec
+FBA19SV47PX1,US,2026-12-04,2026-12-04,around 4 Dec
+FBA19SV1CLVT,US,2026-12-04,2026-12-04,around 4 Dec
+FBA19STYQSF4,US,2026-12-04,2026-12-04,around 4 Dec
+FBA19STZ9LHZ,US,2026-11-08,2026-11-14,"moved into the 8-14 Nov window (Haroon, Oct 27)"
+FBA19N82086K,CA,2026-10-25,2026-10-31,"Amazon ETA Oct 25; delivering Oct 25-31; Canada confirmed (Haroon, Oct 27)"
+FBA19QLVD3FK,CA,2026-10-27,2026-10-27,"2,432 of 2,536 received by Oct 27"
+FBA19MV0YVFX,CA,,,"NO DATE: no Amazon ETA, no forwarder window (Haroon, Oct 27); earlier ""by Nov 16"""
+FBA19RSBKFGZ,CA,,,"NO DATE: no Amazon ETA, no forwarder window (Haroon, Oct 27); earlier ""Nov 25"""
+FBA19SV5KWMR,CA,2026-12-01,2026-12-01,1 Dec; Canada confirmed
+FBA19TYN6F53,US,,,USA260 batch: picked up Oct 25 (Shipped); Air 5-9 Nov / Fastest 22-27 Nov / Fast 27 Nov-2 Dec (mode pending)
+FBA19TYJLJTD,US,,,USA260 batch: mode pending
+FBA19TYMGSYP,US,,,USA260 batch: mode pending
+FBA19TYKXYBF,US,,,USA260 batch: mode pending
+FBA19TYJQZDK,US,,,USA260 batch: mode pending
+FBA19TY7ML4M,CA,,,CA0108 batch: picked up Oct 25 (Shipped); mode pending

@@ -1,0 +1,27 @@
+shipment,mkt,status_now,units,received_so_far,eta,sellable_by_est,sellable_range,window,batch
+FBA19N7XSBR9,US,RECEIVING,598,592,arrived; 592 of 598 received by Oct 24 (receiving),2026-10-29,2026-10-27 to 2026-10-31,Sellable before Nov 19,
+FBA19N7WSG18,US,IN_TRANSIT,822,0,"Amazon ETA Oct 25; delivering Oct 25-31 (Haroon, Oct 27)",2026-11-05,2026-11-03 to 2026-11-07,Sellable before Nov 19,
+FBA19QLK9CYH,US,SHIPPED,658,0,moved from 18-24 Oct to 8-14 Nov,2026-11-19,2026-11-17 to 2026-11-21,Tight: sellable around Nov 19-21,
+FBA19QLJLR1F,US,SHIPPED,1026,0,moved from 18-24 Oct to 8-14 Nov,2026-11-19,2026-11-17 to 2026-11-21,Tight: sellable around Nov 19-21,
+FBA19RS0N5K2,US,SHIPPED,608,0,8-14 Nov,2026-11-19,2026-11-17 to 2026-11-21,Tight: sellable around Nov 19-21,
+FBA19RRY6QFT,US,SHIPPED,984,0,8-14 Nov,2026-11-19,2026-11-17 to 2026-11-21,Tight: sellable around Nov 19-21,
+FBA19RS1HC4F,US,SHIPPED,956,0,8-14 Nov,2026-11-19,2026-11-17 to 2026-11-21,Tight: sellable around Nov 19-21,
+FBA19RRYCGHJ,US,SHIPPED,1060,0,8-14 Nov,2026-11-19,2026-11-17 to 2026-11-21,Tight: sellable around Nov 19-21,
+FBA19R4G23HZ,US,SHIPPED,516,0,8-14 Nov,2026-11-19,2026-11-17 to 2026-11-21,Tight: sellable around Nov 19-21,
+FBA19RRY5FBL,US,SHIPPED,1086,0,"22-28 Nov, lands mid-deal (Haroon, Oct 27)",2026-12-03,2026-12-01 to 2026-12-05,After Nov 30 (outside the deal),
+FBA19STRJMC3,US,SHIPPED,1446,0,around 4 Dec,2026-12-09,2026-12-07 to 2026-12-11,After Nov 30 (outside the deal),
+FBA19SV47PX1,US,SHIPPED,1838,0,around 4 Dec,2026-12-09,2026-12-07 to 2026-12-11,After Nov 30 (outside the deal),
+FBA19SV1CLVT,US,SHIPPED,1799,0,around 4 Dec,2026-12-09,2026-12-07 to 2026-12-11,After Nov 30 (outside the deal),
+FBA19STYQSF4,US,SHIPPED,1120,0,around 4 Dec,2026-12-09,2026-12-07 to 2026-12-11,After Nov 30 (outside the deal),
+FBA19STZ9LHZ,US,SHIPPED,1847,0,"moved into the 8-14 Nov window (Haroon, Oct 27)",2026-11-19,2026-11-17 to 2026-11-21,Tight: sellable around Nov 19-21,
+FBA19N82086K,CA,IN_TRANSIT,1734,0,"Amazon ETA Oct 25; delivering Oct 25-31; Canada confirmed (Haroon, Oct 27)",2026-11-05,2026-11-03 to 2026-11-07,Sellable before Nov 19,
+FBA19QLVD3FK,CA,READY_TO_SHIP,2536,2432,"2,432 of 2,536 received by Oct 27",2026-11-01,2026-10-30 to 2026-11-03,Sellable before Nov 19,
+FBA19MV0YVFX,CA,SHIPPED,760,0,"NO DATE: no Amazon ETA, no forwarder window (Haroon, Oct 27); earlier ""by Nov 16""",,,No date yet,
+FBA19RSBKFGZ,CA,SHIPPED,688,0,"NO DATE: no Amazon ETA, no forwarder window (Haroon, Oct 27); earlier ""Nov 25""",,,No date yet,
+FBA19SV5KWMR,CA,SHIPPED,1462,0,1 Dec; Canada confirmed,2026-12-06,2026-12-04 to 2026-12-08,After Nov 30 (outside the deal),
+FBA19TYN6F53,US,SHIPPED,863,0,USA260 batch: picked up Oct 25 (Shipped); Air 5-9 Nov / Fastest 22-27 Nov / Fast 27 Nov-2 Dec (mode pending),,,Mode pending,USA260
+FBA19TYJLJTD,US,SHIPPED,743,0,USA260 batch: mode pending,,,Mode pending,USA260
+FBA19TYMGSYP,US,SHIPPED,440,0,USA260 batch: mode pending,,,Mode pending,USA260
+FBA19TYKXYBF,US,SHIPPED,676,0,USA260 batch: mode pending,,,Mode pending,USA260
+FBA19TYJQZDK,US,SHIPPED,842,0,USA260 batch: mode pending,,,Mode pending,USA260
+FBA19TY7ML4M,CA,SHIPPED,286,0,CA0108 batch: picked up Oct 25 (Shipped); mode pending,,,Mode pending,CA0108

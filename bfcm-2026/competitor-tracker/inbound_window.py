@@ -1,8 +1,8 @@
 """BFCM 2026 inbound check: which inbound units become sellable before or during the deal window (Nov 19-30).
 
-Joins the inbound ETAs per shipment (data/stock/inbound_eta_2026-10-22.csv, from the Oct 22 T-7 inbound check) with the
+Joins the inbound ETAs per shipment (data/stock/inbound_eta_2026-10-27.csv, from the Oct 22 T-7 inbound check) with the
 SKU contents of each shipment (Oct 15 shipment pull; Ready-to-Ship batch contents from the Oct 21 plans) and today's
-shipment status (data/stock/sellerboard_shipment_status_2026-10-23.csv), then maps every SKU to our product and variation.
+shipment status (data/stock/sellerboard_shipment_status_2026-10-27.csv), then maps every SKU to our product and variation.
 
 Sellable date = latest arrival date + RECEIVE_DAYS (Amazon check-in to available in peak season; an assumption, shown).
 Usage: python3 inbound_window.py competitor_dashboard.html OUT_DIR
@@ -29,8 +29,8 @@ for p in P["products"]:
         var[(p["mkt"], v["asin"])] = {"product": p["short"], "size": v.get("size"), "colour": v.get("colour"), "status_oct15": r.get("st"),
                                       "need": r.get("need"), "short_oct15": r.get("short"), "oh_oct15": r.get("oh"), "oos": r.get("oos"), "vel": r.get("vel")}
 
-eta = {r["shipment_id"]: r for r in csv.DictReader(open(os.path.join(STOCK, "inbound_eta_2026-10-22.csv")))}
-status = {r["shipment_id"]: r for r in csv.DictReader(open(os.path.join(STOCK, "sellerboard_shipment_status_2026-10-23.csv")))}
+eta = {r["shipment_id"]: r for r in csv.DictReader(open(os.path.join(STOCK, "inbound_eta_2026-10-27.csv")))}
+status = {r["shipment_id"]: r for r in csv.DictReader(open(os.path.join(STOCK, "sellerboard_shipment_status_2026-10-27.csv")))}
 contents = defaultdict(list)               # shipment -> [(asin, sku, units, received_oct15)]
 for r in csv.DictReader(open(os.path.join(STOCK, "sellerboard_inbound_shipments_2026-10-15.csv"))):
     if r["shipment_id"] in eta:
@@ -39,9 +39,9 @@ rts = defaultdict(list)                    # batch -> [(asin, sku, units)]
 for r in csv.DictReader(open(os.path.join(STOCK, "ready_to_ship_2026-10-21_contents.csv"))):
     rts[r["batch"]].append((r["asin"], r["sku"], int(r["units"])))
 
-def bucket(sellable):
+def bucket(sellable, batch=None):
     if sellable is None:
-        return "Mode pending"
+        return "Mode pending" if batch else "No date yet"
     if sellable < DEAL_START:
         return "Sellable before Nov 19"
     if sellable <= DEAL_START + dt.timedelta(days=2):
@@ -62,7 +62,7 @@ for sid, e in eta.items():
     sellable = to + dt.timedelta(days=RECEIVE_DAYS) if to else None
     units = int(s.get("units") or sum(x[2] for x in items))
     rec = int(s.get("units_received") or 0)
-    b = bucket(sellable)
+    b = bucket(sellable, batch)
     ship_rows.append({"shipment": sid, "mkt": e["mkt"], "status_now": s.get("status", ""), "units": units,
                       "received_so_far": rec, "eta": e["eta_note"], "sellable_by_est": sellable.isoformat() if sellable else "", "sellable_range": (f"{(to + dt.timedelta(days=3)).isoformat()} to {(to + dt.timedelta(days=7)).isoformat()}" if to else ""),
                       "window": b, "batch": batch or ""})
@@ -79,10 +79,10 @@ for name, rows in (("inbound_by_shipment.csv", ship_rows), ("inbound_by_sku.csv"
         w = csv.DictWriter(fh, fieldnames=list(rows[0].keys())); w.writeheader(); w.writerows(rows)
 
 # summaries
-order = ["Sellable before Nov 19", "Tight: sellable around Nov 19-21", "Sellable during the deal (Nov 22-30)", "Mode pending", "After Nov 30 (outside the deal)"]
+order = ["Sellable before Nov 19", "Tight: sellable around Nov 19-21", "Sellable during the deal (Nov 22-30)", "Mode pending", "No date yet", "After Nov 30 (outside the deal)"]
 tot = defaultdict(lambda: defaultdict(int))
 for r in ship_rows:
-    tot[r["window"]][r["mkt"]] += r["units"] - (r["received_so_far"] if r["status_now"] == "RECEIVING" else 0)
+    tot[r["window"]][r["mkt"]] += r["units"] - int(r["received_so_far"])
 print("UNITS STILL TO BE RECEIVED BY WINDOW (US / CA)")
 for b in order:
     print(f"  {b:40s} US {tot[b]['US']:>6,}  CA {tot[b]['CA']:>6,}")
