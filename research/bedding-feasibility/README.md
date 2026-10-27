@@ -1,3 +1,5 @@
+> **INTERNAL AND CONFIDENTIAL — do not share outside the company.** This folder contains account data, product-level economics and strategy. The shareable version is `../bedding-market-intelligence-client/`.
+
 # Bedding market entry feasibility — Amazon US, Canada, UK
 
 Research package prepared 26 Oct 2026. Primary analysis window: year to date 2026 (1 Jan – 26 Oct).
