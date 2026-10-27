@@ -223,15 +223,16 @@ payload = json.dumps({"products": products, "comps": comps, "summary": summary, 
 import base64, io
 from PIL import Image as _PIL
 
-def _thumb(path, side=160):
-    """Re-encode as a small thumbnail so the photo files stay under the artifact's 16 MB per-file limit."""
+def _thumb(path, side=128, q=55):
+    """Re-encode as a small WebP thumbnail: the whole photo set stays a few MB so the page can pass the public-sharing review."""
     im = _PIL.open(path).convert("RGB")
     im.thumbnail((side, side))
     b = io.BytesIO()
-    im.save(b, "JPEG", quality=72, optimize=True, progressive=True)
-    return "data:image/jpeg;base64," + base64.b64encode(b.getvalue()).decode()
+    im.save(b, "WEBP", quality=q, method=6)
+    return "data:image/webp;base64," + base64.b64encode(b.getvalue()).decode()
 
-_items = [("COMING_SOON", _thumb(os.path.join(HERE, "assets", "coming_soon.jpg"), 400))] + [(k, _thumb(os.path.join(IMG_DIR, have_img[k]))) for k in sorted(used_img)]
+_hero = {p_.get("img") for p_ in products}          # our product photos show large at the top of each product card
+_items = [("COMING_SOON", _thumb(os.path.join(HERE, "assets", "coming_soon.jpg"), 320, 70))] + [(k, _thumb(os.path.join(IMG_DIR, have_img[k]), *((280, 70) if k in _hero else ()))) for k in sorted(used_img)]
 _half = (len(_items) + 1) // 2
 for _fn, _part in (("images.js", _items[:_half]), ("images2.js", _items[_half:])):
     with open(os.path.join(os.path.dirname(os.path.abspath(OUT)), _fn), "w") as fh:
