@@ -175,10 +175,12 @@ plan = rd(os.path.join(D, "deals", "our_deals_bfcm2026_plan.csv"))
 unm = [r["product_name"] for r in plan if r["pid"] and not any(p["pid"] == int(r["pid"]) and p["mkt"] == r["marketplace"] and p.get("plan26") for p in P["products"])]
 check("BFCM 2026 plan mapped", "Every planned deal for a tracked product shows on that product", sum(1 for r in plan if r["pid"]), len(unm), unm,
       f"{sum(1 for r in plan if not r['pid'])} planned deal(s) for a product not tracked here (Hanging Closet Organizer)")
-arith = [p["key"] for p in P["products"] if p.get("da") and p["da"].get("ref") and not (
-    close(p["da"]["deal_std"], round(p["da"]["ref"] * (1 - p["da"]["std"]), 2), 0.0001) and close(p["da"]["deal_peak"], round(p["da"]["ref"] * (1 - p["da"]["peak"]), 2), 0.0001)
-    and p["da"]["std"] == 0.15 and p["da"]["peak"] == 0.20)]
-check("Assumed 2026 deal price arithmetic", "Deal = today's price × 0.85 (Nov 19-26) and × 0.80 (Nov 27-30), Umair's rule", sum(1 for p in P["products"] if p.get("da") and p["da"].get("ref")), len(arith), arith)
+sheet = {(r["marketplace"], r["asin"]): r for r in rd(os.path.join(D, "deals", "bfcm2026_deal_sheet_2026-10-27.csv"))}
+fnum = lambda x: float(x) if x not in (None, "", "None") else None
+dbad = [p["key"] for p in P["products"] if p.get("da") and p["da"].get("deal") is not None and not close(p["da"]["deal"], fnum(sheet.get((p["mkt"], p["da"]["asin"]), {}).get("deal_price")), 0.0001)]
+vdeal = [(p["mkt"], v["asin"], v.get("deal")) for p in P["products"] for v in p["vars"]]
+vbad = [f"{m} {a}" for m, a, d in vdeal if not ((d is None and fnum((sheet.get((m, a)) or {}).get("deal_price")) is None) or (d is not None and close(d, fnum((sheet.get((m, a)) or {}).get("deal_price")), 0.0001)))]
+check("BFCM 2026 deal prices vs the deal sheet", "Each product's deal price and every variation's deal price equal the Oct 27 deal sheet", len(vdeal) + sum(1 for p in P["products"] if p.get("da")), len(dbad) + len(vbad), dbad + vbad)
 
 # 7. BFCM stock outlook: product totals recomputed from the raw SellerBoard inventory file, demand arithmetic, workbook vs dashboard
 inv = {}

@@ -153,9 +153,10 @@ toc.push(gap(200), small("Click any entry to jump to it. Every product chapter s
 const usL = L.US || [], caL = L.CA || [];
 const lf = (arr, type) => arr.find(r => r.type === type);
 const pc = lf(usL, "Price cut only"), ped = lf(usL, "Prime Exclusive Discount"), none = lf(usL, "None");
-const dealProds = prods.filter(p => p.da && isNum(p.da.ref));
+const dealProds = prods.filter(p => p.da && isNum(p.da.deal));
+const dDepth = dealProds.map(p => p.da.depth).filter(isNum), dMin = Math.min(...dDepth), dMax = Math.max(...dDepth);
 const s1 = [H1("1. Executive summary", "s1"),
-  P("This report is the written, shareable version of the BFCM 2026 competitor tracker. It covers the same data as the tracker workbook and dashboard: every product, every mapped competitor, the BFCM 2025 results, the assumed BFCM 2026 deal prices and the stock outlook to Nov 30."),
+  P("This report is the written, shareable version of the BFCM 2026 competitor tracker. It covers the same data as the tracker workbook and dashboard: every product, every mapped competitor, the BFCM 2025 results, the BFCM 2026 deal prices and the stock outlook to Nov 30."),
   tiles([
     { k: "Products covered", v: `${S.products}`, s: `${S.productsUS} US · ${S.productsCA} Canada listings` },
     { k: "Competitors", v: int(S.comps), s: `${int(S.byCls.Direct)} direct · ${int(S.byCls["Alternative material"])} alternative material` },
@@ -163,8 +164,8 @@ const s1 = [H1("1. Executive summary", "s1"),
     { k: "Strikethrough shown today", v: `${int(S.strShown)} of ${int(S.strChecked)}`, s: "competitor pages checked" },
   ]), gap(),
   tiles([
-    { k: "Assumed deal Nov 19–26", v: "15% off", s: "today's price, until final prices are set", fill: C.dealSoft, edge: C.deal, color: C.deal },
-    { k: "Assumed deal Nov 27–30", v: "20% off", s: "Black Friday to Cyber Monday", fill: C.dealSoft, edge: C.deal, color: C.deal },
+    { k: "BFCM 2026 deals", v: `${dealProds.length}`, s: "product listings with a deal price (deal sheet, Oct 27)", fill: C.dealSoft, edge: C.deal, color: C.deal },
+    { k: "Deal discount (hero)", v: `${pct(dMin)}–${pct(dMax)}`, s: "off today's price; Bamboo 4 and 6 Piece deepest", fill: C.dealSoft, edge: C.deal, color: C.deal },
     { k: "Variations short to Nov 30", v: int(S.varsShort + S.varsOut), s: `${int(S.varsOut)} out of stock now · ${int(S.varsShort)} short even with inbound`, fill: C.badSoft, edge: C.bad, color: C.bad },
     { k: "Variations covered", v: int(S.varsCovered + S.varsInbound), s: `${int(S.varsInbound)} of them only if inbound arrives in time`, fill: C.goodSoft, edge: C.good, color: C.good },
   ]),
@@ -172,11 +173,11 @@ const s1 = [H1("1. Executive summary", "s1"),
   bullet([t("A plain price cut moved rank the most in BFCM 2025. ", { bold: true }), t(`In the US, competitors that only cut the price improved their Best Seller Rank by a median ${x2(pc && pc.median)} (${pc ? pc.n : 0} competitors), against ${x2(ped && ped.median)} for a Prime Exclusive Discount (${ped ? ped.n : 0}) and ${x2(none && none.median)} for no deal (${none ? none.n : 0}).`)]),
   bullet([t("BFCM is a big week for us. ", { bold: true }), t(`Our sales per day in BFCM week 2025 were ${x2(S.accountLift.US)} the 30 days before in the US and ${x2(S.accountLift.CA)} in Canada. Each product's own lift (Section 4) drives its stock need.`)]),
   bullet([t("Most of our rivals are direct. ", { bold: true }), t(`${int(S.byCls.Direct)} of ${int(S.comps)} competitors sell the same product type in the same material family as ours. They lead every competitor list in this report; alternative-material rivals are kept separately so they don't distort the price comparison.`)]),
-  bullet([t("Deal prices are an assumption until final prices are set. ", { bold: true }), t(`For ${dealProds.length} product listings the report shows today's price, 15% off for Nov 19–26 and 20% off for Nov 27–30, next to our own 2025 cut and the median cut rivals ran in 2025 (Section 5).`)]),
+  bullet([t("Deal prices now come from the team's deal sheet. ", { bold: true }), t(`For ${dealProds.length} product listings the report shows today's price and the actual BFCM 2026 deal price from the Oct 27 deal page export (one price per deal, ${pct(dMin)}–${pct(dMax)} off on the hero variation), next to our own 2025 cut and the median cut rivals ran in 2025 (Section 5). Amazon's maximum moves daily until the Nov 13 deadline.`)]),
   bullet([t("Stock is the main risk. ", { bold: true }), t(`${S.stockAtRisk} of ${S.stockProducts} products with stock data have at least one variation that runs short before Nov 30: ${int(S.varsOut)} variations are out of stock now and ${int(S.varsShort)} are short even if all inbound arrives (Section 6 and each product chapter).`)]),
   H2("Decisions this report supports"),
   bullet("Which deal type to run per product, using the BFCM 2025 rank lift by deal type."),
-  bullet("Whether our assumed BFCM 2026 price undercuts the direct competitors (the price map in each product chapter)."),
+  bullet("Whether our BFCM 2026 deal price undercuts the direct competitors (the price map in each product chapter)."),
   bullet("Which variations need stock sent now, and which cannot be covered in time."),
 ];
 
@@ -191,7 +192,7 @@ const s2 = [H1("2. How the tracker works", "s2"),
     ["3. Classify", "Each competitor is Direct (same product type, same material family), Alternative material, Material not verified or Different product type. Section 3 shows the rule."],
     ["4. BFCM 2025", "For each competitor: the deal type it ran, the price before BFCM (median Nov 1–19) and during BFCM week, the discount, and how its Best Seller Rank changed. Rank lift = rank before ÷ rank during, so 1.50x means 50% better."],
     ["5. Today", "Today's price, List Price, whether Amazon shows a strikethrough and at what price, and any deal running now."],
-    ["6. BFCM 2026", "Assumed deal price per product (15% off Nov 19–26, 20% off Nov 27–30) and stock: units at Amazon and inbound vs the units needed to Nov 30."],
+    ["6. BFCM 2026", "The deal and deal price for every variation (team deal sheet, Oct 27) and stock: units at Amazon and inbound vs the units needed to Nov 30."],
     ["7. Verify", "16 checks re-compute the numbers from the raw data and compare the workbook with the dashboard. All pass (Section 9)."],
   ]),
   H2("How to read the competitor tables"),
@@ -257,17 +258,17 @@ const s4 = [H1("4. BFCM 2025: what worked", "s4"),
 ];
 
 // ---- 5. deal prices
-const dealCols = [{ h: "Product", w: 2300 }, { h: "Mkt", w: 700 }, { h: "BFCM 2026 plan", w: 2900 }, { h: "Today", w: 1300, a: "r" }, { h: "Nov 19–26 (−15%)", w: 1500, a: "r" },
-  { h: "Nov 27–30 (−20%)", w: 1500, a: "r" }, { h: "Our 2025 cut", w: 1300, a: "r" }, { h: "Rivals' 2025 cut", w: 1500, a: "r" }, { h: "Direct median today", w: 1400, a: "r" }];
-const dealRow = p => { const d = p.da || {}, m = p.mkt; return [p.short, m, p.plan26 || "Not in a deal", money(d.ref ?? p.price, m), { v: money(d.deal_std, m), bold: true, color: C.deal },
-  { v: money(d.deal_peak, m), bold: true, color: C.deal }, d.ev25 ? pct(d.ev25.depth) : "—", d.comp25 ? `${pct(d.comp25.median)} (${d.comp25.n})` : "—", money(p.cmp.median, m)]; };
+const dealCols = [{ h: "Product", w: 2000 }, { h: "Mkt", w: 600 }, { h: "Deal", w: 2100 }, { h: "Hero variation", w: 1900 }, { h: "Price Oct 27", w: 1100, a: "r" }, { h: "Deal price", w: 1100, a: "r" },
+  { h: "Off", w: 900, a: "r" }, { h: "Range across variations", w: 1500, a: "r" }, { h: "Our 2025 cut", w: 1000, a: "r" }, { h: "Rivals' 2025 cut", w: 1100, a: "r" }, { h: "Direct median today", w: 1100, a: "r" }];
+const dealRow = p => { const d = p.da, m = p.mkt; return [p.short, m, `${d.type} ${d.dates}`, d.label || d.asin || "—", money(d.ref, m), { v: money(d.deal, m), bold: true, color: C.deal },
+  pct(d.depth), isNum(d.disc_min) ? `${pct(d.disc_min)}–${pct(d.disc_max)}` : "—", d.ev25 ? pct(d.ev25.depth) : "—", d.comp25 ? `${pct(d.comp25.median)} (${d.comp25.n})` : "—", money(p.cmp.median, m)]; };
 const s5 = [H1("5. BFCM 2026 deal prices", "s5"),
-  P("Until final deal prices are set, the tracker assumes the team rule: 15% off today's price on the regular deal days (Nov 19–26) and 20% off on the high days (Nov 27–30, Black Friday to Cyber Monday). The assumed price is shown next to the evidence: the cut we ran on the same product in BFCM 2025 and the median cut our competitors ran."),
-  P([t("Amazon may cap a deal at a lower reference price. ", { bold: true }), t("Where a recent deal or an old reference price sits below today's price, Amazon can require a deeper deal price than 15–20%. Product chapters list these cases under Deal notes.")]),
+  P("Deal prices come from the team's BFCM deal sheet (Amazon deal page export, Oct 27, 2026). For every variation it shows the deal, its dates, today's price and Amazon's maximum deal price, or a manual price where one is set. A Best Deal runs at one price for all its days. The deal price is shown next to the evidence: the cut we ran on the same product in BFCM 2025 and the median cut our competitors ran."),
+  P([t("Amazon's maximum moves daily until the Nov 13 deadline. ", { bold: true }), t("On Oct 27 most deals needed only about 5% off today's price, while Bamboo 4 and 6 Piece needed 20–28%. Prices here are refreshed with each new export. Each product chapter lists every variation's deal status (eligible, out of stock, no reference price, flagged).")]),
   chart(CH.deal_US, 10, 5.4), CH.deal_CA ? chart(CH.deal_CA, 10, 2.8) : null,
   H2("Deal prices by product"),
-  table(dealCols, prods.filter(p => p.plan26 || p.da).map(dealRow)),
-  small("Direct median today = the median price of this product's direct competitors (all competitors where no direct rival is mapped). Rivals' 2025 cut: median discount, number of competitors in brackets."),
+  table(dealCols, prods.filter(p => p.da).map(dealRow), { size: 15 }),
+  small("Hero variation = our best seller in the deal. Range = discount off today's price across all variations with a deal price. Direct median today = the median price of this product's direct competitors."),
 ];
 
 // ---- 6. stock
@@ -328,8 +329,8 @@ function chapter(p, first) {
   // key points
   const sh = st ? (st.counts["Short even with inbound"] || 0) : 0, oo = st ? (st.counts["Out of stock now"] || 0) : 0;
   const k = [{ k: "Our price today", v: money(p.price, m), s: p.bestLabel || "" }];
-  if (isNum(d.ref)) k.push({ k: "Assumed BFCM 2026 deal", v: `${money(d.deal_std, m)} → ${money(d.deal_peak, m)}`, vs: 22, s: "15% off Nov 19–26 · 20% off Nov 27–30", fill: C.dealSoft, edge: C.deal, color: C.deal });
-  else k.push({ k: "BFCM 2026 deal", v: p.plan26 ? "Price not set" : "Not in a deal", vs: 20, s: p.plan26 || "regular price through BFCM", fill: C.dealSoft, edge: C.deal });
+  if (isNum(d.deal)) k.push({ k: "BFCM 2026 deal price", v: `${money(d.ref, m)} → ${money(d.deal, m)}`, vs: 22, s: `${d.type} ${d.dates} · ${pct(d.depth)} off the Oct 27 price`, fill: C.dealSoft, edge: C.deal, color: C.deal });
+  else k.push({ k: "BFCM 2026 deal", v: p.da ? "No deal price yet" : "Not in a deal", vs: 20, s: p.da ? `${p.da.type} ${p.da.dates}` : "regular price through BFCM", fill: C.dealSoft, edge: C.deal });
   if (st) k.push({ k: "Stock to Nov 30", v: sh || oo ? `${int(sh)} short · ${int(oo)} out` : "Covered", vs: 20, s: `${int(st.onHand)} at Amazon · ${int(st.inbound)} inbound · need ${int(st.need)}`,
                    fill: sh || oo ? C.badSoft : C.goodSoft, edge: sh || oo ? C.bad : C.good, color: sh || oo ? C.bad : C.good });
   if (isNum(p.lift)) k.push({ k: "BFCM 2025 sales lift", v: x2(p.lift), s: isNum(p.u28) ? `${int(p.u28)} units in the last 28 days` : "" });
@@ -347,12 +348,13 @@ function chapter(p, first) {
   }
   // BFCM 2026 deal
   out.push(H3("BFCM 2026 deal"));
-  if (isNum(d.ref)) {
-    out.push(table([{ h: "Plan", w: 3400 }, { h: "Today", w: 1500, a: "r" }, { h: "Nov 19–26 (−15%)", w: 1900, a: "r" }, { h: "Nov 27–30 (−20%)", w: 1900, a: "r" },
-      { h: "Our 2025 cut", w: 1700, a: "r" }, { h: "Rivals' 2025 cut", w: 2000, a: "r" }, { h: "Direct median today", w: 2000, a: "r" }],
-      [[p.plan26 || "—", money(d.ref, m), { v: money(d.deal_std, m), bold: true, color: C.deal }, { v: money(d.deal_peak, m), bold: true, color: C.deal },
-        d.ev25 ? `${pct(d.ev25.depth)} (${money(d.ev25.pre, m)} → ${money(d.ev25.bf, m)})` : "—", d.comp25 ? `${pct(d.comp25.median)} (${d.comp25.n} rivals)` : "—", money(p.cmp.median, m)]]));
-  } else out.push(P(p.plan26 ? `Planned: ${p.plan26}. No current price to base the assumed deal price on.` : "Not in a BFCM 2026 deal: sells at its regular price through BFCM."));
+  if (p.da) {
+    out.push(table([{ h: "Deal", w: 2600 }, { h: "Hero variation", w: 2200 }, { h: "Price Oct 27", w: 1300, a: "r" }, { h: "Deal price", w: 1300, a: "r" }, { h: "Off", w: 1100, a: "r" },
+      { h: "Variations (deal page)", w: 2700 }, { h: "Our 2025 cut", w: 1600, a: "r" }, { h: "Rivals' 2025 cut", w: 1600, a: "r" }],
+      [[`${d.type} ${d.dates}`, d.label || d.asin || "—", money(d.ref, m), { v: money(d.deal, m), bold: true, color: C.deal }, pct(d.depth),
+        Object.entries(d.counts || {}).sort((a, b) => b[1] - a[1]).map(([k2, n]) => `${n} ${k2.toLowerCase()}`).join(", ") + (isNum(d.disc_min) ? `; ${pct(d.disc_min)}–${pct(d.disc_max)} off` : ""),
+        d.ev25 ? `${pct(d.ev25.depth)} (${money(d.ev25.pre, m)} → ${money(d.ev25.bf, m)})` : "—", d.comp25 ? `${pct(d.comp25.median)} (${d.comp25.n} rivals)` : "—"]], { size: 15 }));
+  } else out.push(P("Not in a BFCM 2026 deal: sells at its regular price through BFCM."));
   if ((p.notes || []).length) { out.push(P([t("Deal notes", { bold: true })], { spacing: { before: 100, after: 40 } })); for (const n of p.notes) out.push(bullet([t(n.topic + ". ", { bold: true }), t(n.detail)])); }
   // stock
   if (st) {
@@ -401,7 +403,7 @@ const s9 = [H1("9. Verification", "s9"),
 // ---- 10. open items
 const s10 = [H1("10. Open items and next steps", "s10"),
   table([{ h: "Item", w: 4600 }, { h: "What happens next", w: 6800 }, { h: "When", w: 3000 }], [
-    ["Final BFCM 2026 deal prices", "Replace the assumed 15% / 20% prices with the final agreed deal prices and re-run the checks.", "Oct 20 – 21, 2026"],
+    ["Final BFCM 2026 deal prices", "Deal prices move daily until submission; re-export the deal sheet, refresh the tracker and submit on the price actually read. Fix SKUs at a loss, below the seller minimum, with no reference price or flagged by Amazon.", "By Nov 13, 2026"],
     ["Inbound arrival dates", "Add the arrival date for each inbound shipment so 'Needs inbound in time' can be confirmed or moved to 'Short'.", "As shipments are booked"],
     ["Variations short or out of stock", "Decide replenishment for the variations listed in each product chapter; anything that can't arrive by Nov 18 should be left out of the deal or paused in ads.", "This week"],
     ["Competitor prices", "Re-check competitor prices and strikethroughs in the week before Nov 19, when rivals set their deal prices.", "Nov 12 – 18, 2026"],
@@ -423,7 +425,7 @@ const s11 = [H1("Appendix: glossary", "s11"),
     ["Lightning Deal / Best Deal", "Time-limited Amazon deals with a deal badge; Best Deals run for several days."],
     ["Direct competitor", "Same product type and same material family as ours."],
     ["Alternative material", "Same product type, different material."],
-    ["Assumed deal price", "15% off today's price Nov 19–26 and 20% off Nov 27–30, until final prices are set."],
+    ["BFCM 2026 deal price", "The deal price on Amazon's deal page for each variation (Amazon's maximum, or a manual price), from the team's deal sheet. One price per deal."],
     ["Covered / Needs inbound / Short / Out now", "Stock status per variation against the units needed to Nov 30 (Section 6)."],
   ]),
 ];

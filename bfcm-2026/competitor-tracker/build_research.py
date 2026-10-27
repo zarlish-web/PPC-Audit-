@@ -53,6 +53,24 @@ LAUNCHING = set()                                             # CL Cooling Sheet
 def scope_of(pid):
     return ("Core" if pid in CORE else "Not launched" if pid in NOT_LAUNCHED else "Launching (partly live)" if pid in LAUNCHING else "Other")
 
+# BFCM 2026 deal sheet, loaded early: our_variations() attaches each variation's deal price and status
+DEAL_ASOF = "Oct 27, 2026"
+DEAL_FILE = f"{DATA}/deals/bfcm2026_deal_sheet_2026-10-27.csv"
+deals26 = {}
+for r_ in csv.DictReader(open(DEAL_FILE)):
+    for k_ in ("current_price", "reference_price", "amazon_max_deal_price", "manual_deal_price", "deal_price", "seller_min"):
+        r_[k_] = float(r_[k_]) if r_.get(k_) not in (None, "", "None") else None
+    deals26[(r_["marketplace"], r_["asin"])] = r_
+
+def deal_dates(r_):
+    s_, e_ = dt.date.fromisoformat(r_["start"]), dt.date.fromisoformat(r_["end"])
+    return f"{s_:%b} {s_.day}" + (f"-{e_.day}" if e_ != s_ else "")
+
+def deal_status_short(r_):
+    st_ = (r_ or {}).get("status") or ""
+    return ("Eligible" if st_.startswith("\u2713 Eligible") else "Manual price" if st_.startswith("\u2713 Manual") else "Out of stock" if "OOS" in st_
+            else "No reference price" if "No reference" in st_ else "Flagged by Amazon" if "Flagged" in st_ else "Not on the deal page" if "not on the" in st_ else st_)
+
 cc = {(int(d["product_id"]), d["marketplace"]): d for d in (jl(f) for f in glob.glob(f"{DATA}/cc/*.json")) if d}
 ours = {(int(d["product_id"]), d["marketplace"]): d for d in (jl(f) for f in glob.glob(f"{DATA}/ours/*.json")) if d}
 skus = {(int(d["product_id"]), d["marketplace"]): d for d in (jl(f) for f in glob.glob(f"{DATA}/skus/*.json")) if d and "product_id" in d}
@@ -497,6 +515,10 @@ def our_variations(pid, mkt):
             r["price_now"], r["now_src"] = lp_, "launch price, live Oct 15, 2026"
         if (mkt, r["asin"]) in our_page_flag:
             r["status"] = our_page_flag[(mkt, r["asin"])]
+        d26 = deals26.get((mkt, r["asin"]))
+        r["deal_price"] = d26["deal_price"] if d26 else None
+        r["deal_status"] = deal_status_short(d26) if d26 else "Not in a deal"
+        r["deal_disc"] = (1 - d26["deal_price"] / d26["current_price"]) if d26 and d26["deal_price"] and d26["current_price"] else None
         xr = xray.get((mkt, r["asin"]))
         r.update({"x_rating": xr["rating"] if xr else None, "x_reviews": xr["reviews"] if xr else None, "x_bsr": xr["bsr"] if xr else None,
                   "x_units": xr["units_mo"] if xr else None, "x_pool": xr["pool"] if xr else None})
@@ -1099,44 +1121,45 @@ for r_ in records:            # CA rows lack the Command Center / ASINsight fiel
     for k_ in _allk:
         r_.setdefault(k_, None)
 
-# ASSUMED BFCM 2026 deal price, until BM sends the final prices (agreed with Shayan, Oct 15, 2026).
-# Reference price = today's live price of the hero ASIN, assumed unchanged until Nov 18 (Amazon sets the deal's reference
-# price the day before the deal). Deal price = last year's BFCM price for the same ASIN when the product ran a 2025 deal
-# (the price that produced the 2025 lift); otherwise the reference cut by the median discount competitors used on this
-# product in BFCM 2025 (price cuts). Canada takes the US product's discount on its own live CAD price.
-# BFCM 2026 discount rule (Umair Tahir, relayed by Shayan Rana, Oct 15, 2026): 20% off on the high days, 15% on the other
-# deal days. High days are taken as Black Friday to Cyber Monday (Nov 27-30, 2026) until Umair confirms the exact days.
-RULE26 = {"std": 0.15, "peak": 0.20, "peak_days": "Nov 27-30, Black Friday to Cyber Monday", "std_days": "Nov 19-26",
-          "src": "team rule agreed Oct 15, 2026"}
-
+# BFCM 2026 deal prices: the team's deal sheet (Amazon deal page export, Oct 27, 2026), one row per SKU with the deal, its
+# dates, today's price, the reference price and Amazon's maximum deal price (or a manual price where one is set). It replaces
+# the 15% / 20% placeholder used until real prices existed. Amazon's maximum moves daily until the Nov 13 deal deadline.
 def deal_assumption(pid, mkt):
-    """Assumed 2026 deal prices: today's live price of the hero ASIN cut by Umair's 15% / 20% rule, with the 2025 evidence beside it."""
-    if not plan26.get((pid, mkt)):
+    """BFCM 2026 deal for the product from the deal sheet: the hero variation's deal price, plus the spread across all variations."""
+    if pid in NOT_LAUNCHED:      # not launched: any variations on another family's deal page show per variation only
         return None
-    def live(m_, asin=None):
-        vs = [v for v in our_variations(pid, m_) if v.get("price_now") is not None]
-        if asin:
-            vs = [v for v in vs if v["asin"] == asin] or vs[:0]
-        if not vs:
-            return None, None
-        if not asin:
-            best = our_title_and_image(pid, m_)[2]
-            vs = [v for v in vs if v["asin"] == best] or sorted(vs, key=lambda v: -(v.get("units_28d") or 0))[:1]
-        return vs[0]["asin"], vs[0]["price_now"]
+    vs = our_variations(pid, mkt)
+    rows = [deals26[(mkt, v["asin"])] for v in vs if (mkt, v["asin"]) in deals26]
+    if not rows:
+        return None
     hk = hero25.get((pid, "US")) or {}
-    if mkt == "US":
-        asin, ref = live("US", hk.get("asin")) if hk.get("asin") else live("US")
-        if not ref:
-            asin, ref = live("US")
-    else:
-        asin, ref = live("CA")
+    priced = [r_ for r_ in rows if r_["deal_price"] is not None and r_["current_price"]]
+    pick = None
+    for a_ in ([hk.get("asin")] if mkt == "US" and hk.get("asin") else []) + [our_title_and_image(pid, mkt)[2]]:
+        pick = next((r_ for r_ in priced if r_["asin"] == a_), None)
+        if pick:
+            break
+    if not pick and priced:
+        units = {v["asin"]: v.get("units_28d") or 0 for v in vs}
+        pick = max(priced, key=lambda r_: units.get(r_["asin"], 0))
+    disc = sorted(1 - r_["deal_price"] / r_["current_price"] for r_ in priced)
+    cnt = {}
+    for r_ in rows:
+        cnt[deal_status_short(r_)] = cnt.get(deal_status_short(r_), 0) + 1
     ev = {"asin": hk["asin"], "pre": hk["pre"], "bf": hk["bf"], "depth": 1 - hk["bf"] / hk["pre"]} if hk.get("pre") and hk.get("bf") else None
     comp = [x["bf_disc_v"] for x in records if x["pid"] == pid and x["mkt"] == "US" and x.get("bf_type") == "Price cut only" and isinstance(x.get("bf_disc_v"), float)]
-    out = {"asin": asin, "ref": ref, "std": RULE26["std"], "peak": RULE26["peak"],
-           "deal_std": round(ref * (1 - RULE26["std"]), 2) if ref else None, "deal_peak": round(ref * (1 - RULE26["peak"]), 2) if ref else None,
+    r0 = pick or rows[0]
+    deal = pick["deal_price"] if pick else None
+    ref = pick["current_price"] if pick else None
+    out = {"asin": r0["asin"], "label": " ".join(x for x in (r0["size"], r0["colour"]) if x), "ref": ref, "ref_amz": r0["reference_price"], "deal": deal,
+           "depth": (1 - deal / ref) if deal and ref else None, "manual": bool(pick and pick["manual_deal_price"] is not None),
+           "type": r0["deal_type"], "dates": deal_dates(r0), "deal_name": r0["deal"], "start": r0["start"], "end": r0["end"],
+           "disc_min": disc[0] if disc else None, "disc_med": statistics.median(disc) if disc else None, "disc_max": disc[-1] if disc else None,
+           "n": len(rows), "counts": cnt, "asof": DEAL_ASOF,
            "ev25": ev, "comp25": {"median": statistics.median(comp), "n": len(comp)} if comp else None,
-           "basis": f"{RULE26['src']}: {RULE26['peak']:.0%} off on the high days ({RULE26['peak_days']}), {RULE26['std']:.0%} off on the other deal days ({RULE26['std_days']})"}
-    out["deal"], out["depth"] = out["deal_std"], out["std"]
+           "basis": f"deal sheet, Amazon deal page export {DEAL_ASOF}: Amazon's maximum deal price (or a manual price), which moves daily until the Nov 13 deadline"}
+    out["deal_std"] = out["deal_peak"] = out["deal"]          # one price for the whole deal (kept under both names for the layouts)
+    out["std"] = out["peak"] = out["depth"]
     return out
 
 def deal_evidence_text(da):
@@ -1521,12 +1544,13 @@ for pid, mkt, tname in TABS:
                 "Every SKU / child ASIN with its image, size, colour, price and 28-day units. Images from the Data Dive seller catalog; sizes and colours from the SKU data, else read from the title.")
     VC = [("img", "Image", 11), ("asin", "Child ASIN", 11), ("sku", "SKU", 14), ("title", "Title", 34), ("size", "Size", 8), ("colour", "Colour", 9),
           ("price_now", "Price now ($)", 8), ("now_src", "Price now: source, date", 10),
+          ("deal_price", "BFCM 2026 deal price ($)", 8), ("deal_disc", "Deal discount vs Oct 27 price", 7), ("deal_status", "BFCM deal status", 10),
           ("price", "Command Center price ($)", 8), ("price_date", "CC price date (stale)", 9),
           ("contribution", "Contribution ($)", 8), ("be_acos", "Break-even ACoS", 7), ("units_28d", "Units 28d", 7), ("status", "Status", 8),
           ("hero", "Our hero ASIN? (share of our visibility)", 10),
           ("x_rating", "Rating (H10, review family)", 7), ("x_reviews", "Reviews (H10, review family)", 8), ("x_bsr", "BSR (H10)", 8),
           ("x_units", "Est units / month (H10)", 8), ("split_txt", "Own review family?", 12)]
-    VF = {"price_now": "$#,##0.00", "price": "$#,##0.00", "contribution": "$#,##0.00", "be_acos": "0%", "units_28d": "#,##0",
+    VF = {"price_now": "$#,##0.00", "deal_price": "$#,##0.00", "deal_disc": "0%", "price": "$#,##0.00", "contribution": "$#,##0.00", "be_acos": "0%", "units_28d": "#,##0",
           "x_rating": "0.0", "x_reviews": "#,##0", "x_bsr": "#,##0", "x_units": "#,##0"}
     header_row(ws, r, [(a, b, c) for a, b, c in VC], height=34)
     r += 1
@@ -1546,8 +1570,10 @@ for pid, mkt, tname in TABS:
                 c.number_format = VF[key]
             if key in ("price", "price_date") and vv.get(key) is not None:
                 c.font = F(color="808080")
-            if key == "price_now" and vv.get(key) is not None:
-                c.font = F(bold=True)
+            if key in ("price_now", "deal_price") and vv.get(key) is not None:
+                c.font = F(bold=True, color=("7030A0" if key == "deal_price" else "000000"))
+            if key == "deal_status" and vv.get(key) not in (None, "Eligible", "Manual price", "Not in a deal"):
+                c.font = F(color="C00000")
             if key == "status" and str(vv.get(key) or "").startswith(("Not buyable", "No Buy Box")):
                 c.fill = FILL["flag"]; c.font = F(bold=True)
             if key == "split_txt" and vv.get(key):
@@ -1655,9 +1681,14 @@ for pid, mkt, tname in TABS:
     if da:
         cur_ = "C$" if mkt == "CA" else "$"
         ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
-        c = ws.cell(row=r, column=1, value=(f"ASSUMED 2026 deal prices, until BM's final: {da['asin']} today {cur_}{da['ref']:,.2f}; {cur_}{da['deal_std']:,.2f} at {da['std']:.0%} off ({RULE26['std_days']}) and {cur_}{da['deal_peak']:,.2f} at {da['peak']:.0%} off ({RULE26['peak_days']}). "
-                                            f"Rule: {RULE26['src']}. Evidence: {deal_evidence_text(da) or 'no 2025 history'}. Amazon may use a lower reference price than today's (it sets it the day before the deal), which would lower the deal price."
-                                            if da.get("ref") else f"ASSUMED 2026 discount, until BM's final: {da['std']:.0%} / {da['peak']:.0%} ({RULE26['src']}); no live price for the hero ASIN."))
+        cn_ = da["counts"]
+        c = ws.cell(row=r, column=1, value=(f"BFCM 2026 DEAL ({da['asof']} deal sheet): {da['type']} {da['dates']}. {da['label']} ({da['asin']}): {cur_}{da['ref']:,.2f} on Oct 27 -> {cur_}{da['deal']:,.2f} deal price, {da['depth']:.0%} off"
+                                            + (" (manual price)" if da["manual"] else "") + f". Across {da['n']} variations on the deal page: "
+                                            + ", ".join(f"{v_} {k_.lower()}" for k_, v_ in sorted(cn_.items(), key=lambda kv: -kv[1]))
+                                            + (f"; discounts {da['disc_min']:.0%}-{da['disc_max']:.0%} (median {da['disc_med']:.0%})" if da.get("disc_med") is not None else "")
+                                            + f". Amazon's maximum moves daily until the Nov 13 deadline. 2025 evidence: {deal_evidence_text(da) or 'none'}."
+                                            if da.get("deal") else f"BFCM 2026 DEAL ({da['asof']} deal sheet): {da['type']} {da['dates']}; no variation has a deal price yet ("
+                                            + ", ".join(f"{v_} {k_.lower()}" for k_, v_ in cn_.items()) + ")."))
         c.font = F(size=8.5, italic=True, color="7F6000"); c.alignment = WRAP
         ws.row_dimensions[r].height = 18
         r += 1
@@ -1939,7 +1970,7 @@ for j, (name, vals) in enumerate(LISTS, 1):
 lk = wb.create_sheet("Lookup")
 lk.sheet_state = "hidden"
 LKC = ["key", "Product", "Tab", "Title", "Image URL", "Brand", "Parent ASIN", "Best-selling child", "Variations", "Our price (best child)", "Units, last 28 days",
-       "BFCM 2025 sales lift", "BFCM 2026 plan", "Assumed deal Nov 19-26", "Assumed deal Nov 27-30", "Stock at Amazon", "Inbound", "Units needed to Nov 30",
+       "BFCM 2025 sales lift", "BFCM 2026 deal", "BFCM 2026 deal price", "Deal discount vs Oct 27 price", "Stock at Amazon", "Inbound", "Units needed to Nov 30",
        "Short even with inbound", "Variations covered", "Variations needing inbound", "Variations short", "Variations out of stock", "Contribution per unit", "Break-even ACoS"]
 for j, h in enumerate(LKC, 1):
     lk.cell(row=1, column=j, value=h).font = F(bold=True)
@@ -1954,7 +1985,7 @@ for pid, mkt, tname in TABS:
     c_ = so_["counts"]
     vals = [f"{mkt}|{PINFO[pid][2]}", PINFO[pid][2], tname, title or f"{o.get('brand')} {o.get('name')}", good_img(img), p.get("brand") or o.get("brand"), parent, best,
             len(our_variations(pid, mkt)), our_headline_price(pid, mkt, best, e["price"])[0], e["units_28d"], lf["lift"] if lf else None,
-            plan26_text(pid, mkt) or "Not in a deal", (da or {}).get("deal_std"), (da or {}).get("deal_peak"),
+            (f"{da['type']} {da['dates']}" if da else plan26_text(pid, mkt) or "Not in a deal"), (da or {}).get("deal"), (da or {}).get("depth"),
             so_["on_hand"] if so_["rows"] else None, so_["inbound"] if so_["rows"] else None, so_["need"] if so_["rows"] else None, so_["short"] if so_["rows"] else None,
             c_.get("Covered to Nov 30", 0), c_.get("Needs inbound in time", 0), c_.get("Short even with inbound", 0), c_.get("Out of stock now", 0),
             e["contribution"], e["be_acos"]]
@@ -2009,14 +2040,14 @@ def build_dashboard(mkt, sname, mcol, scol, pos):
     db["E4"] = (f'=IF($C$4="All","",{lk_(5)})' if NO_IMAGE_FORMULA else f'=IF($C$4="All","",IFERROR(_xlfn.IMAGE({lk_(5)}),"IMAGE COMING SOON"))')
     db["E4"].alignment = CENTER; db["E4"].border = BOX
     facts = (("Our product", 4, None), ("Brand · parent ASIN", None, None), ("Our price (best child)", 10, money), ("Units, last 28 days", 11, "#,##0"),
-             ("BFCM 2026 plan", 13, None), ("Assumed deal price (15% / 20%)", None, None), ("BFCM 2025 sales lift", 12, '0.00"x"'))
+             ("BFCM 2026 deal", 13, None), ("BFCM 2026 deal price", None, None), ("BFCM 2025 sales lift", 12, '0.00"x"'))
     for i, (lab, col, nf) in enumerate(facts, 4):
         a = db.cell(row=i, column=6, value=lab); a.font = F(bold=True, color=C_SUB, size=8)
         db.merge_cells(start_row=i, start_column=7, end_row=i, end_column=11)
         if lab == "Brand · parent ASIN":
             fx = f'=IF($C$4="All","",{lk_(6)}&" · "&{lk_(7)})'
-        elif lab.startswith("Assumed deal"):
-            fx = f'=IF(OR($C$4="All",{lk_(14)}=""),"No deal planned",TEXT({lk_(14)},"{cur}0.00")&" (Nov 19-26) · "&TEXT({lk_(15)},"{cur}0.00")&" (Nov 27-30)")'
+        elif lab == "BFCM 2026 deal price":
+            fx = f'=IF(OR($C$4="All",{lk_(14)}=""),"No deal price",TEXT({lk_(14)},"{cur}0.00")&" · "&TEXT({lk_(15)},"0%")&" off the Oct 27 price")'
         else:
             fx = f'=IF($C$4="All","All products",{lk_(col)})' if col == 4 else f'=IF($C$4="All","",{lk_(col)})'
         b = db.cell(row=i, column=7, value=fx); b.font = F(bold=(lab == "Our product"), size=9); b.alignment = Alignment(wrap_text=True, vertical="center")
@@ -2132,12 +2163,12 @@ lines = [
     ("1. US Dashboard and CA Dashboard - pick a product in the yellow cell (brand, tier and family narrow the competitors). Our product panel, stock tiles, competitor tiles and the competitor gallery update. 'Open the product tab' jumps to the full analysis.", {}),
     ("2. Product Index - every product in both marketplaces with its image, variations and BFCM 2025 result; click a tab name to open it.", {}),
     ("3. BFCM Stock - every variation: stock at Amazon, inbound, sales a day, units needed to Nov 30, run-out date with and without inbound, and status. Filter by product or status.", {}),
-    (f"4. Product tabs - US tabs (blue) then CA tabs (orange), {len(TABS)} in all. Each has: 1 Our product (plan, assumed deal prices, stock outlook, deal pricing notes) · 2 Our variations · 3 Our BFCM 2025 result · 4 Competitor landscape.", {}),
+    (f"4. Product tabs - US tabs (blue) then CA tabs (orange), {len(TABS)} in all. Each has: 1 Our product (BFCM 2026 deal and deal price, stock outlook, deal pricing notes) · 2 Our variations · 3 Our BFCM 2025 result · 4 Competitor landscape.", {}),
     ("5. Data Check - the as-of date, coverage and verification result of every data set; Data Gaps - what is still missing.", {}),
     ("", None),
     ("Key rules", dict(bold=True, size=11)),
     ("Our price = the latest catalog price read (US Oct 13, CA Oct 14); a variation without one shows no price.", {}),
-    ("Assumed BFCM 2026 deal price, until final prices are set: 15% off today's price on Nov 19-26 and 20% off on Nov 27-30 (Black Friday to Cyber Monday). Amazon sets the reference price the day before the deal and can use a lower reference, which would lower the deal price.", {}),
+    (f"BFCM 2026 deal prices come from the team's deal sheet ({DEAL_ASOF} Amazon deal page export): for every variation, the deal, its dates, today's price and Amazon's maximum deal price (or a manual price). Amazon's maximum moves daily until the Nov 13 deadline, so prices are refreshed with each new export.", {}),
     ("BFCM 2026 stock: demand at today's pace to Nov 18, then x the product's BFCM 2025 lift for Nov 19-30 (the account's lift where the product's own is missing or unreliable, labelled ASSUMED). Inbound has no arrival date, so each variation shows its run-out date with and without inbound.", {}),
     ("BFCM 2025 = Nov 20 - Dec 1, 2025; pre-event = Nov 1-19 for prices and Oct 21 - Nov 19 for sales.", {}),
     ("A COMING SOON picture means no verified photo yet - it is never replaced by another product's photo. Images render in Excel 365 and Google Sheets.", {}),
@@ -2276,8 +2307,9 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
      ("Independent re-verification", "verify_tracker.py: recomputes from the raw files and compares with this workbook and the dashboard", "2026-10-15",
       (jl(f"{DATA}/verification_report.json", {}) or {}).get("total"), "Exact" if (jl(f"{DATA}/verification_report.json", {}) or {}).get("passed") == (jl(f"{DATA}/verification_report.json", {}) or {}).get("total") else "Check", "",
       "; ".join(f"{r_['name']}: {r_['checked']:,} checked, {r_['mismatches']} mismatches" for r_ in (jl(f"{DATA}/verification_report.json", {}) or {}).get("checks", []))),
-     ("ASSUMED BFCM 2026 deal prices", "Tracker assumption (agreed Oct 15, 2026) until BM sends final prices", "2026-10-15", None, "Check", "",
-      "Why an assumption: BFCM 2026 pricing is not finalized yet because of price fluctuations (Umair Tahir, Slack, Oct 15, 2026), and Amazon fixes the deal reference price the day before the event. Rule (Umair Tahir via Shayan Rana, Oct 15): 20% off on the high days and 15% off on the other deal days; high days taken as Black Friday to Cyber Monday, Nov 27-30, until confirmed. Base = today's live price of the hero ASIN (US) or best seller (CA). Evidence beside each product: our own BFCM 2025 cut on the hero (Keepa median price Nov 1-19 vs Nov 20 - Dec 1) and the US competitors' median cut. Amazon's reference can be lower than today's price (B4 King White: live $94.99, Amazon reference $79.99, Oct 16 Lightning Deal max $67.99, per Umair Tahir, Oct 15), which would push the deal price lower. Replace with BM's prices when they arrive."),
+     ("BFCM 2026 deal prices", "Team deal sheet: Amazon deal page export, US and CA", DEAL_ASOF, len(deals26), "Current", "",
+      f"{sum(1 for r_ in deals26.values() if r_['deal_price'] is not None):,} of {len(deals26):,} SKUs on the deal pages have a deal price (Amazon's maximum, or a manual price on {sum(1 for r_ in deals26.values() if r_['manual_deal_price'] is not None)}); the rest are out of stock, have no reference price or are flagged by Amazon. "
+      "Replaces the 15% / 20% placeholder used before real prices existed. Amazon's maximum deal price moves daily until the Nov 13 deadline (on Oct 27 most deals needed only about 5% off today's price; Bamboo 4 and 6 Piece 20-28%), so the tracker is refreshed with each export."),
      ("Our heroes' BFCM 2025 price and Best Seller Rank (US)", "Command Center keepa_history (data/keepa/keepa_history_ours_cc.csv)", "Nov 1 - Dec 5, 2025", len(hero25), "Exact", "",
       f"Daily Keepa for our {len(hero25)} US hero child ASINs, pulled Oct 14. Keepa holds no Buy Box series for our own ASINs, so price = lowest new offer (we are the only seller). Price drops on Nov 20 match the Best Deals start: B4 $74.99 to $71.24, B6 $79.99 to $75.99, S4 $29.95 to $25.46, S6 $33.95 to $32.25, Satin Fitted $16.95 to $15.15, SSS4 $33.95 to $31.41. No price history for Bamboo Fitted, Decolure Cooling 4pc, CL Pillowcases, Linen Curtains and Quilt Set in this window."),
      ("Our BFCM 2025 stock", "DataHub inventory, revision 2 (agent) + data/stock/our_stock_bfcm2025_missing_dates_bracketed.csv", "2026-10-14", None, "Partial", "", "US Nov 26, 27, Dec 1 and CA Nov 24, 29, 30 have no snapshot. Filled by inference (data/stock/our_stock_bfcm2025_missing_dates_combined.csv) from units sold that day (agent, DataHub amazon_sales, 1,761 variation-days with a sale) and the readings either side: 3,503 of 3,936 variation-days in stock, 39 out of stock, 386 unknown (low or no stock either side and no sale), and 8 sold despite 0 units on both sides (inbound stock arriving that day, e.g. B4 Queen Mid Grey B0BZQ18QJB sold 87 on Cyber Monday). Stock unit columns stay blank for these days."),

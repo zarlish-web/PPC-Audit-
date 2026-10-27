@@ -110,9 +110,9 @@
    "note": "1 planned deal(s) for a product not tracked here (Hanging Closet Organizer)"
   },
   {
-   "name": "Assumed 2026 deal price arithmetic",
-   "compared": "Deal = today's price \u00d7 0.85 (Nov 19-26) and \u00d7 0.80 (Nov 27-30), Umair's rule",
-   "checked": 21,
+   "name": "BFCM 2026 deal prices vs the deal sheet",
+   "compared": "Each product's deal price and every variation's deal price equal the Oct 27 deal sheet",
+   "checked": 2037,
    "mismatches": 0,
    "status": "Pass",
    "examples": [],

@@ -52,7 +52,8 @@ for pid, mkt, tname in br.TABS:
         vrows.append({"asin": v["asin"], "sku": v.get("sku"), "size": v.get("size"), "colour": v.get("colour"),
                       "price": v["price_now"] if live else None, "live": live, "src": v.get("now_src") if live else None,
                       "u28": num(v.get("units_28d")), "rating": num(v.get("x_rating")), "reviews": num(v.get("x_reviews")), "bsr": num(v.get("x_bsr")),
-                      "status": v.get("status"), "img": img_for(v["asin"], mkt), "url": v.get("image")})
+                      "status": v.get("status"), "img": img_for(v["asin"], mkt), "url": v.get("image"),
+                      "deal": num(v.get("deal_price")), "dealDisc": num(v.get("deal_disc")), "dealSt": v.get("deal_status")})
         for d_, k in ((cols, v.get("colour")), (sizes, v.get("size"))):
             if k:
                 d_.setdefault(k, {"name": k, "n": 0, "u28": 0})

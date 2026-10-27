@@ -194,24 +194,23 @@ for m in ("US", "CA"):
     ax.set_title(f"{'United States' if m == 'US' else 'Canada'}: our BFCM 2025 sales lift by product", loc="left", fontsize=10, fontweight="bold")
     charts[f"our_lift_{m}"] = save(fig, f"our_lift_{m}")
 
-# ---------------------------------------------------------------- 6. assumed BFCM 2026 deal ladder
+# ---------------------------------------------------------------- 6. BFCM 2026 deal prices (deal sheet)
 for m in ("US", "CA"):
-    ps = [p for p in products if p["mkt"] == m and p.get("da") and num(p["da"].get("ref"))]
+    ps = [p for p in products if p["mkt"] == m and p.get("da") and num(p["da"].get("deal")) and num(p["da"].get("ref"))]
     if not ps:
         continue
     ps.sort(key=lambda p: p["da"]["ref"])
     fig, ax = plt.subplots(figsize=(10, 0.36 * len(ps) + 1.2))
     for y, p in enumerate(ps):
         d = p["da"]
-        ax.plot([d["deal_peak"], d["ref"]], [y, y], color=GRID, lw=3, solid_capstyle="round", zorder=1)
-        ax.scatter([d["ref"]], [y], color=GREY, s=34, zorder=3, label="Today" if y == 0 else None)
-        ax.scatter([d["deal_std"]], [y], color=BLUE, s=34, zorder=3, label="Nov 19–26 (−15%)" if y == 0 else None)
-        ax.scatter([d["deal_peak"]], [y], color=ORANGE, s=34, zorder=3, label="Nov 27–30 (−20%)" if y == 0 else None)
-        ax.text(d["ref"] + 1, y, f"{cur(m)}{d['ref']:.2f} → {cur(m)}{d['deal_std']:.2f} → {cur(m)}{d['deal_peak']:.2f}", va="center", fontsize=7.4, color=INK2)
+        ax.plot([d["deal"], d["ref"]], [y, y], color=GRID, lw=3, solid_capstyle="round", zorder=1)
+        ax.scatter([d["ref"]], [y], color=GREY, s=34, zorder=3, label="Price on Oct 27" if y == 0 else None)
+        ax.scatter([d["deal"]], [y], color=BLUE, s=34, zorder=3, label="BFCM 2026 deal price" if y == 0 else None)
+        ax.text(d["ref"] + 1, y, f"{cur(m)}{d['ref']:.2f} → {cur(m)}{d['deal']:.2f} ({d['depth']:.0%} off) · {d['type']} {d['dates']}", va="center", fontsize=7.2, color=INK2)
     ax.set_yticks(range(len(ps))); ax.set_yticklabels([p["short"] for p in ps]); ax.grid(axis="y", visible=False)
-    ax.set_xlim(min(p["da"]["deal_peak"] for p in ps) * 0.8, max(p["da"]["ref"] for p in ps) * 1.45)
+    ax.set_xlim(min(p["da"]["deal"] for p in ps) * 0.8, max(p["da"]["ref"] for p in ps) * 1.6)
     ax.set_xlabel(f"Price ({cur(m)})"); ax.legend(loc="lower right", fontsize=7.8)
-    ax.set_title(f"{'United States' if m == 'US' else 'Canada'}: assumed BFCM 2026 deal prices", loc="left", fontsize=10, fontweight="bold")
+    ax.set_title(f"{'United States' if m == 'US' else 'Canada'}: BFCM 2026 deal price vs the Oct 27 price (hero variation, deal sheet)", loc="left", fontsize=10, fontweight="bold")
     charts[f"deal_{m}"] = save(fig, f"deal_{m}")
 
 # ---------------------------------------------------------------- 7. stock to Nov 30
@@ -244,9 +243,9 @@ def price_map(p, cs):
     if num(p.get("price")):
         ax.axvline(p["price"], color=INK, lw=1.3, zorder=2)
         ax.text(p["price"], len(rows) - 0.45, f" ours today {cur(m)}{p['price']:.2f}", fontsize=7.8, fontweight="bold", va="bottom")
-    if p.get("da") and num(p["da"].get("deal_peak")):
-        ax.axvline(p["da"]["deal_peak"], color=ORANGE, lw=1.1, ls=(0, (4, 3)), zorder=2)
-        ax.text(p["da"]["deal_peak"], -0.75, f"assumed Nov 27–30 {cur(m)}{p['da']['deal_peak']:.2f} ", fontsize=7.4, ha="right", va="bottom", color=INK)
+    if p.get("da") and num(p["da"].get("deal")):
+        ax.axvline(p["da"]["deal"], color=ORANGE, lw=1.1, ls=(0, (4, 3)), zorder=2)
+        ax.text(p["da"]["deal"], -0.75, f"BFCM 2026 deal {cur(m)}{p['da']['deal']:.2f} ", fontsize=7.4, ha="right", va="bottom", color=INK)
     ax.set_yticks(range(len(rows))); ax.set_yticklabels(rows); ax.set_ylim(-0.8, len(rows) - 0.2)
     ax.grid(axis="y", visible=False); ax.set_xlabel(f"Competitor price today ({cur(m)}, the tracked size)")
     lo = min([c["price"] for c in cs if num(c.get("price"))] + ([p["price"]] if num(p.get("price")) else []))

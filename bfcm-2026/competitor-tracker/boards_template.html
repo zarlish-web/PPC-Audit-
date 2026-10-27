@@ -86,7 +86,7 @@ ul.notes{margin:8px 0 0;padding-left:18px}ul.notes li{margin:4px 0}
     <ul class="notes">
       <li>Every competitor is classed as <b>Direct</b> (same product type and material as ours) or <b>Alternative material</b>; direct rivals lead every list.</li>
       <li>For each competitor: BFCM 2025 deal type, price before and during, discount and rank change, plus today's List Price and strikethrough.</li>
-      <li>Assumed BFCM 2026 deal prices: 15% off today's price Nov 19–26, 20% off Nov 27–30 (Black Friday to Cyber Monday), until final prices are set.</li>
+      <li>BFCM 2026 deal prices: the team's deal sheet (Amazon deal page export, Oct 27): one price per deal for each variation. Amazon's maximum moves daily until the Nov 13 deadline.</li>
       <li>Stock: units at Amazon and inbound vs what each product needs to Nov 30 at today's pace and its BFCM 2025 lift.</li>
     </ul>
   </section>
@@ -109,8 +109,8 @@ ul.notes{margin:8px 0 0;padding-left:18px}ul.notes li{margin:4px 0}
     <div class="tw"><table><thead><tr><th>Product</th><th>Mkt</th><th class="n">At Amazon</th><th class="n">Inbound</th><th class="n">Need to Nov 30</th><th class="n">Short vars</th><th class="n">Out now</th><th>Status</th></tr></thead><tbody id="stockRows"></tbody></table></div>
   </section>
 
-  <section class="board" id="b5"><div class="bh"><span class="bn">BOARD 5</span><h2>Deal prices</h2><span class="sub">Assumed until final prices are set; Amazon may use a lower reference price</span></div>
-    <div class="tw"><table><thead><tr><th>Product</th><th>Mkt</th><th>BFCM 2026 plan</th><th class="n">Today</th><th class="n">Nov 19–26 (−15%)</th><th class="n">Nov 27–30 (−20%)</th><th class="n">Our 2025 cut</th><th class="n">Rivals' 2025 cut</th></tr></thead><tbody id="dealRows"></tbody></table></div>
+  <section class="board" id="b5"><div class="bh"><span class="bn">BOARD 5</span><h2>Deal prices</h2><span class="sub">From the deal sheet, Oct 27: hero variation, today vs deal price; Amazon's maximum moves daily until Nov 13</span></div>
+    <div class="tw"><table><thead><tr><th>Product</th><th>Mkt</th><th>Deal</th><th>Variation</th><th class="n">Price Oct 27</th><th class="n">Deal price</th><th class="n">Off</th><th class="n">Range across variations</th><th class="n">Our 2025 cut</th><th class="n">Rivals' 2025 cut</th></tr></thead><tbody id="dealRows"></tbody></table></div>
   </section>
 
   <section class="board" id="b6"><div class="bh"><span class="bn">BOARD 6</span><h2>Verification</h2><span class="sub" id="chkSub"></span></div>
@@ -161,7 +161,7 @@ function renderProduct() {
   const t = (c, k, v, s) => `<div class="tile ${c}"><div class="k">${k}</div><div class="v">${v}</div>${s ? `<div class="s">${s}</div>` : ""}</div>`;
   const tiles = [
     t("", "Our price", $f(p.price, m), esc(p.bestLabel || "")),
-    p.da && isNum(p.da.ref) ? t("deal", "Assumed BFCM 2026 deal", `${$f(p.da.deal_std, m)} → ${$f(p.da.deal_peak, m)}`, "15% off Nov 19–26 · 20% off Nov 27–30") : t("plan", "BFCM 2026 deal", p.plan26 ? "Price not set" : "Not in a deal", p.plan26 ? "" : "regular price through BFCM"),
+    p.da && isNum(p.da.deal) ? t("deal", "BFCM 2026 deal price", `${$f(p.da.ref, m)} → ${$f(p.da.deal, m)}`, `${esc(p.da.type)} ${esc(p.da.dates)} · ${P(p.da.depth)} off the Oct 27 price`) : t("plan", "BFCM 2026 deal", p.da ? `${esc(p.da.type)} ${esc(p.da.dates)}` : "Not in a deal", p.da ? "no deal price yet" : "regular price through BFCM"),
     p.plan26 ? t("plan", "BFCM 2026 plan", esc(p.plan26.split(" (")[0]), "") : "",
     st ? t(sh || oo ? "risk" : "ok", "Stock to Nov 30", sh || oo ? `${N(sh)} short · ${N(oo)} out now` : "Covered", `${N(st.onHand)} at Amazon · need ${N(st.need)}`) : "",
     isNum(p.lift) ? t("", "BFCM 2025 lift", X(p.lift), p.hk && isNum(p.hk.pre) && isNum(p.hk.bf) ? `hero ${$f(p.hk.pre, m)} → ${$f(p.hk.bf, m)}` : "") : "",
@@ -219,10 +219,10 @@ const prodRows = D.products.filter(p => p.stock).map(p => ({p, sh: p.stock.count
 $("#stockRows").innerHTML = prodRows.map(({p, sh, oo}) => `<tr><td><b>${esc(p.short)}</b></td><td>${p.mkt}</td><td class="n">${N(p.stock.onHand)}</td><td class="n">${N(p.stock.inbound)}</td><td class="n">${N(p.stock.need)}</td><td class="n ${sh ? "neg" : ""}">${N(sh)}</td><td class="n ${oo ? "neg" : ""}">${N(oo)}</td><td>${sh || oo ? '<span class="pill bad">At risk</span>' : '<span class="pill good">Covered</span>'}</td></tr>`).join("");
 
 // Board 5
-$("#dealRows").innerHTML = D.products.filter(p => p.plan26 || p.da).map(p => {
-  const d = p.da || {}, m = p.mkt;
-  return `<tr><td><b>${esc(p.short)}</b></td><td>${m}</td><td>${esc(p.plan26 || "Not in a deal")}</td><td class="n">${$f(d.ref ?? p.price, m)}</td><td class="n"><b>${$f(d.deal_std, m)}</b></td><td class="n"><b>${$f(d.deal_peak, m)}</b></td>
-    <td class="n">${d.ev25 ? P(d.ev25.depth) : "—"}</td><td class="n">${d.comp25 ? P(d.comp25.median) + ` (${d.comp25.n})` : "—"}</td></tr>`;
+$("#dealRows").innerHTML = D.products.filter(p => p.da).map(p => {
+  const d = p.da, m = p.mkt;
+  return `<tr><td><b>${esc(p.short)}</b></td><td>${m}</td><td>${esc(d.type)} ${esc(d.dates)}</td><td>${esc(d.label || d.asin || "")}</td><td class="n">${$f(d.ref, m)}</td><td class="n"><b>${$f(d.deal, m)}</b></td><td class="n">${P(d.depth)}</td>
+    <td class="n">${isNum(d.disc_min) ? `${P(d.disc_min)}–${P(d.disc_max)}` : "—"}</td><td class="n">${d.ev25 ? P(d.ev25.depth) : "—"}</td><td class="n">${d.comp25 ? P(d.comp25.median) + ` (${d.comp25.n})` : "—"}</td></tr>`;
 }).join("");
 
 // Board 6
