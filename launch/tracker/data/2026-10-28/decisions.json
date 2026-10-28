@@ -211,8 +211,8 @@
 "evidence": "47 clicks, 0 orders, $105.39 across five rival-page campaigns (5% chance at 6% CVR).",
 "type": "Question for Joseph",
 "gate": "Passed on 21 Oct (47 clicks).",
-"status": "1 paused, 3 cut (28 Oct)",
-"review_on": "2026-10-30",
+"status": "Bids cut; re-read 31 Oct",
+"review_on": "2026-10-31",
 "outcome": "28 Oct: 5 rival ASIN targets at the team threshold (90 clicks, $197, 0 orders), 4 of them still taking clicks. B0DSPZJKTB took an order on 27 Oct and moved to the 30 Oct ACoS read. Rival-page campaigns since 16 Oct: 192 clicks, 7 orders, $474. 28 Oct changes: B0C56YLKZW paused; B0D24X1MVY, B0BLYVMGYB and B0BLYSGFRW cut 25%; B0DFHG2YKM unchanged."
 },
 {
@@ -244,12 +244,12 @@
 "raised": "2026-10-26",
 "area": "Ranking keywords",
 "decision": "Two ranking keywords have passed 10 clicks with 0 orders. Under the team rule, ranking keywords are the team's call, not an automatic pause: keep pushing for rank, cut the bid, or pause.",
-"evidence": "'cooling sheets twin': 25 clicks, $94.91, 0 orders since 17 Oct; not ranked organically. 'king size sheets set cooling': 22 clicks, $128.44, 0 orders since 18 Oct. 'cooling sheet set' (added 28 Oct): 11 clicks, $41.75, 0 orders; organic #3.",
+"evidence": "16\u201327 Oct, organic rank from the DataRova crawl. 'cooling sheets twin' (search volume 2,976): 26 clicks, $99.11, 0 orders; not ranked since 19 Oct (#92 once on 18 Oct). 'king size sheets set cooling' (3,492): 23 clicks, $133.57, 0 orders; #3 on 17\u201320 Oct, then #39\u201353 on 21\u201325 Oct, #28\u201330 on 26\u201328 Oct. 'cooling sheet set' (1,669): 11 clicks, $41.75, 0 orders; #3\u20137 on most days since 17 Oct, #3 on 27\u201328 Oct.",
 "type": "Question for the team",
 "gate": "10+ clicks, 0 orders (team threshold); ranking objective, so the team decides.",
 "status": "Question for the team",
 "review_on": "2026-10-27",
-"outcome": "28 Oct: still 0 orders on all three; waiting for the team's call."
+"outcome": "28 Oct: 'cooling sheet set' holds #3 on little spend (keep). 'cooling sheets twin' has bought no rank and 'king size sheets set cooling' lost its #3; both are for the team to cut or pause."
 },
 {
 "id": "D21",
