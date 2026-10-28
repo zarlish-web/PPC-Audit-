@@ -247,9 +247,9 @@
 "evidence": "16\u201327 Oct, organic rank from the DataRova crawl. 'cooling sheets twin' (search volume 2,976): 26 clicks, $99.11, 0 orders; not ranked since 19 Oct (#92 once on 18 Oct). 'king size sheets set cooling' (3,492): 23 clicks, $133.57, 0 orders; #3 on 17\u201320 Oct, then #39\u201353 on 21\u201325 Oct, #28\u201330 on 26\u201328 Oct. 'cooling sheet set' (1,669): 11 clicks, $41.75, 0 orders; #3\u20137 on most days since 17 Oct, #3 on 27\u201328 Oct.",
 "type": "Question for the team",
 "gate": "10+ clicks, 0 orders (team threshold); ranking objective, so the team decides.",
-"status": "Question for the team",
+"status": "Suggested: pause twin, cut king set",
 "review_on": "2026-10-27",
-"outcome": "28 Oct: 'cooling sheet set' holds #3 on little spend (keep). 'cooling sheets twin' has bought no rank and 'king size sheets set cooling' lost its #3; both are for the team to cut or pause."
+"outcome": "28 Oct suggestion to Joseph: pause 'cooling sheets twin' (no sales, no rank; at $3.81 a click it needs about 14% conversion to break even). Cut the top-of-search setting on 'king size sheets set cooling' by about half (clicks about $3 instead of $5.81; King keywords convert at 12.5%), and pause it if there are still 0 orders after 2\u20133 days. Keep 'cooling sheet set' (#3)."
 },
 {
 "id": "D21",

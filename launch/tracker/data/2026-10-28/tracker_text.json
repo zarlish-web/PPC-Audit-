@@ -396,9 +396,9 @@
    "evidence": "16–27 Oct, organic rank from the DataRova crawl. 'cooling sheets twin' (search volume 2,976): 26 clicks, $99.11, 0 orders; not ranked since 19 Oct (#92 once on 18 Oct). 'king size sheets set cooling' (3,492): 23 clicks, $133.57, 0 orders; #3 on 17–20 Oct, then #39–53 on 21–25 Oct, #28–30 on 26–28 Oct. 'cooling sheet set' (1,669): 11 clicks, $41.75, 0 orders; #3–7 on most days since 17 Oct, #3 on 27–28 Oct.",
    "type": "Question for the team",
    "gate": "10+ clicks, 0 orders (team threshold); ranking objective, so the team decides.",
-   "status": "Question for the team",
+   "status": "Suggested: pause twin, cut king set",
    "review_on": "2026-10-27",
-   "outcome": "28 Oct: 'cooling sheet set' holds #3 on little spend (keep). 'cooling sheets twin' has bought no rank and 'king size sheets set cooling' lost its #3; both are for the team to cut or pause."
+   "outcome": "28 Oct suggestion to Joseph: pause 'cooling sheets twin' (no sales, no rank; at $3.81 a click it needs about 14% conversion to break even). Cut the top-of-search setting on 'king size sheets set cooling' by about half (clicks about $3 instead of $5.81; King keywords convert at 12.5%), and pause it if there are still 0 orders after 2–3 days. Keep 'cooling sheet set' (#3)."
   },
   {
    "id": "D21",
@@ -854,7 +854,7 @@
     "A5: add the 27 Oct irrelevant searches as negative exact, each in the campaign that served it.",
     "No change on one weak day (team rule). Re-read 27 Oct tomorrow once its ad orders fill in.",
     "Head terms: keep the King Size raise; Queen's is still for Joseph to decide. Read on 30 Oct with the Queen rival video (A10).",
-    "D20 with ranks: keep 'cooling sheet set' (#3); team call on 'cooling sheets twin' (not ranked) and 'king size sheets set cooling' (#3 → #28)."
+    "D20: pause 'cooling sheets twin'; halve the top-of-search setting on 'king size sheets set cooling' and pause after 2–3 days if still 0 orders; keep 'cooling sheet set' (#3)."
    ],
    "reasoning": [
     "One low day after a 38-unit day is not a trend, and part of the drop is ad orders that have not arrived yet. The 30 Oct read gives a fair window.",
@@ -864,11 +864,11 @@
    "followups": [
     "A5: no negatives added since 22 Oct; the 25, 26 and 27 Oct lists are still open.",
     "Break-even (D21): the team works to Joseph's plan line, 39.1% refund-adjusted; the engine reads 43.5% because it books no refunds yet.",
+    "Message for Joseph (27 Oct update) drafted 28 Oct; waiting on his answers: negatives, No Size Tail 05 pause, Queen head top of search, Queen rival video budget, D20 suggestion.",
     "For Joseph: Queen head top of search (+330%, ACoS 98%); restore the Queen rival video budget (ACoS 33% since the cut); block irrelevant Auto traffic with negatives first (keep the bid cut); add ranking keywords as negative exact in the tail and other campaigns that compete with them; pause the zero-order SBV ranking and broad campaigns and No Size Tail 05 under the team rule.",
     "Head-term raise: Joseph's PPC engine set it on 24 Oct with his approval. Open question for him: keep it on Queen at ACoS 98%? Read on 30 Oct.",
     "A9: 3 targets were cut 25% today instead of paused, and Twin B0DFHG2YKM was not changed. Pause them under the team rule, or let the engine walk them down?",
     "Permission to add negatives and pause targets directly: asked on 26 Oct, waiting.",
-    "D20: team call on three ranking keywords at the threshold.",
     "D10 / D16: Queen 22 of 324 (12% chance at 8.8%), ACoS 66%.",
     "Order date (A2) and the Queen Shades budget raise ($15 → $25): still to confirm.",
     "Stock watch: King Midnight Black 36 days, King Navy Blue 53 days."
