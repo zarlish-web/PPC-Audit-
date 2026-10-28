@@ -9,19 +9,19 @@
 "clicks": 135.0,
 "orders": 7.0,
 "spend": 486.59,
-"read": "135 clicks, 7 orders, $486.59 over 16\u201327 Oct (ACoS 79%); no orders yet on 27 Oct. Budget $34 (cut from $75; not our change). On watch to 30 Oct (A10)."
+"read": "135 clicks, 7 orders, $486.59 over 16\u201327 Oct (ACoS 79%); no orders yet on 27 Oct. Budget $34 (cut from $75 by the PPC engine on 24 Oct). On watch to 30 Oct (A10)."
 },
 {
 "campaign": "CLCS4-SP-Cooling Sheet Queen-[Cooling|Queen]-(HSV)-Exact-(Conversion)-DO",
 "objective": "Conversion \u00b7 down-only bids",
-"budget": 25.0,
-"budget_used": 1.5064,
+"budget": 125.0,
+"budget_used": 0.30128,
 "tos_share": 0.0051,
 "impressions": 9619.0,
 "clicks": 124.0,
 "orders": 7.0,
 "spend": 470.75,
-"read": "Queen's biggest keyword. Since 24 Oct its top-of-search adjustment is +330% (from +42%; not our change): CPC $2.22 \u2192 about $5.1\u20135.6. 24\u201327 Oct: 69 clicks, 4 orders, $344.85 (ACoS 98%), against 43 clicks, 5 orders, $98 over 20\u201323 Oct. 'cooling sheets queen' #3 \u2192 #7 on 28 Oct."
+"read": "Queen's biggest keyword. Since 24 Oct its top-of-search adjustment is +330% (set by the PPC engine on 24 Oct, owner-approved): CPC $2.22 \u2192 about $5.1\u20135.6. 24\u201327 Oct: 69 clicks, 4 orders, $344.85 (ACoS 98%), against 43 clicks, 5 orders, $98 over 20\u201323 Oct. 'cooling sheets queen' #3 \u2192 #7 on 28 Oct."
 },
 {
 "campaign": "CLCS4-SB-PC-Cooling Sheets Queen Shades-[Cooling|Queen]-(MSV)-Exact-(Conversion)-DO",

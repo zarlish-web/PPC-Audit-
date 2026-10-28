@@ -20,12 +20,12 @@
 "action": "Pause the rival product-page targets at the team threshold (10+ clicks, 0 orders)",
 "change": "Pause these 5 ASIN targets only; the rest of each campaign keeps running. Cooling Rivals King: B0BLYSGFRW. Cooling Rivals Queen: B0C56YLKZW, B0D24X1MVY and B0BLYVMGYB. Cooling Rivals Twin: B0DFHG2YKM. Also add 'breescape cooling sheets' as a negative exact in Cooling Rivals King (12 clicks there, 0 orders).",
 "why": "Team threshold (26 Oct): a target with more than 10 clicks and 0 orders that keeps getting clicks for 2\u20133 more days is paused, not left for weeks.",
-"evidence": "16\u201327 Oct, 0 orders each. King: B0BLYSGFRW 21 clicks, $43.45. Queen: B0C56YLKZW 23, $50.63; B0D24X1MVY 18, $41.47; B0BLYVMGYB 16, $35.17. Twin: B0DFHG2YKM 12, $26.40. Four took clicks on 27 Oct, so they are still live. King B0DSPZJKTB left the list: first order on 27 Oct (30 clicks, $81.62, ACoS 87%); it gets the 30 Oct ACoS read. 'breescape cooling sheets': 15 clicks, $37.35, 0 orders since 19 Oct.",
+"evidence": "16\u201327 Oct, 0 orders each. King: B0BLYSGFRW 21 clicks, $43.45. Queen: B0C56YLKZW 23, $50.63; B0D24X1MVY 18, $41.47; B0BLYVMGYB 16, $35.17. Twin: B0DFHG2YKM 12, $26.40. Four took clicks on 27 Oct, so they are still live. King B0DSPZJKTB left the list: first order on 27 Oct (30 clicks, $81.62, ACoS 87%); it gets the 30 Oct ACoS read. 'breescape cooling sheets': 15 clicks, $37.35, 0 orders since 19 Oct. 28 Oct (PPC engine, 12:27 UTC): B0C56YLKZW paused. Bids cut 25% instead of pausing (the engine caps a target at \u00b125% a day): B0D24X1MVY $2.31 \u2192 $1.74, B0BLYVMGYB $1.71 \u2192 $1.29, B0BLYSGFRW $1.65 \u2192 $1.24. Twin B0DFHG2YKM unchanged. B0DSPZJKTB bid also cut, $2.75 \u2192 $2.07. No negative for 'breescape cooling sheets'.",
 "expected": "The 5 targets cost $197 over 16\u201327 Oct for 0 orders, and the breescape search another $37. Targets that convert keep running.",
 "check": "Next day: the paused targets show no spend; the rest of the campaigns keep their clicks.",
 "safe": "Only zero-order rival ASINs are paused. Ranking keywords, own-page defence and converting targets are untouched.",
 "ref": "D17",
-"status": "Pause 5 targets; not applied (checked 28 Oct)"
+"status": "1 paused, 3 bids cut (28 Oct)"
 },
 {
 "id": "A5",
@@ -34,12 +34,12 @@
 "action": "Negatives for searches that are not cooling sheets",
 "change": "Add each search that is not a cooling-sheet search as a negative exact on the day it appears, in the campaign that served it. 27 Oct list. Cooling Rivals King: king comforter set cooling. Cooling Rivals Twin: bed sheets for adjustable beds, cooling mat for bed menopause. Cooling Rivals Queen: satin sheets, comfy sheets. Auto: chilling pad for hot flashes, otek certified sheets, cooling comforter hot sleepers, cotton california king sheet sets, egyptian cotton bed sheets, queen size cooling blanket for hot sleepers, silent cooling unit for bed, split king flannel sheets. Earlier lists (25 and 26 Oct) are in the day reports.",
 "why": "Team rule (26 Oct): relevance negatives go in the same day. They depend on what the search is, not on how it has performed.",
-"evidence": "About $35 of clicks, 0 orders.",
+"evidence": "About $35 of clicks, 0 orders. The account's change log shows no negatives added from 22 to 28 Oct.",
 "expected": "Saves roughly $5\u20138 a day. No relevant traffic is blocked: 'nylon spandex sheets', 'cooling sheets' and rival brand searches stay open.",
 "check": "Next search-term report.",
 "safe": "Only clearly unrelated searches are blocked.",
 "ref": "D04",
-"status": "Same day; not applied, new list 28 Oct"
+"status": "Same day; not applied (checked 28 Oct)"
 },
 {
 "id": "A2",
@@ -104,7 +104,7 @@
 "action": "Watch the Queen rival video (pause no longer recommended)",
 "change": "No change. Keep 'SBV-Rival Video Queen' running and read it on 30 Oct, after 14 full days, with the new video's first days included.",
 "why": "24 Oct brought 4 orders on 18 clicks. With those orders, the low result could be chance, so the pause gate is no longer met.",
-"evidence": "16\u201327 Oct: 135 clicks, 7 orders, $486.59, $615.93 sales, ACoS 79%. 27 Oct: 10 clicks, no orders yet (brand orders arrive late). Budget $34 (was $75; not our change). King rival video: 17 orders on 203 clicks (ACoS 48%); its budget went $90 \u2192 $115 on 27 Oct (not our change).",
+"evidence": "16\u201327 Oct: 135 clicks, 7 orders, $486.59, $615.93 sales, ACoS 79%. 27 Oct: 10 clicks, no orders yet (brand orders arrive late). Budget $34 (was $75; PPC engine, 24 Oct). King rival video: 17 orders on 203 clicks (ACoS 48%); its budget went $90 \u2192 $115 on 26 Oct (PPC engine).",
 "expected": "No change before 30 Oct.",
 "check": "Read on 30 Oct (two-week read), with the new video's first days.",
 "safe": "A video test lane, not a ranking lane; Queen's keyword ads and Sponsored Brands collection ads keep Queen's search coverage.",

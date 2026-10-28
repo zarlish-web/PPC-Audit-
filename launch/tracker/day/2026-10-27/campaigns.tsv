@@ -1,6 +1,6 @@
 id	name	type	budget	impressions	clicks	orders	spend	sales
 125782091672643	CLCS4-SP-Cooling Sheet-[Cooling]-(VHSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE	sp	45.0	4996	28	1	64.47	87.99
-239857406913681	CLCS4-SP-Cooling Sheet Queen-[Cooling|Queen]-(HSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE	sp	25.0	433	9	1	46.21	87.99
+239857406913681	CLCS4-SP-Cooling Sheet Queen-[Cooling|Queen]-(HSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE	sp	125.0	433	9	1	46.21	87.99
 263070876883663	CLCS4-SP-Cool Sheet-[Cooling]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE	sp	15.0	193	5	1	31.3	87.99
 39903088437512	CLCS4-SP-King Size Cooling Sheet-[Cooling|King]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY	sp	135.0	143	4	0	25.28	0.0
 138704873722449	CLCS4-SP-King Sheet Cooling-[Cooling|King]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY	sp	45.0	107	4	1	25.02	93.99
@@ -16,7 +16,7 @@ id	name	type	budget	impressions	clicks	orders	spend	sales
 45264592369437	CLCS4-SP-Cooling Rivals Twin-(PAT)-Targeting-(Conquest)-DO-CL-COOLING-SHEET-TWIN-WHITE	sp	13.0	146	4	0	12.14	0.0
 127800243712704	CLCS4-SP-Auto-[Cooling]-Auto-(Discovery)-DO-CL-COOLING-SHEET-QUEEN-WHITE	sp	8.0	8542	14	0	11.25	0.0
 174959347426016	CLCS4-SP-Cooling Bed Sheet-[Cooling]-(HSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE	sp	25.0	713	5	0	11.1	0.0
-219721573309507	CLCS4-SP-Cooling Sheet King Size-[Cooling|King]-(HSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY	sp	45.0	249	2	2	11.1	187.98
+219721573309507	CLCS4-SP-Cooling Sheet King Size-[Cooling|King]-(HSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY	sp	110.0	249	2	2	11.1	187.98
 84048377181572	CLCS4-SP-No Size Tail 05-[Cooling]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE	sp	11.0	231	4	0	10.69	0.0
 23362054845972	CLCS4-SP-Full Size Cooling Sheet-[Cooling|Full]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-FULL-CREAM	sp	25.0	43	2	0	10.21	0.0
 228557975024476	CLCS4-SP-Queen Tail 18-[Cooling|Queen]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE	sp	30.0	757	4	0	10.16	0.0
