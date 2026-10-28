@@ -250,5 +250,17 @@
 "status": "Question for the team",
 "review_on": "2026-10-27",
 "outcome": "28 Oct: still 0 orders on all three; waiting for the team's call."
+},
+{
+"id": "D21",
+"raised": "2026-10-28",
+"area": "Break-even line",
+"decision": "Work to Joseph's plan line: 39.1% break-even ACoS, refund-adjusted, for profit and conversion campaigns. Ranking campaigns in a push are not judged on it.",
+"evidence": "The PPC engine reads 43.5% (price less referral, FBA fee and product cost) because it has no refund history for this product yet; Sellerboard's pre-ad margin for 21\u201327 Oct agrees at 43.3%. Joseph's plan sets 39.1% refund-adjusted (43.2% before refunds), which implies about 5% refunds. At today's prices the same refund basis gives about 39.5% blended; by size about Queen 41%, Twin 40%, Cal King 39%, King 39%, Full 36.5%. Refunds so far: 2 of 315 units (0.6%), still early.",
+"type": "Decided",
+"gate": "Refund-adjusted line; replace the ~5% refund assumption with the actual rate once refunds settle (about mid-November).",
+"status": "Decided 28 Oct: 39.1%",
+"review_on": "2026-11-15",
+"outcome": "28 Oct: chosen by the team. Campaigns between 39% and 44% (e.g. King rival video, Cooling Bed Sheet no size) read as over the line here even where the engine reads them as under."
 }
 ]

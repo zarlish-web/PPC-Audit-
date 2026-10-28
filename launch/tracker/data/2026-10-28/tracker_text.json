@@ -399,6 +399,18 @@
    "status": "Question for the team",
    "review_on": "2026-10-27",
    "outcome": "28 Oct: still 0 orders on all three; waiting for the team's call."
+  },
+  {
+   "id": "D21",
+   "raised": "2026-10-28",
+   "area": "Break-even line",
+   "decision": "Work to Joseph's plan line: 39.1% break-even ACoS, refund-adjusted, for profit and conversion campaigns. Ranking campaigns in a push are not judged on it.",
+   "evidence": "The PPC engine reads 43.5% (price less referral, FBA fee and product cost) because it has no refund history for this product yet; Sellerboard's pre-ad margin for 21–27 Oct agrees at 43.3%. Joseph's plan sets 39.1% refund-adjusted (43.2% before refunds), which implies about 5% refunds. At today's prices the same refund basis gives about 39.5% blended; by size about Queen 41%, Twin 40%, Cal King 39%, King 39%, Full 36.5%. Refunds so far: 2 of 315 units (0.6%), still early.",
+   "type": "Decided",
+   "gate": "Refund-adjusted line; replace the ~5% refund assumption with the actual rate once refunds settle (about mid-November).",
+   "status": "Decided 28 Oct: 39.1%",
+   "review_on": "2026-11-15",
+   "outcome": "28 Oct: chosen by the team. Campaigns between 39% and 44% (e.g. King rival video, Cooling Bed Sheet no size) read as over the line here even where the engine reads them as under."
   }
  ],
  "log": [
@@ -850,7 +862,7 @@
    ],
    "followups": [
     "A5: no negatives added since 22 Oct; the 25, 26 and 27 Oct lists are still open.",
-    "Break-even ACoS: the engine works to 44%, this tracker to 39.1%. Agree one figure with Joseph; campaigns between the two are judged differently.",
+    "Break-even (D21): the team works to Joseph's plan line, 39.1% refund-adjusted; the engine reads 43.5% because it books no refunds yet.",
     "For Joseph: Queen head top of search (+330%, ACoS 98%); restore the Queen rival video budget (ACoS 33% since the cut); block irrelevant Auto traffic with negatives first (keep the bid cut); add ranking keywords as negative exact in the tail and other campaigns that compete with them; pause the zero-order SBV ranking and broad campaigns and No Size Tail 05 under the team rule.",
     "Head-term raise: Joseph's PPC engine set it on 24 Oct with his approval. Open question for him: keep it on Queen at ACoS 98%? Read on 30 Oct.",
     "A9: 3 targets were cut 25% today instead of paused, and Twin B0DFHG2YKM was not changed. Pause them under the team rule, or let the engine walk them down?",
