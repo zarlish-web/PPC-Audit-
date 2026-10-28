@@ -1504,6 +1504,8 @@ for pid, mkt, tname in TABS:
     ws.sheet_view.zoomScale = 90
     for i, c in enumerate(COMP_COLS, 1):
         ws.column_dimensions[CL(i)].width = c[2]
+    ws.column_dimensions["D"].width = 34   # our variations' Title column (also Tier further down) wide enough to read
+    ws.column_dimensions["L"].width = 18   # labels of the product panel's right half (Price now, Rating / reviews ...)
     p, o = our_profile(pid, mkt)
     title, img, best, parent = our_title_and_image(pid, mkt)
     e = econ(o.get("economics"))
@@ -2212,6 +2214,7 @@ lines = [
     ("3. BFCM Stock - every variation: stock at Amazon, inbound, sales a day, units needed to Nov 30, run-out date with and without inbound, and status. Filter by product or status.", {}),
     (f"4. Product tabs - US tabs (blue) then CA tabs (orange), {len(TABS)} in all. Each has: 1 Our product (BFCM 2026 deal and deal price, stock outlook, deal pricing notes) · 2 Our variations · 3 Our BFCM 2025 result · 4 Competitor landscape.", {}),
     ("5. Data Check - the as-of date, coverage and verification result of every data set; Data Gaps - what is still missing.", {}),
+    ("6. Price 2025 vs 2026 - for every product and variation: what customers paid in BFCM 2025 (Nov 20 - Dec 1, after promotions) vs the BFCM 2026 deal price, same variations weighted by 2025 units. Negative = the 2026 deal is cheaper than last year.", {}),
     ("", None),
     ("Key rules", dict(bold=True, size=11)),
     ("Our price = the latest catalog price read (US Oct 13, CA Oct 14); a variation without one shows no price.", {}),
@@ -2508,7 +2511,7 @@ for pid, mkt in sum_rows:
         rr_ += 1
 stk.conditional_formatting.add(f"R{d0}:R{d1}", FormulaRule(formula=[f'OR(R{d0}="Short even with inbound",R{d0}="Out of stock now")'], fill=PatternFill("solid", fgColor="FFC7CE")))
 stk.conditional_formatting.add(f"R{d0}:R{d1}", FormulaRule(formula=[f'R{d0}="Needs inbound in time"'], fill=PatternFill("solid", fgColor="FFEB9C")))
-stk.freeze_panes = stk.cell(row=d0, column=4)
+stk.freeze_panes = "D1"   # columns only: freezing the 37 summary rows locks scrolling in Google Sheets
 stk.auto_filter.ref = f"A{det_hdr}:T{d1}"
 
 # ------------------------------------------------------------------ Price 2025 vs 2026 tab
@@ -2553,7 +2556,7 @@ for i, (pid, mkt, tname) in enumerate(pz_prod):
     vals = [tname, mkt, f'=COUNTIFS({k_},{qr("G")},">0")', f'=SUMIFS({qr("Q")},{k_})', f'=SUMIFS({qr("T")},{k_})',
             f'=IF(E{r0}=0,"",SUMIFS({qr("S")},{k_})/E{r0})', f'=IF(E{r0}=0,"",SUMIFS({qr("R")},{k_})/E{r0})',
             f'=IF(E{r0}=0,"",G{r0}-F{r0})', f'=IF(E{r0}=0,"",G{r0}/F{r0}-1)',
-            f'=COUNTIFS({k_},{qr("Q")},1,{qr("N")},"<0")', f'=COUNTIFS({k_},{qr("Q")},1,{qr("N")},">0")',
+            f'=COUNTIFS({k_},{qr("Q")},1,{qr("N")},"<-0.005")', f'=COUNTIFS({k_},{qr("Q")},1,{qr("N")},">0.005")',
             hh.get("label"), hh.get("asin"),
             f'=IF(M{r0}="","",SUMIFS({qr("J")},{k_},{qr("C")},M{r0}))' if hh else None,
             f'=IF(M{r0}="","",SUMIFS({qr("L")},{k_},{qr("C")},M{r0}))' if hh else None,
@@ -2583,7 +2586,7 @@ for rr_, (tname, mkt, v) in enumerate(pz_rows, q0):
                            "dp": "0.0%", "np": "0.0%", "ud": "#,##0.00", "pd": "#,##0.00", "uq": "#,##0"}.get(k_, "General")
 pz.conditional_formatting.add(f"O{q0}:O{q1}", FormulaRule(formula=[f'AND(ISNUMBER(O{q0}),O{q0}<0)'], font=Font(color="006100")))
 pz.conditional_formatting.add(f"O{q0}:O{q1}", FormulaRule(formula=[f'AND(ISNUMBER(O{q0}),O{q0}>0)'], font=Font(color="9C0006")))
-pz.freeze_panes = pz.cell(row=q0, column=4)
+pz.freeze_panes = "D1"
 pz.auto_filter.ref = f"A{pz_hdr}:U{q1}"
 
 # order: README, Dashboard, Product Index, product tabs..., Data Gaps, Data
@@ -2610,7 +2613,9 @@ for pid_, mkt_, t_ in TABS:
         c_ = ws_.cell(row=2, column=start + 1 + k, value=f"{num} {SHORT_NAMES.get(num, text_)}{extra} ↓")
         c_.hyperlink = f"#'{t_}'!A{row_}"
         c_.font = F(size=9, bold=(num == "4"), color=("C00000" if num == "4" else "0563C1"), underline="single")
-    ws_.row_dimensions[2].height = 18
+    for c_ in ws_[2][1:9]:   # jump bar: wrap so each link reads in full
+        c_.alignment = Alignment(wrap_text=True, vertical="center")
+    ws_.row_dimensions[2].height = 42
 
 # order: README, US Dashboard, CA Dashboard, Product Index, BFCM Stock, US product tabs, CA product tabs, Data Check, Data Gaps, data sheets
 _front = ["README", "US Dashboard", "CA Dashboard", "Product Index", "BFCM Stock", "Price 2025 vs 2026"]
