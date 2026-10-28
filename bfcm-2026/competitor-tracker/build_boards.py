@@ -29,7 +29,7 @@ for p in P["products"]:
         risk = [{k: x.get(k) for k in ("asin", "size", "colour", "oh", "ib", "vel", "need", "short", "oos", "oosIn", "st")}
                 for x in sorted(st["rows"], key=lambda x: -x["vel"]) if x["st"] in ("Short even with inbound", "Out of stock now")][:12]
     products.append({k: p.get(k) for k in ("key", "pid", "mkt", "short", "family", "role", "scope", "brand", "name", "title", "best", "bestLabel", "price",
-                                            "u28", "lift", "tacos", "plan26", "da", "hk")} | {"notes": p.get("slack") or []}
+                                            "u28", "lift", "tacos", "plan26", "da", "hk", "pc")} | {"notes": p.get("slack") or []}
                     | {"stock": ({k: st[k] for k in ("lift", "liftSrc", "onHand", "inbound", "need", "short", "counts")} if st else None), "risk": risk,
                        "vars": len(p["vars"])})
 
@@ -47,7 +47,7 @@ for m in ("US", "CA"):
 checks = json.load(open(os.path.join(HERE, "data", "verification_report.json")))
 data = {"products": products, "comps": comps, "lift": lift, "summary": {m: {k: v for k, v in P["summary"][m].items() if k != "comps"} for m in P["summary"]},
         "checks": [{"name": c["name"].replace("the inventory planner", "the stock plan"), "checked": c["checked"], "bad": c["mismatches"], "status": c["status"]} for c in checks["checks"]],
-        "built": "Oct 15, 2026"}
+        "fx25": next((p["fx25"] for p in P["products"] if p.get("fx25")), None), "built": "Oct 15, 2026"}
 tpl = open(os.path.join(HERE, "boards_template.html")).read()
 open(OUT, "w").write(tpl.replace("/*__DATA__*/null", json.dumps(scrub_obj(data), separators=(",", ":"), default=str)))
 print(json.dumps({"products": len(products), "comps": len(comps), "bytes": os.path.getsize(OUT)}))

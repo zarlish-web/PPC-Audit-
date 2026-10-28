@@ -77,7 +77,7 @@ ul.notes{margin:8px 0 0;padding-left:18px}ul.notes li{margin:4px 0}
     <div class="owner">Owner: <b>Shayan Rana</b> · Prepared for <b>Erik Fisher</b> &amp; <b>Joseph Fisher</b> · <span id="asof"></span></div>
     <nav class="nav" aria-label="Boards">
       <a href="#b1">1 · Start here</a><a href="#b2">2 · Product board</a><a href="#b3">3 · BFCM 2025 lift by deal type</a>
-      <a href="#b4">4 · Stock risk</a><a href="#b5">5 · Deal prices</a><a href="#b6">6 · Verification</a>
+      <a href="#b4">4 · Stock risk</a><a href="#b5">5 · Deal prices</a><a href="#b7">6 · Price 2025 vs 2026</a><a href="#b6">7 · Verification</a>
     </nav>
   </header>
 
@@ -113,7 +113,12 @@ ul.notes{margin:8px 0 0;padding-left:18px}ul.notes li{margin:4px 0}
     <div class="tw"><table><thead><tr><th>Product</th><th>Mkt</th><th>Deal</th><th>Variation</th><th class="n">Price Oct 27</th><th class="n">Deal price</th><th class="n">Off</th><th class="n">Range across variations</th><th class="n">Our 2025 cut</th><th class="n">Rivals' 2025 cut</th></tr></thead><tbody id="dealRows"></tbody></table></div>
   </section>
 
-  <section class="board" id="b6"><div class="bh"><span class="bn">BOARD 6</span><h2>Verification</h2><span class="sub" id="chkSub"></span></div>
+  <section class="board" id="b7"><div class="bh"><span class="bn">BOARD 6</span><h2>Price 2025 vs 2026</h2><span class="sub">What customers paid in BFCM 2025 (Nov 20 – Dec 1, after promotions) vs the BFCM 2026 deal price, same variations weighted by 2025 units</span></div>
+    <div class="tw"><table><thead><tr><th>Product</th><th>Mkt</th><th class="n">Variations compared</th><th class="n">2025 units</th><th class="n">2025 paid</th><th class="n">2026 deal</th><th class="n">Change</th><th class="n">Cheaper / dearer</th><th>Hero variation</th><th class="n">Hero 2025 → 2026</th></tr></thead><tbody id="pcRows"></tbody></table></div>
+    <p class="note" id="pcNote"></p>
+  </section>
+
+  <section class="board" id="b6"><div class="bh"><span class="bn">BOARD 7</span><h2>Verification</h2><span class="sub" id="chkSub"></span></div>
     <div class="tw"><table><thead><tr><th>Check</th><th class="n">Rows checked</th><th class="n">Mismatches</th><th>Result</th></tr></thead><tbody id="chkRows"></tbody></table></div>
   </section>
 </div>
@@ -225,7 +230,16 @@ $("#dealRows").innerHTML = D.products.filter(p => p.da).map(p => {
     <td class="n">${isNum(d.disc_min) ? `${P(d.disc_min)}–${P(d.disc_max)}` : "—"}</td><td class="n">${d.ev25 ? P(d.ev25.depth) : "—"}</td><td class="n">${d.comp25 ? P(d.comp25.median) + ` (${d.comp25.n})` : "—"}</td></tr>`;
 }).join("");
 
-// Board 6
+// Board 6: price 2025 vs 2026
+const pcs = D.products.filter(p => p.pc && p.pc.n).sort((a, b) => b.mkt.localeCompare(a.mkt) || b.pc.u25 - a.pc.u25);
+$("#pcRows").innerHTML = pcs.map(p => { const c = p.pc, m = p.mkt, h = c.hero;
+  return `<tr><td><b>${esc(p.short)}</b></td><td>${m}</td><td class="n">${N(c.n)}</td><td class="n">${N(c.u25)}</td><td class="n">${$f(c.paid25, m)}</td><td class="n"><b>${$f(c.deal26, m)}</b></td>
+    <td class="n ${c.chg > 0 ? "neg" : "pos"}">${c.chg > 0 ? "+" : ""}${P(c.chg, 1)}</td><td class="n">${N(c.cheaper)} / ${N(c.dearer)}</td><td>${h ? esc(h.label) : "—"}</td>
+    <td class="n">${h ? `${$f(h.paid25, m)} → ${$f(h.deal26, m)} (${h.chg > 0 ? "+" : ""}${P(h.chg, 1)})` : "—"}</td></tr>`; }).join("");
+const noPc = D.products.filter(p => p.pc && !p.pc.n).map(p => `${p.mkt} ${p.short}`);
+$("#pcNote").textContent = `Negative change = the 2026 deal is cheaper than what customers paid in BFCM 2025. Canadian 2025 sales are recorded in US$ and converted to C$ at ${D.fx25.toFixed(4)}.` + (noPc.length ? ` Sold in 2025 but no 2026 deal price to compare: ${noPc.join(", ")}.` : "");
+
+// Board 7
 $("#chkSub").textContent = `${ok} of ${D.checks.length} checks pass against the raw data`;
 $("#chkRows").innerHTML = D.checks.map(c => `<tr><td>${esc(c.name)}</td><td class="n">${N(c.checked)}</td><td class="n">${N(c.bad)}</td><td><span class="pill ${c.status === "Pass" ? "good" : "bad"}">${esc(c.status)}</span></td></tr>`).join("");
 </script>

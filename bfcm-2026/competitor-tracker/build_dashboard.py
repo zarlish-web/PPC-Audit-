@@ -53,7 +53,8 @@ for pid, mkt, tname in br.TABS:
                       "price": v["price_now"] if live else None, "live": live, "src": v.get("now_src") if live else None,
                       "u28": num(v.get("units_28d")), "rating": num(v.get("x_rating")), "reviews": num(v.get("x_reviews")), "bsr": num(v.get("x_bsr")),
                       "status": v.get("status"), "img": img_for(v["asin"], mkt), "url": v.get("image"),
-                      "deal": num(v.get("deal_price")), "dealDisc": num(v.get("deal_disc")), "dealSt": v.get("deal_status")})
+                      "deal": num(v.get("deal_price")), "dealDisc": num(v.get("deal_disc")), "dealSt": v.get("deal_status"),
+                      "p25": num(v.get("paid25")), "u25": v.get("u25") or None})
         for d_, k in ((cols, v.get("colour")), (sizes, v.get("size"))):
             if k:
                 d_.setdefault(k, {"name": k, "n": 0, "u28": 0})
@@ -113,7 +114,7 @@ for pid, mkt, tname in br.TABS:
         "lift": lf.get("lift"), "tacos": lf.get("tacos_actual") if lf.get("tacos_actual") is not None else lf.get("tacos"),
         "preTacos": lf.get("pre_tacos_actual") if lf.get("pre_tacos_actual") is not None else lf.get("pre_tacos"),
         "hk": hk, "hkCut": (1 - hk["bf"] / hk["pre"]) if hk and hk.get("pre") and hk.get("bf") else None, "hkLine": hk_line,
-        "deals": deals, "plan26": br.plan26_text(pid, mkt), "slack": [{"topic": r_["topic"], "detail": r_["detail"], "source": r_["source"]} for r_ in br.slack_deal.get((pid, mkt)) or []], "da": br.deal_assumption(pid, mkt), "imgUrl": img, "stock": stock, "stockGap": gap, "sb": sbrows or None,
+        "deals": deals, "plan26": br.plan26_text(pid, mkt), "slack": [{"topic": r_["topic"], "detail": r_["detail"], "source": r_["source"]} for r_ in br.slack_deal.get((pid, mkt)) or []], "da": br.deal_assumption(pid, mkt), "pc": br.price_compare(pid, mkt), "fx25": br.CA_FX25 if mkt == "CA" else None, "imgUrl": img, "stock": stock, "stockGap": gap, "sb": sbrows or None,
         "stock26": stock26, "vars": vrows, "colours": sorted(cols.values(), key=lambda c: -c["u28"]), "sizes": sorted(sizes.values(), key=lambda c: -c["u28"]),
     })
 

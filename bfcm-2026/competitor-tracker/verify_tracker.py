@@ -182,6 +182,42 @@ vdeal = [(p["mkt"], v["asin"], v.get("deal")) for p in P["products"] for v in p[
 vbad = [f"{m} {a}" for m, a, d in vdeal if not ((d is None and fnum((sheet.get((m, a)) or {}).get("deal_price")) is None) or (d is not None and close(d, fnum((sheet.get((m, a)) or {}).get("deal_price")), 0.0001)))]
 check("BFCM 2026 deal prices vs the deal sheet", "Each product's deal price and every variation's deal price equal the Oct 27 deal sheet", len(vdeal) + sum(1 for p in P["products"] if p.get("da")), len(dbad) + len(vbad), dbad + vbad)
 
+# Price 2025 vs 2026: recompute what was paid per variation from the raw BFCM 2025 file (CA US$ -> C$ at a rate re-derived here)
+raw25 = {}
+for r in rd(os.path.join(D, "sellerboard", "bfcm2025_variation_sales_2025-11-20_to_2025-12-01.csv")):
+    a = raw25.setdefault((r["marketplace"], r["asin"]), [0, 0.0, 0.0])
+    a[0] += int(r["units"]); a[1] += float(r["sales"]); a[2] += float(r["promotion_value"])
+fx_ = []
+for r in rd(os.path.join(D, "deals", "our_deals_bfcm2025_v2.csv")):
+    mm_ = re.search(r"child_attributed_revenue=([\d.]+)", r["notes"] or ""); s_ = raw25.get(("CA", r["child_asin"]))
+    if r["marketplace"] == "CA" and r["deal_start"].startswith("2025-11-20") and mm_ and s_ and s_[0] > 0 and s_[1] > 0 and str(s_[0]) == (r["units_sold"] or "") and float(mm_.group(1)) > 0:
+        fx_.append(float(mm_.group(1)) / s_[1])
+fx_ = round(statistics.median(fx_), 4)
+paid_raw = {k: (v[1] + v[2]) * (fx_ if k[0] == "CA" else 1) / v[0] for k, v in raw25.items() if v[0] > 0 and v[1] + v[2] > 0}
+pbad = [f"fx dashboard {p['fx25']} vs {fx_}" for p in P["products"] if p.get("fx25") is not None and not close(p["fx25"], fx_, 0.00001)][:1]
+pv = [(p["mkt"], v["asin"], v.get("p25")) for p in P["products"] for v in p["vars"]]
+pbad += [f"dashboard {m} {a}: {x} vs {paid_raw.get((m, a))}" for m, a, x in pv if not ((x is None and (m, a) not in paid_raw) or (x is not None and close(x, paid_raw.get((m, a)), 0.0001)))]
+pz = wb["Price 2025 vs 2026"]
+hdr_row = next(r for r in range(5, pz.max_row + 1) if pz.cell(r, 3).value == "Child ASIN")
+nrow = 0
+for r in range(hdr_row + 1, pz.max_row + 1):
+    m, a, paid, deal = pz.cell(r, 2).value, pz.cell(r, 3).value, pz.cell(r, 10).value, pz.cell(r, 12).value
+    if not a:
+        continue
+    nrow += 1
+    if not ((paid in (None, "") and (m, a) not in paid_raw) or (isinstance(paid, (int, float)) and close(paid, paid_raw.get((m, a)), 0.0001))):
+        pbad.append(f"workbook {m} {a} paid {paid} vs {paid_raw.get((m, a))}")
+    if not ((deal in (None, "") and fnum((sheet.get((m, a)) or {}).get("deal_price")) is None) or (isinstance(deal, (int, float)) and close(deal, fnum((sheet.get((m, a)) or {}).get("deal_price")), 0.0001))):
+        pbad.append(f"workbook {m} {a} deal {deal} vs sheet")
+pcs = {(p["short"], p["mkt"]): p["pc"] for p in P["products"] if p.get("pc") and p["pc"].get("n")}
+for r in range(5, hdr_row - 2):
+    t_, m = pz.cell(r, 1).value, pz.cell(r, 2).value
+    pc_ = pcs.get((str(t_)[3:], m)) if t_ else None
+    if pc_ and not (close(pz.cell(r, 6).value, pc_["paid25"], 0.0001) and close(pz.cell(r, 7).value, pc_["deal26"], 0.0001)):
+        pbad.append(f"summary {t_}: {pz.cell(r, 6).value}/{pz.cell(r, 7).value} vs dashboard {pc_['paid25']}/{pc_['deal26']}")
+check("Price 2025 vs 2026", "Every variation's BFCM 2025 price paid (raw sales file) and 2026 deal price (deal sheet) in the workbook and dashboard; product roll-ups agree",
+      len(pv) + nrow + len(pcs), len(pbad), pbad, f"CA rate {fx_}")
+
 # 7. BFCM stock outlook: product totals recomputed from the raw SellerBoard inventory file, demand arithmetic, workbook vs dashboard
 inv = {}
 for r in rd(os.path.join(D, "stock", "sellerboard_inventory_2026-10-15.csv")):

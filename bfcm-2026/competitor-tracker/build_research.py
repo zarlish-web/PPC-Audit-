@@ -71,6 +71,24 @@ def deal_status_short(r_):
     return ("Eligible" if st_.startswith("\u2713 Eligible") else "Manual price" if st_.startswith("\u2713 Manual") else "Out of stock" if "OOS" in st_
             else "No reference price" if "No reference" in st_ else "Flagged by Amazon" if "Flagged" in st_ else "Not on the deal page" if "not on the" in st_ else st_)
 
+# BFCM 2025 actual sales per variation (Nov 20 - Dec 1, 2025, every child in both markets): what customers paid, for the 2025 vs 2026 price comparison
+SB25_FILE = f"{DATA}/sellerboard/bfcm2025_variation_sales_2025-11-20_to_2025-12-01.csv"
+sb25 = {}   # (mkt, asin) -> units, sales, promo (summed over the ASIN's SKUs)
+for r_ in csv.DictReader(open(SB25_FILE)):
+    a_ = sb25.setdefault((r_["marketplace"], r_["asin"]), {"units": 0, "sales": 0.0, "promo": 0.0})
+    a_["units"] += int(r_["units"]); a_["sales"] += float(r_["sales"]); a_["promo"] += float(r_["promotion_value"])
+# Amazon.ca sales in that file are in US$ (the account currency). Rate to C$ = median of CAD revenue / US$ sales on the CA BFCM 2025
+# deal rows where both exist for the same child and the same units (280 rows, 1.396 - 1.411: the daily rate over the 12 days)
+_fx = []
+for r_ in csv.DictReader(open(f"{DATA}/deals/our_deals_bfcm2025_v2.csv", encoding="utf-8-sig")):
+    m_ = re.search(r"child_attributed_revenue=([\d.]+)", r_["notes"] or "")
+    s_ = sb25.get(("CA", r_["child_asin"]))
+    if r_["marketplace"] == "CA" and r_["deal_start"].startswith("2025-11-20") and m_ and s_ and s_["units"] > 0 and s_["sales"] > 0 \
+            and str(s_["units"]) == (r_["units_sold"] or "") and float(m_.group(1)) > 0:
+        _fx.append(float(m_.group(1)) / s_["sales"])
+CA_FX25 = round(statistics.median(_fx), 4)
+CA_FX25_N, CA_FX25_LO, CA_FX25_HI = len(_fx), min(_fx), max(_fx)
+
 cc = {(int(d["product_id"]), d["marketplace"]): d for d in (jl(f) for f in glob.glob(f"{DATA}/cc/*.json")) if d}
 ours = {(int(d["product_id"]), d["marketplace"]): d for d in (jl(f) for f in glob.glob(f"{DATA}/ours/*.json")) if d}
 skus = {(int(d["product_id"]), d["marketplace"]): d for d in (jl(f) for f in glob.glob(f"{DATA}/skus/*.json")) if d and "product_id" in d}
@@ -519,6 +537,12 @@ def our_variations(pid, mkt):
         r["deal_price"] = d26["deal_price"] if d26 else None
         r["deal_status"] = deal_status_short(d26) if d26 else "Not in a deal"
         r["deal_disc"] = (1 - d26["deal_price"] / d26["current_price"]) if d26 and d26["deal_price"] and d26["current_price"] else None
+        r["price26"] = d26["current_price"] if d26 and d26["current_price"] else r["price_now"]
+        s25 = sb25.get((mkt, r["asin"])) or {}
+        fx_ = CA_FX25 if mkt == "CA" else 1
+        r["u25"], r["sales25_raw"], r["promo25_raw"] = s25.get("units"), s25.get("sales"), s25.get("promo")
+        r["sales25"], r["promo25"] = (s25["sales"] * fx_, s25["promo"] * fx_) if s25 else (None, None)
+        r["paid25"] = (r["sales25"] + r["promo25"]) / s25["units"] if s25.get("units") and s25["sales"] + s25["promo"] > 0 else None
         xr = xray.get((mkt, r["asin"]))
         r.update({"x_rating": xr["rating"] if xr else None, "x_reviews": xr["reviews"] if xr else None, "x_bsr": xr["bsr"] if xr else None,
                   "x_units": xr["units_mo"] if xr else None, "x_pool": xr["pool"] if xr else None})
@@ -1170,6 +1194,29 @@ def deal_evidence_text(da):
     if da.get("comp25"):
         parts.append(f"US competitors' median price cut in BFCM 2025: {da['comp25']['median']:.0%} ({da['comp25']['n']} rivals)")
     return "; ".join(parts)
+
+def price_compare(pid, mkt):
+    """BFCM 2025 vs 2026 price on the same variations: what customers paid in BFCM week 2025 (Nov 20 - Dec 1, sales after
+    promotions / units) vs the 2026 deal price, both weighted by each variation's BFCM 2025 units."""
+    vs = [v for v in our_variations(pid, mkt) if v.get("u25") and v.get("paid25")]
+    if not vs:
+        return None
+    cmp_ = [v for v in vs if v.get("deal_price")]
+    every = [v for v in vs if v.get("price26")]
+    wavg = lambda rows, k: sum(v[k] * v["u25"] for v in rows) / sum(v["u25"] for v in rows) if rows else None
+    paid = lambda rows: sum(v["sales25"] + v["promo25"] for v in rows) / sum(v["u25"] for v in rows) if rows else None
+    out = {"n": len(cmp_), "u25": sum(v["u25"] for v in cmp_), "paid25": paid(cmp_), "deal26": wavg(cmp_, "deal_price"),
+           "cheaper": sum(1 for v in cmp_ if v["deal_price"] < v["paid25"] - 0.005), "dearer": sum(1 for v in cmp_ if v["deal_price"] > v["paid25"] + 0.005),
+           "n_all": len(vs), "u25_all": sum(v["u25"] for v in vs), "paid25_all": paid(vs),
+           "n26": len(every), "paid25_26": paid(every), "price26": wavg(every, "price26"),
+           "nodeal": len(vs) - len(cmp_), "nodeal_u25": sum(v["u25"] for v in vs if not v.get("deal_price"))}
+    out["chg"] = out["deal26"] / out["paid25"] - 1 if out["deal26"] and out["paid25"] else None
+    out["chg26"] = out["price26"] / out["paid25_26"] - 1 if out["price26"] and out["paid25_26"] else None
+    da = deal_assumption(pid, mkt) or {}
+    h = next((v for v in cmp_ if v["asin"] == da.get("asin")), None) or (max(cmp_, key=lambda v: v["u25"]) if cmp_ else None)
+    out["hero"] = {"asin": h["asin"], "label": " ".join(x for x in (h.get("size"), h.get("colour")) if x), "u25": h["u25"], "paid25": h["paid25"],
+                   "price26": h.get("price26"), "deal26": h["deal_price"], "chg": h["deal_price"] / h["paid25"] - 1} if h else None
+    return out
 
 # ------------------------------------------------------------------ BFCM 2026 stock outlook (SellerBoard, Oct 15, 2026)
 # Per child ASIN: stock at Amazon now (on hand = FBA stock + units moving between Amazon warehouses), units already sent to
@@ -2169,6 +2216,7 @@ lines = [
     ("Key rules", dict(bold=True, size=11)),
     ("Our price = the latest catalog price read (US Oct 13, CA Oct 14); a variation without one shows no price.", {}),
     (f"BFCM 2026 deal prices come from the team's deal sheet ({DEAL_ASOF} Amazon deal page export): for every variation, the deal, its dates, today's price and Amazon's maximum deal price (or a manual price). Amazon's maximum moves daily until the Nov 13 deadline, so prices are refreshed with each new export.", {}),
+    ("The 'Price 2025 vs 2026' tab compares, variation by variation, what customers actually paid in BFCM 2025 (Nov 20 - Dec 1, 2025; sales after promotions / units) with the BFCM 2026 deal price, and rolls it up per product on the same variations weighted by 2025 units. Negative = the 2026 deal is cheaper than last year.", {}),
     ("BFCM 2026 stock: demand at today's pace to Nov 18, then x the product's BFCM 2025 lift for Nov 19-30 (the account's lift where the product's own is missing or unreliable, labelled ASSUMED). Inbound has no arrival date, so each variation shows its run-out date with and without inbound.", {}),
     ("BFCM 2025 = Nov 20 - Dec 1, 2025; pre-event = Nov 1-19 for prices and Oct 21 - Nov 19 for sales.", {}),
     ("A COMING SOON picture means no verified photo yet - it is never replaced by another product's photo. Images render in Excel 365 and Google Sheets.", {}),
@@ -2310,6 +2358,8 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
      ("BFCM 2026 deal prices", "Team deal sheet: Amazon deal page export, US and CA", DEAL_ASOF, len(deals26), "Current", "",
       f"{sum(1 for r_ in deals26.values() if r_['deal_price'] is not None):,} of {len(deals26):,} SKUs on the deal pages have a deal price (Amazon's maximum, or a manual price on {sum(1 for r_ in deals26.values() if r_['manual_deal_price'] is not None)}); the rest are out of stock, have no reference price or are flagged by Amazon. "
       "Replaces the 15% / 20% placeholder used before real prices existed. Amazon's maximum deal price moves daily until the Nov 13 deadline (on Oct 27 most deals needed only about 5% off today's price; Bamboo 4 and 6 Piece 20-28%), so the tracker is refreshed with each export."),
+     ("BFCM 2025 price paid per variation", "SellerBoard dashboard, product rows (data/sellerboard/bfcm2025_variation_sales_2025-11-20_to_2025-12-01.csv)", "Nov 20 - Dec 1, 2025", len(sb25), "Exact", "",
+      f"Every child pulled in both markets (Amazon.com {sum(1 for k_ in sb25 if k_[0] == 'US'):,} ASINs, Amazon.ca {sum(1 for k_ in sb25 if k_[0] == 'CA'):,}); unit and sales totals match the account summary for the window exactly (US {sum(v_['units'] for k_, v_ in sb25.items() if k_[0] == 'US'):,} units, CA {sum(v_['units'] for k_, v_ in sb25.items() if k_[0] == 'CA'):,}). Price paid = (sales + promotions) / units. Used only on the 'Price 2025 vs 2026' tab, beside the Oct 27 deal sheet."),
      ("Our heroes' BFCM 2025 price and Best Seller Rank (US)", "Command Center keepa_history (data/keepa/keepa_history_ours_cc.csv)", "Nov 1 - Dec 5, 2025", len(hero25), "Exact", "",
       f"Daily Keepa for our {len(hero25)} US hero child ASINs, pulled Oct 14. Keepa holds no Buy Box series for our own ASINs, so price = lowest new offer (we are the only seller). Price drops on Nov 20 match the Best Deals start: B4 $74.99 to $71.24, B6 $79.99 to $75.99, S4 $29.95 to $25.46, S6 $33.95 to $32.25, Satin Fitted $16.95 to $15.15, SSS4 $33.95 to $31.41. No price history for Bamboo Fitted, Decolure Cooling 4pc, CL Pillowcases, Linen Curtains and Quilt Set in this window."),
      ("Our BFCM 2025 stock", "DataHub inventory, revision 2 (agent) + data/stock/our_stock_bfcm2025_missing_dates_bracketed.csv", "2026-10-14", None, "Partial", "", "US Nov 26, 27, Dec 1 and CA Nov 24, 29, 30 have no snapshot. Filled by inference (data/stock/our_stock_bfcm2025_missing_dates_combined.csv) from units sold that day (agent, DataHub amazon_sales, 1,761 variation-days with a sale) and the readings either side: 3,503 of 3,936 variation-days in stock, 39 out of stock, 386 unknown (low or no stock either side and no sale), and 8 sold despite 0 units on both sides (inbound stock arriving that day, e.g. B4 Queen Mid Grey B0BZQ18QJB sold 87 on Cyber Monday). Stock unit columns stay blank for these days."),
@@ -2461,6 +2511,81 @@ stk.conditional_formatting.add(f"R{d0}:R{d1}", FormulaRule(formula=[f'R{d0}="Nee
 stk.freeze_panes = stk.cell(row=d0, column=4)
 stk.auto_filter.ref = f"A{det_hdr}:T{d1}"
 
+# ------------------------------------------------------------------ Price 2025 vs 2026 tab
+pz = wb.create_sheet("Price 2025 vs 2026")
+pz.sheet_view.showGridLines = False
+pz["A1"] = "Price 2025 vs 2026: what customers paid in BFCM 2025 vs our BFCM 2026 deal price"; pz["A1"].font = F(size=13, bold=True, color=C_NAVY)
+pz["A2"] = ("BFCM 2025 = Nov 20 - Dec 1, 2025 (12 days), every variation's actual units and sales in each market; average price paid = (sales + promotions) / units, "
+            f"so coupons and promotions are taken off. 2026 = the team deal sheet ({DEAL_ASOF}): today's price and the BFCM 2026 deal price per variation (Amazon's maximum deal price "
+            "moves daily until the Nov 13 deadline). Product rows compare the SAME variations, weighted by each variation's BFCM 2025 units, so a change in the size or colour mix "
+            "does not move the result. Negative change = the 2026 deal is cheaper than what customers paid in BFCM 2025. Blue cells are inputs; the rest are formulas.")
+pz["A2"].font = F(size=8.5, italic=True); pz["A2"].alignment = WRAP; pz.merge_cells("A2:U2"); pz.row_dimensions[2].height = 52
+pz["A3"] = "Canada: BFCM 2025 sales are recorded in US$; converted to C$ at this rate:"; pz["A3"].font = F(size=9, bold=True)
+pz["G3"] = CA_FX25; pz["G3"].font = F(size=9, bold=True, color="0000FF"); pz["G3"].number_format = "0.0000"; pz["G3"].fill = PatternFill("solid", fgColor="FFFF00")
+pz["G3"].comment = Comment(f"Median of CAD revenue / US$ sales on {CA_FX25_N} Canadian BFCM 2025 deal rows where both exist for the same child and units (range {CA_FX25_LO:.3f} - {CA_FX25_HI:.3f}, the daily rate over Nov 20 - Dec 1, 2025).", "Tracker")
+PZC = [("tab", "Product tab", 16), ("mkt", "Mkt", 5), ("asin", "Child ASIN", 12), ("sku", "SKU", 22), ("size", "Size", 9), ("colour", "Colour", 12),
+       ("u25", "BFCM 2025 units", 8), ("s25", "BFCM 2025 sales (US$; CA converted in col U)", 11), ("p25", "BFCM 2025 promotions (US$)", 9), ("paid", "BFCM 2025 avg price paid", 10),
+       ("now", f"2026 price ({DEAL_ASOF[:6]})", 10), ("deal", "BFCM 2026 deal price", 10), ("st", "BFCM 2026 deal status", 14),
+       ("dd", "Deal vs 2025 paid ($)", 9), ("dp", "Deal vs 2025 paid (%)", 9), ("np", "2026 price vs 2025 paid (%)", 9),
+       ("q", "In comparison (sold in 2025 and has a 2026 deal price)", 9), ("ud", "Units x deal", 10), ("pd", "Paid, compared rows", 10), ("uq", "Units, compared rows", 8), ("fx", "x to market currency (US 1; CA US$ to C$)", 9)]
+pz_prod = [(pid, mkt, tname) for pid, mkt, tname in TABS if price_compare(pid, mkt) or any(v.get("deal_price") for v in our_variations(pid, mkt))]
+pz_rows = []
+for pid, mkt, tname in pz_prod:
+    vs_ = [v for v in our_variations(pid, mkt) if v.get("u25") or v.get("deal_price")]
+    vs_.sort(key=lambda v: (-(v.get("u25") or 0), v.get("size") or "", v.get("colour") or ""))
+    pz_rows += [(tname, mkt, v) for v in vs_]
+ph = 4
+PZS = ["Product tab", "Mkt", "Variations sold in BFCM 2025", "Variations compared", "BFCM 2025 units (compared)", "BFCM 2025 avg price paid",
+       "BFCM 2026 deal price (same variations, 2025 mix)", "Change ($)", "Change (%)", "Cheaper in 2026", "Dearer in 2026",
+       "Hero variation", "Hero ASIN", "Hero: 2025 paid", "Hero: 2026 deal", "Hero: change (%)"]
+for j, h in enumerate(PZS, 1):
+    c = pz.cell(row=ph, column=j, value=h); c.font = F(bold=True, color="FFFFFF", size=8); c.fill = HDR; c.alignment = CENTER; c.border = BOX
+pz.row_dimensions[ph].height = 40
+pz_hdr = ph + len(pz_prod) + 3
+q0, q1 = pz_hdr + 1, pz_hdr + len(pz_rows)
+qr = lambda col: f"${col}${q0}:${col}${q1}"
+CUR = {"US": '"$"#,##0.00', "CA": '"C$"#,##0.00'}
+for i, (pid, mkt, tname) in enumerate(pz_prod):
+    r0 = ph + 1 + i
+    pc_ = price_compare(pid, mkt) or {}
+    hh = pc_.get("hero") or {}
+    k_ = f'{qr("A")},A{r0},{qr("B")},B{r0}'
+    vals = [tname, mkt, f'=COUNTIFS({k_},{qr("G")},">0")', f'=SUMIFS({qr("Q")},{k_})', f'=SUMIFS({qr("T")},{k_})',
+            f'=IF(E{r0}=0,"",SUMIFS({qr("S")},{k_})/E{r0})', f'=IF(E{r0}=0,"",SUMIFS({qr("R")},{k_})/E{r0})',
+            f'=IF(E{r0}=0,"",G{r0}-F{r0})', f'=IF(E{r0}=0,"",G{r0}/F{r0}-1)',
+            f'=COUNTIFS({k_},{qr("Q")},1,{qr("N")},"<0")', f'=COUNTIFS({k_},{qr("Q")},1,{qr("N")},">0")',
+            hh.get("label"), hh.get("asin"),
+            f'=IF(M{r0}="","",SUMIFS({qr("J")},{k_},{qr("C")},M{r0}))' if hh else None,
+            f'=IF(M{r0}="","",SUMIFS({qr("L")},{k_},{qr("C")},M{r0}))' if hh else None,
+            f'=IF(OR(N{r0}="",N{r0}=0,O{r0}=""),"",O{r0}/N{r0}-1)' if hh else None]
+    for j, v in enumerate(vals, 1):
+        c = pz.cell(row=r0, column=j, value=v); c.border = BOX; c.font = F(size=8.5)
+        c.number_format = {5: "#,##0", 6: CUR[mkt], 7: CUR[mkt], 8: CUR[mkt], 9: "0.0%", 14: CUR[mkt], 15: CUR[mkt], 16: "0.0%"}.get(j, "General")
+    pz.cell(row=r0, column=1).hyperlink = f"#'{tname}'!A1"
+pz.conditional_formatting.add(f"I{ph + 1}:I{ph + len(pz_prod)}", FormulaRule(formula=[f'AND(ISNUMBER(I{ph + 1}),I{ph + 1}<0)'], font=Font(color="006100"), fill=PatternFill("solid", fgColor="C6EFCE")))
+pz.conditional_formatting.add(f"I{ph + 1}:I{ph + len(pz_prod)}", FormulaRule(formula=[f'AND(ISNUMBER(I{ph + 1}),I{ph + 1}>0)'], font=Font(color="9C0006"), fill=PatternFill("solid", fgColor="FFC7CE")))
+pz.cell(row=pz_hdr - 1, column=1, value="Every variation sold in BFCM 2025 or with a BFCM 2026 deal price (sorted by BFCM 2025 units within each product)").font = F(bold=True, size=10, color=C_NAVY)
+for j, (k_, h_, w_) in enumerate(PZC, 1):
+    c = pz.cell(row=pz_hdr, column=j, value=h_); c.font = F(bold=True, color="FFFFFF", size=8); c.fill = HDR; c.alignment = CENTER; c.border = BOX
+    pz.column_dimensions[CL(j)].width = max(w_, pz.column_dimensions[CL(j)].width or 0)
+pz.row_dimensions[pz_hdr].height = 48
+for rr_, (tname, mkt, v) in enumerate(pz_rows, q0):
+    vals = {"tab": tname, "mkt": mkt, "asin": v["asin"], "sku": v.get("sku"), "size": v.get("size"), "colour": v.get("colour"),
+            "u25": v.get("u25"), "s25": round(v["sales25_raw"], 2) if v.get("u25") else None, "p25": round(v["promo25_raw"], 2) if v.get("u25") else None,
+            "paid": f'=IF(AND(N(G{rr_})>0,N(H{rr_})+N(I{rr_})>0),(H{rr_}+I{rr_})*U{rr_}/G{rr_},"")', "now": v.get("price26"), "deal": v.get("deal_price"), "st": v.get("deal_status"),
+            "dd": f'=IF(OR(J{rr_}="",L{rr_}=""),"",L{rr_}-J{rr_})', "dp": f'=IF(OR(J{rr_}="",L{rr_}=""),"",L{rr_}/J{rr_}-1)',
+            "np": f'=IF(OR(J{rr_}="",K{rr_}=""),"",K{rr_}/J{rr_}-1)', "q": f'=IF(AND(ISNUMBER(J{rr_}),ISNUMBER(L{rr_})),1,0)',
+            "ud": f"=IF(Q{rr_}=1,G{rr_}*L{rr_},0)", "pd": f"=IF(Q{rr_}=1,(H{rr_}+I{rr_})*U{rr_},0)", "uq": f"=IF(Q{rr_}=1,G{rr_},0)", "fx": ("=$G$3" if mkt == "CA" else 1)}
+    for j, (k_, h_, w_) in enumerate(PZC, 1):
+        c = pz.cell(row=rr_, column=j, value=vals[k_]); c.border = BOX
+        c.font = F(size=8.5, color=(BLUE if k_ in ("u25", "s25", "p25", "now", "deal") else "000000"))
+        c.number_format = {"u25": "#,##0", "s25": CUR["US"], "p25": CUR["US"], "paid": CUR[mkt], "fx": "0.0000", "now": CUR[mkt], "deal": CUR[mkt], "dd": CUR[mkt],
+                           "dp": "0.0%", "np": "0.0%", "ud": "#,##0.00", "pd": "#,##0.00", "uq": "#,##0"}.get(k_, "General")
+pz.conditional_formatting.add(f"O{q0}:O{q1}", FormulaRule(formula=[f'AND(ISNUMBER(O{q0}),O{q0}<0)'], font=Font(color="006100")))
+pz.conditional_formatting.add(f"O{q0}:O{q1}", FormulaRule(formula=[f'AND(ISNUMBER(O{q0}),O{q0}>0)'], font=Font(color="9C0006")))
+pz.freeze_panes = pz.cell(row=q0, column=4)
+pz.auto_filter.ref = f"A{pz_hdr}:U{q1}"
+
 # order: README, Dashboard, Product Index, product tabs..., Data Gaps, Data
 # jump bar on every product tab (row 2): click to go straight to a section
 SHORT_NAMES = {"1": "Our product", "2": "Our variations", "3": "Our BFCM 2025", "4": "COMPETITORS", "5": "What it means"}
@@ -2488,7 +2613,7 @@ for pid_, mkt_, t_ in TABS:
     ws_.row_dimensions[2].height = 18
 
 # order: README, US Dashboard, CA Dashboard, Product Index, BFCM Stock, US product tabs, CA product tabs, Data Check, Data Gaps, data sheets
-_front = ["README", "US Dashboard", "CA Dashboard", "Product Index", "BFCM Stock"]
+_front = ["README", "US Dashboard", "CA Dashboard", "Product Index", "BFCM Stock", "Price 2025 vs 2026"]
 _us = [t for p_, m_, t in TABS if m_ == "US"]
 _ca = [t for p_, m_, t in TABS if m_ == "CA"]
 _back = ["Data Check", "Data Gaps", "Data", "Lists", "Lookup"]

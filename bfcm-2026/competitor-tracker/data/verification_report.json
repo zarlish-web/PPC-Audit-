@@ -119,6 +119,15 @@
    "note": ""
   },
   {
+   "name": "Price 2025 vs 2026",
+   "compared": "Every variation's BFCM 2025 price paid (raw sales file) and 2026 deal price (deal sheet) in the workbook and dashboard; product roll-ups agree",
+   "checked": 3351,
+   "mismatches": 0,
+   "status": "Pass",
+   "examples": [],
+   "note": "CA rate 1.4036"
+  },
+  {
    "name": "BFCM 2026 stock per variation",
    "compared": "On hand, inbound and pace vs the raw SellerBoard file; units needed = pace \u00d7 34 + pace \u00d7 lift \u00d7 12",
    "checked": 1383,
@@ -146,6 +155,6 @@
    "note": ""
   }
  ],
- "passed": 16,
- "total": 16
+ "passed": 17,
+ "total": 17
 }
