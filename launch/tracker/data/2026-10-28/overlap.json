@@ -1,0 +1,101 @@
+[
+{
+"item": "cooling sheets queen",
+"served_by": "Cooling Sheet Queen single (12 clk, 0 ord) \u00b7 Queen Tail 18 via 'cool sheet queen' (4 clk, 0 ord)",
+"clicks": 16,
+"orders": 0,
+"spend": 36.6,
+"finding": "Queen's biggest keyword has two paths. The single campaign only reaches top of search 0.21% of the time; the tail catches a quarter of the clicks at its own bid.",
+"proposal": "When the head moves to its ranking setup on the order date (A2), add 'cooling sheets queen' as negative exact in Queen Tail 18 in the same change (A3).",
+"timing": "With A2 (order date)",
+"protects": "The tail keeps its own query 'cool sheet queen' (6 clicks). Nothing relevant is blocked: the same shoppers still see our ad through the ranking campaign."
+},
+{
+"item": "cooling queen sheets",
+"served_by": "Cooling Queen Sheet single, Ranking (1 clk) \u00b7 Queen Tail 22 via 'cool queen sheet' (1 clk)",
+"clicks": 2,
+"orders": 0,
+"spend": 9.91,
+"finding": "Same close-variant overlap, 2 clicks in 4 days.",
+"proposal": "Negative exact 'cooling queen sheets' in Queen Tail 22, in the same change as above.",
+"timing": "With the Queen restructure",
+"protects": "Two clicks of evidence, so it routes traffic and removes nothing; the tail keeps 'cool queen sheet'."
+},
+{
+"item": "cooling sheets king size",
+"served_by": "Cooling Sheet King Size single, Conversion (22 clk, 2 ord, $56) \u00b7 King Tail 13 via 'cool sheet king size' (12 clk, 4 ord, $33)",
+"clicks": 34,
+"orders": 6,
+"spend": 88.82,
+"finding": "King's best keyword also has two paths, and the tail is the better converter (4 orders on 12 clicks, 8.7% ACoS).",
+"proposal": "No negative. Leave both paths; review on 27 Oct with King.",
+"timing": "Wait \u2014 review 27 Oct",
+"protects": "Blocking the tail would remove the path that sells best today. A sale counts toward rank whichever campaign wins the click."
+},
+{
+"item": "cooling bed sheets",
+"served_by": "Cooling Bed Sheet single (9 clk, 1 ord) \u00b7 No Size Tail 03 via 'cool bed sheet' (1 clk)",
+"clicks": 10,
+"orders": 1,
+"spend": 25.53,
+"finding": "One click leaked to the tail.",
+"proposal": "No change.",
+"timing": "Watch",
+"protects": "Too small to matter."
+},
+{
+"item": "coolinens (brand)",
+"served_by": "Pillowcase-page product targeting (5 clk) \u00b7 CLPC pillowcase brand exact (2 clk)",
+"clicks": 7,
+"orders": 0,
+"spend": 5.55,
+"finding": "People searching our brand see pillowcase ads; no cooling-sheet branded campaign exists.",
+"proposal": "Launch the planned cooling-sheet branded exact on Queen Graphite ($10/day). Add 'coolinens' as negative exact in the pillowcase-page product-targeting campaign.",
+"timing": "Act now",
+"protects": "Brand searches are ours by definition; no discovery is lost, and the sheet ad replaces the pillowcase ad."
+},
+{
+"item": "Rival-page ads showing on unrelated searches",
+"served_by": "Cooling Rivals Queen / King / Twin (product targeting)",
+"clicks": 12,
+"orders": 0,
+"spend": 26.4,
+"finding": "Rival-page campaigns also served on search pages: silk bed sheets (3 clk), tencel lyocell sheets, cooling comforter set, cooling blanket(s), below zero cooling comforter, slumber cloud ultracool comforter, apartment essentials men, sleep number bed sheets.",
+"proposal": "Negative exact on those terms in the rival campaigns. Keep 'nylon spandex sheets' (our fabric), 'cooling sheets' and the rival brand searches.",
+"timing": "Act now",
+"protects": "Relevance, not performance: none of these is a cooling sheet set. Relevant terms stay open."
+},
+{
+"item": "sleephoria cooling sheets",
+"served_by": "Cooling Rivals Queen (1 clk, $2.20)",
+"clicks": 1,
+"orders": 0,
+"spend": 2.2,
+"finding": "Our own sister brand's search: we would pay to take a sale from ourselves.",
+"proposal": "Negative phrase 'sleephoria' in the rival-page and Auto campaigns.",
+"timing": "Act now",
+"protects": "Sister brand, so this only stops self-competition."
+},
+{
+"item": "Auto: unrelated searches",
+"served_by": "CLCS4 Auto (4 clk, $3.10)",
+"clicks": 4,
+"orders": 0,
+"spend": 3.1,
+"finding": "Auto served 'bed cooling system', 'electronic cooling for menopause', 'under sheets bed fan' (devices, not sheets) and 'cool linens for hot sleepers' (relevant).",
+"proposal": "Negative exact on the three device searches only. No ranking keywords as negatives in Auto yet: Auto has not bought a single ranking keyword.",
+"timing": "Act now (3 terms)",
+"protects": "Auto stays open for discovery; a ranking-keyword wall is added only if Auto starts buying ranking keywords."
+},
+{
+"item": "Sponsored Brands / Video keywords that match ranking keywords",
+"served_by": "SB Queen/King Shades, SBV Rival Video Queen/King/No size, SBV Broad",
+"clicks": 65,
+"orders": 7,
+"spend": 237.84,
+"finding": "Brand and video ads bid on some of the same words, but they show in different slots (banner and video), not in the Sponsored Products auction. They add shelf space; they do not take clicks from the ranking ads.",
+"proposal": "No negatives. Review SBV Broad and the Queen rival video at 30 clicks or on 26 Oct (new video).",
+"timing": "Wait \u2014 26 Oct",
+"protects": "Keeps the extra shelf space and the 7 orders these ads have brought."
+}
+]
