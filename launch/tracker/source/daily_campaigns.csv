@@ -874,95 +874,228 @@ date,campaignId,campaignName,objective,targetType,matchType,impressions,clicks,o
 2026-10-29,91731409831460,CLCS4-SP-Twin Sheets Set-[Generic|Twin]-Exact-(Conversion)-DO-CL-COOLING-SHEET-TWIN-GRAPHITE,Conversions,Keyword,Exact,12,0,0,0,0
 2026-10-29,174874788803145,CLCS4-SP-Twin Size Sheets-[Generic|Twin]-Exact-(Conversion)-DO-CL-COOLING-SHEET-TWIN-GRAPHITE,Conversions,Keyword,Exact,2,0,0,0,0
 2026-10-29,236547984756459,CLCS4-SP-Twin Tail 24-[Cooling|Twin]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-TWIN-WHITE,Conversions,Keyword,Exact,25,0,0,0,0
-2026-10-30,219721573309507,CLCS4-SP-Cooling Sheet King Size-[Cooling|King]-(HSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY,Ranking,Keyword,Exact,238,5,0,27.75,0
-2026-10-30,39903088437512,CLCS4-SP-King Size Cooling Sheet-[Cooling|King]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY,Ranking,Keyword,Exact,104,4,0,25.27,0
-2026-10-30,249341758820308,CLCS4-SP-Cooling Sheet King-[Cooling|King]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY,Ranking,Keyword,Exact,43,3,0,18.46,0
-2026-10-30,41340995169453,CLCS4-SP-Cooling Bed Sheet King-[Cooling|King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY,Ranking,Keyword,Exact,39,2,0,13.56,0
-2026-10-30,117494953315518,CLCS4-SP-King Size Sheets Set-[Generic|King]-(MSV)-Exact-(Conversion)-FIX-CL-COOLING-SHEET-KING-GRAPHITE,Conversions,Keyword,Exact,2851,4,1,11.08,95.99
-2026-10-30,126318756010297,CLCS4-SP-Queen Size Cooling Sheet-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,12,1,0,7.22,0
-2026-10-30,224642388840797,CLCS4-SP-King Cooling Sheet-[Cooling|King]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY,Ranking,Keyword,Exact,37,1,0,7.1,0
-2026-10-30,18868484472069,CLCS4-SP-King Size Sheet Set Cooling-[Cooling|King]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY,Ranking,Keyword,Exact,37,1,1,6.42,93.99
-2026-10-30,23362054845972,CLCS4-SP-Full Size Cooling Sheet-[Cooling|Full]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-FULL-CREAM,Ranking,Keyword,Exact,12,1,0,5.51,0
-2026-10-30,261719465402606,CLCS4-SP-Cooling Sheet Full-[Cooling|Full]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-FULL-CREAM,Ranking,Keyword,Exact,9,1,0,5.49,0
-2026-10-30,233724036751771,CLCS4-SP-King Tail 13-[Cooling|King]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-KING-COOL-GREY,Conversions,Keyword,Exact,400,2,1,4.5,93.99
-2026-10-30,102640653218202,CLCS4-SP-Cooling Sheet Twin-[Cooling|Twin]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-TWIN-WHITE,Ranking,Keyword,Exact,25,1,0,4.4,0
-2026-10-30,120855231696599,CLCS4-SP-Cooling Rivals Full-(PAT)-Targeting-(Conquest)-DO-CL-COOLING-SHEET-FULL-CREAM,Conquesting,ASIN,Product Targeting,273,1,0,2.75,0
+2026-10-30,219721573309507,CLCS4-SP-Cooling Sheet King Size-[Cooling|King]-(HSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY,Ranking,Keyword,Exact,215,5,0,27.75,0
+2026-10-30,39903088437512,CLCS4-SP-King Size Cooling Sheet-[Cooling|King]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY,Ranking,Keyword,Exact,102,4,0,25.27,0
+2026-10-30,249341758820308,CLCS4-SP-Cooling Sheet King-[Cooling|King]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY,Ranking,Keyword,Exact,35,3,0,18.46,0
+2026-10-30,41340995169453,CLCS4-SP-Cooling Bed Sheet King-[Cooling|King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY,Ranking,Keyword,Exact,24,2,0,13.56,0
+2026-10-30,117494953315518,CLCS4-SP-King Size Sheets Set-[Generic|King]-(MSV)-Exact-(Conversion)-FIX-CL-COOLING-SHEET-KING-GRAPHITE,Conversions,Keyword,Exact,2763,4,1,11.08,95.99
+2026-10-30,126318756010297,CLCS4-SP-Queen Size Cooling Sheet-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,11,1,0,7.22,0
+2026-10-30,224642388840797,CLCS4-SP-King Cooling Sheet-[Cooling|King]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY,Ranking,Keyword,Exact,30,1,0,7.1,0
+2026-10-30,18868484472069,CLCS4-SP-King Size Sheet Set Cooling-[Cooling|King]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY,Ranking,Keyword,Exact,31,1,1,6.42,93.99
+2026-10-30,23362054845972,CLCS4-SP-Full Size Cooling Sheet-[Cooling|Full]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-FULL-CREAM,Ranking,Keyword,Exact,10,1,0,5.51,0
+2026-10-30,261719465402606,CLCS4-SP-Cooling Sheet Full-[Cooling|Full]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-FULL-CREAM,Ranking,Keyword,Exact,8,1,0,5.49,0
+2026-10-30,102640653218202,CLCS4-SP-Cooling Sheet Twin-[Cooling|Twin]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-TWIN-WHITE,Ranking,Keyword,Exact,22,1,0,4.4,0
+2026-10-30,120855231696599,CLCS4-SP-Cooling Rivals Full-(PAT)-Targeting-(Conquest)-DO-CL-COOLING-SHEET-FULL-CREAM,Conquesting,ASIN,Product Targeting,234,1,0,2.75,0
 2026-10-30,157685407405393,CLCS4-SP-Brand Top-[Brand|Top]-Phrase-(Defensive)-DO-CL-COOLING-SHEET-QUEEN-GRAPHITE,Conversions,Keyword,Phrase,17,1,0,2.47,0
 2026-10-30,114445673976608,CLCS4-SP-Full Size Bed Sheets-[Generic|Full]-(LSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-FULL-GRAPHITE,Conversions,Keyword,Exact,94,1,0,2.38,0
-2026-10-30,91731409831460,CLCS4-SP-Twin Sheets Set-[Generic|Twin]-Exact-(Conversion)-DO-CL-COOLING-SHEET-TWIN-GRAPHITE,Conversions,Keyword,Exact,223,1,0,2.26,0
-2026-10-30,220042648865654,CLCS4-SP-King Tail 12-[Cooling|King]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-KING-COOL-GREY,Conversions,Keyword,Exact,128,1,0,2.25,0
-2026-10-30,276988605379067,CLCS4-SP-King Tail 14-[Cooling|King]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-KING-COOL-GREY,Conversions,Keyword,Exact,36,1,0,2.25,0
-2026-10-30,218547614063804,CLCS4-SP-King Tail 15-[Cooling|King]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-KING-COOL-GREY,Conversions,Keyword,Exact,46,1,0,2.25,0
-2026-10-30,240327046890755,CLCS4-SP-King Tail 16-[Cooling|King]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-KING-COOL-GREY,Conversions,Keyword,Exact,35,1,0,2.25,0
-2026-10-30,125782091672643,CLCS4-SP-Cooling Sheet-[Cooling]-(VHSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,149,1,0,2.22,0
-2026-10-30,226249289883804,CLCS4-SP-No Size Tail 02-[Cooling]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,29,1,0,2.22,0
-2026-10-30,145524462628778,CLCS4-SP-Queen Tail 20-[Cooling|Queen]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,10,1,0,2.22,0
-2026-10-30,134153794481070,CLCS4-SP-Auto California King-[Cooling|California King]-Auto-(Discovery)-FIX-CL-COOLING-SHEET-CAL-KING-GRAPHITE,Discovery,Auto,Auto,64,0,0,0,0
-2026-10-30,79331878440628,CLCS4-SP-Auto Full-[Cooling|Full]-Auto-(Discovery)-FIX-CL-COOLING-SHEET-FULL-GRAPHITE,Discovery,Auto,Auto,630,0,0,0,0
-2026-10-30,79301807798059,CLCS4-SP-Auto King Close-[Cooling|King]-Auto-(Discovery)-FIX-CL-COOLING-SHEET-KING-GRAPHITE,Discovery,Auto,Auto,15,0,0,0,0
+2026-10-30,91731409831460,CLCS4-SP-Twin Sheets Set-[Generic|Twin]-Exact-(Conversion)-DO-CL-COOLING-SHEET-TWIN-GRAPHITE,Conversions,Keyword,Exact,222,1,0,2.26,0
+2026-10-30,220042648865654,CLCS4-SP-King Tail 12-[Cooling|King]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-KING-COOL-GREY,Conversions,Keyword,Exact,99,1,0,2.25,0
+2026-10-30,233724036751771,CLCS4-SP-King Tail 13-[Cooling|King]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-KING-COOL-GREY,Conversions,Keyword,Exact,353,1,1,2.25,93.99
+2026-10-30,276988605379067,CLCS4-SP-King Tail 14-[Cooling|King]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-KING-COOL-GREY,Conversions,Keyword,Exact,30,1,0,2.25,0
+2026-10-30,218547614063804,CLCS4-SP-King Tail 15-[Cooling|King]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-KING-COOL-GREY,Conversions,Keyword,Exact,35,1,0,2.25,0
+2026-10-30,240327046890755,CLCS4-SP-King Tail 16-[Cooling|King]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-KING-COOL-GREY,Conversions,Keyword,Exact,25,1,1,2.25,93.99
+2026-10-30,125782091672643,CLCS4-SP-Cooling Sheet-[Cooling]-(VHSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,141,1,0,2.22,0
+2026-10-30,226249289883804,CLCS4-SP-No Size Tail 02-[Cooling]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,13,1,0,2.22,0
+2026-10-30,145524462628778,CLCS4-SP-Queen Tail 20-[Cooling|Queen]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,8,1,0,2.22,0
+2026-10-30,134153794481070,CLCS4-SP-Auto California King-[Cooling|California King]-Auto-(Discovery)-FIX-CL-COOLING-SHEET-CAL-KING-GRAPHITE,Discovery,Auto,Auto,55,0,0,0,0
+2026-10-30,79331878440628,CLCS4-SP-Auto Full-[Cooling|Full]-Auto-(Discovery)-FIX-CL-COOLING-SHEET-FULL-GRAPHITE,Discovery,Auto,Auto,625,0,0,0,0
+2026-10-30,79301807798059,CLCS4-SP-Auto King Close-[Cooling|King]-Auto-(Discovery)-FIX-CL-COOLING-SHEET-KING-GRAPHITE,Discovery,Auto,Auto,14,0,0,0,0
 2026-10-30,267041096730242,CLCS4-SP-Auto King Complements-[Cooling|King]-Auto-(Discovery)-FIX-CL-COOLING-SHEET-KING-GRAPHITE,Discovery,Auto,Auto,22,0,0,0,0
-2026-10-30,79783319940736,CLCS4-SP-Auto King Loose-[Cooling|King]-Auto-(Discovery)-FIX-CL-COOLING-SHEET-KING-GRAPHITE,Discovery,Auto,Auto,292,0,0,0,0
-2026-10-30,126734031650091,CLCS4-SP-Auto King Substitutes-[Cooling|King]-Auto-(Discovery)-FIX-CL-COOLING-SHEET-KING-GRAPHITE,Discovery,Auto,Auto,113,0,0,0,0
-2026-10-30,142641023357945,CLCS4-SP-Auto Queen Loose-[Cooling|Queen]-Auto-(Discovery)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Discovery,Auto,Auto,606,0,0,0,0
+2026-10-30,79783319940736,CLCS4-SP-Auto King Loose-[Cooling|King]-Auto-(Discovery)-FIX-CL-COOLING-SHEET-KING-GRAPHITE,Discovery,Auto,Auto,283,0,0,0,0
+2026-10-30,126734031650091,CLCS4-SP-Auto King Substitutes-[Cooling|King]-Auto-(Discovery)-FIX-CL-COOLING-SHEET-KING-GRAPHITE,Discovery,Auto,Auto,111,0,0,0,0
+2026-10-30,142641023357945,CLCS4-SP-Auto Queen Loose-[Cooling|Queen]-Auto-(Discovery)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Discovery,Auto,Auto,595,0,0,0,0
 2026-10-30,261907572833185,CLCS4-SP-Auto Queen Substitutes-[Cooling|Queen]-Auto-(Discovery)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Discovery,Auto,Auto,29,0,0,0,0
-2026-10-30,227580756288480,CLCS4-SP-Auto Twin-[Cooling|Twin]-Auto-(Discovery)-FIX-CL-COOLING-SHEET-TWIN-GRAPHITE,Discovery,Auto,Auto,363,0,0,0,0
-2026-10-30,127800243712704,CLCS4-SP-Auto-[Cooling]-Auto-(Discovery)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Discovery,Auto,Auto,138,0,0,0,0
+2026-10-30,227580756288480,CLCS4-SP-Auto Twin-[Cooling|Twin]-Auto-(Discovery)-FIX-CL-COOLING-SHEET-TWIN-GRAPHITE,Discovery,Auto,Auto,360,0,0,0,0
+2026-10-30,127800243712704,CLCS4-SP-Auto-[Cooling]-Auto-(Discovery)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Discovery,Auto,Auto,136,0,0,0,0
 2026-10-30,108009672963699,CLCS4-SP-Bed Sheet-[Generic]-(VHSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-GRAPHITE,Conversions,Keyword,Exact,81,0,0,0,0
 2026-10-30,103741756432563,CLCS4-SP-Cal King Cooling Sheets-[Cooling|California King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-CAL-KING-GRAPHITE,Ranking,Keyword,Exact,0,0,0,0,0
-2026-10-30,277009484711390,CLCS4-SP-Cal King Sheet Sets Cooling-[Cooling|California King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-CAL-KING-GRAPHITE,Ranking,Keyword,Exact,2,0,0,0,0
-2026-10-30,52031028770028,CLCS4-SP-California King Sheets Cooling-[Cooling|California King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-CAL-KING-GRAPHITE,Ranking,Keyword,Exact,1,0,0,0,0
-2026-10-30,81171072059935,CLCS4-SP-California King Tail 07-[Cooling|California King]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-CAL-KING-REGAL-PURPLE,Conversions,Keyword,Exact,18,0,0,0,0
-2026-10-30,7824854491506,CLCS4-SP-California King Tail 08-[Cooling|California King]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-CAL-KING-REGAL-PURPLE,Conversions,Keyword,Exact,6,0,0,0,0
-2026-10-30,97458724172094,CLCS4-SP-Cool Sheet For Hot Sleeper-[Cooling]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,7,0,0,0,0
-2026-10-30,263070876883663,CLCS4-SP-Cool Sheet-[Cooling]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,17,0,0,0,0
+2026-10-30,277009484711390,CLCS4-SP-Cal King Sheet Sets Cooling-[Cooling|California King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-CAL-KING-GRAPHITE,Ranking,Keyword,Exact,0,0,0,0,0
+2026-10-30,52031028770028,CLCS4-SP-California King Sheets Cooling-[Cooling|California King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-CAL-KING-GRAPHITE,Ranking,Keyword,Exact,0,0,0,0,0
+2026-10-30,81171072059935,CLCS4-SP-California King Tail 07-[Cooling|California King]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-CAL-KING-REGAL-PURPLE,Conversions,Keyword,Exact,11,0,0,0,0
+2026-10-30,7824854491506,CLCS4-SP-California King Tail 08-[Cooling|California King]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-CAL-KING-REGAL-PURPLE,Conversions,Keyword,Exact,3,0,0,0,0
+2026-10-30,97458724172094,CLCS4-SP-Cool Sheet For Hot Sleeper-[Cooling]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,5,0,0,0,0
+2026-10-30,263070876883663,CLCS4-SP-Cool Sheet-[Cooling]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,15,0,0,0,0
 2026-10-30,158183695413539,CLCS4-SP-CooLinens Pillowcases-(PAT)-Targeting-(Defensive)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Defensive,ASIN,Product Targeting,6,0,0,0,0
-2026-10-30,69815694726500,CLCS4-SP-Cooling Bed Set-[Cooling]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,8,0,0,0,0
-2026-10-30,260737296260796,CLCS4-SP-Cooling Bed Sheet Queen-[Cooling|Queen]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,8,0,0,0,0
-2026-10-30,174959347426016,CLCS4-SP-Cooling Bed Sheet-[Cooling]-(HSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,19,0,0,0,0
+2026-10-30,69815694726500,CLCS4-SP-Cooling Bed Set-[Cooling]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,6,0,0,0,0
+2026-10-30,260737296260796,CLCS4-SP-Cooling Bed Sheet Queen-[Cooling|Queen]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,7,0,0,0,0
+2026-10-30,174959347426016,CLCS4-SP-Cooling Bed Sheet-[Cooling]-(HSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,16,0,0,0,0
 2026-10-30,45787011767304,CLCS4-SP-Cooling Bed Sheets Full-[Cooling|Full]-(VLSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-FULL-GRAPHITE,Ranking,Keyword,Exact,0,0,0,0,0
 2026-10-30,98269067454088,CLCS4-SP-Cooling Bed Sheets Twin-[Cooling|Twin]-(VLSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-TWIN-GRAPHITE,Ranking,Keyword,Exact,0,0,0,0,0
-2026-10-30,270689009798661,CLCS4-SP-Cooling California King Sheets-[Cooling|California King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-CAL-KING-GRAPHITE,Ranking,Keyword,Exact,2,0,0,0,0
+2026-10-30,270689009798661,CLCS4-SP-Cooling California King Sheets-[Cooling|California King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-CAL-KING-GRAPHITE,Ranking,Keyword,Exact,1,0,0,0,0
 2026-10-30,210770894196125,CLCS4-SP-Cooling Full Size Sheets-[Cooling|Full]-(VLSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-FULL-GRAPHITE,Ranking,Keyword,Exact,4,0,0,0,0
-2026-10-30,49430809018003,CLCS4-SP-Cooling King Sheet-[Cooling|King]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY,Ranking,Keyword,Exact,26,0,0,0,0
+2026-10-30,49430809018003,CLCS4-SP-Cooling King Sheet-[Cooling|King]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY,Ranking,Keyword,Exact,18,0,0,0,0
 2026-10-30,149487851971988,CLCS4-SP-Cooling Queen Sheet-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,1,0,0,0,0
-2026-10-30,1790513065087,CLCS4-SP-Cooling Rivals California King-(PAT)-Targeting-(Conquest)-DO-CL-COOLING-SHEET-CAL-KING-REGAL-PURPLE,Conquesting,ASIN,Product Targeting,10,0,0,0,0
-2026-10-30,88960377759616,CLCS4-SP-Cooling Rivals King-(PAT)-Targeting-(Conquest)-DO-CL-COOLING-SHEET-KING-COOL-GREY,Conquesting,ASIN,Product Targeting,446,0,0,0,0
-2026-10-30,46437067198830,CLCS4-SP-Cooling Rivals Queen-(PAT)-Targeting-(Conquest)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conquesting,ASIN,Product Targeting,78,0,0,0,0
-2026-10-30,45264592369437,CLCS4-SP-Cooling Rivals Twin-(PAT)-Targeting-(Conquest)-DO-CL-COOLING-SHEET-TWIN-WHITE,Conquesting,ASIN,Product Targeting,31,0,0,0,0
-2026-10-30,279915686971992,CLCS4-SP-Cooling Sheet Full Size-[Cooling|Full]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-FULL-CREAM,Ranking,Keyword,Exact,41,0,0,0,0
+2026-10-30,1790513065087,CLCS4-SP-Cooling Rivals California King-(PAT)-Targeting-(Conquest)-DO-CL-COOLING-SHEET-CAL-KING-REGAL-PURPLE,Conquesting,ASIN,Product Targeting,0,0,0,0,0
+2026-10-30,88960377759616,CLCS4-SP-Cooling Rivals King-(PAT)-Targeting-(Conquest)-DO-CL-COOLING-SHEET-KING-COOL-GREY,Conquesting,ASIN,Product Targeting,376,0,0,0,0
+2026-10-30,46437067198830,CLCS4-SP-Cooling Rivals Queen-(PAT)-Targeting-(Conquest)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conquesting,ASIN,Product Targeting,46,0,0,0,0
+2026-10-30,45264592369437,CLCS4-SP-Cooling Rivals Twin-(PAT)-Targeting-(Conquest)-DO-CL-COOLING-SHEET-TWIN-WHITE,Conquesting,ASIN,Product Targeting,24,0,0,0,0
+2026-10-30,279915686971992,CLCS4-SP-Cooling Sheet Full Size-[Cooling|Full]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-FULL-CREAM,Ranking,Keyword,Exact,35,0,0,0,0
 2026-10-30,239857406913681,CLCS4-SP-Cooling Sheet Queen-[Cooling|Queen]-(HSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,36,0,0,0,0
 2026-10-30,50904380884782,CLCS4-SP-Cooling Sheet Set-[Cooling]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,2,0,0,0,0
 2026-10-30,215555529090336,CLCS4-SP-Cooling Sheets California King-[Cooling|California King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-CAL-KING-GRAPHITE,Ranking,Keyword,Exact,0,0,0,0,0
-2026-10-30,161211090031836,CLCS4-SP-Cooling Twin Sheets-[Cooling|Twin]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-TWIN-GRAPHITE,Ranking,Keyword,Exact,1,0,0,0,0
+2026-10-30,161211090031836,CLCS4-SP-Cooling Twin Sheets-[Cooling|Twin]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-TWIN-GRAPHITE,Ranking,Keyword,Exact,0,0,0,0,0
 2026-10-30,151720390766331,CLCS4-SP-Full Bed Sheets-[Generic|Full]-(LSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-FULL-GRAPHITE,Conversions,Keyword,Exact,52,0,0,0,0
 2026-10-30,106207558756476,CLCS4-SP-Full Sheet Set Cooling-[Cooling|Full]-(VLSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-FULL-GRAPHITE,Ranking,Keyword,Exact,3,0,0,0,0
 2026-10-30,23437077114015,CLCS4-SP-Full Sheets Cooling-[Cooling|Full]-(VLSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-FULL-GRAPHITE,Ranking,Keyword,Exact,0,0,0,0,0
-2026-10-30,90987816850227,CLCS4-SP-Full Size Bed Sheets Cooling-[Cooling|Full]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-FULL-GRAPHITE,Ranking,Keyword,Exact,6,0,0,0,0
-2026-10-30,161604610185522,CLCS4-SP-Full Size Sheet Sets Cooling-[Cooling|Full]-(VLSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-FULL-GRAPHITE,Ranking,Keyword,Exact,1,0,0,0,0
+2026-10-30,90987816850227,CLCS4-SP-Full Size Bed Sheets Cooling-[Cooling|Full]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-FULL-GRAPHITE,Ranking,Keyword,Exact,5,0,0,0,0
+2026-10-30,161604610185522,CLCS4-SP-Full Size Sheet Sets Cooling-[Cooling|Full]-(VLSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-FULL-GRAPHITE,Ranking,Keyword,Exact,0,0,0,0,0
 2026-10-30,38531988975313,CLCS4-SP-Full Size Sheets Cooling-[Cooling|Full]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-FULL-GRAPHITE,Ranking,Keyword,Exact,6,0,0,0,0
-2026-10-30,193797277182542,CLCS4-SP-Full Tail 10-[Cooling|Full]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-FULL-CREAM,Conversions,Keyword,Exact,9,0,0,0,0
+2026-10-30,193797277182542,CLCS4-SP-Full Tail 10-[Cooling|Full]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-FULL-CREAM,Conversions,Keyword,Exact,6,0,0,0,0
 2026-10-30,3988416390177,CLCS4-SP-Full Tail 11-[Cooling|Full]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-FULL-CREAM,Conversions,Keyword,Exact,0,0,0,0,0
-2026-10-30,154051275334916,CLCS4-SP-King Bed Sheet Cooling-[Cooling|King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY,Ranking,Keyword,Exact,34,0,0,0,0
-2026-10-30,138704873722449,CLCS4-SP-King Sheet Cooling-[Cooling|King]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY,Ranking,Keyword,Exact,62,0,0,0,0
-2026-10-30,216958531762679,CLCS4-SP-King Tail 17-[Cooling|King]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-KING-COOL-GREY,Conversions,Keyword,Exact,35,0,0,0,0
-2026-10-30,104044823327261,CLCS4-SP-No Size Tail 01-[Cooling]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,12,0,0,0,0
-2026-10-30,172795402171772,CLCS4-SP-No Size Tail 03-[Cooling]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,12,0,0,0,0
-2026-10-30,244285994085782,CLCS4-SP-No Size Tail 04-[Cooling]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,8,0,0,0,0
-2026-10-30,84048377181572,CLCS4-SP-No Size Tail 05-[Cooling]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,7,0,0,0,0
-2026-10-30,184071626528435,CLCS4-SP-No Size Tail 06-[Cooling]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,7,0,0,0,0
-2026-10-30,101443681525089,CLCS4-SP-Queen Bed Sheet Cooling-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,12,0,0,0,0
-2026-10-30,131564319518877,CLCS4-SP-Queen Cooling Sheet-[Cooling|Queen]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,19,0,0,0,0
-2026-10-30,217932964175404,CLCS4-SP-Queen Sheet Cooling-[Cooling|Queen]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,16,0,0,0,0
-2026-10-30,162704525921962,CLCS4-SP-Queen Sheet Set Cooling Sheet-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,1,0,0,0,0
-2026-10-30,73925454727381,CLCS4-SP-Queen Sheet Set Cooling-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,2,0,0,0,0
-2026-10-30,228557975024476,CLCS4-SP-Queen Tail 18-[Cooling|Queen]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,35,0,0,0,0
-2026-10-30,229592745183231,CLCS4-SP-Queen Tail 19-[Cooling|Queen]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,23,0,0,0,0
-2026-10-30,47586663623342,CLCS4-SP-Queen Tail 21-[Cooling|Queen]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,6,0,0,0,0
-2026-10-30,175182162475877,CLCS4-SP-Queen Tail 22-[Cooling|Queen]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,7,0,0,0,0
+2026-10-30,154051275334916,CLCS4-SP-King Bed Sheet Cooling-[Cooling|King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY,Ranking,Keyword,Exact,16,0,0,0,0
+2026-10-30,138704873722449,CLCS4-SP-King Sheet Cooling-[Cooling|King]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY,Ranking,Keyword,Exact,48,0,0,0,0
+2026-10-30,216958531762679,CLCS4-SP-King Tail 17-[Cooling|King]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-KING-COOL-GREY,Conversions,Keyword,Exact,29,0,0,0,0
+2026-10-30,104044823327261,CLCS4-SP-No Size Tail 01-[Cooling]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,10,0,0,0,0
+2026-10-30,172795402171772,CLCS4-SP-No Size Tail 03-[Cooling]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,9,0,0,0,0
+2026-10-30,244285994085782,CLCS4-SP-No Size Tail 04-[Cooling]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,6,0,0,0,0
+2026-10-30,84048377181572,CLCS4-SP-No Size Tail 05-[Cooling]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,5,0,0,0,0
+2026-10-30,184071626528435,CLCS4-SP-No Size Tail 06-[Cooling]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,4,0,0,0,0
+2026-10-30,101443681525089,CLCS4-SP-Queen Bed Sheet Cooling-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,11,0,0,0,0
+2026-10-30,131564319518877,CLCS4-SP-Queen Cooling Sheet-[Cooling|Queen]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,18,0,0,0,0
+2026-10-30,217932964175404,CLCS4-SP-Queen Sheet Cooling-[Cooling|Queen]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,15,0,0,0,0
+2026-10-30,162704525921962,CLCS4-SP-Queen Sheet Set Cooling Sheet-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,0,0,0,0,0
+2026-10-30,73925454727381,CLCS4-SP-Queen Sheet Set Cooling-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,0,0,0,0,0
+2026-10-30,228557975024476,CLCS4-SP-Queen Tail 18-[Cooling|Queen]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,26,0,0,0,0
+2026-10-30,229592745183231,CLCS4-SP-Queen Tail 19-[Cooling|Queen]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,20,0,0,0,0
+2026-10-30,47586663623342,CLCS4-SP-Queen Tail 21-[Cooling|Queen]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,2,0,0,0,0
+2026-10-30,175182162475877,CLCS4-SP-Queen Tail 22-[Cooling|Queen]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,6,0,0,0,0
 2026-10-30,183004292852963,CLCS4-SP-Queen Tail 23-[Cooling|Queen]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,9,0,0,0,0
 2026-10-30,4616761819959,CLCS4-SP-Sheet-[Generic]-(VHSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-GRAPHITE,Conversions,Keyword,Exact,76,0,0,0,0
-2026-10-30,146788359916635,CLCS4-SP-Twin Cooling Sheet-[Cooling|Twin]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-TWIN-WHITE,Ranking,Keyword,Exact,12,0,0,0,0
-2026-10-30,115461441036555,CLCS4-SP-Twin Sheets Cooling-[Cooling|Twin]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-TWIN-GRAPHITE,Ranking,Keyword,Exact,3,0,0,0,0
-2026-10-30,174874788803145,CLCS4-SP-Twin Size Sheets-[Generic|Twin]-Exact-(Conversion)-DO-CL-COOLING-SHEET-TWIN-GRAPHITE,Conversions,Keyword,Exact,26,0,0,0,0
-2026-10-30,236547984756459,CLCS4-SP-Twin Tail 24-[Cooling|Twin]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-TWIN-WHITE,Conversions,Keyword,Exact,25,0,0,0,0
+2026-10-30,146788359916635,CLCS4-SP-Twin Cooling Sheet-[Cooling|Twin]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-TWIN-WHITE,Ranking,Keyword,Exact,6,0,0,0,0
+2026-10-30,115461441036555,CLCS4-SP-Twin Sheets Cooling-[Cooling|Twin]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-TWIN-GRAPHITE,Ranking,Keyword,Exact,0,0,0,0,0
+2026-10-30,174874788803145,CLCS4-SP-Twin Size Sheets-[Generic|Twin]-Exact-(Conversion)-DO-CL-COOLING-SHEET-TWIN-GRAPHITE,Conversions,Keyword,Exact,23,0,0,0,0
+2026-10-30,236547984756459,CLCS4-SP-Twin Tail 24-[Cooling|Twin]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-TWIN-WHITE,Conversions,Keyword,Exact,6,0,0,0,0
 2026-10-30,127187380783516,CLPC-SP-Coolinens-(VLSV)-Exact-(Defensive)-FIX-CL-CLG-PC-DARK-GREY-QUEEN-2PCS,Defensive,Keyword,Exact,13,0,0,0,0
+2026-10-31,263070876883663,CLCS4-SP-Cool Sheet-[Cooling]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,280,9,3,51.37,269.97
+2026-10-31,41340995169453,CLCS4-SP-Cooling Bed Sheet King-[Cooling|King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY,Ranking,Keyword,Exact,34,4,0,25.48,0
+2026-10-31,97458724172094,CLCS4-SP-Cool Sheet For Hot Sleeper-[Cooling]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,29,3,0,18.68,0
+2026-10-31,144324755240914,CLCS4-SP-cool sheets queen-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Ranking,Keyword,Exact,55,2,1,13.8,87.99
+2026-10-31,215365075396378,CLCS4-SP-king size cooling sheets deep pocket set-[Cooling|King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-GRAPHITE,Ranking,Keyword,Exact,6,2,0,12.4,0
+2026-10-31,59515042097249,CLCS4-SP-cool sheets king size-[Cooling|King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-GRAPHITE,Ranking,Keyword,Exact,64,2,0,12.23,0
+2026-10-31,219721573309507,CLCS4-SP-Cooling Sheet King Size-[Cooling|King]-(HSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY,Ranking,Keyword,Exact,219,2,1,11.2,93.99
+2026-10-31,117494953315518,CLCS4-SP-King Size Sheets Set-[Generic|King]-(MSV)-Exact-(Conversion)-FIX-CL-COOLING-SHEET-KING-GRAPHITE,Conversions,Keyword,Exact,2266,4,0,11.08,0
+2026-10-31,146788359916635,CLCS4-SP-Twin Cooling Sheet-[Cooling|Twin]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-TWIN-WHITE,Ranking,Keyword,Exact,14,2,1,8.04,69.99
+2026-10-31,46437067198830,CLCS4-SP-Cooling Rivals Queen-(PAT)-Targeting-(Conquest)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conquesting,ASIN,Product Targeting,168,3,0,7.43,0
+2026-10-31,149487851971988,CLCS4-SP-Cooling Queen Sheet-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,24,1,0,7.2,0
+2026-10-31,224642388840797,CLCS4-SP-King Cooling Sheet-[Cooling|King]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY,Ranking,Keyword,Exact,29,1,0,7.1,0
+2026-10-31,131564319518877,CLCS4-SP-Queen Cooling Sheet-[Cooling|Queen]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,28,1,0,7,0
+2026-10-31,95202466426174,CLCS4-SP-queen bed cooling sheets-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Ranking,Keyword,Exact,5,1,0,6.9,0
+2026-10-31,101443681525089,CLCS4-SP-Queen Bed Sheet Cooling-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,27,1,0,6.9,0
+2026-10-31,190792594241641,CLCS4-SP-cooling deep pocket king sheet set-[Cooling|King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-GRAPHITE,Ranking,Keyword,Exact,7,1,0,6.2,0
+2026-10-31,134650102327828,CLCS4-SP-cooling king size sheets-[Cooling|King]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-GRAPHITE,Ranking,Keyword,Exact,11,1,0,6.2,0
+2026-10-31,154051275334916,CLCS4-SP-King Bed Sheet Cooling-[Cooling|King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY,Ranking,Keyword,Exact,14,1,0,6.2,0
+2026-10-31,249341758820308,CLCS4-SP-Cooling Sheet King-[Cooling|King]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY,Ranking,Keyword,Exact,32,1,0,6.16,0
+2026-10-31,126318756010297,CLCS4-SP-Queen Size Cooling Sheet-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,17,1,0,6.13,0
+2026-10-31,239857406913681,CLCS4-SP-Cooling Sheet Queen-[Cooling|Queen]-(HSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,100,1,0,5.7,0
+2026-10-31,261719465402606,CLCS4-SP-Cooling Sheet Full-[Cooling|Full]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-FULL-CREAM,Ranking,Keyword,Exact,3,1,1,5.5,74.99
+2026-10-31,23437077114015,CLCS4-SP-Full Sheets Cooling-[Cooling|Full]-(VLSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-FULL-GRAPHITE,Ranking,Keyword,Exact,4,1,0,5.5,0
+2026-10-31,90987816850227,CLCS4-SP-Full Size Bed Sheets Cooling-[Cooling|Full]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-FULL-GRAPHITE,Ranking,Keyword,Exact,3,1,0,5.5,0
+2026-10-31,23362054845972,CLCS4-SP-Full Size Cooling Sheet-[Cooling|Full]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-FULL-CREAM,Ranking,Keyword,Exact,12,1,0,5.5,0
+2026-10-31,279915686971992,CLCS4-SP-Cooling Sheet Full Size-[Cooling|Full]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-FULL-CREAM,Ranking,Keyword,Exact,32,1,0,5.2,0
+2026-10-31,70137945211521,CLCS4-SP-king cooling sheet set-[Cooling|King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-GRAPHITE,Ranking,Keyword,Exact,3,1,1,4.91,93.99
+2026-10-31,157685407405393,CLCS4-SP-Brand Top-[Brand|Top]-Phrase-(Defensive)-DO-CL-COOLING-SHEET-QUEEN-GRAPHITE,Conversions,Keyword,Phrase,15,2,0,4.77,0
+2026-10-31,125782091672643,CLCS4-SP-Cooling Sheet-[Cooling]-(VHSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,79,2,0,4.44,0
+2026-10-31,226249289883804,CLCS4-SP-No Size Tail 02-[Cooling]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,70,2,0,4.14,0
+2026-10-31,104044823327261,CLCS4-SP-No Size Tail 01-[Cooling]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,47,1,1,3.84,93.99
+2026-10-31,79331878440628,CLCS4-SP-Auto Full-[Cooling|Full]-Auto-(Discovery)-FIX-CL-COOLING-SHEET-FULL-GRAPHITE,Discovery,Auto,Auto,840,4,0,3.2,0
+2026-10-31,84048377181572,CLCS4-SP-No Size Tail 05-[Cooling]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,16,1,0,3.15,0
+2026-10-31,88960377759616,CLCS4-SP-Cooling Rivals King-(PAT)-Targeting-(Conquest)-DO-CL-COOLING-SHEET-KING-COOL-GREY,Conquesting,ASIN,Product Targeting,331,1,0,2.75,0
+2026-10-31,45264592369437,CLCS4-SP-Cooling Rivals Twin-(PAT)-Targeting-(Conquest)-DO-CL-COOLING-SHEET-TWIN-WHITE,Conquesting,ASIN,Product Targeting,43,1,0,2.75,0
+2026-10-31,79783319940736,CLCS4-SP-Auto King Loose-[Cooling|King]-Auto-(Discovery)-FIX-CL-COOLING-SHEET-KING-GRAPHITE,Discovery,Auto,Auto,507,3,0,2.4,0
+2026-10-31,240327046890755,CLCS4-SP-King Tail 16-[Cooling|King]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-KING-COOL-GREY,Conversions,Keyword,Exact,34,1,0,2.25,0
+2026-10-31,244285994085782,CLCS4-SP-No Size Tail 04-[Cooling]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,23,1,0,2.22,0
+2026-10-31,142641023357945,CLCS4-SP-Auto Queen Loose-[Cooling|Queen]-Auto-(Discovery)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Discovery,Auto,Auto,486,1,0,0.8,0
+2026-10-31,127800243712704,CLCS4-SP-Auto-[Cooling]-Auto-(Discovery)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Discovery,Auto,Auto,71,1,0,0.8,0
+2026-10-31,127187380783516,CLPC-SP-Coolinens-(VLSV)-Exact-(Defensive)-FIX-CL-CLG-PC-DARK-GREY-QUEEN-2PCS,Defensive,Keyword,Exact,8,1,0,0.56,0
+2026-10-31,267041096730242,CLCS4-SP-Auto King Complements-[Cooling|King]-Auto-(Discovery)-FIX-CL-COOLING-SHEET-KING-GRAPHITE,Discovery,Auto,Auto,40,1,0,0.5,0
+2026-10-31,261907572833185,CLCS4-SP-Auto Queen Substitutes-[Cooling|Queen]-Auto-(Discovery)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Discovery,Auto,Auto,249,1,0,0.44,0
+2026-10-31,134153794481070,CLCS4-SP-Auto California King-[Cooling|California King]-Auto-(Discovery)-FIX-CL-COOLING-SHEET-CAL-KING-GRAPHITE,Discovery,Auto,Auto,320,0,0,0,0
+2026-10-31,79301807798059,CLCS4-SP-Auto King Close-[Cooling|King]-Auto-(Discovery)-FIX-CL-COOLING-SHEET-KING-GRAPHITE,Discovery,Auto,Auto,15,0,0,0,0
+2026-10-31,126734031650091,CLCS4-SP-Auto King Substitutes-[Cooling|King]-Auto-(Discovery)-FIX-CL-COOLING-SHEET-KING-GRAPHITE,Discovery,Auto,Auto,39,0,0,0,0
+2026-10-31,210730742168948,CLCS4-SP-Auto Queen Close-[Cooling|Queen]-Auto-(Discovery)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Discovery,Auto,Auto,2,0,0,0,0
+2026-10-31,227580756288480,CLCS4-SP-Auto Twin-[Cooling|Twin]-Auto-(Discovery)-FIX-CL-COOLING-SHEET-TWIN-GRAPHITE,Discovery,Auto,Auto,290,0,0,0,0
+2026-10-31,108009672963699,CLCS4-SP-Bed Sheet-[Generic]-(VHSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-GRAPHITE,Conversions,Keyword,Exact,101,0,0,0,0
+2026-10-31,21483103588133,CLCS4-SP-bed sheets king size cooling-[Cooling|King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-GRAPHITE,Ranking,Keyword,Exact,0,0,0,0,0
+2026-10-31,252371710385717,CLCS4-SP-bed sheets queen size cooling-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Ranking,Keyword,Exact,1,0,0,0,0
+2026-10-31,103741756432563,CLCS4-SP-Cal King Cooling Sheets-[Cooling|California King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-CAL-KING-GRAPHITE,Ranking,Keyword,Exact,0,0,0,0,0
+2026-10-31,97150438756385,CLCS4-SP-California King Cooling Sheets-[Cooling|California King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-CAL-KING-GRAPHITE,Ranking,Keyword,Exact,3,0,0,0,0
+2026-10-31,81171072059935,CLCS4-SP-California King Tail 07-[Cooling|California King]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-CAL-KING-REGAL-PURPLE,Conversions,Keyword,Exact,8,0,0,0,0
+2026-10-31,7824854491506,CLCS4-SP-California King Tail 08-[Cooling|California King]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-CAL-KING-REGAL-PURPLE,Conversions,Keyword,Exact,6,0,0,0,0
+2026-10-31,158183695413539,CLCS4-SP-CooLinens Pillowcases-(PAT)-Targeting-(Defensive)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Defensive,ASIN,Product Targeting,24,0,0,0,0
+2026-10-31,69815694726500,CLCS4-SP-Cooling Bed Set-[Cooling]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,10,0,0,0,0
+2026-10-31,260737296260796,CLCS4-SP-Cooling Bed Sheet Queen-[Cooling|Queen]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,22,0,0,0,0
+2026-10-31,174959347426016,CLCS4-SP-Cooling Bed Sheet-[Cooling]-(HSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,13,0,0,0,0
+2026-10-31,45787011767304,CLCS4-SP-Cooling Bed Sheets Full-[Cooling|Full]-(VLSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-FULL-GRAPHITE,Ranking,Keyword,Exact,0,0,0,0,0
+2026-10-31,98269067454088,CLCS4-SP-Cooling Bed Sheets Twin-[Cooling|Twin]-(VLSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-TWIN-GRAPHITE,Ranking,Keyword,Exact,0,0,0,0,0
+2026-10-31,70355695074136,CLCS4-SP-cooling bedsheets queen size-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Ranking,Keyword,Exact,8,0,0,0,0
+2026-10-31,270689009798661,CLCS4-SP-Cooling California King Sheets-[Cooling|California King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-CAL-KING-GRAPHITE,Ranking,Keyword,Exact,1,0,0,0,0
+2026-10-31,243393834313796,CLCS4-SP-cooling deep pocket queen sheets-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Ranking,Keyword,Exact,1,0,0,0,0
+2026-10-31,210770894196125,CLCS4-SP-Cooling Full Size Sheets-[Cooling|Full]-(VLSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-FULL-GRAPHITE,Ranking,Keyword,Exact,1,0,0,0,0
+2026-10-31,88143810108662,CLCS4-SP-cooling king bed sheets-[Cooling|King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-GRAPHITE,Ranking,Keyword,Exact,4,0,0,0,0
+2026-10-31,49430809018003,CLCS4-SP-Cooling King Sheet-[Cooling|King]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY,Ranking,Keyword,Exact,19,0,0,0,0
+2026-10-31,220291839616278,CLCS4-SP-cooling queen bed sheets-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Ranking,Keyword,Exact,1,0,0,0,0
+2026-10-31,25226305165145,CLCS4-SP-cooling queen sheet set-[Cooling|Queen]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Ranking,Keyword,Exact,3,0,0,0,0
+2026-10-31,101936329029857,CLCS4-SP-cooling queen sheets hot sleepers-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Ranking,Keyword,Exact,0,0,0,0,0
+2026-10-31,4117341467255,CLCS4-SP-cooling queen size sheets-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Ranking,Keyword,Exact,0,0,0,0,0
+2026-10-31,1790513065087,CLCS4-SP-Cooling Rivals California King-(PAT)-Targeting-(Conquest)-DO-CL-COOLING-SHEET-CAL-KING-REGAL-PURPLE,Conquesting,ASIN,Product Targeting,21,0,0,0,0
+2026-10-31,120855231696599,CLCS4-SP-Cooling Rivals Full-(PAT)-Targeting-(Conquest)-DO-CL-COOLING-SHEET-FULL-CREAM,Conquesting,ASIN,Product Targeting,646,0,0,0,0
+2026-10-31,162748638384153,CLCS4-SP-cooling sheet set king-[Cooling|King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-GRAPHITE,Ranking,Keyword,Exact,1,0,0,0,0
+2026-10-31,50904380884782,CLCS4-SP-Cooling Sheet Set-[Cooling]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,12,0,0,0,0
+2026-10-31,102640653218202,CLCS4-SP-Cooling Sheet Twin-[Cooling|Twin]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-TWIN-WHITE,Ranking,Keyword,Exact,16,0,0,0,0
+2026-10-31,215555529090336,CLCS4-SP-Cooling Sheets California King-[Cooling|California King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-CAL-KING-GRAPHITE,Ranking,Keyword,Exact,3,0,0,0,0
+2026-10-31,9552352393595,CLCS4-SP-cooling sheets king size deep pocket-[Cooling|King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-GRAPHITE,Ranking,Keyword,Exact,7,0,0,0,0
+2026-10-31,121188224552957,CLCS4-SP-cooling sheets queen deep pockets-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Ranking,Keyword,Exact,3,0,0,0,0
+2026-10-31,4375945805154,CLCS4-SP-cooling sheets queen size-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Ranking,Keyword,Exact,4,0,0,0,0
+2026-10-31,161211090031836,CLCS4-SP-Cooling Twin Sheets-[Cooling|Twin]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-TWIN-GRAPHITE,Ranking,Keyword,Exact,5,0,0,0,0
+2026-10-31,245028036523708,CLCS4-SP-deep pocket cooling king sheet set-[Cooling|King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-GRAPHITE,Ranking,Keyword,Exact,7,0,0,0,0
+2026-10-31,104717366209632,CLCS4-SP-deep pocket cooling queen sheets-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Ranking,Keyword,Exact,7,0,0,0,0
+2026-10-31,20123385312360,CLCS4-SP-deep pocket king sheet set cooling-[Cooling|King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-GRAPHITE,Ranking,Keyword,Exact,3,0,0,0,0
+2026-10-31,58618997517243,CLCS4-SP-deep pocket queen sheets cooling-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Ranking,Keyword,Exact,3,0,0,0,0
+2026-10-31,151720390766331,CLCS4-SP-Full Bed Sheets-[Generic|Full]-(LSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-FULL-GRAPHITE,Conversions,Keyword,Exact,75,0,0,0,0
+2026-10-31,106207558756476,CLCS4-SP-Full Sheet Set Cooling-[Cooling|Full]-(VLSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-FULL-GRAPHITE,Ranking,Keyword,Exact,1,0,0,0,0
+2026-10-31,114445673976608,CLCS4-SP-Full Size Bed Sheets-[Generic|Full]-(LSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-FULL-GRAPHITE,Conversions,Keyword,Exact,141,0,0,0,0
+2026-10-31,182080594586634,CLCS4-SP-full size sheet sets cooling-[Cooling|Full]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-FULL-GRAPHITE,Ranking,Keyword,Exact,0,0,0,0,0
+2026-10-31,38531988975313,CLCS4-SP-Full Size Sheets Cooling-[Cooling|Full]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-FULL-GRAPHITE,Ranking,Keyword,Exact,7,0,0,0,0
+2026-10-31,193797277182542,CLCS4-SP-Full Tail 10-[Cooling|Full]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-FULL-CREAM,Conversions,Keyword,Exact,4,0,0,0,0
+2026-10-31,94819799733382,CLCS4-SP-king cooling sheets deep pocket-[Cooling|King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-GRAPHITE,Ranking,Keyword,Exact,1,0,0,0,0
+2026-10-31,138704873722449,CLCS4-SP-King Sheet Cooling-[Cooling|King]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY,Ranking,Keyword,Exact,42,0,0,0,0
+2026-10-31,57890123644523,CLCS4-SP-king sheet set cooling-[Cooling|King]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-GRAPHITE,Ranking,Keyword,Exact,8,0,0,0,0
+2026-10-31,36860428306871,CLCS4-SP-king sheets deep pocket cooling-[Cooling|King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-GRAPHITE,Ranking,Keyword,Exact,6,0,0,0,0
+2026-10-31,39903088437512,CLCS4-SP-King Size Cooling Sheet-[Cooling|King]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY,Ranking,Keyword,Exact,79,0,0,0,0
+2026-10-31,23919204825967,CLCS4-SP-king size cooling sheets set-[Cooling|King]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-GRAPHITE,Ranking,Keyword,Exact,5,0,0,0,0
+2026-10-31,18868484472069,CLCS4-SP-King Size Sheet Set Cooling-[Cooling|King]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-COOL-GREY,Ranking,Keyword,Exact,35,0,0,0,0
+2026-10-31,220042648865654,CLCS4-SP-King Tail 12-[Cooling|King]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-KING-COOL-GREY,Conversions,Keyword,Exact,82,0,0,0,0
+2026-10-31,233724036751771,CLCS4-SP-King Tail 13-[Cooling|King]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-KING-COOL-GREY,Conversions,Keyword,Exact,87,0,0,0,0
+2026-10-31,276988605379067,CLCS4-SP-King Tail 14-[Cooling|King]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-KING-COOL-GREY,Conversions,Keyword,Exact,13,0,0,0,0
+2026-10-31,218547614063804,CLCS4-SP-King Tail 15-[Cooling|King]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-KING-COOL-GREY,Conversions,Keyword,Exact,16,0,0,0,0
+2026-10-31,216958531762679,CLCS4-SP-King Tail 17-[Cooling|King]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-KING-COOL-GREY,Conversions,Keyword,Exact,25,0,0,0,0
+2026-10-31,84205148964981,CLCS4-SP-King Tails-[Cooling|King]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-KING-GRAPHITE,Ranking,Keyword,Exact,0,0,0,0,0
+2026-10-31,172795402171772,CLCS4-SP-No Size Tail 03-[Cooling]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,57,0,0,0,0
+2026-10-31,184071626528435,CLCS4-SP-No Size Tail 06-[Cooling]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,24,0,0,0,0
+2026-10-31,55790157423317,CLCS4-SP-Pink Cooling Sheet-[Cooling]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-LIGHT-PINK,Conversions,Keyword,Exact,0,0,0,0,0
+2026-10-31,185632557275620,CLCS4-SP-queen cooling bed sheets-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Ranking,Keyword,Exact,0,0,0,0,0
+2026-10-31,1806237731549,CLCS4-SP-queen cooling sheet set-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Ranking,Keyword,Exact,5,0,0,0,0
+2026-10-31,217932964175404,CLCS4-SP-Queen Sheet Cooling-[Cooling|Queen]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,29,0,0,0,0
+2026-10-31,162704525921962,CLCS4-SP-Queen Sheet Set Cooling Sheet-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,1,0,0,0,0
+2026-10-31,73925454727381,CLCS4-SP-Queen Sheet Set Cooling-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-WHITE,Ranking,Keyword,Exact,4,0,0,0,0
+2026-10-31,31416082517915,CLCS4-SP-queen sheets deep pocket cooling-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Ranking,Keyword,Exact,2,0,0,0,0
+2026-10-31,192603077150489,CLCS4-SP-queen size bed sheets cooling-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Ranking,Keyword,Exact,0,0,0,0,0
+2026-10-31,6675298280601,CLCS4-SP-queen size cooling sheets deep pocket-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Ranking,Keyword,Exact,1,0,0,0,0
+2026-10-31,165217557693069,CLCS4-SP-queen size sheet set cooling-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Ranking,Keyword,Exact,2,0,0,0,0
+2026-10-31,255136693682378,CLCS4-SP-queen size sheets cooling-[Cooling|Queen]-(MSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Ranking,Keyword,Exact,2,0,0,0,0
+2026-10-31,228557975024476,CLCS4-SP-Queen Tail 18-[Cooling|Queen]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,23,0,0,0,0
+2026-10-31,229592745183231,CLCS4-SP-Queen Tail 19-[Cooling|Queen]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,40,0,0,0,0
+2026-10-31,145524462628778,CLCS4-SP-Queen Tail 20-[Cooling|Queen]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,7,0,0,0,0
+2026-10-31,47586663623342,CLCS4-SP-Queen Tail 21-[Cooling|Queen]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,6,0,0,0,0
+2026-10-31,175182162475877,CLCS4-SP-Queen Tail 22-[Cooling|Queen]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,23,0,0,0,0
+2026-10-31,183004292852963,CLCS4-SP-Queen Tail 23-[Cooling|Queen]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-WHITE,Conversions,Keyword,Exact,2,0,0,0,0
+2026-10-31,236582953642966,CLCS4-SP-Queen Tails-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Ranking,Keyword,Exact,0,0,0,0,0
+2026-10-31,198518045310020,CLCS4-SP-Shee-[Generic]-(VHSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-GRAPHITE,Conversions,Keyword,Exact,4,0,0,0,0
+2026-10-31,4616761819959,CLCS4-SP-Sheet-[Generic]-(VHSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-QUEEN-GRAPHITE,Conversions,Keyword,Exact,230,0,0,0,0
+2026-10-31,38564519770068,CLCS4-SP-sheets queen cooling-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Ranking,Keyword,Exact,2,0,0,0,0
+2026-10-31,191415654254168,CLCS4-SP-sheets queen size bed set cooling-[Cooling|Queen]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-QUEEN-GRAPHITE,Ranking,Keyword,Exact,3,0,0,0,0
+2026-10-31,115461441036555,CLCS4-SP-Twin Sheets Cooling-[Cooling|Twin]-(LSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-TWIN-GRAPHITE,Ranking,Keyword,Exact,5,0,0,0,0
+2026-10-31,91731409831460,CLCS4-SP-Twin Sheets Set-[Generic|Twin]-Exact-(Conversion)-DO-CL-COOLING-SHEET-TWIN-GRAPHITE,Conversions,Keyword,Exact,361,0,0,0,0
+2026-10-31,161057383955135,CLCS4-SP-Twin Size Cooling Sheets Set-[Cooling|Twin]-(VLSV)-Exact-(Ranking)-FIX-CL-COOLING-SHEET-TWIN-GRAPHITE,Ranking,Keyword,Exact,2,0,0,0,0
+2026-10-31,174874788803145,CLCS4-SP-Twin Size Sheets-[Generic|Twin]-Exact-(Conversion)-DO-CL-COOLING-SHEET-TWIN-GRAPHITE,Conversions,Keyword,Exact,40,0,0,0,0
+2026-10-31,236547984756459,CLCS4-SP-Twin Tail 24-[Cooling|Twin]-(VLSV)-Exact-(Conversion)-DO-CL-COOLING-SHEET-TWIN-WHITE,Conversions,Keyword,Exact,3,0,0,0,0
