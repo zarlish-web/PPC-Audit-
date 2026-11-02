@@ -7,7 +7,8 @@ from openpyxl.comments import Comment
 HERE = os.path.dirname(os.path.abspath(__file__))
 P = json.load(open(os.path.join(HERE, "plan_numbers.json"))); I = json.load(open(os.path.join(HERE, "inputs_2026-11-02.json")))
 OUT = sys.argv[1]
-NAVY, BLUE = "1F3864", "0000FF"
+NAVY, BLUE, GREENF = "1F3864", "0000FF", "008000"
+AT = "Ad types by product"
 F = lambda **k: Font(name="Arial", size=k.pop("size", 9), **k)
 HDR = PatternFill("solid", fgColor=NAVY); YEL = PatternFill("solid", fgColor="FFF2CC"); GRN = PatternFill("solid", fgColor="E2EFDA"); RED = PatternFill("solid", fgColor="FCE4D6")
 BOX = Border(*(Side(style="thin", color="BFBFBF"),) * 4); WRAP = Alignment(wrap_text=True, vertical="top"); CEN = Alignment(horizontal="center", vertical="center", wrap_text=True)
@@ -21,35 +22,35 @@ NAMES = {"DC B4": "Decolure Bamboo 4 Pc", "DC B6": "Decolure Bamboo 6 Pc", "DC S
 MKT_FACTOR = {"US": 0.58, "CA": 0.68}; MKT_BF = {"US": 0.0817, "CA": 0.088}
 DAYS = ["Thu Nov 19", "Fri Nov 20", "Sat Nov 21", "Sun Nov 22", "Mon Nov 23", "Tue Nov 24", "Wed Nov 25", "Thu Nov 26", "Fri Nov 27 (BF)", "Sat Nov 28", "Sun Nov 29", "Mon Nov 30 (CM)"]
 LD_DAY = {"DC S6": 4, "DC Silk Pillowcase": 4, "SL Cooling Fitted": 6}   # index into DAYS: Nov 23, Nov 23, Nov 25
-NOTE = {"DC B4": "Hero. Room under the ceiling: full BFCM push.", "DC B6": "Hero. Deal is 6.5% cheaper than 2025: plan near the high end.",
-        "DC S4": "Hero. Deal 2.6% cheaper than 2025: plan near the high end.", "SSS4": "Running at 25% TACoS today, above its 21% ceiling: cut to the ceiling before Nov 19.",
+NOTE = {"DC B4": "Hero. Room under the ceiling: full BFCM push.", "DC B6": "Hero. Deal is 6.5% cheaper than 2025. 29% of its spend is SB, SB video and SD (counted inside the cap).",
+        "DC S4": "Hero. Deal 2.6% cheaper than 2025: plan near the high end.", "SSS4": "Running at 21% TACoS today, above its 12% Maintenance cap: cut to the cap before Nov 19.",
         "DC S6": "Lightning Deal Nov 23 only (Best Deal requested). Budget weighted to Nov 23.", "DC Satin Fitted": "Deal 34% above 2025 paid; plan near the low end.",
-        "DC Silk Pillowcase": "Lightning Deal Nov 23. TACoS 28% today, ceiling 27%.", "CL Pillowcases": "TACoS 43% today vs 14% ceiling at the $15.19 deal: cut hard. Queen White runs out ~Nov 6.",
-        "SL Cooling 4pc": "TACoS 20% today; deal 16% above 2025 paid.", "SL Cooling Fitted": "Lightning Deal Nov 25. Budget weighted to Nov 25.",
+        "DC Silk Pillowcase": "Lightning Deal Nov 23. TACoS 32% today, cap 25%.", "CL Pillowcases": "TACoS 53% today (all ad types; 18% of spend is SB video and SB) vs a 14% cap at the $15.19 deal: cut hard. Queen White runs out ~Nov 6.",
+        "SL Cooling 4pc": "TACoS 30% today (SP only); deal 16% above 2025 paid.", "SL Cooling Fitted": "Lightning Deal Nov 25. Budget weighted to Nov 25.",
         "SL Cooling Comforter": "Deal 47% above 2025 paid; low end.", "SL Cooling Pillowcase": "Small; keep to the ceiling.",
         "SL B6": "Thin margin at deal (16% break-even).", "SL Quilt Set": "Break-even about 1% at the deal price: no ads beyond brand defence.",
         "DC Linen Curtains": "Loses money per unit at the deal price before ads: no ads.", "DC Chair Cover": "Small; keep to the ceiling.",
-        "DC Bamboo Fitted": "No deal: hold at today's daily spend.", "DC Cooling 4pc": "No deal: hold at today's daily spend, under break-even.",
-        "CL Cooling Sheets": "No deal: hold at today's daily spend (no BFCM increase)."}
+        "DC Bamboo Fitted": "No deal: hold at today's daily spend.", "DC Cooling 4pc": "No deal. TACoS 31% today, above its 23% cap: cut to the cap.",
+        "CL Cooling Sheets": "No deal. Sales about doubled in the last 2 weeks (~$2.2K a day, above the demand read). Holds today's ~$740 a day at 33% TACoS, inside the 25-40% Launch band; a third of it is SB video and SB."}
 wb = Workbook()
 # ---------------- Budget by product
 bp = wb.active; bp.title = "Budget by product"; bp.sheet_view.showGridLines = False
 bp["A1"] = "BFCM 2026 PPC plan: budget, growth-plan band and TACoS cap by product, Nov 19 - 30 (all ad types: SP, SB, SB video, SD)"; bp["A1"].font = F(size=13, bold=True, color=NAVY)
 bp["A2"] = ("Units = the demand read (low = last-28-day pace x own 2025 BFCM lift x 12 days; high = current pace x lift x 12). Avg selling price = deal price weighted by each "
             "variation's 28-day units (Lightning Deals: 1 deal day + 11 regular days). Break-even TACoS = (price - COGS - FBA - referral - 1.5% deal fee - $100 per deal) / price; "
-            "cap = the lower of 80% of break-even and the growth-plan band ceiling. Base = today's 30-day product TACoS (Sponsored Products) x the deal-period factor (how far TACoS "
-            "fell in BFCM 2025 vs the 30 days before), grossed up for Sponsored Brands, SB video and Display (now 20% of US spend). Growth floor in BFCM = the growth-plan band floor x "
+            "cap = the lower of 80% of break-even and the growth-plan band ceiling. TACoS now = the product's ad spend per day over the last 14 days across all ad types (SP, SB, SB video, SD; see the Ad types by product tab) / its "
+            "sales per day over the same 14 days. Base = TACoS now x the deal-period factor (how far TACoS fell in BFCM 2025 vs the 30 days before). Growth floor in BFCM = the growth-plan band floor x "
             "the same factor (organic sales jump during the deal, so the same ad effort shows a lower TACoS). Plan TACoS = base, raised to the growth floor, never above the cap. "
-            "Products with no deal hold today's daily spend. Blue = inputs, black = formulas.")
+            "Products with no deal: budget = today's sales per day x 12 x plan TACoS, where plan TACoS = today's all-ad-type TACoS, cut to the cap if above it. Blue = inputs, black = formulas, green = linked from the Ad types by product tab.")
 bp["A2"].font = F(italic=True, size=8.5); bp["A2"].alignment = WRAP; bp.merge_cells("A2:AB2"); bp.row_dimensions[2].height = 74
 bp["A3"] = "Cap as share of break-even:"; bp["A3"].font = F(bold=True); bp["D3"] = 0.80; bp["D3"].number_format = "0%"; bp["D3"].font = F(bold=True, color=BLUE); bp["D3"].fill = YEL
 bp["F3"] = "No-ads threshold (break-even TACoS at or below):"; bp["F3"].font = F(bold=True); bp["K3"] = 0.05; bp["K3"].number_format = "0%"; bp["K3"].font = F(bold=True, color=BLUE); bp["K3"].fill = YEL
 COLS = [("Product", 24), ("BFCM 2026 deal", 16), ("Growth-plan stage", 11), ("Growth band floor (TACoS)", 8), ("Growth band ceiling (TACoS)", 8),
         ("Units low", 8), ("Units high", 8), ("Units plan (mid)", 8), ("Avg selling price", 9), ("Expected sales, 12 days", 11),
-        ("Break-even TACoS at deal price", 9), ("80% of break-even", 8), ("SP TACoS now (30 days)", 8), ("Deal-period factor (2025 BFCM vs before)", 9),
-        ("2025 BFCM TACoS (fallback)", 8), ("SP share of all ad spend", 8), ("Base TACoS in BFCM, all ad types", 9), ("Growth floor in BFCM", 8),
+        ("Break-even TACoS at deal price", 9), ("80% of break-even", 8), ("TACoS now, all ad types", 8), ("Deal-period factor (2025 BFCM vs before)", 9),
+        ("2025 BFCM TACoS (fallback)", 8), ("SP share of this product's ad spend (14 days)", 9), ("Base TACoS in BFCM, all ad types", 9), ("Growth floor in BFCM", 8),
         ("Cap (break-even or band ceiling)", 9), ("Plan TACoS", 8), ("Ad budget Nov 19-30 (all ad types)", 11), ("Budget at low units", 10), ("Budget at high units", 10),
-        ("Budget per day (avg)", 9), ("SP spend per day now (30 days)", 9), ("Per-day change vs now (all ad types)", 9), ("Growth-plan check", 26), ("Note", 44)]
+        ("Budget per day (avg)", 9), ("Ad spend per day now, all ad types (14 days)", 10), ("Per-day change vs now (all ad types)", 9), ("Growth-plan check", 26), ("Note", 44)]
 for j, (h, w) in enumerate(COLS, 1):
     bp.column_dimensions[CL(j)].width = w
 row = 5; blocks = {}
@@ -68,19 +69,19 @@ for m in ("US", "CA"):
         deal = f"{r['deal_type']} {r['deal_dates']}" if r["deal_type"] else "No deal"
         st = I["stages"][m].get(str(r["pid"]), [None, None, None])
         R = row
-        plan_f = (f'=IF(J{R}>0,MIN(Y{R}/P{R}*12,IF(L{R}="",Y{R}/P{R}*12,J{R}*L{R}))/J{R},0)' if not r["deal_type"] else
+        plan_f = (f'=IF(M{R}="",0,IF(S{R}="",M{R},MIN(M{R},S{R})))' if not r["deal_type"] else
                   f'=IF(OR(K{R}="",K{R}<=$K$3),0,MIN(S{R},MAX(Q{R},IF(R{R}="",0,R{R}))))')
-        check_f = ('No deal: hold today\'s spend' if not r["deal_type"] else
+        check_f = (f'=IF(AND(M{R}<>"",S{R}<>"",M{R}>S{R}),"No deal: today\'s spend, cut to the cap","No deal: hold today\'s spend")' if not r["deal_type"] else
                    f'=IF(OR(K{R}="",K{R}<=$K$3),"No ads: break-even too thin",IF(R{R}="","Liquidation: judged on units, not TACoS",IF(R{R}>S{R},"Growth floor is above what break-even allows: capped",IF(ABS(T{R}-R{R})<0.0005,"Raised to the growth-plan floor",IF(ABS(T{R}-S{R})<0.0005,"At the cap","Within the growth band")))))')
         vals = [NAMES.get(r["short"], r["short"]), deal, st[0], (st[1] / 100 if st[1] is not None else None), (st[2] / 100 if st[2] is not None else None),
                 round(r["units_lo"]), round(r["units_hi"]), f"=AVERAGE(F{R}:G{R})", round(r["asp"], 2), f"=H{R}*I{R}",
                 round(r["be_tacos"], 4) if r["be_tacos"] is not None else None, f'=IF(K{R}="","",MAX(0,K{R}*$D$3))',
-                round(r["tacos30"], 4) if r["tacos30"] is not None else None, fac, round(fb, 4), I["sp_share_recent"][m],
-                f'=IF(M{R}<>"",M{R}*N{R},O{R})/P{R}', f'=IF(D{R}="","",D{R}*N{R})', f'=IF(L{R}="","",IF(E{R}="",L{R},MIN(E{R},L{R})))',
-                plan_f, f"=J{R}*T{R}", f"=F{R}*I{R}*T{R}", f"=G{R}*I{R}*T{R}", f"=U{R}/12", round((r["spend30"] or 0) / 30, 2),
-                f'=IF(Y{R}>0,X{R}/(Y{R}/P{R})-1,"")', check_f, NOTE.get(r["short"], "")]
+                f"='{AT}'!K{R}", fac, round(fb, 4), f"='{AT}'!G{R}",
+                f'=IF(M{R}<>"",M{R}*N{R},O{R})', f'=IF(D{R}="","",D{R}*N{R})', f'=IF(L{R}="",IF(E{R}="","",E{R}),IF(E{R}="",L{R},MIN(E{R},L{R})))',
+                plan_f, (f"=J{R}*T{R}" if r["deal_type"] else f"='{AT}'!J{R}*12*T{R}"), (f"=F{R}*I{R}*T{R}" if r["deal_type"] else f"=U{R}"), (f"=G{R}*I{R}*T{R}" if r["deal_type"] else f"=U{R}"), f"=U{R}/12", f"='{AT}'!I{R}",
+                f'=IF(Y{R}>0,X{R}/Y{R}-1,"")', check_f, NOTE.get(r["short"], "")]
         for j, v in enumerate(vals, 1):
-            c = bp.cell(row=row, column=j, value=v); c.border = BOX; c.font = F(color=(BLUE if j in (3, 4, 5, 6, 7, 9, 11, 13, 14, 15, 16, 25) else "000000"))
+            c = bp.cell(row=row, column=j, value=v); c.border = BOX; c.font = F(color=(BLUE if j in (3, 4, 5, 6, 7, 9, 11, 14, 15) else GREENF if j in (13, 16, 25) else "000000"))
             c.number_format = {4: "0%", 5: "0%", 6: "#,##0", 7: "#,##0", 8: "#,##0", 9: CUR2[m], 10: CUR[m], 11: "0.0%", 12: "0.0%", 13: "0.0%", 14: "0.00", 15: "0.0%",
                                16: "0%", 17: "0.0%", 18: "0.0%", 19: "0.0%", 20: "0.0%", 21: CUR[m], 22: CUR[m], 23: CUR[m], 24: CUR[m], 25: CUR[m], 26: "+0%;-0%;0%"}.get(j, "General")
             if j in (2, 27, 28): c.alignment = WRAP
@@ -94,6 +95,51 @@ for m in ("US", "CA"):
         c.number_format = {6: "#,##0", 7: "#,##0", 8: "#,##0", 10: CUR[m], 20: "0.0%", 21: CUR[m], 22: CUR[m], 23: CUR[m], 24: CUR[m], 25: CUR[m]}.get(j, "General")
     blocks[m] = (r0, r1, row, rows); row += 3
 bp.freeze_panes = "B5"
+# ---------------- Ad types by product (same rows as Budget by product)
+ap = wb.create_sheet(AT); ap.sheet_view.showGridLines = False
+ap["A1"] = "Ad spend by product and ad type: what runs now, TACoS now across all ad types, and how each product's BFCM budget splits"; ap["A1"].font = F(size=13, bold=True, color=NAVY)
+ap["A2"] = ("Spend and sales Oct 19 - Nov 1, 2026 (14 days) per product by ad type, summed over its child ASINs (covers 96-99% of ad spend and about 95% of sales; "
+            "Canada converted to C$ at 1.4036). TACoS now = ad spend (all ad types) / sales, same 14 days. Each product's BFCM budget is split by its own current mix: products that run SB video "
+            "(CooLinens, Bamboo) carry that cost inside their own cap. Rows line up with the Budget by product tab.")
+ap["A2"].font = F(italic=True, size=8.5); ap["A2"].alignment = WRAP; ap.merge_cells("A2:U2"); ap.row_dimensions[2].height = 46
+ACOLS = [("Product", 24), ("Sponsored Products, 14 days", 10), ("Sponsored Brands, 14 days", 10), ("SB video, 14 days", 10), ("Sponsored Display, 14 days", 10),
+         ("All ad types, 14 days", 10), ("SP share", 7), ("SB + SB video + SD share", 8), ("Ad spend per day now, all ad types", 10), ("Sales per day (same 14 days)", 10),
+         ("TACoS now, all ad types", 8), ("TACoS now, SP only (30 days)", 8), ("Break-even TACoS at deal price", 9), ("Cap (Budget by product)", 8),
+         ("Now vs cap", 22), ("BFCM budget, all ad types", 10), ("of which SP", 10), ("of which SB", 10), ("of which SB video", 10), ("of which SD", 10), ("Where SB / SB video / SD run", 34)]
+for j, (h, w) in enumerate(ACOLS, 1): ap.column_dimensions[CL(j)].width = w
+A14 = I["adtype14"]
+for m in ("US", "CA"):
+    r0, r1, rt, rows = blocks[m]
+    ap.cell(row=r0 - 2, column=1, value=("United States (US$)" if m == "US" else "Canada (C$)")).font = F(size=11, bold=True, color=NAVY)
+    for j, (h, w) in enumerate(ACOLS, 1):
+        c = ap.cell(row=r0 - 1, column=j, value=h); c.font = F(bold=True, color="FFFFFF", size=8); c.fill = HDR; c.alignment = CEN; c.border = BOX
+    ap.row_dimensions[r0 - 1].height = 46
+    for i, r in enumerate(rows):
+        R = r0 + i; a = A14[m].get(str(r["pid"]), [0, 0, 0, 0, 0])
+        s14 = a[4] / 14 if a[4] else None
+        where = []
+        if a[2] > 1: where.append(f"SB video {a[2] / max(sum(a[:4]), 1):.0%}")
+        if a[1] > 1: where.append(f"SB {a[1] / max(sum(a[:4]), 1):.0%}")
+        if a[3] > 1: where.append(f"SD {a[3] / max(sum(a[:4]), 1):.0%}")
+        vals = [f"='Budget by product'!A{R}", a[0], a[1], a[2], a[3], f"=SUM(B{R}:E{R})", f"=IF(F{R}>0,B{R}/F{R},1)", f"=1-G{R}", f"=F{R}/14",
+                round(s14, 2) if s14 else None, f'=IF(J{R}="","",I{R}/J{R})', r["tacos30"], f"='Budget by product'!K{R}", f"='Budget by product'!S{R}",
+                f'=IF(OR(K{R}="",N{R}=""),"",IF(K{R}>N{R},"Over the cap now: bring down before Nov 19","Under the cap"))',
+                f"='Budget by product'!U{R}", f"=P{R}*G{R}", f"=IF(F{R}>0,P{R}*C{R}/F{R},0)", f"=IF(F{R}>0,P{R}*D{R}/F{R},0)", f"=IF(F{R}>0,P{R}*E{R}/F{R},0)",
+                ", ".join(where) if where else "SP only"]
+        for j, v in enumerate(vals, 1):
+            c = ap.cell(row=R, column=j, value=v); c.border = BOX
+            c.font = F(color=(BLUE if j in (2, 3, 4, 5, 10, 12) else GREENF if j in (1, 13, 14, 16) else "000000"))
+            c.number_format = {7: "0%", 8: "0%", 11: "0.0%", 12: "0.0%", 13: "0.0%", 14: "0.0%"}.get(j, CUR[m] if j != 15 and j != 21 else "General")
+            if j in (15, 21): c.alignment = WRAP
+        ap.cell(row=R, column=16).font = F(bold=True, color=GREENF)
+    tot = ["Total"] + [f"=SUM({CL(k)}{r0}:{CL(k)}{r1})" for k in range(2, 7)] + [f"=IF(F{rt}>0,B{rt}/F{rt},1)", f"=1-G{rt}", f"=F{rt}/14", f"=SUM(J{r0}:J{r1})",
+           f"=IF(J{rt}>0,I{rt}/J{rt},\"\")", "", "", "", "", f"=SUM(P{r0}:P{r1})", f"=SUM(Q{r0}:Q{r1})", f"=SUM(R{r0}:R{r1})", f"=SUM(S{r0}:S{r1})", f"=SUM(T{r0}:T{r1})", ""]
+    for j, v in enumerate(tot, 1):
+        c = ap.cell(row=rt, column=j, value=v); c.font = F(bold=True); c.border = BOX; c.fill = YEL
+        c.number_format = {7: "0%", 8: "0%", 11: "0.0%"}.get(j, CUR[m])
+    ap.cell(row=rt + 1, column=1, value=("Products in the plan only; about $250 of US spend in the 14 days sat on products outside the plan." if m == "US" else
+                                          "Canada runs almost only Sponsored Products (a little SB on Bamboo 4 Pc and Satin 4 Pc).")).font = F(italic=True, size=8.5)
+ap.freeze_panes = "B5"
 # ---------------- Budget by day
 bd = wb.create_sheet("Budget by day"); bd.sheet_view.showGridLines = False
 bd["A1"] = "BFCM 2026 PPC budget by day (follows how sales were spread over the 12 days of BFCM 2025)"; bd["A1"].font = F(size=13, bold=True, color=NAVY)
@@ -154,7 +200,7 @@ RULES = [
  ("Top of search", "Who gets a boost", "Only Best Deal heroes with room under the cap: Bamboo 4 Pc, Bamboo 6 Pc, Satin 4 Pc (US); Bamboo 4 Pc, Bamboo 6 Pc (CA).", "Top of search converts best when the deal badge shows."),
  ("Top of search", "How much", "Top-of-search modifier +50% Nov 19 - 26 and Nov 28 - 29; +100% on Nov 27 and Nov 30; back to today's setting on Dec 1.", ""),
  ("Top of search", "Cap", "Bamboo 4 Pc already puts 40-75% of its spend on top of search at an effective bid of about $3-6 a click (vs about $1.50 on product pages). Cap the effective top-of-search bid at $6.50 on Bamboo 4 Pc and 6 Pc; if top-of-search ACoS for the day is above break-even ACoS, cut the modifier by 25 points.", "Stops the boost from buying unprofitable clicks."),
- ("SB, SB video, SD", "Brand and video", "Keep the SB and SB video campaigns live on Bamboo 4 / 6 Pc and Satin 4 Pc with deal-badge creative; their spend counts inside each product's budget and cap. Same deal-day step-ups as SP (Black Friday and Cyber Monday +30%). Keep their share near 19-20% of total (Ad types tab).", "They went live in October and are now 21% of US spend; leaving them out would under-plan the budget."),
+ ("SB, SB video, SD", "Brand and video", "Keep the SB and SB video campaigns live with deal-badge creative where they run today: Bamboo 4 / 6 Pc, CooLinens Cooling Sheets and Pillowcases (SB video), Satin 4 Pc and Satin Fitted (SB). Their spend counts inside each product's own budget and cap (Ad types by product tab). Same deal-day step-ups as SP (Black Friday and Cyber Monday +30%). If a product is over its cap, cut SB video first on the Launch products where it is the biggest non-SP cost.", "They went live in October and are now 20% of US spend; on Bamboo 6 Pc and CooLinens Cooling Sheets they are about a third of the product's spend."),
  ("SB, SB video, SD", "Display", "Retargeting on viewers of our own deal ASINs only, about 1% of spend; switch off broad audiences for the event.", "Display has the weakest return; keep it to warm traffic."),
  ("Top of search", "Product pages", "Keep product-targeting ads on our own listings at today's bids to hold deal traffic on our pages; no boost.", ""),
 ]
@@ -210,7 +256,7 @@ ip.cell(row=r, column=1, value="Sources").font = F(bold=True, color=NAVY); r += 
 SRC = ["Demand (units low / high): BFCM 2026 competitor tracker, demand read posted Oct 28 (28-day units and current pace per variation x own BFCM 2025 lift).",
        "Deal prices, COGS, FBA fee, referral %: team deal sheet, Oct 27, 2026 export (Umair). Canada COGS in the export are US$ figures next to C$ prices; converted at 1.40.",
        "Deal fees: 1.5% of deal sales + $100 per deal (Erik, Oct 19).",
-       "TACoS now and ad spend per day: ads data, Oct 4 - Nov 2, 2026 (30 days; the last 7 days of ad sales still fill in, so TACoS reads slightly high).",
+       "TACoS now, ad spend per day and the split by ad type: spend (SP, SB, SB video, SD) and sales per child ASIN, Oct 19 - Nov 1, 2026 (14 days), summed per product. SP-only TACoS over 30 days (Oct 4 - Nov 2) kept for reference.",
        "BFCM 2025 by day and TACoS before / during BFCM 2025: account sales data, Nov 20 - Dec 1, 2025 and Oct 21 - Nov 19, 2025. Deal-period factor: US 0.58 (14.1% -> 8.2%), CA 0.68 (13.0% -> 8.8%) where a product has no reliable own history.",
        I["tos_b4_us"] + " (ads data, last 30 days)."]
 for s_ in SRC:
@@ -218,7 +264,7 @@ for s_ in SRC:
 # ---------------- Ad types
 at = wb.create_sheet("Ad types"); at.sheet_view.showGridLines = False
 at["A1"] = "Ad types: what runs now, what ran in BFCM 2025, and the BFCM 2026 split"; at["A1"].font = F(size=13, bold=True, color=NAVY)
-at["A2"] = ("Sponsored Brands, SB video and Sponsored Display have no per-product report, so they are planned inside each product's budget and split at account level here. "
+at["A2"] = ("Sponsored Brands, SB video and Sponsored Display are tracked per product (Ad types by product tab) and sit inside each product's budget and cap; this tab adds them up. "
             "In the US they went from 3% of ad spend in late September to 21% last week, after the new SB, SB video and SD campaigns went live (Bamboo first, from Oct 14).")
 at["A2"].font = F(italic=True, size=8.5); at["A2"].alignment = WRAP; at.merge_cells("A2:I2"); at.row_dimensions[2].height = 34
 at.column_dimensions["A"].width = 30
@@ -251,14 +297,14 @@ for j, h in enumerate(["BFCM 2026 split (US$)", "Last 2 weeks", "BFCM 2025", "Pl
 r += 1; s0 = r
 WHERE = {"sp": "Every deal product: exact-match heroes, top of search for heroes under their cap, product-page defence.",
          "sb": "Brand headline on Bamboo 4 / 6 Pc and Satin 4 Pc: branded and category terms, deal-badge creative.",
-         "sbv": "SB video on Bamboo 4 / 6 Pc (live since Oct 14): category terms, top of search.",
+         "sbv": "SB video: CooLinens Cooling Sheets and Pillowcases, Bamboo 4 / 6 Pc: category terms, top of search.",
          "sd": "Retargeting on our own deal ASINs' viewers only; no broad audience during the event."}
 for lab, k in (("Sponsored Products", "sp"), ("Sponsored Brands", "sb"), ("SB video", "sbv"), ("Sponsored Display", "sd")):
     at.cell(row=r, column=1, value=lab)
     c = at.cell(row=r, column=2, value=f"=SUM({CL(6)}{w0 + ['sp','sb','sbv','sd'].index(k)}:{CL(7)}{w0 + ['sp','sb','sbv','sd'].index(k)})/SUM(F{tr}:G{tr})"); c.number_format = "0.0%"
     c = at.cell(row=r, column=3, value=round(sum(B[k]) / sum(sum(B[x]) for x in B), 4)); c.number_format = "0.0%"; c.font = F(color=BLUE)
-    c = at.cell(row=r, column=4, value=f"=B{r}"); c.number_format = "0.0%"; c.fill = GRN
-    c = at.cell(row=r, column=5, value=f"=D{r}*'Budget by product'!U{blocks['US'][2]}"); c.number_format = '"$"#,##0'; c.font = F(bold=True)
+    c = at.cell(row=r, column=4, value=f"=IF(E{s0+4}>0,E{r}/E{s0+4},0)"); c.number_format = "0.0%"
+    c = at.cell(row=r, column=5, value=f"='{AT}'!{CL(17 + ['sp','sb','sbv','sd'].index(k))}{blocks['US'][2]}"); c.number_format = '"$"#,##0'; c.font = F(bold=True, color=GREENF)
     c = at.cell(row=r, column=6, value=WHERE[k]); c.alignment = WRAP; at.merge_cells(start_row=r, start_column=6, end_row=r, end_column=9); at.row_dimensions[r].height = 26
     r += 1
 at.cell(row=r, column=1, value="Total").font = F(bold=True)
@@ -266,7 +312,7 @@ c = at.cell(row=r, column=4, value=f"=SUM(D{s0}:D{r-1})"); c.number_format = "0%
 c = at.cell(row=r, column=5, value=f"=SUM(E{s0}:E{r-1})"); c.number_format = '"$"#,##0'; c.font = F(bold=True)
 r += 2
 c = at.cell(row=r, column=1, value=("Canada: about 98% Sponsored Products (SB C$40-120 a week, no SB video or SD yet), so the Canadian budget is planned as SP. "
-                                     "Plan share = the last two weeks' mix; change the green cells to move money between ad types.")); c.alignment = WRAP
+                                     "Plan budget by ad type = the sum of each product's own split (Ad types by product tab).")); c.alignment = WRAP
 at.merge_cells(start_row=r, start_column=1, end_row=r, end_column=9); at.row_dimensions[r].height = 30
 # ---------------- Summary (first)
 sm = wb.create_sheet("Summary", 0); sm.sheet_view.showGridLines = False
@@ -279,7 +325,7 @@ us, ca = blocks["US"], blocks["CA"]
 NOW_ALL = {"US": round(sum(I["adtype_weekly"]["US"][k][-1] for k in ("sp", "sb", "sbv", "sd")) / 7, 2),
            "CA": round(sum(I["adtype_weekly"]["CA_usd"][k][-1] for k in ("sp", "sb", "sbv", "sd")) / 7 * 1.40, 2)}
 LINES = [("Expected sales, Nov 19 - 30 (plan units x deal price)", f"='Budget by product'!J{us[2]}", f"='Budget by product'!J{ca[2]}", "Mid-point of the demand read.", CUR),
-         ("Ad budget, Nov 19 - 30 (SP + SB + SB video + SD)", f"='Budget by product'!U{us[2]}", f"='Budget by product'!U{ca[2]}", "Each product's plan TACoS x its expected sales; split by ad type on the Ad types tab.", CUR),
+         ("Ad budget, Nov 19 - 30 (SP + SB + SB video + SD)", f"='Budget by product'!U{us[2]}", f"='Budget by product'!U{ca[2]}", "Each product's plan TACoS x its expected sales; split by ad type on the Ad types by product tab.", CUR),
          ("Range (low - high demand)", f"=TEXT('Budget by product'!V{us[2]},\"$#,##0\")&\" - \"&TEXT('Budget by product'!W{us[2]},\"$#,##0\")",
           f"=TEXT('Budget by product'!V{ca[2]},\"$#,##0\")&\" - \"&TEXT('Budget by product'!W{ca[2]},\"$#,##0\")", "Budget moves with sales: the agent paces to it daily.", None),
          ("Plan TACoS (blended, all ad types)", f"='Budget by product'!T{us[2]}", f"='Budget by product'!T{ca[2]}", "BFCM 2025 ran at 8.2% (US) and 8.8% (CA); last week the account ran at 19.8% (US).", "pct"),
@@ -294,18 +340,19 @@ for lab, a, b, note, fmt in LINES[:6]:
     sm.cell(row=rr, column=4, value=note).alignment = WRAP; rr += 1
 rr += 1
 sm.cell(row=rr, column=1, value="Key calls in this plan").font = F(size=11, bold=True, color=NAVY); rr += 1
-CALLS = ["Realistic total: US $75.5K over the 12 days is in line with the $76.2K we actually spent in BFCM 2025, at a 10.4% TACoS (2025: 8.2%; the account ran at 19.8% last week). Canada C$24.0K at 10.5%.",
-         "All ad types are in: Sponsored Brands, SB video and Display went from 3% of US spend in late September to 21% last week after the new campaigns went live. The plan keeps that mix: SP $60.7K, SB $5.4K, SB video $8.4K, SD $0.9K (Ad types tab). Canada is still about 98% SP.",
-         "Aligned with the growth plan: each product's TACoS sits inside its growth-plan band (scaled for the deal), never above break-even. Bamboo 6 Pc (US and CA), Sleephoria Cooling Fitted and CA Satin Fitted are raised to the growth floor; Maintenance products are held to the 12% band ceiling (Sleep Sanctuary Satin 4 Pc down from 25%, Satin Fitted, CA Satin 4 and 6 Pc).",
-         "Decisions for Joseph: CooLinens Pillowcases is a Launch product (band 25-40%) but at the $15.19 deal break-even only allows 14%, so it is capped at 14%. Silk Pillowcase is at its 25% cap.",
-         "No ads beyond brand defence on Linen Curtains and Quilt Set (they lose money or make about 1% per unit at the deal price before ads). No BFCM increase on products without a deal (CooLinens Cooling Sheets, Decolure Cooling 4 Pc, Bamboo Fitted).",
-         "Every number is an estimate from the demand read, the Oct 27 deal prices and last week's ad mix. Amazon's deal prices can still change until Nov 13; the plan is re-run if they do."]
+CALLS = ["Realistic total: US $88.2K over the 12 days (12.1% TACoS) vs $76.2K actually spent in BFCM 2025 (8.2%). The account runs at 20% TACoS today across all ad types (14.1% before BFCM 2025), so the deal-period TACoS starts higher. Canada C$25.5K at 11.1%.",
+         "SB, SB video and SD are now tracked per product (Ad types by product tab): each product's TACoS now, break-even and cap include all four ad types, and its budget splits by its own mix. US plan: SP $68.5K, SB $8.8K, SB video $8.9K, SD $1.9K. SB video sits mostly on Bamboo 6 Pc, Bamboo 4 Pc and CooLinens Cooling Sheets and Pillowcases. Canada is 98% SP.",
+         "Aligned with the growth plan: each product's TACoS sits inside its growth-plan band (scaled for the deal), never above break-even. Sleephoria Cooling Fitted, Sleephoria Bamboo 6 Pc and CA Bamboo 6 Pc are raised to the growth floor; Maintenance products are held to the 12% band ceiling (Sleep Sanctuary Satin 4 Pc down from 21%, Satin Fitted, CA Satin 4 and 6 Pc).",
+         "Over the cap today, bring down before Nov 19: CooLinens Pillowcases (53% vs 14%), Silk Pillowcase (32% vs 25%), Sleep Sanctuary Satin 4 Pc (21% vs 12%), Satin 4 Pc, Satin 6 Pc and Satin Fitted (13-18% vs 12%), Decolure Cooling 4 Pc (31% vs 23%).",
+         "Decisions for Joseph: CooLinens Pillowcases is a Launch product (band 25-40%) but at the $15.19 deal break-even only allows 14%, so it is capped at 14%. CooLinens Cooling Sheets has no deal but sales doubled in two weeks: the plan holds today's ~$740 a day (33% TACoS, inside its Launch band).",
+         "No ads beyond brand defence on Linen Curtains and Quilt Set (they lose money or make about 1% per unit at the deal price before ads).",
+         "Every number is an estimate from the demand read, the Oct 27 deal prices and the last 14 days of spend and sales by ad type. Amazon's deal prices can still change until Nov 13; the plan is re-run if they do."]
 for t in CALLS:
     c = sm.cell(row=rr, column=1, value="• " + t); c.alignment = WRAP; sm.merge_cells(start_row=rr, start_column=1, end_row=rr, end_column=4); sm.row_dimensions[rr].height = 30; rr += 1
 rr += 1
 sm.cell(row=rr, column=1, value="Tabs").font = F(size=11, bold=True, color=NAVY); rr += 1
 for t in ["Budget by product: units, price, break-even, ceiling, plan TACoS and budget for every product.", "Budget by day: each product's budget spread over Nov 19 - 30.",
-          "Bid and placement rules: deal-day bids, top of search, what the agent does hourly and what a person checks.", "Inputs: BFCM 2025 by day and the sources."]:
+          "Bid and placement rules: deal-day bids, top of search, what the agent does hourly and what a person checks.", "Ad types by product: SP, SB, SB video and SD spend per product, TACoS now and the BFCM split.", "Inputs: BFCM 2025 by day and the sources."]:
     c = sm.cell(row=rr, column=1, value="• " + t); sm.merge_cells(start_row=rr, start_column=1, end_row=rr, end_column=4); rr += 1
 for ws in wb.worksheets:
     for row_ in ws.iter_rows():
