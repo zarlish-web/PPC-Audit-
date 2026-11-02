@@ -385,6 +385,96 @@ for lab, us_f, ca_f, fmt, note in CHECK:
     hrow += 1
 hc.freeze_panes = "B5"
 HIST = {"A": h0 + 11, "B": h0 + 14}
+# ---------------- BFCM 2025 in full
+_VER = os.path.join(HERE, "..", "verification")
+_SRC = json.load(open(os.path.join(_VER, "source", "account_pulls_2026-11-02.json")))
+_YO = json.load(open(os.path.join(_VER, "yoy_results.json")))
+F25 = "BFCM 2025 in full"
+fl = wb.create_sheet(F25); fl.sheet_view.showGridLines = False
+fl["A1"] = "BFCM 2025 in full: Nov 20 - Dec 1, 2025, against the 30 days before (Oct 21 - Nov 19, 2025)"; fl["A1"].font = F(size=13, bold=True, color=NAVY)
+fl["A2"] = ("Account totals, all ad types. Conversion (strike rate) = units ordered / sessions. Canada sales and ad spend were recorded in US$ in 2025; the C$ lines convert at the rate in the yellow cell. "
+            "Per-product rows add up to the account: 2025 units reconcile exactly.")
+fl["A2"].font = F(italic=True, size=8.5); fl["A2"].alignment = WRAP; fl.merge_cells("A2:L2"); fl.row_dimensions[2].height = 30
+fl["A3"] = "C$ per US$:"; fl["A3"].font = F(bold=True); fl["C3"] = 1.4036; fl["C3"].font = F(bold=True, color=BLUE); fl["C3"].fill = YEL; fl["C3"].number_format = "0.0000"
+fl.column_dimensions["A"].width = 34
+for k in range(2, 13): fl.column_dimensions[CL(k)].width = 13
+r = 5
+for j, h in enumerate(["", "US: 30 days before", "US: BFCM 12 days", "US: change per day", "CA: 30 days before", "CA: BFCM 12 days", "CA: change per day"], 1):
+    c = fl.cell(row=r, column=j, value=h); c.font = F(bold=True, color="FFFFFF", size=8); c.fill = HDR; c.alignment = CEN; c.border = BOX
+fl.row_dimensions[r].height = 30; r += 1; t0 = r
+LINES25 = [("Days", "days"), ("Sales (US$ as recorded)", "sales"), ("Units", "units"), ("Sessions", "sessions"), ("Ad spend, all ad types (US$ as recorded)", "adv")]
+for lab, k in LINES25:
+    fl.cell(row=r, column=1, value=lab)
+    for m, cb in (("US", 2), ("CA", 5)):
+        pre, bf = _SRC["pre2025_30d"][m], _SRC["bfcm2025_total"][m]
+        v1, v2 = (30, 12) if k == "days" else (pre[k], bf[k])
+        for j, v in ((cb, v1), (cb + 1, v2)):
+            c = fl.cell(row=r, column=j, value=v); c.font = F(color=BLUE); c.border = BOX; c.number_format = '"$"#,##0' if k in ("sales", "adv") else "#,##0"
+        if k != "days":
+            c = fl.cell(row=r, column=cb + 2, value=f"=({CL(cb+1)}{r}/{CL(cb+1)}${t0})/({CL(cb)}{r}/{CL(cb)}${t0})"); c.number_format = '0.00"x"'; c.border = BOX
+    r += 1
+for lab, fml, fmt in (("Conversion (strike rate) = units / sessions", "={c}{u}/{c}{s}", "0.00%"), ("TACoS = ad spend / sales", "={c}{a}/{c}{sa}", "0.0%"),
+                      ("Average selling price (US$ as recorded)", "={c}{sa}/{c}{u}", '"$"#,##0.00'), ("Ad spend per day (US$ as recorded)", "={c}{a}/{c}{d}", '"$"#,##0'),
+                      ("Sales per day (US$ as recorded)", "={c}{sa}/{c}{d}", '"$"#,##0')):
+    fl.cell(row=r, column=1, value=lab).font = F(bold=lab.startswith("Conversion"))
+    for cb in (2, 3, 5, 6):
+        col = CL(cb)
+        c = fl.cell(row=r, column=cb, value=fml.format(c=col, u=t0 + 2, s=t0 + 3, a=t0 + 4, sa=t0 + 1, d=t0)); c.number_format = fmt; c.border = BOX
+        if lab.startswith("Conversion"): c.fill = GRN
+    r += 1
+fl.cell(row=r, column=1, value="Canada sales, BFCM 12 days (C$)"); c = fl.cell(row=r, column=6, value=f"=F{t0+1}*$C$3"); c.number_format = '"C$"#,##0'
+fl.cell(row=r + 1, column=1, value="Canada ad spend, BFCM 12 days (C$)"); c = fl.cell(row=r + 1, column=6, value=f"=F{t0+4}*$C$3"); c.number_format = '"C$"#,##0'
+r += 4
+# day by day
+fl.cell(row=r, column=1, value="Day by day, BFCM 2025 (the 2026 day it lines up with, same weekday)").font = F(size=11, bold=True, color=NAVY); r += 1
+DH = ["Day 2025", "2026 day", "US sales", "US units", "US sessions", "US conversion", "US ad spend", "US TACoS", "CA sales (US$)", "CA units", "CA sessions", "CA conversion"]
+for j, h in enumerate(DH, 1):
+    c = fl.cell(row=r, column=j, value=h); c.font = F(bold=True, color="FFFFFF", size=8); c.fill = HDR; c.alignment = CEN; c.border = BOX
+fl.row_dimensions[r].height = 30; r += 1; d0 = r
+Dd = _SRC["daily_bfcm2025"]
+for k in range(12):
+    vals = [Dd["days"][k], DAYS[k], Dd["US"]["sales"][k], Dd["US"]["units"][k], Dd["US"]["sessions"][k], f"=D{r}/E{r}", Dd["US"]["adv"][k], f"=G{r}/C{r}",
+            Dd["CA"]["sales"][k], Dd["CA"]["units"][k], Dd["CA"]["sessions"][k], f"=J{r}/K{r}"]
+    for j, v in enumerate(vals, 1):
+        c = fl.cell(row=r, column=j, value=v); c.border = BOX; c.font = F(color=BLUE if j in (3, 4, 5, 7, 9, 10, 11) else "000000", bold=k in (8, 11))
+        c.number_format = {3: '"$"#,##0', 4: "#,##0", 5: "#,##0", 6: "0.00%", 7: '"$"#,##0', 8: "0.0%", 9: '"$"#,##0', 10: "#,##0", 11: "#,##0", 12: "0.00%"}.get(j, "General")
+        if k in (8, 11): c.fill = YEL
+    r += 1
+fl.cell(row=r, column=1, value="Total").font = F(bold=True)
+for j, col in ((3, "C"), (4, "D"), (5, "E"), (7, "G"), (9, "I"), (10, "J"), (11, "K")):
+    c = fl.cell(row=r, column=j, value=f"=SUM({col}{d0}:{col}{r-1})"); c.font = F(bold=True); c.number_format = '"$"#,##0' if col in "CGI" else "#,##0"; c.border = BOX
+for j, f_, fmt in ((6, f"=D{r}/E{r}", "0.00%"), (8, f"=G{r}/C{r}", "0.0%"), (12, f"=J{r}/K{r}", "0.00%")):
+    c = fl.cell(row=r, column=j, value=f_); c.number_format = fmt; c.font = F(bold=True); c.border = BOX
+fl.cell(row=r + 1, column=1, value="Check: daily totals = 12-day totals above (0 = match; sessions differ by under 0.1% between daily and whole-period reporting)").font = F(italic=True)
+for j, f_ in ((3, f"=C{r}-C{t0+1}"), (4, f"=D{r}-C{t0+2}"), (5, f"=E{r}-C{t0+3}"), (7, f"=G{r}-C{t0+4}"), (9, f"=I{r}-F{t0+1}"), (10, f"=J{r}-F{t0+2}"), (11, f"=K{r}-F{t0+3}")):
+    c = fl.cell(row=r + 1, column=j, value=f_); c.number_format = '0.00;-0.00;"0"'
+r += 4
+# by product
+fl.cell(row=r, column=1, value="By product: BFCM 2025 vs this year's plan").font = F(size=11, bold=True, color=NAVY); r += 1
+PH = ["Product", "Market", "Group", "2025 sales", "2025 units", "2025 sessions", "Conversion BFCM 2025", "Conversion 30 days before", "2025 ad spend", "2025 TACoS", "2026 plan units", "2026 plan budget"]
+for j, h in enumerate(PH, 1):
+    c = fl.cell(row=r, column=j, value=h); c.font = F(bold=True, color="FFFFFF", size=8); c.fill = HDR; c.alignment = CEN; c.border = BOX
+fl.row_dimensions[r].height = 30; r += 1; p0 = r
+_plan = {(x["mkt"], x["pid"]): x for x in P}
+for m in ("US", "CA"):
+    rows_ = sorted([x for x in _YO["bfcm"] if x["market"] == m and (x["sales25"] > 1 or x["in_plan"])], key=lambda x: -x["sales25"])
+    for x in rows_:
+        pl_ = _plan.get((m, x["pid"])) if isinstance(x["pid"], int) else None
+        um = ((pl_["units_lo"] + pl_["units_hi"]) / 2) if pl_ else None
+        vals = [x["product"], m, x["class"], x["sales25"], x["units25"], x["sessions25"], f'=IF(F{r}>0,E{r}/F{r},"")',
+                (x["pre_units25"] / x["pre_sessions25"]) if x.get("pre_sessions25") else None, x["adv25"], f'=IF(D{r}>0,I{r}/D{r},"")',
+                round(um) if um else None, x["plan_budget26"] if x["in_plan"] else None]
+        for j, v in enumerate(vals, 1):
+            c = fl.cell(row=r, column=j, value=v); c.border = BOX; c.font = F(color=BLUE if j in (4, 5, 6, 8, 9, 11, 12) else "000000")
+            c.number_format = {4: CUR[m], 5: "#,##0", 6: "#,##0", 7: "0.00%", 8: "0.00%", 9: CUR[m], 10: "0.0%", 11: "#,##0", 12: CUR[m]}.get(j, "General")
+        r += 1
+p1 = r - 1
+fl.cell(row=r, column=1, value="Check: US product units = account BFCM units (0 = match)").font = F(italic=True)
+c = fl.cell(row=r, column=5, value=f'=SUMIF($B${p0}:$B${p1},"US",E{p0}:E{p1})-C{t0+2}'); c.number_format = '0;-0;"0"'
+fl.cell(row=r + 1, column=1, value="Check: CA product units = account BFCM units (0 = match)").font = F(italic=True)
+c = fl.cell(row=r + 1, column=5, value=f'=SUMIF($B${p0}:$B${p1},"CA",E{p0}:E{p1})-F{t0+2}'); c.number_format = '0;-0;"0"'
+fl.freeze_panes = "B6"
+
 # ---------------- Summary (first)
 sm = wb.create_sheet("Summary", 0); sm.sheet_view.showGridLines = False
 sm.column_dimensions["A"].width = 46; sm.column_dimensions["B"].width = 16; sm.column_dimensions["C"].width = 16; sm.column_dimensions["D"].width = 60
@@ -428,7 +518,7 @@ for t in CALLS:
 rr += 1
 sm.cell(row=rr, column=1, value="Tabs").font = F(size=11, bold=True, color=NAVY); rr += 1
 for t in ["Budget by product: units, price, break-even, ceiling, plan TACoS and budget for every product.", "Budget by day: each product's budget spread over Nov 19 - 30.",
-          "Bid and placement rules: deal-day bids, top of search, what the agent does hourly and what a person checks.", "Ad types by product: SP, SB, SB video and SD spend per product, TACoS now and the BFCM split.", "2025 vs 2026 check: before / during / after BFCM 2025 vs 2026 so far (sales, spend, TACoS, traffic) and the two history checks.", "Inputs: BFCM 2025 by day and the sources."]:
+          "Bid and placement rules: deal-day bids, top of search, what the agent does hourly and what a person checks.", "Ad types by product: SP, SB, SB video and SD spend per product, TACoS now and the BFCM split.", "2025 vs 2026 check: before / during / after BFCM 2025 vs 2026 so far (sales, spend, TACoS, traffic) and the two history checks.", "BFCM 2025 in full: last year's totals, conversion (strike rate) by day and by product, beside this year's plan.", "Inputs: BFCM 2025 by day and the sources."]:
     c = sm.cell(row=rr, column=1, value="• " + t); sm.merge_cells(start_row=rr, start_column=1, end_row=rr, end_column=4); rr += 1
 for ws in wb.worksheets:
     for row_ in ws.iter_rows():
@@ -436,4 +526,5 @@ for ws in wb.worksheets:
             if c.font is None or c.font.name != "Arial":
                 c.font = Font(name="Arial", size=c.font.size or 9, bold=c.font.bold, italic=c.font.italic, color=c.font.color)
 wb.move_sheet(HC, offset=1 - wb.sheetnames.index(HC))
+wb.move_sheet(F25, offset=2 - wb.sheetnames.index(F25))
 wb.save(OUT); print("saved", OUT)
