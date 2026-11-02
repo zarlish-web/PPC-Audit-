@@ -81,7 +81,9 @@ SECT = [("1. Source records", "Fresh account pulls reconcile to the files the pl
         ("3. Cross-source", "SP spend per product vs the ads console; growth stage and TACoS band vs the console; Lightning Deal dates vs the deal sheet; every deal product has a budget line."),
         ("4. Workbook arithmetic", "Day weights vs fresh 2025 daily sales; each product's 12 days add up to its budget; totals by product, by ad type and by day agree; weekday alignment; Summary links; history checks A and B recomputed."),
         ("5. Decisions and wording", "Over-cap flags, the boost / no-raise lists in the rules tab and every number written in the Summary re-derived from the data."),
-        ("6. Is the demand read still current", "Each product's last-14-day unit pace vs the 28-day pace the demand read uses (as of Oct 15), and the budget at today's pace.")]
+        ("6. Is the demand read still current", "Each product's last-14-day unit pace vs the 28-day pace the demand read uses (as of Oct 15), and the budget at today's pace."),
+        ("7. Growth plan", "Every product's plan TACoS against its growth-plan stage band (floor scaled for the deal period), break-even cap and liquidation rules."),
+        ("8. Key days", "Black Friday and Cyber Monday weights vs BFCM 2025, the wording about them, Lightning Deal days and every deal window in the deal sheet.")]
 for i, (s_, what) in enumerate(SECT):
     rr = 5 + i
     sm.cell(row=rr, column=1, value=s_).font = F(bold=True)
@@ -102,14 +104,18 @@ sm.cell(row=rr, column=1, value="Verdict").font = F(size=11, bold=True, color=NA
 US_T, CA_T = R["totals"]["US"], R["totals"]["CA"]
 VERD = [f"The plan's arithmetic is right: rebuilt independently, the US budget is ${US_T['budget']:,.0f} and Canada C${CA_T['budget']:,.0f}, matching the workbook to the dollar; all 25 products match on units, price, break-even, cap, plan TACoS, budget and split by ad type.",
         "Every source input reconciles with today's fresh pulls (2025 sales to the cent; 2025 ad spend within 0.4%, late attribution). Growth stages and TACoS bands match the ads console for all 22 banded products.",
-        "Three wording errors were found and fixed in the plan (see Findings): Satin 4 Pc (US) was listed as a hero with room for a +20% bid raise while already over its 12% cap; the no-raise list had a stale entry and missed products; the Summary's over-cap list missed four Canadian products.",
+        "Four wording errors were found and fixed in the plan (see Findings): Satin 4 Pc (US) was listed as a hero with room for a +20% bid raise while already over its 12% cap; the no-raise list had a stale entry and missed products; the Summary's over-cap list missed four Canadian products.",
         "Biggest judgment call: the demand read's base pace (Oct 15, including Prime Big Deal Days) is well above today's pace for the Bamboo heroes (US Bamboo 4 Pc sells 0.51x, Bamboo 6 Pc 0.62x that pace). At today's pace the same TACoS plan needs about $53K (US) / C$17K (CA). The 2025-history check gives $73K / C$20K. The $88K / C$25.5K plan is the ceiling; the agent's TACoS caps on actual sales keep spend from running ahead of sales.",
+        "Year over year (same 14 days): US ad spend is down 4%, but products sold both years cut SP by $21.8K while new products added $18.2K and the new SB / video / display campaigns $1.8K. Like-for-like sales fell 48% with traffic down 34% and conversion steady, so like-for-like TACoS rose from 15.3% to 18.5%. Bamboo 6 Pc and Satin 4 Pc also have many sizes out of stock.",
+        "BFCM like-for-like: the plan for products that ran in BFCM 2025 is $77.1K vs $75.6K spent then; the extra $11.2K is new products. Every product's plan TACoS sits inside its growth-plan band or is held below it by break-even.",
         "Approve as: base budget = history check (US $73K, CA C$20K), ceiling = plan (US $88K, CA C$25.5K), released only while each product stays under its TACoS cap."]
 for t in VERD:
     c = sm.cell(row=rr, column=1, value="• " + t); c.alignment = WRAP; sm.merge_cells(start_row=rr, start_column=1, end_row=rr, end_column=7); sm.row_dimensions[rr].height = 52; rr += 1
 rr += 1
 sm.cell(row=rr, column=1, value="Tabs").font = F(size=11, bold=True, color=NAVY); rr += 1
 for t in ["Findings: every issue found, its impact and what was done.", "All checks: the full list of checks with live re-tests.",
+          "Year over year: same 14 days 2025 vs 2026, like-for-like vs new products vs new ad types, with the spend bridge.", "BFCM 2025 vs plan: last year's BFCM spend per product next to this year's plan.",
+          "Growth plan: plan TACoS against each product's stage band.", "Key days: Black Friday, Cyber Monday and deal days.",
           "Products: the independent rebuild per product next to the plan's numbers.", "Budget scenarios: plan vs history check vs today's pace, per product.",
           "Cross-source: SP spend per product, sales-tracking data vs ads console.", "Account history: fresh pulls for 2025 and 2026 (periods, BFCM 2025 by day, 2026 by week).",
           "Sources: every record used, its date, and how it was verified.", "Method: how the rebuild stays independent of the plan."]:
@@ -144,6 +150,12 @@ FIND = [
   "Console portfolio view, Oct 19 - Nov 1.", "None: Quilt and Curtains are no-ads; Chair Cover's 7.5% plan sits inside 7-12%.", "None.", "No action"),
  ("Info", "Prices", "CooLinens Cooling Sheets, Bamboo Fitted and Decolure Cooling 4 Pc have no deal-sheet row, so their price comes from the tracker's listing price only.",
   "No second record available for these three prices.", "Budget for no-deal products is set from today's spend and sales pace, not price, so the effect is nil.", "None.", "No action"),
+ ("Low", "Summary / Rules", "Black Friday and Cyber Monday were described as 2.6x an average day and 31% of BFCM sales.", "Budget by day: Black Friday is 1.9x an average day in the US and 1.6x in Canada; the two days were 33% of US and 26% of Canadian BFCM 2025 sales.",
+  "Overstated the peak-day lift.", "Wording corrected in the Summary and the rules tab.", "Fixed"),
+ ("Info", "Deal fees", "Deal fees corrected to 1% of deal sales + $70 per deal (were 1.5% + $100).", "Comment on the report, Nov 2.",
+  "US budget +$114 (CooLinens Pillowcases and Sleephoria Cooling Pillowcase caps rise); Canada unchanged.", "Applied. Open question: Amazon charges the $70 per deal day (capped at $2,000 with the 1%); per day would wipe out break-even on the smallest deals.", "Open: confirm basis"),
+ ("High", "Stock", "Many sizes of the heroes are out of stock right now, which also holds down today's pace.", "Ads console, Oct 19 - Nov 1: Bamboo 6 Pc 9 SKUs out, about 2 days of cover on the tightest seller; Satin 4 Pc 17 out, about 1 day; Sleep Sanctuary Satin 4 Pc 37 out; Sleephoria Cooling 4 Pc 23 out.",
+  "Budget on an out-of-stock size is wasted, and BFCM demand can't be met.", "Stop ads on out-of-stock sizes (the agent's hourly rule) and check inbound timing with Joseph before Nov 19.", "Open: stock"),
  ("Info", "Currency", "Canadian COGS in the deal sheet are in US$; the plan's x1.40 conversion is correct.", "508 of 553 Canadian SKUs carry exactly the US cost.", "Confirms the Canadian break-even.", "None.", "Verified"),
 ]
 for i, f_ in enumerate(FIND, 1):
@@ -290,6 +302,134 @@ for m in ("US", "CA"):
     rr += 1
 ah.freeze_panes = "C5"
 
+# ------------------------------------------------------------------ Year over year
+YO = json.load(open(os.path.join(HERE, "yoy_results.json")))
+yy = wb.create_sheet("Year over year")
+title(yy, "Same 14 days, 2025 vs 2026 (Oct 19 - Nov 1): what changed, and why",
+      "Product by product, all ad types. 'Sold both years' = like-for-like. New products and the rows not pulled one by one (long tail, made up from account totals) are kept apart, "
+      "so a change in total spend can be split into: less or more spend on the same products, the new SB / SB video / SD campaigns, and new launches. Canada in C$ (x1.4036).", "Q")
+YC = [("Market", 7), ("Product", 32), ("Group", 24), ("Sales 2025", 11), ("Sales 2026", 11), ("Sales change", 9), ("SP 2025", 10), ("SP 2026", 10),
+      ("SB + SB video + SD 2025", 11), ("SB + SB video + SD 2026", 11), ("All ads 2025", 10), ("All ads 2026", 10), ("Spend change", 10), ("TACoS 2025", 8), ("TACoS 2026", 8), ("Units 2025", 8), ("Units 2026", 8)]
+header(yy, 4, YC, 40)
+rr = 5
+for m in ("US", "CA"):
+    r0 = rr
+    for x in YO["markets"][m]["rows"]:
+        if x["adv25"] + x["adv26"] + x["sales25"] + x["sales26"] < 1:
+            continue
+        vals = [m, x["product"], x["class"], x["sales25"], x["sales26"], f"=IF(D{rr}>0,E{rr}/D{rr}-1,\"\")", x["sp25"], x["sp26"], x["nonsp25"], x["nonsp26"],
+                f"=G{rr}+I{rr}", f"=H{rr}+J{rr}", f"=L{rr}-K{rr}", f"=IF(D{rr}>0,K{rr}/D{rr},\"\")", f"=IF(E{rr}>0,L{rr}/E{rr},\"\")", x["units25"], x["units26"]]
+        for j, v in enumerate(vals, 1):
+            c = yy.cell(row=rr, column=j, value=v); c.border = BOX; c.font = F(color=BLUE if j in (4, 5, 7, 8, 9, 10, 16, 17) else "000000")
+            c.number_format = {4: CUR[m], 5: CUR[m], 6: "+0%;-0%;0%", 7: CUR[m], 8: CUR[m], 9: CUR[m], 10: CUR[m], 11: CUR[m], 12: CUR[m], 13: '#,##0;(#,##0);"-"', 14: "0.0%", 15: "0.0%", 16: "#,##0", 17: "#,##0"}.get(j, "General")
+        rr += 1
+    r1 = rr - 1
+    rr += 1
+    yy.cell(row=rr, column=1, value=("United States" if m == "US" else "Canada") + ": where the change in spend came from").font = F(size=11, bold=True, color=NAVY); rr += 1
+    for j, h in enumerate(["", "Step", "", "Amount", "Note"], 1):
+        c = yy.cell(row=rr, column=j, value=h); c.font = F(bold=True, color="FFFFFF", size=8); c.fill = HDR
+    rr += 1; w0 = rr
+    rng = lambda col: f"{col}{r0}:{col}{r1}"
+    STEPS = [("All ads, 2025", f"=SUM({rng('K')})", "Same 14 days last year."),
+             ("Products sold both years: SP", f"=SUMIF({rng('C')},\"Sold both years\",{rng('H')})-SUMIF({rng('C')},\"Sold both years\",{rng('G')})", "Less SP on the same products."),
+             ("Products sold both years: SB, SB video, SD", f"=SUMIF({rng('C')},\"Sold both years\",{rng('J')})-SUMIF({rng('C')},\"Sold both years\",{rng('I')})", "The new brand and video campaigns on existing products."),
+             ("New products", f"=SUMIF({rng('C')},\"New (not selling here last year)\",{rng('M')})", "CooLinens, Sleephoria Cooling Fitted, Bamboo Fitted and other launches."),
+             ("Older listings and long tail", f"=SUM({rng('M')})-D{w0+1}-D{w0+2}-D{w0+3}", "Retired listings plus rows not pulled one by one."),
+             ("All ads, 2026", f"=SUM({rng('L')})", "Equals 2025 plus the four steps above."),
+             ("Check: 2025 + steps - 2026", f"=D{w0}+D{w0+1}+D{w0+2}+D{w0+3}+D{w0+4}-D{w0+5}", "Zero = the steps account for the whole change.")]
+    for lab, fml, note in STEPS:
+        yy.cell(row=rr, column=2, value=lab).font = F(bold=lab.startswith("All ads"))
+        c = yy.cell(row=rr, column=4, value=fml); c.number_format = CUR[m] if not lab.startswith("Check") else '0.00;-0.00;"0"'; c.border = BOX; c.font = F(bold=True)
+        yy.cell(row=rr, column=5, value=note).font = F(italic=True)
+        rr += 1
+    rr += 1
+    yy.cell(row=rr, column=1, value="Like-for-like (products sold both years)").font = F(size=11, bold=True, color=NAVY); rr += 1
+    LL = [("Sales 2025", f"=SUMIF({rng('C')},\"Sold both years\",{rng('D')})", CUR[m]), ("Sales 2026", f"=SUMIF({rng('C')},\"Sold both years\",{rng('E')})", CUR[m]),
+          ("Sales change", f"=D{rr+1}/D{rr}-1", "+0%;-0%"), ("TACoS 2025 (all ads)", f"=SUMIF({rng('C')},\"Sold both years\",{rng('K')})/D{rr}", "0.0%"),
+          ("TACoS 2026 (all ads)", f"=SUMIF({rng('C')},\"Sold both years\",{rng('L')})/D{rr+1}", "0.0%"),
+          ("SP-only TACoS 2025", f"=SUMIF({rng('C')},\"Sold both years\",{rng('G')})/D{rr}", "0.0%"), ("SP-only TACoS 2026", f"=SUMIF({rng('C')},\"Sold both years\",{rng('H')})/D{rr+1}", "0.0%"),
+          ("New products' sales, 2026", f"=SUMIF({rng('C')},\"New (not selling here last year)\",{rng('E')})", CUR[m])]
+    for lab, fml, fmt in LL:
+        yy.cell(row=rr, column=2, value=lab); c = yy.cell(row=rr, column=4, value=fml); c.number_format = fmt; c.border = BOX; rr += 1
+    D_ = YO["markets"][m]["decomp"]
+    ACC = [("Sessions per day 2025 / 2026", f"{D_['sessions25']/14:,.0f} / {D_['sessions26']/14:,.0f}"), ("Conversion (units / sessions) 2025 / 2026", f"{D_['cvr25']*100:.2f}% / {D_['cvr26']*100:.2f}%"),
+           ("SP cost per click 2025 / 2026", f"{'C$' if m == 'CA' else '$'}{D_['cpc25']:.2f} / {'C$' if m == 'CA' else '$'}{D_['cpc26']:.2f} (recorded currency)")]
+    for lab, v in ACC:
+        yy.cell(row=rr, column=2, value=lab); yy.cell(row=rr, column=4, value=v).font = F(color=BLUE); rr += 1
+    rr += 2
+yy.freeze_panes = "C5"
+
+# ------------------------------------------------------------------ BFCM 2025 vs plan
+bv = wb.create_sheet("BFCM 2025 vs plan")
+title(bv, "BFCM 2025 actual spend vs the BFCM 2026 plan, product by product",
+      "2025 = Nov 20 - Dec 1, 2025 (product files, all ad types). 2026 = the plan for Nov 19 - 30. Products new since last year are kept apart, so the like-for-like change is visible. Canada in C$.", "J")
+header(bv, 4, [("Market", 7), ("Product", 30), ("Group", 20), ("2025 sales", 12), ("2025 ad spend", 11), ("2025 TACoS", 9), ("2026 plan sales", 12), ("2026 plan budget", 11), ("2026 plan TACoS", 9), ("Budget change", 11)], 36)
+rr = 5
+for m in ("US", "CA"):
+    r0 = rr
+    for x in sorted([x for x in YO["bfcm"] if x["market"] == m], key=lambda x: (x["class"], -(x["adv25"] + x["plan_budget26"]))):
+        vals = [m, x["product"], x["class"], x["sales25"], x["adv25"], f"=IF(D{rr}>0,E{rr}/D{rr},\"\")", x["plan_sales26"], x["plan_budget26"], f"=IF(G{rr}>0,H{rr}/G{rr},\"\")", f"=H{rr}-E{rr}"]
+        for j, v in enumerate(vals, 1):
+            c = bv.cell(row=rr, column=j, value=v); c.border = BOX; c.font = F(color=BLUE if j in (4, 5, 7, 8) else "000000")
+            c.number_format = {4: CUR[m], 5: CUR[m], 6: "0.0%", 7: CUR[m], 8: CUR[m], 9: "0.0%", 10: '#,##0;(#,##0);"-"'}.get(j, "General")
+        rr += 1
+    r1 = rr - 1
+    for grp in ("In both", "New since BFCM 2025", "Not in the 2026 plan", "Total"):
+        bv.cell(row=rr, column=2, value=f"{m}: {grp}").font = F(bold=True)
+        for j, col in ((4, "D"), (5, "E"), (7, "G"), (8, "H")):
+            f_ = f"=SUM({col}{r0}:{col}{r1})" if grp == "Total" else f'=SUMIF($C${r0}:$C${r1},"{grp}",{col}{r0}:{col}{r1})'
+            c = bv.cell(row=rr, column=j, value=f_); c.number_format = CUR[m]; c.font = F(bold=True); c.fill = YEL; c.border = BOX
+        bv.cell(row=rr, column=6, value=f"=IF(D{rr}>0,E{rr}/D{rr},\"\")").number_format = "0.0%"
+        bv.cell(row=rr, column=9, value=f"=IF(G{rr}>0,H{rr}/G{rr},\"\")").number_format = "0.0%"
+        bv.cell(row=rr, column=10, value=f"=H{rr}-E{rr}").number_format = '#,##0;(#,##0);"-"'
+        rr += 1
+    rr += 2
+bv.freeze_panes = "C5"
+
+# ------------------------------------------------------------------ Growth plan
+gp = wb.create_sheet("Growth plan")
+title(gp, "Growth plan: every product's plan TACoS against its stage band",
+      "Band = the growth plan's TACoS floor and ceiling for the stage. During the deal TACoS falls, so the floor is scaled by the product's deal-period factor. Cap = the lower of the band ceiling and 80% of break-even.", "L")
+header(gp, 4, [("Market", 7), ("Product", 28), ("Stage", 12), ("Band floor", 8), ("Band ceiling", 8), ("Deal-period factor", 8), ("Floor in BFCM", 8), ("Break-even", 8),
+               ("Cap", 8), ("Plan TACoS", 8), ("TACoS now", 8), ("Result", 40)], 36)
+rr = 5
+g7 = {(x["mkt"], x["product"]): x for x in R["checks"] if x["section"] == "7. Growth plan"}
+for p in R["products"]:
+    lo, hi = p["band"]
+    x = g7.get((p["mkt"], p["name"]))
+    res = (x["status"] + ": " + (x["note"] or x["item"])) if x else ""
+    vals = [p["mkt"], p["name"], p["stage"], lo, hi, p["fac"], f'=IF(D{rr}="","",D{rr}*F{rr})', p["be"], p["cap"], p["plan_t"], p["now"], res]
+    for j, v in enumerate(vals, 1):
+        c = gp.cell(row=rr, column=j, value=v); c.border = BOX; c.font = F(color=BLUE if j in (4, 5, 6, 8, 9, 10, 11) else "000000")
+        c.number_format = {4: "0%", 5: "0%", 6: "0.00", 7: "0.0%", 8: "0.0%", 9: "0.0%", 10: "0.0%", 11: "0.0%"}.get(j, "General")
+        if j == 12: c.alignment = WRAP
+    rr += 1
+gp.conditional_formatting.add(f"L5:L{rr-1}", FormulaRule(formula=['LEFT(L5,5)="CHECK"'], fill=CHF))
+gp.conditional_formatting.add(f"L5:L{rr-1}", FormulaRule(formula=['LEFT(L5,2)="OK"'], fill=OKF))
+gp.freeze_panes = "C5"
+
+# ------------------------------------------------------------------ Key days
+kd = wb.create_sheet("Key days")
+title(kd, "Black Friday, Cyber Monday and deal days", "Each day's share of the 12-day budget follows its share of BFCM 2025 sales (days line up by weekday). Lightning Deal products get 4x weight on their deal day.", "O")
+DAYS26 = ["Thu Nov 19", "Fri Nov 20", "Sat Nov 21", "Sun Nov 22", "Mon Nov 23", "Tue Nov 24", "Wed Nov 25", "Thu Nov 26", "Fri Nov 27 (BF)", "Sat Nov 28", "Sun Nov 29", "Mon Nov 30 (CM)"]
+header(kd, 4, [("Day 2026", 16), ("Same weekday 2025", 14), ("US sales 2025", 12), ("US TACoS 2025", 9), ("US day weight", 9), ("CA sales 2025 (US$)", 12), ("CA TACoS 2025", 9), ("CA day weight", 9)], 34)
+Dd = SRC["daily_bfcm2025"]
+for k in range(12):
+    rr = 5 + k
+    vals = [DAYS26[k], Dd["days"][k], Dd["US"]["sales"][k], Dd["US"]["adv"][k] / Dd["US"]["sales"][k], f"=C{rr}/SUM($C$5:$C$16)", Dd["CA"]["sales"][k], Dd["CA"]["adv"][k] / Dd["CA"]["sales"][k], f"=F{rr}/SUM($F$5:$F$16)"]
+    for j, v in enumerate(vals, 1):
+        c = kd.cell(row=rr, column=j, value=v); c.border = BOX; c.font = F(color=BLUE if j in (3, 4, 6, 7) else "000000", bold=k in (8, 11))
+        c.number_format = {3: '"$"#,##0', 4: "0.0%", 5: "0.0%", 6: '"$"#,##0', 7: "0.0%", 8: "0.0%"}.get(j, "General")
+        if k in (8, 11): c.fill = YEL
+kd.cell(row=18, column=1, value="Black Friday + Cyber Monday").font = F(bold=True)
+kd.cell(row=18, column=5, value="=E13+E16").number_format = "0.0%"; kd.cell(row=18, column=8, value="=H13+H16").number_format = "0.0%"
+kd.cell(row=19, column=1, value="Black Friday vs an average day").font = F(bold=True)
+kd.cell(row=19, column=5, value="=E13*12").number_format = '0.00"x"'; kd.cell(row=19, column=8, value="=H13*12").number_format = '0.00"x"'
+notes = ["Deal sheet: every Best Deal runs Nov 19 - 30, 2026; Lightning Deals: Satin 6 Pc and Silk Pillowcase on Nov 23, Sleephoria Cooling Fitted on Nov 25. The budget covers exactly these days.",
+         "Bid rules: +30% on the top 10 converting keywords per hero on Black Friday and Cyber Monday (6 AM - 11 PM ET); top-of-search +100% on those two days for heroes under their cap.",
+         "Canada's 2025 lift was flatter: Black Friday and Cyber Monday were 26% of its BFCM sales (US 33%)."]
+for i, t in enumerate(notes):
+    c = kd.cell(row=21 + i, column=1, value="• " + t); c.alignment = WRAP; kd.merge_cells(start_row=21 + i, start_column=1, end_row=21 + i, end_column=8); kd.row_dimensions[21 + i].height = 28
 # ------------------------------------------------------------------ Sources
 so = wb.create_sheet("Sources")
 title(so, "Records used and how each was verified", None)

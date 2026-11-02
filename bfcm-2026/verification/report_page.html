@@ -72,7 +72,7 @@
 
   <div class="vr-tiles" data-fetchpriority="high">
     <div class="vr-tile"><span class="vr-tile-label">Checks run</span><span class="vr-tile-num" data-draw="t-checks" data-source="kpi" data-field="checks" data-row="0">—</span><span class="vr-tile-sub">against original records and a second source</span></div>
-    <div class="vr-tile"><span class="vr-tile-label">Mismatches left</span><span class="vr-tile-num vr-ok" data-draw="t-diff" data-source="kpi" data-field="diff" data-row="0">—</span><span class="vr-tile-sub">3 wording errors found and fixed</span></div>
+    <div class="vr-tile"><span class="vr-tile-label">Mismatches left</span><span class="vr-tile-num vr-ok" data-draw="t-diff" data-source="kpi" data-field="diff" data-row="0">—</span><span class="vr-tile-sub">4 wording errors found and fixed</span></div>
     <div class="vr-tile"><span class="vr-tile-label">US budget, rebuilt</span><span class="vr-tile-num" data-draw="t-us" data-source="totals" data-field="rebuilt" data-where="market=US">—</span><span class="vr-tile-sub">Gap to plan: <span data-draw="t-us-gap" data-source="totals" data-field="gap" data-where="market=US">—</span></span></div>
     <div class="vr-tile"><span class="vr-tile-label">Canada budget, rebuilt</span><span class="vr-tile-num" data-draw="t-ca" data-source="totals" data-field="rebuilt" data-where="market=CA">—</span><span class="vr-tile-sub">Gap to plan: <span data-draw="t-ca-gap" data-source="totals" data-field="gap" data-where="market=CA">—</span></span></div>
     <div class="vr-tile"><span class="vr-tile-label">Judgment items</span><span class="vr-tile-num vr-warn" data-draw="t-check" data-source="kpi" data-field="check" data-row="0">—</span><span class="vr-tile-sub">mostly demand pace vs the demand read</span></div>
@@ -117,6 +117,62 @@
     <div class="vr-grid">
       <div class="vr-card"><h3>United States (US$)</h3><p class="vr-note">Base = history check A. Ceiling = plan.</p><div class="vr-chart" data-draw="c-scen-us" data-source="scenarios"></div></div>
       <div class="vr-card"><h3>Canada (C$)</h3><p class="vr-note">Base = history check A. Ceiling = plan.</p><div class="vr-chart" data-draw="c-scen-ca" data-source="scenarios"></div></div>
+    </div>
+  </section>
+
+
+  <section class="vr-section" id="yoy">
+    <h2>Same 14 days last year: what really changed</h2>
+    <p class="vr-lead">Oct 19 – Nov 1, 2025 vs 2026, product by product. Total US ad spend is almost flat, but that hides two opposite moves: much less Sponsored Products on the products we sold both years, and a lot of new spend on launches. Like-for-like sales fell while conversion held, so the drop is traffic and stock, not ad efficiency.</p>
+    <div class="vr-grid">
+      <div class="vr-card"><h3>United States: from 2025 spend to 2026 spend (US$)</h3><p class="vr-note">Each bar is one source of the change. Green = more spend, red = less.</p><div class="vr-chart" data-draw="c-bridge-us" data-source="yoybridge"></div></div>
+      <div class="vr-card"><h3>Canada: from 2025 spend to 2026 spend (C$)</h3><p class="vr-note">Canada has no new products to speak of: the drop is less SP on the same products.</p><div class="vr-chart" data-draw="c-bridge-ca" data-source="yoybridge"></div></div>
+    </div>
+    <div class="vr-tiles">
+      <div class="vr-tile"><span class="vr-tile-label">US like-for-like sales</span><span class="vr-tile-num vr-bad" data-draw="y-sales" data-source="yoykpi" data-field="sales_change" data-where="market=US">—</span><span class="vr-tile-sub">products sold both years</span></div>
+      <div class="vr-tile"><span class="vr-tile-label">US like-for-like TACoS, 2026</span><span class="vr-tile-num" data-draw="y-tacos" data-source="yoykpi" data-field="tacos26" data-where="market=US">—</span><span class="vr-tile-sub">2025: <span data-draw="y-tacos25" data-source="yoykpi" data-field="tacos25" data-where="market=US">—</span> (all ad types)</span></div>
+      <div class="vr-tile"><span class="vr-tile-label">US sessions a day, 2026</span><span class="vr-tile-num" data-draw="y-sess" data-source="yoykpi" data-field="sessions_day26" data-where="market=US">—</span><span class="vr-tile-sub">2025: <span data-draw="y-sess25" data-source="yoykpi" data-field="sessions_day25" data-where="market=US">—</span></span></div>
+      <div class="vr-tile"><span class="vr-tile-label">US conversion, 2026</span><span class="vr-tile-num vr-ok" data-draw="y-cvr" data-source="yoykpi" data-field="cvr26" data-where="market=US">—</span><span class="vr-tile-sub">2025: <span data-draw="y-cvr25" data-source="yoykpi" data-field="cvr25" data-where="market=US">—</span> (units per session)</span></div>
+      <div class="vr-tile"><span class="vr-tile-label">US new products' sales</span><span class="vr-tile-num" data-draw="y-new" data-source="yoykpi" data-field="new_sales26" data-where="market=US">—</span><span class="vr-tile-sub">CooLinens, Sleephoria Cooling Fitted and others</span></div>
+    </div>
+    <div class="vr-card">
+      <h3>US ad spend by product, 2025 vs 2026 (same 14 days)</h3>
+      <p class="vr-note">Hollow dot = 2025, filled dot = 2026. Colour = group. Products sold both years mostly spend less; the new launches account for most of the new money.</p>
+      <div class="vr-legend"><span><i class="vr-sw dot" data-sw="lfl"></i>Sold both years</span><span><i class="vr-sw dot" data-sw="new"></i>New since last year</span><span><i class="vr-sw dot" data-sw="oth"></i>Older listings / long tail</span></div>
+      <div class="vr-chart tall" data-draw="c-yoyprod" data-source="yoy"></div>
+    </div>
+  </section>
+
+  <section class="vr-section" id="bfcm-vs-plan">
+    <h2>BFCM 2025 spend vs the 2026 plan</h2>
+    <p class="vr-lead">Products that ran in BFCM 2025 get about what they spent then:
+      <b data-draw="bf-in25" data-source="bfcmcompare" data-field="spend25" data-where="key=US · In both">—</b> spent in 2025,
+      <b data-draw="bf-in26" data-source="bfcmcompare" data-field="plan26" data-where="key=US · In both">—</b> planned now. New products add
+      <b data-draw="bf-new26" data-source="bfcmcompare" data-field="plan26" data-where="key=US · New since BFCM 2025">—</b>. Canada plans less than last year on the same products.</p>
+    <div class="vr-card">
+      <h3>Ad spend, BFCM 2025 actual vs 2026 plan, by group</h3>
+      <div class="vr-legend"><span><i class="vr-sw" data-sw="y25"></i>BFCM 2025 actual</span><span><i class="vr-sw" data-sw="y26"></i>2026 plan</span></div>
+      <div class="vr-chart" data-draw="c-bfcmcmp" data-source="bfcmcompare"></div>
+    </div>
+  </section>
+
+  <section class="vr-section" id="growth">
+    <h2>Growth plan check</h2>
+    <p class="vr-lead">Every product's plan TACoS against its growth-plan stage band. During the deal TACoS falls, so each floor is scaled by the product's deal-period factor; the cap is the lower of the band ceiling and 80% of break-even.</p>
+    <div class="vr-tablewrap">
+      <table class="vr-table" data-source="growth" data-row-key="key">
+        <thead><tr><th data-field="key">Product</th><th data-field="stage">Stage</th><th data-field="band">Band</th><th data-field="floor_bfcm" class="num">Floor in BFCM</th><th data-field="cap" class="num">Cap</th><th data-field="plan_tacos" class="num">Plan TACoS</th><th data-field="result">Result</th><th data-field="note">Note</th></tr></thead>
+        <tbody data-draw="tb-growth"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="vr-section" id="keydays">
+    <h2>Black Friday, Cyber Monday and deal days</h2>
+    <p class="vr-lead">Each day's budget follows its share of BFCM 2025 sales, matched by weekday. Every Best Deal runs Nov 19 – 30; Lightning Deals run on Nov 23 (Satin 6 Pc, Silk Pillowcase) and Nov 25 (Sleephoria Cooling Fitted) and get 4x weight that day. Black Friday and Cyber Monday were 33% of US BFCM sales in 2025 (Canada 26%) at the event's lowest TACoS.</p>
+    <div class="vr-grid">
+      <div class="vr-card"><h3>United States: plan budget by day (US$)</h3><p class="vr-note">Black Friday and Cyber Monday highlighted: about 2x an average day.</p><div class="vr-chart" data-draw="c-days-us" data-source="keydays"></div></div>
+      <div class="vr-card"><h3>Canada: plan budget by day (C$)</h3><p class="vr-note">Canada's peak days were flatter in 2025: about 1.5x an average day.</p><div class="vr-chart" data-draw="c-days-ca" data-source="keydays"></div></div>
     </div>
   </section>
 
@@ -492,4 +548,131 @@
     d.data.forEach((r) => svg.append('rect').attr('x', x0(r.day) + x1(r.market)).attr('y', y(r.sales)).attr('width', x1.bandwidth()).attr('height', y(0) - y(r.sales)).attr('rx', 2).attr('fill', r.market === 'US' ? dash.colors[0] : dash.colors[1])
       .on('mousemove', (ev) => vr.showTip(el, t, ev, `${fmt(new Date(r.day))} · ${r.market}`, [`Sales ${vr.money(r.sales, 'US')}`, `Ad spend ${vr.money(r.ad_spend, 'US')}`, `TACoS ${vr.pct(r.tacos)}`, `Day weight ${vr.pct(r.weight)}`])).on('mouseleave', () => { t.hidden = true; }));
   });
+  // ---------- year over year
+  document.querySelectorAll('[data-sw]').forEach((s) => {
+    const k = s.getAttribute('data-sw');
+    const map2 = { lfl: dash.colors[0], new: dash.colors[2], oth: 'var(--cds-chart-muted)', y25: 'var(--cds-chart-muted)', y26: dash.colors[0] };
+    if (map2[k]) s.style.background = map2[k];
+  });
+  const yk = (name, field, fmt) => dash.draw(name, (el) => {
+    const d = dash.data('yoykpi'); el.classList.toggle('dash-skeleton', d.status === 'loading');
+    if (d.status !== 'ok') { el.textContent = '—'; return; }
+    const r = d.data.find((x) => x.market === 'US'); el.textContent = r ? fmt(r[field]) : '—';
+  });
+  yk('y-sales', 'sales_change', (v) => d3.format('+.0%')(v));
+  yk('y-tacos', 'tacos26', (v) => vr.pct(v)); yk('y-tacos25', 'tacos25', (v) => vr.pct(v));
+  yk('y-sess', 'sessions_day26', (v) => d3.format(',')(v)); yk('y-sess25', 'sessions_day25', (v) => d3.format(',')(v));
+  yk('y-cvr', 'cvr26', (v) => d3.format('.2%')(v)); yk('y-cvr25', 'cvr25', (v) => d3.format('.2%')(v));
+  yk('y-new', 'new_sales26', (v) => vr.money(v, 'US'));
+
+  const bridge = (name, m) => dash.draw(name, (el) => {
+    const d = dash.data('yoybridge'); if (d.status !== 'ok') return vr.fail(el, d.status);
+    el.replaceChildren(); const rows = d.data.filter((r) => r.market === m).sort((a, b) => a.order - b.order);
+    let run = 0; const bars = rows.map((r) => { let y0, y1; if (r.kind === 'total') { y0 = 0; y1 = r.amount; run = r.amount; } else { y0 = run; y1 = run + r.amount; run = y1; } return { ...r, y0, y1 }; });
+    const W = el.clientWidth || 420, H = 260, mg = { t: 18, r: 8, b: 56, l: 52 };
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    const x = d3.scaleBand(bars.map((b) => b.step), [mg.l, W - mg.r]).padding(0.25);
+    const y = d3.scaleLinear([0, d3.max(bars, (b) => Math.max(b.y0, b.y1)) * 1.08], [H - mg.b, mg.t]).nice();
+    svg.append('g').attr('transform', `translate(${mg.l},0)`).call(d3.axisLeft(y).ticks(4).tickFormat((v) => vr.kmoney(v, m)).tickSize(-(W - mg.l - mg.r))).call(vr.axisStyle).call((g) => g.select('.domain').remove());
+    const t = vr.tip(el);
+    bars.forEach((b, i) => {
+      const col = b.kind === 'total' ? 'var(--cds-chart-muted)' : (b.amount >= 0 ? 'var(--color-ok)' : 'var(--cds-chart-status-critical)');
+      const bw = Math.min(40, x.bandwidth()), bx = x(b.step) + (x.bandwidth() - bw) / 2;
+      svg.append('rect').attr('x', bx).attr('y', y(Math.max(b.y0, b.y1))).attr('width', bw).attr('height', Math.max(1, Math.abs(y(b.y0) - y(b.y1)))).attr('rx', 2).attr('fill', col)
+        .on('mousemove', (ev) => vr.showTip(el, t, ev, b.step, [(b.kind === 'total' ? '' : (b.amount >= 0 ? '+' : '−')) + vr.money(Math.abs(b.amount), m)])).on('mouseleave', () => { t.hidden = true; });
+      svg.append('text').attr('x', bx + bw / 2).attr('y', y(Math.max(b.y0, b.y1)) - 5).attr('text-anchor', 'middle').attr('fill', 'var(--color-fg)').style('font-size', 'var(--cds-font-size-caption)').style('font-variant-numeric', 'tabular-nums')
+        .text((b.kind === 'total' ? '' : (b.amount >= 0 ? '+' : '−')) + vr.kmoney(Math.abs(b.amount), m));
+      if (i < bars.length - 1) svg.append('line').attr('x1', bx + bw).attr('x2', x(bars[i + 1].step) + (x.bandwidth() - bw) / 2).attr('y1', y(b.y1)).attr('y2', y(b.y1)).attr('stroke', 'var(--cds-chart-reference)').attr('stroke-dasharray', '2 3');
+    });
+    const ax = svg.append('g').attr('transform', `translate(0,${H - mg.b})`).call(d3.axisBottom(x).tickSizeOuter(0)); vr.axisStyle(ax);
+    ax.selectAll('text').each(function () { const tx = d3.select(this), words = tx.text().split(' '); tx.text(''); let line = [], ln = 0; const lines = [];
+      words.forEach((w) => { line.push(w); if (line.join(' ').length > 13) { lines.push(line.slice(0, -1).join(' ') || w); line = line.length > 1 ? [w] : []; } }); if (line.length) lines.push(line.join(' '));
+      lines.slice(0, 3).forEach((l, k) => tx.append('tspan').attr('x', 0).attr('dy', k === 0 ? '0.9em' : '1.1em').text(l)); });
+  });
+  bridge('c-bridge-us', 'US'); bridge('c-bridge-ca', 'CA');
+
+  dash.draw('c-yoyprod', (el) => {
+    const d = dash.data('yoy'); if (d.status !== 'ok') return vr.fail(el, d.status);
+    el.replaceChildren();
+    const rows = d.data.filter((r) => r.market === 'US' && Math.max(r.ads25, r.ads26) > 150).sort((a, b) => Math.max(b.ads25, b.ads26) - Math.max(a.ads25, a.ads26));
+    const W = el.clientWidth || 700, rowH = 26, H = rows.length * rowH + 28; el.style.minHeight = H + 'px';
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    const left = Math.max(...rows.map((r) => vr.textW(svg, r.product))) + 12, right = 16;
+    const x = d3.scaleLinear([0, d3.max(rows, (r) => Math.max(r.ads25, r.ads26)) * 1.05], [left, W - right]).nice(); const y = d3.scaleBand(rows.map((r) => r.product), [0, rows.length * rowH]).padding(0.2);
+    svg.append('g').attr('transform', `translate(0,${rows.length * rowH})`).call(d3.axisBottom(x).ticks(5).tickFormat((v) => vr.kmoney(v, 'US')).tickSize(-rows.length * rowH)).call(vr.axisStyle).call((g) => g.select('.domain').remove());
+    const t = vr.tip(el);
+    const col = (g) => (g === 'Sold both years' ? dash.colors[0] : g.startsWith('New') ? dash.colors[2] : 'var(--cds-chart-muted)');
+    rows.forEach((r) => {
+      const cy = y(r.product) + y.bandwidth() / 2, c = col(r.group);
+      svg.append('text').attr('x', left - 8).attr('y', cy).attr('dy', '0.35em').attr('text-anchor', 'end').attr('fill', 'var(--color-fg)').style('font-size', 'var(--cds-font-size-caption)').text(r.product);
+      svg.append('line').attr('x1', x(r.ads25)).attr('x2', x(r.ads26)).attr('y1', cy).attr('y2', cy).attr('stroke', c).attr('stroke-width', 2).attr('opacity', 0.5);
+      svg.append('circle').attr('cx', x(r.ads25)).attr('cy', cy).attr('r', 5).attr('fill', 'var(--color-panel)').attr('stroke', c).attr('stroke-width', 2);
+      svg.append('circle').attr('cx', x(r.ads26)).attr('cy', cy).attr('r', 5).attr('fill', c)
+        .on('mousemove', (ev) => vr.showTip(el, t, ev, r.product, [`2025 ${vr.money(r.ads25, 'US')} (SP ${vr.money(r.sp25, 'US')})`, `2026 ${vr.money(r.ads26, 'US')} (SP ${vr.money(r.sp26, 'US')})`, `Sales ${vr.kmoney(r.sales25, 'US')} → ${vr.kmoney(r.sales26, 'US')}`, r.group])).on('mouseleave', () => { t.hidden = true; });
+    });
+  });
+
+  // ---------- BFCM 2025 vs plan
+  const bfv = (name, key, field) => dash.draw(name, (el) => {
+    const d = dash.data('bfcmcompare'); el.classList.toggle('dash-skeleton', d.status === 'loading');
+    if (d.status !== 'ok') { el.textContent = '—'; return; } const r = d.data.find((x) => x.key === key); el.textContent = r ? vr.money(r[field], 'US') : '—';
+  });
+  bfv('bf-in25', 'US · In both', 'spend25'); bfv('bf-in26', 'US · In both', 'plan26'); bfv('bf-new26', 'US · New since BFCM 2025', 'plan26');
+  dash.draw('c-bfcmcmp', (el) => {
+    const d = dash.data('bfcmcompare'); if (d.status !== 'ok') return vr.fail(el, d.status);
+    el.replaceChildren(); const rows = d.data.filter((r) => r.spend25 + r.plan26 > 1);
+    const W = el.clientWidth || 600, rowH = 46, H = rows.length * rowH + 28;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    const lab = (r) => `${r.market === 'US' ? 'US' : 'Canada'} · ${r.group}`;
+    const left = Math.max(...rows.map((r) => vr.textW(svg, lab(r)))) + 12, right = 64;
+    const x = d3.scaleLinear([0, d3.max(rows, (r) => Math.max(r.spend25, r.plan26)) * 1.02], [left, W - right]).nice();
+    const y = d3.scaleBand(rows.map(lab), [0, rows.length * rowH]).padding(0.2);
+    svg.append('g').attr('transform', `translate(0,${rows.length * rowH})`).call(d3.axisBottom(x).ticks(4).tickFormat((v) => vr.kmoney(v, 'US')).tickSize(-rows.length * rowH)).call(vr.axisStyle).call((g) => g.select('.domain').remove());
+    const t = vr.tip(el);
+    rows.forEach((r) => {
+      const y0 = y(lab(r)), h = y.bandwidth() / 2 - 1;
+      [['spend25', 'var(--cds-chart-muted)', 'BFCM 2025 actual'], ['plan26', dash.colors[0], '2026 plan']].forEach(([k, c, nm], i) => {
+        svg.append('rect').attr('x', x(0)).attr('y', y0 + i * (h + 2)).attr('width', Math.max(0, x(r[k]) - x(0))).attr('height', h).attr('rx', 2).attr('fill', c)
+          .on('mousemove', (ev) => vr.showTip(el, t, ev, lab(r), [`${nm}: ${vr.money(r[k], r.market)}`])).on('mouseleave', () => { t.hidden = true; });
+        svg.append('text').attr('x', x(r[k]) + 5).attr('y', y0 + i * (h + 2) + h / 2).attr('dy', '0.35em').attr('fill', 'var(--color-fg-muted)').style('font-size', 'var(--cds-font-size-caption)').style('font-variant-numeric', 'tabular-nums').text(vr.kmoney(r[k], r.market));
+      });
+      svg.append('text').attr('x', left - 8).attr('y', y0 + y.bandwidth() / 2).attr('dy', '0.35em').attr('text-anchor', 'end').attr('fill', 'var(--color-fg)').style('font-size', 'var(--cds-font-size-caption)').text(lab(r));
+    });
+  });
+
+  // ---------- growth plan table
+  dash.draw('tb-growth', (tb) => {
+    const d = dash.data('growth'); tb.replaceChildren(); if (d.status !== 'ok') return;
+    d.data.forEach((r) => {
+      const tr = document.createElement('tr');
+      [[r.key], [r.stage], [r.band], [r.floor_bfcm == null ? '' : vr.pct(r.floor_bfcm), 1], [r.cap == null ? '' : vr.pct(r.cap), 1], [vr.pct(r.plan_tacos), 1], [r.result, 0, 1], [r.note]].forEach(([v, num, chip]) => {
+        const td = document.createElement('td'); if (num) td.className = 'num';
+        if (chip) { const s = document.createElement('span'); s.className = 'vr-chip ' + (v === 'OK' ? 'Verified' : 'Medium'); s.textContent = v === 'OK' ? 'Within band' : 'Check'; td.append(s); } else td.textContent = v;
+        tr.append(td);
+      });
+      tb.append(tr);
+    });
+  });
+
+  // ---------- key days
+  const days = (name, m) => dash.draw(name, (el) => {
+    const d = dash.data('keydays'); if (d.status !== 'ok') return vr.fail(el, d.status);
+    el.replaceChildren(); const rows = d.data.filter((r) => r.market === m).sort((a, b) => a.order - b.order);
+    const W = el.clientWidth || 420, H = 250, mg = { t: 18, r: 8, b: 44, l: 52 };
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    const x = d3.scaleBand(rows.map((r) => r.day), [mg.l, W - mg.r]).padding(0.22); const y = d3.scaleLinear([0, d3.max(rows, (r) => r.budget) * 1.1], [H - mg.b, mg.t]).nice();
+    const avg = d3.mean(rows, (r) => r.budget);
+    svg.append('g').attr('transform', `translate(${mg.l},0)`).call(d3.axisLeft(y).ticks(4).tickFormat((v) => vr.kmoney(v, m)).tickSize(-(W - mg.l - mg.r))).call(vr.axisStyle).call((g) => g.select('.domain').remove());
+    const t = vr.tip(el);
+    rows.forEach((r) => {
+      svg.append('rect').attr('x', x(r.day)).attr('y', y(r.budget)).attr('width', x.bandwidth()).attr('height', y(0) - y(r.budget)).attr('rx', 2).attr('fill', r.peak ? dash.colors[0] : (r.ld ? dash.colors[2] : 'var(--cds-chart-muted)'))
+        .on('mousemove', (ev) => vr.showTip(el, t, ev, r.day, [vr.money(r.budget, m), `${d3.format('.1f')(r.budget / avg)}x an average day`, ...(r.ld ? [r.ld] : [])])).on('mouseleave', () => { t.hidden = true; });
+      if (r.peak) svg.append('text').attr('x', x(r.day) + x.bandwidth() / 2).attr('y', y(r.budget) - 5).attr('text-anchor', 'middle').attr('fill', 'var(--color-fg)').style('font-size', 'var(--cds-font-size-caption)').text(vr.kmoney(r.budget, m));
+    });
+    svg.append('line').attr('x1', mg.l).attr('x2', W - mg.r).attr('y1', y(avg)).attr('y2', y(avg)).attr('stroke', 'var(--cds-chart-reference)').attr('stroke-dasharray', '4 4');
+    svg.append('text').attr('x', W - mg.r).attr('y', y(avg) - 4).attr('text-anchor', 'end').attr('fill', 'var(--color-fg-muted)').style('font-size', 'var(--cds-font-size-caption)').text('average day');
+    const step = W < 520 ? 2 : 1;
+    const ax = svg.append('g').attr('transform', `translate(0,${H - mg.b})`).call(d3.axisBottom(x).tickValues(rows.map((r) => r.day).filter((_, i) => i % step === 0)).tickFormat((s) => s.replace(/^\w+ /, '').replace(' (BF)', ' BF').replace(' (CM)', ' CM')).tickSizeOuter(0)); vr.axisStyle(ax);
+  });
+  days('c-days-us', 'US'); days('c-days-ca', 'CA');
 </script>

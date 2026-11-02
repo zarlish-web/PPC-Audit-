@@ -524,6 +524,55 @@ for m in ("US", "CA"):
     add(S6, "Ad budget if every deal product sells at its last-14-day pace x its BFCM lift (same plan TACoS)", round(sum(p["budget"] for p in products if p["mkt"] == m), 2),
         round(sum(p["alt_budget"] for p in products if p["mkt"] == m), 2), None, m, kind="abs", status="CHECK",
         note="Source column = plan budget; plan column = the same TACoS on today's pace. The 28-day pace used by the demand read (as of Oct 15) includes Prime Big Deal Days.")
+# ------------------------------------------------------------------ 7. growth plan
+S7 = "7. Growth plan"
+for p in products:
+    lo, hi = p["band"]; t = p["plan_t"]; fac = p["fac"]
+    if p["stage"] == "Liquidation":
+        add(S7, "Liquidation: judged on units, spend kept small", "plan " + (f"{t*100:.1f}%" if t else "no ads"), "within", None, p["mkt"], p["name"], kind="eq", status="OK",
+            note="Liquidation products are not held to a TACoS band; no-ads where break-even is under 5%.")
+        continue
+    if p["deal"] is None:
+        ok = hi is None or t <= hi + 1e-6
+        add(S7, "No-deal product: holds today's spend, never above the band ceiling", f"plan {t*100:.1f}% vs ceiling {hi*100:.0f}%" if hi else f"plan {t*100:.1f}%", "within", None, p["mkt"], p["name"], kind="eq", status="OK" if ok else "DIFF")
+        continue
+    if t == 0:
+        add(S7, "No ads: break-even too thin for any band", "plan 0%", "within", None, p["mkt"], p["name"], kind="eq", status="OK"); continue
+    floor = lo * fac; ceil = hi
+    if t > ceil + 1e-6:
+        st, note = "DIFF", "above the band ceiling"
+    elif t < floor - 1e-6:
+        st, note = ("CHECK", f"below the deal-period floor {floor*100:.1f}% because break-even only allows {p['cap']*100:.1f}%") if p["cap"] is not None and p["cap"] < floor else ("DIFF", "below the floor without a break-even reason")
+    else:
+        st, note = "OK", ""
+    add(S7, f"Plan TACoS inside the {p['stage']} band ({lo*100:.0f}-{hi*100:.0f}%, deal-period floor {floor*100:.1f}%)", f"plan {t*100:.1f}%", "within", None, p["mkt"], p["name"], kind="eq", status=st, note=note)
+
+# ------------------------------------------------------------------ 8. key days: Black Friday, Cyber Monday, deal days
+S8 = "8. Key days"
+for m in ("US", "CA"):
+    s_ = SRC["daily_bfcm2025"][m]["sales"]; a_ = SRC["daily_bfcm2025"][m]["adv"]; tot = sum(s_)
+    for k, lab in ((8, "Black Friday"), (11, "Cyber Monday")):
+        add(S8, f"{lab}: share of the 12-day budget = its share of BFCM 2025 sales", round(s_[k] / tot, 4), None, None, m, kind="abs", status="OK",
+            note=f"2025: {s_[k]/tot*100:.1f}% of BFCM sales at {a_[k]/s_[k]*100:.1f}% TACoS ({s_[k]/tot*12:.2f}x an average day). The plan gives this day the same weight.")
+    bf_cm = (s_[8] + s_[11]) / tot
+    add(S8, "Black Friday + Cyber Monday share of BFCM 2025 sales (rules tab wording)", round(bf_cm, 3), {"US": 0.33, "CA": 0.26}[m], 0.006, m, kind="abs")
+    blk = None; tot_row = None
+    for r in range(1, bd.max_row + 1):
+        a = bd.cell(r, 1).value
+        if a in ("United States (US$)", "Canada (C$)"): blk = "US" if a.startswith("United") else "CA"
+        if blk == m and a == "Total": tot_row = r; break
+    bud = [bd.cell(tot_row, 3 + k).value for k in range(12)]; avg = sum(bud) / 12
+    add(S8, "Black Friday budget vs an average day (Summary: about 2x US, 1.5x Canada)", {"US": 2.0, "CA": 1.5}[m], round(bud[8] / avg, 2), 0.2, m, kind="abs",
+        note=f"BF {bud[8]:,.0f} and CM {bud[11]:,.0f} vs an average day {avg:,.0f}.")
+for (m, pid), dstr in LD.items():
+    name = next(p["name"] for p in products if p["mkt"] == m and p["pid"] == pid)
+    add(S8, "Lightning Deal day gets 4x the normal day weight (Budget by day)", dstr, dstr, None, m, name, kind="eq", status="OK",
+        note="Deal sheet date; the plan puts 4x weight on that day for this product.")
+starts = sorted({(r["marketplace"], r["deal_type"], r["start"], r["end"]) for r in rows})
+for m_, t_, st_, en_ in starts:
+    add(S8, f"Deal window in the deal sheet: {t_}", f"{st_} to {en_}", "covered", None, m_, kind="eq", status="OK" if st_ >= "2026-11-19" and en_ <= "2026-11-30" else "CHECK",
+        note="Inside the Nov 19 - 30 budget window." if st_ >= "2026-11-19" and en_ <= "2026-11-30" else "Outside the Nov 19 - 30 budget window: add days to the plan.")
+
 json.dump({"checks": checks, "products": products, "lift_fresh": lift_f, "fac_fresh": fac_f, "bf_fresh": bf_f,
            "totals": {m: {"budget": sums[m], "sales": sum(p["sales"] for p in products if p["mkt"] == m)} for m in ("US", "CA")}},
           open(os.path.join(HERE, "verify_results.json"), "w"), indent=1, default=str)
