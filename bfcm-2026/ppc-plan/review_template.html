@@ -145,7 +145,7 @@ footer { color: var(--muted); font-size: .8rem; border-top: 1px solid var(--line
   <div class="brand">BFCM <b>2026</b> PPC plan</div>
   <nav class="nav" aria-label="Sections">
     <a href="#decide">Decisions</a><a href="#new">What's new</a><a href="#products">Products</a><a href="#budget">Budget</a><a href="#days">By day</a>
-    <a href="#history">Year over year</a><a href="#adtypes">Ad types</a><a href="#rules">Rules</a><a href="#checks">Checks</a>
+    <a href="#full25">BFCM 2025 in full</a><a href="#history">Year over year</a><a href="#adtypes">Ad types</a><a href="#rules">Rules</a><a href="#checks">Checks</a>
   </nav>
   <div class="seg" role="group" aria-label="Market"><button id="m-us" aria-pressed="true">US</button><button id="m-ca" aria-pressed="false">Canada</button></div>
 </div></div>
@@ -197,6 +197,17 @@ footer { color: var(--muted); font-size: .8rem; border-top: 1px solid var(--line
   <section id="days">
     <div class="head"><h2>Budget by day</h2><p class="lead" id="days-lead"></p></div>
     <div class="card"><div class="legend"><span><i class="sw" style="background:var(--accent)"></i>Black Friday and Cyber Monday</span><span><i class="sw" style="background:#7a2fc0"></i>Lightning Deal day</span><span><i class="sw" style="background:var(--mute-mark)"></i>Other days</span></div><div class="chart" id="c-days"></div></div>
+  </section>
+
+  <section id="full25">
+    <div class="head"><h2>BFCM 2025 in full</h2><p class="lead" id="full-lead"></p></div>
+    <div class="tiles" id="full-tiles"></div>
+    <div class="grid2">
+      <div class="card"><h3>Conversion (strike rate) by day, BFCM 2025</h3><p class="note">Units ordered per session, each day of Nov 20 – Dec 1, 2025. The dashed line is the 30 days before BFCM.</p><div class="chart" id="c-cvr"></div></div>
+      <div class="card"><h3>Day by day, BFCM 2025</h3><p class="note">The 2026 day it lines up with is in brackets (same weekday).</p><div class="tw" style="max-height:420px"><table id="t-days25"></table></div></div>
+    </div>
+    <div class="card"><h3>By product, BFCM 2025 vs this year's plan</h3><p class="note">2025 = Nov 20 – Dec 1, 2025. Conversion = units per session. Click a row for the product's detail. Canada sales and spend are recorded in US$ in 2025 and shown here in C$.</p>
+      <div class="tw" style="max-height:520px"><table id="t-prod25"></table></div></div>
   </section>
 
   <section id="history">
@@ -378,6 +389,8 @@ function openP(id) {
     el('p', { class: 'note', text: `Result: ${p.check || ''}. Plan TACoS = TACoS now × factor, raised to the growth floor, never above the cap.` }));
   const yo = p.yoy || {}, bf = p.bf25 || {};
   const hist = sec('History', kv([['2025 TACoS, 30 days before BFCM', pct(p.tacos25_pre)], ['2025 TACoS during BFCM', pct(p.tacos25_bf)], ['BFCM 2025 ad spend', money(bf.adv, m)], ['BFCM 2025 sales', money(bf.sales, m)],
+      ['BFCM 2025 units / sessions', bf.sessions ? `${d3.format(',')(bf.units)} / ${d3.format(',')(bf.sessions)}` : '–'], ['Conversion BFCM 2025', bf.sessions ? pct(bf.units / bf.sessions, 2) : '–'],
+      ['Conversion, 30 days before', bf.pre_sessions ? pct(bf.pre_units / bf.pre_sessions, 2) : '–'], ['Units from ads, BFCM 2025', bf.units ? pct((bf.units_ads || 0) / bf.units, 0) : '–'],
       ['Oct 19 – Nov 1, 2025: sales', money(yo.sales25, m)], ['Same days 2026: sales', money(yo.sales26, m)], ['2025 ad spend (same days)', money(yo.ads25, m)], ['2026 ad spend (same days)', money(yo.ads26, m)]]),
     el('p', { class: 'note', text: `Group: ${yo.group || '–'}. 2026 spend includes ${money(yo.nonsp26, m)} of SB / SB video / Display (2025: ${money(yo.nonsp25, m)}).` }));
   const st = p.stock || {}, cnt = st.counts || {};
@@ -547,7 +560,58 @@ function drawRules() {
   const c = DATA.checks;
   document.getElementById('checks-lead').textContent = `${d3.format(',')(c.total)} checks: ${d3.format(',')(c.ok)} match, ${c.check} judgment items (mostly today's sales pace vs the demand read), ${c.diff} mismatches left. Full detail in BFCM_2026_PPC_Verification.xlsx.`;
 }
-function drawMarket() { drawHero(); drawGrid(); drawScen(); drawBudgetTable(); drawAllDays(); drawBridge(); drawBfcmp(); drawSplit(); drawWeekly(); }
+function drawFull25() {
+  const DD = DATA.daily25.days; const m = MKT, F = DATA.full25[m], fx = m === 'CA' ? 1.4036 : 1, pre = F.pre, bf = F.bf, D_ = DATA.daily25[m];
+  const cvr = (u, s) => (s ? u / s : null);
+  document.getElementById('full-lead').textContent = `Last year's event, Nov 20 – Dec 1, 2025, in full: ${m === 'US' ? 'United States' : 'Canada'}. Against the 30 days before (Oct 21 – Nov 19, 2025), sales per day rose ${d3.format('.2f')((bf.sales / 12) / (pre.sales / 30))}x, sessions per day ${d3.format('.2f')((bf.sessions / 12) / (pre.sessions / 30))}x, and conversion went from ${pct(cvr(pre.units, pre.sessions), 2)} to ${pct(cvr(bf.units, bf.sessions), 2)}. TACoS fell from ${pct(pre.adv / pre.sales)} to ${pct(bf.adv / bf.sales)}.`;
+  const tl = [['Sales, 12 days', kmoney(bf.sales * fx, m), `30 days before: ${kmoney(pre.sales * fx, m)}`], ['Units', d3.format(',')(bf.units), `${d3.format(',.0f')(bf.units / 12)} a day vs ${d3.format(',.0f')(pre.units / 30)} before`],
+    ['Sessions', d3.format(',')(bf.sessions), `${d3.format(',.0f')(bf.sessions / 12)} a day vs ${d3.format(',.0f')(pre.sessions / 30)} before`],
+    ['Conversion (strike rate)', pct(cvr(bf.units, bf.sessions), 2), `30 days before: ${pct(cvr(pre.units, pre.sessions), 2)}`],
+    ['Ad spend, all ad types', kmoney(bf.adv * fx, m), `${money(bf.adv * fx / 12, m)} a day vs ${money(pre.adv * fx / 30, m)} before`], ['TACoS', pct(bf.adv / bf.sales), `30 days before: ${pct(pre.adv / pre.sales)}`]];
+  document.getElementById('full-tiles').replaceChildren(...tl.map(([k, v, s]) => el('div', { class: 'tile' }, el('span', { class: 'k', text: k }), el('span', { class: 'v', text: v }), el('span', { class: 's', text: s }))));
+  // daily table
+  const d26 = DATA.days, tb = document.getElementById('t-days25');
+  const heads = ['Day 2025', 'Sales', 'Units', 'Sessions', 'Conversion', 'Ad spend', 'TACoS'];
+  const fd = d3.utcFormat('%a %b %-d');
+  tb.replaceChildren(el('thead', {}, el('tr', {}, heads.map((h, i) => el('th', { class: i ? 'n' : '', text: h })))),
+    el('tbody', {}, DD.map((d, i) => el('tr', { style: i === 8 || i === 11 ? 'font-weight:600' : '' }, el('td', { text: `${fd(new Date(d))} (${d26[i].slice(4)}${i === 8 ? ', BF' : i === 11 ? ', CM' : ''})` }),
+      el('td', { class: 'n', text: money(D_.sales[i] * fx, m) }), el('td', { class: 'n', text: d3.format(',')(D_.units[i]) }), el('td', { class: 'n', text: d3.format(',')(D_.sessions[i]) }),
+      el('td', { class: 'n', text: pct(D_.units[i] / D_.sessions[i], 2) }), el('td', { class: 'n', text: money(D_.adv[i] * fx, m) }), el('td', { class: 'n', text: pct(D_.adv[i] / D_.sales[i]) }))),
+      el('tr', { class: 'tot' }, el('td', { text: 'Total' }), el('td', { class: 'n', text: money(bf.sales * fx, m) }), el('td', { class: 'n', text: d3.format(',')(bf.units) }), el('td', { class: 'n', text: d3.format(',')(bf.sessions) }),
+        el('td', { class: 'n', text: pct(bf.units / bf.sessions, 2) }), el('td', { class: 'n', text: money(bf.adv * fx, m) }), el('td', { class: 'n', text: pct(bf.adv / bf.sales) }))));
+  // conversion chart
+  const host = document.getElementById('c-cvr'); host.replaceChildren();
+  const W = Math.max(300, host.clientWidth || 520), Hh = 240, mg = { t: 16, r: 10, b: 34, l: 46 };
+  const svg = d3.select(host).append('svg').attr('viewBox', `0 0 ${W} ${Hh}`);
+  const vals = DD.map((d, i) => ({ d, i, c: D_.units[i] / D_.sessions[i], s: D_.sessions[i] })), preC = pre.units / pre.sessions;
+  const x = d3.scalePoint(DD, [mg.l + 10, W - mg.r - 10]), y = d3.scaleLinear([Math.min(preC, d3.min(vals, (v) => v.c)) * 0.85, d3.max(vals, (v) => v.c) * 1.08], [Hh - mg.b, mg.t]).nice();
+  svg.append('g').attr('transform', `translate(${mg.l},0)`).call(d3.axisLeft(y).ticks(4).tickFormat(d3.format('.0%')).tickSize(-(W - mg.l - mg.r))).call(axis);
+  const every = W < 520 ? 2 : 1;
+  svg.append('g').attr('transform', `translate(0,${Hh - mg.b})`).call(d3.axisBottom(x).tickValues(DD.filter((_, i) => i % every === 0)).tickFormat((d) => d3.utcFormat('%b %-d')(new Date(d))).tickSizeOuter(0)).call(axis);
+  svg.append('line').attr('x1', mg.l).attr('x2', W - mg.r).attr('y1', y(preC)).attr('y2', y(preC)).attr('stroke', css('--muted')).attr('stroke-dasharray', '4 4');
+  svg.append('text').attr('x', W - mg.r).attr('y', y(preC) - 5).attr('text-anchor', 'end').text(`30 days before ${pct(preC, 2)}`);
+  svg.append('path').attr('d', d3.line().x((v) => x(v.d)).y((v) => y(v.c))(vals)).attr('fill', 'none').attr('stroke', css('--accent')).attr('stroke-width', 2).attr('stroke-linejoin', 'round').attr('stroke-linecap', 'round');
+  const t = tip(host);
+  vals.forEach((v) => { const peak = v.i === 8 || v.i === 11;
+    svg.append('circle').attr('cx', x(v.d)).attr('cy', y(v.c)).attr('r', peak ? 5 : 3.5).attr('fill', peak ? css('--deal') : css('--accent'))
+      .on('mousemove', (ev) => showTip(host, t, ev, [d3.utcFormat('%a %b %-d, %Y')(new Date(v.d)) + (v.i === 8 ? ' · Black Friday' : v.i === 11 ? ' · Cyber Monday' : ''), `Conversion ${pct(v.c, 2)}`, `${d3.format(',')(D_.units[v.i])} units / ${d3.format(',')(v.s)} sessions`])).on('mouseleave', () => { t.hidden = true; });
+    if (peak) svg.append('text').attr('x', x(v.d)).attr('y', y(v.c) - 9).attr('text-anchor', 'middle').style('fill', css('--ink')).text(pct(v.c, 1)); });
+  // product table
+  const rows = [...prodsM()].sort((a, b) => (b.bf25.sales || 0) - (a.bf25.sales || 0));
+  const tp = document.getElementById('t-prod25');
+  const h2 = ['Product', '2025 sales', 'Units', 'Sessions', 'Conversion', '30 days before', 'Ad spend', 'TACoS', '2026 plan units', '2026 plan budget'];
+  const cv = (u, s_) => (s_ ? u / s_ : null);
+  const line = (name, b, plan, id) => { const tr = el('tr', id ? { class: 'click', tabindex: '0' } : {}, el('td', { text: name }), el('td', { class: 'n', text: b.sales ? money(b.sales, m) : '–' }),
+      el('td', { class: 'n', text: b.units ? d3.format(',')(b.units) : '–' }), el('td', { class: 'n', text: b.sessions ? d3.format(',')(b.sessions) : '–' }),
+      el('td', { class: 'n', text: b.sessions ? pct(cv(b.units, b.sessions), 2) : '–' }), el('td', { class: 'n', text: b.pre_sessions ? pct(cv(b.pre_units, b.pre_sessions), 2) : '–' }),
+      el('td', { class: 'n', text: b.adv ? money(b.adv, m) : '–' }), el('td', { class: 'n', text: b.sales ? pct(b.adv / b.sales) : '–' }),
+      el('td', { class: 'n', text: plan ? d3.format(',.0f')(plan.units[2]) : '–' }), el('td', { class: 'n', text: plan ? money(plan.budget, m) : '–' }));
+    if (id) { tr.addEventListener('click', () => openP(id)); tr.addEventListener('keydown', (e) => { if (e.key === 'Enter') openP(id); }); } return tr; };
+  const other = DATA.other25[m] || [];
+  tp.replaceChildren(el('thead', {}, el('tr', {}, h2.map((h, i) => el('th', { class: i ? 'n' : '', text: h })))),
+    el('tbody', {}, rows.map((p) => line(p.name + (p.bf25.group === 'New since BFCM 2025' ? ' (new)' : ''), p.bf25 || {}, p, p.id)), other.map((o) => line(o.name + ' (not in plan)', o, null, null))));
+}
+function drawMarket() { drawFull25(); drawHero(); drawGrid(); drawScen(); drawBudgetTable(); drawAllDays(); drawBridge(); drawBfcmp(); drawSplit(); drawWeekly(); }
 function setM(m) { MKT = m; document.getElementById('m-us').setAttribute('aria-pressed', m === 'US'); document.getElementById('m-ca').setAttribute('aria-pressed', m === 'CA'); drawMarket(); }
 document.getElementById('m-us').addEventListener('click', () => setM('US'));
 document.getElementById('m-ca').addEventListener('click', () => setM('CA'));

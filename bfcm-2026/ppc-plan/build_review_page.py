@@ -119,7 +119,8 @@ for (m, name), b in rows_bp.items():
         "split": b["split"], "spend14": b["spend14"], "sp_share": b["sp_share"], "check": b["check"], "note": b["note"], "status_now": b["status_now"],
         "budget_pace": v.get("alt_budget"), "days": byday.get((m, name)),
         "tacos25_pre": pl.get("tacos25_pre"), "tacos25_bf": pl.get("tacos25_bf"),
-        "bf25": {"sales": bf.get("sales25"), "adv": bf.get("adv25"), "group": bf.get("class")},
+        "bf25": {"sales": bf.get("sales25"), "adv": bf.get("adv25"), "group": bf.get("class"), "units": bf.get("units25"), "sessions": bf.get("sessions25"),
+                 "units_ads": bf.get("units_ads25"), "pre_sales": bf.get("pre_sales25"), "pre_adv": bf.get("pre_adv25"), "pre_units": bf.get("pre_units25"), "pre_sessions": bf.get("pre_sessions25")},
         "yoy": {"group": y.get("class"), "sales25": y.get("sales25"), "sales26": y.get("sales26"), "ads25": y.get("adv25"), "ads26": y.get("adv26"),
                 "sp25": y.get("sp25"), "sp26": y.get("sp26"), "nonsp25": y.get("nonsp25"), "nonsp26": y.get("nonsp26")},
         "stock": {"on_hand": st.get("onHand"), "inbound": st.get("inbound"), "need": st.get("need"), "short": st.get("short"), "counts": counts},
@@ -150,6 +151,9 @@ data = {
                   "p26": round(sum(r["plan_budget26"] for r in YO["bfcm"] if r["market"] == m_ and r["class"] == g_), 2)}
                  for m_ in ("US", "CA") for g_ in ("In both", "New since BFCM 2025", "Not in the 2026 plan")],
     "daily25": SRC["daily_bfcm2025"], "weekly": SRC["weekly2026"],
+    "full25": {m: {"pre": SRC["pre2025_30d"][m], "bf": SRC["bfcm2025_total"][m]} for m in ("US", "CA")},
+    "other25": {m: [{"name": r["product"], "sales": r["sales25"], "adv": r["adv25"], "units": r["units25"], "sessions": r["sessions25"], "pre_units": r["pre_units25"], "pre_sessions": r["pre_sessions25"]}
+                    for r in YO["bfcm"] if r["market"] == m and not r["in_plan"] and r["sales25"] > 1] for m in ("US", "CA")},
     "checks": {"total": len(VR["checks"]), "ok": cc["OK"], "check": cc["CHECK"], "diff": cc.get("DIFF", 0)},
     "products": prods,
 }

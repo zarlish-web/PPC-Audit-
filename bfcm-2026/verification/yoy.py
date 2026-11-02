@@ -143,14 +143,21 @@ for m in ("US", "CA"):
     for (mm, k), d in rows_sb.items():
         if mm != m: continue
         pid = OWNER.get((mm, k), "other")
-        a = agg.setdefault(pid, {"sales": 0.0, "adv": 0.0, "sp": 0.0})
+        a = agg.setdefault(pid, {"sales": 0.0, "adv": 0.0, "sp": 0.0, "units": 0.0, "sessions": 0.0, "units_ppc": 0.0,
+                                 "pre_sales": 0.0, "pre_adv": 0.0, "pre_units": 0.0, "pre_sessions": 0.0})
         for r_ in d.get("bfcm", []):
             a["sales"] += float(r_["sales"] or 0) * fx; a["adv"] += -float(r_["advertising"] or 0) * fx; a["sp"] += -float(r_["sponsored_ads"] or 0) * fx
+            a["units"] += float(r_["units"] or 0); a["sessions"] += float(r_["sessions"] or 0); a["units_ppc"] += float(r_["units_ppc"] or 0) + float(r_["units_sd"] or 0)
+        for r_ in d.get("pre", []):
+            a["pre_sales"] += float(r_["sales"] or 0) * fx; a["pre_adv"] += -float(r_["advertising"] or 0) * fx
+            a["pre_units"] += float(r_["units"] or 0); a["pre_sessions"] += float(r_["sessions"] or 0)
     for pid in sorted(set(agg) | set(plan), key=lambda x: str(x)):
-        a = agg.get(pid, {"sales": 0.0, "adv": 0.0, "sp": 0.0}); p = plan.get(pid)
+        a = agg.get(pid, {"sales": 0.0, "adv": 0.0, "sp": 0.0, "units": 0.0, "sessions": 0.0, "units_ppc": 0.0, "pre_sales": 0.0, "pre_adv": 0.0, "pre_units": 0.0, "pre_sessions": 0.0}); p = plan.get(pid)
         if a["adv"] < 1 and a["sales"] < 1 and not p: continue
         bf.append({"market": m, "pid": pid, "product": p["name"] if p else names.get(pid, "Other / older listings"),
                    "in_plan": bool(p), "sales25": round(a["sales"], 2), "adv25": round(a["adv"], 2), "sp25": round(a["sp"], 2),
+                   "units25": round(a["units"]), "sessions25": round(a["sessions"]), "units_ads25": round(a["units_ppc"]),
+                   "pre_sales25": round(a["pre_sales"], 2), "pre_adv25": round(a["pre_adv"], 2), "pre_units25": round(a["pre_units"]), "pre_sessions25": round(a["pre_sessions"]),
                    "plan_sales26": round(p["sales"], 2) if p else 0.0, "plan_budget26": round(p["budget"], 2) if p else 0.0,
                    "class": ("New since BFCM 2025" if p and a["sales"] < 0.05 * max(p["sales"], 1) else ("In both" if p else "Not in the 2026 plan"))})
 out["bfcm"] = bf
