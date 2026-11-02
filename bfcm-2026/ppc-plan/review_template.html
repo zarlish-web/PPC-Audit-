@@ -1,0 +1,548 @@
+<title>BFCM 2026 PPC Plan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,500..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<style>
+/* Layout: a plan document for approval. Decision first, then products as photo cards that open a full detail sheet, then budget, history, rules, checks. */
+:root {
+  --paper: #f5f7fa; --surface: #ffffff; --ink: #14202b; --muted: #5a6776; --line: #dbe1e8; --soft: #eef2f6;
+  --accent: #1d5bd0; --deal: #c8501a; --ok: #1d7a4e; --warn: #9a5a00; --bad: #bf3a2c; --mute-mark: #aab4c0;
+  --sp: #1d5bd0; --sb: #6f8fd9; --sbv: #c8501a; --sd: #8a96a3;
+  --f-display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --r: 10px; --shadow: 0 1px 2px rgba(20,32,43,.06), 0 6px 20px rgba(20,32,43,.06);
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #0e1318; --surface: #151c24; --ink: #e6ebf0; --muted: #9aa6b3; --line: #29333e; --soft: #1b232c;
+  --accent: #7aa2ff; --deal: #ff8f57; --ok: #4fc58c; --warn: #f0b54f; --bad: #ff6d5e; --mute-mark: #5d6977;
+  --sp: #7aa2ff; --sb: #a9bcf2; --sbv: #ff8f57; --sd: #8592a0; --shadow: 0 1px 2px rgba(0,0,0,.4); color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #0e1318; --surface: #151c24; --ink: #e6ebf0; --muted: #9aa6b3; --line: #29333e; --soft: #1b232c;
+  --accent: #7aa2ff; --deal: #ff8f57; --ok: #4fc58c; --warn: #f0b54f; --bad: #ff6d5e; --mute-mark: #5d6977;
+  --sp: #7aa2ff; --sb: #a9bcf2; --sbv: #ff8f57; --sd: #8592a0; --shadow: 0 1px 2px rgba(0,0,0,.4); color-scheme: dark; }
+body { background: var(--paper); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.5; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface); }
+.wrap { max-width: 1240px; margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 64px; display: flex; flex-direction: column; gap: 48px; }
+.num, td.n, .mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+h1, h2, h3 { font-family: var(--f-display); font-stretch: 85%; letter-spacing: -0.01em; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.02; }
+h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 700; }
+h3 { font-size: 1.05rem; font-weight: 700; font-stretch: 95%; }
+p { margin: 0; }
+.lead { color: var(--muted); max-width: 72ch; }
+.eyebrow { font-size: .74rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+/* top bar */
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: var(--surface); border-bottom: 1px solid var(--line); }
+.bar-in { max-width: 1240px; margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 10px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+.brand { font-family: var(--f-display); font-weight: 800; font-stretch: 80%; font-size: 1.05rem; letter-spacing: .01em; }
+.brand b { color: var(--deal); }
+.nav { display: flex; gap: 4px; flex-wrap: wrap; flex: 1; min-width: 0; }
+.nav a { color: var(--muted); text-decoration: none; font-size: .85rem; padding: 4px 9px; border-radius: 999px; }
+.nav a:hover, .nav a:focus-visible { color: var(--ink); background: var(--soft); outline: none; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+.seg button { font: inherit; font-size: .82rem; border: 0; background: transparent; color: var(--muted); padding: 5px 12px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.seg button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+/* hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 28px; padding-top: 36px; align-items: start; }
+@media (max-width: 860px) { .hero { grid-template-columns: 1fr; } }
+.hero-l { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.asks { display: flex; flex-wrap: wrap; gap: 6px; }
+.ask { display: inline-flex; gap: 6px; align-items: center; font-size: .8rem; padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); text-decoration: none; }
+.ask::before { content: "✓"; color: var(--ok); font-weight: 700; }
+.decide { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); box-shadow: var(--shadow); padding: 20px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.decide ol { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 8px; font-size: .93rem; }
+.decide li b { font-weight: 600; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 12px; }
+.tile { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.tile .k { font-size: .78rem; color: var(--muted); }
+.tile .v { font-family: var(--f-display); font-weight: 700; font-stretch: 85%; font-size: 1.85rem; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.tile .s { font-size: .78rem; color: var(--muted); font-family: var(--f-mono); }
+/* sections */
+section { display: flex; flex-direction: column; gap: 16px; scroll-margin-top: 70px; }
+.head { display: flex; flex-direction: column; gap: 6px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 16px; }
+.note { font-size: .82rem; color: var(--muted); }
+.new { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 10px; }
+.new div { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; font-size: .9rem; min-width: 0; }
+.new b { display: block; font-family: var(--f-display); font-stretch: 90%; font-size: .98rem; margin-bottom: 2px; }
+.tag { display: inline-block; font-size: .7rem; letter-spacing: .05em; text-transform: uppercase; font-weight: 700; padding: 2px 7px; border-radius: 4px; background: var(--soft); color: var(--muted); }
+.tag.new-t { background: var(--deal); color: var(--surface); }
+/* product grid */
+.filters { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.filters select, .filters input { font: inherit; font-size: .85rem; padding: 5px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); }
+.pgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr)); gap: 14px; }
+.pc { all: unset; box-sizing: border-box; cursor: pointer; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; display: flex; flex-direction: column; transition: border-color .15s, box-shadow .15s, transform .15s; min-width: 0; }
+.pc:hover { border-color: var(--accent); box-shadow: var(--shadow); }
+.pc:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (prefers-reduced-motion: no-preference) { .pc:hover { transform: translateY(-2px); } }
+.pc-img { aspect-ratio: 4 / 3; background: #fff; display: grid; place-items: center; position: relative; max-width: 100%; }
+.pc-img img { max-height: 100%; max-width: 100%; object-fit: contain; }
+.pc-img .badges { position: absolute; left: 8px; top: 8px; display: flex; gap: 4px; flex-wrap: wrap; }
+.b { font-size: .68rem; font-weight: 700; letter-spacing: .04em; padding: 2px 7px; border-radius: 4px; text-transform: uppercase; background: var(--ink); color: var(--paper); }
+.b.deal { background: var(--deal); color: #fff; }
+.b.ld { background: #7a2fc0; color: #fff; }
+.b.nodeal { background: var(--mute-mark); color: #fff; }
+.b.mkt { background: #fff; color: #14202b; border: 1px solid #dbe1e8; }
+.pc-body { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 8px; }
+.pc-name { font-family: var(--f-display); font-weight: 700; font-stretch: 90%; font-size: 1.02rem; line-height: 1.2; }
+.pc-row { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.pc-budget { font-family: var(--f-display); font-weight: 800; font-stretch: 85%; font-size: 1.5rem; font-variant-numeric: tabular-nums; }
+.chip { font-size: .72rem; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+.chip.bad { color: var(--bad); border-color: currentColor; } .chip.ok { color: var(--ok); border-color: currentColor; } .chip.warn { color: var(--warn); border-color: currentColor; }
+.bullet { width: 100%; height: 28px; display: block; }
+.legend { display: flex; gap: 12px; flex-wrap: wrap; font-size: .78rem; color: var(--muted); }
+.legend span { display: inline-flex; gap: 6px; align-items: center; }
+.sw { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+/* tables */
+.tw { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: .86rem; }
+th { text-align: left; font-weight: 600; color: var(--muted); font-size: .76rem; letter-spacing: .02em; padding: 9px 10px; border-bottom: 1px solid var(--line); background: var(--surface); position: sticky; top: 0; white-space: nowrap; }
+td { padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+td.n, th.n { text-align: right; white-space: nowrap; }
+tr.tot td { font-weight: 600; background: var(--soft); }
+tr.click { cursor: pointer; } tr.click:hover td { background: var(--soft); }
+.rules td:nth-child(3) { min-width: 18rem; }
+/* charts */
+.chart { width: 100%; position: relative; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart text { font-family: var(--f-body); font-size: 11px; fill: var(--muted); }
+.tip { position: absolute; pointer-events: none; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow); padding: 6px 9px; font-size: .78rem; white-space: nowrap; z-index: 3; font-family: var(--f-mono); }
+/* dialog */
+dialog { border: 0; padding: 0; border-radius: 14px; width: min(1040px, calc(100vw - 24px)); max-height: calc(100dvh - 24px); background: var(--paper); color: var(--ink); box-shadow: 0 20px 60px rgba(0,0,0,.35); }
+dialog::backdrop { background: rgba(10, 16, 22, .55); }
+.dlg { display: flex; flex-direction: column; max-height: calc(100dvh - 24px); }
+.dlg-top { display: flex; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid var(--line); background: var(--surface); position: sticky; top: 0; z-index: 2; }
+.dlg-top button { font: inherit; font-size: .85rem; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 8px; padding: 5px 11px; cursor: pointer; }
+.dlg-top button:focus-visible { outline: 2px solid var(--accent); }
+.dlg-body { overflow-y: auto; padding: 18px; display: flex; flex-direction: column; gap: 18px; }
+.d-head { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 18px; align-items: start; }
+@media (max-width: 640px) { .d-head { grid-template-columns: 1fr; } }
+.d-img { background: #fff; border-radius: var(--r); aspect-ratio: 1; display: grid; place-items: center; overflow: hidden; border: 1px solid var(--line); max-width: 100%; }
+.d-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.d-meta { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.kv { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); gap: 8px; }
+.kv div { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; min-width: 0; }
+.kv span { display: block; font-size: .72rem; color: var(--muted); }
+.kv b { font-family: var(--f-mono); font-weight: 500; font-size: 1rem; }
+.d-sec { display: flex; flex-direction: column; gap: 8px; }
+.d-sec h3 { font-size: .95rem; }
+.d-sec ul { margin: 0; padding-left: 1.1em; display: flex; flex-direction: column; gap: 4px; font-size: .9rem; }
+.vthumb { width: 36px; height: 36px; object-fit: contain; background: #fff; border-radius: 4px; border: 1px solid var(--line); vertical-align: middle; }
+.flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr)); gap: 10px; }
+.flow div { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 12px; font-size: .85rem; position: relative; min-width: 0; }
+.flow b { display: block; font-family: var(--f-display); font-stretch: 90%; font-size: .95rem; }
+footer { color: var(--muted); font-size: .8rem; border-top: 1px solid var(--line); padding-top: 14px; }
+</style>
+
+<div class="bar"><div class="bar-in">
+  <div class="brand">BFCM <b>2026</b> PPC plan</div>
+  <nav class="nav" aria-label="Sections">
+    <a href="#decide">Decisions</a><a href="#new">What's new</a><a href="#products">Products</a><a href="#budget">Budget</a><a href="#days">By day</a>
+    <a href="#history">Year over year</a><a href="#adtypes">Ad types</a><a href="#rules">Rules</a><a href="#checks">Checks</a>
+  </nav>
+  <div class="seg" role="group" aria-label="Market"><button id="m-us" aria-pressed="true">US</button><button id="m-ca" aria-pressed="false">Canada</button></div>
+</div></div>
+
+<div class="wrap">
+  <div class="hero" id="decide">
+    <div class="hero-l">
+      <div class="eyebrow">Amazon US and Canada · Nov 19 – 30, 2026 · draft for Joseph's approval</div>
+      <h1>BFCM 2026 PPC plan</h1>
+      <p class="lead">Budget by product and by day, a TACoS ceiling per product under each deal's break-even, deal-day bid and top-of-search rules, what the agent does every hour and what a person checks. Every number is rebuilt and checked against the original records, and compared with last year like for like.</p>
+      <div class="asks" aria-label="Erik's asks">
+        <a class="ask" href="#budget">Budget by product</a><a class="ask" href="#days">Budget by day</a><a class="ask" href="#products">TACoS ceiling per product</a>
+        <a class="ask" href="#rules">Deal-day bids and top of search</a><a class="ask" href="#agent">What the agent does hourly</a><a class="ask" href="#agent">What a person checks</a>
+      </div>
+      <div class="tiles" id="tiles"></div>
+    </div>
+    <div class="decide">
+      <div class="eyebrow">What we need from Joseph</div>
+      <ol id="decisions"></ol>
+    </div>
+  </div>
+
+  <section id="new">
+    <div class="head"><span class="tag new-t">New</span><h2>What's new since the first draft</h2><p class="lead">Changes made on Nov 2 after review, new data and the independent check.</p></div>
+    <div class="new" id="newlist"></div>
+  </section>
+
+  <section id="products">
+    <div class="head"><h2>Products</h2><p class="lead">Each card shows the BFCM budget, the plan TACoS against its cap, and whether the product runs over its cap today. Click a product for its demand read, economics, budget by day, ad types, history, stock and the rules that apply.</p></div>
+    <div class="filters">
+      <label class="note" for="f-fam">Brand</label>
+      <select id="f-fam"><option value="">All brands</option><option>Decolure</option><option>Sleephoria</option><option>CooLinens</option></select>
+      <label class="note" for="f-sort">Sort</label>
+      <select id="f-sort"><option value="budget">Biggest budget</option><option value="over">Over the cap first</option><option value="pace">Slowest vs demand read</option><option value="name">Name</option></select>
+      <input id="f-q" type="search" placeholder="Search products" aria-label="Search products">
+      <div class="legend"><span><i class="sw" style="background:var(--accent)"></i>TACoS now</span><span><i class="sw" style="background:var(--bad)"></i>over the cap</span><span><i class="sw" style="background:var(--ink);width:2px;height:12px"></i>cap</span><span><i class="sw" style="background:var(--deal);transform:rotate(45deg)"></i>plan</span></div>
+    </div>
+    <div class="pgrid" id="pgrid"></div>
+  </section>
+
+  <section id="budget">
+    <div class="head"><h2>Budget</h2><p class="lead">The plan is the ceiling. History check A (raise today's spend the way we did in BFCM 2025) is the suggested base. The agent paces every product to its TACoS cap on actual sales, so the extra above the base is only spent if sales come in.</p></div>
+    <div class="grid2">
+      <div class="card"><h3>Five ways to size Nov 19 – 30</h3><p class="note" id="scen-note"></p><div class="chart" id="c-scen"></div></div>
+      <div class="card"><h3>Budget by product</h3><p class="note">Click a row for the product's detail.</p><div class="tw" style="max-height:420px"><table id="t-budget"></table></div></div>
+    </div>
+  </section>
+
+  <section id="days">
+    <div class="head"><h2>Budget by day</h2><p class="lead" id="days-lead"></p></div>
+    <div class="card"><div class="legend"><span><i class="sw" style="background:var(--accent)"></i>Black Friday and Cyber Monday</span><span><i class="sw" style="background:#7a2fc0"></i>Lightning Deal day</span><span><i class="sw" style="background:var(--mute-mark)"></i>Other days</span></div><div class="chart" id="c-days"></div></div>
+  </section>
+
+  <section id="history">
+    <div class="head"><h2>Year over year, like for like</h2><p class="lead" id="hist-lead"></p></div>
+    <div class="grid2">
+      <div class="card"><h3>From 2025 spend to 2026 spend, same 14 days (Oct 19 – Nov 1)</h3><p class="note">Products sold both years vs new products vs the new brand and video campaigns.</p><div class="chart" id="c-bridge"></div></div>
+      <div class="card"><h3>BFCM 2025 actual vs this plan</h3><p class="note">Products that ran in BFCM 2025 get about what they spent then; the rest is new products.</p><div class="chart" id="c-bfcmp"></div></div>
+    </div>
+    <div class="tiles" id="lfl"></div>
+  </section>
+
+  <section id="adtypes">
+    <div class="head"><h2>Ad types</h2><p class="lead">Sponsored Brands, SB video and Display are tracked per product. Each product's BFCM budget splits by its own mix; their spend counts inside its cap.</p></div>
+    <div class="grid2">
+      <div class="card"><h3>Plan budget by ad type</h3><div class="legend"><span><i class="sw" style="background:var(--sp)"></i>Sponsored Products</span><span><i class="sw" style="background:var(--sb)"></i>Sponsored Brands</span><span><i class="sw" style="background:var(--sbv)"></i>SB video</span><span><i class="sw" style="background:var(--sd)"></i>Display</span></div><div class="chart" id="c-split"></div></div>
+      <div class="card"><h3>Ad spend by week, 2026</h3><p class="note">Figure above each bar = share that is not Sponsored Products.</p><div class="chart" id="c-weekly"></div></div>
+    </div>
+  </section>
+
+  <section id="rules">
+    <div class="head"><h2>Deal-day bid and top-of-search rules</h2><p class="lead">What changes on deal start, Black Friday, Cyber Monday and Lightning Deal days, and when the agent pulls back.</p></div>
+    <div class="tw"><table class="rules" id="t-rules"></table></div>
+  </section>
+
+  <section id="agent">
+    <div class="head"><h2>What the agent does every hour, and what a person checks</h2></div>
+    <div class="tw"><table class="rules" id="t-agent"></table></div>
+  </section>
+
+  <section id="checks">
+    <div class="head"><h2>How this plan was checked</h2><p class="lead" id="checks-lead"></p></div>
+    <div class="flow">
+      <div><b>Original records</b>Fresh account pulls, 2025 product sales files, 14-day variation data by ad type, deal sheet, SKU lists, inventory.</div>
+      <div><b>Independent rebuild</b>New code recomputes units, price, break-even, cap, TACoS, budget and split for every product.</div>
+      <div><b>Second source</b>Ads console: spend per product, growth stages and bands, deal dates.</div>
+      <div><b>Compared cell by cell</b>Every number in the plan, with a tolerance, plus the rules and the wording.</div>
+      <div><b>Fixed and re-run</b>Wording errors fixed, fee correction applied, re-run until no mismatch.</div>
+    </div>
+  </section>
+
+  <footer>Built Nov 2, 2026 by Shayan Rana for Joseph Fisher's review (asked by Erik). Supporting files: BFCM_2026_PPC_Plan.xlsx (plan) and BFCM_2026_PPC_Verification.xlsx (checks). Figures are estimates from the demand read, the Oct 27 deal prices and the last 14 days of spend; Amazon deal prices can change until Nov 13.</footer>
+</div>
+
+<dialog id="dlg" aria-labelledby="d-title"><div class="dlg">
+  <div class="dlg-top"><button id="d-prev" aria-label="Previous product">← Prev</button><strong id="d-title" style="font-family:var(--f-display);font-stretch:90%"></strong><span style="display:flex;gap:6px"><button id="d-next" aria-label="Next product">Next →</button><button id="d-close">Close</button></span></div>
+  <div class="dlg-body" id="d-body"></div>
+</div></dialog>
+
+<script>
+const DATA = /*__DATA__*/null;
+const IMG = /*__IMG__*/null;
+let MKT = 'US';
+const cur = (m) => (m === 'CA' ? 'C$' : '$');
+const money = (v, m) => (v == null || isNaN(v) ? '–' : (v < 0 ? '−' : '') + cur(m) + d3.format(',.0f')(Math.abs(v)));
+const kmoney = (v, m) => (v == null || isNaN(v) ? '–' : (v < 0 ? '−' : '') + cur(m) + (Math.abs(v) >= 1000 ? d3.format('.1f')(Math.abs(v) / 1000) + 'K' : d3.format(',.0f')(Math.abs(v))));
+const pct = (v, d = 1) => (v == null || v === '' || isNaN(v) ? '–' : d3.format('.' + d + '%')(v));
+const el = (tag, attrs = {}, ...kids) => { const e = document.createElement(tag); for (const [k, v] of Object.entries(attrs)) { if (k === 'class') e.className = v; else if (k === 'text') e.textContent = v; else e.setAttribute(k, v); } kids.flat().forEach((k) => k != null && e.append(k)); return e; };
+const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const P = DATA.products;
+const byId = Object.fromEntries(P.map((p) => [p.id, p]));
+const prodsM = () => P.filter((p) => p.mkt === MKT);
+const T = () => DATA.totals[MKT], H = () => DATA.hist[MKT];
+
+function tip(host) { let t = host.querySelector('.tip'); if (!t) { t = el('div', { class: 'tip' }); t.hidden = true; host.append(t); } return t; }
+function showTip(host, t, ev, lines) { t.replaceChildren(...lines.map((l, i) => el('div', { text: l, style: i === 0 ? 'color:var(--muted)' : '' }))); t.hidden = false; const r = host.getBoundingClientRect(); let x = ev.clientX - r.left + 12, y = ev.clientY - r.top + 12; if (x + t.offsetWidth > r.width) x = Math.max(0, x - t.offsetWidth - 24); if (y + t.offsetHeight > r.height) y = Math.max(0, y - t.offsetHeight - 24); t.style.left = x + 'px'; t.style.top = y + 'px'; }
+function axis(g) { g.selectAll('line').attr('stroke', css('--line')); g.select('.domain').remove(); }
+function textW(svg, s) { const t = svg.append('text').text(s); const w = t.node().getComputedTextLength(); t.remove(); return w; }
+
+// ---------------- hero tiles and decisions
+function drawHero() {
+  const t = T(), h = H(), m = MKT;
+  const tiles = [
+    ['Ad budget ceiling (plan)', money(t.budget, m), `range ${kmoney(t.budget_lo, m)} – ${kmoney(t.budget_hi, m)}`],
+    ['Suggested base (history A)', money(h.A, m), `BFCM 2025 actual ${kmoney(h.bf25, m)}`],
+    ['Plan TACoS, all ad types', pct(t.plan_tacos), m === 'US' ? 'BFCM 2025: 8.2%' : 'BFCM 2025: 8.8%'],
+    ['Expected sales, 12 days', kmoney(t.sales, m), 'mid-point of the demand read'],
+    ['Budget per day', money(t.per_day, m), `today ${money(t.now_day, m)} a day`],
+  ];
+  document.getElementById('tiles').replaceChildren(...tiles.map(([k, v, s]) => el('div', { class: 'tile' }, el('span', { class: 'k', text: k }), el('span', { class: 'v', text: v }), el('span', { class: 's', text: s }))));
+  const us = DATA.totals.US, ca = DATA.totals.CA, hu = DATA.hist.US, hc = DATA.hist.CA;
+  const cl = P.find((p) => p.mkt === 'US' && p.name === 'CooLinens Pillowcases'), cs = P.find((p) => p.mkt === 'US' && p.name === 'CooLinens Cooling Sheets');
+  const items = [
+    ['Approve the budget: ', `base ${kmoney(hu.A, 'US')} US / ${kmoney(hc.A, 'CA')} Canada, ceiling ${kmoney(us.budget, 'US')} / ${kmoney(ca.budget, 'CA')}. Spend above the base is released only while each product stays under its TACoS cap on actual sales.`],
+    ['CooLinens Pillowcases: ', `Launch product (band 25–40%) capped at ${pct(cl.cap)} because the $15.19 deal leaves only ${pct(cl.be)} break-even. It runs at ${pct(cl.tacos_now)} today.`],
+    ['CooLinens Cooling Sheets: ', `no deal, but sales about doubled in two weeks. The plan holds today's ${money(cs.now_day, 'US')} a day (${pct(cs.tacos_now)} TACoS, inside its Launch band).`],
+    ['Deal fees: ', 'the plan uses 1% of deal sales + $70 per deal. If Amazon charges $70 per deal day, the smallest deals lose their margin. Confirm which.'],
+    ['Stock: ', 'Bamboo 6 Pc, Satin 4 Pc and Sleep Sanctuary Satin 4 Pc have many sizes out of stock now. Confirm inbound timing before Nov 19.'],
+  ];
+  document.getElementById('decisions').replaceChildren(...items.map(([a, b]) => el('li', {}, el('b', { text: a }), b)));
+}
+
+// ---------------- what's new
+function drawNew() {
+  const yu = DATA.yoy.US, c = DATA.checks;
+  const items = [
+    ['SB, SB video and Display tracked per product', 'Each product\'s TACoS now, break-even and cap include all four ad types; its budget splits by its own mix. SB video sits mostly on Bamboo and CooLinens.'],
+    ['Year-over-year, like for like', `Same 14 days: US spend is down 4%, but products sold both years cut SP by ${kmoney(-yu.lfl_sp, 'US')} while new products added ${kmoney(yu.new, 'US')}. Like-for-like sales fell ${pct(1 - yu.lfl_sales26 / yu.lfl_sales25, 0)} with conversion steady.`],
+    ['New products in the plan', 'CooLinens Cooling Sheets and Pillowcases, Decolure Bamboo Fitted and Sleephoria Cooling Fitted were not selling last October; they carry about $11K of the US plan.'],
+    ['Deal fees corrected', '1% of deal sales + $70 per deal (was 1.5% + $100). US budget +$114; Canada unchanged.'],
+    ['Independent verification', `${d3.format(',')(c.total)} checks against the original records and a second data source: ${d3.format(',')(c.diff)} mismatches left, ${c.check} judgment items.`],
+    ['Fixes from the checks', 'Satin 4 Pc (US) removed from the bid-raise list (over its cap); no-raise and over-cap lists rebuilt from data; Black Friday and Cyber Monday wording corrected.'],
+    ['Demand read vs today', 'The Bamboo heroes sell at about half the 28-day pace the demand read used (that window held Prime Big Deal Days). The base budget allows for this.'],
+    ['History checks', 'Raising today\'s spend the way we did in BFCM 2025 gives the suggested base; the plan is the ceiling.'],
+  ];
+  document.getElementById('newlist').replaceChildren(...items.map(([a, b]) => el('div', {}, el('b', { text: a }), b)));
+}
+
+// ---------------- product cards
+function bulletSVG(p) {
+  const W = 240, Hh = 28, x = d3.scaleLinear([0, 0.6], [4, W - 4]).clamp(true);
+  const svg = d3.create('svg').attr('class', 'bullet').attr('viewBox', `0 0 ${W} ${Hh}`).attr('aria-hidden', 'true');
+  svg.append('rect').attr('x', 4).attr('y', 12).attr('width', W - 8).attr('height', 4).attr('rx', 2).attr('fill', css('--soft'));
+  if (p.cap != null && p.cap > 0) svg.append('line').attr('x1', x(p.cap)).attr('x2', x(p.cap)).attr('y1', 5).attr('y2', 23).attr('stroke', css('--ink')).attr('stroke-width', 2);
+  if (p.plan_tacos > 0) svg.append('rect').attr('x', x(p.plan_tacos) - 4).attr('y', 10).attr('width', 8).attr('height', 8).attr('fill', css('--deal')).attr('transform', `rotate(45 ${x(p.plan_tacos)} 14)`);
+  if (p.tacos_now != null) svg.append('circle').attr('cx', x(p.tacos_now)).attr('cy', 14).attr('r', 5).attr('fill', p.cap != null && p.tacos_now > p.cap ? css('--bad') : css('--accent'));
+  return svg.node();
+}
+function statusChip(p) {
+  if (p.plan_tacos === 0) return el('span', { class: 'chip', text: 'No ads' });
+  if (p.tacos_now != null && p.cap != null && p.tacos_now > p.cap) return el('span', { class: 'chip bad', text: 'Over cap today' });
+  if (p.tacos_now == null) return el('span', { class: 'chip', text: 'No recent sales' });
+  return el('span', { class: 'chip ok', text: 'Under cap' });
+}
+function dealBadge(p) {
+  if (!p.deal) return el('span', { class: 'b nodeal', text: 'No deal' });
+  if (p.ld) return el('span', { class: 'b ld', text: 'Lightning ' + (p.deal_dates || '') });
+  return el('span', { class: 'b deal', text: 'Best Deal' });
+}
+function drawGrid() {
+  const fam = document.getElementById('f-fam').value, srt = document.getElementById('f-sort').value, q = document.getElementById('f-q').value.toLowerCase();
+  let rows = prodsM().filter((p) => (!fam || p.family === fam) && (!q || p.name.toLowerCase().includes(q)));
+  const over = (p) => (p.tacos_now != null && p.cap != null ? p.tacos_now - p.cap : -9);
+  rows.sort(srt === 'name' ? (a, b) => a.name.localeCompare(b.name) : srt === 'over' ? (a, b) => over(b) - over(a) : srt === 'pace' ? (a, b) => ((a.pace_now || 0) / (a.u28_day || 1)) - ((b.pace_now || 0) / (b.u28_day || 1)) : (a, b) => b.budget - a.budget);
+  document.getElementById('pgrid').replaceChildren(...rows.map((p) => {
+    const img = p.img && IMG[p.img] ? el('img', { src: IMG[p.img], alt: p.name, loading: 'lazy' }) : el('span', { class: 'note', text: p.name });
+    const card = el('button', { class: 'pc', type: 'button', 'aria-label': `${p.name}, ${p.mkt}: open details` },
+      el('div', { class: 'pc-img' }, img, el('div', { class: 'badges' }, dealBadge(p), el('span', { class: 'b mkt', text: p.mkt }))),
+      el('div', { class: 'pc-body' },
+        el('div', { class: 'pc-name', text: p.name }),
+        el('div', { class: 'pc-row' }, el('span', { class: 'pc-budget', text: money(p.budget, p.mkt) }), statusChip(p)),
+        el('div', { class: 'pc-row note' }, el('span', { text: `${p.stage} · band ${p.band[0] != null ? Math.round(p.band[0] * 100) + '–' + Math.round(p.band[1] * 100) + '%' : 'none'}` }), el('span', { class: 'mono', text: `plan ${pct(p.plan_tacos)} · cap ${pct(p.cap)}` })),
+        bulletSVG(p),
+        el('div', { class: 'pc-row note' }, el('span', { class: 'mono', text: `now ${pct(p.tacos_now)}` }), el('span', { class: 'mono', text: `${money(p.per_day, p.mkt)}/day vs ${money(p.now_day, p.mkt)} now` }))));
+    card.addEventListener('click', () => openP(p.id));
+    return card;
+  }));
+}
+
+// ---------------- detail dialog
+let OPEN = null;
+function openP(id) {
+  const p = byId[id]; if (!p) return; OPEN = id;
+  const dlg = document.getElementById('dlg');
+  document.getElementById('d-title').textContent = `${p.name} · ${p.mkt === 'US' ? 'United States' : 'Canada'}`;
+  const m = p.mkt, body = document.getElementById('d-body');
+  const img = p.img && IMG[p.img] ? el('img', { src: IMG[p.img], alt: p.name }) : el('span', { class: 'note', text: 'No photo' });
+  const kv = (pairs) => el('div', { class: 'kv' }, pairs.map(([k, v]) => el('div', {}, el('span', { text: k }), el('b', { text: v }))));
+  const sec = (title, ...kids) => el('div', { class: 'd-sec' }, el('h3', { text: title }), ...kids);
+  const pace = p.u28_day ? (p.pace_now || 0) / p.u28_day : null;
+  const head = el('div', { class: 'd-head' }, el('div', { class: 'd-img' }, img),
+    el('div', { class: 'd-meta' },
+      el('div', { style: 'display:flex;gap:6px;flex-wrap:wrap' }, dealBadge(p), el('span', { class: 'b mkt', text: p.mkt }), statusChip(p), el('span', { class: 'chip', text: p.stage + (p.band[0] != null ? ` · band ${Math.round(p.band[0] * 100)}–${Math.round(p.band[1] * 100)}%` : '') })),
+      p.role ? el('p', { class: 'note', text: p.role }) : null,
+      kv([['BFCM budget (plan)', money(p.budget, m)], ['Range, low – high demand', `${kmoney(p.budget_lo, m)} – ${kmoney(p.budget_hi, m)}`], ['Plan TACoS', pct(p.plan_tacos)], ['Cap', pct(p.cap)],
+          ['Break-even at deal price', pct(p.be)], ['TACoS now (14 days, all ads)', pct(p.tacos_now)], ['Budget per day', money(p.per_day, m)], ['Spend per day now', money(p.now_day, m)]]),
+      p.note ? el('p', { text: p.note }) : null));
+  const demand = sec('Demand read', kv([
+      ['Units, low – high', `${d3.format(',')(p.units[0])} – ${d3.format(',')(p.units[1])}`], ['Units plan (mid)', d3.format(',.0f')(p.units[2])], ['Avg selling price', money(p.asp, m).replace(/(\.\d+)?$/, '') + (p.asp ? '' : '')],
+      ['Expected sales, 12 days', money(p.sales, m)], ['BFCM lift used', p.lift ? d3.format('.2f')(p.lift) + 'x' : '–'], ['28-day pace (Oct 15)', d3.format('.1f')(p.u28_day) + '/day'],
+      ['Sales velocity (Oct 15)', d3.format('.1f')(p.vel || 0) + '/day'], ['Units/day now (14 days)', p.pace_now != null ? d3.format('.1f')(p.pace_now) : '–'],
+      ['Pace vs demand read', pace != null ? d3.format('.2f')(pace) + 'x' : '–'], ['Budget at today\'s pace', money(p.budget_pace, m)]]),
+    el('p', { class: 'note', text: `Lift: ${p.lift_src || '–'}. Low = 28-day pace × lift × 12 days; high = sales velocity × lift × 12. Deal price ${p.deal_price ? money(p.deal_price, m).replace(/\.\d+$/, '') : '–'} vs today ${p.cur_price ? money(p.cur_price, m) : '–'}.` }));
+  const dayChart = el('div', { class: 'chart' });
+  const typeChart = el('div', { class: 'chart' });
+  const econ = sec('How the TACoS was set', kv([['Break-even TACoS', pct(p.be)], ['80% of break-even', pct(p.be != null ? p.be * 0.8 : null)], ['Band ceiling', p.band[1] != null ? pct(p.band[1], 0) : 'none'],
+      ['Cap (lower of the two)', pct(p.cap)], ['TACoS now', pct(p.tacos_now)], ['Deal-period factor', p.factor != null ? d3.format('.2f')(p.factor) : '–'], ['Growth floor in BFCM', pct(p.floor)], ['Plan TACoS', pct(p.plan_tacos)]]),
+    el('p', { class: 'note', text: `Result: ${p.check || ''}. Plan TACoS = TACoS now × factor, raised to the growth floor, never above the cap.` }));
+  const yo = p.yoy || {}, bf = p.bf25 || {};
+  const hist = sec('History', kv([['2025 TACoS, 30 days before BFCM', pct(p.tacos25_pre)], ['2025 TACoS during BFCM', pct(p.tacos25_bf)], ['BFCM 2025 ad spend', money(bf.adv, m)], ['BFCM 2025 sales', money(bf.sales, m)],
+      ['Oct 19 – Nov 1, 2025: sales', money(yo.sales25, m)], ['Same days 2026: sales', money(yo.sales26, m)], ['2025 ad spend (same days)', money(yo.ads25, m)], ['2026 ad spend (same days)', money(yo.ads26, m)]]),
+    el('p', { class: 'note', text: `Group: ${yo.group || '–'}. 2026 spend includes ${money(yo.nonsp26, m)} of SB / SB video / Display (2025: ${money(yo.nonsp25, m)}).` }));
+  const st = p.stock || {}, cnt = st.counts || {};
+  const stock = sec('Stock (as of Oct 15)', kv([['On hand', d3.format(',.0f')(st.on_hand || 0)], ['Inbound', d3.format(',.0f')(st.inbound || 0)], ['Needed to Nov 30', d3.format(',.0f')(st.need || 0)], ['Short', d3.format(',.0f')(st.short || 0)]]),
+    el('div', { style: 'display:flex;gap:6px;flex-wrap:wrap' }, Object.entries(cnt).map(([k, v]) => el('span', { class: 'chip ' + (k.startsWith('Out') || k.startsWith('Short') ? 'bad' : k.startsWith('Needs') ? 'warn' : 'ok'), text: `${v} ${k.toLowerCase()}` }))));
+  const vt = el('table', {}, el('thead', {}, el('tr', {}, ['', 'Variation', '28-day units', 'Price', 'Deal price', '2025 paid', 'On hand', 'Status'].map((h, i) => el('th', { class: i >= 2 && i <= 6 ? 'n' : '', text: h })))),
+    el('tbody', {}, (p.vars || []).map((v) => el('tr', {}, el('td', {}, v.img && IMG[v.img] ? el('img', { class: 'vthumb', src: IMG[v.img], alt: '' }) : ''), el('td', { text: v.label || '–' }),
+      el('td', { class: 'n', text: v.u28 != null ? d3.format(',')(v.u28) : '–' }), el('td', { class: 'n', text: v.price != null ? cur(m) + d3.format(',.2f')(v.price) : '–' }),
+      el('td', { class: 'n', text: v.deal != null ? cur(m) + d3.format(',.2f')(v.deal) : '–' }), el('td', { class: 'n', text: v.p25 != null ? cur(m) + d3.format(',.2f')(v.p25) : '–' }),
+      el('td', { class: 'n', text: v.oh != null ? d3.format(',.0f')(v.oh) : '–' }), el('td', { text: v.st || '–' })))));
+  const vars = sec('Top variations', el('div', { class: 'tw' }, vt));
+  const rules = sec('Rules that apply', el('ul', {}, (p.rules || []).map((r) => el('li', { text: r }))));
+  body.replaceChildren(head, el('div', { class: 'grid2' }, demand, econ),
+    el('div', { class: 'grid2' }, sec('Budget by day, Nov 19 – 30', dayChart), sec('Ad types: last 14 days vs BFCM budget', typeChart)), el('div', { class: 'grid2' }, hist, stock), vars, rules);
+  if (!dlg.open) { try { dlg.showModal(); } catch (e) { dlg.setAttribute('open', ''); } }
+  requestAnimationFrame(() => { drawDays(dayChart, p.days, m, p.ld ? p.deal_dates : null); drawTypes(typeChart, p); });
+  body.scrollTop = 0;
+  try { history.replaceState(null, '', '#p-' + id); } catch (e) {}
+}
+function step(d) { const list = [...document.querySelectorAll('#pgrid .pc')].map((b, i) => prodsM()); const ids = currentOrder(); const i = ids.indexOf(OPEN); if (i < 0) return; openP(ids[(i + d + ids.length) % ids.length]); }
+function currentOrder() { const names = [...document.querySelectorAll('#pgrid .pc')].map((b) => b.getAttribute('aria-label')); const ids = names.map((n) => { const p = P.find((x) => n.startsWith(x.name + ', ' + x.mkt)); return p && p.id; }).filter(Boolean); return ids.length ? ids : P.map((p) => p.id); }
+document.getElementById('d-prev').addEventListener('click', () => step(-1));
+document.getElementById('d-next').addEventListener('click', () => step(1));
+document.getElementById('d-close').addEventListener('click', () => document.getElementById('dlg').close());
+document.getElementById('dlg').addEventListener('close', () => { OPEN = null; try { history.replaceState(null, '', '#products'); } catch (e) {} });
+document.getElementById('dlg').addEventListener('click', (e) => { if (e.target.id === 'dlg') e.target.close(); });
+
+// ---------------- charts
+function drawDays(host, vals, m, ldDates) {
+  host.replaceChildren(); if (!vals) return;
+  const W = Math.max(300, host.clientWidth || 480), Hh = 220, mg = { t: 16, r: 8, b: 34, l: 50 };
+  const svg = d3.select(host).append('svg').attr('viewBox', `0 0 ${W} ${Hh}`);
+  const x = d3.scaleBand(DATA.days, [mg.l, W - mg.r]).padding(0.22), y = d3.scaleLinear([0, d3.max(vals) * 1.12], [Hh - mg.b, mg.t]).nice();
+  svg.append('g').attr('transform', `translate(${mg.l},0)`).call(d3.axisLeft(y).ticks(4).tickFormat((v) => kmoney(v, m)).tickSize(-(W - mg.l - mg.r))).call(axis);
+  const t = tip(host);
+  vals.forEach((v, i) => {
+    const d = DATA.days[i], peak = i === 8 || i === 11, ld = ldDates && d.includes(ldDates.replace(/^.*?(Nov \d+).*$/, '$1'));
+    svg.append('rect').attr('x', x(d)).attr('y', y(v)).attr('width', x.bandwidth()).attr('height', y(0) - y(v)).attr('rx', 2).attr('fill', peak ? css('--accent') : ld ? '#7a2fc0' : css('--mute-mark'))
+      .on('mousemove', (ev) => showTip(host, t, ev, [d + (i === 8 ? ' · Black Friday' : i === 11 ? ' · Cyber Monday' : ''), money(v, m)])).on('mouseleave', () => { t.hidden = true; });
+    if (peak) svg.append('text').attr('x', x(d) + x.bandwidth() / 2).attr('y', y(v) - 4).attr('text-anchor', 'middle').style('fill', css('--ink')).text(kmoney(v, m));
+  });
+  const step_ = W < 520 ? 2 : 1;
+  svg.append('g').attr('transform', `translate(0,${Hh - mg.b})`).call(d3.axisBottom(x).tickValues(DATA.days.filter((_, i) => i % step_ === 0)).tickFormat((s) => s.slice(4)).tickSizeOuter(0)).call(axis);
+}
+function drawTypes(host, p) {
+  host.replaceChildren(); const m = p.mkt;
+  const rows = [['Last 14 days', p.spend14], ['BFCM budget', p.split]];
+  const W = Math.max(300, host.clientWidth || 480), Hh = 120, mg = { l: 90, r: 60 };
+  const svg = d3.select(host).append('svg').attr('viewBox', `0 0 ${W} ${Hh}`);
+  const cols = [css('--sp'), css('--sb'), css('--sbv'), css('--sd')], names = ['SP', 'SB', 'SB video', 'Display'];
+  const t = tip(host);
+  rows.forEach(([lab, arr], j) => {
+    const tot = d3.sum(arr || []); if (!tot) return; let acc = 0; const y0 = 14 + j * 52;
+    const x = d3.scaleLinear([0, tot], [mg.l, W - mg.r]);
+    (arr || []).forEach((v, k) => { if (!v) return; svg.append('rect').attr('x', x(acc)).attr('y', y0).attr('width', Math.max(0.5, x(acc + v) - x(acc))).attr('height', 26).attr('fill', cols[k])
+      .on('mousemove', (ev) => showTip(host, t, ev, [lab, ...names.map((n, i) => `${n} ${money(arr[i], m)} (${pct((arr[i] || 0) / tot, 0)})`)])).on('mouseleave', () => { t.hidden = true; }); acc += v; });
+    svg.append('text').attr('x', mg.l - 8).attr('y', y0 + 17).attr('text-anchor', 'end').style('fill', css('--ink')).text(lab);
+    svg.append('text').attr('x', W - mg.r + 6).attr('y', y0 + 17).text(kmoney(tot, m));
+  });
+}
+function drawScen() {
+  const host = document.getElementById('c-scen'); host.replaceChildren(); const m = MKT, h = H(), t = T();
+  const rows = [['BFCM 2025 actual', h.bf25], ["Same plan at today's pace", h.pace], ['History check A (suggested base)', h.A], ['History check B', h.B], ['Plan (ceiling)', t.budget]];
+  document.getElementById('scen-note').textContent = m === 'US' ? 'United States, US$.' : 'Canada, C$.';
+  const W = Math.max(320, host.clientWidth || 520), rowH = 40, Hh = rows.length * rowH + 28;
+  const svg = d3.select(host).append('svg').attr('viewBox', `0 0 ${W} ${Hh}`);
+  const left = d3.max(rows, (r) => textW(svg, r[0])) + 12;
+  const x = d3.scaleLinear([0, d3.max(rows, (r) => r[1]) * 1.08], [left, W - 60]).nice(), y = d3.scaleBand(rows.map((r) => r[0]), [0, rows.length * rowH]).padding(0.3);
+  svg.append('g').attr('transform', `translate(0,${rows.length * rowH})`).call(d3.axisBottom(x).ticks(4).tickFormat((v) => kmoney(v, m)).tickSize(-rows.length * rowH)).call(axis);
+  rows.forEach(([lab, v]) => {
+    const c = lab.startsWith('Plan') ? css('--accent') : lab.startsWith('History check A') ? css('--ok') : css('--mute-mark');
+    svg.append('rect').attr('x', x(0)).attr('y', y(lab)).attr('width', x(v) - x(0)).attr('height', y.bandwidth()).attr('rx', 3).attr('fill', c);
+    svg.append('text').attr('x', left - 8).attr('y', y(lab) + y.bandwidth() / 2 + 4).attr('text-anchor', 'end').style('fill', css('--ink')).text(lab);
+    svg.append('text').attr('x', x(v) + 6).attr('y', y(lab) + y.bandwidth() / 2 + 4).style('fill', css('--ink')).text(kmoney(v, m));
+  });
+}
+function drawBudgetTable() {
+  const m = MKT, t = T(), rows = [...prodsM()].sort((a, b) => b.budget - a.budget);
+  const th = ['Product', 'Deal', 'Plan TACoS', 'Cap', 'TACoS now', 'Budget', 'Per day', 'Now per day'];
+  const tb = document.getElementById('t-budget');
+  tb.replaceChildren(el('thead', {}, el('tr', {}, th.map((h, i) => el('th', { class: i >= 2 ? 'n' : '', text: h })))),
+    el('tbody', {}, rows.map((p) => { const tr = el('tr', { class: 'click', tabindex: '0' }, el('td', { text: p.name }), el('td', { text: p.deal ? (p.ld ? 'Lightning ' + p.deal_dates : 'Best Deal') : 'No deal' }),
+      el('td', { class: 'n', text: pct(p.plan_tacos) }), el('td', { class: 'n', text: pct(p.cap) }), el('td', { class: 'n', text: pct(p.tacos_now), style: p.tacos_now != null && p.cap != null && p.tacos_now > p.cap ? 'color:var(--bad)' : '' }),
+      el('td', { class: 'n', text: money(p.budget, m) }), el('td', { class: 'n', text: money(p.per_day, m) }), el('td', { class: 'n', text: money(p.now_day, m) }));
+      tr.addEventListener('click', () => openP(p.id)); tr.addEventListener('keydown', (e) => { if (e.key === 'Enter') openP(p.id); }); return tr; }),
+      el('tr', { class: 'tot' }, el('td', { text: 'Total' }), el('td', {}), el('td', { class: 'n', text: pct(t.plan_tacos) }), el('td', {}), el('td', {}), el('td', { class: 'n', text: money(t.budget, m) }), el('td', { class: 'n', text: money(t.per_day, m) }), el('td', { class: 'n', text: money(t.now_day, m) }))));
+}
+function drawAllDays() {
+  const m = MKT, vals = DATA.daytot[m], w = DATA.weights[m];
+  document.getElementById('days-lead').textContent = `Each day's share follows BFCM 2025 sales, matched by weekday. Black Friday is ${pct(w[8], 0)} and Cyber Monday ${pct(w[11], 0)} of the ${m === 'US' ? 'US' : 'Canadian'} budget (${d3.format('.1f')(w[8] * 12)}x and ${d3.format('.1f')(w[11] * 12)}x an average day). Lightning Deals run Nov 23 (Satin 6 Pc, Silk Pillowcase) and Nov 25 (Sleephoria Cooling Fitted) with 4x weight that day. Every Best Deal runs Nov 19 – 30.`;
+  drawDays(document.getElementById('c-days'), vals, m, m === 'US' ? 'Nov 23' : null);
+}
+function drawBridge() {
+  const host = document.getElementById('c-bridge'); host.replaceChildren(); const m = MKT, D_ = DATA.yoy[m];
+  const steps = [['2025', D_.adv25, 'total'], ['Same products: SP', D_.lfl_sp], ['Same products: SB, video, SD', D_.lfl_nonsp], ['New products', D_.new], ['Older listings, tail', D_.old_and_tail], ['2026', D_.adv26, 'total']];
+  let run = 0; const bars = steps.map(([l, v, k]) => { let y0, y1; if (k) { y0 = 0; y1 = v; run = v; } else { y0 = run; y1 = run + v; run = y1; } return { l, v, k, y0, y1 }; });
+  const W = Math.max(320, host.clientWidth || 520), Hh = 260, mg = { t: 18, r: 8, b: 52, l: 52 };
+  const svg = d3.select(host).append('svg').attr('viewBox', `0 0 ${W} ${Hh}`);
+  const x = d3.scaleBand(bars.map((b) => b.l), [mg.l, W - mg.r]).padding(0.25), y = d3.scaleLinear([0, d3.max(bars, (b) => Math.max(b.y0, b.y1)) * 1.1], [Hh - mg.b, mg.t]).nice();
+  svg.append('g').attr('transform', `translate(${mg.l},0)`).call(d3.axisLeft(y).ticks(4).tickFormat((v) => kmoney(v, m)).tickSize(-(W - mg.l - mg.r))).call(axis);
+  bars.forEach((b) => {
+    const c = b.k ? css('--mute-mark') : b.v >= 0 ? css('--ok') : css('--bad');
+    svg.append('rect').attr('x', x(b.l)).attr('y', y(Math.max(b.y0, b.y1))).attr('width', x.bandwidth()).attr('height', Math.max(1, Math.abs(y(b.y0) - y(b.y1)))).attr('rx', 2).attr('fill', c);
+    svg.append('text').attr('x', x(b.l) + x.bandwidth() / 2).attr('y', y(Math.max(b.y0, b.y1)) - 5).attr('text-anchor', 'middle').style('fill', css('--ink')).text((b.k ? '' : b.v >= 0 ? '+' : '') + kmoney(b.v, m));
+  });
+  const ax = svg.append('g').attr('transform', `translate(0,${Hh - mg.b})`).call(d3.axisBottom(x).tickSizeOuter(0)).call(axis);
+  ax.selectAll('text').each(function () { const t = d3.select(this), words = t.text().split(' '); t.text(''); const lines = []; let cur_ = '';
+    words.forEach((w) => { if ((cur_ + ' ' + w).trim().length > 12) { lines.push(cur_.trim()); cur_ = w; } else cur_ += ' ' + w; }); lines.push(cur_.trim());
+    lines.filter(Boolean).slice(0, 3).forEach((l, k) => t.append('tspan').attr('x', 0).attr('dy', k ? '1.1em' : '0.9em').text(l)); });
+  const t = T();
+  document.getElementById('hist-lead').textContent = `Same 14 days last year (Oct 19 – Nov 1). ${m === 'US' ? 'US' : 'Canadian'} ad spend went from ${kmoney(D_.adv25, m)} to ${kmoney(D_.adv26, m)}. Products sold both years: sales ${pct(D_.lfl_sales26 / D_.lfl_sales25 - 1, 0)}, TACoS ${pct(D_.lfl_adv25 / D_.lfl_sales25)} → ${pct(D_.lfl_adv26 / D_.lfl_sales26)}. Traffic ${pct(D_.sessions26 / D_.sessions25 - 1, 0)}, conversion ${pct(D_.cvr25, 2)} → ${pct(D_.cvr26, 2)}, SP cost per click ${cur(m)}${d3.format('.2f')(D_.cpc25)} → ${cur(m)}${d3.format('.2f')(D_.cpc26)} (recorded currency).`;
+  const tl = [['Like-for-like sales', pct(D_.lfl_sales26 / D_.lfl_sales25 - 1, 0), `${kmoney(D_.lfl_sales25, m)} → ${kmoney(D_.lfl_sales26, m)}`], ['Like-for-like TACoS', pct(D_.lfl_adv26 / D_.lfl_sales26), `2025: ${pct(D_.lfl_adv25 / D_.lfl_sales25)}`],
+    ['SP-only TACoS, like for like', pct(D_.lfl_sp26 / D_.lfl_sales26), `2025: ${pct(D_.lfl_sp25 / D_.lfl_sales25)}`], ['Sessions a day', d3.format(',.0f')(D_.sessions26 / 14), `2025: ${d3.format(',.0f')(D_.sessions25 / 14)}`],
+    ['Conversion (units per session)', pct(D_.cvr26, 2), `2025: ${pct(D_.cvr25, 2)}`], ["New products' sales", kmoney(D_.new_sales26, m), 'same 14 days, 2026']];
+  document.getElementById('lfl').replaceChildren(...tl.map(([k, v, s]) => el('div', { class: 'tile' }, el('span', { class: 'k', text: k }), el('span', { class: 'v', text: v }), el('span', { class: 's', text: s }))));
+}
+function drawBfcmp() {
+  const host = document.getElementById('c-bfcmp'); host.replaceChildren(); const m = MKT;
+  const rows = DATA.bfgroups.filter((r) => r.m === m && r.s25 + r.p26 > 1);
+  const W = Math.max(320, host.clientWidth || 520), rowH = 56, Hh = rows.length * rowH + 28;
+  const svg = d3.select(host).append('svg').attr('viewBox', `0 0 ${W} ${Hh}`);
+  const left = d3.max(rows, (r) => textW(svg, r.g)) + 12;
+  const x = d3.scaleLinear([0, d3.max(rows, (r) => Math.max(r.s25, r.p26)) * 1.1], [left, W - 60]).nice(), y = d3.scaleBand(rows.map((r) => r.g), [0, rows.length * rowH]).padding(0.2);
+  svg.append('g').attr('transform', `translate(0,${rows.length * rowH})`).call(d3.axisBottom(x).ticks(4).tickFormat((v) => kmoney(v, m)).tickSize(-rows.length * rowH)).call(axis);
+  rows.forEach((r) => { const h = y.bandwidth() / 2 - 1;
+    [[r.s25, css('--mute-mark'), 'BFCM 2025'], [r.p26, css('--accent'), '2026 plan']].forEach(([v, c, nm], i) => {
+      svg.append('rect').attr('x', x(0)).attr('y', y(r.g) + i * (h + 2)).attr('width', Math.max(0, x(v) - x(0))).attr('height', h).attr('rx', 2).attr('fill', c);
+      svg.append('text').attr('x', x(v) + 5).attr('y', y(r.g) + i * (h + 2) + h / 2 + 4).text(`${nm} ${kmoney(v, m)}`); });
+    svg.append('text').attr('x', left - 8).attr('y', y(r.g) + y.bandwidth() / 2 + 4).attr('text-anchor', 'end').style('fill', css('--ink')).text(r.g); });
+}
+function drawSplit() {
+  const host = document.getElementById('c-split'); host.replaceChildren(); const m = MKT;
+  const rows = prodsM().filter((p) => p.budget > 50).sort((a, b) => b.budget - a.budget);
+  const W = Math.max(320, host.clientWidth || 520), rowH = 24, Hh = rows.length * rowH + 26;
+  const svg = d3.select(host).append('svg').attr('viewBox', `0 0 ${W} ${Hh}`);
+  const left = d3.max(rows, (r) => textW(svg, r.name)) + 12;
+  const x = d3.scaleLinear([0, d3.max(rows, (r) => r.budget)], [left, W - 56]).nice(), y = d3.scaleBand(rows.map((r) => r.name), [0, rows.length * rowH]).padding(0.25);
+  svg.append('g').attr('transform', `translate(0,${rows.length * rowH})`).call(d3.axisBottom(x).ticks(4).tickFormat((v) => kmoney(v, m)).tickSize(-rows.length * rowH)).call(axis);
+  const cols = [css('--sp'), css('--sb'), css('--sbv'), css('--sd')], t = tip(host);
+  rows.forEach((p) => { let acc = 0; (p.split || []).forEach((v, k) => { if (!v) return; svg.append('rect').attr('x', x(acc)).attr('y', y(p.name)).attr('width', Math.max(0.5, x(acc + v) - x(acc))).attr('height', y.bandwidth()).attr('fill', cols[k])
+      .on('mousemove', (ev) => showTip(host, t, ev, [p.name, ...['SP', 'SB', 'SB video', 'Display'].map((n, i) => `${n} ${money(p.split[i], m)}`)])).on('mouseleave', () => { t.hidden = true; }); acc += v; });
+    svg.append('text').attr('x', left - 8).attr('y', y(p.name) + y.bandwidth() / 2 + 4).attr('text-anchor', 'end').style('fill', css('--ink')).text(p.name);
+    svg.append('text').attr('x', x(acc) + 5).attr('y', y(p.name) + y.bandwidth() / 2 + 4).text(kmoney(p.budget, m)); });
+}
+function drawWeekly() {
+  const host = document.getElementById('c-weekly'); host.replaceChildren(); const m = MKT, W_ = DATA.weekly, fx = m === 'CA' ? 1.4036 : 1;
+  const rows = W_.weeks.map((w, i) => ({ w, v: ['sp', 'sb', 'sbv', 'sd'].map((k) => W_[m][k][i] * fx) }));
+  const W = Math.max(320, host.clientWidth || 520), Hh = 240, mg = { t: 20, r: 8, b: 34, l: 50 };
+  const svg = d3.select(host).append('svg').attr('viewBox', `0 0 ${W} ${Hh}`);
+  const x = d3.scaleBand(rows.map((r) => r.w), [mg.l, W - mg.r]).padding(0.3), y = d3.scaleLinear([0, d3.max(rows, (r) => d3.sum(r.v)) * 1.1], [Hh - mg.b, mg.t]).nice();
+  svg.append('g').attr('transform', `translate(${mg.l},0)`).call(d3.axisLeft(y).ticks(4).tickFormat((v) => kmoney(v, m)).tickSize(-(W - mg.l - mg.r))).call(axis);
+  const cols = [css('--sp'), css('--sb'), css('--sbv'), css('--sd')];
+  rows.forEach((r) => { let acc = 0; r.v.forEach((v, k) => { svg.append('rect').attr('x', x(r.w)).attr('y', y(acc + v)).attr('width', x.bandwidth()).attr('height', Math.max(0, y(acc) - y(acc + v))).attr('fill', cols[k]); acc += v; });
+    svg.append('text').attr('x', x(r.w) + x.bandwidth() / 2).attr('y', y(acc) - 5).attr('text-anchor', 'middle').style('fill', css('--ink')).text(pct(1 - r.v[0] / acc, 0)); });
+  svg.append('g').attr('transform', `translate(0,${Hh - mg.b})`).call(d3.axisBottom(x).tickSizeOuter(0)).call(axis);
+}
+function drawRules() {
+  const mk = (rows, heads, keys) => [el('thead', {}, el('tr', {}, heads.map((h) => el('th', { text: h })))), el('tbody', {}, rows.map((r) => el('tr', {}, keys.map((k, i) => el('td', { text: r[k] || '', style: i === 1 ? 'font-weight:600' : '' })))))];
+  document.getElementById('t-rules').replaceChildren(...mk(DATA.rules, ['Area', 'Rule', 'What to do', 'Why'], ['a', 'b', 'c', 'd']));
+  document.getElementById('t-agent').replaceChildren(...mk(DATA.agent, ['Who', 'When', 'What', 'Escalate if'], ['a', 'b', 'c', 'd']));
+  const c = DATA.checks;
+  document.getElementById('checks-lead').textContent = `${d3.format(',')(c.total)} checks: ${d3.format(',')(c.ok)} match, ${c.check} judgment items (mostly today's sales pace vs the demand read), ${c.diff} mismatches left. Full detail in BFCM_2026_PPC_Verification.xlsx.`;
+}
+function drawMarket() { drawHero(); drawGrid(); drawScen(); drawBudgetTable(); drawAllDays(); drawBridge(); drawBfcmp(); drawSplit(); drawWeekly(); }
+function setM(m) { MKT = m; document.getElementById('m-us').setAttribute('aria-pressed', m === 'US'); document.getElementById('m-ca').setAttribute('aria-pressed', m === 'CA'); drawMarket(); }
+document.getElementById('m-us').addEventListener('click', () => setM('US'));
+document.getElementById('m-ca').addEventListener('click', () => setM('CA'));
+['f-fam', 'f-sort'].forEach((id) => document.getElementById(id).addEventListener('change', drawGrid));
+document.getElementById('f-q').addEventListener('input', drawGrid);
+drawNew(); drawRules(); drawMarket();
+let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(drawMarket, 150); });
+const h0 = location.hash.slice(1); if (h0.startsWith('p-') && byId[h0.slice(2)]) { const p = byId[h0.slice(2)]; if (p.mkt !== MKT) setM(p.mkt); openP(p.id); }
+</script>
