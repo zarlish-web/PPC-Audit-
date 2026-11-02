@@ -1,0 +1,180 @@
+{
+ "window": "2026-10-19 to 2026-11-01",
+ "source": "ads console portfolio view (stage and TACoS band per product)",
+ "stages": {
+  "US": {
+   "30": [
+    "Re-Launch",
+    15,
+    25
+   ],
+   "69": [
+    "Launch",
+    25,
+    40
+   ],
+   "59": [
+    "Re-Launch",
+    15,
+    25
+   ],
+   "70": [
+    "Launch",
+    25,
+    40
+   ],
+   "37": [
+    "Maintenance",
+    7,
+    12
+   ],
+   "45": [
+    "Re-Launch",
+    15,
+    25
+   ],
+   "39": [
+    "Maintenance",
+    7,
+    12
+   ],
+   "44": [
+    "Re-Launch",
+    15,
+    25
+   ],
+   "55": [
+    "Re-Launch",
+    15,
+    25
+   ],
+   "31": [
+    "Maintenance",
+    7,
+    12
+   ],
+   "38": [
+    "Maintenance",
+    7,
+    12
+   ],
+   "48": [
+    "Re-Launch",
+    15,
+    25
+   ],
+   "46": [
+    "Liquidation",
+    7,
+    12
+   ],
+   "52": [
+    "Liquidation",
+    7,
+    12
+   ],
+   "73": [
+    "Launch",
+    25,
+    40
+   ],
+   "41": [
+    "Launch",
+    25,
+    40
+   ],
+   "33": [
+    "Liquidation",
+    7,
+    12
+   ],
+   "42": [
+    "Re-Launch",
+    15,
+    25
+   ],
+   "32": [
+    "Re-Launch",
+    15,
+    25
+   ],
+   "43": [
+    "Re-Launch",
+    15,
+    25
+   ],
+   "49": [
+    "Liquidation",
+    7,
+    12
+   ],
+   "58": [
+    "Liquidation",
+    7,
+    12
+   ],
+   "53": [
+    "Liquidation",
+    7,
+    12
+   ],
+   "50": [
+    "Liquidation",
+    7,
+    12
+   ],
+   "56": [
+    "Liquidation",
+    7,
+    12
+   ]
+  },
+  "CA": {
+   "59": [
+    "Re-Launch",
+    15,
+    25
+   ],
+   "30": [
+    "Re-Launch",
+    15,
+    25
+   ],
+   "31": [
+    "Maintenance",
+    7,
+    12
+   ],
+   "37": [
+    "Maintenance",
+    7,
+    12
+   ],
+   "38": [
+    "Maintenance",
+    7,
+    12
+   ],
+   "39": [
+    "Maintenance",
+    7,
+    12
+   ]
+  }
+ },
+ "unattributed_US": {
+  "campaigns": 637,
+  "impressions": 530328,
+  "clicks": 4022,
+  "cost": 9626.869999999999,
+  "purchases": 328,
+  "sales": 19668.48,
+  "reason": "Sponsored Brands and Sponsored Display carry no advertised-product report in this database, so their spend cannot be assigned to a product by any means. It is counted in the account total and excluded from every product row rather than spread across them.",
+  "acos": 0.4894567348366523,
+  "cpc": 2.393552958727001,
+  "ctr": 0.007583985759756226,
+  "cvr": 0.08155146693187469,
+  "roas": 2.0430815000098685,
+  "share": 0.19997710836716195
+ }
+}

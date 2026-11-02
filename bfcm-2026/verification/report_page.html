@@ -1,0 +1,495 @@
+<meta name="dash-one-writer">
+<style>
+  #dash-root { --dash-gutter: clamp(16px, 3vw, 40px); }
+  .vr { max-width: 1180px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--cds-gap-xl); font-family: var(--font-anthropic-sans); color: var(--color-fg); }
+  .vr-head { display: flex; flex-direction: column; gap: var(--cds-gap-sm); padding-top: var(--cds-pad-md); }
+  .vr-eyebrow { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); letter-spacing: .04em; text-transform: uppercase; }
+  .vr h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); line-height: 1.15; margin: 0; text-wrap: balance; }
+  .vr-take { font-size: var(--cds-font-size-body); line-height: 1.55; max-width: 72ch; margin: 0; }
+  .vr b { font-weight: 600; font-variant-numeric: tabular-nums; }
+  .vr-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); gap: var(--cds-gap-md); }
+  .vr-tile { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-md) var(--cds-pad-lg); display: flex; flex-direction: column; gap: var(--cds-gap-xs); min-width: 0; }
+  .vr-tile-label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .vr-tile-num { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); font-variant-numeric: tabular-nums; line-height: 1.1; }
+  .vr-tile-sub { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); font-variant-numeric: tabular-nums; }
+  .vr-ok { color: var(--color-ok); } .vr-bad { color: var(--color-bad); } .vr-warn { color: var(--color-warn); }
+  .vr-section { display: flex; flex-direction: column; gap: var(--cds-gap-md); }
+  .vr-section > h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+  .vr-section > p.vr-lead { margin: 0; color: var(--color-fg-muted); font-size: var(--cds-font-size-body); max-width: 80ch; line-height: 1.5; }
+  .vr-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); gap: var(--cds-gap-md); }
+  .vr-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: flex; flex-direction: column; gap: var(--cds-gap-sm); min-width: 0; }
+  .vr-card h3 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+  .vr-note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0; line-height: 1.45; }
+  .vr-chart { position: relative; width: 100%; min-height: 220px; }
+  .vr-chart.tall { min-height: 560px; }
+  .vr-chart svg { display: block; overflow: visible; }
+  .vr-chart text { font-family: var(--font-anthropic-sans); }
+  .vr-legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm) var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .vr-legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .vr-sw { width: 10px; height: 10px; border-radius: 2px; display: inline-block; background: var(--cds-chart-muted); }
+  .vr-sw.line { height: 2px; width: 14px; border-radius: 0; }
+  .vr-sw.dot { border-radius: 50%; }
+  .vr-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); white-space: nowrap; z-index: 2; font-variant-numeric: tabular-nums; }
+  .vr-tip .t { color: var(--cds-text-secondary); margin-bottom: 2px; }
+  .vr-flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: var(--cds-gap-md); counter-reset: step; }
+  .vr-step { position: relative; background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-md) var(--cds-pad-lg); display: flex; flex-direction: column; gap: var(--cds-gap-xs); min-width: 0; }
+  .vr-step h4 { margin: 0; font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); }
+  .vr-step h4::before { counter-increment: step; content: counter(step); display: inline-grid; place-items: center; width: 1.5em; height: 1.5em; margin-right: .5em; border-radius: 50%; background: var(--color-fg); color: var(--color-bg); font-size: var(--cds-font-size-caption); }
+  .vr-step ul { margin: 0; padding-left: 1.1em; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); line-height: 1.5; }
+  .vr-step:not(:last-child)::after { content: "→"; position: absolute; right: -0.95em; top: 50%; transform: translateY(-50%); color: var(--color-fg-muted); font-size: 1.1em; z-index: 1; }
+  @media (max-width: 700px) { .vr-step:not(:last-child)::after { content: "↓"; right: auto; left: 50%; top: auto; bottom: -1.2em; transform: translateX(-50%); } }
+  .vr-tablewrap { overflow: auto; max-height: 560px; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); }
+  .vr-table { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+  .vr-table th { position: sticky; top: 0; background: var(--color-panel); text-align: left; font-weight: var(--cds-font-weight-medium); padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); z-index: 1; }
+  .vr-table th button { all: unset; cursor: pointer; } .vr-table th button:focus-visible { outline: 2px solid var(--color-fg); }
+  .vr-table td { padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); vertical-align: top; }
+  .vr-table td.num, .vr-table th.num { text-align: right; }
+  .vr-table.wrap td { white-space: normal; min-width: 9rem; line-height: 1.45; }
+  .vr-chip { display: inline-block; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--color-border-line); font-size: var(--cds-font-size-caption); white-space: nowrap; }
+  .vr-chip.High { color: var(--color-bad); border-color: currentColor; }
+  .vr-chip.Medium { color: var(--color-warn); border-color: currentColor; }
+  .vr-chip.Fixed, .vr-chip.Verified { color: var(--color-ok); border-color: currentColor; }
+  .vr-search { font: inherit; font-size: var(--cds-font-size-caption); padding: var(--cds-pad-xs) var(--cds-pad-sm); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-bg); color: var(--color-fg); max-width: 18rem; }
+  .vr-method { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: var(--cds-gap-xs); font-size: var(--cds-font-size-body); line-height: 1.5; max-width: 90ch; }
+  [data-dash-source-state=empty] { color: transparent; }
+  [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+  .vr-fail { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: inherit; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+  .vr-fail i { width: .375rem; height: .375rem; border-radius: 50%; background: var(--color-bad); display: inline-block; }
+</style>
+
+<div class="vr">
+  <header class="vr-head" id="top">
+    <div class="vr-eyebrow">BFCM 2026 · Amazon US and Canada · checked Nov 2, 2026</div>
+    <h1>BFCM 2026 PPC plan: independent verification</h1>
+    <p class="vr-take">Every number in the PPC plan was rebuilt from the original records with separate code and compared with the delivered workbook:
+      <b data-draw="k-checks" data-source="kpi" data-field="checks" data-row="0">—</b> checks,
+      <b data-draw="k-ok" data-source="kpi" data-field="ok" data-row="0">—</b> exact matches and
+      <b data-draw="k-diff" data-source="kpi" data-field="diff" data-row="0">—</b> mismatches left after fixes.
+      The arithmetic holds. The open question is size: at today's sales pace the same plan needs about
+      <b data-draw="k-pace-us" data-source="scenarios" data-field="budget" data-where="key=US 2">—</b> in the US, against a plan ceiling of
+      <b data-draw="k-plan-us" data-source="scenarios" data-field="budget" data-where="key=US 5">—</b>.</p>
+  </header>
+
+  <div class="vr-tiles" data-fetchpriority="high">
+    <div class="vr-tile"><span class="vr-tile-label">Checks run</span><span class="vr-tile-num" data-draw="t-checks" data-source="kpi" data-field="checks" data-row="0">—</span><span class="vr-tile-sub">against original records and a second source</span></div>
+    <div class="vr-tile"><span class="vr-tile-label">Mismatches left</span><span class="vr-tile-num vr-ok" data-draw="t-diff" data-source="kpi" data-field="diff" data-row="0">—</span><span class="vr-tile-sub">3 wording errors found and fixed</span></div>
+    <div class="vr-tile"><span class="vr-tile-label">US budget, rebuilt</span><span class="vr-tile-num" data-draw="t-us" data-source="totals" data-field="rebuilt" data-where="market=US">—</span><span class="vr-tile-sub">Gap to plan: <span data-draw="t-us-gap" data-source="totals" data-field="gap" data-where="market=US">—</span></span></div>
+    <div class="vr-tile"><span class="vr-tile-label">Canada budget, rebuilt</span><span class="vr-tile-num" data-draw="t-ca" data-source="totals" data-field="rebuilt" data-where="market=CA">—</span><span class="vr-tile-sub">Gap to plan: <span data-draw="t-ca-gap" data-source="totals" data-field="gap" data-where="market=CA">—</span></span></div>
+    <div class="vr-tile"><span class="vr-tile-label">Judgment items</span><span class="vr-tile-num vr-warn" data-draw="t-check" data-source="kpi" data-field="check" data-row="0">—</span><span class="vr-tile-sub">mostly demand pace vs the demand read</span></div>
+  </div>
+
+  <section class="vr-section" id="how">
+    <h2>How the check worked</h2>
+    <p class="vr-lead">The rebuild never touches the plan's own scripts. It reads the records, recomputes, then compares cell by cell with a stated tolerance.</p>
+    <div class="vr-flow">
+      <div class="vr-step"><h4>Original records</h4><ul><li>Account pulls, fresh today</li><li>2025 product sales files</li><li>Raw 14-day child-ASIN rows</li><li>Deal sheet, SKU lists, inventory</li></ul></div>
+      <div class="vr-step"><h4>Independent rebuild</h4><ul><li>New code, plan scripts not used</li><li>Units, price, break-even, cap</li><li>TACoS now, plan TACoS, budget</li><li>Split by SP, SB, SB video, SD</li></ul></div>
+      <div class="vr-step"><h4>Second source</h4><ul><li>Ads console SP spend per product</li><li>Growth stage and TACoS band</li><li>Deal types and Lightning Deal days</li></ul></div>
+      <div class="vr-step"><h4>Compare with workbook</h4><ul><li>Recalculated, read cell by cell</li><li>Tolerance on every check</li><li>Rules and wording re-derived</li></ul></div>
+      <div class="vr-step"><h4>Findings and fixes</h4><ul><li>Wording errors fixed in the plan</li><li>Judgment items for Joseph</li><li>Re-run until no mismatch</li></ul></div>
+    </div>
+  </section>
+
+  <section class="vr-section" id="scorecard">
+    <h2>Results by area</h2>
+    <div class="vr-card">
+      <h3>Share of checks that match, need judgment, or differ</h3>
+      <p class="vr-note">Each bar is one area of the check. Judgment items are inputs with no second record, or demand-pace flags; none is a mismatch.</p>
+      <div class="vr-legend"><span><i class="vr-sw" data-sw="ok"></i>Match</span><span><i class="vr-sw" data-sw="check"></i>Judgment item</span><span><i class="vr-sw" data-sw="diff"></i>Mismatch</span></div>
+      <div class="vr-chart" data-draw="c-score" data-source="scorecard"></div>
+    </div>
+  </section>
+
+  <section class="vr-section" id="findings">
+    <h2>Findings</h2>
+    <p class="vr-lead">One high-impact judgment call, one rule that would have raised bids on a product over its cap, and smaller wording and coverage gaps.</p>
+    <div class="vr-tablewrap">
+      <table class="vr-table wrap" data-source="findings" data-row-key="n">
+        <thead><tr><th data-field="n">#</th><th data-field="severity">Severity</th><th data-field="area">Area</th><th data-field="finding">Finding</th><th data-field="impact">Impact</th><th data-field="action">Action</th><th data-field="status">Status</th></tr></thead>
+        <tbody data-draw="tb-findings"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="vr-section" id="budget">
+    <h2>How big should the budget be?</h2>
+    <p class="vr-lead">Five ways to size Nov 19 – 30. The plan is right on its own terms; the demand read behind it expects a bigger jump than today's pace and last year's history support.</p>
+    <div class="vr-grid">
+      <div class="vr-card"><h3>United States (US$)</h3><p class="vr-note">Base = history check A. Ceiling = plan.</p><div class="vr-chart" data-draw="c-scen-us" data-source="scenarios"></div></div>
+      <div class="vr-card"><h3>Canada (C$)</h3><p class="vr-note">Base = history check A. Ceiling = plan.</p><div class="vr-chart" data-draw="c-scen-ca" data-source="scenarios"></div></div>
+    </div>
+  </section>
+
+  <section class="vr-section" id="caps">
+    <h2>Is each product under its TACoS cap today?</h2>
+    <div class="vr-card">
+      <h3>TACoS now (all ad types, last 14 days) against the cap and the plan</h3>
+      <p class="vr-note">Red dot = over its cap today: no bid raises until it is back under. Products with no recent sales or no cap are left out.</p>
+      <div class="vr-legend"><span><i class="vr-sw dot" data-sw="now"></i>TACoS now</span><span><i class="vr-sw dot" data-sw="over"></i>Over the cap</span><span><i class="vr-sw line" data-sw="cap"></i>Cap</span><span><i class="vr-sw" data-sw="plan"></i>Plan TACoS</span></div>
+      <div class="vr-chart tall" data-draw="c-caps" data-source="products"></div>
+    </div>
+  </section>
+
+  <section class="vr-section" id="pace">
+    <h2>Is the demand read still current?</h2>
+    <div class="vr-card">
+      <h3>Units a day now vs the 28-day pace the demand read uses (as of Oct 15)</h3>
+      <p class="vr-note">1.0 = selling at the demand read's pace. The shaded band is 0.8 – 1.25. The Bamboo heroes sell at about half the pace the plan's sales were built on (that window included Prime Big Deal Days); the new CooLinens lines sell far faster. Log scale.</p>
+      <div class="vr-chart tall" data-draw="c-pace" data-source="products"></div>
+    </div>
+  </section>
+
+  <section class="vr-section" id="products">
+    <h2>Plan vs rebuild, product by product</h2>
+    <p class="vr-lead">Every product's budget rebuilt independently matches the workbook. Sort any column; search by name.</p>
+    <input class="vr-search" id="prod-search" type="search" placeholder="Search products" aria-label="Search products">
+    <div class="vr-tablewrap">
+      <table class="vr-table" data-source="products" data-row-key="key">
+        <thead><tr>
+          <th data-field="key"><button data-sort="key">Product</button></th>
+          <th data-field="deal"><button data-sort="deal">Deal</button></th>
+          <th data-field="budget_plan" class="num"><button data-sort="budget_plan">Plan budget</button></th>
+          <th data-field="budget_rebuilt" class="num"><button data-sort="budget_rebuilt">Rebuilt</button></th>
+          <th data-field="gap" class="num"><button data-sort="gap">Gap</button></th>
+          <th data-field="plan_tacos" class="num"><button data-sort="plan_tacos">Plan TACoS</button></th>
+          <th data-field="tacos_now" class="num"><button data-sort="tacos_now">TACoS now</button></th>
+          <th data-field="cap" class="num"><button data-sort="cap">Cap</button></th>
+          <th data-field="pace_ratio" class="num"><button data-sort="pace_ratio">Pace vs read</button></th>
+          <th data-field="budget_today_pace" class="num"><button data-sort="budget_today_pace">At today's pace</button></th>
+          <th data-field="label"><button data-sort="label">Plan check</button></th>
+        </tr></thead>
+        <tbody data-draw="tb-products"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="vr-section" id="mix">
+    <h2>Where the money goes by ad type</h2>
+    <div class="vr-grid">
+      <div class="vr-card">
+        <h3>US plan budget by product and ad type</h3>
+        <p class="vr-note">Each product's budget split by its own ad mix over the last 14 days. SB video sits on the Bamboo and CooLinens lines.</p>
+        <div class="vr-legend"><span><i class="vr-sw" data-sw="t0"></i>Sponsored Products</span><span><i class="vr-sw" data-sw="t1"></i>Sponsored Brands</span><span><i class="vr-sw" data-sw="t2"></i>SB video</span><span><i class="vr-sw" data-sw="t3"></i>Sponsored Display</span></div>
+        <div class="vr-chart tall" data-draw="c-split" data-source="products"></div>
+      </div>
+      <div class="vr-card">
+        <h3>US ad spend by week, 2026</h3>
+        <p class="vr-note">SB, SB video and SD went from about 3% of spend to about 21% after the new campaigns went live in October. Figure above each bar = share not SP.</p>
+        <div class="vr-legend"><span><i class="vr-sw" data-sw="t0"></i>Sponsored Products</span><span><i class="vr-sw" data-sw="t1"></i>Sponsored Brands</span><span><i class="vr-sw" data-sw="t2"></i>SB video</span><span><i class="vr-sw" data-sw="t3"></i>Sponsored Display</span></div>
+        <div class="vr-chart" data-draw="c-weekly" data-source="weekly2026"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="vr-section" id="sources">
+    <h2>Cross-checks against the records</h2>
+    <div class="vr-grid">
+      <div class="vr-card">
+        <h3>SP spend per product: two independent records</h3>
+        <p class="vr-note">Sales-tracking data vs the ads console, Oct 19 – Nov 1. The dashed line is equal spend; the console reads about 9% lower across the board, so the dots sit just under it. Log scales.</p>
+        <div class="vr-chart" data-draw="c-cross" data-source="products"></div>
+      </div>
+      <div class="vr-card">
+        <h3>BFCM 2025 sales by day, the source of the day weights</h3>
+        <p class="vr-note">Black Friday and Cyber Monday carry the plan's biggest days. These daily figures add up to the period total to the cent.</p>
+        <div class="vr-legend"><span><i class="vr-sw" data-sw="us"></i>United States</span><span><i class="vr-sw" data-sw="ca"></i>Canada (recorded in US$)</span></div>
+        <div class="vr-chart" data-draw="c-daily" data-source="daily2025"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="vr-section" id="method">
+    <h2>Method and limits</h2>
+    <ol class="vr-method">
+      <li>New code reads the original records directly and does not call the plan's scripts or the tracker's builder.</li>
+      <li>Break-even = (price − COGS − FBA − referral − 1.5% deal fee − $100 per deal) ÷ price. Cap = the lower of 80% of break-even and the growth-band ceiling. Plan TACoS = TACoS now × deal-period factor, raised to the band floor, never above the cap.</li>
+      <li>Account figures were pulled fresh on Nov 2. Per-product SP spend was compared with the ads console as a second record.</li>
+      <li>Business rules applied as documented: Satin 4 Pc Twin counted under Satin 6 Pc; a name list for re-parented 2025 listings; Liquidation products judged on units.</li>
+      <li>Limits: the deal sheet, SKU lists and inventory export have no second record, so they were checked for internal consistency. Three no-deal prices come from the listing price only.</li>
+    </ol>
+  </section>
+</div>
+
+<script>
+  dash.calc('kpi', {
+    title: 'Check totals', description: 'Adds up the checks in every area of the verification.',
+    inputs: ['scorecard'],
+    fn: (scorecard) => [{
+      checks: scorecard.reduce((s, r) => s + Number(r.total), 0),
+      ok: scorecard.reduce((s, r) => s + Number(r.ok), 0),
+      check: scorecard.reduce((s, r) => s + Number(r.check), 0),
+      diff: scorecard.reduce((s, r) => s + Number(r.diff), 0)
+    }]
+  });
+  dash.calc('totals', {
+    title: 'Budget totals by market', description: 'Plan and rebuilt budgets summed per market, with the gap between them.',
+    inputs: ['products'],
+    fn: (products) => ['US', 'CA'].map((m) => {
+      const rows = products.filter((r) => r.market === m);
+      const plan = rows.reduce((s, r) => s + Number(r.budget_plan), 0);
+      const rebuilt = rows.reduce((s, r) => s + Number(r.budget_rebuilt), 0);
+      return { market: m, plan, rebuilt, gap: plan - rebuilt };
+    })
+  });
+
+  window.vr = (() => {
+    const cur = (m) => (m === 'CA' ? 'C$' : '$');
+    const money = (v, m) => cur(m) + d3.format(',.0f')(v);
+    const kmoney = (v, m) => cur(m) + (Math.abs(v) >= 1000 ? d3.format('.1f')(v / 1000) + 'K' : d3.format(',.0f')(v));
+    const pct = d3.format('.1%');
+    const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim() || null;
+    const fail = (el, st) => { el.replaceChildren(); if (st === 'error' || st === 'connect') { const d = document.createElement('div'); d.className = 'vr-fail'; d.innerHTML = '<i></i>'; d.append('Failed to load'); el.append(d); } else { el.textContent = '—'; } };
+    const tip = (el) => { let t = el.querySelector('.vr-tip'); if (!t) { t = document.createElement('div'); t.className = 'vr-tip'; t.hidden = true; el.append(t); } return t; };
+    const showTip = (el, t, ev, title, lines) => {
+      t.replaceChildren(); const h = document.createElement('div'); h.className = 't'; h.textContent = title; t.append(h);
+      lines.forEach((l) => { const d = document.createElement('div'); d.textContent = l; t.append(d); });
+      t.hidden = false; const r = el.getBoundingClientRect(); let x = ev.clientX - r.left + 12, y = ev.clientY - r.top + 12;
+      const w = t.offsetWidth, hh = t.offsetHeight; if (x + w > r.width) x = Math.max(0, ev.clientX - r.left - w - 12); if (y + hh > r.height) y = Math.max(0, ev.clientY - r.top - hh - 12);
+      t.style.left = x + 'px'; t.style.top = y + 'px';
+    };
+    const axisStyle = (g) => { g.attr('font-size', null).attr('font-family', null); g.selectAll('text').attr('fill', 'var(--color-fg-muted)').style('font-size', 'var(--cds-font-size-caption)'); g.selectAll('line').attr('stroke', 'var(--cds-chart-grid)'); g.select('.domain').attr('stroke', 'var(--cds-chart-axis)'); };
+    const textW = (svg, s) => { const t = svg.append('text').style('font-size', 'var(--cds-font-size-caption)').text(s); const w = t.node().getComputedTextLength(); t.remove(); return w; };
+    return { cur, money, kmoney, pct, css, fail, tip, showTip, axisStyle, textW };
+  })();
+
+  // swatches (style only)
+  document.querySelectorAll('[data-sw]').forEach((s) => {
+    const k = s.getAttribute('data-sw');
+    const map = { ok: 'var(--color-ok)', check: 'var(--color-warn)', diff: 'var(--cds-chart-status-critical)', now: dash.colors[0], over: 'var(--cds-chart-status-critical)',
+      cap: 'var(--color-fg)', plan: dash.colors[1], t0: dash.colors[0], t1: dash.colors[1], t2: dash.colors[2], t3: dash.colors[3], us: dash.colors[0], ca: dash.colors[1] };
+    s.style.background = map[k] || '';
+  });
+
+  // ---------- single values
+  const one = (name, src, fn) => dash.draw(name, (el) => {
+    const d = dash.data(src); el.classList.toggle('dash-skeleton', d.status === 'loading');
+    if (d.status !== 'ok') { el.textContent = '—'; return; } el.textContent = fn(d.data);
+  });
+  one('k-checks', 'kpi', (r) => d3.format(',')(r[0].checks));
+  one('k-ok', 'kpi', (r) => d3.format(',')(r[0].ok));
+  one('k-diff', 'kpi', (r) => d3.format(',')(r[0].diff));
+  one('t-checks', 'kpi', (r) => d3.format(',')(r[0].checks));
+  one('t-diff', 'kpi', (r) => d3.format(',')(r[0].diff));
+  one('t-check', 'kpi', (r) => d3.format(',')(r[0].check));
+  one('k-pace-us', 'scenarios', (r) => vr.money(r.find((x) => x.key === 'US 2').budget, 'US'));
+  one('k-plan-us', 'scenarios', (r) => vr.money(r.find((x) => x.key === 'US 5').budget, 'US'));
+  one('t-us', 'totals', (r) => vr.money(r.find((x) => x.market === 'US').rebuilt, 'US'));
+  one('t-ca', 'totals', (r) => vr.money(r.find((x) => x.market === 'CA').rebuilt, 'CA'));
+  one('t-us-gap', 'totals', (r) => vr.money(Math.abs(r.find((x) => x.market === 'US').gap), 'US'));
+  one('t-ca-gap', 'totals', (r) => vr.money(Math.abs(r.find((x) => x.market === 'CA').gap), 'CA'));
+
+  // ---------- scorecard: 100% stacked bars
+  dash.draw('c-score', (el) => {
+    const d = dash.data('scorecard'); if (d.status !== 'ok') return vr.fail(el, d.status);
+    el.replaceChildren(); const rows = [...d.data].sort((a, b) => a.order - b.order);
+    const W = el.clientWidth || 600, rowH = 30, H = rows.length * rowH + 24;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    const left = Math.max(...rows.map((r) => vr.textW(svg, r.section))) + 12, right = 92;
+    const x = d3.scaleLinear([0, 1], [left, W - right]); const y = d3.scaleBand(rows.map((r) => r.section), [0, rows.length * rowH]).padding(0.28);
+    const cols = { ok: 'var(--color-ok)', check: 'var(--color-warn)', diff: 'var(--cds-chart-status-critical)' };
+    const t = vr.tip(el);
+    rows.forEach((r) => {
+      let acc = 0;
+      ['ok', 'check', 'diff'].forEach((k) => {
+        const v = Number(r[k]) / Number(r.total); if (!v) return;
+        svg.append('rect').attr('x', x(acc)).attr('y', y(r.section)).attr('width', Math.max(1, x(acc + v) - x(acc))).attr('height', y.bandwidth()).attr('rx', 3).attr('fill', cols[k]).attr('opacity', k === 'ok' ? 0.85 : 1)
+          .on('mousemove', (ev) => vr.showTip(el, t, ev, r.section, [`${d3.format(',')(r.ok)} match`, `${d3.format(',')(r.check)} judgment`, `${d3.format(',')(r.diff)} mismatch`]))
+          .on('mouseleave', () => { t.hidden = true; });
+        acc += v;
+      });
+      svg.append('text').attr('x', left - 8).attr('y', y(r.section) + y.bandwidth() / 2).attr('dy', '0.35em').attr('text-anchor', 'end').attr('fill', 'var(--color-fg)').style('font-size', 'var(--cds-font-size-caption)').text(r.section);
+      svg.append('text').attr('x', W - right + 8).attr('y', y(r.section) + y.bandwidth() / 2).attr('dy', '0.35em').attr('fill', 'var(--color-fg-muted)').style('font-size', 'var(--cds-font-size-caption)').style('font-variant-numeric', 'tabular-nums')
+        .text(`${d3.format(',')(r.ok)} of ${d3.format(',')(r.total)}`);
+    });
+    const g = svg.append('g').attr('transform', `translate(0,${rows.length * rowH})`).call(d3.axisBottom(x).ticks(5).tickFormat(d3.format('.0%')).tickSizeOuter(0)); vr.axisStyle(g);
+  });
+
+  // ---------- findings table
+  dash.draw('tb-findings', (tb) => {
+    const d = dash.data('findings'); tb.replaceChildren(); if (d.status !== 'ok') return;
+    d.data.forEach((r) => {
+      const tr = document.createElement('tr');
+      ['n', 'severity', 'area', 'finding', 'impact', 'action', 'status'].forEach((k) => {
+        const td = document.createElement('td');
+        if (k === 'severity' || k === 'status') { const s = document.createElement('span'); s.className = 'vr-chip ' + String(r[k]).split(':')[0].split(' ')[0]; s.textContent = r[k]; td.append(s); }
+        else td.textContent = r[k];
+        tr.append(td);
+      });
+      tb.append(tr);
+    });
+  });
+
+  // ---------- scenarios
+  const scen = (name, m) => dash.draw(name, (el) => {
+    const d = dash.data('scenarios'); if (d.status !== 'ok') return vr.fail(el, d.status);
+    el.replaceChildren(); const rows = d.data.filter((r) => r.market === m).sort((a, b) => a.order - b.order);
+    const W = el.clientWidth || 420, rowH = 38, H = rows.length * rowH + 28;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    const left = Math.max(...rows.map((r) => vr.textW(svg, r.scenario))) + 12, right = 64;
+    const x = d3.scaleLinear([0, d3.max(rows, (r) => r.budget) * 1.02], [left, W - right]).nice();
+    const y = d3.scaleBand(rows.map((r) => r.scenario), [0, rows.length * rowH]).padding(0.3);
+    svg.append('g').attr('transform', `translate(0,${rows.length * rowH})`).call(d3.axisBottom(x).ticks(4).tickFormat((v) => vr.kmoney(v, m)).tickSize(-rows.length * rowH)).call(vr.axisStyle).call((g) => g.select('.domain').remove());
+    const t = vr.tip(el);
+    const col = (s) => (s === 'Plan (ceiling)' ? dash.colors[0] : s === 'History check A' ? dash.colors[2] : 'var(--cds-chart-muted)');
+    rows.forEach((r) => {
+      svg.append('rect').attr('x', x(0)).attr('y', y(r.scenario)).attr('width', x(r.budget) - x(0)).attr('height', y.bandwidth()).attr('rx', 3).attr('fill', col(r.scenario))
+        .on('mousemove', (ev) => vr.showTip(el, t, ev, r.scenario, [vr.money(r.budget, m)])).on('mouseleave', () => { t.hidden = true; });
+      svg.append('text').attr('x', left - 8).attr('y', y(r.scenario) + y.bandwidth() / 2).attr('dy', '0.35em').attr('text-anchor', 'end').attr('fill', 'var(--color-fg)').style('font-size', 'var(--cds-font-size-caption)').text(r.scenario);
+      svg.append('text').attr('x', x(r.budget) + 6).attr('y', y(r.scenario) + y.bandwidth() / 2).attr('dy', '0.35em').attr('fill', 'var(--color-fg)').style('font-size', 'var(--cds-font-size-caption)').style('font-variant-numeric', 'tabular-nums').text(vr.kmoney(r.budget, m));
+    });
+  });
+  scen('c-scen-us', 'US'); scen('c-scen-ca', 'CA');
+
+  // ---------- caps dot plot
+  dash.draw('c-caps', (el) => {
+    const d = dash.data('products'); if (d.status !== 'ok') return vr.fail(el, d.status);
+    el.replaceChildren();
+    const rows = d.data.filter((r) => r.tacos_now != null && r.cap != null && Number(r.cap) > 0.01).sort((a, b) => (b.tacos_now - b.cap) - (a.tacos_now - a.cap));
+    const W = el.clientWidth || 700, rowH = 26, H = rows.length * rowH + 28;
+    el.style.minHeight = H + 'px';
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    const left = Math.max(...rows.map((r) => vr.textW(svg, r.key))) + 12;
+    const x = d3.scaleLinear([0, 0.6], [left, W - 16]); const y = d3.scaleBand(rows.map((r) => r.key), [0, rows.length * rowH]).padding(0.2);
+    svg.append('g').attr('transform', `translate(0,${rows.length * rowH})`).call(d3.axisBottom(x).ticks(6).tickFormat(d3.format('.0%')).tickSize(-rows.length * rowH)).call(vr.axisStyle).call((g) => g.select('.domain').remove());
+    const t = vr.tip(el);
+    rows.forEach((r) => {
+      const cy = y(r.key) + y.bandwidth() / 2, over = r.tacos_now > r.cap, nowX = x(Math.min(0.6, r.tacos_now));
+      svg.append('text').attr('x', left - 8).attr('y', cy).attr('dy', '0.35em').attr('text-anchor', 'end').attr('fill', 'var(--color-fg)').style('font-size', 'var(--cds-font-size-caption)').text(r.key);
+      svg.append('line').attr('x1', x(Math.min(r.cap, r.tacos_now))).attr('x2', x(Math.min(0.6, Math.max(r.cap, r.tacos_now)))).attr('y1', cy).attr('y2', cy).attr('stroke', over ? 'var(--cds-chart-status-critical)' : 'var(--cds-chart-muted)').attr('stroke-width', 2).attr('opacity', 0.5);
+      svg.append('rect').attr('x', x(r.plan_tacos) - 4).attr('y', cy - 4).attr('width', 8).attr('height', 8).attr('fill', dash.colors[1]).attr('transform', `rotate(45 ${x(r.plan_tacos)} ${cy})`);
+      svg.append('line').attr('x1', x(r.cap)).attr('x2', x(r.cap)).attr('y1', cy - 8).attr('y2', cy + 8).attr('stroke', 'var(--color-fg)').attr('stroke-width', 2);
+      svg.append('circle').attr('cx', nowX).attr('cy', cy).attr('r', 5).attr('fill', over ? 'var(--cds-chart-status-critical)' : dash.colors[0])
+        .on('mousemove', (ev) => vr.showTip(el, t, ev, r.key, [`TACoS now ${vr.pct(r.tacos_now)}`, `Cap ${vr.pct(r.cap)}`, `Plan ${vr.pct(r.plan_tacos)}`])).on('mouseleave', () => { t.hidden = true; });
+      if (r.tacos_now > 0.6) svg.append('text').attr('x', nowX - 8).attr('y', cy - 8).attr('text-anchor', 'end').attr('fill', 'var(--color-fg-muted)').style('font-size', 'var(--cds-font-size-caption)').text(vr.pct(r.tacos_now));
+    });
+  });
+
+  // ---------- pace ratio
+  dash.draw('c-pace', (el) => {
+    const d = dash.data('products'); if (d.status !== 'ok') return vr.fail(el, d.status);
+    el.replaceChildren();
+    const rows = d.data.filter((r) => r.pace_ratio != null && r.units_day_read >= 0.7 && r.pace_ratio > 0).sort((a, b) => a.pace_ratio - b.pace_ratio);
+    const W = el.clientWidth || 700, rowH = 24, H = rows.length * rowH + 28; el.style.minHeight = H + 'px';
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    const left = Math.max(...rows.map((r) => vr.textW(svg, r.key))) + 12, right = 48;
+    const x = d3.scaleLog([0.25, 20], [left, W - right]); const y = d3.scaleBand(rows.map((r) => r.key), [0, rows.length * rowH]).padding(0.25);
+    svg.append('rect').attr('x', x(0.8)).attr('y', 0).attr('width', x(1.25) - x(0.8)).attr('height', rows.length * rowH).attr('fill', 'var(--cds-chart-muted)').attr('opacity', 0.18);
+    svg.append('g').attr('transform', `translate(0,${rows.length * rowH})`).call(d3.axisBottom(x).tickValues([0.25, 0.5, 1, 2, 5, 10, 20]).tickFormat((v) => v + 'x').tickSize(-rows.length * rowH)).call(vr.axisStyle).call((g) => g.select('.domain').remove());
+    svg.append('line').attr('x1', x(1)).attr('x2', x(1)).attr('y1', 0).attr('y2', rows.length * rowH).attr('stroke', 'var(--cds-chart-reference)').attr('stroke-width', 1.5);
+    const t = vr.tip(el);
+    rows.forEach((r) => {
+      const v = Math.max(0.25, Math.min(20, r.pace_ratio)), slow = r.pace_ratio < 0.8, fast = r.pace_ratio > 1.25;
+      svg.append('rect').attr('x', Math.min(x(1), x(v))).attr('y', y(r.key)).attr('width', Math.abs(x(v) - x(1))).attr('height', y.bandwidth()).attr('rx', 2)
+        .attr('fill', slow ? 'var(--cds-chart-status-critical)' : fast ? dash.colors[2] : 'var(--cds-chart-muted)')
+        .on('mousemove', (ev) => vr.showTip(el, t, ev, r.key, [`${d3.format('.1f')(r.units_day_now)} units/day now`, `${d3.format('.1f')(r.units_day_read)} units/day in the demand read`, `${d3.format('.2f')(r.pace_ratio)}x`])).on('mouseleave', () => { t.hidden = true; });
+      svg.append('text').attr('x', left - 8).attr('y', y(r.key) + y.bandwidth() / 2).attr('dy', '0.35em').attr('text-anchor', 'end').attr('fill', 'var(--color-fg)').style('font-size', 'var(--cds-font-size-caption)').text(r.key);
+      svg.append('text').attr('x', r.pace_ratio >= 1 ? x(v) + 5 : x(1) + 5).attr('y', y(r.key) + y.bandwidth() / 2).attr('dy', '0.35em').attr('fill', 'var(--color-fg-muted)').style('font-size', 'var(--cds-font-size-caption)').style('font-variant-numeric', 'tabular-nums').text(d3.format('.2f')(r.pace_ratio) + 'x');
+    });
+  });
+
+  // ---------- products table (sortable, searchable)
+  window.vrSort = { key: 'budget_plan', dir: -1 };
+  document.querySelectorAll('[data-sort]').forEach((b) => b.addEventListener('click', () => {
+    const k = b.getAttribute('data-sort'); vrSort.dir = vrSort.key === k ? -vrSort.dir : -1; vrSort.key = k;
+    document.querySelectorAll('[data-sort]').forEach((x) => x.closest('th').setAttribute('aria-sort', x === b ? (vrSort.dir > 0 ? 'ascending' : 'descending') : 'none'));
+    dash.draw('tb-products');
+  }));
+  document.querySelectorAll('#prod-search').forEach((i) => i.addEventListener('input', () => dash.draw('tb-products')));
+  dash.draw('tb-products', (tb) => {
+    const d = dash.data('products'); tb.replaceChildren(); if (d.status !== 'ok') return;
+    const q = ([...document.querySelectorAll('#prod-search')][0]?.value || '').toLowerCase();
+    const rows = d.data.filter((r) => !q || String(r.key).toLowerCase().includes(q)).sort((a, b) => {
+      const A = a[vrSort.key], B = b[vrSort.key];
+      if (typeof A === 'number' || typeof B === 'number') return ((A ?? -1) - (B ?? -1)) * vrSort.dir;
+      return String(A).localeCompare(String(B)) * vrSort.dir;
+    });
+    rows.forEach((r) => {
+      const tr = document.createElement('tr'); const m = r.market;
+      const cells = [[r.key], [r.deal], [vr.money(r.budget_plan, m), 1], [vr.money(r.budget_rebuilt, m), 1], [vr.money(Math.abs(r.gap) < 0.5 ? 0 : r.gap, m), 1],
+        [vr.pct(r.plan_tacos), 1], [r.tacos_now == null ? '' : vr.pct(r.tacos_now), 1], [r.cap == null ? '' : vr.pct(r.cap), 1],
+        [r.pace_ratio == null ? '' : d3.format('.2f')(r.pace_ratio) + 'x', 1], [vr.money(r.budget_today_pace, m), 1], [r.label || '']];
+      cells.forEach(([v, num], i) => { const td = document.createElement('td'); td.textContent = v; if (num) td.className = 'num'; if (i === 6 && r.tacos_now != null && r.cap != null && r.tacos_now > r.cap) td.classList.add('vr-bad'); tr.append(td); });
+      tb.append(tr);
+    });
+  });
+
+  // ---------- split by ad type (US)
+  dash.draw('c-split', (el) => {
+    const d = dash.data('products'); if (d.status !== 'ok') return vr.fail(el, d.status);
+    el.replaceChildren();
+    const rows = d.data.filter((r) => r.market === 'US' && r.budget_rebuilt > 50).sort((a, b) => b.budget_rebuilt - a.budget_rebuilt);
+    const W = el.clientWidth || 500, rowH = 24, H = rows.length * rowH + 28; el.style.minHeight = H + 'px';
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    const left = Math.max(...rows.map((r) => vr.textW(svg, r.product))) + 12, right = 56;
+    const x = d3.scaleLinear([0, d3.max(rows, (r) => r.budget_rebuilt)], [left, W - right]).nice(); const y = d3.scaleBand(rows.map((r) => r.product), [0, rows.length * rowH]).padding(0.25);
+    svg.append('g').attr('transform', `translate(0,${rows.length * rowH})`).call(d3.axisBottom(x).ticks(4).tickFormat((v) => vr.kmoney(v, 'US')).tickSize(-rows.length * rowH)).call(vr.axisStyle).call((g) => g.select('.domain').remove());
+    const t = vr.tip(el); const keys = ['sp', 'sb', 'sbv', 'sd'], names = ['SP', 'SB', 'SB video', 'SD'];
+    rows.forEach((r) => {
+      let acc = 0;
+      keys.forEach((k, i) => {
+        const v = Number(r[k]); if (!v) return;
+        svg.append('rect').attr('x', x(acc)).attr('y', y(r.product)).attr('width', Math.max(0.5, x(acc + v) - x(acc))).attr('height', y.bandwidth()).attr('fill', dash.colors[i])
+          .on('mousemove', (ev) => vr.showTip(el, t, ev, r.product, keys.map((kk, j) => `${names[j]} ${vr.money(r[kk], 'US')}`))).on('mouseleave', () => { t.hidden = true; });
+        acc += v;
+      });
+      svg.append('text').attr('x', left - 8).attr('y', y(r.product) + y.bandwidth() / 2).attr('dy', '0.35em').attr('text-anchor', 'end').attr('fill', 'var(--color-fg)').style('font-size', 'var(--cds-font-size-caption)').text(r.product);
+      svg.append('text').attr('x', x(acc) + 5).attr('y', y(r.product) + y.bandwidth() / 2).attr('dy', '0.35em').attr('fill', 'var(--color-fg-muted)').style('font-size', 'var(--cds-font-size-caption)').style('font-variant-numeric', 'tabular-nums').text(vr.kmoney(r.budget_rebuilt, 'US'));
+    });
+  });
+
+  // ---------- weekly ad mix (US)
+  dash.draw('c-weekly', (el) => {
+    const d = dash.data('weekly2026'); if (d.status !== 'ok') return vr.fail(el, d.status);
+    el.replaceChildren(); const rows = d.data.filter((r) => r.market === 'US').sort((a, b) => a.order - b.order);
+    const W = el.clientWidth || 500, H = 240, m = { t: 22, r: 8, b: 36, l: 48 };
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    const tot = (r) => r.sp + r.sb + r.sbv + r.sd;
+    const x = d3.scaleBand(rows.map((r) => r.week), [m.l, W - m.r]).padding(0.3); const y = d3.scaleLinear([0, d3.max(rows, tot) * 1.08], [H - m.b, m.t]).nice();
+    svg.append('g').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(4).tickFormat((v) => vr.kmoney(v, 'US')).tickSize(-(W - m.l - m.r))).call(vr.axisStyle).call((g) => g.select('.domain').remove());
+    const ax = svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickSizeOuter(0)); vr.axisStyle(ax);
+    const t = vr.tip(el); const keys = ['sp', 'sb', 'sbv', 'sd'], names = ['SP', 'SB', 'SB video', 'SD'];
+    rows.forEach((r) => {
+      let acc = 0;
+      keys.forEach((k, i) => {
+        const v = r[k]; svg.append('rect').attr('x', x(r.week)).attr('y', y(acc + v)).attr('width', Math.min(32, x.bandwidth())).attr('height', Math.max(0, y(acc) - y(acc + v))).attr('fill', dash.colors[i])
+          .on('mousemove', (ev) => vr.showTip(el, t, ev, r.week, [...keys.map((kk, j) => `${names[j]} ${vr.money(r[kk], 'US')}`), `Not SP ${vr.pct(r.non_sp_share)}`])).on('mouseleave', () => { t.hidden = true; });
+        acc += v;
+      });
+      svg.append('text').attr('x', x(r.week) + Math.min(32, x.bandwidth()) / 2).attr('y', y(acc) - 6).attr('text-anchor', 'middle').attr('fill', 'var(--color-fg)').style('font-size', 'var(--cds-font-size-caption)').text(d3.format('.0%')(r.non_sp_share));
+    });
+  });
+
+  // ---------- cross-source scatter
+  dash.draw('c-cross', (el) => {
+    const d = dash.data('products'); if (d.status !== 'ok') return vr.fail(el, d.status);
+    el.replaceChildren(); const rows = d.data.filter((r) => r.sp_14d_console > 20 && r.sp_14d_tracking > 20);
+    const W = el.clientWidth || 420, H = 280, m = { t: 12, r: 12, b: 40, l: 56 };
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    const lo = 30, hi = 10000; const x = d3.scaleLog([lo, hi], [m.l, W - m.r]); const y = d3.scaleLog([lo, hi], [H - m.b, m.t]);
+    const tv = [30, 100, 300, 1000, 3000, 10000];
+    svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickValues(tv).tickFormat((v) => vr.kmoney(v, 'US')).tickSize(-(H - m.t - m.b))).call(vr.axisStyle);
+    svg.append('g').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).tickValues(tv).tickFormat((v) => vr.kmoney(v, 'US')).tickSize(-(W - m.l - m.r))).call(vr.axisStyle);
+    svg.append('line').attr('x1', x(lo)).attr('y1', y(lo)).attr('x2', x(hi)).attr('y2', y(hi)).attr('stroke', 'var(--cds-chart-reference)').attr('stroke-dasharray', '4 4');
+    svg.append('text').attr('x', W - m.r).attr('y', H - 6).attr('text-anchor', 'end').attr('fill', 'var(--color-fg-muted)').style('font-size', 'var(--cds-font-size-caption)').text('Sales-tracking SP spend →');
+    svg.append('text').attr('x', m.l + 4).attr('y', m.t + 10).attr('fill', 'var(--color-fg-muted)').style('font-size', 'var(--cds-font-size-caption)').text('↑ Ads console SP spend');
+    const t = vr.tip(el);
+    rows.forEach((r) => svg.append('circle').attr('cx', x(r.sp_14d_tracking)).attr('cy', y(r.sp_14d_console)).attr('r', 5).attr('fill', r.market === 'US' ? dash.colors[0] : dash.colors[1]).attr('opacity', 0.85)
+      .on('mousemove', (ev) => vr.showTip(el, t, ev, r.key, [`Tracking ${vr.money(r.sp_14d_tracking, r.market)}`, `Console ${vr.money(r.sp_14d_console, r.market)}`, `Ratio ${d3.format('.2f')(r.sp_14d_console / r.sp_14d_tracking)}x`])).on('mouseleave', () => { t.hidden = true; }));
+  });
+
+  // ---------- BFCM 2025 daily (US and CA)
+  dash.draw('c-daily', (el) => {
+    const d = dash.data('daily2025'); if (d.status !== 'ok') return vr.fail(el, d.status);
+    el.replaceChildren(); const days = [...new Set(d.data.map((r) => r.day))].sort();
+    const W = el.clientWidth || 420, H = 260, m = { t: 12, r: 8, b: 40, l: 52 };
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    const x0 = d3.scaleBand(days, [m.l, W - m.r]).padding(0.2); const x1 = d3.scaleBand(['US', 'CA'], [0, x0.bandwidth()]).padding(0.08);
+    const y = d3.scaleLinear([0, d3.max(d.data, (r) => r.sales) * 1.05], [H - m.b, m.t]).nice();
+    svg.append('g').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(4).tickFormat((v) => vr.kmoney(v, 'US')).tickSize(-(W - m.l - m.r))).call(vr.axisStyle).call((g) => g.select('.domain').remove());
+    const fmt = d3.utcFormat('%b %-d'); const step = W < 520 ? 2 : 1;
+    const ax = svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x0).tickValues(days.filter((_, i) => i % step === 0)).tickFormat((s) => fmt(new Date(s))).tickSizeOuter(0)); vr.axisStyle(ax);
+    const t = vr.tip(el);
+    d.data.forEach((r) => svg.append('rect').attr('x', x0(r.day) + x1(r.market)).attr('y', y(r.sales)).attr('width', x1.bandwidth()).attr('height', y(0) - y(r.sales)).attr('rx', 2).attr('fill', r.market === 'US' ? dash.colors[0] : dash.colors[1])
+      .on('mousemove', (ev) => vr.showTip(el, t, ev, `${fmt(new Date(r.day))} · ${r.market}`, [`Sales ${vr.money(r.sales, 'US')}`, `Ad spend ${vr.money(r.ad_spend, 'US')}`, `TACoS ${vr.pct(r.tacos)}`, `Day weight ${vr.pct(r.weight)}`])).on('mouseleave', () => { t.hidden = true; }));
+  });
+</script>
