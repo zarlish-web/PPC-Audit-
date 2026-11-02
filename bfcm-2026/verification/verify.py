@@ -281,7 +281,7 @@ for m in ("US", "CA"):
             return sum(a * b for a, b in ws) / sum(a for a, _ in ws) if ws else None
         cogs = lambda s: s["cogs"] * (1.40 if m == "CA" else 1)
         dprice = wavg(dealrows, lambda x, s: s["deal"]); cprice = wavg(allrows, lambda x, s: s["cur"])
-        mdeal = wavg(dealrows, lambda x, s: s["deal"] - cogs(s) - s["fba"] - (s["ref"] or 0.15) * s["deal"] - 0.015 * s["deal"]) if dealrows else None
+        mdeal = wavg(dealrows, lambda x, s: s["deal"] - cogs(s) - s["fba"] - (s["ref"] or 0.15) * s["deal"] - 0.01 * s["deal"]) if dealrows else None
         mcur = wavg(allrows, lambda x, s: s["cur"] - cogs(s) - s["fba"] - (s["ref"] or 0.15) * s["cur"])
         dtype = dealrows[0][1]["type"] if dealrows else None
         ld = dtype == "Lightning Deal"
@@ -291,7 +291,7 @@ for m in ("US", "CA"):
         if asp is None:   # no row in the deal sheet: the tracker's list price is the only record
             asp = g_plan_asp = cell(bp, r, "I"); price_note = "No deal-sheet row: price taken from the tracker's listing price."
         sales = units * round(asp, 2)
-        flat = 100 / sales if (dprice and sales) else 0
+        flat = 70 / sales if (dprice and sales) else 0
         if dprice and not ld:
             be = mdeal / dprice - flat
         elif dprice and ld:
@@ -500,12 +500,12 @@ sums = {m: sum(p["budget"] for p in products if p["mkt"] == m) for m in ("US", "
 calls = " ".join(str(sm.cell(r, 1).value or "") for r in range(14, 40))
 def claim(text, ok, note=""):
     add(S5, "Summary wording: " + text, "true" if ok else "false", "stated", None, kind="eq", status="OK" if ok else "DIFF", note=note)
-claim("US $88.2K at 12.1% TACoS", abs(sums["US"] - 88150) < 60 and abs(sums["US"] / sum(p['sales'] for p in products if p['mkt']=='US') - 0.1213) < 0.001)
+claim("US $88.3K at 12.1% TACoS", abs(sums["US"] - 88264) < 60 and abs(sums["US"] / sum(p['sales'] for p in products if p['mkt']=='US') - 0.1213) < 0.001)
 claim("Canada C$25.5K at 11.1%", abs(sums["CA"] - 25542) < 60)
 claim("BFCM 2025 spent $76.2K at 8.2%", abs(SRC["bfcm2025_total"]["US"]["adv"] - 76159) < 60 and abs(bf_f["US"] - 0.0817) < 0.0006)
 claim("Account runs at 20% TACoS today (14.1% before BFCM 2025)", abs(SRC["now14"]["US"]["adv"] / SRC["now14"]["US"]["sales"] - 0.205) < 0.003 and abs(SRC["pre2025_30d"]["US"]["adv"] / SRC["pre2025_30d"]["US"]["sales"] - 0.1417) < 0.001)
 sp_split = [sum(p["split"][k] for p in products if p["mkt"] == "US") for k in range(4)]
-claim("US split SP $68.5K, SB $8.8K, SB video $8.9K, SD $1.9K", all(abs(a - b) < 60 for a, b in zip(sp_split, (68530, 8844, 8873, 1903))))
+claim("US split SP $68.6K, SB $8.8K, SB video $8.9K, SD $1.9K", all(abs(a - b) < 60 for a, b in zip(sp_split, (68629, 8847, 8885, 1903))))
 raised = sorted(p["name"] + " " + p["mkt"] for p in products if (p["label"] or "").startswith("Raised"))
 claim("Raised to the growth floor: Sleephoria Cooling Fitted, Sleephoria Bamboo 6 Pc, CA Bamboo 6 Pc", raised == sorted(["Sleephoria Cooling Fitted US", "Sleephoria Bamboo 6 Pc US", "Decolure Bamboo 6 Pc CA"]), note="Labels found: " + ", ".join(raised))
 overs = sorted(p["name"] + " " + p["mkt"] for p in products if p["now"] is not None and p["cap"] is not None and p["now"] > p["cap"] and p["plan_t"] > 0)

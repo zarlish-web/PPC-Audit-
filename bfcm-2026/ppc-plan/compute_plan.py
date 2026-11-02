@@ -5,8 +5,8 @@ HERE = os.path.dirname(os.path.abspath(__file__)); TR = os.path.join(HERE, "..",
 h = open(sys.argv[1]).read(); i = h.index("const D = ") + 10
 D = json.loads(h[i:h.index("\nconst IMG")].rstrip().rstrip(";"))
 INP = json.load(open(os.path.join(HERE, "inputs_2026-11-02.json")))
-DEAL_PERF_FEE = 0.015          # Amazon deal performance fee, share of deal sales (Erik, Oct 19)
-DEAL_FLAT_FEE = 100.0          # flat fee per deal
+DEAL_PERF_FEE = 0.01           # Amazon deal fee, share of deal sales (corrected Nov 2: 1%)
+DEAL_FLAT_FEE = 70.0           # flat fee per deal (corrected Nov 2: $70)
 CEIL_SHARE = 0.80              # TACoS ceiling = 80% of the break-even TACoS (keeps 20% of the pre-ad margin)
 CA_COGS_FX = 1.40              # deal sheet CA COGS are the US$ figures next to C$ prices; converted to C$ (Nov 2025 rate 1.40)
 sheet = {}
