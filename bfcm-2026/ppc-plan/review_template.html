@@ -38,8 +38,10 @@ p { margin: 0; }
 .bar-in { max-width: 1240px; margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 10px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
 .brand { font-family: var(--f-display); font-weight: 800; font-stretch: 80%; font-size: 1.05rem; letter-spacing: .01em; }
 .brand b { color: var(--deal); }
-.nav { display: flex; gap: 4px; flex-wrap: wrap; flex: 1; min-width: 0; }
-.nav a { color: var(--muted); text-decoration: none; font-size: .85rem; padding: 4px 9px; border-radius: 999px; }
+.nav { display: flex; gap: 4px; flex-wrap: nowrap; flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+.nav::-webkit-scrollbar { display: none; }
+@media (max-width: 760px) { .bar-in { row-gap: 6px; padding-block: 8px; } .nav { order: 3; flex-basis: 100%; } .seg { margin-left: auto; } }
+.nav a { color: var(--muted); text-decoration: none; font-size: .85rem; padding: 4px 9px; border-radius: 999px; white-space: nowrap; flex: none; }
 .nav a:hover, .nav a:focus-visible { color: var(--ink); background: var(--soft); outline: none; }
 .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
 .seg button { font: inherit; font-size: .82rem; border: 0; background: transparent; color: var(--muted); padding: 5px 12px; cursor: pointer; }
@@ -61,7 +63,7 @@ p { margin: 0; }
 .tile .v { font-family: var(--f-display); font-weight: 700; font-stretch: 85%; font-size: 1.85rem; line-height: 1.05; font-variant-numeric: tabular-nums; }
 .tile .s { font-size: .78rem; color: var(--muted); font-family: var(--f-mono); }
 /* sections */
-section { display: flex; flex-direction: column; gap: 16px; scroll-margin-top: 70px; }
+section { display: flex; flex-direction: column; gap: 16px; scroll-margin-top: 96px; }
 .head { display: flex; flex-direction: column; gap: 6px; }
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
 .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 16px; }
@@ -103,6 +105,7 @@ table { border-collapse: collapse; width: 100%; font-size: .86rem; }
 th { text-align: left; font-weight: 600; color: var(--muted); font-size: .76rem; letter-spacing: .02em; padding: 9px 10px; border-bottom: 1px solid var(--line); background: var(--surface); position: sticky; top: 0; white-space: nowrap; }
 td { padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
 td.n, th.n { text-align: right; white-space: nowrap; }
+@media (max-width: 560px) { .vtable th:nth-child(6), .vtable td:nth-child(6), .vtable th:nth-child(8), .vtable td:nth-child(8) { display: none; } }
 tr.tot td { font-weight: 600; background: var(--soft); }
 tr.click { cursor: pointer; } tr.click:hover td { background: var(--soft); }
 .rules td:nth-child(3) { min-width: 18rem; }
@@ -200,7 +203,7 @@ footer { color: var(--muted); font-size: .8rem; border-top: 1px solid var(--line
     <div class="head"><h2>Year over year, like for like</h2><p class="lead" id="hist-lead"></p></div>
     <div class="grid2">
       <div class="card"><h3>From 2025 spend to 2026 spend, same 14 days (Oct 19 – Nov 1)</h3><p class="note">Products sold both years vs new products vs the new brand and video campaigns.</p><div class="chart" id="c-bridge"></div></div>
-      <div class="card"><h3>BFCM 2025 actual vs this plan</h3><p class="note">Products that ran in BFCM 2025 get about what they spent then; the rest is new products.</p><div class="chart" id="c-bfcmp"></div></div>
+      <div class="card"><h3>BFCM 2025 actual vs this plan</h3><p class="note">Products that ran in BFCM 2025 get about what they spent then; the rest is new products.</p><div class="legend"><span><i class="sw" style="background:var(--mute-mark)"></i>BFCM 2025 actual</span><span><i class="sw" style="background:var(--accent)"></i>2026 plan</span></div><div class="chart" id="c-bfcmp"></div></div>
     </div>
     <div class="tiles" id="lfl"></div>
   </section>
@@ -260,6 +263,8 @@ const T = () => DATA.totals[MKT], H = () => DATA.hist[MKT];
 function tip(host) { let t = host.querySelector('.tip'); if (!t) { t = el('div', { class: 'tip' }); t.hidden = true; host.append(t); } return t; }
 function showTip(host, t, ev, lines) { t.replaceChildren(...lines.map((l, i) => el('div', { text: l, style: i === 0 ? 'color:var(--muted)' : '' }))); t.hidden = false; const r = host.getBoundingClientRect(); let x = ev.clientX - r.left + 12, y = ev.clientY - r.top + 12; if (x + t.offsetWidth > r.width) x = Math.max(0, x - t.offsetWidth - 24); if (y + t.offsetHeight > r.height) y = Math.max(0, y - t.offsetHeight - 24); t.style.left = x + 'px'; t.style.top = y + 'px'; }
 function axis(g) { g.selectAll('line').attr('stroke', css('--line')); g.select('.domain').remove(); }
+const nTicks = (px) => Math.max(2, Math.min(5, Math.floor(px / 90)));
+const kshort = (v, m) => (v == null || isNaN(v) ? '–' : (v < 0 ? '−' : '') + cur(m) + (Math.abs(v) >= 1000 ? d3.format('.0f')(Math.abs(v) / 1000) + 'K' : d3.format(',.0f')(Math.abs(v))));
 function textW(svg, s) { const t = svg.append('text').text(s); const w = t.node().getComputedTextLength(); t.remove(); return w; }
 
 // ---------------- hero tiles and decisions
@@ -378,7 +383,7 @@ function openP(id) {
   const st = p.stock || {}, cnt = st.counts || {};
   const stock = sec('Stock (as of Oct 15)', kv([['On hand', d3.format(',.0f')(st.on_hand || 0)], ['Inbound', d3.format(',.0f')(st.inbound || 0)], ['Needed to Nov 30', d3.format(',.0f')(st.need || 0)], ['Short', d3.format(',.0f')(st.short || 0)]]),
     el('div', { style: 'display:flex;gap:6px;flex-wrap:wrap' }, Object.entries(cnt).map(([k, v]) => el('span', { class: 'chip ' + (k.startsWith('Out') || k.startsWith('Short') ? 'bad' : k.startsWith('Needs') ? 'warn' : 'ok'), text: `${v} ${k.toLowerCase()}` }))));
-  const vt = el('table', {}, el('thead', {}, el('tr', {}, ['', 'Variation', '28-day units', 'Price', 'Deal price', '2025 paid', 'On hand', 'Status'].map((h, i) => el('th', { class: i >= 2 && i <= 6 ? 'n' : '', text: h })))),
+  const vt = el('table', { class: 'vtable' }, el('thead', {}, el('tr', {}, ['', 'Variation', '28-day units', 'Price', 'Deal price', '2025 paid', 'On hand', 'Status'].map((h, i) => el('th', { class: i >= 2 && i <= 6 ? 'n' : '', text: h })))),
     el('tbody', {}, (p.vars || []).map((v) => el('tr', {}, el('td', {}, v.img && IMG[v.img] ? el('img', { class: 'vthumb', src: IMG[v.img], alt: '' }) : ''), el('td', { text: v.label || '–' }),
       el('td', { class: 'n', text: v.u28 != null ? d3.format(',')(v.u28) : '–' }), el('td', { class: 'n', text: v.price != null ? cur(m) + d3.format(',.2f')(v.price) : '–' }),
       el('td', { class: 'n', text: v.deal != null ? cur(m) + d3.format(',.2f')(v.deal) : '–' }), el('td', { class: 'n', text: v.p25 != null ? cur(m) + d3.format(',.2f')(v.p25) : '–' }),
@@ -439,9 +444,10 @@ function drawScen() {
   document.getElementById('scen-note').textContent = m === 'US' ? 'United States, US$.' : 'Canada, C$.';
   const W = Math.max(320, host.clientWidth || 520), rowH = 40, Hh = rows.length * rowH + 28;
   const svg = d3.select(host).append('svg').attr('viewBox', `0 0 ${W} ${Hh}`);
-  const left = d3.max(rows, (r) => textW(svg, r[0])) + 12;
-  const x = d3.scaleLinear([0, d3.max(rows, (r) => r[1]) * 1.08], [left, W - 60]).nice(), y = d3.scaleBand(rows.map((r) => r[0]), [0, rows.length * rowH]).padding(0.3);
-  svg.append('g').attr('transform', `translate(0,${rows.length * rowH})`).call(d3.axisBottom(x).ticks(4).tickFormat((v) => kmoney(v, m)).tickSize(-rows.length * rowH)).call(axis);
+  if (W < 520) rows.forEach((r) => { r[0] = r[0].replace("Same plan at today's pace", "Today's pace").replace(' (suggested base)', ' (base)'); });
+  const left = d3.max(rows, (r) => textW(svg, r[0])) + 12, right = d3.max(rows, (r) => textW(svg, kmoney(r[1], m))) + 12;
+  const x = d3.scaleLinear([0, d3.max(rows, (r) => r[1])], [left, W - right]).nice(), y = d3.scaleBand(rows.map((r) => r[0]), [0, rows.length * rowH]).padding(0.3);
+  svg.append('g').attr('transform', `translate(0,${rows.length * rowH})`).call(d3.axisBottom(x).ticks(nTicks(W - left - right)).tickFormat((v) => kshort(v, m)).tickSize(-rows.length * rowH)).call(axis);
   rows.forEach(([lab, v]) => {
     const c = lab.startsWith('Plan') ? css('--accent') : lab.startsWith('History check A') ? css('--ok') : css('--mute-mark');
     svg.append('rect').attr('x', x(0)).attr('y', y(lab)).attr('width', x(v) - x(0)).attr('height', y.bandwidth()).attr('rx', 3).attr('fill', c);
@@ -467,7 +473,10 @@ function drawAllDays() {
 }
 function drawBridge() {
   const host = document.getElementById('c-bridge'); host.replaceChildren(); const m = MKT, D_ = DATA.yoy[m];
-  const steps = [['2025', D_.adv25, 'total'], ['Same products: SP', D_.lfl_sp], ['Same products: SB, video, SD', D_.lfl_nonsp], ['New products', D_.new], ['Older listings, tail', D_.old_and_tail], ['2026', D_.adv26, 'total']];
+  const narrow = (host.clientWidth || 520) < 560;
+  const steps = narrow ? [['2025', D_.adv25, 'total'], ['SP same', D_.lfl_sp], ['SB/SD same', D_.lfl_nonsp], ['New', D_.new], ['Older', D_.old_and_tail], ['2026', D_.adv26, 'total']]
+    : [['2025', D_.adv25, 'total'], ['Same products: SP', D_.lfl_sp], ['Same products: SB, video, SD', D_.lfl_nonsp], ['New products', D_.new], ['Older listings, tail', D_.old_and_tail], ['2026', D_.adv26, 'total']];
+  const fmt = narrow ? kshort : kmoney;
   let run = 0; const bars = steps.map(([l, v, k]) => { let y0, y1; if (k) { y0 = 0; y1 = v; run = v; } else { y0 = run; y1 = run + v; run = y1; } return { l, v, k, y0, y1 }; });
   const W = Math.max(320, host.clientWidth || 520), Hh = 274, mg = { t: 18, r: 8, b: 66, l: 52 };
   const svg = d3.select(host).append('svg').attr('viewBox', `0 0 ${W} ${Hh}`);
@@ -476,11 +485,11 @@ function drawBridge() {
   bars.forEach((b) => {
     const c = b.k ? css('--mute-mark') : b.v >= 0 ? css('--ok') : css('--bad');
     svg.append('rect').attr('x', x(b.l)).attr('y', y(Math.max(b.y0, b.y1))).attr('width', x.bandwidth()).attr('height', Math.max(1, Math.abs(y(b.y0) - y(b.y1)))).attr('rx', 2).attr('fill', c);
-    svg.append('text').attr('x', x(b.l) + x.bandwidth() / 2).attr('y', y(Math.max(b.y0, b.y1)) - 5).attr('text-anchor', 'middle').style('fill', css('--ink')).text((b.k ? '' : b.v >= 0 ? '+' : '') + kmoney(b.v, m));
+    svg.append('text').attr('x', x(b.l) + x.bandwidth() / 2).attr('y', y(Math.max(b.y0, b.y1)) - 5).attr('text-anchor', 'middle').style('fill', css('--ink')).style('font-size', narrow ? '10px' : null).text((b.k ? '' : b.v >= 0 ? '+' : '') + fmt(b.v, m));
   });
   const ax = svg.append('g').attr('transform', `translate(0,${Hh - mg.b})`).call(d3.axisBottom(x).tickSizeOuter(0)).call(axis);
   ax.selectAll('text').each(function () { const t = d3.select(this), words = t.text().split(' '); t.text(''); const lines = []; let cur_ = '';
-    words.forEach((w) => { if ((cur_ + ' ' + w).trim().length > 12) { lines.push(cur_.trim()); cur_ = w; } else cur_ += ' ' + w; }); lines.push(cur_.trim());
+    words.forEach((w) => { if ((cur_ + ' ' + w).trim().length > (narrow ? 4 : 12)) { lines.push(cur_.trim()); cur_ = w; } else cur_ += ' ' + w; }); lines.push(cur_.trim());
     lines.filter(Boolean).slice(0, 4).forEach((l, k) => t.append('tspan').attr('x', 0).attr('dy', k ? '1.1em' : '0.9em').text(l)); });
   const t = T();
   document.getElementById('hist-lead').textContent = `Same 14 days last year (Oct 19 – Nov 1). ${m === 'US' ? 'US' : 'Canadian'} ad spend went from ${kmoney(D_.adv25, m)} to ${kmoney(D_.adv26, m)}. Products sold both years: sales ${pct(D_.lfl_sales26 / D_.lfl_sales25 - 1, 0)}, TACoS ${pct(D_.lfl_adv25 / D_.lfl_sales25)} → ${pct(D_.lfl_adv26 / D_.lfl_sales26)}. Traffic ${pct(D_.sessions26 / D_.sessions25 - 1, 0)}, conversion ${pct(D_.cvr25, 2)} → ${pct(D_.cvr26, 2)}, SP cost per click ${cur(m)}${d3.format('.2f')(D_.cpc25)} → ${cur(m)}${d3.format('.2f')(D_.cpc26)} (recorded currency).`;
@@ -494,23 +503,24 @@ function drawBfcmp() {
   const rows = DATA.bfgroups.filter((r) => r.m === m && r.s25 + r.p26 > 1);
   const W = Math.max(320, host.clientWidth || 520), rowH = 56, Hh = rows.length * rowH + 28;
   const svg = d3.select(host).append('svg').attr('viewBox', `0 0 ${W} ${Hh}`);
-  const left = d3.max(rows, (r) => textW(svg, r.g)) + 12;
-  const x = d3.scaleLinear([0, d3.max(rows, (r) => Math.max(r.s25, r.p26)) * 1.1], [left, W - 60]).nice(), y = d3.scaleBand(rows.map((r) => r.g), [0, rows.length * rowH]).padding(0.2);
-  svg.append('g').attr('transform', `translate(0,${rows.length * rowH})`).call(d3.axisBottom(x).ticks(4).tickFormat((v) => kmoney(v, m)).tickSize(-rows.length * rowH)).call(axis);
+  const lab = (g) => (W < 520 ? g.replace('New since BFCM 2025', 'New since 2025').replace('Not in the 2026 plan', 'Not in plan') : g);
+  const left = d3.max(rows, (r) => textW(svg, lab(r.g))) + 12, right = d3.max(rows, (r) => Math.max(textW(svg, kmoney(r.s25, m)), textW(svg, kmoney(r.p26, m)))) + 12;
+  const x = d3.scaleLinear([0, d3.max(rows, (r) => Math.max(r.s25, r.p26))], [left, W - right]).nice(), y = d3.scaleBand(rows.map((r) => r.g), [0, rows.length * rowH]).padding(0.2);
+  svg.append('g').attr('transform', `translate(0,${rows.length * rowH})`).call(d3.axisBottom(x).ticks(nTicks(W - left - right)).tickFormat((v) => kshort(v, m)).tickSize(-rows.length * rowH)).call(axis);
   rows.forEach((r) => { const h = y.bandwidth() / 2 - 1;
     [[r.s25, css('--mute-mark'), 'BFCM 2025'], [r.p26, css('--accent'), '2026 plan']].forEach(([v, c, nm], i) => {
       svg.append('rect').attr('x', x(0)).attr('y', y(r.g) + i * (h + 2)).attr('width', Math.max(0, x(v) - x(0))).attr('height', h).attr('rx', 2).attr('fill', c);
-      svg.append('text').attr('x', x(v) + 5).attr('y', y(r.g) + i * (h + 2) + h / 2 + 4).text(`${nm} ${kmoney(v, m)}`); });
-    svg.append('text').attr('x', left - 8).attr('y', y(r.g) + y.bandwidth() / 2 + 4).attr('text-anchor', 'end').style('fill', css('--ink')).text(r.g); });
+      svg.append('text').attr('x', x(v) + 5).attr('y', y(r.g) + i * (h + 2) + h / 2 + 4).text(kmoney(v, m)); });
+    svg.append('text').attr('x', left - 8).attr('y', y(r.g) + y.bandwidth() / 2 + 4).attr('text-anchor', 'end').style('fill', css('--ink')).text(lab(r.g)); });
 }
 function drawSplit() {
   const host = document.getElementById('c-split'); host.replaceChildren(); const m = MKT;
   const rows = prodsM().filter((p) => p.budget > 50).sort((a, b) => b.budget - a.budget);
   const W = Math.max(320, host.clientWidth || 520), rowH = 24, Hh = rows.length * rowH + 26;
   const svg = d3.select(host).append('svg').attr('viewBox', `0 0 ${W} ${Hh}`);
-  const left = d3.max(rows, (r) => textW(svg, r.name)) + 12;
-  const x = d3.scaleLinear([0, d3.max(rows, (r) => r.budget)], [left, W - 56]).nice(), y = d3.scaleBand(rows.map((r) => r.name), [0, rows.length * rowH]).padding(0.25);
-  svg.append('g').attr('transform', `translate(0,${rows.length * rowH})`).call(d3.axisBottom(x).ticks(4).tickFormat((v) => kmoney(v, m)).tickSize(-rows.length * rowH)).call(axis);
+  const left = d3.max(rows, (r) => textW(svg, r.name)) + 12, right = d3.max(rows, (r) => textW(svg, kmoney(r.budget, m))) + 10;
+  const x = d3.scaleLinear([0, d3.max(rows, (r) => r.budget)], [left, W - right]).nice(), y = d3.scaleBand(rows.map((r) => r.name), [0, rows.length * rowH]).padding(0.25);
+  svg.append('g').attr('transform', `translate(0,${rows.length * rowH})`).call(d3.axisBottom(x).ticks(nTicks(W - left - right)).tickFormat((v) => kshort(v, m)).tickSize(-rows.length * rowH)).call(axis);
   const cols = [css('--sp'), css('--sb'), css('--sbv'), css('--sd')], t = tip(host);
   rows.forEach((p) => { let acc = 0; (p.split || []).forEach((v, k) => { if (!v) return; svg.append('rect').attr('x', x(acc)).attr('y', y(p.name)).attr('width', Math.max(0.5, x(acc + v) - x(acc))).attr('height', y.bandwidth()).attr('fill', cols[k])
       .on('mousemove', (ev) => showTip(host, t, ev, [p.name, ...['SP', 'SB', 'SB video', 'Display'].map((n, i) => `${n} ${money(p.split[i], m)}`)])).on('mouseleave', () => { t.hidden = true; }); acc += v; });
@@ -523,11 +533,12 @@ function drawWeekly() {
   const W = Math.max(320, host.clientWidth || 520), Hh = 240, mg = { t: 20, r: 8, b: 34, l: 50 };
   const svg = d3.select(host).append('svg').attr('viewBox', `0 0 ${W} ${Hh}`);
   const x = d3.scaleBand(rows.map((r) => r.w), [mg.l, W - mg.r]).padding(0.3), y = d3.scaleLinear([0, d3.max(rows, (r) => d3.sum(r.v)) * 1.1], [Hh - mg.b, mg.t]).nice();
-  svg.append('g').attr('transform', `translate(${mg.l},0)`).call(d3.axisLeft(y).ticks(4).tickFormat((v) => kmoney(v, m)).tickSize(-(W - mg.l - mg.r))).call(axis);
+  svg.append('g').attr('transform', `translate(${mg.l},0)`).call(d3.axisLeft(y).ticks(4).tickFormat((v) => kshort(v, m)).tickSize(-(W - mg.l - mg.r))).call(axis);
   const cols = [css('--sp'), css('--sb'), css('--sbv'), css('--sd')];
   rows.forEach((r) => { let acc = 0; r.v.forEach((v, k) => { svg.append('rect').attr('x', x(r.w)).attr('y', y(acc + v)).attr('width', x.bandwidth()).attr('height', Math.max(0, y(acc) - y(acc + v))).attr('fill', cols[k]); acc += v; });
     svg.append('text').attr('x', x(r.w) + x.bandwidth() / 2).attr('y', y(acc) - 5).attr('text-anchor', 'middle').style('fill', css('--ink')).text(pct(1 - r.v[0] / acc, 0)); });
-  svg.append('g').attr('transform', `translate(0,${Hh - mg.b})`).call(d3.axisBottom(x).tickSizeOuter(0)).call(axis);
+  const every = W < 560 ? 2 : 1;
+  svg.append('g').attr('transform', `translate(0,${Hh - mg.b})`).call(d3.axisBottom(x).tickValues(rows.map((r) => r.w).filter((_, i) => i % every === 0)).tickFormat((w) => w.split('-')[0].trim()).tickSizeOuter(0)).call(axis);
 }
 function drawRules() {
   const mk = (rows, heads, keys) => [el('thead', {}, el('tr', {}, heads.map((h) => el('th', { text: h })))), el('tbody', {}, rows.map((r) => el('tr', {}, keys.map((k, i) => el('td', { text: r[k] || '', style: i === 1 ? 'font-weight:600' : '' })))))];
