@@ -469,7 +469,7 @@ function drawBridge() {
   const host = document.getElementById('c-bridge'); host.replaceChildren(); const m = MKT, D_ = DATA.yoy[m];
   const steps = [['2025', D_.adv25, 'total'], ['Same products: SP', D_.lfl_sp], ['Same products: SB, video, SD', D_.lfl_nonsp], ['New products', D_.new], ['Older listings, tail', D_.old_and_tail], ['2026', D_.adv26, 'total']];
   let run = 0; const bars = steps.map(([l, v, k]) => { let y0, y1; if (k) { y0 = 0; y1 = v; run = v; } else { y0 = run; y1 = run + v; run = y1; } return { l, v, k, y0, y1 }; });
-  const W = Math.max(320, host.clientWidth || 520), Hh = 260, mg = { t: 18, r: 8, b: 52, l: 52 };
+  const W = Math.max(320, host.clientWidth || 520), Hh = 274, mg = { t: 18, r: 8, b: 66, l: 52 };
   const svg = d3.select(host).append('svg').attr('viewBox', `0 0 ${W} ${Hh}`);
   const x = d3.scaleBand(bars.map((b) => b.l), [mg.l, W - mg.r]).padding(0.25), y = d3.scaleLinear([0, d3.max(bars, (b) => Math.max(b.y0, b.y1)) * 1.1], [Hh - mg.b, mg.t]).nice();
   svg.append('g').attr('transform', `translate(${mg.l},0)`).call(d3.axisLeft(y).ticks(4).tickFormat((v) => kmoney(v, m)).tickSize(-(W - mg.l - mg.r))).call(axis);
@@ -481,7 +481,7 @@ function drawBridge() {
   const ax = svg.append('g').attr('transform', `translate(0,${Hh - mg.b})`).call(d3.axisBottom(x).tickSizeOuter(0)).call(axis);
   ax.selectAll('text').each(function () { const t = d3.select(this), words = t.text().split(' '); t.text(''); const lines = []; let cur_ = '';
     words.forEach((w) => { if ((cur_ + ' ' + w).trim().length > 12) { lines.push(cur_.trim()); cur_ = w; } else cur_ += ' ' + w; }); lines.push(cur_.trim());
-    lines.filter(Boolean).slice(0, 3).forEach((l, k) => t.append('tspan').attr('x', 0).attr('dy', k ? '1.1em' : '0.9em').text(l)); });
+    lines.filter(Boolean).slice(0, 4).forEach((l, k) => t.append('tspan').attr('x', 0).attr('dy', k ? '1.1em' : '0.9em').text(l)); });
   const t = T();
   document.getElementById('hist-lead').textContent = `Same 14 days last year (Oct 19 – Nov 1). ${m === 'US' ? 'US' : 'Canadian'} ad spend went from ${kmoney(D_.adv25, m)} to ${kmoney(D_.adv26, m)}. Products sold both years: sales ${pct(D_.lfl_sales26 / D_.lfl_sales25 - 1, 0)}, TACoS ${pct(D_.lfl_adv25 / D_.lfl_sales25)} → ${pct(D_.lfl_adv26 / D_.lfl_sales26)}. Traffic ${pct(D_.sessions26 / D_.sessions25 - 1, 0)}, conversion ${pct(D_.cvr25, 2)} → ${pct(D_.cvr26, 2)}, SP cost per click ${cur(m)}${d3.format('.2f')(D_.cpc25)} → ${cur(m)}${d3.format('.2f')(D_.cpc26)} (recorded currency).`;
   const tl = [['Like-for-like sales', pct(D_.lfl_sales26 / D_.lfl_sales25 - 1, 0), `${kmoney(D_.lfl_sales25, m)} → ${kmoney(D_.lfl_sales26, m)}`], ['Like-for-like TACoS', pct(D_.lfl_adv26 / D_.lfl_sales26), `2025: ${pct(D_.lfl_adv25 / D_.lfl_sales25)}`],

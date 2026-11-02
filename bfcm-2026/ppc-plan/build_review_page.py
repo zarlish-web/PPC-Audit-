@@ -146,7 +146,9 @@ data = {
     "totals": tot, "hist": hist, "days": DAYS, "daytot": daytot, "weights": weights,
     "rules": rules, "agent": agent, "calls": calls,
     "yoy": {m: YO["markets"][m]["decomp"] for m in ("US", "CA")},
-    "bfgroups": [{"m": r["market"], "g": r["class"], "s25": r["adv25"], "p26": r["plan_budget26"]} for r in YO["bfcm"]],
+    "bfgroups": [{"m": m_, "g": g_, "s25": round(sum(r["adv25"] for r in YO["bfcm"] if r["market"] == m_ and r["class"] == g_), 2),
+                  "p26": round(sum(r["plan_budget26"] for r in YO["bfcm"] if r["market"] == m_ and r["class"] == g_), 2)}
+                 for m_ in ("US", "CA") for g_ in ("In both", "New since BFCM 2025", "Not in the 2026 plan")],
     "daily25": SRC["daily_bfcm2025"], "weekly": SRC["weekly2026"],
     "checks": {"total": len(VR["checks"]), "ok": cc["OK"], "check": cc["CHECK"], "diff": cc.get("DIFF", 0)},
     "products": prods,
