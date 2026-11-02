@@ -121,7 +121,7 @@ for m in ("US", "CA"):
         if a[2] > 1: where.append(f"SB video {a[2] / max(sum(a[:4]), 1):.0%}")
         if a[1] > 1: where.append(f"SB {a[1] / max(sum(a[:4]), 1):.0%}")
         if a[3] > 1: where.append(f"SD {a[3] / max(sum(a[:4]), 1):.0%}")
-        vals = [f"='Budget by product'!A{R}", a[0], a[1], a[2], a[3], f"=SUM(B{R}:E{R})", f"=IF(F{R}>0,B{R}/F{R},1)", f"=1-G{R}", f"=F{R}/14",
+        vals = [NAMES.get(r["short"], r["short"]), a[0], a[1], a[2], a[3], f"=SUM(B{R}:E{R})", f"=IF(F{R}>0,B{R}/F{R},1)", f"=1-G{R}", f"=F{R}/14",
                 round(s14, 2) if s14 else None, f'=IF(J{R}="","",I{R}/J{R})', r["tacos30"], f"='Budget by product'!K{R}", f"='Budget by product'!S{R}",
                 f'=IF(OR(K{R}="",N{R}=""),"",IF(K{R}>N{R},"Over the cap now: bring down before Nov 19","Under the cap"))',
                 f"='Budget by product'!U{R}", f"=P{R}*G{R}", f"=IF(F{R}>0,P{R}*C{R}/F{R},0)", f"=IF(F{R}>0,P{R}*D{R}/F{R},0)", f"=IF(F{R}>0,P{R}*E{R}/F{R},0)",
@@ -169,7 +169,7 @@ for m in ("US", "CA"):
     pr0 = row
     for i, r in enumerate(rows):
         br = r0 + i
-        bd.cell(row=row, column=1, value=f"='Budget by product'!A{br}").border = BOX
+        bd.cell(row=row, column=1, value=NAMES.get(r["short"], r["short"])).border = BOX
         c = bd.cell(row=row, column=2, value=f"='Budget by product'!U{br}"); c.number_format = CUR[m]; c.border = BOX; c.font = F(bold=True)
         ld = LD_DAY.get(r["short"]) if r["ld"] else None
         for k in range(12):
