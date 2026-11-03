@@ -29,8 +29,13 @@ for p in P["products"]:
         var[(p["mkt"], v["asin"])] = {"product": p["short"], "size": v.get("size"), "colour": v.get("colour"), "status_oct15": r.get("st"),
                                       "need": r.get("need"), "short_oct15": r.get("short"), "oh_oct15": r.get("oh"), "oos": r.get("oos"), "vel": r.get("vel")}
 
-eta = {r["shipment_id"]: r for r in csv.DictReader(open(os.path.join(STOCK, "inbound_eta_2026-10-27.csv")))}
-status = {r["shipment_id"]: r for r in csv.DictReader(open(os.path.join(STOCK, "sellerboard_shipment_status_2026-10-27.csv")))}
+import glob, re
+def latest(pat):
+    fs = sorted(glob.glob(os.path.join(STOCK, pat)), key=lambda f: re.findall(r"\d{4}-\d{2}-\d{2}", os.path.basename(f))[-1])
+    return fs[-1]
+ETA_FILE, STATUS_FILE = latest("inbound_eta_*.csv"), latest("sellerboard_shipment_status_*.csv")
+eta = {r["shipment_id"]: r for r in csv.DictReader(open(ETA_FILE))}
+status = {r["shipment_id"]: r for r in csv.DictReader(open(STATUS_FILE))}
 contents = defaultdict(list)               # shipment -> [(asin, sku, units, received_oct15)]
 for r in csv.DictReader(open(os.path.join(STOCK, "sellerboard_inbound_shipments_2026-10-15.csv"))):
     if r["shipment_id"] in eta:

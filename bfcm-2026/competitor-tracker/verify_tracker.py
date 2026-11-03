@@ -13,6 +13,22 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 D = os.path.join(HERE, "data")
 WB, HTML = sys.argv[1], sys.argv[2]
 
+def latest(pat):
+    fs = sorted(glob.glob(os.path.join(D, pat)), key=lambda f: re.findall(r"\d{4}-\d{2}-\d{2}", os.path.basename(f))[-1])
+    return fs[-1]
+INV_FILE = latest("stock/sellerboard_inventory_*.csv")
+INV_DATE = re.findall(r"\d{4}-\d{2}-\d{2}", os.path.basename(INV_FILE))[-1]
+import datetime as _dt
+PRE_DAYS = (_dt.date(2026, 11, 18) - _dt.date.fromisoformat(INV_DATE)).days
+PRICE_FILE = latest("sellerboard/US_prices_*.csv")
+lst = {}
+for _r in csv.DictReader(open(PRICE_FILE, encoding="utf-8-sig")):
+    try:
+        if float(_r["price"]) > 0 and not _r["sku"].startswith("Amazon.Found") and _r.get("hide", "").lower() != "true":
+            lst[("US", _r["asin"])] = float(_r["price"])
+    except (ValueError, KeyError):
+        pass
+
 def rd(path):
     return list(csv.DictReader(open(path, encoding="utf-8-sig")))
 def fnum(v):
@@ -133,11 +149,15 @@ for p in P["products"]:
                 if lp_ is None or not close(v["price"], lp_, 0.0001):
                     bad += 1; ex.append(f"{p['mkt']} {v['asin']}: {v['price']} vs launch price {lp_}")
                 continue
+            if "listing price" in (v.get("src") or "") and (p["mkt"], v["asin"]) in lst:
+                if not close(v["price"], lst[(p["mkt"], v["asin"])], 0.0001):
+                    bad += 1; ex.append(f"{p['mkt']} {v['asin']}: {v['price']} vs listing price {lst[(p['mkt'], v['asin'])]}")
+                continue
             if "catalog price" not in (v.get("src") or "") or (p["mkt"], v["asin"]) not in xr:
                 bad += 1; ex.append(f"{p['mkt']} {v['asin']}: price not from Xray ({v.get('src')})"); continue
             if not close(v["price"], xr[(p["mkt"], v["asin"])], 0.0001):
                 bad += 1; ex.append(f"{p['mkt']} {v['asin']}: {v['price']} vs Xray {xr[(p['mkt'], v['asin'])]}")
-check("Our live variation prices", "Every price shown is the catalog price read (US Oct 13, CA Oct 14), or the confirmed launch price for a product launched since", tot, bad, ex)
+check("Our live variation prices", f"Every price shown is the catalog price read (US Oct 13, CA Oct 14), the US listing price read {os.path.basename(PRICE_FILE)[10:20]} where it changed since, or the confirmed launch price for a product launched since", tot, bad, ex)
 
 # 4. Account-level BFCM 2025 lift from the raw SellerBoard files
 for m in ("US", "CA"):
@@ -220,7 +240,7 @@ check("Price 2025 vs 2026", "Every variation's BFCM 2025 price paid (raw sales f
 
 # 7. BFCM stock outlook: product totals recomputed from the raw SellerBoard inventory file, demand arithmetic, workbook vs dashboard
 inv = {}
-for r in rd(os.path.join(D, "stock", "sellerboard_inventory_2026-10-15.csv")):
+for r in rd(INV_FILE):
     k = ("CA" if r["marketplace"] == "Amazon.ca" else "US", r["asin"])
     d = inv.setdefault(k, [0.0, 0.0, 0.0])
     d[0] += float(r["on_hand"] or 0); d[1] += float(r["sent_to_fba"] or 0); d[2] += float(r["sales_velocity"] or 0)
@@ -232,13 +252,13 @@ for p in P["products"]:
     for x in st["rows"]:
         tot += 1
         raw = inv.get((p["mkt"], x["asin"]))
-        need = x["vel"] * 34 + x["vel"] * st["lift"] * 12
+        need = x["vel"] * PRE_DAYS + x["vel"] * st["lift"] * 12
         if not raw or not close(x["oh"], raw[0], 0.0001) or not close(x["ib"], raw[1], 0.0001) or not close(x["need"], need, 0.0001) \
            or (not x["velSrc"].startswith("units last 28") and not close(x["vel"], raw[2], 0.0001)):
             bad += 1; ex.append(f"{p['mkt']} {x['asin']}")
 dups = [f"{p['mkt']} {p['short']} {a}" for p in P["products"] if p.get("stock26") for a, n in __import__("collections").Counter(x["asin"] for x in p["stock26"]["rows"]).items() if n > 1]
 bad += len(dups); ex += dups
-check("BFCM 2026 stock per variation", "On hand, inbound and pace vs the raw SellerBoard file; units needed = pace × 34 + pace × lift × 12", tot, bad, ex)
+check("BFCM 2026 stock per variation", "On hand, inbound and pace vs the raw SellerBoard file; units needed = pace × " + str(PRE_DAYS) + " + pace × lift × 12", tot, bad, ex)
 sws = wb["BFCM Stock"] if "BFCM Stock" in wb.sheetnames else None
 tot = bad = 0; ex = []
 if sws:
@@ -257,25 +277,26 @@ check("BFCM 2026 stock, workbook vs dashboard", "On hand, inbound and units need
 
 # 8. Stock outlook vs the inventory planner's own run-out dates (44 key variations)
 import datetime as _dt
-pl = rd(os.path.join(D, "stock", "inventory_planner_check_2026-10-15.csv"))
-cur = {(p["mkt"], x["asin"]): x for p in P["products"] if p.get("stock26") for x in p["stock26"]["rows"]}
-tot = bad = 0; ex = []
-for r in pl:
-    x = cur.get((r["marketplace"], r["asin"]))
-    if not x or not r["sb_out_of_stock_date"]:
-        continue
-    tot += 1
-    ours, theirs = x["oos"], _dt.date.fromisoformat(r["sb_out_of_stock_date"])
-    if ours is None:
-        ok = theirs > _dt.date(2026, 11, 30)
-    else:
-        d_ = (theirs - _dt.date.fromisoformat(ours)).days
-        ok = 0 <= d_ <= (15 if ours <= "2026-11-18" else 30)
-    if not ok:
-        bad += 1; ex.append(f"{r['marketplace']} {r['asin']}: ours {ours} vs planner {theirs}")
-check("Stock run-out dates vs the inventory planner", "Covered rows run out after Nov 30 in the planner; run-out dates within 15 days (30 inside BFCM week, where we add the lift)", tot, bad, ex)
+if INV_DATE == "2026-10-15":   # the planner read is dated Oct 15; it only lines up with the stock pull of the same day
+    pl = rd(os.path.join(D, "stock", "inventory_planner_check_2026-10-15.csv"))
+    cur = {(p["mkt"], x["asin"]): x for p in P["products"] if p.get("stock26") for x in p["stock26"]["rows"]}
+    tot = bad = 0; ex = []
+    for r in pl:
+        x = cur.get((r["marketplace"], r["asin"]))
+        if not x or not r["sb_out_of_stock_date"]:
+            continue
+        tot += 1
+        ours, theirs = x["oos"], _dt.date.fromisoformat(r["sb_out_of_stock_date"])
+        if ours is None:
+            ok = theirs > _dt.date(2026, 11, 30)
+        else:
+            d_ = (theirs - _dt.date.fromisoformat(ours)).days
+            ok = 0 <= d_ <= (15 if ours <= "2026-11-18" else 30)
+        if not ok:
+            bad += 1; ex.append(f"{r['marketplace']} {r['asin']}: ours {ours} vs planner {theirs}")
+    check("Stock run-out dates vs the inventory planner", "Covered rows run out after Nov 30 in the planner; run-out dates within 15 days (30 inside BFCM week, where we add the lift)", tot, bad, ex)
 
-rep = {"generated": "2026-10-15", "checks": results, "passed": sum(1 for r in results if r["status"] == "Pass"), "total": len(results)}
+rep = {"generated": _dt.date.today().isoformat(), "checks": results, "passed": sum(1 for r in results if r["status"] == "Pass"), "total": len(results)}
 json.dump(rep, open(os.path.join(D, "verification_report.json"), "w"), indent=1)
 for r in results:
     print(f"{r['status']:4}  {r['name']}: {r['checked']} checked, {r['mismatches']} mismatches {('· ' + r['note']) if r['note'] else ''}{('  e.g. ' + '; '.join(r['examples'][:2])) if r['examples'] else ''}")

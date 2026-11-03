@@ -23,6 +23,15 @@ DATA = os.path.join(HERE, "data")
 OUT, IMG_CSV = sys.argv[1], sys.argv[2]
 NO_IMAGE_FORMULA = "--no-image-formula" in sys.argv   # validation build for LibreOffice
 
+def latest(pattern):
+    """Newest dated file matching pattern (dates are YYYY-MM-DD in the name); None when none exists."""
+    fs = sorted(glob.glob(pattern), key=lambda f: (re.findall(r"\d{4}-\d{2}-\d{2}", os.path.basename(f)) or [""])[-1])
+    return fs[-1] if fs else None
+
+def fdate(path, default=""):
+    m_ = re.findall(r"\d{4}-\d{2}-\d{2}", os.path.basename(path or ""))
+    return m_[-1] if m_ else default
+
 def jl(p, d=None):
     try:
         return json.load(open(p))
@@ -207,6 +216,31 @@ for _f in sorted(glob.glob(f"{DATA}/our_prices/*.csv")):
 our_now_other = our_now
 our_now = {k: {"price": x["price"], "lp": None, "src": "Helium 10 Xray" + (" (Amazon.ca, CAD)" if k[0] == "CA" else ""), "date": x["date"],
                "rating": x["rating"], "reviews": x["reviews"]} for k, x in xray.items() if x.get("price") is not None}
+# Refresh (Nov 3): US listing prices pulled after the latest Xray replace the Xray price for that child (e.g. the Oct 20 $5 White
+# cut), labelled with their own date. Canada stays on Xray (SellerBoard's Amazon.ca rows repeat the US price).
+SB_PRICE_FILE = latest(f"{DATA}/sellerboard/US_prices_*.csv")
+SB_PRICE_DATE = fdate(SB_PRICE_FILE)
+our_price_updates = []   # (asin, old price, old date, new price, new date)
+_xd_us = max((x["date"] for k, x in xray.items() if k[0] == "US"), default="")
+if SB_PRICE_FILE and SB_PRICE_DATE > _xd_us:
+    for _r in csv.DictReader(open(SB_PRICE_FILE, newline="", encoding="utf-8-sig")):
+        if str(_r.get("sku", "")).startswith("Amazon.Found") or str(_r.get("hide", "")).lower() == "true" or not _r.get("asin"):
+            continue
+        try:
+            _p = float(_r["price"])
+        except (TypeError, ValueError, KeyError):
+            continue
+        if _p <= 0:
+            continue
+        _k = ("US", _r["asin"])
+        _old = our_now.get(_k)
+        if _old is None and _k not in xray:
+            continue                    # only children already in our catalog read; never add new ones from this file
+        if _old is not None and abs(_old["price"] - _p) < 0.005:
+            continue
+        our_price_updates.append((_r["asin"], _old["price"] if _old else None, _old["date"] if _old else None, _p, SB_PRICE_DATE))
+        our_now[_k] = {"price": _p, "lp": None, "src": "SellerBoard listing price", "date": SB_PRICE_DATE,
+                       "rating": (_old or {}).get("rating"), "reviews": (_old or {}).get("reviews")}
 
 # Confirmed launch prices (launch thread, final confirmation Oct 15, 2026: live on all 60 children with the Buy Box)
 launch_price = {}
@@ -993,10 +1027,13 @@ for _f in sorted(glob.glob(f"{DATA}/str/str_check_*.csv")):
 # tracked here, so they sit beside the child figures rather than replacing them. It also carries the current tier,
 # the X-Ray sales band and listing assets, and rivals mapped after the tracker's snapshot are added from it.
 roster = {}   # (pid, cid) -> roster row
-for _f in glob.glob(f"{DATA}/cc_roster/*_US.json"):
-    _d = jl(_f, {}) or {}
-    for _r in _d.get("rows") or []:
-        roster[(_d["productId"], _r["competitorProductId"])] = _r
+ROSTER_WEEK = None
+for _dir in [f"{DATA}/cc_roster"] + sorted(glob.glob(f"{DATA}/cc_roster_20*")):   # later (dated) folders overwrite older
+    for _f in glob.glob(f"{_dir}/*_US.json"):
+        _d = jl(_f, {}) or {}
+        for _r in _d.get("rows") or []:
+            roster[(_d["productId"], _r["competitorProductId"])] = _r
+            ROSTER_WEEK = max(ROSTER_WEEK or "", (_r.get("weekStartDate") or "")[:10]) or None
 _by_cid = {}
 for (_p, _m), _dd in cc.items():
     if _m == "US":
@@ -1013,6 +1050,43 @@ for (_p, _c), _r in sorted(roster.items()):
     _base["tier"] = _r.get("tier")
     _dd["competitors"].append(_base)
     roster_added += 1
+
+# Keepa, last two weeks (Command Center keepa_history, daily): the newest Buy Box price (lowest new offer where Keepa has no
+# Buy Box) per exact ASIN, plus any Lightning / Prime-exclusive deal or coupon running on that day.
+keepa_now = {}   # (mkt, asin) -> {"date", "price", "basis", "list", "deal"}
+for _m in ("us", "ca"):
+    _kf = latest(f"{DATA}/keepa/keepa_now_{_m}_*.csv")
+    if not _kf:
+        continue
+    _ser = collections.defaultdict(dict)      # (asin, metric) -> {date: (value, value2)}
+    for _r in csv.DictReader(open(_kf, encoding="utf-8-sig")):
+        _ser[(_r["asin"], _r["metric"])][_r["date"]] = (_r.get("value"), _r.get("value2"))
+    _asins = {a for a, _ in _ser}
+    for _a in _asins:
+        _best = None
+        for _met in ("BUY_BOX", "NEW"):
+            _pts = [(d_, float(v_[0])) for d_, v_ in _ser.get((_a, _met), {}).items() if v_[0] not in (None, "")]
+            if _pts:
+                d_, v_ = max(_pts)
+                if _best is None or d_ > _best[0]:
+                    _best = (d_, v_, "Buy Box" if _met == "BUY_BOX" else "lowest new offer")
+        if not _best:
+            continue
+        _d0 = _best[0]
+        def _at(met, d_=_d0):
+            v_ = _ser.get((_a, met), {}).get(d_)
+            return float(v_[0]) if v_ and v_[0] not in (None, "") else None
+        _deal = []
+        if _at("LIGHTNING_DEAL") is not None:
+            _deal.append(f"Lightning Deal ${_at('LIGHTNING_DEAL'):,.2f}")
+        if _at("PRIME_EXCL") is not None:
+            _deal.append(f"Prime exclusive ${_at('PRIME_EXCL'):,.2f}")
+        _cp = _at("COUPON")
+        if _cp:
+            _deal.append(f"coupon {abs(_cp):.0f}% off" if _cp < 0 else f"coupon ${_cp:,.2f} off")
+        keepa_now[(_m.upper(), _a)] = {"date": _d0, "price": _best[1], "basis": _best[2], "list": _at("LISTPRICE"),
+                                        "deal": ", ".join(_deal) or "none", "bsr": _at("SALES")}
+KEEPA_NOW_DATE = max((v_["date"] for v_ in keepa_now.values()), default=None)
 
 # ------------------------------------------------------------------ assemble competitor records
 records = []      # one per (product, marketplace, competitor) for the Data sheet and the dashboard
@@ -1061,6 +1135,14 @@ for pid, fam, short, role in PRODUCTS:
                 elif ch in _ca_pending:
                     rec["bf_type"] = None
                     rec["notes"] = f"{rec['notes']} Keepa .ca history still being pulled."
+                rec["price_src"] = f"Amazon.ca page {row['check_date']}"
+                kn_ = keepa_now.get(("CA", ch))
+                if kn_ and kn_["date"] > (row["check_date"] or ""):
+                    rec["price_prev"], rec["price_prev_src"] = rec.get("price"), rec["price_src"]
+                    rec["price"], rec["price_src"] = kn_["price"], f"Keepa .ca {kn_['basis']} {kn_['date']} (CAD)"
+                    rec["deal_now"], rec["deal_now_date"] = kn_["deal"], kn_["date"]
+                    if kn_.get("list"):
+                        rec["list_now"] = kn_["list"]
                 records.append(rec)
             continue
         st = {r["cid"]: r for r in (strat.get(pid) or {}).get("competitors", []) if "cid" in r and "error" not in r}
@@ -1132,6 +1214,13 @@ for pid, fam, short, role in PRODUCTS:
                 if rec.get("price") is not None and abs(rec["price"] - _fresh[0]) > 0.005:
                     rec["price_cc"] = rec["price"]
                 rec["price"], rec["price_src"] = _fresh
+            kn_ = keepa_now.get((mkt, ch))
+            if kn_ and kn_["date"] > ((_fresh[1][-10:] if _fresh else (rec.get("seen") or "")[:10]) or ""):
+                rec["price_prev"], rec["price_prev_src"] = rec.get("price"), rec.get("price_src")
+                rec["price"], rec["price_src"] = kn_["price"], f"Keepa {kn_['basis']} {kn_['date']}"
+                rec["deal_now"], rec["deal_now_date"] = kn_["deal"], kn_["date"]
+                if kn_.get("list"):
+                    rec["list_now"] = kn_["list"]
             kp_ = keepa25.get(ch)
             if kp_:
                 rec.update({k: kp_[k] for k in ("bf_type", "bf_dates", "bf_pre", "bf_low", "bsr_pre", "bsr_bf", "bf_oos", "notes")})
@@ -1224,7 +1313,12 @@ def price_compare(pid, mkt):
 # Oct 16 - Nov 18 at today's pace, Nov 19 - 30 at today's pace x the product's own BFCM 2025 lift (SellerBoard, BFCM week vs
 # the 30 days before), where that lift is reliable; otherwise the account's BFCM 2025 lift is assumed and flagged.
 # No ETA exists in SellerBoard, so inbound is shown by Amazon shipment status and the outlook is given with and without it.
-STOCK_ASOF, PRE_DAYS, BF_DAYS = "2026-10-15", 34, 12
+_inv = latest(f"{DATA}/stock/sellerboard_inventory_*.csv")
+_shp = latest(f"{DATA}/stock/sellerboard_inbound_shipments_*.csv")
+STOCK_ASOF = fdate(_inv, "2026-10-15")
+PRE_DAYS, BF_DAYS = (dt.date(2026, 11, 18) - dt.date.fromisoformat(STOCK_ASOF)).days, 12   # day after the pull to Nov 18
+STOCK_LBL = dt.date.fromisoformat(STOCK_ASOF).strftime("%b %-d")
+PRE_FROM_LBL = (dt.date.fromisoformat(STOCK_ASOF) + dt.timedelta(days=1)).strftime("%b %-d")
 def _acct_lift(m):
     try:
         pre = sum(float(r["sales"] or 0) for r in csv.DictReader(open(f"{DATA}/sellerboard/{m}_pre.csv", encoding="utf-8-sig")))
@@ -1235,8 +1329,7 @@ def _acct_lift(m):
 ACCT_LIFT = {m: _acct_lift(m) for m in ("US", "CA")}
 
 sb_inv = {}   # (mkt, asin) -> summed stock fields
-_inv = f"{DATA}/stock/sellerboard_inventory_2026-10-15.csv"
-if os.path.exists(_inv):
+if _inv and os.path.exists(_inv):
     for row in csv.DictReader(open(_inv, encoding="utf-8-sig")):
         k = ("CA" if row["marketplace"] == "Amazon.ca" else "US", row["asin"])
         d = sb_inv.setdefault(k, {"on_hand": 0.0, "fba": 0.0, "inbound": 0.0, "vel": 0.0, "skus": []})
@@ -1244,8 +1337,7 @@ if os.path.exists(_inv):
             d[f_] += float(row[c_] or 0)
         d["skus"].append(row["sku"])
 sb_ship = {}  # (mkt, asin) -> [(shipment_id, status, units still inbound)]
-_shp = f"{DATA}/stock/sellerboard_inbound_shipments_2026-10-15.csv"
-if os.path.exists(_shp):
+if _shp and os.path.exists(_shp):
     for row in csv.DictReader(open(_shp, encoding="utf-8-sig")):
         u_ = float(row["units_still_inbound_calc"] or 0)
         if u_ > 0:
@@ -1261,7 +1353,7 @@ def oos_date(stock, v, lift):
     """Day stock runs out walking the demand calendar; None when it lasts past Nov 30 or nothing sells."""
     if not v:
         return None
-    t0 = dt.date(2026, 10, 15)
+    t0 = dt.date.fromisoformat(STOCK_ASOF)
     if stock < v * PRE_DAYS:
         return t0 + dt.timedelta(days=stock / v)
     if stock < v * PRE_DAYS + v * lift * BF_DAYS:
@@ -1717,7 +1809,7 @@ for pid, mkt, tname in TABS:
     so_ = stock_outlook(pid, mkt)
     if so_["rows"]:
         c_ = so_["counts"]
-        txt_ = (f"BFCM 2026 stock (SellerBoard, Oct 15): {so_['on_hand']:,.0f} units at Amazon + {so_['inbound']:,.0f} already sent (no ETA in SellerBoard); "
+        txt_ = (f"BFCM 2026 stock (SellerBoard, {STOCK_LBL}): {so_['on_hand']:,.0f} units at Amazon + {so_['inbound']:,.0f} already sent (no ETA in SellerBoard); "
                 f"selling {so_['vel']:,.1f} a day; need about {so_['need']:,.0f} to Nov 30 with a {so_['lift']:.2f}x BFCM lift ({so_['lift_src']}). "
                 f"Variations: {c_.get('Covered to Nov 30', 0)} covered, {c_.get('Needs inbound in time', 0)} need the inbound in time, "
                 f"{c_.get('Short even with inbound', 0)} short even with inbound ({so_['short']:,.0f} units), {c_.get('Out of stock now', 0)} out of stock now. Detail: BFCM Stock tab.")
@@ -1875,7 +1967,10 @@ for pid, mkt, tname in TABS:
                 c = ws.cell(row=r, column=CK[key])
                 c.hyperlink = f"https://www.amazon.{'ca' if x['mkt'] == 'CA' else 'com'}/dp/{vals[key]}"
                 c.font = F(color="0563C1", underline="single")
-        if x.get("price_cc") is not None:
+        if x.get("price_prev") is not None:
+            ws.cell(row=r, column=CK["price"]).comment = Comment(f"{x.get('price_src')}. Earlier: {x['price_prev']:,.2f} ({x.get('price_prev_src')})."
+                                                                 + (f" Deal or coupon now: {x.get('deal_now')}." if x.get("deal_now_date") else ""), "Tracker")
+        elif x.get("price_cc") is not None:
             ws.cell(row=r, column=CK["price"]).comment = Comment(f"{x.get('price_src')}. The Command Center snapshot ({(x.get('seen') or '')[:10]}) has ${x['price_cc']:,.2f}.", "Tracker")
         for key, old in (("parent", "parent_cc"), ("brand", "brand_cc")):
             if x.get(old):
@@ -2343,16 +2438,16 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
       next((r_["detail"] for r_ in slack_deal.get(("ALL", None), []) if r_["topic"] == "STR (strikethrough) tests"), "")),
      ("Deal pricing and pre-BFCM decisions per product", "Slack threads of Umair Tahir (Oct 13-15); data/deals/slack_deal_pricing_2026-10-15.csv", "2026-10-15", sum(len(v) for k_, v in slack_deal.items() if k_[0] != "ALL"), "Current", "",
       "Shown on each product tab under the BFCM 2026 plan: Amazon's current reference and max deal price, and the decision on each pre-BFCM deal (B4 US and CA, B6, S4, Satin Fitted, Quilt, SL B6, S6, Silk Pillowcase, SL Cooling Fitted)."),
-     ("BFCM 2026 stock outlook", "SellerBoard MCP, Ecotero account, read-only (data/stock/sellerboard_inventory_2026-10-15.csv, sellerboard_inbound_shipments_2026-10-15.csv)", "2026-10-15", len(sb_inv), "Partial", "",
-      f"Inventory: every page pulled (Amazon.com 2,177 rows, Amazon.ca 836); totals match SellerBoard's own account summary (US 70,217 FBA stock, 22,893 sent to FBA; CA 10,238 and 8,062). 78 open FBA shipments listed by Amazon status; SellerBoard has NO ETA field, so arrival dates are not shown and the outlook is given with and without inbound. No purchase orders in SellerBoard. Demand uses SellerBoard's velocity, which runs about 1.5x the 28-day units on the big products (includes Prime Big Deal Days and late-September deals), so the 28-day pace is shown beside it. BFCM lift = product's own 2025 lift where reliable, else ASSUMED at the account lift (US {ACCT_LIFT['US']:.2f}x, CA {ACCT_LIFT['CA']:.2f}x)."),
-     ("Stock outlook cross-check (inventory planner)", "", "2026-10-15", 44, "Exact", "",
+     ("BFCM 2026 stock outlook", f"SellerBoard MCP, Ecotero account, read-only (data/stock/{os.path.basename(_inv or '')}, {os.path.basename(_shp or '')})", STOCK_ASOF, len(sb_inv), "Partial", "",
+      f"Inventory pulled {STOCK_LBL} (every page, Amazon.com and Amazon.ca): {sum(v_['on_hand'] for k_, v_ in sb_inv.items() if k_[0] == 'US'):,.0f} US units on hand, {sum(v_['inbound'] for k_, v_ in sb_inv.items() if k_[0] == 'US'):,.0f} sent to FBA; CA {sum(v_['on_hand'] for k_, v_ in sb_inv.items() if k_[0] == 'CA'):,.0f} and {sum(v_['inbound'] for k_, v_ in sb_inv.items() if k_[0] == 'CA'):,.0f}. SellerBoard has NO ETA field, so the outlook is given with and without inbound (arrival dates: Inbound tab, from the team's ETA check). Demand: {PRE_FROM_LBL} - Nov 18 ({PRE_DAYS} days) at SellerBoard's velocity, Nov 19 - 30 at velocity x BFCM lift; the 28-day pace is shown beside it. BFCM lift = product's own 2025 lift where reliable, else ASSUMED at the account lift (US {ACCT_LIFT['US']:.2f}x, CA {ACCT_LIFT['CA']:.2f}x)."),
+     ("Stock outlook cross-check (inventory planner)", "", "2026-10-15", 44, ("Exact" if STOCK_ASOF == "2026-10-15" else "Stale"), "",
       "44 key variations (each product's best seller plus the biggest risks) checked against the inventory planner's own forecast: sales pace matches on every row; where we see a run-out before Nov 18, the planner's date is within 3 days on 17 of 19 (the other 2 within 15 days); where we show 'covered', the planner's run-out date is after Nov 30 on all 15. Our dates are earlier when the run-out falls in BFCM week because we add the BFCM lift."),
      ("Competitor type: direct vs alternative material", "", "2026-10-15", len(records), "Current", "",
       f"Every competitor is classified against our product: Direct = same product type and same material family ({sum(1 for x in records if x.get('cls') == 'Direct')} rows); Alternative material = same product, different material ({sum(1 for x in records if x.get('cls') == 'Alternative material')}); Material not verified = no material on the page or in the title ({sum(1 for x in records if x.get('cls') == 'Material not verified')}); Different product type = e.g. fitted sheet only vs our set ({sum(1 for x in records if x.get('cls') == 'Different product type')}). Materials: competitor's product page where checked, else its title. Ours: CooLinens and Sleephoria cooling = synthetic nylon-spandex cooling knit (CooLinens 90% nylon / 10% spandex; Sleephoria BreezeWeave confirmed the same fabric family Oct 15); Decolure Cooling = microfiber blend (a different material from Sleephoria); bamboo = viscose from bamboo; satin = polyester satin; silk = mulberry silk. Direct rivals lead every list."),
      ("CooLinens Cooling Sheets price", "", "2026-10-15", 5, "Current", "",
       "Launch prices confirmed live with the Buy Box on all 60 children on Oct 15, 2026 (the latest confirmed figure, replacing the earlier $79.99 Queen planning price): Twin $69.99, Full $74.99, Queen $87.99, King $93.99, Cal King $95.99. Same price for all 12 colours of a size; used for our price and every price comparison on this product."),
-     ("Our prices", "Helium 10 Xray only (US Oct 13, CA Oct 14)", "2026-10-14", len(our_now), "Current", "",
-      "Agreed Oct 15: Xray is the single source for our price. Amazon page check, Data Dive and SellerBoard listing prices are no longer shown as our price; a variation missing from Xray shows no price."),
+     ("Our prices", "Helium 10 Xray (US Oct 13, CA Oct 14); US listing price where newer", (SB_PRICE_DATE if our_price_updates else "2026-10-14"), len(our_now), "Current", "",
+      (f"Xray is the base read for our price. US listing prices pulled {SB_PRICE_DATE} replace it on the {len(our_price_updates)} US children whose price changed since (e.g. the Oct 20 $5 White cut on Bamboo 4 and 6 Piece); each is labelled with its date. Canada stays on the Oct 14 Xray read. A variation missing from both shows no price." if our_price_updates else "Agreed Oct 15: Xray is the single source for our price. A variation missing from Xray shows no price.")),
      ("Our BFCM 2026 deal plan", "BM (Slack, Oct 15, 2026); data/deals/our_deals_bfcm2026_plan.csv", "2026-10-15", sum(len(v) for v in plan26.values()), "Partial", "",
       "US: 13 Best Deals Nov 19-30 (12 tracked products plus the Hanging Closet Organizer) and 3 Lightning Deals (S6 Nov 23 cancelled, trying for a Best Deal; Silk Pillowcase Nov 23; SL Cooling Fitted Nov 25). CA: 6 Best Deals Nov 19-30. Every tracked product not on this list is NOT in a deal (BM confirmed Oct 15), e.g. DC Cooling 4pc. The Hanging Closet Organizer is not a bedding product, so it stays outside this tracker. Deal price, depth, variations and committed units not given yet. Command Center amazon_promotions shows no Nov 15 - Dec 5, 2026 deals in either market yet."),
      ("Independent re-verification", "verify_tracker.py: recomputes from the raw files and compares with this workbook and the dashboard", "2026-10-15",
@@ -2366,10 +2461,10 @@ S = [("Data", "Source", "As of", "Rows", "Status", "", "Notes"),
      ("Our heroes' BFCM 2025 price and Best Seller Rank (US)", "Command Center keepa_history (data/keepa/keepa_history_ours_cc.csv)", "Nov 1 - Dec 5, 2025", len(hero25), "Exact", "",
       f"Daily Keepa for our {len(hero25)} US hero child ASINs, pulled Oct 14. Keepa holds no Buy Box series for our own ASINs, so price = lowest new offer (we are the only seller). Price drops on Nov 20 match the Best Deals start: B4 $74.99 to $71.24, B6 $79.99 to $75.99, S4 $29.95 to $25.46, S6 $33.95 to $32.25, Satin Fitted $16.95 to $15.15, SSS4 $33.95 to $31.41. No price history for Bamboo Fitted, Decolure Cooling 4pc, CL Pillowcases, Linen Curtains and Quilt Set in this window."),
      ("Our BFCM 2025 stock", "DataHub inventory, revision 2 (agent) + data/stock/our_stock_bfcm2025_missing_dates_bracketed.csv", "2026-10-14", None, "Partial", "", "US Nov 26, 27, Dec 1 and CA Nov 24, 29, 30 have no snapshot. Filled by inference (data/stock/our_stock_bfcm2025_missing_dates_combined.csv) from units sold that day (agent, DataHub amazon_sales, 1,761 variation-days with a sale) and the readings either side: 3,503 of 3,936 variation-days in stock, 39 out of stock, 386 unknown (low or no stock either side and no sale), and 8 sold despite 0 units on both sides (inbound stock arriving that day, e.g. B4 Queen Mid Grey B0BZQ18QJB sold 87 on Cyber Monday). Stock unit columns stay blank for these days."),
-     ("Competitor tier, X-Ray sales band, listing assets; newly mapped rivals", "Command Center Competitor Summary (competitors_roster, data/cc_roster)", "week of 2026-10-11", len(roster), "Current", "",
+     ("Competitor tier, X-Ray sales band, listing assets; newly mapped rivals", "Command Center Competitor Summary (competitors_roster, data/cc_roster)", f"week of {ROSTER_WEEK or '2026-10-11'}", len(roster), "Current", "",
       f"All 27 US products pulled Oct 14 (661 product-competitor pairs). Tier now follows the Command Center's current grade. {roster_added} pairs mapped after the tracker's snapshot were added (B4, B6, CooLinens Cooling); Keepa BFCM 2025 history for the 6 new ASINs came from the Command Center (keepa_history_cc_added.csv). The Command Center list reads each rival's seed ASIN, often a different variation from the child tracked here, so its price, rank and reviews are shown beside the child figures, not in place of them."),
-     ("Competitor price, newest", "Amazon page for the exact ASIN (agent, Oct 13 and 14)", "2026-10-14", sum(1 for x in records if str(x.get('price_src') or '').startswith('Amazon page')), "Current", "",
-      f"Price column uses the Amazon page price for that exact ASIN where checked; {sum(1 for x in records if x.get('price_cc') is not None)} had changed since the Command Center snapshot and the cell comment keeps the older price. The page price matched the tracked child in 493 of 549 checkable rows on Oct 13-14."),
+     ("Competitor price, newest", "Keepa daily for the exact ASIN (Command Center keepa_history); Amazon page (agent, Oct 13-14) where Keepa has none", (KEEPA_NOW_DATE or "2026-10-14"), sum(1 for x in records if str(x.get('price_src') or '').startswith(('Amazon page', 'Keepa'))), "Current", "",
+      f"Price column = the newest reading for that exact ASIN: Keepa's latest daily Buy Box price (lowest new offer where Keepa has no Buy Box) on {sum(1 for x in records if str(x.get('price_src') or '').startswith('Keepa'))} rows "f"(to {KEEPA_NOW_DATE}), otherwise the Oct 13-14 Amazon page check. The earlier price is kept in the row's comment. Deal or coupon running now (Lightning Deal, Prime exclusive, coupon) comes from the same Keepa day: {sum(1 for x in records if x.get('deal_now_date') and x.get('deal_now') != 'none')} rows show one."),
      ("Competitor image, size and colour (US)", "Amazon.com exact-ASIN pages (agent, Part A; data/competitor_details)", "2026-10-14", len(comp_det), "Current", "",
       f"257 US competitor ASINs that lacked an image, size or colour were checked on their own Amazon page (signed out, ZIP 10001). {len(comp_det)} kept their ASIN; 4 redirected to another ASIN and are left blank, not substituted (B0DG2HRZKK, B09G8P3X6L, B0D4PKVNWB, B0D1RBXBNG). Fills 165 of the 169 missing images. Size and colour come from the page's variation attributes, never the title. Brand and parent now follow Amazon as of Oct 14: B07M67HRKS is WETCAT (Command Center: Chakir Turkish) and B0D59BMBK7 is Fafua (CC: NORTHERN BROTHERS); 28 competitors have a new parent ASIN (Amazon re-parented them; the old Command Center parent is kept in the cell comment). Keepa (Command Center keepa_history) confirmed both brands and agreed with the page on all 11 tracked ASINs where Keepa lists a parent; the other 17 rest on the page alone."),
      ("Our product photos (web dashboard)", "Agent zips: product_images_ours.zip Part 1 update (SHA-256 52e6570b...8ec109e) and product_images_ours_part2.zip (SHA-256 147ac537...b67dfc); product_images/manifest_ours*.csv + provenance_ours*.csv", "2026-10-15", _om["ok"], "Partial", "",
@@ -2448,15 +2543,15 @@ chk.cell(row=row, column=1, value="Page values typed from the screenshot (Source
 stk = wb.create_sheet("BFCM Stock")
 stk.sheet_view.showGridLines = False
 stk["A1"] = "BFCM 2026 stock outlook: will each variation last to Nov 30?"; stk["A1"].font = F(size=13, bold=True, color=C_NAVY)
-stk["A2"] = (f"SellerBoard inventory pulled Oct 15, 2026 (Ecotero; Amazon.com {sum(1 for k in sb_inv if k[0] == 'US'):,} and Amazon.ca {sum(1 for k in sb_inv if k[0] == 'CA'):,} ASINs). "
+stk["A2"] = (f"SellerBoard inventory pulled {STOCK_LBL}, 2026 (Ecotero; Amazon.com {sum(1 for k in sb_inv if k[0] == 'US'):,} and Amazon.ca {sum(1 for k in sb_inv if k[0] == 'CA'):,} ASINs). "
              "On hand = units at Amazon (FBA stock + moving between warehouses). Inbound = units already sent to Amazon (SellerBoard 'sent to FBA'); SellerBoard holds no ETA, "
-             "so shipments are listed by Amazon status. Demand: Oct 16 - Nov 18 (34 days) at SellerBoard's current velocity, Nov 19 - 30 (12 days) at velocity x BFCM lift. "
+             f"so shipments are listed by Amazon status. Demand: {PRE_FROM_LBL} - Nov 18 ({PRE_DAYS} days) at SellerBoard's current velocity, Nov 19 - 30 (12 days) at velocity x BFCM lift. "
              f"Lift = the product's own BFCM 2025 lift where reliable; otherwise ASSUMED at the account's BFCM 2025 lift (US {ACCT_LIFT['US']:.2f}x, CA {ACCT_LIFT['CA']:.2f}x). SellerBoard's velocity runs about 1.5x the 28-day units on the big products (its window includes Prime Big Deal Days and the late-September deals), so the outlook leans cautious; the 28-day pace is shown beside it as a cross-check. Blue cells are inputs; the rest are formulas.")
 stk["A2"].font = F(size=8.5, italic=True); stk["A2"].alignment = WRAP; stk.merge_cells("A2:T2"); stk.row_dimensions[2].height = 52
 SC = [("tab", "Product tab", 16), ("mkt", "Mkt", 5), ("asin", "Child ASIN", 12), ("sku", "SKU", 22), ("size", "Size", 9), ("colour", "Colour", 11),
       ("on_hand", "On hand at Amazon", 9), ("inbound", "Inbound (sent to FBA)", 9), ("ships", "Inbound shipments (status: units)", 30),
       ("vel", "Sales a day now", 8), ("vel_src", "Velocity source", 16), ("lift", "BFCM lift used", 7), ("lift_src", "Lift source", 22),
-      ("need", "Units needed Oct 16 - Nov 30", 10), ("short", "Short even with inbound", 9), ("oos", "Runs out (on hand only)", 11),
+      ("need", f"Units needed {PRE_FROM_LBL} - Nov 30", 10), ("short", "Short even with inbound", 9), ("oos", "Runs out (on hand only)", 11),
       ("oos_in", "Runs out (with inbound)", 11), ("status", "Status", 18), ("v28", "Sales a day, 28-day units / 28 (cross-check)", 9),
       ("need28", "Units needed at the 28-day pace", 10)]
 # product summary (formulas over the detail rows below)
@@ -2499,8 +2594,8 @@ for pid, mkt in sum_rows:
                 "inbound": x["inbound"], "ships": "; ".join(f"{a} {b.lower().replace('_', ' ')}: {u:,}" for a, b, u in x["ships"]) or None,
                 "vel": round(x["vel"], 3), "vel_src": x["vel_src"], "lift": round(so_["lift"], 4) if so_["lift"] else None, "lift_src": so_["lift_src"],
                 "need": f"=J{rr_}*{PRE_DAYS}+J{rr_}*L{rr_}*{BF_DAYS}", "short": f"=MAX(0,N{rr_}-G{rr_}-H{rr_})",
-                "oos": f'=IF(J{rr_}=0,"",IF(G{rr_}<J{rr_}*{PRE_DAYS},DATE(2026,10,15)+G{rr_}/J{rr_},IF(G{rr_}<N{rr_},DATE(2026,11,18)+(G{rr_}-J{rr_}*{PRE_DAYS})/(J{rr_}*L{rr_}),"after Nov 30")))',
-                "oos_in": f'=IF(J{rr_}=0,"",IF(G{rr_}+H{rr_}<J{rr_}*{PRE_DAYS},DATE(2026,10,15)+(G{rr_}+H{rr_})/J{rr_},IF(G{rr_}+H{rr_}<N{rr_},DATE(2026,11,18)+(G{rr_}+H{rr_}-J{rr_}*{PRE_DAYS})/(J{rr_}*L{rr_}),"after Nov 30")))',
+                "oos": f'=IF(J{rr_}=0,"",IF(G{rr_}<J{rr_}*{PRE_DAYS},DATE({STOCK_ASOF[:4]},{int(STOCK_ASOF[5:7])},{int(STOCK_ASOF[8:10])})+G{rr_}/J{rr_},IF(G{rr_}<N{rr_},DATE(2026,11,18)+(G{rr_}-J{rr_}*{PRE_DAYS})/(J{rr_}*L{rr_}),"after Nov 30")))',
+                "oos_in": f'=IF(J{rr_}=0,"",IF(G{rr_}+H{rr_}<J{rr_}*{PRE_DAYS},DATE({STOCK_ASOF[:4]},{int(STOCK_ASOF[5:7])},{int(STOCK_ASOF[8:10])})+(G{rr_}+H{rr_})/J{rr_},IF(G{rr_}+H{rr_}<N{rr_},DATE(2026,11,18)+(G{rr_}+H{rr_}-J{rr_}*{PRE_DAYS})/(J{rr_}*L{rr_}),"after Nov 30")))',
                 "status": f'=IF(AND(G{rr_}<=0,J{rr_}>0),"Out of stock now",IF(G{rr_}>=N{rr_},"Covered to Nov 30",IF(G{rr_}+H{rr_}>=N{rr_},"Needs inbound in time","Short even with inbound")))',
                 "v28": round(x["u28"] / 28, 3) if isinstance(x.get("u28"), (int, float)) else None, "need28": f'=IF(S{rr_}="","",S{rr_}*{PRE_DAYS}+S{rr_}*L{rr_}*{BF_DAYS})'}
         for j, (k_, h_, w_) in enumerate(SC, 1):

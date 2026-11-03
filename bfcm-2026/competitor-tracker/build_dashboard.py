@@ -118,7 +118,7 @@ for pid, mkt, tname in br.TABS:
         "stock26": stock26, "vars": vrows, "colours": sorted(cols.values(), key=lambda c: -c["u28"]), "sizes": sorted(sizes.values(), key=lambda c: -c["u28"]),
     })
 
-KEYS = ("pid", "mkt", "product", "tier", "brand", "title", "parent", "child", "price", "price_src", "price_cc", "lp", "bsr", "wk", "rating", "reviews", "seen",
+KEYS = ("pid", "mkt", "product", "tier", "brand", "title", "parent", "child", "price", "price_src", "price_cc", "price_prev", "price_prev_src", "deal_now_date", "list_now", "lp", "bsr", "wk", "rating", "reviews", "seen",
         "var", "var_src", "size", "colour", "our_same", "basis", "listed", "dd30", "ful", "country", "asi_tr", "asi_kw", "org_pct", "ad_pct", "top_kw", "top_kw_pct",
         "r_sp", "r_sb", "r_sbv", "r_ac", "contested", "we_win", "we_lose", "theirs_only", "theirs_only_share", "ppc_none", "ppc_aggr", "hero",
         "pd", "pd_pre", "q2", "l30", "str_show", "str_label", "str_price", "deal_now", "stock_now", "str_checked",
@@ -192,8 +192,9 @@ if os.path.exists(_vr):
                                  + " Independent script (verify_tracker.py) recomputing from the raw files."})
 sources = [
     {"data": "Competitor price, Best Seller Rank, reviews, weekly units", "source": "Command Center snapshot (tracked child ASIN)", "asof": "2026-10-12", "rows": len(US)},
-    {"data": "Competitor price, newest", "source": "Amazon page for the exact ASIN (agent)", "asof": "2026-10-13 / 14", "rows": paged},
-    {"data": "Competitor tier, X-Ray sales band, listing assets", "source": "Command Center Competitor Summary (competitors_roster)", "asof": "week of 2026-10-11", "rows": len(ro_pairs)},
+    {"data": "Competitor price, newest", "source": "Keepa daily for the exact ASIN (Command Center); Amazon page (agent) where Keepa has none", "asof": (br.KEEPA_NOW_DATE or "2026-10-13 / 14"), "rows": sum(1 for x in br.records if str(x.get("price_src") or "").startswith("Keepa"))},
+    {"data": "Competitor deal or coupon running now", "source": "Keepa daily (Lightning / Prime exclusive / coupon)", "asof": (br.KEEPA_NOW_DATE or ""), "rows": sum(1 for x in br.records if x.get("deal_now_date"))},
+    {"data": "Competitor tier, X-Ray sales band, listing assets", "source": "Command Center Competitor Summary (competitors_roster)", "asof": f"week of {br.ROSTER_WEEK or '2026-10-11'}", "rows": len(ro_pairs)},
     {"data": "Competitor image, size, colour", "source": "Amazon page (agent) and Data Dive", "asof": "2026-10-14", "rows": len(br.comp_det)},
     {"data": "Our product photos", "source": "Agent zips, Parts 1 and 2 (exact ASIN); the other marketplace's photo of the same ASIN where one market has none (labelled); otherwise Coming Soon with the Open photo link", "asof": "2026-10-15", "rows": br._om["ok"]},
     {"data": "Strikethrough shown, label, price", "source": "Amazon page check (agent)", "asof": "2026-10-13", "rows": len(br.str_now)},
@@ -201,9 +202,9 @@ sources = [
     {"data": "Competitors' BFCM 2025 history", "source": "Keepa (agent P1 + P2; Command Center for 6 new ASINs)", "asof": "Nov 1 – Dec 5, 2025", "rows": len(br.keepa25)},
     {"data": "Canadian competitors", "source": "Amazon.ca page research (agent)", "asof": "2026-10-13", "rows": sum(len(v) for v in br.ca_comp.values())},
     {"data": "Canadian competitors' BFCM 2025 history", "source": "Keepa .ca (agent), CAD", "asof": "Nov 1 – Dec 5, 2025", "rows": len(br.keepa25_ca)},
-    {"data": "Our live prices", "source": "Helium 10 Xray (US Oct 13, CA Oct 14), Amazon page, SellerBoard listing price", "asof": "2026-10-13 / 14", "rows": sum(1 for p in products for v in p["vars"] if v["live"])},
+    {"data": "Our live prices", "source": "Helium 10 Xray (US Oct 13, CA Oct 14); US listing price where newer", "asof": (f"US {br.SB_PRICE_DATE} ({len(br.our_price_updates)} changed) / CA 2026-10-14" if br.our_price_updates else "2026-10-13 / 14"), "rows": sum(1 for p in products for v in p["vars"] if v["live"])},
     {"data": "Our BFCM 2025 sales", "source": "SellerBoard (Ecotero account)", "asof": "Oct 21 – Dec 31, 2025", "rows": len(br.sellerboard)},
-    {"data": "BFCM 2026 stock outlook", "source": "SellerBoard inventory and FBA shipments (Ecotero, read-only pull)", "asof": "2026-10-15", "rows": len(br.sb_inv)},
+    {"data": "BFCM 2026 stock outlook", "source": "SellerBoard inventory and FBA shipments (Ecotero, read-only pull)", "asof": br.STOCK_ASOF, "rows": len(br.sb_inv)},
     {"data": "Deal pricing, pre-BFCM deal decisions, STR tests", "source": "Slack: Umair Tahir deal reviews (Oct 13–15), Abubakar Ishrat STR updates (Oct 13–15)", "asof": "2026-10-15", "rows": sum(len(v) for v in br.slack_deal.values())},
     {"data": "Our BFCM 2026 deal plan", "source": "BM (Slack)", "asof": "2026-10-15", "rows": sum(len(v) for v in br.plan26.values())},
     {"data": "Our BFCM 2025 deals", "source": "DataHub promotions, checked against Command Center amazon_promotions", "asof": "2026-10-14", "rows": sum(len(v) for v in br.deals25.values())},
@@ -220,7 +221,7 @@ for p_ in products:
         x_.pop("source", None)
 products, comps, checks, sources = scrub_obj(products), scrub_obj(comps), scrub_obj(checks), scrub_obj(sources)
 payload = json.dumps({"products": products, "comps": comps, "summary": summary, "checks": checks, "sources": sources,
-                      "built": "2026-10-14", "imagesLoaded": len(used_img)}, separators=(",", ":"), default=str)
+                      "built": __import__("datetime").date.today().isoformat(), "imagesLoaded": len(used_img)}, separators=(",", ":"), default=str)
 import base64, io
 from PIL import Image as _PIL
 
