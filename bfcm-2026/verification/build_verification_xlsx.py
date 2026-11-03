@@ -464,7 +464,7 @@ for i, s_ in enumerate(SRCS):
 me = wb.create_sheet("Method")
 title(me, "How the rebuild stays independent", None)
 ME = ["New code (verification/verify.py) reads the original records directly. It does not import or call the plan's scripts (compute_plan.py, build_ppc_plan.py) or the tracker's builder.",
-      "Formulas were re-implemented from the plan's written method: break-even = (price - COGS - FBA - referral - 1% deal fee - $70 per deal day) / price; cap = lower of 80% of break-even and the growth-band ceiling; base = TACoS now x deal-period factor; plan = min(cap, max(base, band floor x factor)); no-deal products hold today's spend at today's pace, cut to the cap.",
+      "Formulas were re-implemented from the plan's written method: break-even = (price - COGS - FBA - referral - 1% deal fee) / price (the $70-a-day deal fee is checked at deal level); cap = lower of 80% of break-even and the growth-band ceiling; base = TACoS now x deal-period factor; plan = min(cap, max(base, band floor x factor)); no-deal products hold today's spend at today's pace, cut to the cap.",
       "Account figures were pulled fresh on Nov 2 rather than read from files saved earlier; per-product spend was compared with a second, separate record (the ads console).",
       "The delivered workbook was recalculated and read cell by cell; every comparison carries its tolerance, and the All checks tab re-runs the tolerance test with live formulas.",
       "Business rules that are decisions rather than data (Satin 4 Pc Twin counted under Satin 6 Pc; the name list for re-parented 2025 listings; Liquidation judged on units) were applied as documented and are listed here so they can be challenged.",

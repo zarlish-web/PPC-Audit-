@@ -311,11 +311,11 @@ for m in ("US", "CA"):
         if asp is None:   # no row in the deal sheet: the tracker's list price is the only record
             asp = g_plan_asp = cell(bp, r, "I"); price_note = "No deal-sheet row: price taken from the tracker's listing price."
         sales = units * round(asp, 2)
-        flat = 70 * (1 if ld else 12) / sales if (dprice and sales) else 0   # $70 per deal day
+        # ad break-even excludes the fixed $70-a-day deal fee (paid whatever is spent on ads)
         if dprice and not ld:
-            be = mdeal / dprice - flat
+            be = mdeal / dprice
         elif dprice and ld:
-            be = ((mdeal + 11 * mcur) / 12) / asp - flat
+            be = ((mdeal + 11 * mcur) / 12) / asp
         else:
             be = pl["be_tacos"] if pl["be_tacos"] is not None and (mcur is None or not cprice) else (mcur / cprice if mcur is not None and cprice else None)
         st = STAGES[m].get(str(pid), [None, None, None])

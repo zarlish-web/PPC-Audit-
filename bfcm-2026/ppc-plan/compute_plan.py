@@ -66,9 +66,13 @@ for p in D["products"]:
     elif deal and ld: asp = (deal + 11 * cur) / 12
     else: asp = cur
     sales = plan_units * asp
-    flat = DEAL_FLAT_FEE * (1 if ld else 12) / sales if (deal and sales) else 0
-    if deal and not ld: be = m_deal / deal - flat
-    elif deal and ld: be = ((m_deal + 11 * m_cur) / 12) / asp - flat
+    # Ad break-even = what an extra unit earns at the deal price (after COGS, FBA, referral and the 1% deal fee).
+    # The $70-a-day deal fee is a fixed cost of running the deal: it is paid whatever is spent on ads, so it does not
+    # change what an extra ad-driven sale earns. It is checked separately at deal level (deal_fee vs deal_margin).
+    deal_fee = DEAL_FLAT_FEE * (1 if ld else 12) if deal else 0.0
+    if deal and not ld: be = m_deal / deal
+    elif deal and ld: be = ((m_deal + 11 * m_cur) / 12) / asp
+
     else: be = m_cur / cur if (m_cur is not None and cur) else (p.get("be") if isinstance(p.get("be"), (int, float)) else None)
     sb = {r["label"][:4]: r for r in (p.get("sb") or [])}
     pre = next((r for r in (p.get("sb") or []) if "before" in r["label"].lower() or "Oct" in r["label"]), None)
@@ -78,7 +82,8 @@ for p in D["products"]:
     c30 = INP["ppc30"][m].get(str(p["pid"]))
     out.append({"mkt": m, "short": p["short"], "pid": p["pid"], "name": p["brand"] + " " + p["name"], "deal_type": da.get("type"), "deal_dates": da.get("dates"),
                 "lift": lift, "lift_src": st.get("liftSrc"), "units_lo": lo, "units_hi": hi, "units_plan": plan_units, "demand_src": dsrc,
-                "units_lo_prev": lo_prev, "units_hi_prev": hi_prev, "pace14": (y14["units26"] / 14 if y14 else None), "units25": sum(v.get("u25") or 0 for v in p["vars"]),
+                "units_lo_prev": lo_prev, "units_hi_prev": hi_prev, "deal_fee": deal_fee,
+                "deal_margin": (sales * be if (deal and be is not None) else None), "pace14": (y14["units26"] / 14 if y14 else None), "units25": sum(v.get("u25") or 0 for v in p["vars"]),
                 "deal_price": deal, "cur_price": cur, "asp": asp, "sales_plan": sales, "margin_deal": m_deal, "margin_cur": m_cur, "be_tacos": be,
                 "tacos25_pre": t_pre, "tacos25_bf": t_bf, "spend30": c30[0] if c30 else None, "adsales30": c30[1] if c30 else None,
                 "tacos30": (c30[2] / 100 if c30 and c30[2] is not None else None), "ld": ld})

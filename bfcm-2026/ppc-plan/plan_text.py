@@ -93,13 +93,16 @@ calls.append(f"Decisions for Joseph: CooLinens Pillowcases is a Launch product (
              f"the plan holds today's ~${clc['Ad spend per day now, all ad types (14 days)']:,.0f} a day ({pc(clc['TACoS now, all ad types'])} TACoS"
              + (", inside its Launch band)." if (clc.get("Growth band ceiling (TACoS)") or 1) >= (clc["TACoS now, all ad types"] or 0) else ")."))
 noads = [f"{m} {r['Product']} (break-even {pc(r['Break-even TACoS at deal price'], 1)})" for m in ("US", "CA") for r in BP[m][1] if str(r.get("Growth-plan check") or "").startswith("No ads")]
-losers = [f"{m} {r['Product']}" for m in ("US", "CA") for r in BP[m][1]
-          if str(r.get("BFCM 2026 deal") or "").startswith("Best Deal") and isinstance(r.get("Break-even TACoS at deal price"), (int, float)) and r["Break-even TACoS at deal price"] < 0]
+cur_ = {"US": "$", "CA": "C$"}
+losers = [(m, r["Product"], P[(m, NAME2SHORT[r["Product"]])]) for m in ("US", "CA") for r in BP[m][1]]
+losers = [(m, n, pr) for m, n, pr in losers if pr.get("deal_fee") and (pr.get("deal_margin") or 0) < pr["deal_fee"]]
 if losers:
-    calls.append(f"Deal fees are $70 for every day a deal runs plus 1% of deal sales: $840 for a 12-day Best Deal. On {', '.join(losers)} the expected deal sales are too small "
-                 "to cover that, so the deal itself loses money before any ads. Worth reconsidering these deals before Amazon's Nov 13 deadline.")
+    calls.append("Deal fees are $70 for every day a deal runs plus 1% of deal sales: $840 for a 12-day Best Deal, $70 for a Lightning Deal. The $70 a day is a fixed cost "
+                 "of running the deal, so it is not counted in the ad break-even (an extra ad-driven sale earns the same with or without it). At deal level, the expected margin "
+                 "before ads does not cover the fee on " + ", ".join(f"{m} {n} ({cur_[m]}{pr['deal_margin']:,.0f} margin vs {cur_[m]}{pr['deal_fee']:,.0f} fee)".replace(cur_[m] + "-", "-" + cur_[m]) for m, n, pr in losers)
+                 + ". Worth reconsidering these deals before Amazon's Nov 13 deadline; if they run, ads are judged on unit margin like every other product.")
 if noads:
-    calls.append(f"No ads beyond brand defence on {', '.join(noads)}: at the deal price they lose money or keep almost nothing per unit before ads.")
+    calls.append(f"No ads beyond brand defence on {', '.join(noads)}: at the deal price {'it loses' if len(noads) == 1 else 'they lose'} money or {'keeps' if len(noads) == 1 else 'keep'} almost nothing per unit before ads.")
 calls.append(f"History check (2025 vs 2026 check tab): in BFCM 2025 we spent 1.6x (US) / 2.3x (CA) more per day than in the same 14 days before; sales rose "
              f"{jump25[0]:.1f}x / {jump25[1]:.1f}x and TACoS fell from 14.6% to 8.2% (US). Doing the same from today gives US {k(A[0])} / {kc(A[1])} (check A). "
              f"The plan is {abs(bud['US'] / A[0] - 1):.0%} {'below' if bud['US'] < A[0] else 'above'} that in the US and {abs(bud['CA'] / A[1] - 1):.0%} "
@@ -166,7 +169,7 @@ rules = {
    (f"Only Best Deal heroes with room under the cap: {', '.join(l for l, a, c in room) or 'none yet'}."
     + (f" {', '.join(l for l, a, c in at + over_h)} join once their daily TACoS is clearly under the cap." if at or over_h else "")),
  ("Bids", "No-ads products"):
-   (f"{' and '.join(n.split(' (')[0] for n in noads)} lose money or keep almost nothing per unit at the deal price before any ads ({', '.join(n.split('(')[1].rstrip(')') for n in noads)}): brand-defence only, no prospecting."
+   (f"{' and '.join(n.split(' (')[0] for n in noads)} {'loses' if len(noads) == 1 else 'lose'} money or {'keeps' if len(noads) == 1 else 'keep'} almost nothing per unit at the deal price before any ads ({', '.join(n.split('(')[1].rstrip(')') for n in noads)}): brand-defence only, no prospecting."
     if noads else "None this year."),
 }
 chk = {"Plan vs check A": (f"The plan is {'below' if bud['US'] < A[0] else 'above'} check A because it expects a {jump[0]:.1f}x (US) / {jump[1]:.1f}x (CA) sales jump vs "
