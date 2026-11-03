@@ -144,8 +144,8 @@ footer { color: var(--muted); font-size: .8rem; border-top: 1px solid var(--line
 <div class="bar"><div class="bar-in">
   <div class="brand">BFCM <b>2026</b> budget plan</div>
   <nav class="nav" aria-label="Sections">
-    <a href="#decide">Decisions</a><a href="#track">Tracker</a><a href="#new">What's new</a><a href="#products">Products</a><a href="#budget">Budget</a><a href="#days">By day</a>
-    <a href="#full25">BFCM 2025 in full</a><a href="#history">Year over year</a><a href="#adtypes">Ad types</a><a href="#rules">Rules</a><a href="#checks">Checks</a>
+    <a href="#decide">Decisions</a><a href="#track">Tracker</a><a href="#new">What's new</a><a href="#products">Products</a><a href="#budget">Budget</a><a href="#growth">Growth plan</a><a href="#days">By day</a>
+    <a href="#full25">BFCM 2025 in full</a><a href="#history">Year over year</a><a href="#adtypes">Ad types</a><a href="#rules">Rules</a>
   </nav>
   <div class="seg" role="group" aria-label="Market"><button id="m-us" aria-pressed="true">US</button><button id="m-ca" aria-pressed="false">Canada</button></div>
 </div></div>
@@ -202,6 +202,18 @@ footer { color: var(--muted); font-size: .8rem; border-top: 1px solid var(--line
     </div>
   </section>
 
+  <section id="growth">
+    <div class="head"><h2>Growth plan and today's pace</h2><p class="lead">Each product's BFCM TACoS against its growth-plan band and its cap, and how fast each product sells today against the plan.</p></div>
+    <div class="grid2">
+      <div class="card"><h3>Plan TACoS vs growth-plan band and cap</h3><p class="note">Band = the product's growth-plan stage band. During the deal TACoS falls, so the floor is scaled by the product's deal-period factor. The cap is the lower of the band ceiling and 80% of break-even.</p>
+        <div class="legend"><span><i class="sw" style="background:var(--mute-mark)"></i>Growth band</span><span><i class="sw" style="background:var(--ink);width:2px;height:12px"></i>Cap</span><span><i class="sw" style="background:var(--deal);transform:rotate(45deg)"></i>Plan TACoS</span><span><i class="sw" style="background:transparent;border:2px solid var(--bad);border-radius:50%"></i>TACoS now</span></div>
+        <div class="chart tall" id="c-growth"></div></div>
+      <div class="card"><h3>Units a day: now, the Oct 28 read, and the BFCM plan</h3><p class="note">Now = Oct 19 – Nov 1. The Oct 28 read used a pace that included Prime-event days, which is why the plan was re-based on Nov 3. Plan = units a day in BFCM (now × lift).</p>
+        <div class="legend"><span><i class="sw" style="background:var(--accent)"></i>Now</span><span><i class="sw" style="background:var(--mute-mark)"></i>Oct 28 read</span><span><i class="sw" style="background:var(--deal)"></i>BFCM plan</span></div>
+        <div class="chart tall" id="c-pace"></div></div>
+    </div>
+  </section>
+
   <section id="days">
     <div class="head"><h2>Budget by day</h2><p class="lead" id="days-lead"></p></div>
     <div class="card"><div class="legend"><span><i class="sw" style="background:var(--accent)"></i>Black Friday and Cyber Monday</span><span><i class="sw" style="background:#7a2fc0"></i>Lightning Deal day</span><span><i class="sw" style="background:var(--mute-mark)"></i>Other days</span></div><div class="chart" id="c-days"></div></div>
@@ -243,22 +255,6 @@ footer { color: var(--muted); font-size: .8rem; border-top: 1px solid var(--line
   <section id="agent">
     <div class="head"><h2>What the agent does every hour, and what a person checks</h2></div>
     <div class="tw"><table class="rules" id="t-agent"></table></div>
-  </section>
-
-  <section id="checks">
-    <div class="head"><h2>How this plan was checked</h2><p class="lead" id="checks-lead"></p></div>
-    <div class="flow">
-      <div><b>Original records</b>Fresh account pulls, 2025 product sales files, 14-day variation data by ad type, deal sheet, SKU lists, inventory.</div>
-      <div><b>Independent rebuild</b>New code recomputes units, price, break-even, cap, TACoS, budget and split for every product.</div>
-      <div><b>Second source</b>Ads console: spend per product, growth stages and bands, deal dates.</div>
-      <div><b>Compared cell by cell</b>Every number in the plan, with a tolerance, plus the rules and the wording.</div>
-      <div><b>Fixed and re-run</b>Wording errors fixed, fee correction applied, re-run until no mismatch.</div>
-    </div>
-    <div class="grid2">
-      <div class="card"><h3>How confident we are</h3><p class="note">Our own judgement, part by part, after the checks.</p><div class="tw"><table id="t-conf"></table></div></div>
-      <div class="card"><h3>Items left for a look</h3><p class="note">Not errors: points where a second source differs or a judgement was needed.</p><div class="tw" style="max-height:420px"><table id="t-flags"></table></div></div>
-    </div>
-    <div class="card"><h3>What the check found, and what was done</h3><div class="tw" style="max-height:520px"><table class="rules" id="t-find"></table></div></div>
   </section>
 
   <footer id="foot"></footer>
@@ -317,7 +313,7 @@ function drawHero() {
 
 // ---------------- what's new
 function drawNew() {
-  const yu = DATA.yoy.US, c = DATA.checks;
+  const yu = DATA.yoy.US;
   const items = [
     ['Nov 3: demand re-based to current selling', `Planned units now use the last 14 days (Oct 19 – Nov 1) × each product's own BFCM 2025 lift, plus last year's BFCM units × this year's trend where both years have volume. The Oct 28 read used paces that included the Oct 7–8 Prime event and late-September deals. US budget ${kmoney(DATA.prev.US, 'US')} → ${kmoney(DATA.totals.US.budget, 'US')}, Canada ${kmoney(DATA.prev.CA, 'CA')} → ${kmoney(DATA.totals.CA.budget, 'CA')}.`],
     ['Nov 3: tracker added', 'The Tracker section shows each product\'s actual spend, sales and TACoS against its cap every day: before Nov 19 to bring over-cap products down, and Nov 19 – 30 against the day budgets.'],
@@ -326,8 +322,6 @@ function drawNew() {
     ['Year-over-year, like for like', `Same 14 days: US spend is down 4%, but products sold both years cut SP by ${kmoney(-yu.lfl_sp, 'US')} while new products added ${kmoney(yu.new, 'US')}. Like-for-like sales fell ${pct(1 - yu.lfl_sales26 / yu.lfl_sales25, 0)} with conversion steady.`],
     ['New products in the plan', `CooLinens Cooling Sheets and Pillowcases, Decolure Bamboo Fitted and Sleephoria Cooling Fitted were not selling last October; they carry ${kmoney(DATA.bfgroups.filter((g) => g.m === 'US' && g.g === 'New since BFCM 2025').reduce((a, g) => a + g.p26, 0), 'US')} of the US plan.`],
     ['Deal fees corrected', '1% of deal sales + $70 per deal (was 1.5% + $100). US budget +$114; Canada unchanged.'],
-    ['Independent verification', `${d3.format(',')(c.total)} checks against the original records and a second data source: ${d3.format(',')(c.diff)} mismatches left, ${c.check} judgment items.`],
-    ['Fixes from the checks', 'Satin 4 Pc (US) removed from the bid-raise list (over its cap); no-raise and over-cap lists rebuilt from data; Black Friday and Cyber Monday wording corrected.'],
     ['History checks', 'Raising today\'s spend the way we did in BFCM 2025 (check A) now sits above the plan in both markets: the plan is the base and check A the ceiling.'],
   ];
   document.getElementById('newlist').replaceChildren(...items.map(([a, b]) => el('div', {}, el('b', { text: a }), b)));
@@ -575,17 +569,6 @@ function drawRules() {
   const mk = (rows, heads, keys) => [el('thead', {}, el('tr', {}, heads.map((h) => el('th', { text: h })))), el('tbody', {}, rows.map((r) => el('tr', {}, keys.map((k, i) => el('td', { text: r[k] || '', style: i === 1 ? 'font-weight:600' : '' })))))];
   document.getElementById('t-rules').replaceChildren(...mk(DATA.rules, ['Area', 'Rule', 'What to do', 'Why'], ['a', 'b', 'c', 'd']));
   document.getElementById('t-agent').replaceChildren(...mk(DATA.agent, ['Who', 'When', 'What', 'Escalate if'], ['a', 'b', 'c', 'd']));
-  const c = DATA.checks;
-  document.getElementById('checks-lead').textContent = `Every number in this plan was rebuilt from the original records with separate code and compared with the workbook: ${d3.format(',')(c.total)} checks, ${d3.format(',')(c.ok)} match, ${c.diff} mismatches left, ${c.check} items left for a look (below).`;
-  const pctc = (v) => el('td', { class: 'n' }, el('span', { class: 'chip ' + (v >= 0.85 ? 'ok' : v >= 0.65 ? 'warn' : 'bad'), text: d3.format('.0%')(v) }));
-  document.getElementById('t-conf').replaceChildren(el('thead', {}, el('tr', {}, ['Part of the number', 'Confidence', 'Why'].map((h, i) => el('th', { class: i === 1 ? 'n' : '', text: h })))),
-    el('tbody', {}, DATA.conf.map(([a, v, w], i) => el('tr', { class: i === DATA.conf.length - 1 ? 'tot' : '' }, el('td', { text: a }), pctc(v), el('td', { text: w })))));
-  document.getElementById('t-flags').replaceChildren(el('thead', {}, el('tr', {}, ['Mkt', 'Product', 'Why it is flagged'].map((h) => el('th', { text: h })))),
-    el('tbody', {}, DATA.flags.map((f) => el('tr', {}, el('td', { text: f.mkt }), el('td', { text: f.product }), el('td', { text: f.why })))));
-  const sevc = { High: 'bad', Medium: 'warn', Low: '', Info: '' };
-  document.getElementById('t-find').replaceChildren(el('thead', {}, el('tr', {}, ['Severity', 'Area', 'Finding', 'What was done', 'Status'].map((h) => el('th', { text: h })))),
-    el('tbody', {}, DATA.findings.map((f) => el('tr', {}, el('td', {}, el('span', { class: 'chip ' + (sevc[f.sev] || ''), text: f.sev })), el('td', { text: f.area }),
-      el('td', { text: f.finding }), el('td', { text: f.action }), el('td', {}, el('span', { class: 'chip ' + (/^Fixed|Verified/.test(f.status) ? 'ok' : /^Open/.test(f.status) ? 'warn' : ''), text: f.status }))))));
 }
 function drawFull25() {
   const DD = DATA.daily25.days; const m = MKT, F = DATA.full25[m], fx = m === 'CA' ? 1.4036 : 1, pre = F.pre, bf = F.bf, D_ = DATA.daily25[m];
@@ -778,12 +761,55 @@ function drawTrackTable(m, pre, ev) {
       })));
   }
 }
+function drawGrowth() {
+  const host = document.getElementById('c-growth'); host.replaceChildren(); const m = MKT;
+  const rows = prodsM().filter((p) => p.cap != null).sort((a, b) => b.budget - a.budget);
+  const W = Math.max(320, host.clientWidth || 520), rowH = 26, top = 6, Hh = rows.length * rowH + top + 30;
+  const svg = d3.select(host).append('svg').attr('viewBox', `0 0 ${W} ${Hh}`).attr('role', 'img').attr('aria-label', 'Plan TACoS against growth band and cap per product');
+  const lab = (p) => (W < 520 ? p.name.replace('Decolure ', '').replace('Sleephoria ', 'SL ').replace('Sleep Sanctuary ', 'SS ').replace('CooLinens ', 'CL ') : p.name);
+  const left = d3.max(rows, (p) => textW(svg, lab(p))) + 10;
+  const mx = Math.min(0.7, d3.max(rows, (p) => Math.max(p.band[1] || 0, p.cap || 0, p.tacos_now || 0, p.plan_tacos || 0)) * 1.05);
+  const x = d3.scaleLinear([0, mx], [left, W - 12]);
+  svg.append('g').attr('transform', `translate(0,${top + rows.length * rowH})`).call(d3.axisBottom(x).ticks(nTicks(W - left)).tickFormat(d3.format('.0%')).tickSize(-rows.length * rowH)).call(axis);
+  const tp = tip(host);
+  rows.forEach((p, i) => {
+    const y = top + i * rowH, cy = y + rowH / 2;
+    svg.append('text').attr('x', left - 8).attr('y', cy + 4).attr('text-anchor', 'end').style('fill', css('--ink')).style('font-size', '12px').text(lab(p));
+    if (p.band[0] != null) svg.append('rect').attr('x', x(p.band[0] * (p.factor || 1))).attr('y', cy - 6).attr('width', Math.max(2, x(p.band[1]) - x(p.band[0] * (p.factor || 1)))).attr('height', 12).attr('rx', 3).attr('fill', css('--mute-mark'));
+    svg.append('line').attr('x1', x(p.cap)).attr('x2', x(p.cap)).attr('y1', cy - 9).attr('y2', cy + 9).attr('stroke', css('--ink')).attr('stroke-width', 2);
+    if (p.tacos_now != null) svg.append('circle').attr('cx', x(Math.min(p.tacos_now, mx))).attr('cy', cy).attr('r', 4.5).attr('fill', 'none').attr('stroke', css('--bad')).attr('stroke-width', 2);
+    svg.append('path').attr('d', d3.symbol(d3.symbolDiamond, 60)()).attr('transform', `translate(${x(p.plan_tacos || 0)},${cy})`).attr('fill', css('--deal'));
+    svg.append('rect').attr('x', 0).attr('y', y).attr('width', W).attr('height', rowH).attr('fill', 'transparent')
+      .on('mousemove', (e) => showTip(host, tp, e, [p.name, `Plan ${pct(p.plan_tacos)} · cap ${pct(p.cap)}`, p.band[0] != null ? `Band ${pct(p.band[0], 0)}–${pct(p.band[1], 0)} (${p.stage})` : `${p.stage}: no band`, `TACoS now ${pct(p.tacos_now)}${p.tacos_now > mx ? ' (off the scale)' : ''}`]))
+      .on('mouseleave', () => (tp.hidden = true)).on('click', () => openP(p.id));
+  });
+}
+function drawPace() {
+  const host = document.getElementById('c-pace'); host.replaceChildren(); const m = MKT;
+  const rows = prodsM().filter((p) => p.pace_now != null && p.units[2] > 0).sort((a, b) => b.units[2] - a.units[2]).slice(0, 14);
+  const W = Math.max(320, host.clientWidth || 520), rowH = 30, top = 6, Hh = rows.length * rowH + top + 30;
+  const svg = d3.select(host).append('svg').attr('viewBox', `0 0 ${W} ${Hh}`).attr('role', 'img').attr('aria-label', 'Units a day now, in the Oct 28 read and in the BFCM plan');
+  const lab = (p) => (W < 520 ? p.name.replace('Decolure ', '').replace('Sleephoria ', 'SL ').replace('Sleep Sanctuary ', 'SS ').replace('CooLinens ', 'CL ') : p.name);
+  const left = d3.max(rows, (p) => textW(svg, lab(p))) + 10;
+  const x = d3.scaleLinear([0, d3.max(rows, (p) => Math.max(p.units[2] / 12, p.u28_day || 0, p.pace_now || 0))], [left, W - 34]).nice();
+  svg.append('g').attr('transform', `translate(0,${top + rows.length * rowH})`).call(d3.axisBottom(x).ticks(nTicks(W - left))).call(axis);
+  const tp = tip(host);
+  rows.forEach((p, i) => {
+    const y = top + i * rowH, bh = 7;
+    svg.append('text').attr('x', left - 8).attr('y', y + rowH / 2 + 4).attr('text-anchor', 'end').style('fill', css('--ink')).style('font-size', '12px').text(lab(p));
+    [[p.pace_now, css('--accent')], [p.u28_day, css('--mute-mark')], [p.units[2] / 12, css('--deal')]].forEach(([v, c], k) =>
+      svg.append('rect').attr('x', x(0)).attr('y', y + 4 + k * (bh + 1)).attr('width', Math.max(1, x(v || 0) - x(0))).attr('height', bh).attr('rx', 2).attr('fill', c));
+    svg.append('rect').attr('x', 0).attr('y', y).attr('width', W).attr('height', rowH).attr('fill', 'transparent')
+      .on('mousemove', (e) => showTip(host, tp, e, [p.name, `Now ${d3.format('.1f')(p.pace_now)} a day`, `Oct 28 read ${d3.format('.1f')(p.u28_day)} a day`, `BFCM plan ${d3.format('.1f')(p.units[2] / 12)} a day (${d3.format('.2f')(p.lift || 0)}x lift)`]))
+      .on('mouseleave', () => (tp.hidden = true)).on('click', () => openP(p.id));
+  });
+}
 function drawFoot() {
   const sl = document.getElementById('sheet-link');
   if (sl && !sl.childNodes.length) sl.append('Workbook with every number and formula: ', el('a', { href: DATA.sheet, target: '_blank', rel: 'noopener', text: 'BFCM-2026 PPC Budget Plan (Google Sheet)' }), '.');
   document.getElementById('foot').textContent = `Built ${DATA.built} by Shayan Rana for Joseph Fisher's review (asked by Erik). Workbook: BFCM-2026 PPC Budget Plan (Google Sheet, linked at the top). Figures are estimates from the last 14 days of sales and spend by product and ad type, each product's BFCM 2025 lift and the Oct 27 deal prices; Amazon deal prices can change until Nov 13.`;
 }
-function drawMarket() { drawFoot(); drawTrack(); drawFull25(); drawHero(); drawGrid(); drawScen(); drawBudgetTable(); drawAllDays(); drawBridge(); drawBfcmp(); drawSplit(); drawWeekly(); }
+function drawMarket() { drawFoot(); drawTrack(); drawGrowth(); drawPace(); drawFull25(); drawHero(); drawGrid(); drawScen(); drawBudgetTable(); drawAllDays(); drawBridge(); drawBfcmp(); drawSplit(); drawWeekly(); }
 function setM(m) { MKT = m; document.getElementById('m-us').setAttribute('aria-pressed', m === 'US'); document.getElementById('m-ca').setAttribute('aria-pressed', m === 'CA'); drawMarket(); }
 document.getElementById('m-us').addEventListener('click', () => setM('US'));
 document.getElementById('m-ca').addEventListener('click', () => setM('CA'));

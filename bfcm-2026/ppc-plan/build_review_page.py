@@ -175,7 +175,7 @@ CONF = [["The maths (budgets, caps, totals, by day)", 0.99, "Rebuilt independent
         ["Overall: the budget to go in with", 0.70, "US spend lands between $53K and $73K: about 80%. Within 10% of the plan: about 60%. The agent paces to each cap on actual sales, so spend corrects itself."]]
 SHEET_URL = "https://docs.google.com/spreadsheets/d/1miNz6A9pKrjZEqQkfP9OVHKdQ_l5EVacCj-LsZP5j7I/edit?usp=sharing"
 data = {
-    "findings": findings, "flags": flags, "conf": CONF, "sheet": SHEET_URL,
+    "sheet": SHEET_URL,
     "built": _dt.date.today().strftime("%b %-d, %Y"), "prev": {"US": 88264, "CA": 25542},
     "stock_asof": _dt.date.fromisoformat(D.get("stockAsof") or "2026-11-03").strftime("%b %-d") if D.get("stockAsof") else "Nov 3", "stock_risk": _risk,
     "totals": tot, "hist": hist, "days": DAYS, "daytot": daytot, "weights": weights,
@@ -188,7 +188,6 @@ data = {
     "full25": {m: {"pre": SRC["pre2025_30d"][m], "bf": SRC["bfcm2025_total"][m]} for m in ("US", "CA")},
     "other25": {m: [{"name": r["product"], "sales": r["sales25"], "adv": r["adv25"], "units": r["units25"], "sessions": r["sessions25"], "pre_units": r["pre_units25"], "pre_sessions": r["pre_sessions25"]}
                     for r in YO["bfcm"] if r["market"] == m and not r["in_plan"] and r["sales25"] > 1] for m in ("US", "CA")},
-    "checks": {"total": len(VR["checks"]), "ok": cc["OK"], "check": cc["CHECK"], "diff": cc.get("DIFF", 0)},
     "products": prods,
 }
 tpl = open(os.path.join(HERE, "review_template.html")).read()
