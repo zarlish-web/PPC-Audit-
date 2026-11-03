@@ -218,6 +218,8 @@ our_now = {k: {"price": x["price"], "lp": None, "src": "Helium 10 Xray" + (" (Am
                "rating": x["rating"], "reviews": x["reviews"]} for k, x in xray.items() if x.get("price") is not None}
 # Refresh (Nov 3): US listing prices pulled after the latest Xray replace the Xray price for that child (e.g. the Oct 20 $5 White
 # cut), labelled with their own date. Canada stays on Xray (SellerBoard's Amazon.ca rows repeat the US price).
+# Listing prices that disagree with what customers paid in the last week are held back until confirmed
+PRICE_HOLD = {"BAMBOO-QUEEN-BLACK": "listing price $109.99 on Nov 3, but every unit Oct 27 - Nov 1 sold at $89.99 (possible list-price change for the strikethrough); confirm before use"}
 SB_PRICE_FILE = latest(f"{DATA}/sellerboard/US_prices_*.csv")
 SB_PRICE_DATE = fdate(SB_PRICE_FILE)
 our_price_updates = []   # (asin, old price, old date, new price, new date)
@@ -231,6 +233,8 @@ if SB_PRICE_FILE and SB_PRICE_DATE > _xd_us:
         except (TypeError, ValueError, KeyError):
             continue
         if _p <= 0:
+            continue
+        if _r.get("sku") in PRICE_HOLD:
             continue
         _k = ("US", _r["asin"])
         _old = our_now.get(_k)
@@ -2596,7 +2600,7 @@ for pid, mkt in sum_rows:
     for x in so_["rows"]:
         vals = {"tab": tab_, "mkt": mkt, "asin": x["asin"], "sku": x["sku"], "size": x["size"], "colour": x["colour"], "on_hand": x["on_hand"],
                 "inbound": x["inbound"], "ships": "; ".join(f"{a} {b.lower().replace('_', ' ')}: {u:,}" for a, b, u in x["ships"]) or None,
-                "vel": round(x["vel"], 3), "vel_src": x["vel_src"], "lift": round(so_["lift"], 4) if so_["lift"] else None, "lift_src": so_["lift_src"],
+                "vel": x["vel"], "vel_src": x["vel_src"], "lift": so_["lift"] or None, "lift_src": so_["lift_src"],
                 "need": f"=J{rr_}*{PRE_DAYS}+J{rr_}*L{rr_}*{BF_DAYS}", "short": f"=MAX(0,N{rr_}-G{rr_}-H{rr_})",
                 "oos": f'=IF(J{rr_}=0,"",IF(G{rr_}<J{rr_}*{PRE_DAYS},DATE({STOCK_ASOF[:4]},{int(STOCK_ASOF[5:7])},{int(STOCK_ASOF[8:10])})+G{rr_}/J{rr_},IF(G{rr_}<N{rr_},DATE(2026,11,18)+(G{rr_}-J{rr_}*{PRE_DAYS})/(J{rr_}*L{rr_}),"after Nov 30")))',
                 "oos_in": f'=IF(J{rr_}=0,"",IF(G{rr_}+H{rr_}<J{rr_}*{PRE_DAYS},DATE({STOCK_ASOF[:4]},{int(STOCK_ASOF[5:7])},{int(STOCK_ASOF[8:10])})+(G{rr_}+H{rr_})/J{rr_},IF(G{rr_}+H{rr_}<N{rr_},DATE(2026,11,18)+(G{rr_}+H{rr_}-J{rr_}*{PRE_DAYS})/(J{rr_}*L{rr_}),"after Nov 30")))',

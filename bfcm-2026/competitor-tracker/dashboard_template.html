@@ -433,9 +433,9 @@ function openComp(uid) {
       <div class="grp"><h3>Price and offer</h3>${kv([
         ["Price", fmt$(c.price, m), esc(c.price_src || "")],
         ...(isNum(c.price_prev) ? [["Earlier price", fmt$(c.price_prev, m), esc(c.price_prev_src || "")]] : []),
-        ["List price", fmt$(isNum(c.list_now) ? c.list_now : c.lp, m), isNum(c.list_now) ? "Keepa " + esc(c.deal_now_date || "") : ""],
+        ["List price", fmt$(isNum(c.list_now) ? c.list_now : c.lp, m), isNum(c.list_now) ? "price history " + esc(c.deal_now_date || "") : ""],
         ["Strikethrough on page", c.str_show === "Y" ? `${esc(c.str_label || "Shown")} ${fmt$(c.str_price, m)}` : c.str_show === "N" ? "Not shown" : "—", c.str_checked ? "checked " + esc(c.str_checked.slice(0, 10)) : ""],
-        [c.deal_now_date ? "Deal or coupon now" : "Deal on page", esc(c.deal_now || r.deal || "none"), c.deal_now_date ? "Keepa " + esc(c.deal_now_date) : ""],
+        [c.deal_now_date ? "Deal or coupon now" : "Deal on page", esc(c.deal_now || r.deal || "none"), c.deal_now_date ? "price history " + esc(c.deal_now_date) : ""],
         ["In stock", r.inStock === true ? "Yes" : r.inStock === false ? "No" : yn(c.stock_now)],
         ["Our price, same size", fmt$(c.our_same, m)],
         ["Price vs ours", isNum(c.gap) ? (c.gap > 0 ? "+" : "") + fmtP(c.gap, 1) : "—", esc((c.basis || "").split(".")[0])],
