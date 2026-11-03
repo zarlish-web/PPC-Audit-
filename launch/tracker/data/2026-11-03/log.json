@@ -208,5 +208,15 @@
 "actions": "1. New 31 Oct campaigns: fully funded until their read; stop-loss above 2\u00d7 break-even on 3 settled reads in a row.\n2. Existing campaigns: hold the 2 Nov bid increases until 5 Nov (A14).\n3. Existing campaigns: Queen White back next to Graphite in Cooling Sheet exact, Cooling Sheet Queen, Auto (main), Cooling Bed Sheet, Queen Tail 18, Cooling Rivals Queen, Cooling Bed Sheet Queen (A13). King stays on Graphite.\n4. Total about $850\u2013900/day. King Beige reorder (8 units).",
 "reasoning": "The new campaigns need spend for a fair read; the overspend on 2 Nov came mostly from bid raises on existing campaigns that were profitable at their old bids.",
 "followups": "5 Nov: check whether A13 and A14 were applied, existing SP spend/ACoS vs 1 Nov, total spend vs $850\u2013900, and the engine's read of the new campaigns."
+},
+{
+"date": "2026-11-03",
+"kind": "Joseph's reply",
+"headline": "Joseph agreed the stop-loss on the new campaigns (cut at 2\u00d7 break-even after 30+ clicks and 3+ days of data) but declined pulling back the 2 Nov raises, declined Queen White beside Graphite (one ranking colour per size), and set no spend cap until the 5 Nov settled read.",
+"results": "Joseph's read: margin after ads about $295/day (24\u201328 Oct) \u2192 $364/day (31 Oct\u20132 Nov); TACoS 33% \u2192 29%. Queen 10.4 \u2192 9.3 units/day while ad spend fell.",
+"observations": "Joseph on the 2 Nov jump: raises were small (median +10%), the main keywords' top-of-search boost came down from 900% to 800\u2013850%, and most of the jump is delivery returning on Graphite (impressions 7.9k \u2192 15.6k a day). Pre-swap, existing SP ran about $664/day.\nOur Sellerboard view for comparison: net after refunds $512 over 31 Oct\u20132 Nov (about $171/day); before refunds about $299/day.\nWatch items Joseph raised for 5 Nov: 'cooling sheets full size' down from #14\u201320 to #53\u201374 since 26 Oct (our crawl: #30 on 31 Oct, #61, #74, #87 on 3 Nov); Cal King Graphite, now the Cal King ad colour, 69 units. Note: Sellerboard shows Cal King Graphite sold 2 units on 2 Nov.",
+"actions": "A13 and A14 declined. D25 stop-loss agreed. No cap until the 5 Nov settled read (D22).\n5 Nov read: new campaigns at 30+ clicks and 3+ days old against 2\u00d7 break-even; Queen units/day vs 10.4 (if still down, Joseph decides on the whole-size colour); 'cooling sheets full size' rank; Cal King Graphite sales.",
+"reasoning": "Joseph's points stand on the data he cites; our job on 5 Nov is to read each new campaign against the agreed gate on settled data, not to re-argue the colour.",
+"followups": "5 Nov: settled read (D25 gate), Queen units vs 10.4/day, 'cooling sheets full size', Cal King Graphite."
 }
 ]

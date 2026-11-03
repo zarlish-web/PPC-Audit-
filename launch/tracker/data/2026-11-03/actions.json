@@ -202,12 +202,12 @@
 "action": "Re-enable Queen White next to Graphite in the 7 proven existing campaigns",
 "change": "Re-enable the Queen White product ad (keep Queen Graphite on) in: Cooling Sheet exact, Cooling Sheet Queen, Auto (main), Cooling Bed Sheet, Queen Tail 18, Cooling Rivals Queen, Cooling Bed Sheet Queen. King stays on Graphite for now (King White 75 units).",
 "why": "Since 29 Oct these 31 campaigns advertise only a new Queen Graphite ad. Their serving fell from 16,771 impressions (28 Oct) to 603 (30 Oct) and is recovering slowly; Graphite converts at 3.5% (31 Oct\u20131 Nov) against 12.9% for Queen overall, and most shoppers who click it buy another colour.",
-"evidence": "These 7 campaigns, 22\u201328 Oct (five Queen colours incl. White): 94,156 impressions, 547 clicks, 40 orders, $1,456 spend, $3,503 sales (ACoS 42%), about 5.7 orders/day. 29 Oct\u20132 Nov (Graphite only): 8,014 impressions, 62 clicks, 1 order, $180. Queen White stock 157 (+56 reserved), about 4\u20135 weeks even at their old order rate. Caveat: whichever colour carries the ads converts about 2% on its own page (shoppers switch colours); the gain is the proven campaigns serving again.",
+"evidence": "These 7 campaigns, 22\u201328 Oct (five Queen colours incl. White): 94,156 impressions, 547 clicks, 40 orders, $1,456 spend, $3,503 sales (ACoS 42%), about 5.7 orders/day. 29 Oct\u20132 Nov (Graphite only): 8,014 impressions, 62 clicks, 1 order, $180. Queen White stock 157 (+56 reserved), about 4\u20135 weeks even at their old order rate. Caveat: whichever colour carries the ads converts about 2% on its own page (shoppers switch colours); the gain is the proven campaigns serving again. 3 Nov, Joseph: 'one ranking colour per size stays'. Queen held 10.4 \u2192 9.3 units/day while ad spend fell; if Queen is still down on the 5 Nov read, he will decide whether to move the whole size to another colour.",
 "expected": "Faster return to pre-switch serving on the head terms; ad sales booked to the colour shoppers buy.",
 "check": "3 days after the change: impressions and clicks of the six campaigns vs 28 Oct; Queen units and CVR.",
 "safe": "Graphite stays live, so nothing is lost; Midnight Black and White have 86\u2013207 days of stock.",
 "ref": "Investigation 2 Nov",
-"status": "Sent to Joseph 3 Nov"
+"status": "Declined by Joseph 3 Nov"
 },
 {
 "id": "A14",
@@ -216,11 +216,11 @@
 "action": "Hold the 2 Nov bid increases on the existing campaigns until the 5 Nov read",
 "change": "Return the existing (pre-31 Oct) campaigns to their bids from before the 2 Nov taper-up; leave the new 31 Oct campaigns untouched.",
 "why": "The 2 Nov raises doubled existing Sponsored Products spend ($279 \u2192 $561) while their orders fell from 9 to 5 (ACoS 37% \u2192 133%).",
-"evidence": "2 Nov engine daily tune: 241 bid/top-of-search raises, 39 cuts. Existing SP 1 Nov $278.83, 9 orders, ACoS 37%; 2 Nov $560.75, 5 orders, ACoS 133% (e.g. Cool Sheet $121, Cooling Sheet King Size $97).",
+"evidence": "2 Nov engine daily tune: 241 bid/top-of-search raises, 39 cuts. Existing SP 1 Nov $278.83, 9 orders, ACoS 37%; 2 Nov $560.75, 5 orders, ACoS 133% (e.g. Cool Sheet $121, Cooling Sheet King Size $97). 3 Nov, Joseph: $280\u2013300/day was the starved level after the Graphite swap; before it, existing SP ran about $664/day. The 2 Nov raises were small (median +10%) and the top-of-search boost on the main keywords came down from 900% to 800\u2013850%. Most of the 2 Nov jump is delivery returning on Graphite (impressions 7.9k \u2192 15.6k a day). The daily tune catches anything that runs away.",
 "expected": "Existing SP back to about $280\u2013300/day at a profitable ACoS; total spend about $850\u2013900/day with the new campaigns fully funded.",
 "check": "5 Nov: existing SP spend and ACoS vs 1 Nov; total daily spend vs $850\u2013900.",
 "safe": "Only reverses one day of increases on campaigns that were profitable at the old bids; new campaigns keep their test.",
 "ref": "D22, proposal 3 Nov",
-"status": "Sent to Joseph 3 Nov"
+"status": "Declined by Joseph 3 Nov"
 }
 ]
