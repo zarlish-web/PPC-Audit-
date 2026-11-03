@@ -426,9 +426,9 @@
    "evidence": "Week 1 (16–22 Oct): 19.6 units/day, $506/day ads, net +$235/day. Week 2 (23–28 Oct): 30.0 units/day, $896/day ads, net +$237/day. The extra $390/day bought about 10 units/day and no extra profit. Zero-order items since launch: three brand video campaigns 101 clicks, $206; No Size Tail 05 25 clicks, $71; 'cooling sheets twin' 26 clicks, $99. No-size rival video ACoS 112%.",
    "type": "Proposed",
    "gate": "Joseph's call at the Day 14 checkpoint.",
-   "status": "Open: spend up 3 days running",
+   "status": "Proposal sent 3 Nov",
    "review_on": "2026-11-05",
-   "outcome": "30 Oct: overtaken. On 29 Oct the engine (Joseph-approved) added 84 campaigns with about $1,008/day of budget and raised four no-size budgets ($45→$94, $15→$104, $15→$90, $15→$85), while actual spend fell to $427 on 29 Oct. The zero-order brand videos and No Size Tail 05 are still running. Re-read once spend settles under the new set-up. 1 Nov: the 31 Oct rebuild added another $3,863/day of new budget and raised 47 budgets by $1,113/day. Spend on 31 Oct was $515 (all types), so the budgets are a ceiling, not the spend. Question for Joseph: which daily spend should we hold the launch to? 2 Nov: 1 Nov ads $867.19 (31 Oct $452.62) for 28 units and +$138.15. The 30 new brand campaigns spent $296.77 for 3 orders (ACoS 108%); 13 campaigns hit 95%+ of budget. Still needs Joseph's target daily spend. 3 Nov: ads $452.62 → $842.71 → $1,176.72 (31 Oct–2 Nov) while profit fell $287.80 → $162.63 → $61.72. On 2 Nov the engine raised 241 bids and top-of-search multipliers (taper-up). Needs Joseph's target daily spend before the read."
+   "outcome": "30 Oct: overtaken. On 29 Oct the engine (Joseph-approved) added 84 campaigns with about $1,008/day of budget and raised four no-size budgets ($45→$94, $15→$104, $15→$90, $15→$85), while actual spend fell to $427 on 29 Oct. The zero-order brand videos and No Size Tail 05 are still running. Re-read once spend settles under the new set-up. 1 Nov: the 31 Oct rebuild added another $3,863/day of new budget and raised 47 budgets by $1,113/day. Spend on 31 Oct was $515 (all types), so the budgets are a ceiling, not the spend. Question for Joseph: which daily spend should we hold the launch to? 2 Nov: 1 Nov ads $867.19 (31 Oct $452.62) for 28 units and +$138.15. The 30 new brand campaigns spent $296.77 for 3 orders (ACoS 108%); 13 campaigns hit 95%+ of budget. Still needs Joseph's target daily spend. 3 Nov: ads $452.62 → $842.71 → $1,176.72 (31 Oct–2 Nov) while profit fell $287.80 → $162.63 → $61.72. On 2 Nov the engine raised 241 bids and top-of-search multipliers (taper-up). Needs Joseph's target daily spend before the read. 3 Nov proposal sent to Joseph: (1) keep the new 31 Oct campaigns fully funded (~$470/day) until their read, stop-loss if above 2× break-even on 3 settled reads in a row; (2) hold the 2 Nov bid increases on existing campaigns until 5 Nov (A14); (3) Queen White back next to Graphite in 7 proven campaigns (A13); total about $850–900/day."
   },
   {
    "id": "D23",
@@ -1166,6 +1166,31 @@
     "Joseph: target daily spend (D22); A13; King Beige reorder (A2).",
     "Honeymoon reads 5 and 12 Nov (D23)."
    ]
+  },
+  {
+   "date": "2026-11-03",
+   "kind": "Proposal to Joseph",
+   "headline": "Sent Joseph the full update for 31 Oct–2 Nov and a three-part plan: keep the new campaigns funded, hold the 2 Nov bid increases on existing campaigns, and put Queen White back next to Graphite in 7 proven campaigns.",
+   "results": [
+    "Oct 31: 23 units, $2,056, ads $453, +$288. Nov 1: 28 units, $2,473, ads $843, +$163. Nov 2: 36 units, $3,237, ads $1,177, +$62.",
+    "16 Oct–2 Nov: 452 units (25/day vs 9.7 before ads), $40,279 sales, $12,209 ads (TACoS 30%), +$4,405 net."
+   ],
+   "observations": [
+    "Spend by group, 2 Nov: new 31 Oct campaigns about $470 (ACoS 108% on 1 Nov → 43–82% on 2 Nov); existing SP $561 for 5 orders (ACoS 133%, was $279 and 37% on 1 Nov) after the engine's 241 bid raises.",
+    "The 31 existing campaigns switched to Graphite on 29 Oct: about 15,500 → 2,400 impressions, 114 → 27 clicks and 8.7 → 2.6 orders a day."
+   ],
+   "actions": [
+    "1. New 31 Oct campaigns: fully funded until their read; stop-loss above 2× break-even on 3 settled reads in a row.",
+    "2. Existing campaigns: hold the 2 Nov bid increases until 5 Nov (A14).",
+    "3. Existing campaigns: Queen White back next to Graphite in Cooling Sheet exact, Cooling Sheet Queen, Auto (main), Cooling Bed Sheet, Queen Tail 18, Cooling Rivals Queen, Cooling Bed Sheet Queen (A13). King stays on Graphite.",
+    "4. Total about $850–900/day. King Beige reorder (8 units)."
+   ],
+   "reasoning": [
+    "The new campaigns need spend for a fair read; the overspend on 2 Nov came mostly from bid raises on existing campaigns that were profitable at their old bids."
+   ],
+   "followups": [
+    "5 Nov: check whether A13 and A14 were applied, existing SP spend/ACoS vs 1 Nov, total spend vs $850–900, and the engine's read of the new campaigns."
+   ]
   }
  ],
  "sizes": [
@@ -1443,15 +1468,29 @@
    "id": "A13",
    "priority": "2 · This week",
    "size": "Queen / No size",
-   "action": "Add a second Queen colour ad next to Graphite in the biggest switched campaigns",
-   "change": "In Cooling Sheet exact, the old Auto, Cooling Bed Sheet, Queen Tail 18, Cooling Sheet Queen and No Size Tail 02: re-enable Queen Midnight Black (136 units, best Queen seller) or Queen White (159 units) alongside Queen Graphite. Keep Graphite on.",
+   "action": "Re-enable Queen White next to Graphite in the 7 proven existing campaigns",
+   "change": "Re-enable the Queen White product ad (keep Queen Graphite on) in: Cooling Sheet exact, Cooling Sheet Queen, Auto (main), Cooling Bed Sheet, Queen Tail 18, Cooling Rivals Queen, Cooling Bed Sheet Queen. King stays on Graphite for now (King White 75 units).",
    "why": "Since 29 Oct these 31 campaigns advertise only a new Queen Graphite ad. Their serving fell from 16,771 impressions (28 Oct) to 603 (30 Oct) and is recovering slowly; Graphite converts at 3.5% (31 Oct–1 Nov) against 12.9% for Queen overall, and most shoppers who click it buy another colour.",
-   "evidence": "Switched campaigns: 16,771 → 4,038 → 603 → 1,284 → 2,450 impressions (28 Oct–1 Nov). Queen units 31 Oct–1 Nov: Midnight Black 4, Cool Grey 4, Sage 3, Beige 3, Light Blue 2, Graphite 2. King 1 Nov: Graphite 0 of 11.",
+   "evidence": "These 7 campaigns, 22–28 Oct (five Queen colours incl. White): 94,156 impressions, 547 clicks, 40 orders, $1,456 spend, $3,503 sales (ACoS 42%), about 5.7 orders/day. 29 Oct–2 Nov (Graphite only): 8,014 impressions, 62 clicks, 1 order, $180. Queen White stock 157 (+56 reserved), about 4–5 weeks even at their old order rate. Caveat: whichever colour carries the ads converts about 2% on its own page (shoppers switch colours); the gain is the proven campaigns serving again.",
    "expected": "Faster return to pre-switch serving on the head terms; ad sales booked to the colour shoppers buy.",
    "check": "3 days after the change: impressions and clicks of the six campaigns vs 28 Oct; Queen units and CVR.",
    "safe": "Graphite stays live, so nothing is lost; Midnight Black and White have 86–207 days of stock.",
    "ref": "Investigation 2 Nov",
-   "status": "Not applied yet (checked 3 Nov)"
+   "status": "Sent to Joseph 3 Nov"
+  },
+  {
+   "id": "A14",
+   "priority": "1 · Now",
+   "size": "All",
+   "action": "Hold the 2 Nov bid increases on the existing campaigns until the 5 Nov read",
+   "change": "Return the existing (pre-31 Oct) campaigns to their bids from before the 2 Nov taper-up; leave the new 31 Oct campaigns untouched.",
+   "why": "The 2 Nov raises doubled existing Sponsored Products spend ($279 → $561) while their orders fell from 9 to 5 (ACoS 37% → 133%).",
+   "evidence": "2 Nov engine daily tune: 241 bid/top-of-search raises, 39 cuts. Existing SP 1 Nov $278.83, 9 orders, ACoS 37%; 2 Nov $560.75, 5 orders, ACoS 133% (e.g. Cool Sheet $121, Cooling Sheet King Size $97).",
+   "expected": "Existing SP back to about $280–300/day at a profitable ACoS; total spend about $850–900/day with the new campaigns fully funded.",
+   "check": "5 Nov: existing SP spend and ACoS vs 1 Nov; total daily spend vs $850–900.",
+   "safe": "Only reverses one day of increases on campaigns that were profitable at the old bids; new campaigns keep their test.",
+   "ref": "D22, proposal 3 Nov",
+   "status": "Sent to Joseph 3 Nov"
   }
  ]
 }

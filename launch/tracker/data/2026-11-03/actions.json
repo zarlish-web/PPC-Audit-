@@ -199,14 +199,28 @@
 "id": "A13",
 "priority": "2 \u00b7 This week",
 "size": "Queen / No size",
-"action": "Add a second Queen colour ad next to Graphite in the biggest switched campaigns",
-"change": "In Cooling Sheet exact, the old Auto, Cooling Bed Sheet, Queen Tail 18, Cooling Sheet Queen and No Size Tail 02: re-enable Queen Midnight Black (136 units, best Queen seller) or Queen White (159 units) alongside Queen Graphite. Keep Graphite on.",
+"action": "Re-enable Queen White next to Graphite in the 7 proven existing campaigns",
+"change": "Re-enable the Queen White product ad (keep Queen Graphite on) in: Cooling Sheet exact, Cooling Sheet Queen, Auto (main), Cooling Bed Sheet, Queen Tail 18, Cooling Rivals Queen, Cooling Bed Sheet Queen. King stays on Graphite for now (King White 75 units).",
 "why": "Since 29 Oct these 31 campaigns advertise only a new Queen Graphite ad. Their serving fell from 16,771 impressions (28 Oct) to 603 (30 Oct) and is recovering slowly; Graphite converts at 3.5% (31 Oct\u20131 Nov) against 12.9% for Queen overall, and most shoppers who click it buy another colour.",
-"evidence": "Switched campaigns: 16,771 \u2192 4,038 \u2192 603 \u2192 1,284 \u2192 2,450 impressions (28 Oct\u20131 Nov). Queen units 31 Oct\u20131 Nov: Midnight Black 4, Cool Grey 4, Sage 3, Beige 3, Light Blue 2, Graphite 2. King 1 Nov: Graphite 0 of 11.",
+"evidence": "These 7 campaigns, 22\u201328 Oct (five Queen colours incl. White): 94,156 impressions, 547 clicks, 40 orders, $1,456 spend, $3,503 sales (ACoS 42%), about 5.7 orders/day. 29 Oct\u20132 Nov (Graphite only): 8,014 impressions, 62 clicks, 1 order, $180. Queen White stock 157 (+56 reserved), about 4\u20135 weeks even at their old order rate. Caveat: whichever colour carries the ads converts about 2% on its own page (shoppers switch colours); the gain is the proven campaigns serving again.",
 "expected": "Faster return to pre-switch serving on the head terms; ad sales booked to the colour shoppers buy.",
 "check": "3 days after the change: impressions and clicks of the six campaigns vs 28 Oct; Queen units and CVR.",
 "safe": "Graphite stays live, so nothing is lost; Midnight Black and White have 86\u2013207 days of stock.",
 "ref": "Investigation 2 Nov",
-"status": "Not applied yet (checked 3 Nov)"
+"status": "Sent to Joseph 3 Nov"
+},
+{
+"id": "A14",
+"priority": "1 \u00b7 Now",
+"size": "All",
+"action": "Hold the 2 Nov bid increases on the existing campaigns until the 5 Nov read",
+"change": "Return the existing (pre-31 Oct) campaigns to their bids from before the 2 Nov taper-up; leave the new 31 Oct campaigns untouched.",
+"why": "The 2 Nov raises doubled existing Sponsored Products spend ($279 \u2192 $561) while their orders fell from 9 to 5 (ACoS 37% \u2192 133%).",
+"evidence": "2 Nov engine daily tune: 241 bid/top-of-search raises, 39 cuts. Existing SP 1 Nov $278.83, 9 orders, ACoS 37%; 2 Nov $560.75, 5 orders, ACoS 133% (e.g. Cool Sheet $121, Cooling Sheet King Size $97).",
+"expected": "Existing SP back to about $280\u2013300/day at a profitable ACoS; total spend about $850\u2013900/day with the new campaigns fully funded.",
+"check": "5 Nov: existing SP spend and ACoS vs 1 Nov; total daily spend vs $850\u2013900.",
+"safe": "Only reverses one day of increases on campaigns that were profitable at the old bids; new campaigns keep their test.",
+"ref": "D22, proposal 3 Nov",
+"status": "Sent to Joseph 3 Nov"
 }
 ]

@@ -198,5 +198,15 @@
 "actions": "Joseph (D22), now the main question: set a daily ad spend target. Three days of rising spend have taken daily profit from $288 to $62 while units rose from 23 to 36.\nA13: add Queen Midnight Black or White next to Graphite in the biggest Queen/head campaigns (not applied yet).\nKing Beige: 8 units, about 5 days. Reorder now (A2); expect a short stock-out.\nWatch (no cut on early data): the 31 Oct campaigns, first engine read 3\u20135 Nov; our own read on settled data from 5 Nov (3 daily reads in a row).",
 "reasoning": "The new campaigns are 2.5 days old, so by the early-data rule they are Watch, not a cut. But the account-level trend (spend up, profit down three days running) is a budget question for Joseph, not a campaign verdict.\nRanks are at their best yet, which is what the ranking push is for; the open question is how much daily profit to give up for it.",
 "followups": "3\u20135 Nov: engine's first read of the 31 Oct campaigns; our settled read from 5 Nov.\nJoseph: target daily spend (D22); A13; King Beige reorder (A2).\nHoneymoon reads 5 and 12 Nov (D23)."
+},
+{
+"date": "2026-11-03",
+"kind": "Proposal to Joseph",
+"headline": "Sent Joseph the full update for 31 Oct\u20132 Nov and a three-part plan: keep the new campaigns funded, hold the 2 Nov bid increases on existing campaigns, and put Queen White back next to Graphite in 7 proven campaigns.",
+"results": "Oct 31: 23 units, $2,056, ads $453, +$288. Nov 1: 28 units, $2,473, ads $843, +$163. Nov 2: 36 units, $3,237, ads $1,177, +$62.\n16 Oct\u20132 Nov: 452 units (25/day vs 9.7 before ads), $40,279 sales, $12,209 ads (TACoS 30%), +$4,405 net.",
+"observations": "Spend by group, 2 Nov: new 31 Oct campaigns about $470 (ACoS 108% on 1 Nov \u2192 43\u201382% on 2 Nov); existing SP $561 for 5 orders (ACoS 133%, was $279 and 37% on 1 Nov) after the engine's 241 bid raises.\nThe 31 existing campaigns switched to Graphite on 29 Oct: about 15,500 \u2192 2,400 impressions, 114 \u2192 27 clicks and 8.7 \u2192 2.6 orders a day.",
+"actions": "1. New 31 Oct campaigns: fully funded until their read; stop-loss above 2\u00d7 break-even on 3 settled reads in a row.\n2. Existing campaigns: hold the 2 Nov bid increases until 5 Nov (A14).\n3. Existing campaigns: Queen White back next to Graphite in Cooling Sheet exact, Cooling Sheet Queen, Auto (main), Cooling Bed Sheet, Queen Tail 18, Cooling Rivals Queen, Cooling Bed Sheet Queen (A13). King stays on Graphite.\n4. Total about $850\u2013900/day. King Beige reorder (8 units).",
+"reasoning": "The new campaigns need spend for a fair read; the overspend on 2 Nov came mostly from bid raises on existing campaigns that were profitable at their old bids.",
+"followups": "5 Nov: check whether A13 and A14 were applied, existing SP spend/ACoS vs 1 Nov, total spend vs $850\u2013900, and the engine's read of the new campaigns."
 }
 ]
