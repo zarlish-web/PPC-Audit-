@@ -8799,7 +8799,7 @@
    "tol": null,
    "kind": "eq",
    "status": "CHECK",
-   "note": "Best Deal in the deal sheet but no line in the PPC plan; its ads (~$9 a day) run outside the plan budget."
+   "note": "Best Deal in the deal sheet but no line in the budget plan; its ads (~$9 a day) run outside the plan budget."
   },
   {
    "section": "3. Cross-source",
