@@ -32,10 +32,10 @@ sc=[]
 for m in ('US','CA'):
     fx=1.4036 if m=='CA' else 1
     sc+= [{"key":f"{m} 1","market":m,"scenario":"BFCM 2025 actual","order":1,"budget":round(S['bfcm2025_total'][m]['adv']*fx,2)},
-          {"key":f"{m} 2","market":m,"scenario":"Today's pace","order":2,"budget":round(sum(p['alt_budget'] for p in R['products'] if p['mkt']==m),2)},
-          {"key":f"{m} 3","market":m,"scenario":"History check A","order":3,"budget":round(hA[m],2)},
+          {"key":f"{m} 2","market":m,"scenario":"Read A alone","order":2,"budget":round(sum(p['alt_budget'] for p in R['products'] if p['mkt']==m),2)},
+          {"key":f"{m} 3","market":m,"scenario":"History check A (ceiling)","order":3,"budget":round(hA[m],2)},
           {"key":f"{m} 4","market":m,"scenario":"History check B","order":4,"budget":round(hB[m],2)},
-          {"key":f"{m} 5","market":m,"scenario":"Plan (ceiling)","order":5,"budget":round(R['totals'][m]['budget'],2)}]
+          {"key":f"{m} 5","market":m,"scenario":"Plan (base)","order":5,"budget":round(R['totals'][m]['budget'],2)}]
 json.dump(sc,open(OUT+'scenarios.json','w'))
 d=S['daily_bfcm2025']; daily=[]
 for m in ('US','CA'):
@@ -96,7 +96,7 @@ for p in R['products']:
                "result": (x['status'] if x else ""), "note": (x['note'] or "Inside the band") if x else ""})
 json.dump(gr, open(OUT + 'growth.json', 'w'))
 from openpyxl import load_workbook
-wbp = load_workbook('/tmp/claude-0/-home-user-PPC-Audit-/51b9bd0e-5fdd-5e9c-87d4-612ed5188e17/scratchpad/final_chk.xlsx', data_only=True)['Budget by day']
+wbp = load_workbook('/home/user/PPC-Audit-/bfcm-2026/ppc-plan/BFCM_2026_PPC_Plan.xlsx', data_only=True)['Budget by day']
 DAYS26 = ["Thu Nov 19", "Fri Nov 20", "Sat Nov 21", "Sun Nov 22", "Mon Nov 23", "Tue Nov 24", "Wed Nov 25", "Thu Nov 26", "Fri Nov 27 (BF)", "Sat Nov 28", "Sun Nov 29", "Mon Nov 30 (CM)"]
 kd = []; blk = None
 for r in range(1, wbp.max_row + 1):
