@@ -63,11 +63,10 @@ calls.append(f"Realistic total: US {k(bud['US'])} over the 12 days ({pc(tac['US'
              f"Canada {kc(bud['CA'])} at {pc(tac['CA'], 1)} (BFCM 2025: {kc(spent25['CA'])}). The account runs at 20% TACoS today across all ad types (14.1% before BFCM 2025), "
              "so the deal-period TACoS starts higher.")
 heroes = [(m, s_) for (m, s_) in (("US", "DC B4"), ("US", "DC B6"), ("US", "DC S4"), ("CA", "DC B4"), ("CA", "DC B6"))]
-hero_txt = "; ".join(f"{m} {NAMES[s_]} {P[(m, s_)]['units_plan']:,.0f} (was {(P[(m, s_)]['units_lo_prev'] + P[(m, s_)]['units_hi_prev']) / 2:,.0f})" for m, s_ in heroes)
-calls.append(f"Demand re-based on Nov 3 to current, event-free selling: each product's last-14-day pace (Oct 19 - Nov 1) x its own BFCM 2025 lift, and, where the product sold "
-             f"in both years, its BFCM 2025 units x how it is running against the same 14 days last year. The Oct 28 read used paces that included the Oct 7-8 Prime event "
-             f"and late-September deals, about twice today's pace on the Bamboo sheets. Plan units: {hero_txt}. Budget moves from the Nov 2 plan's "
-             f"US {k(PREV['US'])} / {kc(PREV['CA'])} to {k(bud['US'])} / {kc(bud['CA'])}.")
+hero_txt = "; ".join(f"{m} {NAMES[s_]} {P[(m, s_)]['units_plan']:,.0f} ({P[(m, s_)]['pace14']:.0f} a day now, {P[(m, s_)]['units_plan'] / 12:.0f} a day planned)" for m, s_ in heroes)
+calls.append(f"Demand is built on current, event-free selling: each product's last-14-day pace (Oct 19 - Nov 1) x its own BFCM 2025 lift, and, where the product sold "
+             f"in both years, its BFCM 2025 units x how it is running against the same 14 days last year. Windows that include the Oct 7-8 Prime event or the late-September "
+             f"deals are left out: they ran at about twice today's pace on the Bamboo sheets. Lightning-Deal-only products use the first read alone. Plan units, 12 days: {hero_txt}.")
 spl = AT["US"][2]
 calls.append(f"SB, SB video and SD are tracked per product (Ad types by product tab): each product's TACoS now, break-even and cap include all four ad types, and its budget splits by "
              f"its own mix. US plan: SP {k(spl['of which SP'])}, SB {k(spl['of which SB'])}, SB video {k(spl['of which SB video'])}, SD {k(spl['of which SD'])}. "
@@ -93,7 +92,12 @@ calls.append(f"Decisions for Joseph: CooLinens Pillowcases is a Launch product (
              f"${clp['Avg selling price']:.2f} deal break-even only allows {pc(clp['Cap (break-even or band ceiling)'])}, so it is capped there. CooLinens Cooling Sheets has no deal: "
              f"the plan holds today's ~${clc['Ad spend per day now, all ad types (14 days)']:,.0f} a day ({pc(clc['TACoS now, all ad types'])} TACoS"
              + (", inside its Launch band)." if (clc.get("Growth band ceiling (TACoS)") or 1) >= (clc["TACoS now, all ad types"] or 0) else ")."))
-noads = [f"{r['Product']} (break-even {pc(r['Break-even TACoS at deal price'], 1)})" for m in ("US", "CA") for r in BP[m][1] if str(r.get("Growth-plan check") or "").startswith("No ads")]
+noads = [f"{m} {r['Product']} (break-even {pc(r['Break-even TACoS at deal price'], 1)})" for m in ("US", "CA") for r in BP[m][1] if str(r.get("Growth-plan check") or "").startswith("No ads")]
+losers = [f"{m} {r['Product']}" for m in ("US", "CA") for r in BP[m][1]
+          if str(r.get("BFCM 2026 deal") or "").startswith("Best Deal") and isinstance(r.get("Break-even TACoS at deal price"), (int, float)) and r["Break-even TACoS at deal price"] < 0]
+if losers:
+    calls.append(f"Deal fees are $70 for every day a deal runs plus 1% of deal sales: $840 for a 12-day Best Deal. On {', '.join(losers)} the expected deal sales are too small "
+                 "to cover that, so the deal itself loses money before any ads. Worth reconsidering these deals before Amazon's Nov 13 deadline.")
 if noads:
     calls.append(f"No ads beyond brand defence on {', '.join(noads)}: at the deal price they lose money or keep almost nothing per unit before ads.")
 calls.append(f"History check (2025 vs 2026 check tab): in BFCM 2025 we spent 1.6x (US) / 2.3x (CA) more per day than in the same 14 days before; sales rose "
@@ -162,7 +166,7 @@ rules = {
    (f"Only Best Deal heroes with room under the cap: {', '.join(l for l, a, c in room) or 'none yet'}."
     + (f" {', '.join(l for l, a, c in at + over_h)} join once their daily TACoS is clearly under the cap." if at or over_h else "")),
  ("Bids", "No-ads products"):
-   (f"{' and '.join(n.split(' (')[0] for n in noads)} lose money per unit at the deal price before any ads ({', '.join(n.split('(')[1].rstrip(')') for n in noads)}): brand-defence only, no prospecting."
+   (f"{' and '.join(n.split(' (')[0] for n in noads)} lose money or keep almost nothing per unit at the deal price before any ads ({', '.join(n.split('(')[1].rstrip(')') for n in noads)}): brand-defence only, no prospecting."
     if noads else "None this year."),
 }
 chk = {"Plan vs check A": (f"The plan is {'below' if bud['US'] < A[0] else 'above'} check A because it expects a {jump[0]:.1f}x (US) / {jump[1]:.1f}x (CA) sales jump vs "

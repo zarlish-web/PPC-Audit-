@@ -303,13 +303,15 @@ for m in ("US", "CA"):
         mcur = wavg(allrows, lambda x, s: s["cur"] - cogs(s) - s["fba"] - (s["ref"] or 0.15) * s["cur"])
         dtype = dealrows[0][1]["type"] if dealrows else None
         ld = dtype == "Lightning Deal"
+        if ld and A_ is not None:   # Lightning Deal only: read A alone
+            lo = hi = A_
         units = (round(lo) + round(hi)) / 2
         asp = dprice if (dprice and not ld) else ((dprice + 11 * cprice) / 12 if (dprice and ld) else cprice)
         price_note = ""
         if asp is None:   # no row in the deal sheet: the tracker's list price is the only record
             asp = g_plan_asp = cell(bp, r, "I"); price_note = "No deal-sheet row: price taken from the tracker's listing price."
         sales = units * round(asp, 2)
-        flat = 70 / sales if (dprice and sales) else 0
+        flat = 70 * (1 if ld else 12) / sales if (dprice and sales) else 0   # $70 per deal day
         if dprice and not ld:
             be = mdeal / dprice - flat
         elif dprice and ld:

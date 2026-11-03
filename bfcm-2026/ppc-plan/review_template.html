@@ -144,7 +144,7 @@ footer { color: var(--muted); font-size: .8rem; border-top: 1px solid var(--line
 <div class="bar"><div class="bar-in">
   <div class="brand">BFCM <b>2026</b> budget plan</div>
   <nav class="nav" aria-label="Sections">
-    <a href="#decide">Decisions</a><a href="#track">Tracker</a><a href="#new">What's new</a><a href="#products">Products</a><a href="#budget">Budget</a><a href="#growth">Growth plan</a><a href="#days">By day</a>
+    <a href="#decide">Decisions</a><a href="#track">Tracker</a><a href="#products">Products</a><a href="#budget">Budget</a><a href="#growth">Growth plan</a><a href="#days">By day</a>
     <a href="#full25">BFCM 2025 in full</a><a href="#history">Year over year</a><a href="#adtypes">Ad types</a><a href="#rules">Rules</a>
   </nav>
   <div class="seg" role="group" aria-label="Market"><button id="m-us" aria-pressed="true">US</button><button id="m-ca" aria-pressed="false">Canada</button></div>
@@ -176,11 +176,6 @@ footer { color: var(--muted); font-size: .8rem; border-top: 1px solid var(--line
     <div class="card"><h3 id="track-table-t">By product</h3><p class="note" id="track-note"></p><div class="tw" style="max-height:560px"><table id="t-track"></table></div></div>
   </section>
 
-  <section id="new">
-    <div class="head"><span class="tag new-t">New</span><h2>What's new since the first draft</h2><p class="lead">Changes made on Nov 2 after review, new data and the independent check.</p></div>
-    <div class="new" id="newlist"></div>
-  </section>
-
   <section id="products">
     <div class="head"><h2>Products</h2><p class="lead">Each card shows the BFCM budget, the plan TACoS against its cap, and whether the product runs over its cap today. Click a product for its demand, economics, budget by day, ad types, history, stock and the rules that apply.</p></div>
     <div class="filters">
@@ -208,8 +203,8 @@ footer { color: var(--muted); font-size: .8rem; border-top: 1px solid var(--line
       <div class="card"><h3>Plan TACoS vs growth-plan band and cap</h3><p class="note">Band = the product's growth-plan stage band. During the deal TACoS falls, so the floor is scaled by the product's deal-period factor. The cap is the lower of the band ceiling and 80% of break-even.</p>
         <div class="legend"><span><i class="sw" style="background:var(--mute-mark)"></i>Growth band</span><span><i class="sw" style="background:var(--ink);width:2px;height:12px"></i>Cap</span><span><i class="sw" style="background:var(--deal);transform:rotate(45deg)"></i>Plan TACoS</span><span><i class="sw" style="background:transparent;border:2px solid var(--bad);border-radius:50%"></i>TACoS now</span></div>
         <div class="chart tall" id="c-growth"></div></div>
-      <div class="card"><h3>Units a day: now, the Oct 28 read, and the BFCM plan</h3><p class="note">Now = Oct 19 – Nov 1. The Oct 28 read used a pace that included Prime-event days, which is why the plan was re-based on Nov 3. Plan = units a day in BFCM (now × lift).</p>
-        <div class="legend"><span><i class="sw" style="background:var(--accent)"></i>Now</span><span><i class="sw" style="background:var(--mute-mark)"></i>Oct 28 read</span><span><i class="sw" style="background:var(--deal)"></i>BFCM plan</span></div>
+      <div class="card"><h3>Units a day: now, the 28-day pace with deal days, and the BFCM plan</h3><p class="note">Now = Oct 19 – Nov 1, a window with no events. The 28-day pace (to mid-October) includes the Oct 7–8 Prime event and late-September deals, so the plan does not use it. Plan = units a day in BFCM (now × each product's BFCM 2025 lift).</p>
+        <div class="legend"><span><i class="sw" style="background:var(--accent)"></i>Now</span><span><i class="sw" style="background:var(--mute-mark)"></i>28-day pace with deal days</span><span><i class="sw" style="background:var(--deal)"></i>BFCM plan</span></div>
         <div class="chart tall" id="c-pace"></div></div>
     </div>
   </section>
@@ -300,32 +295,18 @@ function drawHero() {
   document.getElementById('tiles').replaceChildren(...tiles.map(([k, v, s]) => el('div', { class: 'tile' }, el('span', { class: 'k', text: k }), el('span', { class: 'v', text: v }), el('span', { class: 's', text: s }))));
   const us = DATA.totals.US, ca = DATA.totals.CA, hu = DATA.hist.US, hc = DATA.hist.CA;
   const cl = P.find((p) => p.mkt === 'US' && p.name === 'CooLinens Pillowcases'), cs = P.find((p) => p.mkt === 'US' && p.name === 'CooLinens Cooling Sheets');
+  const lose = P.filter((p) => p.deal === 'Best Deal' && p.be != null && p.be < 0).map((p) => `${p.mkt} ${p.name}`);
   const items = [
     ['Approve the budget: ', `base ${kmoney(Math.min(us.budget, hu.A), 'US')} US / ${kmoney(Math.min(ca.budget, hc.A), 'CA')} Canada (the plan), ceiling ${kmoney(Math.max(us.budget, hu.A), 'US')} / ${kmoney(Math.max(ca.budget, hc.A), 'CA')} (raising today's spend the way we did in BFCM 2025). Spend above the base is released only while each product stays under its TACoS cap on actual sales.`],
-    ['Demand re-based (Nov 3): ', `planned units now come from the last 14 days' pace × each product's BFCM 2025 lift (and last year's BFCM units × this year's trend where both years have volume). The Oct 28 read included Prime-event days and gave ${kmoney(DATA.prev.US, 'US')} / ${kmoney(DATA.prev.CA, 'CA')}.`],
     ['CooLinens Pillowcases: ', `Launch product (band ${pct(cl.band[0], 0)}–${pct(cl.band[1], 0)}) capped at ${pct(cl.cap)} because the $${d3.format('.2f')(cl.asp)} deal leaves only ${pct(cl.be)} break-even. It runs at ${pct(cl.tacos_now)} today.`],
     ['CooLinens Cooling Sheets: ', `no deal; launched Oct 15 and still ramping. The plan holds today's ${money(cs.now_day, 'US')} a day (${pct(cs.tacos_now)} TACoS${cs.band[1] != null && cs.tacos_now <= cs.band[1] ? ', inside its Launch band' : ''}).`],
-    ['Deal fees: ', 'the plan uses 1% of deal sales + $70 per deal. If Amazon charges $70 per deal day, the smallest deals lose their margin. Confirm which.'],
+    ...(lose.length ? [['Small deals: ', `deal fees are $70 a day plus 1% of sales, so a 12-day Best Deal costs $840. On ${lose.join(', ')} the expected deal sales don't cover that: the deal loses money before any ads. Worth reconsidering before Nov 13.`]] : []),
     ['Stock (' + DATA.stock_asof + '): ', DATA.stock_risk[m] + ' Confirm inbound timing before Nov 19.'],
   ];
   document.getElementById('decisions').replaceChildren(...items.map(([a, b]) => el('li', {}, el('b', { text: a }), b)));
 }
 
 // ---------------- what's new
-function drawNew() {
-  const yu = DATA.yoy.US;
-  const items = [
-    ['Nov 3: demand re-based to current selling', `Planned units now use the last 14 days (Oct 19 – Nov 1) × each product's own BFCM 2025 lift, plus last year's BFCM units × this year's trend where both years have volume. The Oct 28 read used paces that included the Oct 7–8 Prime event and late-September deals. US budget ${kmoney(DATA.prev.US, 'US')} → ${kmoney(DATA.totals.US.budget, 'US')}, Canada ${kmoney(DATA.prev.CA, 'CA')} → ${kmoney(DATA.totals.CA.budget, 'CA')}.`],
-    ['Nov 3: tracker added', 'The Tracker section shows each product\'s actual spend, sales and TACoS against its cap every day: before Nov 19 to bring over-cap products down, and Nov 19 – 30 against the day budgets.'],
-    ['Nov 3: stock and wording refreshed', 'Stock outlook from the Nov 3 inventory pull. Every sentence that quotes a figure is now generated from the plan workbook itself and re-checked.'],
-    ['SB, SB video and Display tracked per product', 'Each product\'s TACoS now, break-even and cap include all four ad types; its budget splits by its own mix. SB video sits mostly on Bamboo and CooLinens.'],
-    ['Year-over-year, like for like', `Same 14 days: US spend is down 4%, but products sold both years cut SP by ${kmoney(-yu.lfl_sp, 'US')} while new products added ${kmoney(yu.new, 'US')}. Like-for-like sales fell ${pct(1 - yu.lfl_sales26 / yu.lfl_sales25, 0)} with conversion steady.`],
-    ['New products in the plan', `CooLinens Cooling Sheets and Pillowcases, Decolure Bamboo Fitted and Sleephoria Cooling Fitted were not selling last October; they carry ${kmoney(DATA.bfgroups.filter((g) => g.m === 'US' && g.g === 'New since BFCM 2025').reduce((a, g) => a + g.p26, 0), 'US')} of the US plan.`],
-    ['Deal fees corrected', '1% of deal sales + $70 per deal (was 1.5% + $100). US budget +$114; Canada unchanged.'],
-    ['History checks', 'Raising today\'s spend the way we did in BFCM 2025 (check A) now sits above the plan in both markets: the plan is the base and check A the ceiling.'],
-  ];
-  document.getElementById('newlist').replaceChildren(...items.map(([a, b]) => el('div', {}, el('b', { text: a }), b)));
-}
 
 // ---------------- product cards
 function bulletSVG(p) {
@@ -388,7 +369,7 @@ function openP(id) {
   const demand = sec('Demand', kv([
       ['Units, low – high', `${d3.format(',')(p.units[0])} – ${d3.format(',')(p.units[1])}`], ['Units plan (mid)', d3.format(',.0f')(p.units[2])], ['Avg selling price', money(p.asp, m).replace(/(\.\d+)?$/, '') + (p.asp ? '' : '')],
       ['Expected sales, 12 days', money(p.sales, m)], ['BFCM lift used', p.lift ? d3.format('.2f')(p.lift) + 'x' : '–'], ['Units/day now (Oct 19 – Nov 1)', p.pace_now != null ? d3.format('.1f')(p.pace_now) : '–'],
-      ['Units/day planned in BFCM', d3.format('.1f')(p.units[2] / 12)], ['Oct 28 read (28-day pace)', d3.format('.1f')(p.u28_day) + '/day'],
+      ['Units/day planned in BFCM', d3.format('.1f')(p.units[2] / 12)], ['28-day pace with deal days', d3.format('.1f')(p.u28_day) + '/day'],
       ['Budget on read A alone', money(p.budget_pace, m)]]),
     el('p', { class: 'note', text: `Lift: ${p.lift_src || '–'}. Units: ${p.demand_src || '–'} (A = last-14-day pace × lift × 12 days; B = BFCM 2025 units × this year's trend vs the same 14 days of 2025; low and high are the two reads). Deal price ${p.deal_price ? money(p.deal_price, m).replace(/\.\d+$/, '') : '–'} vs today ${p.cur_price ? money(p.cur_price, m) : '–'}.` }));
   const dayChart = el('div', { class: 'chart' });
@@ -788,7 +769,7 @@ function drawPace() {
   const host = document.getElementById('c-pace'); host.replaceChildren(); const m = MKT;
   const rows = prodsM().filter((p) => p.pace_now != null && p.units[2] > 0).sort((a, b) => b.units[2] - a.units[2]).slice(0, 14);
   const W = Math.max(320, host.clientWidth || 520), rowH = 30, top = 6, Hh = rows.length * rowH + top + 30;
-  const svg = d3.select(host).append('svg').attr('viewBox', `0 0 ${W} ${Hh}`).attr('role', 'img').attr('aria-label', 'Units a day now, in the Oct 28 read and in the BFCM plan');
+  const svg = d3.select(host).append('svg').attr('viewBox', `0 0 ${W} ${Hh}`).attr('role', 'img').attr('aria-label', 'Units a day now, the 28-day pace with deal days and the BFCM plan');
   const lab = (p) => (W < 520 ? p.name.replace('Decolure ', '').replace('Sleephoria ', 'SL ').replace('Sleep Sanctuary ', 'SS ').replace('CooLinens ', 'CL ') : p.name);
   const left = d3.max(rows, (p) => textW(svg, lab(p))) + 10;
   const x = d3.scaleLinear([0, d3.max(rows, (p) => Math.max(p.units[2] / 12, p.u28_day || 0, p.pace_now || 0))], [left, W - 34]).nice();
@@ -800,7 +781,7 @@ function drawPace() {
     [[p.pace_now, css('--accent')], [p.u28_day, css('--mute-mark')], [p.units[2] / 12, css('--deal')]].forEach(([v, c], k) =>
       svg.append('rect').attr('x', x(0)).attr('y', y + 4 + k * (bh + 1)).attr('width', Math.max(1, x(v || 0) - x(0))).attr('height', bh).attr('rx', 2).attr('fill', c));
     svg.append('rect').attr('x', 0).attr('y', y).attr('width', W).attr('height', rowH).attr('fill', 'transparent')
-      .on('mousemove', (e) => showTip(host, tp, e, [p.name, `Now ${d3.format('.1f')(p.pace_now)} a day`, `Oct 28 read ${d3.format('.1f')(p.u28_day)} a day`, `BFCM plan ${d3.format('.1f')(p.units[2] / 12)} a day (${d3.format('.2f')(p.lift || 0)}x lift)`]))
+      .on('mousemove', (e) => showTip(host, tp, e, [p.name, `Now ${d3.format('.1f')(p.pace_now)} a day`, `28-day pace with deal days ${d3.format('.1f')(p.u28_day)} a day`, `BFCM plan ${d3.format('.1f')(p.units[2] / 12)} a day (${d3.format('.2f')(p.lift || 0)}x lift)`]))
       .on('mouseleave', () => (tp.hidden = true)).on('click', () => openP(p.id));
   });
 }
@@ -815,7 +796,7 @@ document.getElementById('m-us').addEventListener('click', () => setM('US'));
 document.getElementById('m-ca').addEventListener('click', () => setM('CA'));
 ['f-fam', 'f-sort'].forEach((id) => document.getElementById(id).addEventListener('change', drawGrid));
 document.getElementById('f-q').addEventListener('input', drawGrid);
-drawNew(); drawRules(); drawMarket(); startTracker();
+drawRules(); drawMarket(); startTracker();
 let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(drawMarket, 150); });
 const h0 = location.hash.slice(1); if (h0.startsWith('p-') && byId[h0.slice(2)]) { const p = byId[h0.slice(2)]; if (p.mkt !== MKT) setM(p.mkt); openP(p.id); }
 </script>

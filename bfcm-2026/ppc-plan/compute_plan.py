@@ -9,7 +9,7 @@ _YO = json.load(open(os.path.join(HERE, "..", "verification", "yoy_results.json"
 YO14 = {(r["market"], r["pid"]): r for mk in _YO["markets"] for r in _YO["markets"][mk]["rows"]}     # Oct 19 - Nov 1, 2025 vs 2026
 YOBF = {(r["market"], r["pid"]): r for r in _YO["bfcm"]}                                           # BFCM 2025 per product
 DEAL_PERF_FEE = 0.01           # Amazon deal fee, share of deal sales (corrected Nov 2: 1%)
-DEAL_FLAT_FEE = 70.0           # flat fee per deal (corrected Nov 2: $70)
+DEAL_FLAT_FEE = 70.0           # flat fee per deal DAY (confirmed Nov 3: $70 x each day the deal runs; Best Deal 12 days, Lightning Deal 1)
 CEIL_SHARE = 0.80              # TACoS ceiling = 80% of the break-even TACoS (keeps 20% of the pre-ad margin)
 CA_COGS_FX = 1.40              # deal sheet CA COGS are the US$ figures next to C$ prices; converted to C$ (Nov 2025 rate 1.40)
 sheet = {}
@@ -49,6 +49,8 @@ for p in D["products"]:
     deal = wavg(dealrows, lambda v, s: s["deal"]); cur = wavg(allrows, lambda v, s: s["cur"]) or p.get("price")
     da = p.get("da") or {}
     ld = da.get("type") == "Lightning Deal"
+    if ld and A is not None:   # one deal day only: last year's (Best Deal) BFCM units would overstate it, so read A alone
+        lo = hi = A; dsrc = "last-14-day pace x own 2025 lift (Lightning Deal only: 2025 Best Deal units not used)"
     # margin per unit before ads at the deal price (or today's price where there is no deal)
     def margin(v, s, price):
         if price is None or s["cogs"] is None or s["fba"] is None: return None
@@ -64,7 +66,7 @@ for p in D["products"]:
     elif deal and ld: asp = (deal + 11 * cur) / 12
     else: asp = cur
     sales = plan_units * asp
-    flat = DEAL_FLAT_FEE / sales if (deal and sales) else 0
+    flat = DEAL_FLAT_FEE * (1 if ld else 12) / sales if (deal and sales) else 0
     if deal and not ld: be = m_deal / deal - flat
     elif deal and ld: be = ((m_deal + 11 * m_cur) / 12) / asp - flat
     else: be = m_cur / cur if (m_cur is not None and cur) else (p.get("be") if isinstance(p.get("be"), (int, float)) else None)

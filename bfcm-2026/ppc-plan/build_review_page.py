@@ -1,6 +1,6 @@
 """Builds the BFCM 2026 budget plan review page (for Joseph and Erik) as one self-contained HTML file.
 Consolidates: the plan workbook (recalculated copy), the independent verification, the year-over-year analysis,
-and the competitor tracker (product photos, demand read, stock, 2025 price comparison).
+and the competitor tracker (product photos, sales pace, stock, 2025 price comparison).
 Usage: python3 build_review_page.py <recalculated plan.xlsx> <out.html>"""
 import json, os, re, sys
 from openpyxl import load_workbook
