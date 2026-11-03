@@ -1,0 +1,22 @@
+date,marketplace,period_basis,csv_row_count,period_Sales,period_Units,period_Advertising,period_SponsoredADS,period_HSA,period_VideoAds,period_SponsoredDisplay,rows_Sales,rows_Units,rows_Advertising,rows_SponsoredADS,rows_HSA,rows_VideoAds,rows_SponsoredDisplay,sales_coverage_pct,advertising_coverage_pct,amazon_com_only_period_Sales,amazon_com_only_period_Advertising
+2026-10-27,US,dashboard_period all marketplaces minus amazon.ca (includes Amazon.com.mx/.com.br/Non-Amazon),368,16457.52,334,-3853.11,-2945.92,-347.24,-475.46,-84.49,16457.52,333,-3853.11,-2945.92,-347.24,-475.46,-84.49,100.0,100.0,16457.52,-3851.88
+2026-10-27,CA,dashboard_period marketplaces=[amazon.ca],151,3723.7,84,-509.36,-500.01,-9.35,0,0,3723.7,84,-509.36,-500.01,-9.35,0.0,0.0,100.0,100.0,,
+2026-10-27,ALL,dashboard_period no marketplace filter,519,20181.22,418,-4362.47,-3445.93,-356.59,-475.46,-84.49,20181.22,417,-4362.47,-3445.93,-356.59,-475.46,-84.49,100.0,100.0,,
+2026-10-28,US,dashboard_period all marketplaces minus amazon.ca (includes Amazon.com.mx/.com.br/Non-Amazon),366,18511.37,378,-3644.39,-2926.76,-269.96,-395.87,-51.8,18511.37,376,-3644.39,-2926.76,-269.96,-395.87,-51.8,100.0,100.0,18446.62,-3643.81
+2026-10-28,CA,dashboard_period marketplaces=[amazon.ca],140,3042.86,66,-455.31,-448.33,-6.98,0,0,3042.86,66,-455.31,-448.33,-6.98,0.0,0.0,100.0,100.0,,
+2026-10-28,ALL,dashboard_period no marketplace filter,506,21554.23,444,-4099.7,-3375.09,-276.94,-395.87,-51.8,21554.23,442,-4099.7,-3375.09,-276.94,-395.87,-51.8,100.0,100.0,,
+2026-10-29,US,dashboard_period all marketplaces minus amazon.ca (includes Amazon.com.mx/.com.br/Non-Amazon),349,16491.47,342,-3378.2,-2639.46,-270.67,-425.29,-42.78,16491.47,340,-3378.2,-2639.46,-270.67,-425.29,-42.78,100.0,100.0,16357.88,-3378.03
+2026-10-29,CA,dashboard_period marketplaces=[amazon.ca],150,3777.8,76,-408.77,-397.75,-11.02,0,0,3777.8,76,-408.77,-397.75,-11.02,0.0,0.0,100.0,100.0,,
+2026-10-29,ALL,dashboard_period no marketplace filter,499,20269.27,418,-3786.97,-3037.21,-281.69,-425.29,-42.78,20269.27,416,-3786.97,-3037.21,-281.69,-425.29,-42.78,100.0,100.0,,
+2026-10-30,US,dashboard_period all marketplaces minus amazon.ca (includes Amazon.com.mx/.com.br/Non-Amazon),348,16793.17,336,-2795.26,-2133.11,-238.95,-381.61,-41.59,16793.17,336,-2795.26,-2133.11,-238.95,-381.61,-41.59,100.0,100.0,16542.89,-2794.01
+2026-10-30,CA,dashboard_period marketplaces=[amazon.ca],132,3243.7,65,-429.43,-425.48,-3.95,0,0,3243.7,65,-429.43,-425.48,-3.95,0.0,0.0,100.0,100.0,,
+2026-10-30,ALL,dashboard_period no marketplace filter,480,20036.87,401,-3224.69,-2558.59,-242.9,-381.61,-41.59,20036.87,401,-3224.69,-2558.59,-242.9,-381.61,-41.59,100.0,100.0,,
+2026-10-31,US,dashboard_period all marketplaces minus amazon.ca (includes Amazon.com.mx/.com.br/Non-Amazon),325,15550.27,309,-3002.13,-2404.43,-285.76,-275.11,-36.83,15550.27,309,-3002.13,-2404.43,-285.76,-275.11,-36.83,100.0,100.0,15476.29,-3002.13
+2026-10-31,CA,dashboard_period marketplaces=[amazon.ca],126,2718.32,53,-434.3,-418.82,-11.9,-3.58,0,2718.32,53,-434.3,-418.82,-11.9,-3.58,0.0,100.0,100.0,,
+2026-10-31,ALL,dashboard_period no marketplace filter,451,18268.59,362,-3436.43,-2823.25,-297.66,-278.69,-36.83,18268.59,362,-3436.43,-2823.25,-297.66,-278.69,-36.83,100.0,100.0,,
+2026-11-01,US,dashboard_period all marketplaces minus amazon.ca (includes Amazon.com.mx/.com.br/Non-Amazon),399,23941.44,448,-5210.45,-4233.81,-352.02,-551.27,-73.35,23941.44,448,-5210.45,-4233.81,-352.02,-551.27,-73.35,100.0,100.0,23829.67,-5208.93
+2026-11-01,CA,dashboard_period marketplaces=[amazon.ca],179,4480.14,97,-599.93,-584.29,-12.39,-3.25,0,4480.14,97,-599.93,-584.29,-12.39,-3.25,0.0,100.0,100.0,,
+2026-11-01,ALL,dashboard_period no marketplace filter,578,28421.58,545,-5810.38,-4818.1,-364.41,-554.52,-73.35,28421.58,545,-5810.38,-4818.1,-364.41,-554.52,-73.35,100.0,100.0,,
+2026-11-02,US,dashboard_period all marketplaces minus amazon.ca (includes Amazon.com.mx/.com.br/Non-Amazon),369,22479.25,421,-5244.5,-4055.08,-419.71,-701.96,-67.75,22479.25,420,-5244.5,-4055.08,-419.71,-701.96,-67.75,100.0,100.0,22206.02,-5244.5
+2026-11-02,CA,dashboard_period marketplaces=[amazon.ca],158,3786.78,81,-530.35,-517.83,-10.24,-2.28,0,3786.78,81,-530.35,-517.83,-10.24,-2.28,0.0,100.0,100.0,,
+2026-11-02,ALL,dashboard_period no marketplace filter,527,26266.03,502,-5774.85,-4572.91,-429.95,-704.24,-67.75,26266.03,501,-5774.85,-4572.91,-429.95,-704.24,-67.75,100.0,100.0,,

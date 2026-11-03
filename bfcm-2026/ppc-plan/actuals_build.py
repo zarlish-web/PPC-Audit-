@@ -44,7 +44,7 @@ for f in sorted(glob.glob(os.path.join(HERE, "actuals", "daily_child_*.csv"))):
         for k in K:
             v = float(r.get(k) or 0)
             tgt[k] += v * (fx if k != "units" else 1)
-now = dt.datetime.utcnow().strftime("%b %-d %H:%M UTC")
+now = dt.datetime.now(dt.timezone.utc).strftime("%b %-d %H:%M UTC")
 docs = []
 for (m, date), dd in sorted(days.items()):
     prods = {p: {k: round(v, 2) for k, v in s.items()} for p, s in dd["products"].items()}

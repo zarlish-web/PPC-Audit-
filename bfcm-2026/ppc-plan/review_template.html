@@ -629,6 +629,8 @@ const EVDAYS = d3.range(12).map((i) => d3.timeFormat('%Y-%m-%d')(new Date(Date.U
 const ACT = { US: {}, CA: {} };
 let ACT_STATE = 'loading', ACT_NOTE = '';
 const dayLab = (iso) => d3.timeFormat('%b %-d')(new Date(iso + 'T12:00:00Z'));
+// over = above the cap; at = within 1 point below it (or a hair over, under 0.05 pt)
+const capState = (t, cap) => (t == null || cap == null ? null : t > cap + 0.0005 ? 'over' : t >= cap - 0.01 ? 'at' : 'under');
 const spendOf = (r) => (r ? (r.sp || 0) + (r.sb || 0) + (r.sbv || 0) + (r.sd || 0) : 0);
 async function startTracker() {
   const db = window.claude && window.claude.use ? await window.claude.use('db') : null;
@@ -680,12 +682,12 @@ function drawTrack() {
     const d7 = pre.slice(-7);
     const sp7 = d3.sum(d7, (d) => spendOf(ACT[m][d].total)), sa7 = d3.sum(d7, (d) => (ACT[m][d].total || {}).sales || 0);
     const rows = trackRows(m, d7).filter((r) => r.p.plan_tacos > 0 && r.p.cap != null);
-    const overN = rows.filter((r) => r.s.tacos != null && r.s.tacos > r.p.cap + 0.005).length;
-    const days = Math.round((new Date(EV0 + 'T00:00:00Z') - new Date(last + 'T00:00:00Z')) / 864e5);
-    tiles.push(['Days to the deal', String(days - 1), `event Nov 19 – 30`],
+    const overN = rows.filter((r) => capState(r.s.tacos, r.p.cap) === 'over').length, atN = rows.filter((r) => capState(r.s.tacos, r.p.cap) === 'at').length;
+    const days = Math.max(0, Math.ceil((new Date(EV0 + 'T00:00:00') - new Date()) / 864e5));
+    tiles.push(['Days to the deal', String(days), `event Nov 19 – 30`],
       ['Spend per day, last 7 days', money(sp7 / d7.length, m), `plan in BFCM ${money(t.per_day, m)} a day`],
       ['TACoS, last 7 days', pct(sa7 ? sp7 / sa7 : null), `plan in BFCM ${pct(t.plan_tacos)}`],
-      ['Products over their cap', `${overN} of ${rows.length}`, 'last 7 days, all ad types']);
+      ['Products over their cap', `${overN} of ${rows.length}`, `${atN} more at the cap · last 7 days, all ad types`]);
     lead.textContent = `Before the event: bring every product under its cap by Nov 19. Last 7 days of actuals ${dayLab(d7[0])} – ${dayLab(last)} (written ${upd}); all ad types, plan products.`;
   }
   document.getElementById('track-tiles').replaceChildren(...tiles.map(([k, v, s]) => el('div', { class: 'tile' }, el('span', { class: 'k', text: k }), el('span', { class: 'v', text: v }), el('span', { class: 's', text: s }))));
@@ -716,13 +718,19 @@ function drawTrackChart(m, all) {
     if (v.p != null) svg.append('rect').attr('x', x(v.d)).attr('y', y(v.p)).attr('width', x.bandwidth()).attr('height', y(0) - y(v.p)).attr('fill', 'none')
       .attr('stroke', css('--ink')).attr('stroke-dasharray', '3 2').attr('stroke-width', 1.2).attr('pointer-events', 'none');
   });
+  const e0 = days.find((d) => d >= EV0), gap = e0 && days.indexOf(e0) > 0 && days[days.indexOf(e0) - 1] < EV0;
+  if (gap) {
+    const gx = x(e0) - (x.step() - x.bandwidth()) / 2;
+    svg.append('line').attr('x1', gx).attr('x2', gx).attr('y1', mg.t).attr('y2', Hh - mg.b).attr('stroke', css('--muted')).attr('stroke-dasharray', '2 3');
+    svg.append('text').attr('x', gx + 4).attr('y', mg.t + 10).style('fill', css('--muted')).style('font-size', '11px').text('Deal starts Nov 19');
+  }
   if (tac.length > 1) svg.append('path').datum(tac).attr('fill', 'none').attr('stroke', css('--bad')).attr('stroke-width', 2)
     .attr('d', d3.line().x((v) => x(v.d) + x.bandwidth() / 2).y((v) => y2(v.t)));
   svg.append('line').attr('x1', mg.l).attr('x2', W - mg.r).attr('y1', y2(T().plan_tacos)).attr('y2', y2(T().plan_tacos)).attr('stroke', css('--ink')).attr('stroke-width', 1.5);
 }
 function drawTrackTable(m, pre, ev) {
   const tb = document.getElementById('t-track');
-  const chip = (txt, bad) => el('span', { class: 'chip', text: txt, style: bad ? 'color:var(--bad);border-color:var(--bad)' : '' });
+  const chip = (txt, kind) => el('span', { class: 'chip' + (kind ? ' ' + kind : ''), text: txt });
   if (ev.length) {
     document.getElementById('track-note').textContent = 'Budget to date = the product\'s day budgets for the days with actuals. Over pace = spend above 120% of budget to date; over cap = TACoS to date above the cap.';
     const idx = ev.map((d) => EVDAYS.indexOf(d));
@@ -731,26 +739,26 @@ function drawTrackTable(m, pre, ev) {
     const th = ['Product', 'Budget to date', 'Spent', '% of budget', 'Sales', 'Plan sales to date', 'TACoS', 'Cap', 'Status'];
     tb.replaceChildren(el('thead', {}, el('tr', {}, th.map((h, i) => el('th', { class: i ? 'n' : '', text: h })))),
       el('tbody', {}, rows.map(({ p, s, bud, salesPlan }) => {
-        const over = s.tacos != null && p.cap != null && s.tacos > p.cap + 0.005, hot = bud > 0 && s.spend > 1.2 * bud;
+        const cs = capState(s.tacos, p.cap), over = cs === 'over', hot = bud > 0 && s.spend > 1.2 * bud;
         const tr = el('tr', { class: 'click', tabindex: '0' }, el('td', { text: p.name }), el('td', { class: 'n', text: money(bud, m) }), el('td', { class: 'n', text: money(s.spend, m) }),
           el('td', { class: 'n', text: pct(bud ? s.spend / bud : null, 0) }), el('td', { class: 'n', text: money(s.sales, m) }), el('td', { class: 'n', text: money(salesPlan, m) }),
           el('td', { class: 'n', text: pct(s.tacos), style: over ? 'color:var(--bad)' : '' }), el('td', { class: 'n', text: pct(p.cap) }),
-          el('td', { class: 'n' }, p.plan_tacos === 0 ? chip('No ads') : over ? chip('Over cap', true) : hot ? chip('Over pace', true) : chip('On plan')));
+          el('td', { class: 'n' }, p.plan_tacos === 0 ? chip('No ads') : over ? chip('Over cap', 'bad') : hot ? chip('Over pace', 'bad') : cs === 'at' ? chip('At the cap', 'warn') : chip('On plan', 'ok')));
         tr.addEventListener('click', () => openP(p.id)); tr.addEventListener('keydown', (e) => { if (e.key === 'Enter') openP(p.id); }); return tr;
       })));
   } else {
     const d7 = pre.slice(-7), d1 = pre.slice(-1);
-    document.getElementById('track-note').textContent = `Last 7 days = ${dayLab(d7[0])} – ${dayLab(d7[d7.length - 1])}; latest day = ${dayLab(d1[0])}. TACoS = all ad types (SP, SB, SB video, SD) / sales. Click a row for the product's plan.`;
+    document.getElementById('track-note').textContent = `Last 7 days = ${dayLab(d7[0])} – ${dayLab(d7[d7.length - 1])}; latest day = ${dayLab(d1[0])}. TACoS = all ad types (SP, SB, SB video, SD) / sales. At the cap = within 1 point of it. ${m === 'US' ? 'US includes the small Amazon Mexico sales of the same ASINs (about 1%), as in the plan\'s TACoS now. ' : 'Canada converted to C$ at 1.4036. '}Click a row for the product's plan.`;
     const r7 = trackRows(m, d7), r1 = Object.fromEntries(trackRows(m, d1).map((r) => [r.p.id, r.s]));
     const rows = r7.sort((a, b) => ((b.s.tacos || 0) - (b.p.cap || 1)) - ((a.s.tacos || 0) - (a.p.cap || 1)));
     const th = ['Product', 'Cap', 'TACoS last 7 days', 'TACoS latest day', 'TACoS in the plan (Oct 19 – Nov 1)', 'Spend a day, last 7', 'Plan a day in BFCM', 'Status'];
     tb.replaceChildren(el('thead', {}, el('tr', {}, th.map((h, i) => el('th', { class: i ? 'n' : '', text: h })))),
       el('tbody', {}, rows.map(({ p, s }) => {
-        const over = s.tacos != null && p.cap != null && s.tacos > p.cap + 0.005 && p.plan_tacos > 0;
+        const cs = p.plan_tacos > 0 ? capState(s.tacos, p.cap) : null, over = cs === 'over';
         const tr = el('tr', { class: 'click', tabindex: '0' }, el('td', { text: p.name }), el('td', { class: 'n', text: p.plan_tacos === 0 ? 'no ads' : pct(p.cap) }),
           el('td', { class: 'n', text: pct(s.tacos), style: over ? 'color:var(--bad)' : '' }), el('td', { class: 'n', text: pct((r1[p.id] || {}).tacos) }),
           el('td', { class: 'n', text: pct(p.tacos_now) }), el('td', { class: 'n', text: money(s.n ? s.spend / s.n : null, m) }), el('td', { class: 'n', text: money(p.per_day, m) }),
-          el('td', { class: 'n' }, p.plan_tacos === 0 ? chip('No ads in BFCM') : s.tacos == null ? chip('No sales') : over ? chip('Over cap: cut', true) : chip('Under cap')));
+          el('td', { class: 'n' }, p.plan_tacos === 0 ? chip('No ads in BFCM') : s.tacos == null ? chip('No sales') : over ? chip('Over cap: cut', 'bad') : cs === 'at' ? chip('At the cap', 'warn') : chip('Under cap', 'ok')));
         tr.addEventListener('click', () => openP(p.id)); tr.addEventListener('keydown', (e) => { if (e.key === 'Enter') openP(p.id); }); return tr;
       })));
   }
