@@ -1,4 +1,4 @@
-<title>BFCM 2026 PPC Plan</title>
+<title>BFCM 2026 Budget Plan</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,500..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -142,7 +142,7 @@ footer { color: var(--muted); font-size: .8rem; border-top: 1px solid var(--line
 </style>
 
 <div class="bar"><div class="bar-in">
-  <div class="brand">BFCM <b>2026</b> PPC plan</div>
+  <div class="brand">BFCM <b>2026</b> budget plan</div>
   <nav class="nav" aria-label="Sections">
     <a href="#decide">Decisions</a><a href="#track">Tracker</a><a href="#new">What's new</a><a href="#products">Products</a><a href="#budget">Budget</a><a href="#days">By day</a>
     <a href="#full25">BFCM 2025 in full</a><a href="#history">Year over year</a><a href="#adtypes">Ad types</a><a href="#rules">Rules</a><a href="#checks">Checks</a>
@@ -154,8 +154,9 @@ footer { color: var(--muted); font-size: .8rem; border-top: 1px solid var(--line
   <div class="hero" id="decide">
     <div class="hero-l">
       <div class="eyebrow">Amazon US and Canada · Nov 19 – 30, 2026 · draft for Joseph's approval</div>
-      <h1>BFCM 2026 PPC plan</h1>
-      <p class="lead">Budget by product and by day, a TACoS ceiling per product under each deal's break-even, deal-day bid and top-of-search rules, what the agent does every hour and what a person checks. Every number is rebuilt and checked against the original records, and compared with last year like for like.</p>
+      <h1>BFCM 2026 budget plan</h1>
+      <p class="lead">The ad budget at product (parent) level: budget by product and by day, a TACoS ceiling per product under each deal's break-even, deal-day bid and top-of-search rules, what the agent does every hour and what a person checks. Keyword-level decisions sit in the PPC plan. Every number is rebuilt and checked against the original records, and compared with last year like for like.</p>
+      <p class="note" id="sheet-link"></p>
       <div class="asks" aria-label="Erik's asks">
         <a class="ask" href="#budget">Budget by product</a><a class="ask" href="#days">Budget by day</a><a class="ask" href="#products">TACoS ceiling per product</a>
         <a class="ask" href="#rules">Deal-day bids and top of search</a><a class="ask" href="#agent">What the agent does hourly</a><a class="ask" href="#agent">What a person checks</a>
@@ -253,6 +254,11 @@ footer { color: var(--muted); font-size: .8rem; border-top: 1px solid var(--line
       <div><b>Compared cell by cell</b>Every number in the plan, with a tolerance, plus the rules and the wording.</div>
       <div><b>Fixed and re-run</b>Wording errors fixed, fee correction applied, re-run until no mismatch.</div>
     </div>
+    <div class="grid2">
+      <div class="card"><h3>How confident we are</h3><p class="note">Our own judgement, part by part, after the checks.</p><div class="tw"><table id="t-conf"></table></div></div>
+      <div class="card"><h3>Items left for a look</h3><p class="note">Not errors: points where a second source differs or a judgement was needed.</p><div class="tw" style="max-height:420px"><table id="t-flags"></table></div></div>
+    </div>
+    <div class="card"><h3>What the check found, and what was done</h3><div class="tw" style="max-height:520px"><table class="rules" id="t-find"></table></div></div>
   </section>
 
   <footer id="foot"></footer>
@@ -570,7 +576,16 @@ function drawRules() {
   document.getElementById('t-rules').replaceChildren(...mk(DATA.rules, ['Area', 'Rule', 'What to do', 'Why'], ['a', 'b', 'c', 'd']));
   document.getElementById('t-agent').replaceChildren(...mk(DATA.agent, ['Who', 'When', 'What', 'Escalate if'], ['a', 'b', 'c', 'd']));
   const c = DATA.checks;
-  document.getElementById('checks-lead').textContent = `${d3.format(',')(c.total)} checks: ${d3.format(',')(c.ok)} match, ${c.check} judgment items, ${c.diff} mismatches left. Full detail in BFCM_2026_PPC_Verification.xlsx.`;
+  document.getElementById('checks-lead').textContent = `Every number in this plan was rebuilt from the original records with separate code and compared with the workbook: ${d3.format(',')(c.total)} checks, ${d3.format(',')(c.ok)} match, ${c.diff} mismatches left, ${c.check} items left for a look (below).`;
+  const pctc = (v) => el('td', { class: 'n' }, el('span', { class: 'chip ' + (v >= 0.85 ? 'ok' : v >= 0.65 ? 'warn' : 'bad'), text: d3.format('.0%')(v) }));
+  document.getElementById('t-conf').replaceChildren(el('thead', {}, el('tr', {}, ['Part of the number', 'Confidence', 'Why'].map((h, i) => el('th', { class: i === 1 ? 'n' : '', text: h })))),
+    el('tbody', {}, DATA.conf.map(([a, v, w], i) => el('tr', { class: i === DATA.conf.length - 1 ? 'tot' : '' }, el('td', { text: a }), pctc(v), el('td', { text: w })))));
+  document.getElementById('t-flags').replaceChildren(el('thead', {}, el('tr', {}, ['Mkt', 'Product', 'Why it is flagged'].map((h) => el('th', { text: h })))),
+    el('tbody', {}, DATA.flags.map((f) => el('tr', {}, el('td', { text: f.mkt }), el('td', { text: f.product }), el('td', { text: f.why })))));
+  const sevc = { High: 'bad', Medium: 'warn', Low: '', Info: '' };
+  document.getElementById('t-find').replaceChildren(el('thead', {}, el('tr', {}, ['Severity', 'Area', 'Finding', 'What was done', 'Status'].map((h) => el('th', { text: h })))),
+    el('tbody', {}, DATA.findings.map((f) => el('tr', {}, el('td', {}, el('span', { class: 'chip ' + (sevc[f.sev] || ''), text: f.sev })), el('td', { text: f.area }),
+      el('td', { text: f.finding }), el('td', { text: f.action }), el('td', {}, el('span', { class: 'chip ' + (/^Fixed|Verified/.test(f.status) ? 'ok' : /^Open/.test(f.status) ? 'warn' : ''), text: f.status }))))));
 }
 function drawFull25() {
   const DD = DATA.daily25.days; const m = MKT, F = DATA.full25[m], fx = m === 'CA' ? 1.4036 : 1, pre = F.pre, bf = F.bf, D_ = DATA.daily25[m];
@@ -764,7 +779,9 @@ function drawTrackTable(m, pre, ev) {
   }
 }
 function drawFoot() {
-  document.getElementById('foot').textContent = `Built ${DATA.built} by Shayan Rana for Joseph Fisher's review (asked by Erik). Supporting files: BFCM_2026_PPC_Plan.xlsx (plan) and BFCM_2026_PPC_Verification.xlsx (checks). Figures are estimates from the last 14 days of sales and spend by product and ad type, each product's BFCM 2025 lift and the Oct 27 deal prices; Amazon deal prices can change until Nov 13.`;
+  const sl = document.getElementById('sheet-link');
+  if (sl && !sl.childNodes.length) sl.append('Workbook with every number and formula: ', el('a', { href: DATA.sheet, target: '_blank', rel: 'noopener', text: 'BFCM-2026 PPC Budget Plan (Google Sheet)' }), '.');
+  document.getElementById('foot').textContent = `Built ${DATA.built} by Shayan Rana for Joseph Fisher's review (asked by Erik). Workbook: BFCM-2026 PPC Budget Plan (Google Sheet, linked at the top). Figures are estimates from the last 14 days of sales and spend by product and ad type, each product's BFCM 2025 lift and the Oct 27 deal prices; Amazon deal prices can change until Nov 13.`;
 }
 function drawMarket() { drawFoot(); drawTrack(); drawFull25(); drawHero(); drawGrid(); drawScen(); drawBudgetTable(); drawAllDays(); drawBridge(); drawBfcmp(); drawSplit(); drawWeekly(); }
 function setM(m) { MKT = m; document.getElementById('m-us').setAttribute('aria-pressed', m === 'US'); document.getElementById('m-ca').setAttribute('aria-pressed', m === 'CA'); drawMarket(); }

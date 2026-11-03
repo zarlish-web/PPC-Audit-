@@ -169,7 +169,7 @@ chk = {"Plan vs check A": (f"The plan is {'below' if bud['US'] < A[0] else 'abov
                            f"{jump25[0]:.1f}x / {jump25[1]:.1f}x in 2025 (last two lines) and keeps each product inside its TACoS cap."),
        "Plan vs check B": "On the same sales, the plan sits close to the account-level TACoS; growth-plan floors on Bamboo and CooLinens Cooling Sheets held at today's spend account for the difference.",
        "Plan: expected sales per day vs plan products' sales per day now": "The plan's sales jump for BFCM 2026 ...",
-       "(B) Expected sales, Nov 19 - 30 (demand read)": "The plan's expected sales for the products in the plan (current pace x BFCM lift)."}
+       "(B) Expected sales, Nov 19 - 30 (plan)": "The plan's expected sales for the products in the plan (current pace x BFCM lift)."}
 day = {m: f"Black Friday and Cyber Monday get about {dayline[m][3]:.1f}x an average day ({money[m](dayline[m][0])} and {money[m](dayline[m][1])}, {pc(dayline[m][2])} of the budget)."
        for m in ("US", "CA")}
 json.dump({"calls": calls, "notes": notes, "check_notes": chk, "rules": [[a, b, t] for (a, b), t in rules.items()], "day_note": f"{day['US']} Canada: {day['CA']}"}, open(os.path.join(HERE, "plan_text.json"), "w"), indent=1)

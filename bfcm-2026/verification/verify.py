@@ -431,7 +431,7 @@ for m in ("US", "CA"):
         cands = [asin2pid.get((m, r["asin"])) for r in rows if r["marketplace"] == m and r["deal"] == dn and asin2pid.get((m, r["asin"]))]
         pid_ = max(set(cands), key=cands.count) if cands else None
         add(S3, "Every product with a BFCM deal has a budget line", dn, "in plan" if pid_ in planned else "not in plan", None, m, dn, kind="eq",
-            status="OK" if pid_ in planned else "CHECK", note="" if pid_ in planned else "Best Deal in the deal sheet but no line in the PPC plan; its ads (~$9 a day) run outside the plan budget.")
+            status="OK" if pid_ in planned else "CHECK", note="" if pid_ in planned else "Best Deal in the deal sheet but no line in the budget plan; its ads (~$9 a day) run outside the plan budget.")
 
 # ------------------------------------------------------------------ 4. workbook arithmetic
 S4 = "4. Workbook arithmetic"

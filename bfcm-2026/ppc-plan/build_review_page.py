@@ -1,4 +1,4 @@
-"""Builds the BFCM 2026 PPC plan review page (for Joseph and Erik) as one self-contained HTML file.
+"""Builds the BFCM 2026 budget plan review page (for Joseph and Erik) as one self-contained HTML file.
 Consolidates: the plan workbook (recalculated copy), the independent verification, the year-over-year analysis,
 and the competitor tracker (product photos, demand read, stock, 2025 price comparison).
 Usage: python3 build_review_page.py <recalculated plan.xlsx> <out.html>"""
@@ -152,7 +152,30 @@ for _m in ("US", "CA"):
     _L = sorted(((p["stock"]["counts"].get("Out of stock now", 0) + p["stock"]["counts"].get("Short even with inbound", 0), p["name"]) for p in prods if p["mkt"] == _m), reverse=True)
     _L = [x for x in _L if x[0] > 0][:4]
     _risk[_m] = ("Most sizes short or out of stock now: " + ", ".join(f"{n} ({c})" for c, n in _L) + ".") if _L else "No product has sizes short or out of stock."
+# ---------------- the independent check, brought into the plan page (the verification page itself is internal)
+_vw = load_workbook(os.path.join(VER, "BFCM_2026_PPC_Verification.xlsx"), data_only=True)["Findings"]
+findings = []
+for r_ in _vw.iter_rows(min_row=5, values_only=True):
+    if r_[0] and r_[3]:
+        findings.append({"sev": r_[1], "area": r_[2], "finding": r_[3], "impact": r_[5], "action": r_[6], "status": r_[7]})
+_flag_why = {"Average selling price": "No deal-sheet price (no deal): today's listing price is used.",
+             "SP spend, 14 days: sales-tracking data vs ads console": "Two spend sources differ by 6-12% on a small product; the plan uses one source for spend and sales alike.",
+             "Growth-plan stage and TACoS band vs ads console": "The ads console now shows a 7-12% band on Liquidation products; the plan treats them as no-ads or units-only.",
+             "Every product with a BFCM deal has a budget line": "Has a Best Deal but no budget line (about $9 a day of ads, outside the plan).",
+             "Ad budget if every deal product sells at its last-14-day pace x its BFCM lift (same plan TACoS)": "For comparison: the budget on read A alone (today's pace x lift)."}
+flags = []
+for x in VR["checks"]:
+    if x["status"] == "CHECK":
+        flags.append({"mkt": x["mkt"], "product": x.get("product") or "Whole market", "item": x["item"], "why": _flag_why.get(x["item"], x.get("note") or "")})
+CONF = [["The maths (budgets, caps, totals, by day)", 0.99, "Rebuilt independently from the raw records: every number matches."],
+        ["Today's starting point (sales pace, TACoS now, stock)", 0.90, "Fresh account data; daily totals match the account exactly. The last two days can still shift slightly."],
+        ["Break-even and TACoS caps", 0.80, "Deal prices are the Oct 27 export; Amazon can change them until Nov 13. Deal-fee basis (per deal or per deal day) to confirm."],
+        ["Expected BFCM sales (size of the jump)", 0.62, "Each product's 2025 BFCM lift on today's pace. Traffic is down 34% and Bamboo starts from a higher price, so the jump can differ."],
+        ["TACoS falling to the plan in BFCM", 0.60, "Fell 14.6% -> 8.2% in 2025; we start higher this year (about 21%)."],
+        ["Overall: the budget to go in with", 0.70, "US spend lands between $53K and $73K: about 80%. Within 10% of the plan: about 60%. The agent paces to each cap on actual sales, so spend corrects itself."]]
+SHEET_URL = "https://docs.google.com/spreadsheets/d/1miNz6A9pKrjZEqQkfP9OVHKdQ_l5EVacCj-LsZP5j7I/edit?usp=sharing"
 data = {
+    "findings": findings, "flags": flags, "conf": CONF, "sheet": SHEET_URL,
     "built": _dt.date.today().strftime("%b %-d, %Y"), "prev": {"US": 88264, "CA": 25542},
     "stock_asof": _dt.date.fromisoformat(D.get("stockAsof") or "2026-11-03").strftime("%b %-d") if D.get("stockAsof") else "Nov 3", "stock_risk": _risk,
     "totals": tot, "hist": hist, "days": DAYS, "daytot": daytot, "weights": weights,

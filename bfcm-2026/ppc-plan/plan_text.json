@@ -43,7 +43,7 @@
   "Plan vs check A": "The plan is below check A because it expects a 2.5x (US) / 3.0x (CA) sales jump vs 2.9x / 3.2x in 2025 (last two lines) and keeps each product inside its TACoS cap.",
   "Plan vs check B": "On the same sales, the plan sits close to the account-level TACoS; growth-plan floors on Bamboo and CooLinens Cooling Sheets held at today's spend account for the difference.",
   "Plan: expected sales per day vs plan products' sales per day now": "The plan's sales jump for BFCM 2026 ...",
-  "(B) Expected sales, Nov 19 - 30 (demand read)": "The plan's expected sales for the products in the plan (current pace x BFCM lift)."
+  "(B) Expected sales, Nov 19 - 30 (plan)": "The plan's expected sales for the products in the plan (current pace x BFCM lift)."
  },
  "rules": [
   [

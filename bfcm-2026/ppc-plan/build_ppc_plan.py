@@ -31,7 +31,7 @@ NOTE = {"DC B4": "Hero. Room under the ceiling: full BFCM push.", "DC B6": "Hero
 wb = Workbook()
 # ---------------- Budget by product
 bp = wb.active; bp.title = "Budget by product"; bp.sheet_view.showGridLines = False
-bp["A1"] = "BFCM 2026 PPC plan: budget, growth-plan band and TACoS cap by product, Nov 19 - 30 (all ad types: SP, SB, SB video, SD)"; bp["A1"].font = F(size=13, bold=True, color=NAVY)
+bp["A1"] = "BFCM 2026 budget plan: ad budget, growth-plan band and TACoS cap by product (parent level), Nov 19 - 30 (all ad types: SP, SB, SB video, SD)"; bp["A1"].font = F(size=13, bold=True, color=NAVY)
 bp["A2"] = ("Units = current demand (Nov 3): low / high = the two reads A = last-14-day pace (Oct 19 - Nov 1) x own BFCM 2025 lift x 12 days and B = BFCM 2025 units x (units Oct 19 - Nov 1, 2026 / same 14 days 2025), B only where the product sold at least 100 units in those 14 days of 2025 and 200 in BFCM 2025; otherwise both = A. Avg selling price = deal price weighted by each "
             "variation's 28-day units (Lightning Deals: 1 deal day + 11 regular days). Break-even TACoS = (price - COGS - FBA - referral - 1% deal fee - $70 per deal) / price; "
             "cap = the lower of 80% of break-even and the growth-plan band ceiling. TACoS now = the product's ad spend per day over the last 14 days across all ad types (SP, SB, SB video, SD; see the Ad types by product tab) / its "
@@ -138,7 +138,7 @@ for m in ("US", "CA"):
 ap.freeze_panes = "B5"
 # ---------------- Budget by day
 bd = wb.create_sheet("Budget by day"); bd.sheet_view.showGridLines = False
-bd["A1"] = "BFCM 2026 PPC budget by day (follows how sales were spread over the 12 days of BFCM 2025)"; bd["A1"].font = F(size=13, bold=True, color=NAVY)
+bd["A1"] = "BFCM 2026 budget by day (follows how sales were spread over the 12 days of BFCM 2025)"; bd["A1"].font = F(size=13, bold=True, color=NAVY)
 bd["A2"] = ("Day weights = each day's share of BFCM 2025 sales (Nov 20 - Dec 1, 2025; the days line up by weekday: Black Friday and Cyber Monday are day 9 and day 12 both years). "
             "Lightning Deal products put 4x the normal weight on their deal day. Each product's day = its budget x the day weight.")
 bd["A2"].font = F(italic=True, size=8.5); bd["A2"].alignment = WRAP; bd.merge_cells("A2:O2"); bd.row_dimensions[2].height = 34
@@ -362,9 +362,9 @@ CHECK = [
  ("2026 now vs 2025 same 14 days: SP cost per click", f"=S{u+6}/S{u+1}-1", f"=S{c_+6}/S{c_+1}-1", "pct", "Clicks are cheaper this year."),
  ("2026: TACoS now vs same 14 days 2025", f"=N{u+6}-N{u+1}", f"=N{c_+6}-N{c_+1}", "pts", "Percentage points."),
  ("(A) Today's spend per day x 2025 BFCM spend rise x 12 days", f"=M{u+6}*C{hrow}*12", f"=M{c_+6}*E{hrow}*12*$C$3", "cur", "History check A: raise spend the way we did last year. (Same answer as growing today's sales like 2025 at 2025's TACoS drop.)"),
- ("(B) Expected sales, Nov 19 - 30 (demand read)", f"='Budget by product'!J{pb['US'][2]}", f"='Budget by product'!J{pb['CA'][2]}", "cur", "The plan's expected sales for the products in the plan."),
+ ("(B) Expected sales, Nov 19 - 30 (plan)", f"='Budget by product'!J{pb['US'][2]}", f"='Budget by product'!J{pb['CA'][2]}", "cur", "The plan's expected sales for the products in the plan."),
  ("(B) Account TACoS in BFCM if it falls like 2025", f"=N{u+6}*C{hrow+4}", f"=N{c_+6}*E{hrow+4}", "pct1", "Today's all-ad-type TACoS x the 2025 deal-period factor."),
- ("(B) Budget = expected sales x that TACoS", f"=C{hrow+12}*C{hrow+13}", f"=E{hrow+12}*E{hrow+13}", "cur", "History check B: the demand read's sales at last year's TACoS behaviour."),
+ ("(B) Budget = expected sales x that TACoS", f"=C{hrow+12}*C{hrow+13}", f"=E{hrow+12}*E{hrow+13}", "cur", "History check B: the plan's sales at last year's TACoS behaviour."),
  ("Plan budget (Budget by product tab)", f"='Budget by product'!U{pb['US'][2]}", f"='Budget by product'!U{pb['CA'][2]}", "cur", "Built product by product: plan TACoS x expected sales, inside growth bands and break-even caps."),
  ("Plan vs check A", f"=C{hrow+15}/C{hrow+11}-1", f"=E{hrow+15}/E{hrow+11}-1", "pct", "Main reason the plan is higher: the demand read expects sales to jump more than they did in 2025 (last two lines)."),
  ("Plan vs check B", f"=C{hrow+15}/C{hrow+14}-1", f"=E{hrow+15}/E{hrow+14}-1", "pct", "On the same sales, the plan is a little above the account-level TACoS: growth-plan floors on Bamboo / Sleephoria and CooLinens Cooling Sheets held at 33%."),
@@ -477,22 +477,23 @@ fl.freeze_panes = "B6"
 # ---------------- Summary (first)
 sm = wb.create_sheet("Summary", 0); sm.sheet_view.showGridLines = False
 sm.column_dimensions["A"].width = 46; sm.column_dimensions["B"].width = 16; sm.column_dimensions["C"].width = 16; sm.column_dimensions["D"].width = 60
-sm["A1"] = "BFCM 2026 PPC plan (Amazon US and CA), Nov 19 - 30"; sm["A1"].font = F(size=14, bold=True, color=NAVY)
-sm["A2"] = "Draft by Shayan Rana for Joseph Fisher's approval · Nov 2, 2026 · numbers recalculate if you change a blue input"; sm["A2"].font = F(italic=True)
+sm["A1"] = "BFCM 2026 budget plan (Amazon US and CA), Nov 19 - 30"; sm["A1"].font = F(size=14, bold=True, color=NAVY)
+sm["A2"] = ("Draft by Shayan Rana for Joseph Fisher's approval · updated " + __import__("datetime").date.today().strftime("%b %-d, %Y")
+            + " · ad budget and TACoS caps at product (parent) level; keyword-level decisions sit in the PPC plan · numbers recalculate if you change a blue input"); sm["A2"].font = F(italic=True)
 for j, h in enumerate(["", "US (US$)", "Canada (C$)", "What it means"], 1):
     c = sm.cell(row=4, column=j, value=h); c.font = F(bold=True, color="FFFFFF"); c.fill = HDR; c.border = BOX
 us, ca = blocks["US"], blocks["CA"]
 NOW_ALL = {"US": round(sum(I["adtype_weekly"]["US"][k][-1] for k in ("sp", "sb", "sbv", "sd")) / 7, 2),
            "CA": round(sum(I["adtype_weekly"]["CA_usd"][k][-1] for k in ("sp", "sb", "sbv", "sd")) / 7 * 1.40, 2)}
-LINES = [("Expected sales, Nov 19 - 30 (plan units x deal price)", f"='Budget by product'!J{us[2]}", f"='Budget by product'!J{ca[2]}", "Mid-point of the demand read.", CUR),
+LINES = [("Expected sales, Nov 19 - 30 (plan units x deal price)", f"='Budget by product'!J{us[2]}", f"='Budget by product'!J{ca[2]}", "Current pace x each product's BFCM 2025 lift, at the deal price (mid-point of reads A and B).", CUR),
          ("Ad budget, Nov 19 - 30 (SP + SB + SB video + SD)", f"='Budget by product'!U{us[2]}", f"='Budget by product'!U{ca[2]}", "Each product's plan TACoS x its expected sales; split by ad type on the Ad types by product tab.", CUR),
          ("Range (low - high demand)", f"=TEXT('Budget by product'!V{us[2]},\"$#,##0\")&\" - \"&TEXT('Budget by product'!W{us[2]},\"$#,##0\")",
           f"=TEXT('Budget by product'!V{ca[2]},\"$#,##0\")&\" - \"&TEXT('Budget by product'!W{ca[2]},\"$#,##0\")", "Budget moves with sales: the agent paces to it daily.", None),
          ("Plan TACoS (blended, all ad types)", f"='Budget by product'!T{us[2]}", f"='Budget by product'!T{ca[2]}", "BFCM 2025 ran at 8.2% (US) and 8.8% (CA); last week the account ran at 19.8% (US).", "pct"),
          ("Ad budget per day (average)", f"='Budget by product'!X{us[2]}", f"='Budget by product'!X{ca[2]}", TXT.get("day_note", "Black Friday and Cyber Monday carry the biggest day weights (Budget by day tab)."), CUR),
          ("Ad spend per day now, all ad types (Oct 26 - Nov 1)", NOW_ALL["US"], NOW_ALL["CA"], "Includes the new SB, SB video and SD campaigns (21% of US spend last week).", CUR),
-         ("History check A: raise today's spend the way we did in BFCM 2025", f"='{HC}'!C{HIST['A']}", f"='{HC}'!E{HIST['A']}", "BFCM 2025 spend was 1.6x (US) / 2.3x (CA) the same 14 days before. Suggested base budget.", CUR),
-         ("History check B: expected sales at 2025's TACoS drop", f"='{HC}'!C{HIST['B']}", f"='{HC}'!E{HIST['B']}", "Demand read's sales x today's TACoS x the 2025 deal-period factor.", CUR)]
+         ("History check A: raise today's spend the way we did in BFCM 2025", f"='{HC}'!C{HIST['A']}", f"='{HC}'!E{HIST['A']}", "BFCM 2025 spend was 1.6x (US) / 2.3x (CA) the same 14 days before. The ceiling: spend above the plan is released only while each product stays under its TACoS cap.", CUR),
+         ("History check B: expected sales at 2025's TACoS drop", f"='{HC}'!C{HIST['B']}", f"='{HC}'!E{HIST['B']}", "The plan's expected sales x today's TACoS x the 2025 deal-period factor.", CUR)]
 rr = 5
 for lab, a, b, note, fmt in LINES:
     sm.cell(row=rr, column=1, value=lab).font = F(bold=True)
