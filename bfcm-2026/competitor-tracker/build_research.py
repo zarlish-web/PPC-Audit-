@@ -1055,7 +1055,7 @@ for (_p, _c), _r in sorted(roster.items()):
 # Buy Box) per exact ASIN, plus any Lightning / Prime-exclusive deal or coupon running on that day.
 keepa_now = {}   # (mkt, asin) -> {"date", "price", "basis", "list", "deal"}
 for _m in ("us", "ca"):
-    _kf = latest(f"{DATA}/keepa/keepa_now_{_m}_*.csv")
+    _kf = latest(f"{DATA}/keepa/keepa_now_{_m}_20[0-9][0-9]-[0-9][0-9]-[0-9][0-9].csv")
     if not _kf:
         continue
     _ser = collections.defaultdict(dict)      # (asin, metric) -> {date: (value, value2)}
@@ -1084,6 +1084,10 @@ for _m in ("us", "ca"):
         _cp = _at("COUPON")
         if _cp:
             _deal.append(f"coupon {abs(_cp):.0f}% off" if _cp < 0 else f"coupon ${_cp:,.2f} off")
+        # what a shopper pays that day: the lowest of Buy Box, Lightning Deal and Prime exclusive (same basis as the BFCM 2025
+        # columns); a coupon is listed, not netted
+        _eff = min([(_best[1], _best[2])] + [(v_, l_) for v_, l_ in ((_at("LIGHTNING_DEAL"), "Lightning Deal"), (_at("PRIME_EXCL"), "Prime exclusive")) if v_])
+        _best = (_d0, _eff[0], _eff[1])
         keepa_now[(_m.upper(), _a)] = {"date": _d0, "price": _best[1], "basis": _best[2], "list": _at("LISTPRICE"),
                                         "deal": ", ".join(_deal) or "none", "bsr": _at("SALES")}
 KEEPA_NOW_DATE = max((v_["date"] for v_ in keepa_now.values()), default=None)
