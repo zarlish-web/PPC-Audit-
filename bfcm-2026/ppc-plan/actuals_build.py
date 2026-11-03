@@ -33,8 +33,16 @@ for r in json.load(open(os.path.join(HERE, "plan_numbers.json"))):
 
 K = ("sp", "sb", "sbv", "sd", "sales", "units")
 days = defaultdict(lambda: {"products": defaultdict(lambda: dict.fromkeys(K, 0.0)), "other": dict.fromkeys(K, 0.0), "rows": 0})
-for f in sorted(glob.glob(os.path.join(HERE, "actuals", "daily_child_*.csv"))):
+# a day can appear in more than one file (a re-pull to catch late ad charges): the newest file for that day wins
+_files = sorted(glob.glob(os.path.join(HERE, "actuals", "daily_child_*.csv")), key=os.path.getmtime)
+_owner = {}
+for f in _files:
     for r in csv.DictReader(open(f, encoding="utf-8-sig")):
+        _owner[(r["marketplace"], r["date"])] = f
+for f in _files:
+    for r in csv.DictReader(open(f, encoding="utf-8-sig")):
+        if _owner.get((r["marketplace"], r["date"])) != f:
+            continue
         m = r["marketplace"]; fx = FX if m == "CA" else 1.0
         pid = asin2pid.get((m, r["asin"])) or asin2pid.get(("ANY", r["asin"]))
         if pid is None:
