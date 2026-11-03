@@ -5,6 +5,9 @@ HERE = os.path.dirname(os.path.abspath(__file__)); TR = os.path.join(HERE, "..",
 h = open(sys.argv[1]).read(); i = h.index("const D = ") + 10
 D = json.loads(h[i:h.index("\nconst IMG")].rstrip().rstrip(";"))
 INP = json.load(open(os.path.join(HERE, "inputs_2026-11-02.json")))
+_YO = json.load(open(os.path.join(HERE, "..", "verification", "yoy_results.json")))
+YO14 = {(r["market"], r["pid"]): r for mk in _YO["markets"] for r in _YO["markets"][mk]["rows"]}     # Oct 19 - Nov 1, 2025 vs 2026
+YOBF = {(r["market"], r["pid"]): r for r in _YO["bfcm"]}                                           # BFCM 2025 per product
 DEAL_PERF_FEE = 0.01           # Amazon deal fee, share of deal sales (corrected Nov 2: 1%)
 DEAL_FLAT_FEE = 70.0           # flat fee per deal (corrected Nov 2: $70)
 CEIL_SHARE = 0.80              # TACoS ceiling = 80% of the break-even TACoS (keeps 20% of the pre-ad margin)
@@ -24,7 +27,18 @@ for p in D["products"]:
         continue
     m = p["mkt"]; st = p["stock26"]; lift = st["lift"]
     vel = sum(r["vel"] for r in st["rows"]); u28 = p.get("u28") or 0
-    lo, hi = u28 / 28 * lift * 12, vel * lift * 12
+    lo_prev, hi_prev = u28 / 28 * lift * 12, vel * lift * 12      # the Oct 28 demand read (28-day pace / account velocity, both incl. deal days)
+    # Demand from current, event-free data (Nov 3): A = last-14-day pace (Oct 19 - Nov 1) x own BFCM 2025 lift x 12 days;
+    # B = this product's BFCM 2025 units x (units Oct 19 - Nov 1, 2026 / same 14 days 2025), used only where both years have real volume.
+    y14 = YO14.get((m, p["pid"])); yb = YOBF.get((m, p["pid"]))
+    A = (y14["units26"] / 14 * lift * 12) if (y14 and lift) else None
+    B = (yb["units25"] * y14["units26"] / y14["units25"]) if (y14 and yb and (y14.get("units25") or 0) >= 100 and (yb.get("units25") or 0) >= 200) else None
+    if A is None:
+        lo, hi, dsrc = lo_prev, hi_prev, "Oct 28 demand read (no 14-day sales for this product)"
+    elif B is None:
+        lo = hi = A; dsrc = "last-14-day pace x own 2025 lift"
+    else:
+        lo, hi = min(A, B), max(A, B); dsrc = "last-14-day pace x lift / 2025 BFCM units x 2026 trend"
     rows = [(v, sheet.get((m, v["asin"]))) for v in p["vars"]]
     w = lambda v: (v.get("u28") or 0) + 0.01
     dealrows = [(v, s) for v, s in rows if s and s["deal"]]
@@ -44,7 +58,7 @@ for p in D["products"]:
     else:
         m_deal = None
     m_cur = wavg(allrows, lambda v, s: margin(v, s, s["cur"]) + (DEAL_PERF_FEE * s["cur"] if s["deal"] else 0))
-    plan_units = (lo + hi) / 2
+    plan_units = (round(lo) + round(hi)) / 2   # same whole units the workbook shows, so break-even and sales use one figure
     # average selling price over the 12 days: deal price all 12 days for a Best Deal; 1 deal day + 11 regular for a Lightning Deal
     if deal and not ld: asp = deal
     elif deal and ld: asp = (deal + 11 * cur) / 12
@@ -61,7 +75,8 @@ for p in D["products"]:
     t_bf = bf["adcost"] / bf["sales"] if bf and bf.get("sales") and bf.get("adcost") is not None else None
     c30 = INP["ppc30"][m].get(str(p["pid"]))
     out.append({"mkt": m, "short": p["short"], "pid": p["pid"], "name": p["brand"] + " " + p["name"], "deal_type": da.get("type"), "deal_dates": da.get("dates"),
-                "lift": lift, "lift_src": st.get("liftSrc"), "units_lo": lo, "units_hi": hi, "units_plan": plan_units, "units25": sum(v.get("u25") or 0 for v in p["vars"]),
+                "lift": lift, "lift_src": st.get("liftSrc"), "units_lo": lo, "units_hi": hi, "units_plan": plan_units, "demand_src": dsrc,
+                "units_lo_prev": lo_prev, "units_hi_prev": hi_prev, "pace14": (y14["units26"] / 14 if y14 else None), "units25": sum(v.get("u25") or 0 for v in p["vars"]),
                 "deal_price": deal, "cur_price": cur, "asp": asp, "sales_plan": sales, "margin_deal": m_deal, "margin_cur": m_cur, "be_tacos": be,
                 "tacos25_pre": t_pre, "tacos25_bf": t_bf, "spend30": c30[0] if c30 else None, "adsales30": c30[1] if c30 else None,
                 "tacos30": (c30[2] / 100 if c30 and c30[2] is not None else None), "ld": ld})

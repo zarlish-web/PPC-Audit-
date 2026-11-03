@@ -13,12 +13,8 @@ F = lambda **k: Font(name="Arial", size=k.pop("size", 9), **k)
 HDR = PatternFill("solid", fgColor=NAVY); YEL = PatternFill("solid", fgColor="FFF2CC"); GRN = PatternFill("solid", fgColor="E2EFDA"); RED = PatternFill("solid", fgColor="FCE4D6")
 BOX = Border(*(Side(style="thin", color="BFBFBF"),) * 4); WRAP = Alignment(wrap_text=True, vertical="top"); CEN = Alignment(horizontal="center", vertical="center", wrap_text=True)
 CUR = {"US": '"$"#,##0', "CA": '"C$"#,##0'}; CUR2 = {"US": '"$"#,##0.00', "CA": '"C$"#,##0.00'}
-NAMES = {"DC B4": "Decolure Bamboo 4 Pc", "DC B6": "Decolure Bamboo 6 Pc", "DC S4": "Decolure Satin 4 Pc", "DC S6": "Decolure Satin 6 Pc",
-         "SSS4": "Sleep Sanctuary Satin 4 Pc", "DC Satin Fitted": "Decolure Satin Fitted", "DC Silk Pillowcase": "Decolure Silk Pillowcase",
-         "CL Pillowcases": "CooLinens Pillowcases", "SL Cooling 4pc": "Sleephoria Cooling 4 Pc", "SL Cooling Fitted": "Sleephoria Cooling Fitted",
-         "SL Cooling Comforter": "Sleephoria Cooling Comforter", "SL Cooling Pillowcase": "Sleephoria Cooling Pillowcase", "SL B6": "Sleephoria Bamboo 6 Pc",
-         "SL Quilt Set": "Sleephoria Quilt Set", "DC Linen Curtains": "Decolure Linen Curtains", "DC Chair Cover": "Decolure Chair Cover",
-         "DC Bamboo Fitted": "Decolure Bamboo Fitted", "DC Cooling 4pc": "Decolure Cooling 4 Pc", "CL Cooling Sheets": "CooLinens Cooling Sheets"}
+sys.path.insert(0, HERE); from build_names import NAMES
+TXT = json.load(open(os.path.join(HERE, "plan_text.json"))) if os.path.exists(os.path.join(HERE, "plan_text.json")) else {}
 MKT_FACTOR = {"US": 0.58, "CA": 0.68}; MKT_BF = {"US": 0.0817, "CA": 0.088}
 DAYS = ["Thu Nov 19", "Fri Nov 20", "Sat Nov 21", "Sun Nov 22", "Mon Nov 23", "Tue Nov 24", "Wed Nov 25", "Thu Nov 26", "Fri Nov 27 (BF)", "Sat Nov 28", "Sun Nov 29", "Mon Nov 30 (CM)"]
 LD_DAY = {"DC S6": 4, "DC Silk Pillowcase": 4, "SL Cooling Fitted": 6}   # index into DAYS: Nov 23, Nov 23, Nov 25
@@ -36,7 +32,7 @@ wb = Workbook()
 # ---------------- Budget by product
 bp = wb.active; bp.title = "Budget by product"; bp.sheet_view.showGridLines = False
 bp["A1"] = "BFCM 2026 PPC plan: budget, growth-plan band and TACoS cap by product, Nov 19 - 30 (all ad types: SP, SB, SB video, SD)"; bp["A1"].font = F(size=13, bold=True, color=NAVY)
-bp["A2"] = ("Units = the demand read (low = last-28-day pace x own 2025 BFCM lift x 12 days; high = current pace x lift x 12). Avg selling price = deal price weighted by each "
+bp["A2"] = ("Units = current demand (Nov 3): low / high = the two reads A = last-14-day pace (Oct 19 - Nov 1) x own BFCM 2025 lift x 12 days and B = BFCM 2025 units x (units Oct 19 - Nov 1, 2026 / same 14 days 2025), B only where the product sold at least 100 units in those 14 days of 2025 and 200 in BFCM 2025; otherwise both = A. Avg selling price = deal price weighted by each "
             "variation's 28-day units (Lightning Deals: 1 deal day + 11 regular days). Break-even TACoS = (price - COGS - FBA - referral - 1% deal fee - $70 per deal) / price; "
             "cap = the lower of 80% of break-even and the growth-plan band ceiling. TACoS now = the product's ad spend per day over the last 14 days across all ad types (SP, SB, SB video, SD; see the Ad types by product tab) / its "
             "sales per day over the same 14 days. Base = TACoS now x the deal-period factor (how far TACoS fell in BFCM 2025 vs the 30 days before). Growth floor in BFCM = the growth-plan band floor x "
@@ -79,7 +75,7 @@ for m in ("US", "CA"):
                 f"='{AT}'!K{R}", fac, round(fb, 4), f"='{AT}'!G{R}",
                 f'=IF(M{R}<>"",M{R}*N{R},O{R})', f'=IF(D{R}="","",D{R}*N{R})', f'=IF(L{R}="",IF(E{R}="","",E{R}),IF(E{R}="",L{R},MIN(E{R},L{R})))',
                 plan_f, (f"=J{R}*T{R}" if r["deal_type"] else f"='{AT}'!J{R}*12*T{R}"), (f"=F{R}*I{R}*T{R}" if r["deal_type"] else f"=U{R}"), (f"=G{R}*I{R}*T{R}" if r["deal_type"] else f"=U{R}"), f"=U{R}/12", f"='{AT}'!I{R}",
-                f'=IF(Y{R}>0,X{R}/Y{R}-1,"")', check_f, NOTE.get(r["short"], "")]
+                f'=IF(Y{R}>0,X{R}/Y{R}-1,"")', check_f, TXT.get("notes", {}).get(f"{m}|{r['short']}", NOTE.get(r["short"], ""))]
         for j, v in enumerate(vals, 1):
             c = bp.cell(row=row, column=j, value=v); c.border = BOX; c.font = F(color=(BLUE if j in (3, 4, 5, 6, 7, 9, 11, 14, 15) else GREENF if j in (13, 16, 25) else "000000"))
             c.number_format = {4: "0%", 5: "0%", 6: "#,##0", 7: "#,##0", 8: "#,##0", 9: CUR2[m], 10: CUR[m], 11: "0.0%", 12: "0.0%", 13: "0.0%", 14: "0.00", 15: "0.0%",
@@ -204,6 +200,8 @@ RULES = [
  ("SB, SB video, SD", "Display", "Retargeting on viewers of our own deal ASINs only, about 1% of spend; switch off broad audiences for the event.", "Display has the weakest return; keep it to warm traffic."),
  ("Top of search", "Product pages", "Keep product-targeting ads on our own listings at today's bids to hold deal traffic on our pages; no boost.", ""),
 ]
+_RT = {(a, b): t for a, b, t in TXT.get("rules", [])}
+RULES = [(a, b, _RT.get((a, b), cc), d) for a, b, cc, d in RULES]
 ru.append([]); hr = 3
 for j, h in enumerate(["Area", "Rule", "What to do", "Why"], 1):
     c = ru.cell(row=hr, column=j, value=h); c.font = F(bold=True, color="FFFFFF"); c.fill = HDR; c.border = BOX
@@ -253,7 +251,7 @@ for lab, a, b in (("US TACoS that day", r - 5, r - 6), ("CA TACoS that day", r -
     r += 1
 r += 2
 ip.cell(row=r, column=1, value="Sources").font = F(bold=True, color=NAVY); r += 1
-SRC = ["Demand (units low / high): BFCM 2026 competitor tracker, demand read posted Oct 28 (28-day units and current pace per variation x own BFCM 2025 lift).",
+SRC = ["Demand (units low / high), re-based Nov 3: units sold per product Oct 19 - Nov 1, 2026 and the same 14 days of 2025 (account sales data), BFCM 2025 units per product, and each product's own BFCM 2025 lift (BFCM week vs the 30 days before). The Oct 28 demand read (28-day pace and account velocity, both including deal days) is kept in plan_numbers.json for comparison.",
        "Deal prices, COGS, FBA fee, referral %: team deal sheet, Oct 27, 2026 export (Umair). Canada COGS in the export are US$ figures next to C$ prices; converted at 1.40.",
        "Deal fees: 1% of deal sales + $70 per deal (corrected Nov 2, 2026; was 1.5% + $100).",
        "TACoS now, ad spend per day and the split by ad type: spend (SP, SB, SB video, SD) and sales per child ASIN, Oct 19 - Nov 1, 2026 (14 days), summed per product. SP-only TACoS over 30 days (Oct 4 - Nov 2) kept for reference.",
@@ -375,6 +373,7 @@ CHECK = [
 ]
 h0 = hrow
 for lab, us_f, ca_f, fmt, note in CHECK:
+    note = TXT.get("check_notes", {}).get(lab, note)
     hc.cell(row=hrow, column=1, value=lab).font = F(bold=lab.startswith("(") or lab.startswith("Plan"))
     hc.merge_cells(start_row=hrow, start_column=1, end_row=hrow, end_column=2)
     for col, v, mk in ((3, us_f, "US"), (5, ca_f, "CA")):
@@ -490,7 +489,7 @@ LINES = [("Expected sales, Nov 19 - 30 (plan units x deal price)", f"='Budget by
          ("Range (low - high demand)", f"=TEXT('Budget by product'!V{us[2]},\"$#,##0\")&\" - \"&TEXT('Budget by product'!W{us[2]},\"$#,##0\")",
           f"=TEXT('Budget by product'!V{ca[2]},\"$#,##0\")&\" - \"&TEXT('Budget by product'!W{ca[2]},\"$#,##0\")", "Budget moves with sales: the agent paces to it daily.", None),
          ("Plan TACoS (blended, all ad types)", f"='Budget by product'!T{us[2]}", f"='Budget by product'!T{ca[2]}", "BFCM 2025 ran at 8.2% (US) and 8.8% (CA); last week the account ran at 19.8% (US).", "pct"),
-         ("Ad budget per day (average)", f"='Budget by product'!X{us[2]}", f"='Budget by product'!X{ca[2]}", "Black Friday and Cyber Monday get about 2x an average day in the US (about $14K each, 16% of the budget) and about 1.5x in Canada (12-13%).", CUR),
+         ("Ad budget per day (average)", f"='Budget by product'!X{us[2]}", f"='Budget by product'!X{ca[2]}", TXT.get("day_note", "Black Friday and Cyber Monday carry the biggest day weights (Budget by day tab)."), CUR),
          ("Ad spend per day now, all ad types (Oct 26 - Nov 1)", NOW_ALL["US"], NOW_ALL["CA"], "Includes the new SB, SB video and SD campaigns (21% of US spend last week).", CUR),
          ("History check A: raise today's spend the way we did in BFCM 2025", f"='{HC}'!C{HIST['A']}", f"='{HC}'!E{HIST['A']}", "BFCM 2025 spend was 1.6x (US) / 2.3x (CA) the same 14 days before. Suggested base budget.", CUR),
          ("History check B: expected sales at 2025's TACoS drop", f"='{HC}'!C{HIST['B']}", f"='{HC}'!E{HIST['B']}", "Demand read's sales x today's TACoS x the 2025 deal-period factor.", CUR)]
@@ -513,6 +512,8 @@ CALLS = ["Realistic total: US $88.3K over the 12 days (12.1% TACoS) vs $76.2K ac
          "Where we stand vs last year (same 14 days): US sales -32%, traffic -34%, ad spend -4%, so TACoS is 20.5% vs 14.6%; clicks are 27% cheaper and conversion is unchanged (6.7%). Canada: sales -46%, traffic -56%, spend -37%. After BFCM 2025 spend stayed about 1.5x for two weeks at 11% TACoS (Dec 1 - 15 is outside this budget).",
          "Year over year, same 14 days (Oct 19 - Nov 1): US ad spend is down only 4% ($54.7K to $52.3K), but the mix changed. Products sold both years cut SP by $21.8K and added $1.8K of SB / SB video / SD; new products (CooLinens, Sleephoria Cooling Fitted, Bamboo Fitted) added $18.2K. Like-for-like sales fell 48% ($351K to $183K) with traffic down 34% and conversion steady, so like-for-like TACoS rose from 15.3% to 18.5%. For BFCM, the plan for products that ran in 2025 is $77.1K vs $75.6K spent last year; the rest ($11.2K) is new products.",
          "Every number is an estimate from the demand read, the Oct 27 deal prices and the last 14 days of spend and sales by ad type. Amazon's deal prices can still change until Nov 13; the plan is re-run if they do."]
+if TXT.get("calls"):
+    CALLS = TXT["calls"]
 for t in CALLS:
     c = sm.cell(row=rr, column=1, value="• " + t); c.alignment = WRAP; sm.merge_cells(start_row=rr, start_column=1, end_row=rr, end_column=4); sm.row_dimensions[rr].height = max(30, 13 * (len(t) // 120 + 1)); rr += 1
 rr += 1

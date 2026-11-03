@@ -94,10 +94,14 @@ for (m, name), b in rows_bp.items():
     boost_txt = " ".join(r_["c"] for r_ in rules if r_["b"].startswith("Deal start"))
     if b["status_now"] and b["status_now"].startswith("Over"):
         rules_apply.append("Over its cap today: no bid raises; bring TACoS under the cap before Nov 19.")
-    if (m, name) in (("US", "Decolure Bamboo 4 Pc"), ("CA", "Decolure Bamboo 4 Pc"), ("CA", "Decolure Bamboo 6 Pc")):
+    _ds = next((r_["c"] for r_ in rules if r_["b"].startswith("Deal start")), "")
+    _room = _ds.split("room under the cap (")[1].split(")")[0] if "room under the cap (" in _ds else ""
+    _wait = (_ds.split("Close to the cap:")[1].split(";")[0] if "Close to the cap:" in _ds else "") + (_ds.split("Over the cap:")[1].split(";")[0] if "Over the cap:" in _ds else "")
+    _lab = f"{m} {name.replace('Decolure ', '')}"
+    if _lab in _room:
         rules_apply.append("Hero with room under the cap: +20% on converting exact-match keywords at deal start; top-of-search +50% (+100% on Black Friday and Cyber Monday).")
-    if (m, name) in (("US", "Decolure Bamboo 6 Pc"), ("US", "Decolure Satin 4 Pc")):
-        rules_apply.append("Hero at or just over its cap: raise bids and add the top-of-search boost only once daily TACoS is under the cap.")
+    elif _lab in _wait:
+        rules_apply.append("Hero at or just over its cap: raise bids and add the top-of-search boost only once daily TACoS is clearly under the cap.")
     if pl.get("ld"):
         rules_apply.append(f"Lightning Deal on {pl.get('deal_dates')}: +50% bids and 4x the normal day budget for the deal hours only.")
     if not pl.get("deal_type"):
@@ -112,7 +116,7 @@ for (m, name), b in rows_bp.items():
         "id": f"{pid}-{m}", "mkt": m, "pid": pid, "name": name, "family": FAMILY(name), "role": t.get("role"), "img": t.get("img") if t.get("img") in IMG else None,
         "stage": b["stage"], "band": [b["band_lo"], b["band_hi"]], "deal": pl.get("deal_type"), "deal_dates": pl.get("deal_dates"), "ld": bool(pl.get("ld")),
         "deal_price": pl.get("deal_price"), "cur_price": pl.get("cur_price"), "asp": b["asp"],
-        "units": [b["units_lo"], b["units_hi"], b["units_mid"]], "lift": pl.get("lift"), "lift_src": pl.get("lift_src"),
+        "units": [b["units_lo"], b["units_hi"], b["units_mid"]], "lift": pl.get("lift"), "lift_src": pl.get("lift_src"), "demand_src": pl.get("demand_src"),
         "u28_day": (v["u28"] or 0) / 28, "vel": v["vel"], "pace_now": v["pace14_units_per_day"], "sales": b["sales"],
         "be": b["be"], "cap": b["cap"], "tacos_now": b["tacos_now"], "factor": b["factor"], "floor": b["floor"], "plan_tacos": b["plan_tacos"],
         "budget": b["budget"], "budget_lo": b["budget_lo"], "budget_hi": b["budget_hi"], "per_day": b["per_day"], "now_day": b["now_day"], "change": b["change"],
@@ -142,8 +146,15 @@ for m in ("US", "CA"):
     hist[m]["bf25"] = SRC["bfcm2025_total"][m]["adv"] * (1.4036 if m == "CA" else 1)
 from collections import Counter
 cc = Counter(x["status"] for x in VR["checks"])
+import datetime as _dt
+_risk = {}
+for _m in ("US", "CA"):
+    _L = sorted(((p["stock"]["counts"].get("Out of stock now", 0) + p["stock"]["counts"].get("Short even with inbound", 0), p["name"]) for p in prods if p["mkt"] == _m), reverse=True)
+    _L = [x for x in _L if x[0] > 0][:4]
+    _risk[_m] = ("Most sizes short or out of stock now: " + ", ".join(f"{n} ({c})" for c, n in _L) + ".") if _L else "No product has sizes short or out of stock."
 data = {
-    "built": "Nov 2, 2026",
+    "built": _dt.date.today().strftime("%b %-d, %Y"), "prev": {"US": 88264, "CA": 25542},
+    "stock_asof": _dt.date.fromisoformat(D.get("stockAsof") or "2026-11-03").strftime("%b %-d") if D.get("stockAsof") else "Nov 3", "stock_risk": _risk,
     "totals": tot, "hist": hist, "days": DAYS, "daytot": daytot, "weights": weights,
     "rules": rules, "agent": agent, "calls": calls,
     "yoy": {m: YO["markets"][m]["decomp"] for m in ("US", "CA")},

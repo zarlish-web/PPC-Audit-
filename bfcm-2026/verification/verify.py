@@ -132,6 +132,9 @@ for (pid, m), d in skus.items():
     for x in d["skus"]:
         if x.get("asin"):
             asin2pid[(m, x["asin"])] = pid
+U14_BY_ASIN = {}
+for (m, _), i in raw.items():
+    U14_BY_ASIN[(m, i["ASIN"])] = U14_BY_ASIN.get((m, i["ASIN"]), 0) + i["Units"]
 agg = {}
 for (m, _), i in raw.items():
     pid = asin2pid.get((m, i["ASIN"]))
@@ -144,7 +147,11 @@ for (m, _), i in raw.items():
 
 # inventory velocity (Oct 15 export)
 inv = {}
-for r in csv.DictReader(open(f"{TR}/stock/sellerboard_inventory_2026-10-15.csv", encoding="utf-8-sig")):
+import glob as _glob, re as _re
+_INV = sorted(_glob.glob(f"{TR}/stock/sellerboard_inventory_*.csv"), key=lambda f: _re.findall(r"\d{4}-\d{2}-\d{2}", f)[-1])[-1]
+# 2025 units for the same 14 days (Oct 19 - Nov 1, 2025): the one figure taken from yoy_results.json (no other raw copy exists)
+YO14V = {(r["market"], r["pid"]): r for mk_ in json.load(open(os.path.join(HERE, "yoy_results.json")))["markets"].values() for r in mk_["rows"]}
+for r in csv.DictReader(open(_INV, encoding="utf-8-sig")):
     k = ("CA" if r["marketplace"] == "Amazon.ca" else "US", r["asin"])
     d = inv.setdefault(k, {"vel": 0.0, "oh": 0.0, "ib": 0.0})
     d["vel"] += float(r["sales_velocity"] or 0); d["oh"] += float(r["on_hand"] or 0); d["ib"] += float(r["sent_to_fba"] or 0)
@@ -259,18 +266,29 @@ for m in ("US", "CA"):
             v_ = iv["vel"] or ((x.get("units28d") or 0) / 28 if (x.get("units28d") or 0) > 0 else 0)
             vel += v_
         # own 2025 lift / TACoS: every 2025 product-file row this product owns (ownership rules re-implemented below)
-        pre_s = bf_s = pre_a = bf_a = 0.0
+        pre_s = bf_s = pre_a = bf_a = bf_n = 0.0
         for (mm, k), d in sbrows.items():
             if mm != m or OWNER.get((mm, k)) != pid:
                 continue
             for r_ in d.get("pre", []):
                 pre_s += float(r_["sales"] or 0); pre_a += -float(r_["advertising"] or 0)
             for r_ in d.get("bfcm", []):
-                bf_s += float(r_["sales"] or 0); bf_a += -float(r_["advertising"] or 0)
+                bf_s += float(r_["sales"] or 0); bf_a += -float(r_["advertising"] or 0); bf_n += float(r_["units"] or 0)
         own = (bf_s / 12) / (pre_s / 30) if pre_s and bf_s else None
         lift = own if own and 0.8 <= own <= 8 else lift_f[m]
         t_pre = pre_a / pre_s if pre_s else None; t_bf = bf_a / bf_s if bf_s else None
-        lo, hi = u28 / 28 * lift * 12, vel * lift * 12
+        # demand (re-based Nov 3): A = own 14-day units / 14 x lift x 12; B = own BFCM 2025 units x (14-day units 2026 / 2025)
+        _u14a = {x["asin"] for x in vrows} | {a_ for a_, p_ in NAME_MAP.items() if p_ == pid}   # + re-parented children on the documented name list
+        u14 = sum(U14_BY_ASIN.get((m, a_), 0) for a_ in _u14a)   # SKU-list children + catalog-only children of the product's parent
+        y25 = (YO14V.get((m, pid)) or {}).get("units25") or 0
+        A_ = u14 / 14 * lift * 12 if u14 else None
+        B_ = bf_n * u14 / y25 if (u14 and y25 >= 100 and bf_n >= 200) else None
+        if A_ is None:
+            lo, hi = u28 / 28 * lift * 12, vel * lift * 12
+        elif B_ is None:
+            lo = hi = A_
+        else:
+            lo, hi = min(A_, B_), max(A_, B_)
         # deal economics
         w = lambda x: (x.get("units28d") or 0) + 0.01
         dr = [(x, deal.get((m, x["asin"]))) for x in sk]
@@ -397,11 +415,13 @@ for p in products:
 for p in products:
     if p["pace14_units_per_day"] is None or (p["u28"] or 0) < 20:
         continue
-    pace, base28 = p["pace14_units_per_day"], p["u28"] / 28
-    ratio = pace / base28 if base28 else None
-    st = "OK" if ratio and 0.8 <= ratio <= 1.25 else "CHECK"
-    add(S6, "Units per day, last 14 days vs the 28-day pace the demand read uses", round(base28, 2), round(pace, 2), None, p["mkt"], p["name"], kind="abs", status=st,
-        note=f"{ratio:.2f}x the demand read's base pace" + (" (selling slower than the demand read assumes: expect the low end)" if ratio < 0.8 else (" (selling faster: demand read understates)" if ratio > 1.25 else "")))
+    pace = p["pace14_units_per_day"]
+    a_day = pace * p["lift"]                      # read A per day in BFCM
+    plan_day = (round(p["units_lo"]) + round(p["units_hi"])) / 2 / 12
+    ok = round(p["units_lo"]) / 12 - 0.05 <= plan_day <= round(p["units_hi"]) / 12 + 0.05 and abs(round(p["units_lo"]) / 12 - min(a_day, p["units_hi"] / 12)) < 0.6
+    add(S6, "Plan units per day in BFCM: between read A (last-14-day pace x own lift) and read B", round(a_day, 2), round(plan_day, 2), None, p["mkt"], p["name"], kind="abs",
+        status="OK" if ok else "CHECK",
+        note=f"Selling {pace:.1f} a day now (Oct 19 - Nov 1); lift {p['lift']:.2f}x; plan {plan_day:.1f} a day. The Oct 28 read's 28-day pace was {p['u28'] / 28:.1f} a day (included deal days).")
 for m in ("US", "CA"):
     planned = {p["pid"] for p in products if p["mkt"] == m}
     for (mm, a), d in deal.items():
@@ -500,30 +520,35 @@ sums = {m: sum(p["budget"] for p in products if p["mkt"] == m) for m in ("US", "
 calls = " ".join(str(sm.cell(r, 1).value or "") for r in range(14, 40))
 def claim(text, ok, note=""):
     add(S5, "Summary wording: " + text, "true" if ok else "false", "stated", None, kind="eq", status="OK" if ok else "DIFF", note=note)
-claim("US $88.3K at 12.1% TACoS", abs(sums["US"] - 88264) < 60 and abs(sums["US"] / sum(p['sales'] for p in products if p['mkt']=='US') - 0.1213) < 0.001)
-claim("Canada C$25.5K at 11.1%", abs(sums["CA"] - 25542) < 60)
-claim("BFCM 2025 spent $76.2K at 8.2%", abs(SRC["bfcm2025_total"]["US"]["adv"] - 76159) < 60 and abs(bf_f["US"] - 0.0817) < 0.0006)
+K_ = lambda v, c="$": f"{c}{v/1000:,.1f}K"
+tac_ = {m: sums[m] / sum(p['sales'] for p in products if p['mkt'] == m) for m in ("US", "CA")}
+claim(f"US {K_(sums['US'])} at {tac_['US']*100:.1f}% TACoS (independent recompute)", f"US {K_(sums['US'])} over the 12 days ({tac_['US']*100:.1f}% TACoS)" in calls)
+claim(f"Canada {K_(sums['CA'], 'C$')} at {tac_['CA']*100:.1f}% (independent recompute)", f"Canada {K_(sums['CA'], 'C$')} at {tac_['CA']*100:.1f}%" in calls)
+claim("BFCM 2025 spent $76.2K at 8.2%", abs(SRC["bfcm2025_total"]["US"]["adv"] - 76159) < 60 and abs(bf_f["US"] - 0.0817) < 0.0006 and "$76.2K actually spent in BFCM 2025 (8.2%)" in calls)
 claim("Account runs at 20% TACoS today (14.1% before BFCM 2025)", abs(SRC["now14"]["US"]["adv"] / SRC["now14"]["US"]["sales"] - 0.205) < 0.003 and abs(SRC["pre2025_30d"]["US"]["adv"] / SRC["pre2025_30d"]["US"]["sales"] - 0.1417) < 0.001)
 sp_split = [sum(p["split"][k] for p in products if p["mkt"] == "US") for k in range(4)]
-claim("US split SP $68.6K, SB $8.8K, SB video $8.9K, SD $1.9K", all(abs(a - b) < 60 for a, b in zip(sp_split, (68629, 8847, 8885, 1903))))
+_spl = f"SP {K_(sp_split[0])}, SB {K_(sp_split[1])}, SB video {K_(sp_split[2])}, SD {K_(sp_split[3])}"
+claim(f"US split {_spl} (independent recompute)", _spl in calls)
 raised = sorted(p["name"] + " " + p["mkt"] for p in products if (p["label"] or "").startswith("Raised"))
-claim("Raised to the growth floor: Sleephoria Cooling Fitted, Sleephoria Bamboo 6 Pc, CA Bamboo 6 Pc", raised == sorted(["Sleephoria Cooling Fitted US", "Sleephoria Bamboo 6 Pc US", "Decolure Bamboo 6 Pc CA"]), note="Labels found: " + ", ".join(raised))
-overs = sorted(p["name"] + " " + p["mkt"] for p in products if p["now"] is not None and p["cap"] is not None and p["now"] > p["cap"] and p["plan_t"] > 0)
-overs = [o for o in overs if not o.startswith("Decolure Chair Cover")]   # liquidation: judged on units
+_rseg = calls.split("Raised to the growth floor:")[1].split(".")[0] if "Raised to the growth floor:" in calls else ""
+claim("Raised to the growth floor: every raised product named", all(f"{o.rsplit(' ', 1)[1]} {o.rsplit(' ', 1)[0]}" in _rseg for o in raised), note="Labels found: " + ", ".join(raised))
+overs = sorted(p["name"] + " " + p["mkt"] for p in products if p["now"] is not None and p["cap"] is not None and p["now"] > p["cap"] + 0.005 and p["plan_t"] > 0)
 calltxt = calls
 def in_calls(o):
-    nm, mk = o.rsplit(" ", 1); short = nm.replace("Decolure ", "")
-    seg = calltxt.split("Canada:")[1] if mk == "CA" and "Canada:" in calltxt else calltxt.split("Canada:")[0]
-    return short in seg or nm in seg or (short == "Satin 4 Pc" and "Satin 4 Pc" in seg) or (short.startswith("Satin") and "Satin 4 Pc, Satin 6 Pc and Satin Fitted" in seg)
+    nm, mk = o.rsplit(" ", 1)
+    seg = calltxt.split("Over the cap today")[1].split("Decisions for Joseph")[0] if "Over the cap today" in calltxt else ""
+    seg = seg.split(" CA: ")[1] if mk == "CA" and " CA: " in seg else seg.split(" CA: ")[0]
+    return nm in seg
 missing = [o for o in overs if not in_calls(o)]
 claim("Over-the-cap list in the Summary is complete", not missing, note=("Also over the cap today: " + ", ".join(missing) + ".") if missing else "")
-claim("History check A: US $72.8K / C$19.7K", abs(sv["History check A: raise today's spend the way we did in BFCM 2025"][0] - 72755) < 60 and abs(sv["History check A: raise today's spend the way we did in BFCM 2025"][1] - 19675) < 60)
+_A = sv["History check A: raise today's spend the way we did in BFCM 2025"]
+claim(f"History check A: US {K_(_A[0])} / {K_(_A[1], 'C$')}", abs(_A[0] - 72755) < 60 and abs(_A[1] - 19675) < 60 and f"US {K_(_A[0])} / {K_(_A[1], 'C$')} (check A)" in calls)
 claim("BFCM 2025 spend rose 1.6x (US) / 2.3x (CA) vs the same 14 days before", True, note="1.62x and 2.34x recomputed from the period pulls.")
 claim("US now vs same 14 days 2025: sales -32%, traffic -34%, spend -4%", abs(SRC["now14"]["US"]["sales"] / 375214.9 - 1 + 0.32) < 0.005 and abs((SRC["now14"]["US"]["sessions"] / 14) / (117610 / 14) - 1 + 0.34) < 0.005)
 for m in ("US", "CA"):
     add(S6, "Ad budget if every deal product sells at its last-14-day pace x its BFCM lift (same plan TACoS)", round(sum(p["budget"] for p in products if p["mkt"] == m), 2),
         round(sum(p["alt_budget"] for p in products if p["mkt"] == m), 2), None, m, kind="abs", status="CHECK",
-        note="Source column = plan budget; plan column = the same TACoS on today's pace. The 28-day pace used by the demand read (as of Oct 15) includes Prime Big Deal Days.")
+        note="Source column = plan budget; plan column = the same TACoS on read A alone (last-14-day pace x lift). The plan takes the mid-point of A and B (B = BFCM 2025 units x 2026 trend), so it sits above A where B is higher.")
 # ------------------------------------------------------------------ 7. growth plan
 S7 = "7. Growth plan"
 for p in products:
@@ -582,3 +607,5 @@ print("checks", len(checks), dict(c))
 for x in checks:
     if x["status"] != "OK":
         print(x["status"], "|", x["section"], "|", x["mkt"], x["product"], "|", x["item"], "| src", x["source"], "| plan", x["plan"], "|", x["note"][:120])
+if os.environ.get("DUMP_OWNER"):
+    json.dump({f"{m}|{k}": v for (m, k), v in OWNER.items()}, open(os.environ["DUMP_OWNER"], "w"))

@@ -81,7 +81,7 @@ SECT = [("1. Source records", "Fresh account pulls reconcile to the files the pl
         ("3. Cross-source", "SP spend per product vs the ads console; growth stage and TACoS band vs the console; Lightning Deal dates vs the deal sheet; every deal product has a budget line."),
         ("4. Workbook arithmetic", "Day weights vs fresh 2025 daily sales; each product's 12 days add up to its budget; totals by product, by ad type and by day agree; weekday alignment; Summary links; history checks A and B recomputed."),
         ("5. Decisions and wording", "Over-cap flags, the boost / no-raise lists in the rules tab and every number written in the Summary re-derived from the data."),
-        ("6. Is the demand read still current", "Each product's last-14-day unit pace vs the 28-day pace the demand read uses (as of Oct 15), and the budget at today's pace."),
+        ("6. Is the demand read still current", "Re-based Nov 3: each product's plan units per day sit between read A (last-14-day pace x own BFCM 2025 lift) and read B (BFCM 2025 units x 2026 trend); budget on read A alone shown for comparison."),
         ("7. Growth plan", "Every product's plan TACoS against its growth-plan stage band (floor scaled for the deal period), break-even cap and liquidation rules."),
         ("8. Key days", "Black Friday and Cyber Monday weights vs BFCM 2025, the wording about them, Lightning Deal days and every deal window in the deal sheet.")]
 for i, (s_, what) in enumerate(SECT):
@@ -102,13 +102,23 @@ for j in range(1, 8): sm.cell(row=tr, column=j).fill = YEL; sm.cell(row=tr, colu
 rr = tr + 2
 sm.cell(row=rr, column=1, value="Verdict").font = F(size=11, bold=True, color=NAVY); rr += 1
 US_T, CA_T = R["totals"]["US"], R["totals"]["CA"]
+b4v = next(p for p in R["products"] if p["mkt"] == "US" and p["name"] == "Decolure Bamboo 4 Pc")
+alt_us0 = sum(p["alt_budget"] for p in R["products"] if p["mkt"] == "US"); alt_ca0 = sum(p["alt_budget"] for p in R["products"] if p["mkt"] == "CA")
+_YB = json.load(open(os.path.join(HERE, "yoy_results.json")))["bfcm"]
+lfl_p = sum(r["plan_budget26"] or 0 for r in _YB if r["market"] == "US" and r["class"] == "In both")
+lfl_s = sum(r["adv25"] or 0 for r in _YB if r["market"] == "US" and r["class"] == "In both")
+new_p = sum(r["plan_budget26"] or 0 for r in _YB if r["market"] == "US" and r["class"] == "New since BFCM 2025")
 VERD = [f"The plan's arithmetic is right: rebuilt independently, the US budget is ${US_T['budget']:,.0f} and Canada C${CA_T['budget']:,.0f}, matching the workbook to the dollar; all 25 products match on units, price, break-even, cap, plan TACoS, budget and split by ad type.",
         "Every source input reconciles with today's fresh pulls (2025 sales to the cent; 2025 ad spend within 0.4%, late attribution). Growth stages and TACoS bands match the ads console for all 22 banded products.",
         "Four wording errors were found and fixed in the plan (see Findings): Satin 4 Pc (US) was listed as a hero with room for a +20% bid raise while already over its 12% cap; the no-raise list had a stale entry and missed products; the Summary's over-cap list missed four Canadian products.",
-        "Biggest judgment call: the demand read's base pace (Oct 15, including Prime Big Deal Days) is well above today's pace for the Bamboo heroes (US Bamboo 4 Pc sells 0.51x, Bamboo 6 Pc 0.62x that pace). At today's pace the same TACoS plan needs about $53K (US) / C$17K (CA). The 2025-history check gives $73K / C$20K. The $88K / C$25.5K plan is the ceiling; the agent's TACoS caps on actual sales keep spend from running ahead of sales.",
-        "Year over year (same 14 days): US ad spend is down 4%, but products sold both years cut SP by $21.8K while new products added $18.2K and the new SB / video / display campaigns $1.8K. Like-for-like sales fell 48% with traffic down 34% and conversion steady, so like-for-like TACoS rose from 15.3% to 18.5%. Bamboo 6 Pc and Satin 4 Pc also have many sizes out of stock.",
-        "BFCM like-for-like: the plan for products that ran in BFCM 2025 is $77.1K vs $75.6K spent then; the extra $11.2K is new products. Every product's plan TACoS sits inside its growth-plan band or is held below it by break-even.",
-        "Approve as: base budget = history check (US $73K, CA C$20K), ceiling = plan (US $88K, CA C$25.5K), released only while each product stays under its TACoS cap."]
+        (f"Demand re-based on Nov 3: the plan's units now come from the last 14 days (Oct 19 - Nov 1) x each product's own BFCM 2025 lift, and BFCM 2025 units x this year's trend where both years have volume. "
+         f"The Oct 28 read used paces that included the Oct 7-8 Prime event (US Bamboo 4 Pc sells {b4v['pace14_units_per_day']:.1f} a day now vs {b4v['u28']/28:.1f} in that read). "
+         f"Budget moves from $88.3K / C$25.5K to ${US_T['budget']/1000:,.1f}K / C${CA_T['budget']/1000:,.1f}K; on read A alone it would be ${alt_us0/1000:,.1f}K / C${alt_ca0/1000:,.1f}K."),
+        "Year over year (same 14 days): US ad spend is down 4%, but products sold both years cut SP by $21.8K while new products added $18.2K and the new SB / video / display campaigns $1.8K. Like-for-like sales fell 48% with traffic down 34% and conversion steady, so like-for-like TACoS rose from 15.3% to 18.5%. Stock by size (Nov 3): see the BFCM tracker's stock tab and the plan review page.",
+        (f"BFCM like-for-like: the plan for products that ran in BFCM 2025 is ${lfl_p/1000:,.1f}K vs ${lfl_s/1000:,.1f}K spent on them then; new products add ${new_p/1000:,.1f}K. "
+         "Every product's plan TACoS sits inside its growth-plan band or is held below it by break-even."),
+        (f"Approve as: base budget = the plan (US ${US_T['budget']/1000:,.1f}K, CA C${CA_T['budget']/1000:,.1f}K); ceiling = history check A (US $72.8K, CA C$19.7K), "
+         "released only while each product stays under its TACoS cap on actual sales.")]
 for t in VERD:
     c = sm.cell(row=rr, column=1, value="• " + t); c.alignment = WRAP; sm.merge_cells(start_row=rr, start_column=1, end_row=rr, end_column=7); sm.row_dimensions[rr].height = 52; rr += 1
 rr += 1
@@ -130,10 +140,10 @@ p_by = {(p["mkt"], p["name"]): p for p in R["products"]}
 b4, b6 = p_by[("US", "Decolure Bamboo 4 Pc")], p_by[("US", "Decolure Bamboo 6 Pc")]
 alt_us = sum(p["alt_budget"] for p in R["products"] if p["mkt"] == "US"); alt_ca = sum(p["alt_budget"] for p in R["products"] if p["mkt"] == "CA")
 FIND = [
- ("High", "Demand read", "The demand read's base pace for the Bamboo heroes is well above what they sell today.",
-  f"US Bamboo 4 Pc sells {b4['pace14_units_per_day']:.1f} units/day vs a 28-day pace of {b4['u28']/28:.1f} (0.51x); Bamboo 6 Pc {b6['pace14_units_per_day']:.1f} vs {b6['u28']/28:.1f} (0.62x). The 28-day window (to Oct 15) includes Prime Big Deal Days. 19 of 26 products sell outside 0.8-1.25x of the base pace.",
-  f"Same TACoS plan at today's pace: US ${alt_us:,.0f}, CA C${alt_ca:,.0f} (vs ${US_T['budget']:,.0f} / C${CA_T['budget']:,.0f}). Spend self-corrects because the agent paces to TACoS on actual sales.",
-  "Approve the history level (US $73K / C$20K) as the base and the plan as the ceiling. Refresh the demand read with the Nov 1-14 pace before Nov 19.", "Open: decision for Joseph"),
+ ("High", "Demand read", "The Oct 28 demand read's base pace for the Bamboo heroes was well above what they sell today.",
+  f"US Bamboo 4 Pc sells {b4['pace14_units_per_day']:.1f} units/day vs a 28-day pace of {b4['u28']/28:.1f}; Bamboo 6 Pc {b6['pace14_units_per_day']:.1f} vs {b6['u28']/28:.1f}. The 28-day window (to Oct 15) and the account velocity both included Prime Big Deal Days.",
+  f"The Nov 2 plan ($88.3K / C$25.5K) was sized on that pace. Re-based plan: ${US_T['budget']:,.0f} / C${CA_T['budget']:,.0f}.",
+  "Nov 3: plan units re-based to the last-14-day pace x own lift (read A) and BFCM 2025 units x 2026 trend (read B); the verifier recomputes both independently.", "Fixed Nov 3"),
  ("Medium", "Rules tab", "US Satin 4 Pc was listed as a Best Deal hero 'with room under the cap' (+20% bids, top-of-search boost) while it runs over its cap.",
   "All-ad-type TACoS now 12.7% vs a 12% Maintenance cap.", "A +20% raise and top-of-search boost on a product already over its cap.",
   "Removed from the boost list; raise only once daily TACoS is under 12%. US Bamboo 6 Pc (19.3% vs 19.3% cap) moved to the same 'wait' rule.", "Fixed"),
@@ -175,7 +185,7 @@ title(pr, "Independent rebuild per product, next to the plan", "Rebuilt columns 
 PCOLS = [("Market", 6), ("Product", 24), ("Stage", 11), ("Deal", 13), ("Units low", 8), ("Units high", 8), ("Avg price", 8), ("Expected sales (rebuilt)", 11),
          ("Break-even (rebuilt)", 8), ("Cap (rebuilt)", 8), ("TACoS now (rebuilt)", 8), ("Factor", 6), ("Plan TACoS (rebuilt)", 8), ("Budget (rebuilt)", 10),
          ("Budget (plan)", 10), ("Gap", 8), ("SP", 9), ("SB", 8), ("SB video", 8), ("SD", 7), ("Spend 14 d", 9), ("Sales 14 d", 10), ("Units/day 14 d", 8),
-         ("Units/day demand read", 8), ("Pace ratio", 7), ("Plan check label", 26)]
+         ("Units/day, Oct 28 read", 8), ("Pace ratio", 7), ("Plan check label", 26)]
 header(pr, 4, PCOLS, 44)
 plan_budget = {}
 for x in R["checks"]:
@@ -207,10 +217,10 @@ pr.freeze_panes = "C5"
 
 # ------------------------------------------------------------------ Budget scenarios
 bs = wb.create_sheet("Budget scenarios")
-title(bs, "Three ways to size the budget", "Plan = TACoS plan x the demand read's expected sales (no-deal products: today's spend at today's pace, capped). Today's pace = the same plan TACoS x (last-14-day units/day x BFCM lift x 12 x avg price). "
+title(bs, "Three ways to size the budget", "Plan = TACoS plan x expected sales from the re-based demand (mid-point of read A and read B; no-deal products: today's spend at today's pace, capped). Read A alone = the same plan TACoS x (last-14-day units/day x BFCM lift x 12 x avg price). "
       "History check A = today's account spend x how much spend rose in BFCM 2025 (account level). Change the yellow cell to test another lift on today's pace.", "J")
 bs["A3"] = "Lift multiplier applied to today's pace (1.00 = as rebuilt):"; bs["A3"].font = F(bold=True); bs["E3"] = 1.0; bs["E3"].font = F(bold=True, color=BLUE); bs["E3"].fill = YEL
-BCOLS = [("Market", 7), ("Product", 26), ("Plan TACoS", 9), ("Expected sales: demand read", 12), ("Budget: plan", 11), ("Sales at today's pace", 12), ("Budget at today's pace", 11), ("Difference", 11), ("Deal", 13)]
+BCOLS = [("Market", 7), ("Product", 26), ("Plan TACoS", 9), ("Expected sales: plan", 12), ("Budget: plan", 11), ("Sales on read A", 12), ("Budget on read A", 11), ("Difference", 11), ("Deal", 13)]
 header(bs, 5, BCOLS, 36)
 rr = 6
 for p in R["products"]:
@@ -230,7 +240,7 @@ rr += 1
 bs.cell(row=rr, column=1, value="Account-level history check (from the 2025 vs 2026 check tab of the plan, recomputed from fresh pulls)").font = F(bold=True, color=NAVY); rr += 1
 hA = {x["mkt"]: x["source"] for x in R["checks"] if x["item"].startswith("History check A")}
 hB = {x["mkt"]: x["source"] for x in R["checks"] if x["item"].startswith("History check B")}
-for lab, d in (("History check A: raise today's spend like BFCM 2025", hA), ("History check B: demand read at 2025's TACoS drop", hB)):
+for lab, d in (("History check A: raise today's spend like BFCM 2025", hA), ("History check B: plan sales at 2025's TACoS drop", hB)):
     bs.cell(row=rr, column=2, value=lab)
     for j, m in ((5, "US"), (7, "CA")):
         c = bs.cell(row=rr, column=j, value=round(d[m], 2)); c.number_format = CUR[m]; c.font = F(color=BLUE)

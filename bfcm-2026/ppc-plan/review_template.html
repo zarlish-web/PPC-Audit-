@@ -144,7 +144,7 @@ footer { color: var(--muted); font-size: .8rem; border-top: 1px solid var(--line
 <div class="bar"><div class="bar-in">
   <div class="brand">BFCM <b>2026</b> PPC plan</div>
   <nav class="nav" aria-label="Sections">
-    <a href="#decide">Decisions</a><a href="#new">What's new</a><a href="#products">Products</a><a href="#budget">Budget</a><a href="#days">By day</a>
+    <a href="#decide">Decisions</a><a href="#track">Tracker</a><a href="#new">What's new</a><a href="#products">Products</a><a href="#budget">Budget</a><a href="#days">By day</a>
     <a href="#full25">BFCM 2025 in full</a><a href="#history">Year over year</a><a href="#adtypes">Ad types</a><a href="#rules">Rules</a><a href="#checks">Checks</a>
   </nav>
   <div class="seg" role="group" aria-label="Market"><button id="m-us" aria-pressed="true">US</button><button id="m-ca" aria-pressed="false">Canada</button></div>
@@ -168,18 +168,25 @@ footer { color: var(--muted); font-size: .8rem; border-top: 1px solid var(--line
     </div>
   </div>
 
+  <section id="track">
+    <div class="head"><h2>Tracker: plan vs actual</h2><p class="lead" id="track-lead">Loading actuals…</p></div>
+    <div class="tiles" id="track-tiles"></div>
+    <div class="card"><h3 id="track-chart-t">Daily spend and TACoS, plan products</h3><div class="legend"><span><i class="sw" style="background:var(--accent)"></i>Actual spend</span><span><i class="sw" style="background:transparent;border:1.5px dashed var(--ink)"></i>Plan day budget</span><span><i class="sw" style="background:var(--bad);height:2px"></i>TACoS (right axis)</span><span><i class="sw" style="background:var(--ink);height:2px"></i>Plan TACoS</span></div><div class="chart" id="c-track"></div></div>
+    <div class="card"><h3 id="track-table-t">By product</h3><p class="note" id="track-note"></p><div class="tw" style="max-height:560px"><table id="t-track"></table></div></div>
+  </section>
+
   <section id="new">
     <div class="head"><span class="tag new-t">New</span><h2>What's new since the first draft</h2><p class="lead">Changes made on Nov 2 after review, new data and the independent check.</p></div>
     <div class="new" id="newlist"></div>
   </section>
 
   <section id="products">
-    <div class="head"><h2>Products</h2><p class="lead">Each card shows the BFCM budget, the plan TACoS against its cap, and whether the product runs over its cap today. Click a product for its demand read, economics, budget by day, ad types, history, stock and the rules that apply.</p></div>
+    <div class="head"><h2>Products</h2><p class="lead">Each card shows the BFCM budget, the plan TACoS against its cap, and whether the product runs over its cap today. Click a product for its demand, economics, budget by day, ad types, history, stock and the rules that apply.</p></div>
     <div class="filters">
       <label class="note" for="f-fam">Brand</label>
       <select id="f-fam"><option value="">All brands</option><option>Decolure</option><option>Sleephoria</option><option>CooLinens</option></select>
       <label class="note" for="f-sort">Sort</label>
-      <select id="f-sort"><option value="budget">Biggest budget</option><option value="over">Over the cap first</option><option value="pace">Slowest vs demand read</option><option value="name">Name</option></select>
+      <select id="f-sort"><option value="budget">Biggest budget</option><option value="over">Over the cap first</option><option value="pace">Biggest BFCM jump vs today</option><option value="name">Name</option></select>
       <input id="f-q" type="search" placeholder="Search products" aria-label="Search products">
       <div class="legend"><span><i class="sw" style="background:var(--accent)"></i>TACoS now</span><span><i class="sw" style="background:var(--bad)"></i>over the cap</span><span><i class="sw" style="background:var(--ink);width:2px;height:12px"></i>cap</span><span><i class="sw" style="background:var(--deal);transform:rotate(45deg)"></i>plan</span></div>
     </div>
@@ -187,7 +194,7 @@ footer { color: var(--muted); font-size: .8rem; border-top: 1px solid var(--line
   </section>
 
   <section id="budget">
-    <div class="head"><h2>Budget</h2><p class="lead">The plan is the ceiling. History check A (raise today's spend the way we did in BFCM 2025) is the suggested base. The agent paces every product to its TACoS cap on actual sales, so the extra above the base is only spent if sales come in.</p></div>
+    <div class="head"><h2>Budget</h2><p class="lead" id="budget-lead"></p></div>
     <div class="grid2">
       <div class="card"><h3>Five ways to size Nov 19 – 30</h3><p class="note" id="scen-note"></p><div class="chart" id="c-scen"></div></div>
       <div class="card"><h3>Budget by product</h3><p class="note">Click a row for the product's detail.</p><div class="tw" style="max-height:420px"><table id="t-budget"></table></div></div>
@@ -248,7 +255,7 @@ footer { color: var(--muted); font-size: .8rem; border-top: 1px solid var(--line
     </div>
   </section>
 
-  <footer>Built Nov 2, 2026 by Shayan Rana for Joseph Fisher's review (asked by Erik). Supporting files: BFCM_2026_PPC_Plan.xlsx (plan) and BFCM_2026_PPC_Verification.xlsx (checks). Figures are estimates from the demand read, the Oct 27 deal prices and the last 14 days of spend; Amazon deal prices can change until Nov 13.</footer>
+  <footer id="foot"></footer>
 </div>
 
 <dialog id="dlg" aria-labelledby="d-title"><div class="dlg">
@@ -282,21 +289,22 @@ function textW(svg, s) { const t = svg.append('text').text(s); const w = t.node(
 function drawHero() {
   const t = T(), h = H(), m = MKT;
   const tiles = [
-    ['Ad budget ceiling (plan)', money(t.budget, m), `range ${kmoney(t.budget_lo, m)} – ${kmoney(t.budget_hi, m)}`],
-    ['Suggested base (history A)', money(h.A, m), `BFCM 2025 actual ${kmoney(h.bf25, m)}`],
+    ['Ad budget (plan)', money(t.budget, m), `range ${kmoney(t.budget_lo, m)} – ${kmoney(t.budget_hi, m)}`],
+    [h.A > t.budget ? 'Ceiling (history check A)' : 'History check A', money(h.A, m), `BFCM 2025 actual ${kmoney(h.bf25, m)}`],
     ['Plan TACoS, all ad types', pct(t.plan_tacos), m === 'US' ? 'BFCM 2025: 8.2%' : 'BFCM 2025: 8.8%'],
-    ['Expected sales, 12 days', kmoney(t.sales, m), 'mid-point of the demand read'],
+    ['Expected sales, 12 days', kmoney(t.sales, m), 'current pace × each product\'s BFCM lift'],
     ['Budget per day', money(t.per_day, m), `today ${money(t.now_day, m)} a day`],
   ];
   document.getElementById('tiles').replaceChildren(...tiles.map(([k, v, s]) => el('div', { class: 'tile' }, el('span', { class: 'k', text: k }), el('span', { class: 'v', text: v }), el('span', { class: 's', text: s }))));
   const us = DATA.totals.US, ca = DATA.totals.CA, hu = DATA.hist.US, hc = DATA.hist.CA;
   const cl = P.find((p) => p.mkt === 'US' && p.name === 'CooLinens Pillowcases'), cs = P.find((p) => p.mkt === 'US' && p.name === 'CooLinens Cooling Sheets');
   const items = [
-    ['Approve the budget: ', `base ${kmoney(hu.A, 'US')} US / ${kmoney(hc.A, 'CA')} Canada, ceiling ${kmoney(us.budget, 'US')} / ${kmoney(ca.budget, 'CA')}. Spend above the base is released only while each product stays under its TACoS cap on actual sales.`],
-    ['CooLinens Pillowcases: ', `Launch product (band 25–40%) capped at ${pct(cl.cap)} because the $15.19 deal leaves only ${pct(cl.be)} break-even. It runs at ${pct(cl.tacos_now)} today.`],
-    ['CooLinens Cooling Sheets: ', `no deal, but sales about doubled in two weeks. The plan holds today's ${money(cs.now_day, 'US')} a day (${pct(cs.tacos_now)} TACoS, inside its Launch band).`],
+    ['Approve the budget: ', `base ${kmoney(Math.min(us.budget, hu.A), 'US')} US / ${kmoney(Math.min(ca.budget, hc.A), 'CA')} Canada (the plan), ceiling ${kmoney(Math.max(us.budget, hu.A), 'US')} / ${kmoney(Math.max(ca.budget, hc.A), 'CA')} (raising today's spend the way we did in BFCM 2025). Spend above the base is released only while each product stays under its TACoS cap on actual sales.`],
+    ['Demand re-based (Nov 3): ', `planned units now come from the last 14 days' pace × each product's BFCM 2025 lift (and last year's BFCM units × this year's trend where both years have volume). The Oct 28 read included Prime-event days and gave ${kmoney(DATA.prev.US, 'US')} / ${kmoney(DATA.prev.CA, 'CA')}.`],
+    ['CooLinens Pillowcases: ', `Launch product (band ${pct(cl.band[0], 0)}–${pct(cl.band[1], 0)}) capped at ${pct(cl.cap)} because the $${d3.format('.2f')(cl.asp)} deal leaves only ${pct(cl.be)} break-even. It runs at ${pct(cl.tacos_now)} today.`],
+    ['CooLinens Cooling Sheets: ', `no deal; launched Oct 15 and still ramping. The plan holds today's ${money(cs.now_day, 'US')} a day (${pct(cs.tacos_now)} TACoS${cs.band[1] != null && cs.tacos_now <= cs.band[1] ? ', inside its Launch band' : ''}).`],
     ['Deal fees: ', 'the plan uses 1% of deal sales + $70 per deal. If Amazon charges $70 per deal day, the smallest deals lose their margin. Confirm which.'],
-    ['Stock: ', 'Bamboo 6 Pc, Satin 4 Pc and Sleep Sanctuary Satin 4 Pc have many sizes out of stock now. Confirm inbound timing before Nov 19.'],
+    ['Stock (' + DATA.stock_asof + '): ', DATA.stock_risk[m] + ' Confirm inbound timing before Nov 19.'],
   ];
   document.getElementById('decisions').replaceChildren(...items.map(([a, b]) => el('li', {}, el('b', { text: a }), b)));
 }
@@ -305,14 +313,16 @@ function drawHero() {
 function drawNew() {
   const yu = DATA.yoy.US, c = DATA.checks;
   const items = [
+    ['Nov 3: demand re-based to current selling', `Planned units now use the last 14 days (Oct 19 – Nov 1) × each product's own BFCM 2025 lift, plus last year's BFCM units × this year's trend where both years have volume. The Oct 28 read used paces that included the Oct 7–8 Prime event and late-September deals. US budget ${kmoney(DATA.prev.US, 'US')} → ${kmoney(DATA.totals.US.budget, 'US')}, Canada ${kmoney(DATA.prev.CA, 'CA')} → ${kmoney(DATA.totals.CA.budget, 'CA')}.`],
+    ['Nov 3: tracker added', 'The Tracker section shows each product\'s actual spend, sales and TACoS against its cap every day: before Nov 19 to bring over-cap products down, and Nov 19 – 30 against the day budgets.'],
+    ['Nov 3: stock and wording refreshed', 'Stock outlook from the Nov 3 inventory pull. Every sentence that quotes a figure is now generated from the plan workbook itself and re-checked.'],
     ['SB, SB video and Display tracked per product', 'Each product\'s TACoS now, break-even and cap include all four ad types; its budget splits by its own mix. SB video sits mostly on Bamboo and CooLinens.'],
     ['Year-over-year, like for like', `Same 14 days: US spend is down 4%, but products sold both years cut SP by ${kmoney(-yu.lfl_sp, 'US')} while new products added ${kmoney(yu.new, 'US')}. Like-for-like sales fell ${pct(1 - yu.lfl_sales26 / yu.lfl_sales25, 0)} with conversion steady.`],
-    ['New products in the plan', 'CooLinens Cooling Sheets and Pillowcases, Decolure Bamboo Fitted and Sleephoria Cooling Fitted were not selling last October; they carry about $11K of the US plan.'],
+    ['New products in the plan', `CooLinens Cooling Sheets and Pillowcases, Decolure Bamboo Fitted and Sleephoria Cooling Fitted were not selling last October; they carry ${kmoney(DATA.bfgroups.filter((g) => g.m === 'US' && g.g === 'New since BFCM 2025').reduce((a, g) => a + g.p26, 0), 'US')} of the US plan.`],
     ['Deal fees corrected', '1% of deal sales + $70 per deal (was 1.5% + $100). US budget +$114; Canada unchanged.'],
     ['Independent verification', `${d3.format(',')(c.total)} checks against the original records and a second data source: ${d3.format(',')(c.diff)} mismatches left, ${c.check} judgment items.`],
     ['Fixes from the checks', 'Satin 4 Pc (US) removed from the bid-raise list (over its cap); no-raise and over-cap lists rebuilt from data; Black Friday and Cyber Monday wording corrected.'],
-    ['Demand read vs today', 'The Bamboo heroes sell at about half the 28-day pace the demand read used (that window held Prime Big Deal Days). The base budget allows for this.'],
-    ['History checks', 'Raising today\'s spend the way we did in BFCM 2025 gives the suggested base; the plan is the ceiling.'],
+    ['History checks', 'Raising today\'s spend the way we did in BFCM 2025 (check A) now sits above the plan in both markets: the plan is the base and check A the ceiling.'],
   ];
   document.getElementById('newlist').replaceChildren(...items.map(([a, b]) => el('div', {}, el('b', { text: a }), b)));
 }
@@ -342,7 +352,7 @@ function drawGrid() {
   const fam = document.getElementById('f-fam').value, srt = document.getElementById('f-sort').value, q = document.getElementById('f-q').value.toLowerCase();
   let rows = prodsM().filter((p) => (!fam || p.family === fam) && (!q || p.name.toLowerCase().includes(q)));
   const over = (p) => (p.tacos_now != null && p.cap != null ? p.tacos_now - p.cap : -9);
-  rows.sort(srt === 'name' ? (a, b) => a.name.localeCompare(b.name) : srt === 'over' ? (a, b) => over(b) - over(a) : srt === 'pace' ? (a, b) => ((a.pace_now || 0) / (a.u28_day || 1)) - ((b.pace_now || 0) / (b.u28_day || 1)) : (a, b) => b.budget - a.budget);
+  rows.sort(srt === 'name' ? (a, b) => a.name.localeCompare(b.name) : srt === 'over' ? (a, b) => over(b) - over(a) : srt === 'pace' ? (a, b) => ((b.units[2] / 12) / (b.pace_now || 1)) - ((a.units[2] / 12) / (a.pace_now || 1)) : (a, b) => b.budget - a.budget);
   document.getElementById('pgrid').replaceChildren(...rows.map((p) => {
     const img = p.img && IMG[p.img] ? el('img', { src: IMG[p.img], alt: p.name, loading: 'lazy' }) : el('span', { class: 'note', text: p.name });
     const card = el('button', { class: 'pc', type: 'button', 'aria-label': `${p.name}, ${p.mkt}: open details` },
@@ -368,7 +378,6 @@ function openP(id) {
   const img = p.img && IMG[p.img] ? el('img', { src: IMG[p.img], alt: p.name }) : el('span', { class: 'note', text: 'No photo' });
   const kv = (pairs) => el('div', { class: 'kv' }, pairs.map(([k, v]) => el('div', {}, el('span', { text: k }), el('b', { text: v }))));
   const sec = (title, ...kids) => el('div', { class: 'd-sec' }, el('h3', { text: title }), ...kids);
-  const pace = p.u28_day ? (p.pace_now || 0) / p.u28_day : null;
   const head = el('div', { class: 'd-head' }, el('div', { class: 'd-img' }, img),
     el('div', { class: 'd-meta' },
       el('div', { style: 'display:flex;gap:6px;flex-wrap:wrap' }, dealBadge(p), el('span', { class: 'b mkt', text: p.mkt }), statusChip(p), el('span', { class: 'chip', text: p.stage + (p.band[0] != null ? ` · band ${Math.round(p.band[0] * 100)}–${Math.round(p.band[1] * 100)}%` : '') })),
@@ -376,12 +385,12 @@ function openP(id) {
       kv([['BFCM budget (plan)', money(p.budget, m)], ['Range, low – high demand', `${kmoney(p.budget_lo, m)} – ${kmoney(p.budget_hi, m)}`], ['Plan TACoS', pct(p.plan_tacos)], ['Cap', pct(p.cap)],
           ['Break-even at deal price', pct(p.be)], ['TACoS now (14 days, all ads)', pct(p.tacos_now)], ['Budget per day', money(p.per_day, m)], ['Spend per day now', money(p.now_day, m)]]),
       p.note ? el('p', { text: p.note }) : null));
-  const demand = sec('Demand read', kv([
+  const demand = sec('Demand', kv([
       ['Units, low – high', `${d3.format(',')(p.units[0])} – ${d3.format(',')(p.units[1])}`], ['Units plan (mid)', d3.format(',.0f')(p.units[2])], ['Avg selling price', money(p.asp, m).replace(/(\.\d+)?$/, '') + (p.asp ? '' : '')],
-      ['Expected sales, 12 days', money(p.sales, m)], ['BFCM lift used', p.lift ? d3.format('.2f')(p.lift) + 'x' : '–'], ['28-day pace (Oct 15)', d3.format('.1f')(p.u28_day) + '/day'],
-      ['Sales velocity (Oct 15)', d3.format('.1f')(p.vel || 0) + '/day'], ['Units/day now (14 days)', p.pace_now != null ? d3.format('.1f')(p.pace_now) : '–'],
-      ['Pace vs demand read', pace != null ? d3.format('.2f')(pace) + 'x' : '–'], ['Budget at today\'s pace', money(p.budget_pace, m)]]),
-    el('p', { class: 'note', text: `Lift: ${p.lift_src || '–'}. Low = 28-day pace × lift × 12 days; high = sales velocity × lift × 12. Deal price ${p.deal_price ? money(p.deal_price, m).replace(/\.\d+$/, '') : '–'} vs today ${p.cur_price ? money(p.cur_price, m) : '–'}.` }));
+      ['Expected sales, 12 days', money(p.sales, m)], ['BFCM lift used', p.lift ? d3.format('.2f')(p.lift) + 'x' : '–'], ['Units/day now (Oct 19 – Nov 1)', p.pace_now != null ? d3.format('.1f')(p.pace_now) : '–'],
+      ['Units/day planned in BFCM', d3.format('.1f')(p.units[2] / 12)], ['Oct 28 read (28-day pace)', d3.format('.1f')(p.u28_day) + '/day'],
+      ['Budget on read A alone', money(p.budget_pace, m)]]),
+    el('p', { class: 'note', text: `Lift: ${p.lift_src || '–'}. Units: ${p.demand_src || '–'} (A = last-14-day pace × lift × 12 days; B = BFCM 2025 units × this year's trend vs the same 14 days of 2025; low and high are the two reads). Deal price ${p.deal_price ? money(p.deal_price, m).replace(/\.\d+$/, '') : '–'} vs today ${p.cur_price ? money(p.cur_price, m) : '–'}.` }));
   const dayChart = el('div', { class: 'chart' });
   const typeChart = el('div', { class: 'chart' });
   const econ = sec('How the TACoS was set', kv([['Break-even TACoS', pct(p.be)], ['80% of break-even', pct(p.be != null ? p.be * 0.8 : null)], ['Band ceiling', p.band[1] != null ? pct(p.band[1], 0) : 'none'],
@@ -453,11 +462,14 @@ function drawTypes(host, p) {
 }
 function drawScen() {
   const host = document.getElementById('c-scen'); host.replaceChildren(); const m = MKT, h = H(), t = T();
-  const rows = [['BFCM 2025 actual', h.bf25], ["Same plan at today's pace", h.pace], ['History check A (suggested base)', h.A], ['History check B', h.B], ['Plan (ceiling)', t.budget]];
+  const rows = [['BFCM 2025 actual', h.bf25], ['Plan on read A alone', h.pace], ['History check A', h.A], ['History check B', h.B], ['Plan', t.budget]];
   document.getElementById('scen-note').textContent = m === 'US' ? 'United States, US$.' : 'Canada, C$.';
+  document.getElementById('budget-lead').textContent = h.A > t.budget
+    ? `The plan (${kmoney(t.budget, m)}) is the base. History check A (${kmoney(h.A, m)}: raise today's spend the way we did in BFCM 2025) is the ceiling. The agent paces every product to its TACoS cap on actual sales, so spend above the plan is only released if sales come in above plan.`
+    : `The plan (${kmoney(t.budget, m)}) is the ceiling and history check A (${kmoney(h.A, m)}) the base. The agent paces every product to its TACoS cap on actual sales.`;
   const W = Math.max(320, host.clientWidth || 520), rowH = 40, Hh = rows.length * rowH + 28;
   const svg = d3.select(host).append('svg').attr('viewBox', `0 0 ${W} ${Hh}`);
-  if (W < 520) rows.forEach((r) => { r[0] = r[0].replace("Same plan at today's pace", "Today's pace").replace(' (suggested base)', ' (base)'); });
+  if (W < 520) rows.forEach((r) => { r[0] = r[0].replace('Plan on read A alone', 'Read A alone'); });
   const left = d3.max(rows, (r) => textW(svg, r[0])) + 12, right = d3.max(rows, (r) => textW(svg, kmoney(r[1], m))) + 12;
   const x = d3.scaleLinear([0, d3.max(rows, (r) => r[1])], [left, W - right]).nice(), y = d3.scaleBand(rows.map((r) => r[0]), [0, rows.length * rowH]).padding(0.3);
   svg.append('g').attr('transform', `translate(0,${rows.length * rowH})`).call(d3.axisBottom(x).ticks(nTicks(W - left - right)).tickFormat((v) => kshort(v, m)).tickSize(-rows.length * rowH)).call(axis);
@@ -558,7 +570,7 @@ function drawRules() {
   document.getElementById('t-rules').replaceChildren(...mk(DATA.rules, ['Area', 'Rule', 'What to do', 'Why'], ['a', 'b', 'c', 'd']));
   document.getElementById('t-agent').replaceChildren(...mk(DATA.agent, ['Who', 'When', 'What', 'Escalate if'], ['a', 'b', 'c', 'd']));
   const c = DATA.checks;
-  document.getElementById('checks-lead').textContent = `${d3.format(',')(c.total)} checks: ${d3.format(',')(c.ok)} match, ${c.check} judgment items (mostly today's sales pace vs the demand read), ${c.diff} mismatches left. Full detail in BFCM_2026_PPC_Verification.xlsx.`;
+  document.getElementById('checks-lead').textContent = `${d3.format(',')(c.total)} checks: ${d3.format(',')(c.ok)} match, ${c.check} judgment items, ${c.diff} mismatches left. Full detail in BFCM_2026_PPC_Verification.xlsx.`;
 }
 function drawFull25() {
   const DD = DATA.daily25.days; const m = MKT, F = DATA.full25[m], fx = m === 'CA' ? 1.4036 : 1, pre = F.pre, bf = F.bf, D_ = DATA.daily25[m];
@@ -611,13 +623,148 @@ function drawFull25() {
   tp.replaceChildren(el('thead', {}, el('tr', {}, h2.map((h, i) => el('th', { class: i ? 'n' : '', text: h })))),
     el('tbody', {}, rows.map((p) => line(p.name + (p.bf25.group === 'New since BFCM 2025' ? ' (new)' : ''), p.bf25 || {}, p, p.id)), other.map((o) => line(o.name + ' (not in plan)', o, null, null))));
 }
-function drawMarket() { drawFull25(); drawHero(); drawGrid(); drawScen(); drawBudgetTable(); drawAllDays(); drawBridge(); drawBfcmp(); drawSplit(); drawWeekly(); }
+// ---------------- tracker: actuals live in the page database, one document per market per day (actuals/{mkt}_{date})
+const EV0 = '2026-11-19', EV1 = '2026-11-30';
+const EVDAYS = d3.range(12).map((i) => d3.timeFormat('%Y-%m-%d')(new Date(Date.UTC(2026, 10, 19 + i, 12))));
+const ACT = { US: {}, CA: {} };
+let ACT_STATE = 'loading', ACT_NOTE = '';
+const dayLab = (iso) => d3.timeFormat('%b %-d')(new Date(iso + 'T12:00:00Z'));
+const spendOf = (r) => (r ? (r.sp || 0) + (r.sb || 0) + (r.sbv || 0) + (r.sd || 0) : 0);
+async function startTracker() {
+  const db = window.claude && window.claude.use ? await window.claude.use('db') : null;
+  if (!db) { ACT_STATE = 'nodb'; drawTrack(); return; }
+  let first = true;
+  const timer = setTimeout(() => { if (first) { ACT_STATE = 'slow'; drawTrack(); } }, 10000);
+  db.collection('actuals').onSnapshot((snap) => {
+    ACT.US = {}; ACT.CA = {};
+    snap.docs.forEach((d) => { const v = d.data(); if (v && (v.mkt === 'US' || v.mkt === 'CA') && v.date) ACT[v.mkt][v.date] = v; });
+    if (!snap.fromCache) { first = false; clearTimeout(timer); }
+    ACT_STATE = 'ready'; drawTrack();
+  }, (e) => { clearTimeout(timer); ACT_STATE = 'error'; ACT_NOTE = e && e.code ? e.code : ''; drawTrack(); });
+}
+function trackRows(m, dates) {
+  // per product sums over the given dates
+  return prodsM().map((p) => {
+    const s = { sp: 0, sb: 0, sbv: 0, sd: 0, sales: 0, units: 0, n: 0 };
+    dates.forEach((dt) => { const r = ((ACT[m][dt] || {}).products || {})[String(p.pid)]; if (r) { ['sp', 'sb', 'sbv', 'sd', 'sales', 'units'].forEach((k) => (s[k] += r[k] || 0)); s.n++; } });
+    s.spend = s.sp + s.sb + s.sbv + s.sd; s.tacos = s.sales > 0 ? s.spend / s.sales : null;
+    return { p, s };
+  });
+}
+function drawTrack() {
+  const m = MKT, lead = document.getElementById('track-lead');
+  const all = Object.keys(ACT[m]).sort();
+  if (ACT_STATE !== 'ready' || !all.length) {
+    lead.textContent = ACT_STATE === 'nodb' ? 'Actuals load when this page is opened on claude.ai while signed in.'
+      : ACT_STATE === 'slow' ? 'The actuals store has not answered yet; numbers will appear when it does.'
+      : ACT_STATE === 'error' ? `Actuals could not be read (${ACT_NOTE || 'error'}).`
+      : ACT_STATE === 'ready' ? 'No actuals written yet for this market.' : 'Loading actuals…';
+    ['track-tiles', 'c-track', 't-track'].forEach((id) => document.getElementById(id).replaceChildren());
+    return;
+  }
+  const pre = all.filter((d) => d < EV0), ev = all.filter((d) => d >= EV0 && d <= EV1);
+  const last = all[all.length - 1], upd = ACT[m][last].updated || '';
+  const t = T();
+  const tiles = [];
+  if (ev.length) {
+    const idx = ev.map((d) => EVDAYS.indexOf(d));
+    const planTo = d3.sum(idx, (i) => DATA.daytot[m][i]);
+    const w = DATA.weights[m], planSalesTo = t.sales * d3.sum(idx, (i) => w[i]);
+    const spent = d3.sum(ev, (d) => spendOf(ACT[m][d].total)), sales = d3.sum(ev, (d) => (ACT[m][d].total || {}).sales || 0);
+    tiles.push(['Spent so far (event)', money(spent, m), `plan to date ${money(planTo, m)} (${pct(planTo ? spent / planTo : null, 0)})`],
+      ['Sales so far (event)', kmoney(sales, m), `plan to date ${kmoney(planSalesTo, m)} (${pct(planSalesTo ? sales / planSalesTo : null, 0)})`],
+      ['TACoS so far', pct(sales ? spent / sales : null), `plan ${pct(t.plan_tacos)}`],
+      ['Budget left', money(t.budget - spent, m), `${12 - ev.length} days to go`]);
+    lead.textContent = `Nov 19 – 30: day ${ev.length} of 12. Actuals through ${dayLab(last)} (written ${upd}). Plan to date = the plan's day budgets for the days with actuals.`;
+  } else {
+    const d7 = pre.slice(-7);
+    const sp7 = d3.sum(d7, (d) => spendOf(ACT[m][d].total)), sa7 = d3.sum(d7, (d) => (ACT[m][d].total || {}).sales || 0);
+    const rows = trackRows(m, d7).filter((r) => r.p.plan_tacos > 0 && r.p.cap != null);
+    const overN = rows.filter((r) => r.s.tacos != null && r.s.tacos > r.p.cap + 0.005).length;
+    const days = Math.round((new Date(EV0 + 'T00:00:00Z') - new Date(last + 'T00:00:00Z')) / 864e5);
+    tiles.push(['Days to the deal', String(days - 1), `event Nov 19 – 30`],
+      ['Spend per day, last 7 days', money(sp7 / d7.length, m), `plan in BFCM ${money(t.per_day, m)} a day`],
+      ['TACoS, last 7 days', pct(sa7 ? sp7 / sa7 : null), `plan in BFCM ${pct(t.plan_tacos)}`],
+      ['Products over their cap', `${overN} of ${rows.length}`, 'last 7 days, all ad types']);
+    lead.textContent = `Before the event: bring every product under its cap by Nov 19. Last 7 days of actuals ${dayLab(d7[0])} – ${dayLab(last)} (written ${upd}); all ad types, plan products.`;
+  }
+  document.getElementById('track-tiles').replaceChildren(...tiles.map(([k, v, s]) => el('div', { class: 'tile' }, el('span', { class: 'k', text: k }), el('span', { class: 'v', text: v }), el('span', { class: 's', text: s }))));
+  drawTrackChart(m, all);
+  drawTrackTable(m, pre, ev);
+}
+function drawTrackChart(m, all) {
+  const host = document.getElementById('c-track'); host.replaceChildren();
+  const days = all.slice(-21).concat(EVDAYS.filter((d) => !all.includes(d) && d > all[all.length - 1])).slice(0, 33);
+  const W = Math.max(320, host.clientWidth || 640), Hh = 260, mg = { l: 54, r: 46, t: 12, b: 36 };
+  const svg = d3.select(host).append('svg').attr('viewBox', `0 0 ${W} ${Hh}`).attr('role', 'img').attr('aria-label', 'Daily ad spend vs plan day budget and TACoS');
+  const plan = (d) => { const i = EVDAYS.indexOf(d); return i >= 0 ? DATA.daytot[m][i] : null; };
+  const vals = days.map((d) => ({ d, a: ACT[m][d] ? spendOf(ACT[m][d].total) : null, s: ACT[m][d] ? (ACT[m][d].total || {}).sales : null, p: plan(d) }));
+  const x = d3.scaleBand(days, [mg.l, W - mg.r]).padding(0.25);
+  const y = d3.scaleLinear([0, d3.max(vals, (v) => Math.max(v.a || 0, v.p || 0)) || 1], [Hh - mg.b, mg.t]).nice();
+  const tac = vals.filter((v) => v.a != null && v.s > 0).map((v) => ({ d: v.d, t: v.a / v.s }));
+  const y2 = d3.scaleLinear([0, Math.max(0.3, d3.max(tac, (v) => v.t) || 0.3)], [Hh - mg.b, mg.t]).nice();
+  svg.append('g').attr('transform', `translate(${mg.l},0)`).call(d3.axisLeft(y).ticks(4).tickFormat((v) => kshort(v, m)).tickSize(-(W - mg.l - mg.r))).call(axis);
+  svg.append('g').attr('transform', `translate(${W - mg.r},0)`).call(d3.axisRight(y2).ticks(4).tickFormat(d3.format('.0%'))).call(axis);
+  const step = Math.ceil(days.length / Math.max(4, Math.floor((W - mg.l - mg.r) / 56)));
+  svg.append('g').attr('transform', `translate(0,${Hh - mg.b})`).call(d3.axisBottom(x).tickValues(days.filter((d, i) => i % step === 0)).tickFormat(dayLab)).call(axis);
+  const tp = tip(host);
+  vals.forEach((v) => {
+    if (v.a != null) svg.append('rect').attr('x', x(v.d)).attr('y', y(v.a)).attr('width', x.bandwidth()).attr('height', y(0) - y(v.a)).attr('rx', 2)
+      .attr('fill', v.d >= EV0 ? css('--accent') : css('--mute-mark'))
+      .on('mousemove', (e) => showTip(host, tp, e, [dayLab(v.d), `Spend ${money(v.a, m)}`, `Sales ${money(v.s, m)}`, `TACoS ${pct(v.s ? v.a / v.s : null)}`, v.p != null ? `Plan ${money(v.p, m)}` : 'Before the event']))
+      .on('mouseleave', () => (tp.hidden = true));
+    if (v.p != null) svg.append('rect').attr('x', x(v.d)).attr('y', y(v.p)).attr('width', x.bandwidth()).attr('height', y(0) - y(v.p)).attr('fill', 'none')
+      .attr('stroke', css('--ink')).attr('stroke-dasharray', '3 2').attr('stroke-width', 1.2).attr('pointer-events', 'none');
+  });
+  if (tac.length > 1) svg.append('path').datum(tac).attr('fill', 'none').attr('stroke', css('--bad')).attr('stroke-width', 2)
+    .attr('d', d3.line().x((v) => x(v.d) + x.bandwidth() / 2).y((v) => y2(v.t)));
+  svg.append('line').attr('x1', mg.l).attr('x2', W - mg.r).attr('y1', y2(T().plan_tacos)).attr('y2', y2(T().plan_tacos)).attr('stroke', css('--ink')).attr('stroke-width', 1.5);
+}
+function drawTrackTable(m, pre, ev) {
+  const tb = document.getElementById('t-track');
+  const chip = (txt, bad) => el('span', { class: 'chip', text: txt, style: bad ? 'color:var(--bad);border-color:var(--bad)' : '' });
+  if (ev.length) {
+    document.getElementById('track-note').textContent = 'Budget to date = the product\'s day budgets for the days with actuals. Over pace = spend above 120% of budget to date; over cap = TACoS to date above the cap.';
+    const idx = ev.map((d) => EVDAYS.indexOf(d));
+    const rows = trackRows(m, ev).map((r) => ({ ...r, bud: d3.sum(idx, (i) => (r.p.days || [])[i] || 0), salesPlan: (r.p.sales || 0) * d3.sum(idx, (i) => DATA.weights[m][i]) }))
+      .sort((a, b) => b.bud - a.bud);
+    const th = ['Product', 'Budget to date', 'Spent', '% of budget', 'Sales', 'Plan sales to date', 'TACoS', 'Cap', 'Status'];
+    tb.replaceChildren(el('thead', {}, el('tr', {}, th.map((h, i) => el('th', { class: i ? 'n' : '', text: h })))),
+      el('tbody', {}, rows.map(({ p, s, bud, salesPlan }) => {
+        const over = s.tacos != null && p.cap != null && s.tacos > p.cap + 0.005, hot = bud > 0 && s.spend > 1.2 * bud;
+        const tr = el('tr', { class: 'click', tabindex: '0' }, el('td', { text: p.name }), el('td', { class: 'n', text: money(bud, m) }), el('td', { class: 'n', text: money(s.spend, m) }),
+          el('td', { class: 'n', text: pct(bud ? s.spend / bud : null, 0) }), el('td', { class: 'n', text: money(s.sales, m) }), el('td', { class: 'n', text: money(salesPlan, m) }),
+          el('td', { class: 'n', text: pct(s.tacos), style: over ? 'color:var(--bad)' : '' }), el('td', { class: 'n', text: pct(p.cap) }),
+          el('td', { class: 'n' }, p.plan_tacos === 0 ? chip('No ads') : over ? chip('Over cap', true) : hot ? chip('Over pace', true) : chip('On plan')));
+        tr.addEventListener('click', () => openP(p.id)); tr.addEventListener('keydown', (e) => { if (e.key === 'Enter') openP(p.id); }); return tr;
+      })));
+  } else {
+    const d7 = pre.slice(-7), d1 = pre.slice(-1);
+    document.getElementById('track-note').textContent = `Last 7 days = ${dayLab(d7[0])} – ${dayLab(d7[d7.length - 1])}; latest day = ${dayLab(d1[0])}. TACoS = all ad types (SP, SB, SB video, SD) / sales. Click a row for the product's plan.`;
+    const r7 = trackRows(m, d7), r1 = Object.fromEntries(trackRows(m, d1).map((r) => [r.p.id, r.s]));
+    const rows = r7.sort((a, b) => ((b.s.tacos || 0) - (b.p.cap || 1)) - ((a.s.tacos || 0) - (a.p.cap || 1)));
+    const th = ['Product', 'Cap', 'TACoS last 7 days', 'TACoS latest day', 'TACoS in the plan (Oct 19 – Nov 1)', 'Spend a day, last 7', 'Plan a day in BFCM', 'Status'];
+    tb.replaceChildren(el('thead', {}, el('tr', {}, th.map((h, i) => el('th', { class: i ? 'n' : '', text: h })))),
+      el('tbody', {}, rows.map(({ p, s }) => {
+        const over = s.tacos != null && p.cap != null && s.tacos > p.cap + 0.005 && p.plan_tacos > 0;
+        const tr = el('tr', { class: 'click', tabindex: '0' }, el('td', { text: p.name }), el('td', { class: 'n', text: p.plan_tacos === 0 ? 'no ads' : pct(p.cap) }),
+          el('td', { class: 'n', text: pct(s.tacos), style: over ? 'color:var(--bad)' : '' }), el('td', { class: 'n', text: pct((r1[p.id] || {}).tacos) }),
+          el('td', { class: 'n', text: pct(p.tacos_now) }), el('td', { class: 'n', text: money(s.n ? s.spend / s.n : null, m) }), el('td', { class: 'n', text: money(p.per_day, m) }),
+          el('td', { class: 'n' }, p.plan_tacos === 0 ? chip('No ads in BFCM') : s.tacos == null ? chip('No sales') : over ? chip('Over cap: cut', true) : chip('Under cap')));
+        tr.addEventListener('click', () => openP(p.id)); tr.addEventListener('keydown', (e) => { if (e.key === 'Enter') openP(p.id); }); return tr;
+      })));
+  }
+}
+function drawFoot() {
+  document.getElementById('foot').textContent = `Built ${DATA.built} by Shayan Rana for Joseph Fisher's review (asked by Erik). Supporting files: BFCM_2026_PPC_Plan.xlsx (plan) and BFCM_2026_PPC_Verification.xlsx (checks). Figures are estimates from the last 14 days of sales and spend by product and ad type, each product's BFCM 2025 lift and the Oct 27 deal prices; Amazon deal prices can change until Nov 13.`;
+}
+function drawMarket() { drawFoot(); drawTrack(); drawFull25(); drawHero(); drawGrid(); drawScen(); drawBudgetTable(); drawAllDays(); drawBridge(); drawBfcmp(); drawSplit(); drawWeekly(); }
 function setM(m) { MKT = m; document.getElementById('m-us').setAttribute('aria-pressed', m === 'US'); document.getElementById('m-ca').setAttribute('aria-pressed', m === 'CA'); drawMarket(); }
 document.getElementById('m-us').addEventListener('click', () => setM('US'));
 document.getElementById('m-ca').addEventListener('click', () => setM('CA'));
 ['f-fam', 'f-sort'].forEach((id) => document.getElementById(id).addEventListener('change', drawGrid));
 document.getElementById('f-q').addEventListener('input', drawGrid);
-drawNew(); drawRules(); drawMarket();
+drawNew(); drawRules(); drawMarket(); startTracker();
 let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(drawMarket, 150); });
 const h0 = location.hash.slice(1); if (h0.startsWith('p-') && byId[h0.slice(2)]) { const p = byId[h0.slice(2)]; if (p.mkt !== MKT) setM(p.mkt); openP(p.id); }
 </script>
