@@ -17,14 +17,14 @@ for f in sorted(sys.argv[2:], key=os.path.getmtime):   # oldest first, so the ne
     for r in j.get("result") or []:
         i = r.get("Info") or {}
         m = "CA" if (i.get("Marketplace") or "").lower() == "amazon.ca" else "US"
-        rows[(m, i.get("Id"))] = i
+        rows[((i.get("Marketplace") or "").lower(), i.get("Id"))] = (m, i)   # same Id across marketplaces: key on the real one
 out = os.path.join(HERE, f"daily_child_{day}.csv")
 cols = ["date", "marketplace", "asin", "sku", "name", "sales", "units", "sp", "sb", "sbv", "sd", "advertising", "sessions"]
 agg = {}
 with open(out, "w", newline="") as fh:
     w = csv.writer(fh); w.writerow(cols)
     merged = {}
-    for (m, _), i in rows.items():
+    for (_, _id), (m, i) in rows.items():
         k = (m, i.get("ASIN"), i.get("SKU"))
         a = merged.setdefault(k, {"name": i.get("Name") or "", "sales": 0.0, "units": 0.0, "sp": 0.0, "sb": 0.0, "sbv": 0.0, "sd": 0.0, "advertising": 0.0, "sessions": 0.0})
         a["sales"] += i.get("Sales") or 0; a["units"] += i.get("Units") or 0

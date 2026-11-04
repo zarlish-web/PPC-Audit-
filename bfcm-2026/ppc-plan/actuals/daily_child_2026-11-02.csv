@@ -1,0 +1,549 @@
+date,marketplace,asin,sku,name,sales,units,sp,sb,sbv,sd,advertising,sessions
+2026-11-02,CA,B0839KG4VY,SATIN-TWIN-BLUE,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,0.0,0,0.44,0.0,0.0,0.0,0.44,1
+2026-11-02,CA,B0839L4HWH,SATIN-QUEEN-BLUE,"DECOLURE Satin Bed Sheets - 4 Piece Luxury Silky Queen Size Bedding Set - Softer Than Silk, Wrinkle-Free with 15” Deep Pocket Fitted Sheet, Perfect for Hair & Skin, Gifts for Women (Blue)",34.38,1,0.44,0.0,0.0,0.0,0.44,6
+2026-11-02,CA,B0839L5PDJ,SATIN-KING-BLUE,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,0.0,0.0,0.0,0.0,0.0,1
+2026-11-02,CA,B0839L6QG5,SATIN-FULL-PINK,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,4.14,0.0,0.0,0.0,4.14,7
+2026-11-02,CA,B0839L6QG5,JU-73EW-JXP3,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,0.0,0.0,0.0,0.0,0.0,8
+2026-11-02,CA,B0839L6R8Y,SATIN-QUEEN-PURPLE,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 4 Pc Bed Set,34.38,1,0.0,0.0,0.0,0.0,0.0,5
+2026-11-02,CA,B0839L7PJL,SATIN-TWIN-BLACK-NEW,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,0.0,0,0.0,0.0,0.0,0.0,0.0,2
+2026-11-02,CA,B0839L7PJL,SATIN-TWIN-BLACK,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,0.0,0,0.0,0.0,0.0,0.0,0.0,3
+2026-11-02,CA,B0839LCXBP,SATIN-FULL-BLACK,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 4 Pc Bed Set,64.46,2,2.63,2.19,0.0,0.0,4.82,16
+2026-11-02,CA,B0839LD2WQ,FH-CXP0-5741,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,0.0,0.0,0.0,0.0,0.0,2
+2026-11-02,CA,B0839LD2WQ,SATIN-KING-BLACK,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,3.13,0.0,0.0,0.0,3.13,10
+2026-11-02,CA,B0839LK8DB,SATIN-KING-PINK,"DECOLURE Satin Bed Sheets - 4 Piece Luxury Silky King Size Bedding Set - Softer Than Silk, Wrinkle-Free with 15” Deep Pocket Fitted Sheet, Perfect for Hair & Skin, Gifts for Women (Pink)",37.86,1,0.0,0.0,0.0,0.0,0.0,5
+2026-11-02,CA,B0839LKZV9,SATIN-KING-PURPLE,"DECOLURE Satin Bed Sheets - 4 Piece Luxury Silky King Size Bedding Set - Softer Than Silk, Wrinkle-Free with 15” Deep Pocket Fitted Sheet, Perfect for Hair & Skin, Gifts for Women (Purple)",0.0,0,0.34,0.0,0.0,0.0,0.34,2
+2026-11-02,CA,B0839LMS13,SATIN-FULL-GREY,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,0.0,0.0,0.0,0.0,0.0,4
+2026-11-02,CA,B0839LP6TM,SATIN-FULL-PURPLE,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,0.61,0.0,0.0,0.0,0.61,1
+2026-11-02,CA,B0839LP6TM,F7-WODI-ZALX,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,0.0,0.0,0.0,0.0,0.0,2
+2026-11-02,CA,B0839LQG4C,SATIN-QUEEN-PINK,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 4 Pc Bed Set,34.29,1,1.31,0.0,0.0,0.0,1.31,14
+2026-11-02,CA,B0839LQK8K,SATIN-QUEEN-GREY,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,20.13,0.0,0.0,0.0,20.13,35
+2026-11-02,CA,B0839LVHL1,JM-L25R-4RTT,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,0.0,0,0.0,0.0,0.0,0.0,0.0,2
+2026-11-02,CA,B0839LVHL1,SATIN-TWIN-PINK,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,0.0,0,0.27,0.0,0.0,0.0,0.27,1
+2026-11-02,CA,B0839M48YF,SATIN-TWIN-PURPLE,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,0.0,0,0.0,0.0,0.0,0.0,0.0,0
+2026-11-02,CA,B0839M48YF,AH-KQLD-AMLG,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,0.0,0,0.0,0.0,0.0,0.0,0.0,1
+2026-11-02,CA,B0839M8LP5,5N-Q3PY-YV0N,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,0.0,0,0.0,0.0,0.0,0.0,0.0,2
+2026-11-02,CA,B0839M8LP5,SATIN-TWIN-GREY,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,0.0,0,0.0,0.0,0.0,0.0,0.0,1
+2026-11-02,CA,B0839MKJMV,SATIN-QUEEN-BLACK,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 4 Pc Bed Set,68.58,2,0.0,0.0,0.0,0.0,0.0,19
+2026-11-02,CA,B08KQ5VVRV,BAMBOO-QUEEN-GREY,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 4 Pc Cooling Bed Set,0.0,0,1.3,0.0,0.0,0.0,1.3,4
+2026-11-02,CA,B08KQHSWSJ,BAMBOO-CALIFKING-LIGHTBLUE,DECOLURE 100% Viscose from Bamboo Sheets | 4 Pc Cooling Bed Set,0.0,0,3.58,2.01,0.0,0.0,5.59,6
+2026-11-02,CA,B08KQJ3JSW,BAMBOO-FULL-CREME,DECOLURE 100% Viscose from Bamboo Sheets Full Size | 4 Pc Cooling Bed Set,0.0,0,1.3,0.0,0.0,0.0,1.3,5
+2026-11-02,CA,B08KQJ3M9N,BAMBOO-KING-LIGHTGREY,DECOLURE 100% Viscose from Bamboo Sheets King Size | 4 Pc Cooling Bed Set,0.0,0,1.3,0.0,0.0,0.0,1.3,8
+2026-11-02,CA,B08KQJ61T7,BAMBOO-KING-TAUPE,DECOLURE 100% Viscose from Bamboo Sheets King Size | 4 Pc Cooling Bed Set,0.0,0,21.37,0.0,0.0,0.0,21.37,27
+2026-11-02,CA,B08KQJ62YC,BAMBOO-KING-CREME,DECOLURE 100% Viscose from Bamboo Sheets King Size | 4 Pc Cooling Bed Set,71.45,1,0.0,0.0,0.0,0.0,0.0,5
+2026-11-02,CA,B08KQJBFFY,BAMBOO-CALIFKING-GREY,DECOLURE 100% Viscose from Bamboo Sheets | 4 Pc Cooling Bed Set,0.0,0,1.04,0.0,0.0,0.0,1.04,2
+2026-11-02,CA,B08KQJBRKM,BAMBOO-FULL-TAUPE,DECOLURE 100% Viscose from Bamboo Sheets Full Size | 4 Pc Cooling Bed Set,0.0,0,0.62,0.0,0.0,0.0,0.62,6
+2026-11-02,CA,B08KQJGM74,BAMBOO-QUEEN-WHITE,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 4 Pc Cooling Bed Set,0.0,0,1.3,0.0,0.0,0.0,1.3,11
+2026-11-02,CA,B08KQJHKFJ,BAMBOO-FULL-LIGHTGREY,DECOLURE 100% Viscose from Bamboo Sheets Full Size | 4 Pc Cooling Bed Set,0.0,0,0.75,0.0,0.0,0.0,0.75,1
+2026-11-02,CA,B08KQJMZ8Q,BAMBOO-QUEEN-TAUPE,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 4 Pc Cooling Bed Set,0.0,0,6.91,0.0,0.0,0.0,6.91,16
+2026-11-02,CA,B08KQJRL41,BAMBOO-TWIN-NAVYBLUE,DECOLURE 100% Viscose from Bamboo Sheets Twin Size | 3 Pc Cooling Bed Set,0.0,0,4.31,0.0,0.0,0.0,4.31,7
+2026-11-02,CA,B08KQJRSW6,BAMBOO-QUEEN-OLIVE,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 4 Pc Cooling Bed Set,71.45,1,47.78,0.0,0.0,0.0,47.78,45
+2026-11-02,CA,B08KQJV49M,BAMBOO-FULL-WHITE,DECOLURE 100% Viscose from Bamboo Sheets Full Size | 4 Pc Cooling Bed Set,0.0,0,2.13,0.0,0.0,0.0,2.13,9
+2026-11-02,CA,B08KQJYDCR,BAMBOO-FULL-LIGHTBLUE,DECOLURE 100% Viscose Derived from Bamboo Sheets Full Size | 4 Pc Bed Set,0.0,0,3.44,0.0,0.0,0.0,3.44,7
+2026-11-02,CA,B08KQJZHGC,BAMBOO-CALIFKING-OLIVE,DECOLURE 100% Viscose from Bamboo Sheets | 4 Pc Cooling Bed Set,0.0,0,0.27,0.0,0.0,0.0,0.27,4
+2026-11-02,CA,B08KQK8Z1J,BAMBOO-TWIN-LIGHTGREY,DECOLURE 100% Viscose from Bamboo Sheets Twin Size | 3 Pc Cooling Bed Set,0.0,0,0.58,0.0,0.0,0.0,0.58,1
+2026-11-02,CA,B08KQKBM4Q,BAMBOO-TWIN-WHITE,DECOLURE 100% Viscose from Bamboo Sheets Twin Size | 3 Pc Cooling Bed Set,171.92,3,0.0,0.0,0.0,0.0,0.0,1
+2026-11-02,CA,B08KQKKRNC,BAMBOO-QUEEN-NAVYBLUE,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 4 Pc Cooling Bed Set,71.64,1,0.0,0.0,0.0,0.0,0.0,10
+2026-11-02,CA,B08KQKQ44M,BAMBOO-CALIFKING-WHITE,DECOLURE 100% Viscose from Bamboo Sheets | 4 Pc Cooling Bed Set,71.64,1,1.05,0.0,0.0,0.0,1.05,4
+2026-11-02,CA,B08KQKXQLS,BAMBOO-QUEEN-LIGHTBLUE,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 4 Pc Cooling Bed Set,0.0,0,4.04,0.0,0.0,0.0,4.04,15
+2026-11-02,CA,B08KQL2JT8,BAMBOO-FULL-NAVYBLUE,DECOLURE 100% Viscose from Bamboo Sheets Full Size | 4 Pc Cooling Bed Set,0.0,0,6.88,0.0,0.0,0.0,6.88,11
+2026-11-02,CA,B08KQL6HKG,BAMBOO-KING-LIGHTBLUE,DECOLURE 100% Viscose from Bamboo Sheets King Size | 4 Pc Cooling Bed Set,71.64,1,0.0,0.0,0.0,0.0,0.0,6
+2026-11-02,CA,B08KQLFRVR,BAMBOO-CALIFKING-LIGHTGREY,DECOLURE 100% Viscose from Bamboo Sheets | 4 Pc Cooling Bed Set,71.64,1,0.0,0.0,0.0,0.0,0.0,3
+2026-11-02,CA,B08KQLK2HK,BAMBOO-KING-OLIVE,DECOLURE 100% Viscose from Bamboo Sheets King Size | 4 Pc Cooling Bed Set,0.0,0,9.55,2.01,1.14,0.0,12.7,20
+2026-11-02,CA,B08KQLK2HK,Amazon.Found.B08KQLK2HK,DECOLURE 100% Viscose from Bamboo Sheets King Size | 4 Pc Cooling Bed Set,0.0,0,0.0,2.01,1.13,0.0,3.14,0
+2026-11-02,CA,B08KQLQ7RG,BAMBOO-CALIFKING-CREME,DECOLURE 100% Viscose from Bamboo Sheets | 4 Pc Cooling Bed Set,0.0,0,0.0,2.0,0.0,0.0,2.0,2
+2026-11-02,CA,B08KR9THFG,SATIN-GOLD-TWIN,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,0.0,0,0.98,0.0,0.0,0.0,0.98,2
+2026-11-02,CA,B08KRHBD49,SATIN-RED-FULL,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,3.37,0.0,0.0,0.0,3.37,9
+2026-11-02,CA,B08KRNYD9B,SATIN-WHITE-FULL,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,0.48,0.0,0.0,0.0,0.48,8
+2026-11-02,CA,B08KRS1K6H,SATIN-WHITE-TWIN,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,0.0,0,18.34,0.0,0.0,0.0,18.34,20
+2026-11-02,CA,B08KRXDWNN,SATIN-WHITE-QUEEN,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 4 Pc Bed Set,34.38,1,0.39,0.0,0.0,0.0,0.39,9
+2026-11-02,CA,B09G6H23C3,SATIN-STRIPE-TWIN-BLACK,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,0.0,0,0.36,0.0,0.0,0.0,0.36,3
+2026-11-02,CA,B09G6HZT1K,SATIN-STRIPE-KING-BLACK,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,0.61,0.0,0.0,0.0,0.61,2
+2026-11-02,CA,B09G6JGMY9,SATIN-STRIPE-KING-BLUE,"DECOLURE Satin Bed Sheets - 4 Piece Luxury Silky King Size Bedding Set - Softer Than Silk, Wrinkle-Free with 15” Deep Pocket Fitted Sheet, Perfect for Hair & Skin, Gifts for Women (Striped Blue)",0.0,0,0.23,0.0,0.0,0.0,0.23,1
+2026-11-02,CA,B09G6JSW33,SATIN-STRIPE-QUEEN-PINK,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,1.93,0.0,0.0,0.0,1.93,8
+2026-11-02,CA,B09G6K4M5V,SATIN-STRIPE-KING-GOLD,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,0.44,0.0,0.0,0.0,0.44,3
+2026-11-02,CA,B09G6K4PXD,SATIN-STRIPE-FULL-PURPLE,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,0.44,0.0,0.0,0.0,0.44,2
+2026-11-02,CA,B09G6KCTXW,SATIN-STRIPE-QUEEN-RED,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,0.8,0.0,0.0,0.0,0.8,1
+2026-11-02,CA,B09G6KKB4S,SATIN-STRIPE-FULL-WHITE,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 4 Pc Bed Set,32.23,1,0.0,0.0,0.0,0.0,0.0,3
+2026-11-02,CA,B09G6LBQHH,SATIN-STRIPE-KING-PINK,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,1.67,0.0,0.0,0.0,1.67,3
+2026-11-02,CA,B09G6LBXRX,SATIN-STRIPE-QUEEN-BLACK,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 4 Pc Bed Set,34.38,1,0.28,0.0,0.0,0.0,0.28,4
+2026-11-02,CA,B09G6M7WJ3,SATIN-STRIPE-TWIN-RED,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,0.0,0,0.54,0.0,0.0,0.0,0.54,3
+2026-11-02,CA,B0BG1Z32KQ,SATIN-SEA-TEAL-FULL,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 4 Pc Bed Set,32.23,1,0.0,0.0,0.0,0.0,0.0,2
+2026-11-02,CA,B0BG21MMW9,SATIN-SEA-TEAL-TWIN,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,0.0,0,13.13,0.0,0.0,0.0,13.13,18
+2026-11-02,CA,B0BG22CYFP,SATIN-IVORY-FULL,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,0.6,0.0,0.0,0.0,0.6,5
+2026-11-02,CA,B0BZPV4LYC,SATIN-TAUPE-FULL,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,0.24,0.0,0.0,0.0,0.24,5
+2026-11-02,CA,B0BZPV84V7,SATIN-CHAMPAGNE-QUEEN,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 4 Pc Bed Set,34.38,1,0.64,0.0,0.0,0.0,0.64,7
+2026-11-02,CA,B0BZPVYJK4,SATIN-TAUPE-TWIN,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,0.0,0,0.65,0.0,0.0,0.0,0.65,1
+2026-11-02,CA,B0BZPY4PXY,BAMBOO-FULL-PURPLE,DECOLURE 100% Viscose from Bamboo Sheets Full Size | 4 Pc Cooling Bed Set,0.0,0,1.56,0.0,0.0,0.0,1.56,6
+2026-11-02,CA,B0BZPYZ1XY,BAMBOO-FULL-BLACK,DECOLURE 100% Viscose from Bamboo Sheets Full Size | 4 Pc Cooling Bed Set,57.16,1,0.52,0.0,0.0,0.0,0.52,5
+2026-11-02,CA,B0BZPZ2L1R,BAMBOO-KING-BLACK,DECOLURE 100% Viscose from Bamboo Sheets King Size | 4 Pc Cooling Bed Set,0.0,0,2.59,0.0,0.0,0.0,2.59,8
+2026-11-02,CA,B0BZPZ588L,BAMBOO-KING-CHARCOAL,DECOLURE 100% Viscose from Bamboo Sheets King Size | 4 Pc Cooling Bed Set,0.0,0,0.67,0.0,0.0,0.0,0.67,5
+2026-11-02,CA,B0BZPZP12L,BAMBOO-KING-LIGHTOLIVE,DECOLURE 100% Viscose from Bamboo Sheets King Size | 4 Pc Cooling Bed Set,0.0,0,2.57,0.0,0.0,0.0,2.57,6
+2026-11-02,CA,B0BZPZPGDC,BAMBOO-FULL-LIGHTOLIVE,DECOLURE 100% Viscose from Bamboo Sheets Full Size | 4 Pc Cooling Bed Set,0.0,0,17.79,0.0,0.0,0.0,17.79,12
+2026-11-02,CA,B0BZPZQCBL,BAMBOO-CALIFKING-CHARCOAL,DECOLURE 100% Viscose from Bamboo Sheets | 4 Pc Cooling Bed Set,0.0,0,0.67,0.0,0.0,0.0,0.67,2
+2026-11-02,CA,B0BZQ19Z44,BAMBOO-QUEEN-LIGHTOLIVE,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 4 Pc Cooling Bed Set,0.0,0,5.44,0.0,0.0,0.0,5.44,16
+2026-11-02,CA,B0BZQ19Z47,BAMBOO-CALIFKING-LIGHTOLIVE,DECOLURE 100% Viscose from Bamboo Sheets | 4 Pc Cooling Bed Set,0.0,0,1.15,0.0,0.0,0.0,1.15,4
+2026-11-02,CA,B0BZQ1FBJ9,BAMBOO-QUEEN-BLACK,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 4 Pc Cooling Bed Set,71.64,1,0.0,0.0,0.0,0.0,0.0,8
+2026-11-02,CA,B0BZQ1LTK3,SATIN-TAUPE-QUEEN,"DECOLURE Satin Bed Sheets - 4 Piece Luxury Silky Queen Size Bedding Set - Softer Than Silk, Wrinkle-Free with 15” Deep Pocket Fitted Sheet, Perfect for Hair & Skin, Gifts for Women (Taupe - 01)",34.38,1,5.95,0.0,0.0,0.0,5.95,12
+2026-11-02,CA,B0BZQ39BTX,BAMBOO-TWIN-PURPLE,DECOLURE 100% Viscose from Bamboo Sheets Twin Size | 3 Pc Cooling Bed Set,0.0,0,1.3,0.0,0.0,0.0,1.3,2
+2026-11-02,CA,B0BZQ3F8RQ,BAMBOO-KING-PURPLE,DECOLURE 100% Viscose from Bamboo Sheets King Size | 4 Pc Cooling Bed Set,0.0,0,0.96,0.0,0.0,0.0,0.96,1
+2026-11-02,CA,B0BZQ3ZGNG,BAMBOO-QUEEN-PURPLE,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 4 Pc Cooling Bed Set,0.0,0,4.42,0.0,0.0,0.0,4.42,10
+2026-11-02,CA,B0BZQ5SDNS,BAMBOO-CALIFKING-PURPLE,DECOLURE 100% Viscose from Bamboo Sheets | 4 Pc Cooling Bed Set,0.0,0,1.3,0.0,0.0,0.0,1.3,3
+2026-11-02,CA,B0C7FBBPL1,SATIN-KING-BLUE-6PCS,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 6 Pc Bed Set,35.81,1,0.0,0.0,0.0,0.0,0.0,5
+2026-11-02,CA,B0C7FD1CLN,SATIN-SEA-TEAL-QUEEN-6PCS,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 6 Pc Bed Set,0.0,0,0.31,0.0,0.0,0.0,0.31,6
+2026-11-02,CA,B0C7FDN7ZM,SATIN-ROSEWOOD-TWIN-6PCS,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,0.77,0.0,0.0,0.0,0.77,4
+2026-11-02,CA,B0C7FJ461D,SATIN-QUEEN-BLUE-6PCS,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 6 Pc Bed Set,0.0,0,0.64,0.0,0.0,0.0,0.64,8
+2026-11-02,CA,B0C7FMCXBV,SATIN-ROSEWOOD-QUEEN-6PCS,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 6 Pc Bed Set,34.38,1,25.22,0.0,0.0,0.0,25.22,37
+2026-11-02,CA,B0C7FMM2QN,SATIN-FULL-BLACK-6PCS,"DECOLURE Satin Bed Sheets - 6 Piece Luxury Silky Full Size Bedding Set - Softer Than Silk, Wrinkle-Free with 15” Deep Pocket Fitted Sheet, Perfect for Hair & Skin, Gifts for Women (Black)",32.23,1,2.79,0.0,0.0,0.0,2.79,11
+2026-11-02,CA,B0C7FMQP5L,SATIN-IVORY-QUEEN-6PCS,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 6 Pc Bed Set,68.76,2,0.0,0.0,0.0,0.0,0.0,6
+2026-11-02,CA,B0C7FP1L1V,SATIN-ROSEWOOD-KING-6PCS,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 6 Pc Bed Set,0.0,0,0.59,0.0,0.0,0.0,0.59,6
+2026-11-02,CA,B0C7FPM5CR,SATIN-GOLD-QUEEN-6PCS,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 6 Pc Bed Set,0.0,0,0.34,0.0,0.0,0.0,0.34,3
+2026-11-02,CA,B0C7FSZ6RY,SATIN-QUEEN-PINK-6PCS,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 6 Pc Bed Set,0.0,0,0.64,0.0,0.0,0.0,0.64,5
+2026-11-02,CA,B0C7FTB8MQ,SATIN-STONEGREY-QUEEN-6PCS,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 6 Pc Bed Set,34.38,1,11.15,0.0,0.0,0.0,11.15,15
+2026-11-02,CA,B0C7FX1GFS,SATIN-QUEEN-BLACK-6-PCS,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 6 Pc Bed Set,34.38,1,3.62,0.0,0.0,0.0,3.62,24
+2026-11-02,CA,B0C7FXQZVG,SATIN-FULL-BLUE-6PCS,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 6 Pc Bed Set,0.0,0,0.34,0.0,0.0,0.0,0.34,2
+2026-11-02,CA,B0C7K74SLC,SATIN-STRIPE-KING-GRAY--6-PCS,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 6 Pc Bed Set,0.0,0,2.04,0.0,0.0,0.0,2.04,9
+2026-11-02,CA,B0C7K92CTB,SATIN-STRIPE-QUEEN-GOLD--6-PCS,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 6 Pc Bed Set,0.0,0,0.95,0.0,0.0,0.0,0.95,3
+2026-11-02,CA,B0C7KB53RJ,SATIN-STRIPE-FULL-BLACK--6-PCS,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 6 Pc Bed Set,0.0,0,1.43,0.0,0.0,0.0,1.43,3
+2026-11-02,CA,B0C7KBHV72,SATIN-STRIPE-QUEEN-RED--6-PCS,"DECOLURE Satin Bed Sheets - 6 Piece Luxury Silky Queen Size Bedding Set - Softer Than Silk, Wrinkle-Free with 15” Deep Pocket Fitted Sheet, Perfect for Hair & Skin, Gifts for Women (Striped Red-01)",0.0,0,1.88,0.0,0.0,0.0,1.88,5
+2026-11-02,CA,B0C7KD5MPK,SATIN-STRIPE-KING-WHITE--6-PCS,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 6 Pc Bed Set,35.81,1,0.0,0.0,0.0,0.0,0.0,4
+2026-11-02,CA,B0C7KD9LMR,SATIN-STRIPE-QUEEN-PINK--6-PCS,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 6 Pc Bed Set,34.38,1,0.0,0.0,0.0,0.0,0.0,2
+2026-11-02,CA,B0C7KJMDNG,SATIN-STRIPE-QUEEN-BLUE--6-PCS,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 6 Pc Bed Set,0.0,0,0.32,0.0,0.0,0.0,0.32,4
+2026-11-02,CA,B0CLK9QXX3,BAMBOO-KING-LIGHT PINK,DECOLURE 100% Viscose from Bamboo Sheets King Size | 4 Pc Cooling Bed Set,0.0,0,1.09,0.0,0.0,0.0,1.09,3
+2026-11-02,CA,B0CLKBT95K,BAMBOO-TWIN-SAGE GREEN,DECOLURE 100% Viscose from Bamboo Sheets Twin Size | 3 Pc Cooling Bed Set,0.0,0,1.3,0.0,0.0,0.0,1.3,1
+2026-11-02,CA,B0CLKCT674,BAMBOO-QUEEN-LIGHT PINK,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 4 Pc Cooling Bed Set,0.0,0,5.2,0.0,0.0,0.0,5.2,13
+2026-11-02,CA,B0CLKD23ZH,BAMBOO-CALIFKING-LIGHT PINK,DECOLURE 100% Viscose from Bamboo Sheets | 4 Pc Cooling Bed Set,71.64,1,1.99,0.0,0.0,0.0,1.99,4
+2026-11-02,CA,B0CLKDMGHC,BAMBOO-TWIN-LIGHT PINK,DECOLURE 100% Viscose from Bamboo Sheets Twin Size | 3 Pc Cooling Bed Set,0.0,0,5.23,0.0,0.0,0.0,5.23,4
+2026-11-02,CA,B0CLKJL9KD,BAMBOO-QUEEN-SAGE GREEN,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 4 Pc Cooling Bed Set,0.0,0,1.24,0.0,0.0,0.0,1.24,9
+2026-11-02,CA,B0CNS8T4ZK,SATIN-QUEEN-BLUSH PINK,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 4 Pc Bed Set,103.05,3,0.0,0.0,0.0,0.0,0.0,7
+2026-11-02,CA,B0CNS9FHSD,SATIN-FULL-BLUSH PINK,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,2.24,0.0,0.0,0.0,2.24,8
+2026-11-02,CA,B0CQ2XQF9N,BAMBOO-KING-WHITE-6PCS,DECOLURE 100% Viscose from Bamboo Sheets King Size | 6 Pc Cooling Bed Set,71.64,1,0.0,0.0,0.0,0.0,0.0,25
+2026-11-02,CA,B0CQ2YDPDS,BAMBOO-KING-OLIVE-6PCS,DECOLURE 100% Viscose from Bamboo Sheets King Size | 6 Pc Cooling Bed Set,0.0,0,5.76,0.0,0.0,0.0,5.76,6
+2026-11-02,CA,B0CQ2ZVD96,BAMBOO-FULL-CREME-6PCS,DECOLURE 100% Viscose from Bamboo Sheets Full Size | 6 Pc Cooling Bed Set,57.31,1,0.0,0.0,0.0,0.0,0.0,4
+2026-11-02,CA,B0CQ2ZWGNQ,BAMBOO-QUEEN-WHITE-6PCS,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 6 Pc Cooling Bed Set,71.64,1,78.84,0.0,0.0,0.0,78.84,53
+2026-11-02,CA,B0CQ2ZWSN7,BAMBOO-QUEEN-BURGUNDY-6PCS,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 6 Pc Cooling Bed Set,71.64,1,0.0,0.0,0.0,0.0,0.0,7
+2026-11-02,CA,B0CQ2ZYZJT,BAMBOO-CALIFKING-WHITE-6PCS,DECOLURE 100% Viscose from Bamboo Sheets | 6 Pc Cooling Bed Set,0.0,0,6.97,0.0,0.0,0.0,6.97,3
+2026-11-02,CA,B0CQ2ZZ9QN,BAMBOO-KING-SAGE GREEN-6PCS,DECOLURE 100% Viscose from Bamboo Sheets King Size | 6 Pc Cooling Bed Set,71.64,1,0.0,0.0,0.0,0.0,0.0,8
+2026-11-02,CA,B0CQ2ZZW88,BAMBOO-KING-CHARCOAL-6PCS,DECOLURE 100% Viscose from Bamboo Sheets King Size | 6 Pc Cooling Bed Set,71.45,1,0.0,0.0,0.0,0.0,0.0,9
+2026-11-02,CA,B0CQ311KCT,BAMBOO-FULL-TAUPE-6PCS,"DECOLURE 100% Viscose Derived from Bamboo Sheets Full Size, Luxury 6 Pc Set",0.0,0,0.04,0.0,0.0,0.0,0.04,4
+2026-11-02,CA,B0CQ3178D7,BAMBOO-KING-TAUPE-6PCS,DECOLURE 100% Viscose from Bamboo Sheets King Size | 6 Pc Cooling Bed Set,143.28,2,47.74,0.0,0.0,0.0,47.74,45
+2026-11-02,CA,B0CQ319J1Z,BAMBOO-KING-MIDGREY-6PCS,DECOLURE 100% Viscose from Bamboo Sheets King Size | 6 Pc Cooling Bed Set,71.64,1,0.0,0.0,0.0,0.0,0.0,6
+2026-11-02,CA,B0CQ31CZTJ,BAMBOO-QUEEN-BLACK-6PCS,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 6 Pc Cooling Bed Set,71.64,1,0.0,0.0,0.0,0.0,0.0,6
+2026-11-02,CA,B0CQ31Q559,BAMBOO-FULL-WHITE-6PCS,DECOLURE 100% Viscose from Bamboo Sheets Full Size | 6 Pc Cooling Bed Set,0.0,0,12.04,0.0,0.0,0.0,12.04,13
+2026-11-02,CA,B0CQ31X65Y,BAMBOO-KING-LIGHTBLUE-6PCS,DECOLURE 100% Viscose from Bamboo Sheets King Size | 6 Pc Cooling Bed Set,143.28,2,0.24,0.0,0.0,0.0,0.24,7
+2026-11-02,CA,B0CQ31XHCV,BAMBOO-QUEEN-GREY-6PCS,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 6 Pc Cooling Bed Set,71.64,1,0.0,0.0,0.0,0.0,0.0,5
+2026-11-02,CA,B0CQ32B24Y,BAMBOO-QUEEN-OLIVE-6PCS,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 6 Pc Cooling Bed Set,0.0,0,1.36,0.0,0.0,0.0,1.36,13
+2026-11-02,CA,B0CQ32F3HY,BAMBOO-QUEEN-LIGHTBLUE-6PCS,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 6 Pc Cooling Bed Set,0.0,0,0.3,0.0,0.0,0.0,0.3,8
+2026-11-02,CA,B0CQ32N392,BAMBOO-QUEEN-NAVYBLUE-6PCS,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 6 Pc Cooling Bed Set,143.19,2,0.0,0.0,0.0,0.0,0.0,14
+2026-11-02,CA,B0CQ32QQ47,BAMBOO-TWIN-TAUPE-6PCS,DECOLURE 100% Viscose from Bamboo Sheets Twin Size | 4 Pc Cooling Bed Set,114.48,2,0.0,0.0,0.0,0.0,0.0,0
+2026-11-02,CA,B0CQ32VM8N,BAMBOO-FULL-LIGHTGREY-6PCS,"DECOLURE 100% Viscose Derived from Bamboo Sheets Full Size - Luxury 6 Pc Naturally Cooling Sheets, Ultra Soft Bed Set - Deep 17"" Pockets, Durable Double Stitching, Oeko Tex Standard (Light Grey-01)",57.31,1,0.0,0.0,0.0,0.0,0.0,1
+2026-11-02,CA,B0CQ33198K,BAMBOO-QUEEN-TAUPE-6PCS,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 6 Pc Cooling Bed Set,214.92,3,0.0,0.0,0.0,0.0,0.0,15
+2026-11-02,CA,B0CQRWSS2D,SATIN-4PC-QUEEN-SAGE GREEN,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,0.62,0.0,0.0,0.0,0.62,5
+2026-11-02,CA,B0CQRX8Q2P,SATIN-3PC-TWIN-LAVENDER,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,0.0,0,1.2,0.0,0.0,0.0,1.2,3
+2026-11-02,CA,B0CQRXM35T,SATIN-3PC-TWIN-BABY BLUE,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,28.65,1,0.98,0.0,0.0,0.0,0.98,8
+2026-11-02,CA,B0CQRXNLN6,SATIN-4PC-KING-NAVY BLUE,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 4 Pc Bed Set,37.96,1,0.0,0.0,0.0,0.0,0.0,2
+2026-11-02,CA,B0CQRYL8Z4,SATIN-3PC-TWIN-SAGE GREEN,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,28.65,1,0.0,0.0,0.0,0.0,0.0,2
+2026-11-02,CA,B0CQRZ6KRR,SATIN-3PC-TWIN-NAVY BLUE,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,0.0,0,0.17,0.0,0.0,0.0,0.17,2
+2026-11-02,CA,B0CRHX3LKM,BAMBOO-TWIN-BURGUNDY-NEW,DECOLURE 100% Viscose from Bamboo Sheets Twin Size | 3 Pc Cooling Bed Set,0.0,0,3.9,0.0,0.0,0.0,3.9,4
+2026-11-02,CA,B0CRHYHS4X,BAMBOO-CALIFKING-BURGUNDY-NEW,DECOLURE 100% Viscose from Bamboo Sheets | 4 Pc Cooling Bed Set,71.64,1,1.3,0.0,0.0,0.0,1.3,3
+2026-11-02,CA,B0CRHYYVZQ,BAMBOO-KING-BURGUNDY-NEW,DECOLURE 100% Viscose from Bamboo Sheets King Size | 4 Pc Cooling Bed Set,0.0,0,1.92,0.0,0.0,0.0,1.92,11
+2026-11-02,CA,B0CRHZ1CK3,BAMBOO-QUEEN-BURGUNDY-NEW,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 4 Pc Cooling Bed Set,0.0,0,4.71,0.0,0.0,0.0,4.71,9
+2026-11-02,CA,B0CV4D38W9,SATIN-4PC-KING-GREY,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,11.92,0.0,0.0,0.0,11.92,11
+2026-11-02,CA,B0CV4D54FV,SATIN-4PC-RED-QUEEN,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 4 Pc Bed Set,34.38,1,1.12,0.0,0.0,0.0,1.12,7
+2026-11-02,CA,B0D9QR4PS8,SATIN-6PC-FULL-DARK GREEN,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 6 Pc Bed Set,32.15,1,0.0,0.0,0.0,0.0,0.0,1
+2026-11-02,CA,B0D9QRCV3S,SATIN-6PC-FULL-NAVY BLUE,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 6 Pc Bed Set,32.23,1,0.0,0.0,0.0,0.0,0.0,3
+2026-11-02,CA,B0DBR1DWPP,SATIN-4PCS-KING-ROSEWOOD,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,0.92,0.0,0.0,0.0,0.92,2
+2026-11-02,CA,B0DBVZRZ4H,SATIN-FITTED-FULL-PINK,DECOLURE Satin Fitted Sheet Full Size | Softer Than Silk | Luxury 1 Pc Set,0.0,0,2.69,0.0,0.0,0.0,2.69,10
+2026-11-02,CA,B0DBVZSNZ4,SATIN-FITTED-TWIN-WHITE,DECOLURE Satin Fitted Sheet Twin Size | Softer Than Silk | Luxury 1 Pc Set,29.98,2,0.0,0.0,0.0,0.0,0.0,6
+2026-11-02,CA,B0DBVZY5T2,SATIN-FITTED-TWIN-GOLD,DECOLURE Satin Fitted Sheet Twin Size | Softer Than Silk | Luxury 1 Pc Set,14.97,1,0.0,0.0,0.0,0.0,0.0,1
+2026-11-02,CA,B0DBVZZZ7B,SATIN-FITTED-FULL-STONE-GREY,DECOLURE Satin Fitted Sheet Full Size | Softer Than Silk | Luxury 1 Pc Set,16.44,1,0.0,0.0,0.0,0.0,0.0,4
+2026-11-02,CA,B0DBW17V8N,SATIN-FITTED-KING-PINK,DECOLURE Satin Fitted Sheet King Size | Softer Than Silk | Luxury 1 Pc Set,0.0,0,0.94,0.0,0.0,0.0,0.94,4
+2026-11-02,CA,B0DBW1FPBT,SATIN-FITTED-KING-LAVENDER,DECOLURE Satin Fitted Sheet King Size | Softer Than Silk | Luxury 1 Pc Set,20.02,1,4.34,0.0,0.0,0.0,4.34,5
+2026-11-02,CA,B0DBW1PNJ8,SATIN-FITTED-QUEEN-BLACK,DECOLURE Satin Fitted Sheet Queen Size | Softer Than Silk | Luxury 1 Pc Set,16.44,1,6.45,0.0,0.0,0.0,6.45,21
+2026-11-02,CA,B0DBW27P8P,SATIN-FITTED-FULL-WHITE,DECOLURE Satin Fitted Sheet Full Size | Softer Than Silk | Luxury 1 Pc Set,16.44,1,0.0,0.0,0.0,0.0,0.0,2
+2026-11-02,CA,B0DBW2HDDZ,SATIN-FITTED-TWIN-PINK,DECOLURE Satin Fitted Sheet Twin Size | Softer Than Silk | Luxury 1 Pc Set,15.01,1,0.0,0.0,0.0,0.0,0.0,4
+2026-11-02,CA,B0DBW47GVH,SATIN-FITTED-QUEEN-LAVENDER,DECOLURE Satin Fitted Sheet Queen Size | Softer Than Silk | Luxury 1 Pc Set,19.97,1,0.0,0.0,0.0,0.0,0.0,2
+2026-11-02,CA,B0DDR4T2Y6,SS-SATIN-BLUSH-PINK-KING-4PCS,"SLEEP SANCTUARY Satin Sheets King Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Blush Pink)",0.0,0,4.09,0.0,0.0,0.0,4.09,4
+2026-11-02,CA,B0DDR6921L,SS-SATIN-DARK-GREEN-KING-4PCS,"SLEEP SANCTUARY Satin Sheets King Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Dark Green)",71.48,2,0.0,0.0,0.0,0.0,0.0,3
+2026-11-02,CA,B0DDRGZYZD,SS-SATIN-DARK-GREEN-QUEEN-4PCS,"SLEEP SANCTUARY Satin Sheets Queen Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Dark Green)",33.64,1,0.0,0.0,0.0,0.0,0.0,1
+2026-11-02,CA,B0DDRP3R3F,SS-SATIN-RED-KING-4PCS,"SLEEP SANCTUARY Satin Sheets King Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Red)",35.79,1,0.0,0.0,0.0,0.0,0.0,1
+2026-11-02,CA,B0F7LZQNHM,SL-COOLING-SHEET-KING-LIGHT-GREY,"SLEEPHORIA Cooling Sheets - BreezeWeave 4 PC King Size Cooling Bed Sheets for Hot Sleepers & Deep, Cool Rest - Cloud Soft, Silky Smooth, 16 in Deep Pocket, Ultra Durable (Light Grey)",68.05,1,0.0,0.0,0.0,0.0,0.0,1
+2026-11-02,CA,B0H5WYZTKX,CL-CLG-PC-LIGHT-GREY-STANDARD-2PCS,COOLINENS Cooling Pillow Cases Standard Size | Set of 2 for Hot Sleepers,23.96,1,0.0,0.0,0.0,0.0,0.0,1
+2026-11-02,US,B0839KG4VY,SATIN-TWIN-BLUE,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,0.0,0,0.0,0.0,0.0,0.0,0.0,3
+2026-11-02,US,B0839L4HWH,SATIN-QUEEN-BLUE,"DECOLURE Satin Bed Sheets - 4 Piece Luxury Silky Queen Size Bedding Set - Softer Than Silk, Wrinkle-Free with 15” Deep Pocket Fitted Sheet, Perfect for Hair & Skin, Gifts for Women (Blue)",31.95,1,4.71,0.0,0.0,0.0,4.71,23
+2026-11-02,US,B0839L5PDJ,SATIN-KING-BLUE,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 4 Pc Bed Set,33.95,1,0.89,0.0,0.0,0.0,0.89,19
+2026-11-02,US,B0839L6QG5,JU-73EW-JXP3,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,0.0,0.0,0.0,0.0,0.0,4
+2026-11-02,US,B0839L6QG5,SATIN-FULL-PINK,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,0.81,0.0,0.0,0.0,0.81,2
+2026-11-02,US,B0839L6R8Y,SATIN-QUEEN-PURPLE,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 4 Pc Bed Set,31.95,1,3.23,0.0,0.0,0.0,3.23,18
+2026-11-02,US,B0839L7PJL,SATIN-TWIN-BLACK,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,0.0,0,0.0,0.0,0.0,0.0,0.0,5
+2026-11-02,US,B0839L7PJL,SATIN-TWIN-BLACK-NEW,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,0.0,0,0.0,0.0,0.0,0.0,0.0,3
+2026-11-02,US,B0839L9RSB,SATIN-FULL-BLUE,"DECOLURE Satin Bed Sheets - 4 Piece Luxury Silky Full Size Bedding Set - Softer Than Silk, Wrinkle-Free with 15” Deep Pocket Fitted Sheet, Perfect for Hair & Skin, Gifts for Women (Blue)",0.0,0,0.71,0.0,0.0,0.0,0.71,3
+2026-11-02,US,B0839L9RSB,OO-N77X-VCRH,"DECOLURE Satin Bed Sheets - 4 Piece Luxury Silky Full Size Bedding Set - Softer Than Silk, Wrinkle-Free with 15” Deep Pocket Fitted Sheet, Perfect for Hair & Skin, Gifts for Women (Blue)",0.0,0,0.0,0.0,0.0,0.0,0.0,3
+2026-11-02,US,B0839LCXBP,SATIN-FULL-BLACK,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 4 Pc Bed Set,359.4,12,33.37,9.88,0.0,0.0,43.25,59
+2026-11-02,US,B0839LD2WQ,SATIN-KING-BLACK,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 4 Pc Bed Set,237.65,7,74.95,0.58,1.33,0.0,76.86,61
+2026-11-02,US,B0839LD2WQ,FH-CXP0-5741,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 4 Pc Bed Set,67.9,2,0.0,0.17,0.38,0.0,0.55,9
+2026-11-02,US,B0839LK8DB,SATIN-KING-PINK,"DECOLURE Satin Bed Sheets - 4 Piece Luxury Silky King Size Bedding Set - Softer Than Silk, Wrinkle-Free with 15” Deep Pocket Fitted Sheet, Perfect for Hair & Skin, Gifts for Women (Pink)",33.95,1,0.0,0.0,0.0,0.0,0.0,8
+2026-11-02,US,B0839LKZV9,SATIN-KING-PURPLE,"DECOLURE Satin Bed Sheets - 4 Piece Luxury Silky King Size Bedding Set - Softer Than Silk, Wrinkle-Free with 15” Deep Pocket Fitted Sheet, Perfect for Hair & Skin, Gifts for Women (Purple)",102.79,3,0.45,0.0,0.0,0.0,0.45,24
+2026-11-02,US,B0839LMS13,SATIN-FULL-GREY,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 4 Pc Bed Set,29.95,1,0.0,0.0,0.0,0.0,0.0,10
+2026-11-02,US,B0839LP6TM,F7-WODI-ZALX,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,0.0,0.0,0.0,0.0,0.0,5
+2026-11-02,US,B0839LP6TM,SATIN-FULL-PURPLE,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,1.34,0.0,0.0,0.0,1.34,5
+2026-11-02,US,B0839LQG4C,SATIN-QUEEN-PINK,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 4 Pc Bed Set,31.95,1,0.79,0.0,0.0,0.0,0.79,7
+2026-11-02,US,B0839LQK8K,SATIN-QUEEN-GREY,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 4 Pc Bed Set,209.65,7,9.43,2.74,0.0,0.0,12.17,38
+2026-11-02,US,B0839LVHL1,SATIN-TWIN-PINK,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,0.0,0,0.0,0.0,0.0,0.0,0.0,1
+2026-11-02,US,B0839LVHL1,JM-L25R-4RTT,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,0.0,0,0.0,0.0,0.0,0.0,0.0,2
+2026-11-02,US,B0839M48YF,AH-KQLD-AMLG,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,0.0,0,0.0,0.0,0.0,0.0,0.0,1
+2026-11-02,US,B0839M48YF,SATIN-TWIN-PURPLE,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,0.0,0,0.0,0.0,0.0,0.0,0.0,0
+2026-11-02,US,B0839M8LP5,SATIN-TWIN-GREY,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,0.0,0,2.71,0.0,0.0,0.0,2.71,3
+2026-11-02,US,B0839M8LP5,5N-Q3PY-YV0N,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,0.0,0,0.0,0.0,0.0,0.0,0.0,2
+2026-11-02,US,B0839MKJMV,SATIN-QUEEN-BLACK,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 4 Pc Bed Set,479.2,16,191.9,3.55,6.11,0.0,201.56,169
+2026-11-02,US,B08KQ3C8BX,BAMBOO-CALIFKING-NAVYBLUE,DECOLURE 100% Viscose from Bamboo Sheets | 4 Pc Cooling Bed Set,94.99,1,0.0,0.0,0.0,0.0,0.0,2
+2026-11-02,US,B08KQHRDDG,BAMBOO-KING-WHITE,DECOLURE 100% Viscose from Bamboo Sheets King Size | 4 Pc Cooling Bed Set,809.91,9,743.35,17.03,28.39,4.86,793.63,156
+2026-11-02,US,B08KQJ3JSW,BAMBOO-FULL-CREME,DECOLURE 100% Viscose from Bamboo Sheets Full Size | 4 Pc Cooling Bed Set,0.0,0,0.59,0.0,0.0,0.0,0.59,4
+2026-11-02,US,B08KQJ3M9N,BAMBOO-KING-LIGHTGREY,DECOLURE 100% Viscose from Bamboo Sheets King Size | 4 Pc Cooling Bed Set,94.99,1,0.0,0.0,0.0,0.0,0.0,16
+2026-11-02,US,B08KQJ61T7,BAMBOO-KING-TAUPE,DECOLURE 100% Viscose from Bamboo Sheets King Size | 4 Pc Cooling Bed Set,189.98,2,0.0,2.19,0.0,0.0,2.19,38
+2026-11-02,US,B08KQJ62YC,BAMBOO-KING-CREME,DECOLURE 100% Viscose from Bamboo Sheets King Size | 4 Pc Cooling Bed Set,94.99,1,0.0,1.1,0.0,0.48,1.58,28
+2026-11-02,US,B08KQJBFFY,BAMBOO-CALIFKING-GREY,DECOLURE 100% Viscose from Bamboo Sheets | 4 Pc Cooling Bed Set,0.0,0,0.0,0.0,0.0,0.15,0.15,2
+2026-11-02,US,B08KQJBFFZ,BAMBOO-TWIN-TAUPE,DECOLURE 100% Viscose from Bamboo Sheets Twin Size | 3 Pc Cooling Bed Set,64.99,1,0.0,0.0,0.0,0.0,0.0,1
+2026-11-02,US,B08KQJBRKM,BAMBOO-FULL-TAUPE,DECOLURE 100% Viscose from Bamboo Sheets Full Size | 4 Pc Cooling Bed Set,74.99,1,0.0,0.0,0.0,0.0,0.0,4
+2026-11-02,US,B08KQJDSVC,BAMBOO-QUEEN-LIGHTGREY,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 4 Pc Cooling Bed Set,89.99,1,0.0,0.0,0.0,0.0,0.0,10
+2026-11-02,US,B08KQJGM74,BAMBOO-QUEEN-WHITE,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 4 Pc Cooling Bed Set,254.97,3,93.13,11.79,46.01,0.0,150.93,76
+2026-11-02,US,B08KQJGSW2,BAMBOO-TWIN-LIGHTBLUE,DECOLURE 100% Viscose from Bamboo Sheets Twin Size | 3 Pc Cooling Bed Set,0.0,0,3.64,0.0,0.0,0.0,3.64,3
+2026-11-02,US,B08KQJMZ8Q,BAMBOO-QUEEN-TAUPE,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 4 Pc Cooling Bed Set,359.96,4,4.72,0.0,0.0,0.0,4.72,28
+2026-11-02,US,B08KQJP1K7,BAMBOO-FULL-GREY,DECOLURE 100% Viscose from Bamboo Sheets Full Size | 4 Pc Cooling Bed Set,0.0,0,5.71,0.0,0.0,0.0,5.71,6
+2026-11-02,US,B08KQJQ3C2,BAMBOO-KING-GREY,DECOLURE 100% Viscose from Bamboo Sheets King Size | 4 Pc Cooling Bed Set,0.0,0,0.0,0.0,0.0,0.53,0.53,9
+2026-11-02,US,B08KQJRL41,BAMBOO-TWIN-NAVYBLUE,DECOLURE 100% Viscose from Bamboo Sheets Twin Size | 3 Pc Cooling Bed Set,64.99,1,0.0,78.57,0.0,0.0,78.57,8
+2026-11-02,US,B08KQJRSW6,BAMBOO-QUEEN-OLIVE,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 4 Pc Cooling Bed Set,89.99,1,25.68,2.65,0.0,0.0,28.33,31
+2026-11-02,US,B08KQJTP39,BAMBOO-FULL-OLIVE,DECOLURE 100% Viscose from Bamboo Sheets Full Size | 4 Pc Cooling Bed Set,149.98,2,0.0,0.0,0.0,0.0,0.0,6
+2026-11-02,US,B08KQJV49M,BAMBOO-FULL-WHITE,DECOLURE 100% Viscose from Bamboo Sheets Full Size | 4 Pc Cooling Bed Set,69.99,1,0.0,0.0,0.0,0.0,0.0,11
+2026-11-02,US,B08KQJYDCR,BAMBOO-FULL-LIGHTBLUE,DECOLURE 100% Viscose Derived from Bamboo Sheets Full Size | 4 Pc Bed Set,0.0,0,2.2,0.0,0.0,0.0,2.2,3
+2026-11-02,US,B08KQJZHGC,BAMBOO-CALIFKING-OLIVE,DECOLURE 100% Viscose from Bamboo Sheets | 4 Pc Cooling Bed Set,94.99,1,9.44,0.0,0.0,0.0,9.44,7
+2026-11-02,US,B08KQK9WCY,BAMBOO-KING-NAVYBLUE,DECOLURE 100% Viscose from Bamboo Sheets King Size | 4 Pc Cooling Bed Set,189.98,2,0.0,0.0,0.0,1.64,1.64,20
+2026-11-02,US,B08KQKBM4Q,BAMBOO-TWIN-WHITE,DECOLURE 100% Viscose from Bamboo Sheets Twin Size | 3 Pc Cooling Bed Set,0.0,0,120.23,0.0,44.04,0.07,164.34,49
+2026-11-02,US,B08KQKKRNC,BAMBOO-QUEEN-NAVYBLUE,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 4 Pc Cooling Bed Set,269.97,3,0.0,0.0,0.0,0.0,0.0,15
+2026-11-02,US,B08KQKQ44M,BAMBOO-CALIFKING-WHITE,DECOLURE 100% Viscose from Bamboo Sheets | 4 Pc Cooling Bed Set,89.99,1,3.78,0.0,0.0,0.0,3.78,11
+2026-11-02,US,B08KQKS54Q,BAMBOO-TWIN-CREME,DECOLURE 100% Viscose from Bamboo Sheets Twin Size | 3 Pc Cooling Bed Set,64.99,1,0.0,0.0,0.0,0.05,0.05,1
+2026-11-02,US,B08KQKXQLS,BAMBOO-QUEEN-LIGHTBLUE,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 4 Pc Cooling Bed Set,323.65,4,21.51,15.04,0.0,0.0,36.55,27
+2026-11-02,US,B08KQL6HKG,BAMBOO-KING-LIGHTBLUE,DECOLURE 100% Viscose from Bamboo Sheets King Size | 4 Pc Cooling Bed Set,189.98,2,0.0,0.0,0.0,6.24,6.24,18
+2026-11-02,US,B08KQLK2HK,BAMBOO-KING-OLIVE,DECOLURE 100% Viscose from Bamboo Sheets King Size | 4 Pc Cooling Bed Set,189.98,2,0.0,0.0,0.0,0.0,0.0,29
+2026-11-02,US,B08KRHBD49,SATIN-RED-FULL,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 4 Pc Bed Set,29.95,1,0.0,0.0,0.0,0.0,0.0,10
+2026-11-02,US,B08KRNYD9B,SATIN-WHITE-FULL,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 4 Pc Bed Set,89.85,3,0.0,0.0,0.0,0.0,0.0,2
+2026-11-02,US,B08KRS1K6H,SATIN-WHITE-TWIN,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,55.9,2,0.0,0.0,0.0,0.0,0.0,0
+2026-11-02,US,B08KRXDWNN,SATIN-WHITE-QUEEN,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,3.59,0.0,0.0,0.0,3.59,14
+2026-11-02,US,B09G6H23C3,SATIN-STRIPE-TWIN-BLACK,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,27.95,1,0.0,0.0,0.0,0.0,0.0,3
+2026-11-02,US,B09G6JHW3F,SATIN-STRIPE-KING-RED,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 4 Pc Bed Set,33.95,1,0.0,0.0,0.0,0.0,0.0,5
+2026-11-02,US,B09G6JSW33,SATIN-STRIPE-QUEEN-PINK,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,1.12,0.0,0.0,0.0,1.12,5
+2026-11-02,US,B09G6KCTXW,SATIN-STRIPE-QUEEN-RED,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 4 Pc Bed Set,31.95,1,0.0,0.0,0.0,0.0,0.0,7
+2026-11-02,US,B09G6KKSK6,SATIN-STRIPE-FULL-RED,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 4 Pc Bed Set,29.95,1,0.0,0.0,0.0,0.0,0.0,4
+2026-11-02,US,B09G6M7WJ2,SATIN-STRIPE-FULL-BLUE,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,0.85,0.0,0.0,0.0,0.85,1
+2026-11-02,US,B09G6N2PNK,SATIN-STRIPE-KING-WHITE,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 4 Pc Bed Set,33.95,1,0.0,0.0,0.0,0.0,0.0,4
+2026-11-02,US,B0BG1YXQGT,SATIN-IVORY-QUEEN,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 4 Pc Bed Set,95.85,3,0.85,0.0,0.0,0.0,0.85,15
+2026-11-02,US,B0BG21NBG9,SATIN-STONEGREY-TWIN,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,27.95,1,0.0,0.0,0.0,0.0,0.0,2
+2026-11-02,US,B0BG21THPM,SATIN-ROSEWOOD-QUEEN,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,0.85,0.0,0.0,0.0,0.85,9
+2026-11-02,US,B0BG225D1J,SATIN-IVORY-KING,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 4 Pc Bed Set,67.9,2,0.0,0.0,0.0,0.0,0.0,9
+2026-11-02,US,B0BG228RDJ,SATIN-SEA-TEAL-QUEEN,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,0.45,0.0,0.0,0.0,0.45,12
+2026-11-02,US,B0BG22FCVJ,SATIN-ROSEWOOD-TWIN,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,27.95,1,0.44,0.0,0.0,0.0,0.44,5
+2026-11-02,US,B0BG23H2QY,SATIN-STONEGREY-FULL,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 4 Pc Bed Set,59.9,2,0.0,0.0,0.0,0.0,0.0,6
+2026-11-02,US,B0BZPV4LYC,SATIN-TAUPE-FULL,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 4 Pc Bed Set,29.95,1,0.0,0.0,0.0,0.0,0.0,2
+2026-11-02,US,B0BZPV84V7,SATIN-CHAMPAGNE-QUEEN,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 4 Pc Bed Set,31.95,1,0.0,0.0,0.0,0.0,0.0,15
+2026-11-02,US,B0BZPVXR69,BAMBOO-KING-MIDGREY,DECOLURE 100% Viscose from Bamboo Sheets King Size | 4 Pc Cooling Bed Set,0.0,0,0.0,0.0,0.0,0.23,0.23,8
+2026-11-02,US,B0BZPXJH4Q,SATIN-CHAMPAGNE-KING,"DECOLURE Satin Bed Sheets - 4 Piece Luxury Silky King Size Bedding Set - Softer Than Silk, Wrinkle-Free with 15” Deep Pocket Fitted Sheet, Perfect for Hair & Skin, Gifts for Women (Champagne - 01)",52.95,1,0.0,0.0,0.0,0.0,0.0,0
+2026-11-02,US,B0BZPY4PXY,BAMBOO-FULL-PURPLE,DECOLURE 100% Viscose from Bamboo Sheets Full Size | 4 Pc Cooling Bed Set,0.0,0,10.51,0.0,0.0,1.05,11.56,10
+2026-11-02,US,B0BZPY841G,BAMBOO-CALIFKING-MIDGREY,DECOLURE 100% Viscose from Bamboo Sheets | 4 Pc Cooling Bed Set,0.0,0,14.57,0.0,0.0,0.25,14.82,12
+2026-11-02,US,B0BZPYNXPB,SATIN-CHAMPAGNE-FULL,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,3.65,0.0,0.0,0.0,3.65,4
+2026-11-02,US,B0BZPYZ1XY,BAMBOO-FULL-BLACK,DECOLURE 100% Viscose from Bamboo Sheets Full Size | 4 Pc Cooling Bed Set,74.99,1,0.0,0.0,0.0,0.0,0.0,3
+2026-11-02,US,B0BZPZ2L1R,BAMBOO-KING-BLACK,DECOLURE 100% Viscose from Bamboo Sheets King Size | 4 Pc Cooling Bed Set,249.03,3,7.0,0.0,0.0,0.65,7.65,20
+2026-11-02,US,B0BZPZ588L,BAMBOO-KING-CHARCOAL,DECOLURE 100% Viscose from Bamboo Sheets King Size | 4 Pc Cooling Bed Set,59.05,1,0.0,0.0,0.0,0.0,0.0,3
+2026-11-02,US,B0BZPZN1GV,BAMBOO-TWIN-BLACK,DECOLURE 100% Viscose from Bamboo Sheets Twin Size | 3 Pc Cooling Bed Set,0.0,0,0.0,0.0,0.0,0.74,0.74,6
+2026-11-02,US,B0BZPZP12L,BAMBOO-KING-LIGHTOLIVE,DECOLURE 100% Viscose from Bamboo Sheets King Size | 4 Pc Cooling Bed Set,0.0,0,0.0,0.0,0.0,0.64,0.64,13
+2026-11-02,US,B0BZPZPGDC,BAMBOO-FULL-LIGHTOLIVE,DECOLURE 100% Viscose from Bamboo Sheets Full Size | 4 Pc Cooling Bed Set,0.0,0,5.91,0.0,0.0,0.0,5.91,3
+2026-11-02,US,B0BZPZQCBL,BAMBOO-CALIFKING-CHARCOAL,DECOLURE 100% Viscose from Bamboo Sheets | 4 Pc Cooling Bed Set,94.99,1,0.0,0.0,0.0,0.0,0.0,3
+2026-11-02,US,B0BZQ18QJB,BAMBOO-QUEEN-MIDGREY,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 4 Pc Cooling Bed Set,0.0,0,19.64,0.0,0.0,0.78,20.42,25
+2026-11-02,US,B0BZQ1FBJ9,BAMBOO-QUEEN-BLACK,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 4 Pc Cooling Bed Set,199.98,2,0.0,0.0,0.0,0.0,0.0,8
+2026-11-02,US,B0BZQ1G5B8,BAMBOO-CALIFKING-BLACK,DECOLURE 100% Viscose from Bamboo Sheets | 4 Pc Cooling Bed Set,94.99,1,0.0,0.0,0.0,0.0,0.0,2
+2026-11-02,US,B0BZQ1LTK3,SATIN-TAUPE-QUEEN,"DECOLURE Satin Bed Sheets - 4 Piece Luxury Silky Queen Size Bedding Set - Softer Than Silk, Wrinkle-Free with 15” Deep Pocket Fitted Sheet, Perfect for Hair & Skin, Gifts for Women (Taupe - 01)",33.74,1,0.0,0.0,0.0,0.0,0.0,0
+2026-11-02,US,B0BZQ39BTX,BAMBOO-TWIN-PURPLE,DECOLURE 100% Viscose from Bamboo Sheets Twin Size | 3 Pc Cooling Bed Set,64.99,1,3.22,0.0,0.0,0.0,3.22,2
+2026-11-02,US,B0BZQ3XM7P,BAMBOO-TWIN-LIGHTOLIVE,DECOLURE 100% Viscose from Bamboo Sheets Twin Size | 3 Pc Cooling Bed Set,0.0,0,0.0,0.0,0.0,0.03,0.03,5
+2026-11-02,US,B0BZQ3ZGNG,BAMBOO-QUEEN-PURPLE,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 4 Pc Cooling Bed Set,269.97,3,0.0,0.0,0.0,0.0,0.0,14
+2026-11-02,US,B0C7F5ZR17,SATIN-QUEEN-GREY-6PCS,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 6 Pc Bed Set,59.9,2,0.0,0.0,0.0,0.0,0.0,6
+2026-11-02,US,B0C7F622QD,SATIN-TWIN-BLACK-6PCS,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,6.31,0.0,0.0,0.0,6.31,10
+2026-11-02,US,B0C7F65432,SATIN-FULL-PURPLE-6PCS,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 6 Pc Bed Set,0.0,0,0.85,0.0,0.0,0.0,0.85,2
+2026-11-02,US,B0C7F9HG21,SATIN-STONEGREY-TWIN-6PCS,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,1.11,0.0,0.0,0.0,1.11,2
+2026-11-02,US,B0C7FBBPL1,SATIN-KING-BLUE-6PCS,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 6 Pc Bed Set,67.9,2,0.0,0.0,0.0,0.0,0.0,6
+2026-11-02,US,B0C7FD12CQ,SATIN-TAUPE-TWIN-6PCS,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 4 Pc Bed Set,27.95,1,0.0,0.0,0.0,0.0,0.0,1
+2026-11-02,US,B0C7FD1CLN,SATIN-SEA-TEAL-QUEEN-6PCS,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 6 Pc Bed Set,0.0,0,1.11,0.0,0.0,0.0,1.11,3
+2026-11-02,US,B0C7FJ461D,SATIN-QUEEN-BLUE-6PCS,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 6 Pc Bed Set,0.0,0,1.11,0.0,0.0,0.0,1.11,5
+2026-11-02,US,B0C7FJFVZY,SATIN-FULL-GREY-6PCS,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 6 Pc Bed Set,0.0,0,1.09,0.0,0.0,0.0,1.09,2
+2026-11-02,US,B0C7FJLP2F,SATIN-RED-QUEEN-6PCS,"DECOLURE Satin Bed Sheets - 6 Piece Luxury Silky Queen Size Bedding Set - Softer Than Silk, Wrinkle-Free with 15” Deep Pocket Fitted Sheet, Perfect for Hair & Skin, Gifts for Women (Red)",95.85,3,4.43,3.11,0.0,0.0,7.54,15
+2026-11-02,US,B0C7FK58RV,SATIN-TAUPE-QUEEN-6PCS,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 6 Pc Bed Set,31.95,1,0.0,0.0,0.0,0.0,0.0,2
+2026-11-02,US,B0C7FKZ4VG,SATIN-CHAMPAGNE-KING-6PCS,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 6 Pc Bed Set,33.95,1,1.11,1.1,0.0,0.0,2.21,8
+2026-11-02,US,B0C7FMCXBV,SATIN-ROSEWOOD-QUEEN-6PCS,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 6 Pc Bed Set,0.0,0,12.42,0.0,0.0,0.0,12.42,32
+2026-11-02,US,B0C7FMDPBF,SATIN-KING-PINK-6PCS,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 6 Pc Bed Set,33.95,1,0.0,0.0,0.0,0.0,0.0,4
+2026-11-02,US,B0C7FMM2QN,SATIN-FULL-BLACK-6PCS,"DECOLURE Satin Bed Sheets - 6 Piece Luxury Silky Full Size Bedding Set - Softer Than Silk, Wrinkle-Free with 15” Deep Pocket Fitted Sheet, Perfect for Hair & Skin, Gifts for Women (Black)",0.0,0,3.89,0.0,0.0,0.0,3.89,9
+2026-11-02,US,B0C7FMQP5L,SATIN-IVORY-QUEEN-6PCS,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 6 Pc Bed Set,31.95,1,0.0,0.0,0.0,0.0,0.0,1
+2026-11-02,US,B0C7FP1L1V,SATIN-ROSEWOOD-KING-6PCS,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 6 Pc Bed Set,0.0,0,2.49,0.0,0.0,0.0,2.49,8
+2026-11-02,US,B0C7FQQH6V,SATIN-KING-PURPLE-6PCS,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 6 Pc Bed Set,0.0,0,2.41,0.0,0.0,0.0,2.41,3
+2026-11-02,US,B0C7FR94LJ,SATIN-WHITE-QUEEN-6PCS,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 6 Pc Bed Set,31.95,1,2.07,0.0,0.0,0.0,2.07,6
+2026-11-02,US,B0C7FSXPC5,SATIN-CHAMPAGNE-FULL-6PCS,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 6 Pc Bed Set,0.0,0,1.11,0.0,0.0,0.0,1.11,2
+2026-11-02,US,B0C7FSZ6RY,SATIN-QUEEN-PINK-6PCS,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 6 Pc Bed Set,0.0,0,5.85,0.0,0.0,0.0,5.85,7
+2026-11-02,US,B0C7FTB8MQ,SATIN-STONEGREY-QUEEN-6PCS,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 6 Pc Bed Set,0.0,0,6.85,0.0,0.0,0.0,6.85,10
+2026-11-02,US,B0C7FX1GFS,SATIN-QUEEN-BLACK-6-PCS,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 6 Pc Bed Set,59.9,2,8.89,1.94,0.0,0.0,10.83,24
+2026-11-02,US,B0C7FXXS6R,SATIN-KING-BLACK-6-PCS,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 6 Pc Bed Set,67.9,2,23.81,0.0,0.0,0.0,23.81,31
+2026-11-02,US,B0C7JQ8266,SATIN-STRIPE-QUEEN-WHITE--6-PCS,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 6 Pc Bed Set,31.95,1,0.0,0.0,0.0,0.0,0.0,2
+2026-11-02,US,B0C7K3WWDT,SATIN-STRIPE-FULL-PURPLE--6-PCS,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 6 Pc Bed Set,0.0,0,0.73,0.0,0.0,0.0,0.73,4
+2026-11-02,US,B0C7K5GC4L,SATIN-STRIPE-QUEEN-BLACK--6-PCS,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 6 Pc Bed Set,31.95,1,0.0,0.0,0.0,0.0,0.0,0
+2026-11-02,US,B0C7KB5TWS,SATIN-STRIPE-KING-BLACK--6-PCS,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 6 Pc Bed Set,67.9,2,0.0,0.0,0.0,0.0,0.0,6
+2026-11-02,US,B0C7KGFHT7,SATIN-STRIPE-FULL-GOLD--6-PCS,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 6 Pc Bed Set,29.95,1,0.0,0.0,0.0,0.0,0.0,1
+2026-11-02,US,B0C9LS5H2T,BM-QUEEN-NAVY-BLUE,DECOLURE Cooling Sheets Queen Set 4pcs - Luxurious & Ultra-Soft Cooling Bed Sheets Queen Size for Hot Sleepers - Comfortable Bamboo Viscose Microfiber Queen Bed Sheets Set Cooling (Navy),37.95,1,13.27,0.0,0.0,0.0,13.27,13
+2026-11-02,US,B0C9LS8Z18,BM-KING-R-PURPLE,DECOLURE Cooling Bed Sheets King Set 4pcs - Luxurious & Ultra-Soft King Size Cooling Sheets for Hot Sleepers - Comfortable & Cool Bamboo Viscose Microfiber Sheets King Size w/Deep Pockets (Purple),37.95,1,0.0,0.0,0.0,0.0,0.0,5
+2026-11-02,US,B0C9LSVFPR,PURPLE-SATIN-SET-6PCS,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 6 Pc Bed Set,0.0,0,5.36,0.0,0.0,0.0,5.36,7
+2026-11-02,US,B0CLKBT95K,BAMBOO-TWIN-SAGE GREEN,DECOLURE 100% Viscose from Bamboo Sheets Twin Size | 3 Pc Cooling Bed Set,64.99,1,0.0,0.0,0.0,0.0,0.0,2
+2026-11-02,US,B0CLKCT674,BAMBOO-QUEEN-LIGHT PINK,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 4 Pc Cooling Bed Set,89.99,1,0.0,0.0,0.0,0.0,0.0,5
+2026-11-02,US,B0CLKFLJMZ,BAMBOO-FULL-SAGE GREEN,DECOLURE 100% Viscose from Bamboo Sheets Full Size | 4 Pc Cooling Bed Set,0.0,0,2.4,0.0,0.0,0.0,2.4,5
+2026-11-02,US,B0CLKJL9KD,BAMBOO-QUEEN-SAGE GREEN,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 4 Pc Cooling Bed Set,89.99,1,0.0,0.0,0.0,0.0,0.0,13
+2026-11-02,US,B0CNS8T4ZK,SATIN-QUEEN-BLUSH PINK,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 4 Pc Bed Set,31.95,1,0.0,0.0,0.0,0.0,0.0,9
+2026-11-02,US,B0CNS9KLZR,SATIN-KING-BLUSH PINK,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 4 Pc Bed Set,67.9,2,0.0,0.0,0.0,0.0,0.0,5
+2026-11-02,US,B0CQ2XQF9N,BAMBOO-KING-WHITE-6PCS,DECOLURE 100% Viscose from Bamboo Sheets King Size | 6 Pc Cooling Bed Set,284.97,3,355.84,44.42,20.57,3.34,424.17,134
+2026-11-02,US,B0CQ2YBSK2,BAMBOO-FULL-LIGHTOLIVE-6PCS,DECOLURE 100% Viscose from Bamboo Sheets Full Size | 6 Pc Cooling Bed Set,0.0,0,7.04,0.0,0.0,0.0,7.04,3
+2026-11-02,US,B0CQ2YDPDS,BAMBOO-KING-OLIVE-6PCS,DECOLURE 100% Viscose from Bamboo Sheets King Size | 6 Pc Cooling Bed Set,399.96,4,0.0,0.0,0.0,0.0,0.0,17
+2026-11-02,US,B0CQ2YZ364,BAMBOO-TWIN-SAGE GREEN-6PCS,DECOLURE 100% Viscose from Bamboo Sheets Twin Size | 4 Pc Cooling Bed Set,0.0,0,6.14,0.0,14.34,0.0,20.48,7
+2026-11-02,US,B0CQ2ZVD96,BAMBOO-FULL-CREME-6PCS,DECOLURE 100% Viscose from Bamboo Sheets Full Size | 6 Pc Cooling Bed Set,0.0,0,0.0,0.0,28.49,0.36,28.85,15
+2026-11-02,US,B0CQ2ZVMJJ,BAMBOO-TWIN-OLIVE-6PCS,DECOLURE 100% Viscose from Bamboo Sheets Twin Size | 4 Pc Cooling Bed Set,69.99,1,1.71,0.0,0.0,0.0,1.71,3
+2026-11-02,US,B0CQ2ZWGNQ,BAMBOO-QUEEN-WHITE-6PCS,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 6 Pc Cooling Bed Set,179.98,2,88.07,27.73,24.63,12.57,153.0,75
+2026-11-02,US,B0CQ2ZWSN7,BAMBOO-QUEEN-BURGUNDY-6PCS,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 6 Pc Cooling Bed Set,94.99,1,9.9,1.0,3.66,0.0,14.56,24
+2026-11-02,US,B0CQ2ZYZJT,BAMBOO-CALIFKING-WHITE-6PCS,DECOLURE 100% Viscose from Bamboo Sheets | 6 Pc Cooling Bed Set,0.0,0,7.87,0.0,0.0,0.0,7.87,8
+2026-11-02,US,B0CQ2ZZ9QN,BAMBOO-KING-SAGE GREEN-6PCS,DECOLURE 100% Viscose from Bamboo Sheets King Size | 6 Pc Cooling Bed Set,99.99,1,7.5,3.4,0.0,0.0,10.9,15
+2026-11-02,US,B0CQ2ZZW88,BAMBOO-KING-CHARCOAL-6PCS,DECOLURE 100% Viscose from Bamboo Sheets King Size | 6 Pc Cooling Bed Set,99.99,1,5.02,3.4,0.0,0.35,8.77,18
+2026-11-02,US,B0CQ3178D7,BAMBOO-KING-TAUPE-6PCS,DECOLURE 100% Viscose from Bamboo Sheets King Size | 6 Pc Cooling Bed Set,199.98,2,0.0,0.0,0.0,0.0,0.0,49
+2026-11-02,US,B0CQ319J1Z,BAMBOO-KING-MIDGREY-6PCS,DECOLURE 100% Viscose from Bamboo Sheets King Size | 6 Pc Cooling Bed Set,0.0,0,0.0,0.0,0.0,0.61,0.61,12
+2026-11-02,US,B0CQ31D5FM,BAMBOO-CALIFKING-BLACK-6PCS,DECOLURE 100% Viscose from Bamboo Sheets | 6 Pc Cooling Bed Set,0.0,0,6.63,0.0,0.0,0.0,6.63,2
+2026-11-02,US,B0CQ31N5Q5,BAMBOO-TWIN-NAVYBLUE-6PCS,DECOLURE 100% Viscose from Bamboo Sheets Twin Size | 4 Pc Cooling Bed Set,69.99,1,0.0,0.0,0.0,0.0,0.0,3
+2026-11-02,US,B0CQ31PZ8Q,BAMBOO-QUEEN-LIGHT PINK-6PCS,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 6 Pc Cooling Bed Set,189.98,2,0.0,0.0,7.5,0.0,7.5,12
+2026-11-02,US,B0CQ31Q559,BAMBOO-FULL-WHITE-6PCS,DECOLURE 100% Viscose from Bamboo Sheets Full Size | 6 Pc Cooling Bed Set,74.99,1,28.2,14.01,0.0,0.0,42.21,16
+2026-11-02,US,B0CQ31X65Y,BAMBOO-KING-LIGHTBLUE-6PCS,DECOLURE 100% Viscose from Bamboo Sheets King Size | 6 Pc Cooling Bed Set,99.99,1,0.0,11.06,0.0,0.0,11.06,28
+2026-11-02,US,B0CQ31X78V,BAMBOO-CALIFKING-CREME-6PCS,DECOLURE 100% Viscose from Bamboo Sheets | 6 Pc Cooling Bed Set,99.99,1,12.68,0.0,0.0,0.0,12.68,8
+2026-11-02,US,B0CQ31XHCV,BAMBOO-QUEEN-GREY-6PCS,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 6 Pc Cooling Bed Set,0.0,0,0.0,0.0,0.0,0.84,0.84,8
+2026-11-02,US,B0CQ31ZKNJ,BAMBOO-FULL-CHARCOAL-6PCS,DECOLURE 100% Viscose from Bamboo Sheets Full Size | 6 Pc Cooling Bed Set,79.99,1,0.0,0.0,0.0,0.0,0.0,8
+2026-11-02,US,B0CQ328N9Z,BAMBOO-KING-PURPLE-6PCS,DECOLURE 100% Viscose from Bamboo Sheets King Size | 6 Pc Cooling Bed Set,99.99,1,0.0,0.0,0.0,0.0,0.0,11
+2026-11-02,US,B0CQ32B24Y,BAMBOO-QUEEN-OLIVE-6PCS,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 6 Pc Cooling Bed Set,94.99,1,0.63,14.62,0.0,0.0,15.25,24
+2026-11-02,US,B0CQ32F3HY,BAMBOO-QUEEN-LIGHTBLUE-6PCS,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 6 Pc Cooling Bed Set,94.99,1,0.0,9.6,0.0,0.0,9.6,17
+2026-11-02,US,B0CQ32JY2T,BAMBOO-CALIFKING-OLIVE-6PCS,DECOLURE 100% Viscose from Bamboo Sheets | 6 Pc Cooling Bed Set,299.97,3,0.0,0.0,0.0,0.0,0.0,3
+2026-11-02,US,B0CQ32NPF5,BAMBOO-KING-BURGUNDY-6PCS,DECOLURE 100% Viscose from Bamboo Sheets King Size | 6 Pc Cooling Bed Set,99.99,1,0.0,0.81,0.0,1.12,1.93,26
+2026-11-02,US,B0CQ32QQ47,BAMBOO-TWIN-TAUPE-6PCS,DECOLURE 100% Viscose from Bamboo Sheets Twin Size | 4 Pc Cooling Bed Set,0.0,0,0.0,0.0,0.0,0.15,0.15,3
+2026-11-02,US,B0CQ32S4ML,BAMBOO-KING-GREY-6PCS,DECOLURE 100% Viscose from Bamboo Sheets King Size | 6 Pc Cooling Bed Set,0.0,0,2.7,0.0,0.0,1.35,4.05,8
+2026-11-02,US,B0CQ32Z6VP,BAMBOO-QUEEN-CREME-6PCS,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 6 Pc Cooling Bed Set,94.99,1,1.62,3.65,0.0,0.14,5.41,24
+2026-11-02,US,B0CQ3319BK,BAMBOO-TWIN-BLACK-6PCS,DECOLURE 100% Viscose from Bamboo Sheets Twin Size | 4 Pc Cooling Bed Set,0.0,0,2.41,0.0,0.0,0.0,2.41,0
+2026-11-02,US,B0CQ331L15,BAMBOO-KING-BLACK-6PCS,DECOLURE 100% Viscose from Bamboo Sheets King Size | 6 Pc Cooling Bed Set,99.99,1,0.0,0.0,0.0,0.0,0.0,15
+2026-11-02,US,B0CQ33BH1K,BAMBOO-TWIN-LIGHT PINK-6PCS,DECOLURE 100% Viscose from Bamboo Sheets Twin Size | 4 Pc Cooling Bed Set,69.99,1,0.0,0.0,0.0,0.0,0.0,3
+2026-11-02,US,B0CQ33H4QW,BAMBOO-KING-LIGHTGREY-6PCS,DECOLURE 100% Viscose from Bamboo Sheets King Size | 6 Pc Cooling Bed Set,799.92,8,0.0,14.89,0.0,0.31,15.2,19
+2026-11-02,US,B0CQ33QVZK,BAMBOO-CALIFKING-BURGUNDY-6PCS,DECOLURE 100% Viscose from Bamboo Sheets | 6 Pc Cooling Bed Set,99.99,1,0.0,0.0,0.0,0.0,0.0,0
+2026-11-02,US,B0CQ33ZGQ4,BAMBOO-FULL-OLIVE-6PCS,DECOLURE 100% Viscose from Bamboo Sheets Full Size | 6 Pc Cooling Bed Set,79.99,1,11.4,27.13,0.0,0.14,38.67,9
+2026-11-02,US,B0CQ3437ZF,BAMBOO-KING-LIGHT PINK-6PCS,DECOLURE 100% Viscose from Bamboo Sheets King Size | 6 Pc Cooling Bed Set,0.0,0,0.0,0.0,0.0,0.1,0.1,13
+2026-11-02,US,B0CQ34D2QS,BAMBOO-TWIN-WHITE-6PCS,DECOLURE 100% Viscose from Bamboo Sheets Twin Size | 4 Pc Cooling Bed Set,0.0,0,46.52,0.0,0.0,0.53,47.05,24
+2026-11-02,US,B0CQPPJFWN,SATIN-4PC-KING-DARK GREEN,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 4 Pc Bed Set,33.95,1,0.0,0.0,0.0,0.0,0.0,15
+2026-11-02,US,B0CQRX2Z2G,SATIN-4PC-FULL-DARK GREEN,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 4 Pc Bed Set,29.95,1,0.0,0.0,0.0,0.0,0.0,7
+2026-11-02,US,B0CQRXDZYF,SATIN-4PC-QUEEN-NAVY BLUE,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 4 Pc Bed Set,95.85,3,1.67,0.0,0.0,0.0,1.67,17
+2026-11-02,US,B0CQRXLH6M,SATIN-4PC-QUEEN-BABY BLUE,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 4 Pc Bed Set,63.9,2,0.0,0.0,0.0,0.0,0.0,14
+2026-11-02,US,B0CQRXM35T,SATIN-3PC-TWIN-BABY BLUE,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,27.95,1,0.0,0.0,0.0,0.0,0.0,3
+2026-11-02,US,B0CQRXNLN6,SATIN-4PC-KING-NAVY BLUE,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 4 Pc Bed Set,33.95,1,0.0,0.0,0.0,0.0,0.0,12
+2026-11-02,US,B0CQRXP69H,SATIN-4PC-KING-BURNT ORANGE,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 4 Pc Bed Set,33.95,1,0.0,0.0,0.0,0.0,0.0,9
+2026-11-02,US,B0CQRY9WLD,SATIN-4PC-FULL-BABY BLUE,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 4 Pc Bed Set,29.95,1,0.0,0.0,0.0,0.0,0.0,8
+2026-11-02,US,B0CQRYDFC1,SATIN-4PC-KING-BABY BLUE,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 4 Pc Bed Set,33.95,1,0.0,0.0,0.0,0.0,0.0,12
+2026-11-02,US,B0CQRZ6JQ3,SATIN-4PC-QUEEN-BURNT ORANGE,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 4 Pc Bed Set,31.95,1,0.0,0.0,0.0,0.0,0.0,7
+2026-11-02,US,B0CQRZ6KRR,SATIN-3PC-TWIN-NAVY BLUE,DECOLURE Satin Sheets Twin Size | Softer Than Silk | Luxury 3 Pc Bed Set,27.95,1,0.0,0.0,0.0,0.0,0.0,3
+2026-11-02,US,B0CRHYHS4X,BAMBOO-CALIFKING-BURGUNDY-NEW,DECOLURE 100% Viscose from Bamboo Sheets | 4 Pc Cooling Bed Set,94.99,1,5.07,0.0,0.0,0.02,5.09,9
+2026-11-02,US,B0CRHYYVZQ,BAMBOO-KING-BURGUNDY-NEW,DECOLURE 100% Viscose from Bamboo Sheets King Size | 4 Pc Cooling Bed Set,94.99,1,28.99,0.0,0.0,0.0,28.99,34
+2026-11-02,US,B0CRHZ1CK3,BAMBOO-QUEEN-BURGUNDY-NEW,DECOLURE 100% Viscose from Bamboo Sheets Queen Size | 4 Pc Cooling Bed Set,89.99,1,0.0,0.0,0.0,0.0,0.0,13
+2026-11-02,US,B0CV4CY67M,SATIN-4PC-WHITE-KING,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,0.45,0.0,0.0,0.0,0.45,8
+2026-11-02,US,B0CV4D38W9,SATIN-4PC-KING-GREY,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 4 Pc Bed Set,203.7,6,2.85,0.41,0.0,0.0,3.26,17
+2026-11-02,US,B0CY63VCW1,WATERPROOF-CHAIR-COVER-CHOCOLATE-6PCS,"Waterproof Dining Chair Covers Set of 6 - 3 Layers Thick Fabric Parsons Chair Slip Covers - Jacquard Kitchen Chair Covers & Stretch Protectors Dining Room, Restaurant - Removable Washable (Chocolate)",79.98,2,0.29,0.0,0.0,0.0,0.29,6
+2026-11-02,US,B0CY6H5CGX,WATERPROOF-CHAIR-COVER-WINE-RED-6PCS,"Waterproof Dining Chair Covers Set of 6 - 3 Layers Thick Fabric Parsons Chair Slip Covers - Jacquard Kitchen Chair Covers & Stretch Protectors Dining Room, Restaurant - Removable Washable (Wine Red)",0.0,0,2.61,0.0,0.0,0.0,2.61,12
+2026-11-02,US,B0CY6H5P5T,WATERPROOF-CHAIR-COVER-BLACK-6PCS,"Waterproof Dining Chair Covers Set of 6 - 3 Layers Thick Fabric Parsons Chair Slip Covers - Jacquard Kitchen Chair Covers & Stretch Protectors for Dining Room, Restaurant - Removable Washable (Black)",39.99,1,0.0,0.0,0.0,0.0,0.0,5
+2026-11-02,US,B0CY6MJBWN,WATERPROOF-CHAIR-COVER-BLACK-4PCS,"Waterproof Dining Chair Covers Set of 4 - 3 Layers Thick Fabric Parsons Chair Slip Covers - Jacquard Kitchen Chair Covers & Stretch Protectors for Dining Room, Restaurant - Removable Washable (Black)",29.99,1,0.0,0.0,0.0,0.0,0.0,3
+2026-11-02,US,B0CY6TMHVW,WATERPROOF-CHAIR-COVER-BEIGE-6PCS,"Waterproof Dining Chair Covers Set of 6 - 3 Layers Thick Fabric Parsons Chair Slip Covers - Jacquard Kitchen Chair Covers & Stretch Protectors for Dining Room, Restaurant - Removable Washable (Beige)",0.0,0,3.41,0.0,0.0,0.0,3.41,17
+2026-11-02,US,B0D5C1BB94,HANGING-CLOSET-WHITE,"DECOLURE 5-Tier Adjustable Hanging Closet Organizer – Maximize Hanging Storage w/ 4 Hanging Hooks, 8 S Hooks & 5 Name Plates - Sturdy Foldable Wire Storage Hanging Shelves for Clothes, Towels (White)",0.0,0,3.22,0.0,0.0,0.0,3.22,15
+2026-11-02,US,B0D5C1GM7K,HANGING-CLOSET-BLACK,"DECOLURE 5-Tier Adjustable Hanging Closet Organizer – Maximize Hanging Storage w/ 4 Hanging Hooks, 8 S Hooks & 5 Name Plates - Sturdy Foldable Wire Storage Hanging Shelves for Clothes, Towels (Black)",79.9,2,6.1,0.0,0.0,0.0,6.1,17
+2026-11-02,US,B0D6Z8N4TS,SHOWER-MAT-LARGE,"DECOLURE Stone Bath Mat Large, Quick Dry & Non-Slip Diatomaceous Earth Shower Mat for Bathroom, Luxurious & Easy to Clean Diatomite Stone Mat for Bathroom, Kitchen, High Density (Large, Grey)",44.99,1,0.0,0.0,0.0,0.0,0.0,6
+2026-11-02,US,B0D9QR66X1,SATIN-6PC-QUEEN-BLUSH PINK,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 6 Pc Bed Set,0.0,0,1.07,0.0,0.0,0.0,1.07,4
+2026-11-02,US,B0D9QTV7S6,SATIN-6PC-QUEEN-BURNT ORANGE,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 6 Pc Bed Set,31.95,1,0.0,0.0,0.0,0.0,0.0,1
+2026-11-02,US,B0D9QWZJ4P,SATIN-6PC-QUEEN-SAGE GREEN,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 6 Pc Bed Set,0.0,0,0.77,0.0,0.0,0.0,0.77,3
+2026-11-02,US,B0DBQVFTZS,SATIN-4PCS-FULL-ROSEWOOD,DECOLURE Satin Sheets Full Size | Softer Than Silk | Luxury 4 Pc Bed Set,0.0,0,0.9,0.0,0.0,0.0,0.9,8
+2026-11-02,US,B0DBQVGKTV,SATIN-4PCS-KING-RED,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 4 Pc Bed Set,169.75,5,25.7,0.35,0.0,0.0,26.05,42
+2026-11-02,US,B0DBR4XYLB,SATIN-4PCS-QUEEN-STRIPE-GRAY,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 4 Pc Bed Set,31.95,1,0.0,0.0,0.0,0.0,0.0,2
+2026-11-02,US,B0DBR5SY67,SILK-PILLOWCASE-STANDARD-WHITE-1PCS,"DECOLURE 100% Pure Mulberry Silk Pillow Case Standard Size – Highest Grade 30 Momme 6A+, Luxuriously Soft & Cooling Silk Pillowcase for Hair & Skin, Hypoallergenic, Breathable, Hidden Zipper (White)",89.9,2,25.95,0.0,0.0,0.0,25.95,100
+2026-11-02,US,B0DBR73C9R,SILK-PILLOWCASE-KING-GREY-1PCS,"DECOLURE 100% Pure Mulberry Silk Pillow Case King Size – Highest Grade 30 Momme 6A+, Luxuriously Soft & Cooling Silk Pillowcase for Hair & Skin, Hypoallergenic, Breathable, Hidden Zipper (Grey)",164.85,3,0.0,0.0,0.0,0.0,0.0,7
+2026-11-02,US,B0DBR8G7GH,SILK-PILLOWCASE-STANDARD-CHAMPAGNE-1PCS,"DECOLURE 100% Pure Mulberry Silk Pillow Case Standard Size – High Grade 30 Momme 6A+, Luxuriously Soft & Cooling Silk Pillowcase for Hair & Skin, Hypoallergenic, Breathable, Hidden Zipper (Champagne)",44.95,1,0.85,0.0,0.0,0.0,0.85,9
+2026-11-02,US,B0DBR8Y5Y2,SILK-PILLOWCASE-KING-WHITE-1PCS,"DECOLURE 100% Pure Mulberry Silk Pillow Case King Size – Highest Grade 30 Momme 6A+, Luxuriously Soft & Cooling Silk Pillowcase for Hair & Skin, Hypoallergenic, Breathable, Hidden Zipper (White)",109.9,2,2.2,0.0,0.0,0.0,2.2,11
+2026-11-02,US,B0DBR9B5ZX,SILK-PILLOWCASE-STANDARD-SILVERGREY-1PC,"DECOLURE 100% Pure Mulberry Silk Pillow Case Standard Size – Highest Grade 30 Momme 6A+, Luxuriously Soft & Cooling Silk Pillowcase for Hair & Skin, Hypoallergenic, Breathable, Hidden Zipper (Silver)",89.9,2,0.0,0.0,0.0,0.0,0.0,15
+2026-11-02,US,B0DBR9LLGV,SILK-PILLOWCASE-QUEEN-GREY-1PCS,"DECOLURE 100% Pure Mulberry Silk Pillow Case Queen Size – Highest Grade 30 Momme 6A+, Luxuriously Soft & Cooling Silk Pillowcase for Hair & Skin, Hypoallergenic, Breathable, Hidden Zipper (Grey)",49.95,1,0.0,0.0,0.0,0.0,0.0,6
+2026-11-02,US,B0DBRB2B8J,SILK-PILLOWCASE-QUEEN-SILVER GREY-1PCS,"DECOLURE 100% Pure Mulberry Silk Pillow Case Queen Size – Highest Grade 30 Momme 6A+, Luxuriously Soft & Cooling Silk Pillowcase for Hair & Skin, Hypoallergenic, Breathable, Hidden Zipper (Silver)",49.95,1,0.0,0.0,0.0,0.0,0.0,10
+2026-11-02,US,B0DBVXG561,SATIN-FITTED-FULL-DARK-GREEN,DECOLURE Satin Fitted Sheet Full Size | Softer Than Silk | Luxury 1 Pc Set,20.95,1,0.3,0.0,0.0,0.0,0.3,1
+2026-11-02,US,B0DBVY6P25,SATIN-FITTED-KING-GREY,DECOLURE Satin Fitted Sheet King Size | Softer Than Silk | Luxury 1 Pc Set,22.95,1,0.0,0.0,0.0,0.0,0.0,7
+2026-11-02,US,B0DBVYHGK1,SATIN-FITTED-FULL-NAVY-BLUE,DECOLURE Satin Fitted Sheet Full Size | Softer Than Silk | Luxury 1 Pc Set,20.95,1,0.0,0.0,0.0,0.0,0.0,3
+2026-11-02,US,B0DBVYJJZ6,SATIN-FITTED-QUEEN-RED,DECOLURE Satin Fitted Sheet Queen Size | Softer Than Silk | Luxury 1 Pc Set,65.85,3,3.65,0.0,0.0,0.0,3.65,24
+2026-11-02,US,B0DBVZ73F7,SATIN-FITTED-FULL-GOLD,DECOLURE Satin Fitted Sheet Full Size | Softer Than Silk | Luxury 1 Pc Set,20.95,1,7.39,0.0,0.0,0.0,7.39,15
+2026-11-02,US,B0DBVZ9QZC,SATIN-FITTED-TWIN-SAGE-GREEN,DECOLURE Satin Fitted Sheet Twin Size | Softer Than Silk | Luxury 1 Pc Set,19.95,1,0.0,0.0,0.0,0.0,0.0,1
+2026-11-02,US,B0DBVZBLDK,SATIN-FITTED-QUEEN-BLUSH-PINK,DECOLURE Satin Fitted Sheet Queen Size | Softer Than Silk | Luxury 1 Pc Set,0.0,0,2.61,0.0,0.0,0.0,2.61,12
+2026-11-02,US,B0DBVZJTGS,SATIN-FITTED-KING-PURPLE,DECOLURE Satin Fitted Sheet King Size | Softer Than Silk | Luxury 1 Pc Set,0.0,0,6.18,0.0,0.0,0.0,6.18,20
+2026-11-02,US,B0DBVZKXNX,SATIN-FITTED-KING-ROSEWOOD,DECOLURE Satin Fitted Sheet King Size | Softer Than Silk | Luxury 1 Pc Set,0.0,0,1.8,0.0,0.0,0.0,1.8,6
+2026-11-02,US,B0DBVZNLSM,SATIN-FITTED-FULL-BLUSH-PINK,DECOLURE Satin Fitted Sheet Full Size | Softer Than Silk | Luxury 1 Pc Set,0.0,0,0.43,0.0,0.0,0.0,0.43,2
+2026-11-02,US,B0DBVZPPJ6,SATIN-FITTED-QUEEN-PURPLE,DECOLURE Satin Fitted Sheet Queen Size | Softer Than Silk | Luxury 1 Pc Set,21.95,1,25.56,6.28,0.0,0.0,31.84,55
+2026-11-02,US,B0DBVZV66D,SATIN-FITTED-FULL-BABY-BLUE,DECOLURE Satin Fitted Sheet Full Size | Softer Than Silk | Luxury 1 Pc Set,0.0,0,1.69,0.0,0.0,0.0,1.69,4
+2026-11-02,US,B0DBW13VVR,SATIN-FITTED-KING-BLACK,DECOLURE Satin Fitted Sheet King Size | Softer Than Silk | Luxury 1 Pc Set,22.95,1,0.0,0.0,0.0,0.0,0.0,7
+2026-11-02,US,B0DBW17ZJP,SATIN-FITTED-FULL-GREY,DECOLURE Satin Fitted Sheet Full Size | Softer Than Silk | Luxury 1 Pc Set,0.0,0,0.46,0.0,0.0,0.0,0.46,6
+2026-11-02,US,B0DBW19GXY,SATIN-FITTED-QUEEN-GREY,DECOLURE Satin Fitted Sheet Queen Size | Softer Than Silk | Luxury 1 Pc Set,0.0,0,1.31,0.0,0.0,0.0,1.31,16
+2026-11-02,US,B0DBW1M6RN,SATIN-FITTED-KING-RED,DECOLURE Satin Fitted Sheet King Size | Softer Than Silk | Luxury 1 Pc Set,22.95,1,0.0,6.57,0.0,0.0,6.57,12
+2026-11-02,US,B0DBW1M6RR,SATIN-FITTED-TWIN-PURPLE,DECOLURE Satin Fitted Sheet Twin Size | Softer Than Silk | Luxury 1 Pc Set,0.0,0,1.13,0.0,0.0,0.0,1.13,4
+2026-11-02,US,B0DBW1NX31,SATIN-FITTED-QUEEN-SAGE-GREEN,DECOLURE Satin Fitted Sheet Queen Size | Softer Than Silk | Luxury 1 Pc Set,21.95,1,0.0,0.0,0.0,0.0,0.0,4
+2026-11-02,US,B0DBW1NXMC,SATIN-FITTED-TWIN-DARK-GREEN,DECOLURE Satin Fitted Sheet Twin Size | Softer Than Silk | Luxury 1 Pc Set,0.0,0,0.43,0.0,0.0,0.0,0.43,2
+2026-11-02,US,B0DBW1PNJ8,SATIN-FITTED-QUEEN-BLACK,DECOLURE Satin Fitted Sheet Queen Size | Softer Than Silk | Luxury 1 Pc Set,43.9,2,9.27,0.0,0.0,0.0,9.27,30
+2026-11-02,US,B0DBW2HDDZ,SATIN-FITTED-TWIN-PINK,DECOLURE Satin Fitted Sheet Twin Size | Softer Than Silk | Luxury 1 Pc Set,0.0,0,3.83,0.0,0.0,0.0,3.83,7
+2026-11-02,US,B0DBW2LXQY,SATIN-FITTED-FULL-SAGE-GREEN,DECOLURE Satin Fitted Sheet Full Size | Softer Than Silk | Luxury 1 Pc Set,20.95,1,1.29,0.0,0.0,0.0,1.29,3
+2026-11-02,US,B0DBW3YBV4,SATIN-FITTED-FULL-RED,DECOLURE Satin Fitted Sheet Full Size | Softer Than Silk | Luxury 1 Pc Set,20.95,1,0.85,0.0,0.0,0.0,0.85,5
+2026-11-02,US,B0DBW47GVG,SATIN-FITTED-QUEEN-PINK,DECOLURE Satin Fitted Sheet Queen Size | Softer Than Silk | Luxury 1 Pc Set,21.95,1,2.57,0.0,0.0,0.0,2.57,9
+2026-11-02,US,B0DBW47GVH,SATIN-FITTED-QUEEN-LAVENDER,DECOLURE Satin Fitted Sheet Queen Size | Softer Than Silk | Luxury 1 Pc Set,21.95,1,0.0,0.0,0.0,0.0,0.0,9
+2026-11-02,US,B0DBW6FW27,SATIN-FITTED-TWIN-IVORY,DECOLURE Satin Fitted Sheet Twin Size | Softer Than Silk | Luxury 1 Pc Set,0.0,0,1.7,0.0,0.0,0.0,1.7,3
+2026-11-02,US,B0DD4JMGXN,SATIN-4PCS-QUEEN-STONE-GREY,DECOLURE Satin Sheets Queen Size | Softer Than Silk | Luxury 4 Pc Bed Set,159.75,5,0.65,0.0,0.0,0.0,0.65,20
+2026-11-02,US,B0DDQQB8VY,SS-SATIN-PINK-KING-4PCS,"SLEEP SANCTUARY Satin Sheets King Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Pink)",35.95,1,0.0,0.0,0.0,0.0,0.0,6
+2026-11-02,US,B0DDQTZ8NT,SS-SATIN-WHITE-TWIN-3PCS,"SLEEP SANCTUARY Satin Sheets Twin Size – 3 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (White)",0.0,0,1.64,0.0,0.0,0.0,1.64,5
+2026-11-02,US,B0DDQTZWY6,SS-SATIN-RED-TWIN-3PCS,"SLEEP SANCTUARY Satin Sheets Twin Size – 3 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Red)",59.9,2,0.0,0.0,0.0,0.0,0.0,5
+2026-11-02,US,B0DDQX793B,SS-SATIN-GREY-FULL-4PCS,"SLEEP SANCTUARY Satin Sheets Full Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Grey)",0.0,0,0.95,0.0,0.0,0.0,0.95,8
+2026-11-02,US,B0DDQXM4RF,SS-SATIN-GREY-KING-4PCS,"SLEEP SANCTUARY Satin Sheets King Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Grey)",71.9,2,11.22,0.0,0.0,0.0,11.22,17
+2026-11-02,US,B0DDQXMHHQ,SS-SATIN-STRIPED-PURPLE-FULL-4PCS,"SLEEP SANCTUARY Satin Sheets Full Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Striped Purple)",0.0,0,3.47,0.0,0.0,0.0,3.47,7
+2026-11-02,US,B0DDQZ6VT4,SS-SATIN-WHITE-KING-4PCS,"SLEEP SANCTUARY Satin Sheets King Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (White)",35.95,1,8.98,0.0,0.0,0.0,8.98,25
+2026-11-02,US,B0DDQZG4MQ,SS-SATIN-PINK-FULL-4PCS,"SLEEP SANCTUARY Satin Sheets Full Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Pink)",31.95,1,6.7,0.0,0.0,0.0,6.7,12
+2026-11-02,US,B0DDR154D4,SS-SATIN-SAGE-GREEN-TWIN-3PCS,"SLEEP SANCTUARY Satin Sheets Twin Size – 3 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Sage Green)",0.0,0,0.47,0.0,0.0,0.0,0.47,4
+2026-11-02,US,B0DDR15FTY,SS-SATIN-GOLD-TWIN-3PCS,"SLEEP SANCTUARY Satin Sheets Twin Size – 3 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Gold)",29.95,1,0.0,0.0,0.0,0.0,0.0,3
+2026-11-02,US,B0DDR1ZPRZ,SS-SATIN-STONE-GREY-KING-4PCS,"SLEEP SANCTUARY Satin Sheets King Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Stone Grey)",35.95,1,2.97,0.0,0.0,0.0,2.97,15
+2026-11-02,US,B0DDR3SX2D,SS-SATIN-LAVENDER-TWIN-3PCS,"SLEEP SANCTUARY Satin Sheets Twin Size – 3 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Lavender)",37.95,1,1.41,0.0,0.0,0.0,1.41,6
+2026-11-02,US,B0DDR3WWT1,SS-SATIN-STRIPED-PINK-QUEEN-4PCS,"SLEEP SANCTUARY Satin Sheets Queen Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Striped Pink)",0.0,0,1.16,0.0,0.0,0.0,1.16,5
+2026-11-02,US,B0DDR4FVH1,SS-SATIN-PURPLE-QUEEN-4PCS,"SLEEP SANCTUARY Satin Sheets Queen Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Purple)",33.95,1,4.09,0.0,0.0,0.0,4.09,12
+2026-11-02,US,B0DDR4HJCS,SS-SATIN-BABY-BLUE-FULL-4PCS,"SLEEP SANCTUARY Satin Sheets Full Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Baby Blue)",0.0,0,0.36,0.0,0.0,0.0,0.36,4
+2026-11-02,US,B0DDR4T2Y6,SS-SATIN-BLUSH-PINK-KING-4PCS,"SLEEP SANCTUARY Satin Sheets King Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Blush Pink)",35.95,1,27.36,0.0,0.0,0.0,27.36,36
+2026-11-02,US,B0DDR5JMCH,SS-SATIN-GOLD-KING-4PCS,"SLEEP SANCTUARY Satin Sheets King Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Gold)",35.95,1,2.41,0.0,0.0,0.0,2.41,11
+2026-11-02,US,B0DDR5K4JT,SS-SATIN-NAVY-BLUE-KING-4PCS,"SLEEP SANCTUARY Satin Sheets King Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Navy Blue)",35.95,1,0.0,0.0,0.0,0.0,0.0,5
+2026-11-02,US,B0DDR5K4KK,SS-SATIN-SAGE-GREEN-QUEEN-4PCS,"SLEEP SANCTUARY Satin Sheets Queen Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Sage Green)",0.0,0,2.75,0.0,0.0,0.0,2.75,10
+2026-11-02,US,B0DDR5QBGQ,SS-SATIN-IVORY-KING-4PCS,"SLEEP SANCTUARY Satin Sheets King Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Ivory)",0.0,0,31.32,0.0,0.0,0.0,31.32,24
+2026-11-02,US,B0DDR6921L,SS-SATIN-DARK-GREEN-KING-4PCS,"SLEEP SANCTUARY Satin Sheets King Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Dark Green)",0.0,0,7.28,0.0,0.0,0.0,7.28,15
+2026-11-02,US,B0DDR6TLDV,SS-SATIN-ROSEWOOD-TWIN-3PCS,"SLEEP SANCTUARY Satin Sheets Twin Size – 3 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Rosewood)",0.0,0,16.44,0.0,0.0,0.0,16.44,39
+2026-11-02,US,B0DDR6TLF6,SS-SATIN-BLUSH-PINK-FULL-4PCS,"SLEEP SANCTUARY Satin Sheets Full Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Blush Pink)",0.0,0,0.79,0.0,0.0,0.0,0.79,8
+2026-11-02,US,B0DDR852CS,SS-SATIN-STRIPED-RED-QUEEN-4PCS,"SLEEP SANCTUARY Satin Sheets Queen Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Striped Red)",0.0,0,5.33,0.0,0.0,0.0,5.33,11
+2026-11-02,US,B0DDR95C35,SS-SATIN-NAVY-BLUE-TWIN-3PCS,"SLEEP SANCTUARY Satin Sheets Twin Size – 3 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Navy Blue)",31.95,1,0.0,0.0,0.0,0.0,0.0,4
+2026-11-02,US,B0DDR9L9TF,SS-SATIN-STRIPED-PURPLE-TWIN-3PCS,"SLEEP SANCTUARY Satin Sheets Twin Size – 3 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Striped Purple)",0.0,0,0.47,0.0,0.0,0.0,0.47,2
+2026-11-02,US,B0DDR9XL5R,SS-SATIN-STRIPED-RED-TWIN-3PCS,"SLEEP SANCTUARY Satin Sheets Twin Size – 3 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Striped Red)",0.0,0,0.79,0.0,0.0,0.0,0.79,4
+2026-11-02,US,B0DDRB7NTZ,SS-SATIN-CHAMPAGNE-KING-4PCS,"SLEEP SANCTUARY Satin Sheets King Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Champagne)",0.0,0,0.54,0.0,0.0,0.0,0.54,5
+2026-11-02,US,B0DDRBTG9J,SS-SATIN-PINK-QUEEN-4PCS,"SLEEP SANCTUARY Satin Sheets Queen Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Pink)",31.95,1,8.14,0.0,0.0,0.0,8.14,18
+2026-11-02,US,B0DDRCQZ7G,SS-SATIN-PURPLE-KING-4PCS,"SLEEP SANCTUARY Satin Sheets King Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Purple)",35.95,1,0.54,0.0,0.0,0.0,0.54,5
+2026-11-02,US,B0DDRCZN9J,SS-SATIN-RED-FULL-4PCS,"SLEEP SANCTUARY Satin Sheets Full Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Red)",0.0,0,0.75,0.0,0.0,0.0,0.75,7
+2026-11-02,US,B0DDRD3S48,SS-SATIN-DARK-GREEN-FULL-4PCS,"SLEEP SANCTUARY Satin Sheets Full Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Dark Green)",0.0,0,0.47,0.0,0.0,0.0,0.47,7
+2026-11-02,US,B0DDRF88H4,SS-SATIN-NAVY-BLUE-FULL-4PCS,"SLEEP SANCTUARY Satin Sheets Full Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Navy Blue)",89.85,3,0.0,0.0,0.0,0.0,0.0,8
+2026-11-02,US,B0DDRFLD2F,SS-SATIN-LAVENDER-KING-4PCS,"SLEEP SANCTUARY Satin Sheets King Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Lavender)",0.0,0,0.85,0.0,0.0,0.0,0.85,6
+2026-11-02,US,B0DDRFR2FS,SS-SATIN-LAVENDER-FULL-4PCS,"SLEEP SANCTUARY Satin Sheets Full Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Lavender)",0.0,0,4.88,0.0,0.0,0.0,4.88,6
+2026-11-02,US,B0DDRFSGVJ,SS-SATIN-PURPLE-TWIN-3PCS,"SLEEP SANCTUARY Satin Sheets Twin Size – 3 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Purple)",29.95,1,0.0,0.0,0.0,0.0,0.0,2
+2026-11-02,US,B0DDRH9RD7,SS-SATIN-NAVY-BLUE-QUEEN-4PCS,"SLEEP SANCTUARY Satin Sheets Queen Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Navy Blue)",0.0,0,15.12,0.0,0.0,0.0,15.12,19
+2026-11-02,US,B0DDRHLV1C,SS-SATIN-LAVENDER-QUEEN-4PCS,"SLEEP SANCTUARY Satin Sheets Queen Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Lavender)",33.95,1,2.94,0.0,0.0,0.0,2.94,11
+2026-11-02,US,B0DDRHPKDV,SS-SATIN-GOLD-QUEEN-4PCS,"SLEEP SANCTUARY Satin Sheets Queen Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Gold)",0.0,0,12.07,0.0,0.0,0.0,12.07,29
+2026-11-02,US,B0DDRHYXFM,SS-SATIN-STRIPED-GREY-KING-4PCS,"SLEEP SANCTUARY Satin Sheets King Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Striped Grey)",0.0,0,0.54,0.0,0.0,0.0,0.54,4
+2026-11-02,US,B0DDRKMZ6G,SS-SATIN-STRIPED-PINK-FULL-4PCS,"SLEEP SANCTUARY Satin Sheets Full Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Striped Pink)",0.0,0,2.81,0.0,0.0,0.0,2.81,8
+2026-11-02,US,B0DDRL4WTJ,SS-SATIN-BURNT-ORANGE-KING-4PCS,"SLEEP SANCTUARY Satin Sheets King Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Burnt Orange)",0.0,0,1.58,0.0,0.0,0.0,1.58,9
+2026-11-02,US,B0DDRP3R3F,SS-SATIN-RED-KING-4PCS,"SLEEP SANCTUARY Satin Sheets King Size – 4 Piece Luxury Silky Bed Set, Softer Than Silk, 15"" Deep Pocket, Cooling & Wrinkle-Free, Moisture-Wicking & Breathable for Hair & Skin (Red)",0.0,0,0.54,0.0,0.0,0.0,0.54,9
+2026-11-02,US,B0DDTXFRNB,SS-BAMBOO-OLIVE-KING-6PCS,"SLEEP SANCTUARY 100% Viscose Derived from Bamboo Sheets King Size, 6 Pc Set",139.98,2,0.0,0.0,0.0,0.0,0.0,5
+2026-11-02,US,B0DDTYDHVB,SS-BAMBOO-TAUPE-KING-6PCS,"SLEEP SANCTUARY 100% Viscose Derived from Bamboo Sheets King Size, 6 Pc Set",69.99,1,0.0,0.0,0.0,0.0,0.0,10
+2026-11-02,US,B0DQ92K585,BEACH-TOWEL-PT-WAVE-GRAY,"DECOLURE Turkish Beach Towel Oversized 39x73 Inch - 100% Turkish Cotton, Quick Dry and Sand Free Beach Towels for Travel - Lightweight, Absorbent & Soft Peshtemal Towel - (Gray Wave)",0.0,0,0.62,0.0,0.0,0.0,0.62,1
+2026-11-02,US,B0F4XP8CYP,SS-SLEEP-MASK-3D-CONTOURED-MISTY-BLUE,"SLEEP SANCTUARY 100% Pure Mulberry Silk Sleep Mask - 22 Momme Light Blocking 3D Contour Silk Eye Mask for Sleeping - Secure Fit for Side Sleepers, Women & Men - Cloud Soft (Misty Blue)",0.0,0,0.44,0.0,0.0,0.0,0.44,2
+2026-11-02,US,B0F4XR5RWT,SS-SLEEP-MASK-VELCRO-STRAP-PINK,"SLEEP SANCTUARY 100% Pure Mulberry Silk Sleep Mask - 22 Momme Light Blocking Hook & Loop Silk Eye Mask for Sleeping - Secure Fit for Side Sleepers, Women & Men - Cloud Soft (Pink)",17.99,1,0.0,0.0,0.0,0.0,0.0,0
+2026-11-02,US,B0F7LHWD2N,SL-CLG-PC-BLUE-STANDARD-2PCS,"SLEEPHORIA Cooling Pillow Cases - BreezeWeave Standard Size Set of 2 Pillowcases for Hot Sleepers & Cool, Deep Rest - Cloud Soft, Silky Smooth, Ultra Durable, Easy Care, Hidden Zipper (Blue)",0.0,0,1.1,0.0,0.0,0.0,1.1,1
+2026-11-02,US,B0F7LJRWB6,SL-CLG-PC-LIGHT-GREY-QUEEN-2PCS,"SLEEPHORIA Cooling Pillow Cases - BreezeWeave Queen Size Set of 2 Pillowcases for Hot Sleepers & Cool, Deep Rest - Cloud Soft, Silky Smooth, Ultra Durable, Easy Care, Hidden Zipper (Light Grey)",21.99,1,0.0,0.0,0.0,0.0,0.0,5
+2026-11-02,US,B0F7LKSFGB,SL-CLG-PC-DARK-GREY-KING-2PCS,"SLEEPHORIA Cooling Pillow Cases - BreezeWeave King Size Set of 2 Pillowcases for Hot Sleepers & Cool, Deep Rest - Cloud Soft, Silky Smooth, Ultra Durable, Easy Care, Hidden Zipper (Dark Grey)",47.98,2,1.6,0.0,0.0,0.0,1.6,8
+2026-11-02,US,B0F7LKTKKS,SL-CLG-PC-WHITE-QUEEN-2PCS,"SLEEPHORIA Cooling Pillow Cases - BreezeWeave Queen Size Set of 2 Pillowcases for Hot Sleepers & Cool, Deep Rest - Cloud Soft, Silky Smooth, Ultra Durable, Easy Care, Hidden Zipper (White)",0.0,0,0.56,0.0,0.0,0.0,0.56,6
+2026-11-02,US,B0F7LLBQH3,SL-CLG-PC-WHITE-KING-2PCS,"SLEEPHORIA Cooling Pillow Cases - BreezeWeave King Size Set of 2 Pillowcases for Hot Sleepers & Cool, Deep Rest - Cloud Soft, Silky Smooth, Ultra Durable, Easy Care, Hidden Zipper (White)",23.99,1,0.0,0.0,0.0,0.0,0.0,5
+2026-11-02,US,B0F7LLM71K,SL-CLG-PC-LIGHT-GREY-STANDARD-2PCS,"SLEEPHORIA Cooling Pillow Cases - BreezeWeave Standard Size Set of 2 Pillowcases for Hot Sleepers & Cool, Deep Rest - Cloud Soft, Silky Smooth, Ultra Durable, Easy Care, Hidden Zipper (Light Grey)",0.0,0,3.77,0.0,0.0,0.0,3.77,4
+2026-11-02,US,B0F7LM5KWC,SL-CLG-PC-LIGHT-GREY-KING-2PCS,"SLEEPHORIA Cooling Pillow Cases - BreezeWeave King Size Set of 2 Pillowcases for Hot Sleepers & Cool, Deep Rest - Cloud Soft, Silky Smooth, Ultra Durable, Easy Care, Hidden Zipper (Light Grey)",23.99,1,0.0,0.0,0.0,0.0,0.0,3
+2026-11-02,US,B0F7LMHRL9,SL-CLG-PC-DARK-GREY-QUEEN-2PCS,"SLEEPHORIA Cooling Pillow Cases - BreezeWeave Queen Size Set of 2 Pillowcases for Hot Sleepers & Cool, Deep Rest - Cloud Soft, Silky Smooth, Ultra Durable, Easy Care, Hidden Zipper (Dark Grey)",43.98,2,13.62,0.0,0.0,0.0,13.62,12
+2026-11-02,US,B0F7LW9GQN,SL-COOLING-SHEET-QUEEN-WHITE,"SLEEPHORIA Cooling Sheets - BreezeWeave 4 PC Queen Size Cooling Bed Sheets for Hot Sleepers & Deep, Cool Rest - Cloud Soft, Silky Smooth, 16 in Deep Pocket, Ultra Durable (White)",79.99,1,0.0,0.0,0.0,0.0,0.0,8
+2026-11-02,US,B0F7LWK8S4,SL-COOLING-SHEET-CAL-KING-COOL-GREY,"SLEEPHORIA Cooling Sheets - BreezeWeave 4 PC California King Size Cooling Bed Sheets for Hot Sleepers & Deep, Cool Rest - Cloud Soft, Silky Smooth, 16 in Deep Pocket, Ultra Durable (Cool Grey)",84.99,1,0.0,0.0,0.0,0.0,0.0,4
+2026-11-02,US,B0F7LX5ZQN,SL-COOLING-SHEET-KING-WHITE,"SLEEPHORIA Cooling Sheets - BreezeWeave 4 PC King Size Cooling Bed Sheets for Hot Sleepers & Deep, Cool Rest - Cloud Soft, Silky Smooth, 16 in Deep Pocket, Ultra Durable (White)",84.99,1,17.16,1.91,0.0,0.0,19.07,13
+2026-11-02,US,B0F7LX6W9T,SL-COOLING-SHEET-QUEEN-BEIGE,"SLEEPHORIA Cooling Sheets - BreezeWeave 4 PC Queen Size Cooling Bed Sheets for Hot Sleepers & Deep, Cool Rest - Cloud Soft, Silky Smooth, 16 in Deep Pocket, Ultra Durable (Beige)",79.99,1,0.0,0.0,0.0,0.0,0.0,10
+2026-11-02,US,B0F7LX9P4H,SL-COOLING-SHEET-FULL-SAGE-GREEN,"SLEEPHORIA Cooling Sheets - BreezeWeave 4 PC Full Size Cooling Bed Sheets for Hot Sleepers & Deep, Cool Rest - Cloud Soft, Silky Smooth, 16 in Deep Pocket, Ultra Durable (Sage Green)",64.99,1,0.0,0.0,0.0,0.0,0.0,2
+2026-11-02,US,B0F7LXB26C,SL-COOLING-SHEET-FULL-COOL-GREY,"SLEEPHORIA Cooling Sheets - BreezeWeave 4 PC Full Size Cooling Bed Sheets for Hot Sleepers & Deep, Cool Rest - Cloud Soft, Silky Smooth, 16 in Deep Pocket, Ultra Durable (Cool Grey)",0.0,0,25.92,0.0,0.0,0.0,25.92,19
+2026-11-02,US,B0F7LY3K8C,SL-COOLING-SHEET-QUEEN-GRAPHITE,"SLEEPHORIA Cooling Sheets - BreezeWeave 4 PC Queen Size Cooling Bed Sheets for Hot Sleepers & Deep, Cool Rest - Cloud Soft, Silky Smooth, 16 in Deep Pocket, Ultra Durable (Graphite)",159.98,2,427.25,3.59,0.0,0.0,430.84,113
+2026-11-02,US,B0F7LY3ZWB,SL-COOLING-SHEET-FULL-GRAPHITE,"SLEEPHORIA Cooling Sheets - BreezeWeave 4 PC Full Size Cooling Bed Sheets for Hot Sleepers & Deep, Cool Rest - Cloud Soft, Silky Smooth, 16 in Deep Pocket, Ultra Durable (Graphite)",129.98,2,0.0,0.0,0.0,0.0,0.0,15
+2026-11-02,US,B0F7LYNN5W,SL-COOLING-SHEET-QUEEN-NAVY-BLUE,"SLEEPHORIA Cooling Sheets - BreezeWeave 4 PC Queen Size Cooling Bed Sheets for Hot Sleepers & Deep, Cool Rest - Cloud Soft, Silky Smooth, 16 in Deep Pocket, Ultra Durable (Navy Blue)",0.0,0,10.8,0.0,0.0,0.0,10.8,13
+2026-11-02,US,B0F7LZQNHM,SL-COOLING-SHEET-KING-LIGHT-GREY,"SLEEPHORIA Cooling Sheets - BreezeWeave 4 PC King Size Cooling Bed Sheets for Hot Sleepers & Deep, Cool Rest - Cloud Soft, Silky Smooth, 16 in Deep Pocket, Ultra Durable (Light Grey)",169.98,2,0.0,0.0,0.0,0.0,0.0,10
+2026-11-02,US,B0F7LZR5DF,SL-COOLING-SHEET-QUEEN-LIGHT-BLUE,"SLEEPHORIA Cooling Sheets - BreezeWeave 4 PC Queen Size Cooling Bed Sheets for Hot Sleepers & Deep, Cool Rest - Cloud Soft, Silky Smooth, 16 in Deep Pocket, Ultra Durable (Light Blue)",79.99,1,0.0,0.0,0.0,0.0,0.0,14
+2026-11-02,US,B0F7M3184Y,SL-COOLING-FITTED-QUEEN-NAVY-BLUE,"SLEEPHORIA Cooling Fitted Sheet Queen Size - 1 PC BreezeWeave Cooling Sheets for Hot Sleepers & Cool Rest w/ 16 in Deep Pocket - Corner Straps, Cloud Soft, Ultra Durable - 57 x 77 in (Navy Blue)",75.98,2,0.0,0.0,0.0,0.0,0.0,21
+2026-11-02,US,B0F7M35CHR,SL-COOLING-FITTED-QUEEN-MIDNIGHT-BLACK,"SLEEPHORIA Cooling Fitted Sheet Queen Size - 1 PC BreezeWeave Cooling Sheets for Hot Sleepers & Cool Rest w/ 16 in Deep Pocket - Corner Straps, Cloud Soft, Ultra Durable - 57 x 77 in (Midnight Black)",75.98,2,0.0,0.0,0.0,0.0,0.0,14
+2026-11-02,US,B0F7M3CF1Q,SL-COOLING-FITTED-KING-MIDNIGHT-BLACK,"SLEEPHORIA Cooling Fitted Sheet King Size - 1 PC BreezeWeave Cooling Sheets for Hot Sleepers & Cool Rest w/ 16 in Deep Pocket - Corner Straps, Cloud Soft, Ultra Durable - 73 x 77 in (Midnight Black)",79.98,2,0.0,0.0,0.0,0.0,0.0,14
+2026-11-02,US,B0F7M3DJGP,SL-CLG-COMF-MINT-GREEN/DARK-GREY-KING,"SLEEPHORIA Cooling Comforter - BreezeWeave Cooling Blanket King Size for Hot Sleepers & Deep Rest - Cloud Soft, Breathable, Ultra Durable, Easy Care, Reversible - 108 x 90 in (Mint Green & Dark Grey)",79.99,1,0.0,0.0,0.0,0.0,0.0,2
+2026-11-02,US,B0F7M3YQ5R,SL-COOLING-FITTED-KING-WHITE,"SLEEPHORIA Cooling Fitted Sheet King Size - 1 PC BreezeWeave Cooling Sheets for Hot Sleepers & Cool Rest w/ 16 in Deep Pocket - Corner Straps, Cloud Soft, Ultra Durable - 73 x 77 in (White)",119.97,3,41.6,0.0,0.0,0.0,41.6,64
+2026-11-02,US,B0F7M4BGMH,SL-COOLING-FITTED-FULL-GRAPHITE,"SLEEPHORIA Cooling Fitted Sheet Full Size - 1 PC BreezeWeave Cooling Sheets for Hot Sleepers & Cool Rest w/ 16 in Deep Pocket - Corner Straps, Cloud Soft, Ultra Durable - 52 x 72 in (Graphite)",0.0,0,5.99,0.0,0.0,0.0,5.99,6
+2026-11-02,US,B0F7M4N52F,SL-CLG-COMF-LIGHT-GREY/DARK-GREY-TWIN,"SLEEPHORIA Cooling Comforter - BreezeWeave Cooling Blanket Twin Size for Hot Sleepers & Deep Rest - Cloud Soft, Breathable, Ultra Durable, Easy Care, Reversible - 68 x 90 in (Light Grey & Dark Grey)",0.0,0,3.54,0.0,0.0,0.0,3.54,8
+2026-11-02,US,B0F7M4VHKW,SL-COOLING-FITTED-TWIN-MIDNIGHT-BLACK,"SLEEPHORIA Cooling Fitted Sheet Twin Size - 1 PC BreezeWeave Cooling Sheets for Hot Sleepers & Cool Rest w/ 16 in Deep Pocket - Corner Straps, Cloud Soft, Ultra Durable - 37 x 72 in (Midnight Black)",0.0,0,2.51,0.0,0.0,0.0,2.51,4
+2026-11-02,US,B0F7M56896,SL-CLG-COMF-BLUE/DARK-GREY-QUEEN,"SLEEPHORIA Cooling Comforter - BreezeWeave Cooling Blanket Queen Size for Hot Sleepers & Deep Rest - Cloud Soft, Breathable, Ultra Durable, Easy Care, Reversible - 90 x 90 in (Blue & Dark Grey)",0.0,0,4.26,0.0,0.0,0.0,4.26,7
+2026-11-02,US,B0F7M57Q9T,SL-COOLING-FITTED-CAL-KING-WHITE,"SLEEPHORIA Cooling Fitted Sheet Calfornia King Size - 1 PC BreezeWeave Cooling Sheets for Hot Sleepers & Cool Rest w/ 16 in Deep Pocket - Corner Straps, Cloud Soft - 69 x 81 in (White)",39.99,1,0.0,0.0,0.0,0.0,0.0,9
+2026-11-02,US,B0F7M5M7G1,SL-COOLING-FITTED-KING-NAVY-BLUE,"SLEEPHORIA Cooling Fitted Sheet King Size - 1 PC BreezeWeave Cooling Sheets for Hot Sleepers & Cool Rest w/ 16 in Deep Pocket - Corner Straps, Cloud Soft, Ultra Durable - 73 x 77 in (Navy Blue)",39.99,1,0.0,0.0,0.0,0.0,0.0,5
+2026-11-02,US,B0F7M5PNCT,SL-COOLING-FITTED-QUEEN-WHITE,"SLEEPHORIA Cooling Fitted Sheet Queen Size - 1 PC BreezeWeave Cooling Sheets for Hot Sleepers & Cool Rest w/ 16 in Deep Pocket - Corner Straps, Cloud Soft, Ultra Durable - 57 x 77 in (White)",113.97,3,96.25,0.0,0.0,0.0,96.25,95
+2026-11-02,US,B0F7M5SD7Q,SL-COOLING-FITTED-KING-COOL-GREY,"SLEEPHORIA Cooling Fitted Sheet King Size - 1 PC BreezeWeave Cooling Sheets for Hot Sleepers & Cool Rest w/ 16 in Deep Pocket - Corner Straps, Cloud Soft, Ultra Durable - 73 x 77 in (Cool Grey)",39.99,1,0.0,0.0,0.0,0.0,0.0,14
+2026-11-02,US,B0F7M5T8FH,SL-CLG-COMF-LIGHT-GREY/DARK-GREY-QUEEN,"SLEEPHORIA Cooling Comforter - BreezeWeave Cooling Blanket Queen Size for Hot Sleepers & Deep Rest - Cloud Soft, Breathable, Ultra Durable, Easy Care, Reversible - 90 x 90 in (Light Grey & Dark Grey)",0.0,0,13.57,0.0,0.0,0.0,13.57,16
+2026-11-02,US,B0F7M5TVQF,SL-COOLING-FITTED-QUEEN-COOL-GREY,"SLEEPHORIA Cooling Fitted Sheet Queen Size - 1 PC BreezeWeave Cooling Sheets for Hot Sleepers & Cool Rest w/ 16 in Deep Pocket - Corner Straps, Cloud Soft, Ultra Durable - 57 x 77 in (Cool Grey)",113.97,3,7.07,0.0,0.0,0.0,7.07,14
+2026-11-02,US,B0F7M5V4JC,SL-COOLING-FITTED-QUEEN-REGAL-PURPLE,"SLEEPHORIA Cooling Fitted Sheet Queen Size - 1 PC BreezeWeave Cooling Sheets for Hot Sleepers & Cool Rest w/ 16 in Deep Pocket - Corner Straps, Cloud Soft, Ultra Durable - 57 x 77 in (Regal Purple)",75.98,2,6.57,0.0,0.0,0.0,6.57,12
+2026-11-02,US,B0F7M61LHQ,SL-COOLING-FITTED-KING-COOL-BLUE,"SLEEPHORIA Cooling Fitted Sheet King Size - 1 PC BreezeWeave Cooling Sheets for Hot Sleepers & Cool Rest w/ 16 in Deep Pocket - Corner Straps, Cloud Soft, Ultra Durable - 73 x 77 in (Cool Blue)",39.99,1,0.0,0.0,0.0,0.0,0.0,5
+2026-11-02,US,B0F7M6BF7C,SL-COOLING-FITTED-KING-LIGHT-GREY,"SLEEPHORIA Cooling Fitted Sheet King Size - 1 PC BreezeWeave Cooling Sheets for Hot Sleepers & Cool Rest w/ 16 in Deep Pocket - Corner Straps, Cloud Soft, Ultra Durable - 73 x 77 in (Light Grey)",79.98,2,0.0,0.0,0.0,0.0,0.0,21
+2026-11-02,US,B0F7M6DPPM,SL-COOLING-FITTED-FULL-COOL-BLUE,"SLEEPHORIA Cooling Fitted Sheet Full Size - 1 PC BreezeWeave Cooling Sheets for Hot Sleepers & Cool Rest w/ 16 in Deep Pocket - Corner Straps, Cloud Soft, Ultra Durable - 52 x 72 in (Cool Blue)",0.0,0,1.38,0.0,0.0,0.0,1.38,8
+2026-11-02,US,B0F7M6Q6G8,SL-COOLING-FITTED-QUEEN-SAGE-GREEN,"SLEEPHORIA Cooling Fitted Sheet Queen Size - 1 PC BreezeWeave Cooling Sheets for Hot Sleepers & Cool Rest w/ 16 in Deep Pocket - Corner Straps, Cloud Soft, Ultra Durable - 57 x 77 in (Sage Green)",151.96,4,0.0,0.0,0.0,0.0,0.0,12
+2026-11-02,US,B0F7M6WTWR,SL-COOLING-FITTED-TWIN-GRAPHITE,"SLEEPHORIA Cooling Fitted Sheet Twin Size - 1 PC BreezeWeave Cooling Sheets for Hot Sleepers & Cool Rest w/ 16 in Deep Pocket - Corner Straps, Cloud Soft, Ultra Durable - 37 x 72 in (Graphite)",32.99,1,0.0,0.0,0.0,0.0,0.0,5
+2026-11-02,US,B0F7M7C4ZC,SL-CLG-COMF-MINT-GREEN/DARK-GREY-TWIN,"SLEEPHORIA Cooling Comforter - BreezeWeave Cooling Blanket Twin Size for Hot Sleepers & Deep Rest - Cloud Soft, Breathable, Ultra Durable, Easy Care, Reversible - 68 x 90 in (Mint Green & Dark Grey)",0.0,0,0.28,0.0,0.0,0.0,0.28,3
+2026-11-02,US,B0F7M7LLTQ,SL-COOLING-FITTED-CAL-KING-LIGHT-GREY,"SLEEPHORIA Cooling Fitted Sheet Calfornia King Size - 1 PC BreezeWeave Cooling Sheets for Hot Sleepers & Cool Rest w/ 16 in Deep Pocket - Corner Straps, Cloud Soft - 69 x 81 in (Light Grey)",39.99,1,0.0,0.0,0.0,0.0,0.0,1
+2026-11-02,US,B0F7M87QYF,SL-COOLING-FITTED-QUEEN-GRAPHITE,"SLEEPHORIA Cooling Fitted Sheet Queen Size - 1 PC BreezeWeave Cooling Sheets for Hot Sleepers & Cool Rest w/ 16 in Deep Pocket - Corner Straps, Cloud Soft, Ultra Durable - 57 x 77 in (Graphite)",37.99,1,0.0,0.0,0.0,0.0,0.0,16
+2026-11-02,US,B0FGZQDBY6,SL-QUILT-SET-KING-IVORY,SLEEPHORIA King Quilt Bedding Set | Lightweight Summer Bedspread 3 Pc,0.0,0,1.31,0.0,0.0,0.0,1.31,6
+2026-11-02,US,B0FGZVN26F,SL-QUILT-SET-KING-WHITE,SLEEPHORIA King Quilt Bedding Set | Lightweight Summer Bedspread 3 Pc,0.0,0,3.59,0.0,0.0,0.0,3.59,4
+2026-11-02,US,B0FX2R68HP,DC-BAMBOO-FITTED-KING-TAUPE-1PC,"DECOLURE 100% Viscose Derived from Bamboo Fitted Sheet | King Size Fitted Sheet Only | Ultra Soft Cooling Sheets for Hot Sleepers, 17"" Deep Pocket w/Corner Straps, Breathable, Oeko-Tex (Taupe)",79.9,2,0.0,0.0,0.0,0.0,0.0,8
+2026-11-02,US,B0FX2SC2Z6,DC-BAMBOO-FITTED-KING-GREY-1PC,"DECOLURE 100% Viscose Derived from Bamboo Fitted Sheet | King Size Fitted Sheet Only | Ultra Soft Cooling Sheets for Hot Sleepers, 17"" Deep Pocket w/Corner Straps, Breathable, Oeko-Tex (Grey)",0.0,0,3.64,0.0,0.0,0.0,3.64,11
+2026-11-02,US,B0FX2SDSYH,DC-BAMBOO-FITTED-KING-CREME-1PC,"DECOLURE 100% Viscose Derived from Bamboo Fitted Sheet | King Size Fitted Sheet Only | Ultra Soft Cooling Sheets for Hot Sleepers, 17"" Deep Pocket w/Corner Straps, Breathable, Oeko-Tex (Creme)",79.9,2,0.0,0.0,0.0,0.0,0.0,3
+2026-11-02,US,B0FX2SR8VT,DC-BAMBOO-FITTED-QUEEN-WHITE-1PC,"DECOLURE 100% Viscose Derived from Bamboo Fitted Sheet | Queen Size Fitted Sheet Only | Ultra Soft Cooling Sheets for Hot Sleepers, 17"" Deep Pocket w/Corner Straps, Breathable, Oeko-Tex (White)",0.0,0,2.08,0.0,0.0,0.0,2.08,4
+2026-11-02,US,B0FX2SSTZ2,DC-BAMBOO-FITTED-QUEEN-GREY-1PC,"DECOLURE 100% Viscose Derived from Bamboo Fitted Sheet | Queen Size Fitted Sheet Only | Ultra Soft Cooling Sheets for Hot Sleepers, 17"" Deep Pocket w/Corner Straps, Breathable, Oeko-Tex (Grey)",37.95,1,0.0,0.0,0.0,0.0,0.0,1
+2026-11-02,US,B0FX2TPJ2J,DC-BAMBOO-FITTED-QUEEN-LIGHT-GREY-1PC,"DECOLURE 100% Viscose Derived from Bamboo Fitted Sheet | Queen Size Fitted Sheet Only | Ultra Soft Cooling Sheets for Hot Sleepers, 17"" Deep Pocket w/Corner Straps, Breathable, Oeko-Tex (Light Grey)",37.95,1,0.0,0.0,0.0,0.0,0.0,2
+2026-11-02,US,B0GGT7NYJ6,SL-BOHO-BLANKET-BUTTERFLY-50x60-1-PC,"SLEEPHORIA 100% Uzbek Cotton Boho Throw Blanket - Heavyweight Cotton Throw Blanket for Bed - Reversible Woven Vintage Floral Decorative for Couch Sofa - Soft Bohemian 50"" x 60"" (Butterfly)",59.73,2,7.54,0.0,0.0,0.0,7.54,14
+2026-11-02,US,B0GHSTYXM8,SL-CLG-COMF-MINT-GREEN/DARK-GREY-FULL,"SLEEPHORIA Cooling Comforter - BreezeWeave Cooling Blanket Full Size for Hot Sleepers & Deep Rest - Cloud Soft, Breathable, Ultra Durable, Easy Care, Reversible - 86 x 82 in (Mint Green & Dark Grey)",64.99,1,0.0,0.0,0.0,0.0,0.0,4
+2026-11-02,US,B0H5WQT8YF,CL-CLG-PC-DARK-GREY-STANDARD-2PCS,COOLINENS Cooling Pillow Cases Standard Size | Set of 2 for Hot Sleepers,19.99,1,0.0,0.0,0.0,0.0,0.0,6
+2026-11-02,US,B0H5WV9RBQ,CL-CLG-PC-LIGHT-GREY-QUEEN-2PCS,COOLINENS Cooling Pillow Cases Queen Size | Set of 2 for Hot Sleepers,0.0,0,25.73,0.0,0.0,0.0,25.73,19
+2026-11-02,US,B0H5WWMPNN,CL-CLG-PC-WHITE-QUEEN-2PCS,COOLINENS Cooling Pillow Cases Queen Size | Set of 2 for Hot Sleepers,65.97,3,78.28,16.92,0.0,0.0,95.2,38
+2026-11-02,US,B0H5X3L7M3,CL-CLG-PC-BLUE-KING-2PCS,COOLINENS Cooling Pillow Cases King Size | Set of 2 for Hot Sleepers,22.99,1,0.0,0.0,0.0,0.0,0.0,8
+2026-11-02,US,B0H5X4DPJP,CL-CLG-PC-DARK-GREY-KING-2PCS,COOLINENS Cooling Pillow Cases King Size | Set of 2 for Hot Sleepers,45.98,2,0.0,0.0,0.0,0.0,0.0,11
+2026-11-02,US,B0H5X5VGDP,CL-CLG-PC-DARK-GREY-QUEEN-2PCS,COOLINENS Cooling Pillow Cases Queen Size | Set of 2 for Hot Sleepers,65.97,3,17.15,0.0,0.0,0.0,17.15,16
+2026-11-02,US,B0H5X6W132,CL-CLG-PC-LIGHT-GREY-KING-2PCS,COOLINENS Cooling Pillow Cases King Size | Set of 2 for Hot Sleepers,45.98,2,0.0,0.0,0.0,0.0,0.0,10
+2026-11-02,US,B0H5X91BWJ,CL-CLG-PC-WHITE-KING-2PCS,COOLINENS Cooling Pillow Cases King Size | Set of 2 for Hot Sleepers,0.0,0,14.42,0.0,59.05,0.0,73.47,45
+2026-11-02,US,B0H5XBSQ71,CL-CLG-PC-WHITE-STANDARD-2PCS,COOLINENS Cooling Pillow Cases Standard Size | Set of 2 for Hot Sleepers,119.94,6,23.69,0.0,0.0,0.0,23.69,23
+2026-11-02,US,B0H6JV73R5,CL-COOLING-SHEET-CAL-KING-GRAPHITE,COOLINENS Cooling Sheets California King | 4 Piece Set for Hot Sleepers,191.98,2,0.0,21.39,26.63,0.0,48.02,15
+2026-11-02,US,B0H6JWKFXF,CL-COOLING-SHEET-KING-CREAM,COOLINENS Cooling Sheets King Size | 4 Piece Set for Hot Sleepers,0.0,0,0.0,0.0,0.0,1.32,1.32,21
+2026-11-02,US,B0H6JWNCK3,CL-COOLING-SHEET-QUEEN-COOL-GREY,COOLINENS Cooling Sheets Queen Size | 4 Piece Set for Hot Sleepers,0.0,0,0.0,0.0,0.0,0.06,0.06,24
+2026-11-02,US,B0H6JXBD3K,CL-COOLING-SHEET-KING-GRAPHITE,COOLINENS Cooling Sheets King Size | 4 Piece Set for Hot Sleepers,281.97,3,265.52,5.1,199.47,0.71,470.8,122
+2026-11-02,US,B0H6JXLFX6,CL-COOLING-SHEET-QUEEN-MIDNIGHT-BLACK,COOLINENS Cooling Sheets Queen Size | 4 Piece Set for Hot Sleepers,175.98,2,0.0,9.38,0.0,3.74,13.12,19
+2026-11-02,US,B0H6JY5YZ5,CL-COOLING-SHEET-TWIN-LIGHT-BLUE,COOLINENS Cooling Sheets Twin Size | 3 Piece Set for Hot Sleepers,0.0,0,0.0,0.0,0.0,4.14,4.14,2
+2026-11-02,US,B0H6JYX655,CL-COOLING-SHEET-KING-LIGHT-BLUE,COOLINENS Cooling Sheets King Size | 4 Piece Set for Hot Sleepers,187.98,2,0.0,0.0,0.0,0.39,0.39,20
+2026-11-02,US,B0H6JZ1QQH,CL-COOLING-SHEET-FULL-WHITE,COOLINENS Cooling Sheets Full Size | 4 Piece Set for Hot Sleepers,0.0,0,0.0,0.0,0.0,0.11,0.11,4
+2026-11-02,US,B0H6JZ632R,CL-COOLING-SHEET-TWIN-CREAM,COOLINENS Cooling Sheets Twin Size | 3 Piece Set for Hot Sleepers,0.0,0,0.0,0.0,0.0,0.26,0.26,1
+2026-11-02,US,B0H6JZG4W5,CL-COOLING-SHEET-CAL-KING-MIDNIGHT-BLACK,COOLINENS Cooling Sheets California King | 4 Piece Set for Hot Sleepers,95.99,1,0.0,0.0,0.0,0.0,0.0,3
+2026-11-02,US,B0H6JZT4XF,CL-COOLING-SHEET-KING-REGAL-PURPLE,COOLINENS Cooling Sheets King Size | 4 Piece Set for Hot Sleepers,93.99,1,0.0,0.0,0.0,0.44,0.44,15
+2026-11-02,US,B0H6K1C7N1,CL-COOLING-SHEET-FULL-GRAPHITE,COOLINENS Cooling Sheets Full Size | 4 Piece Set for Hot Sleepers,74.99,1,35.26,0.0,22.5,0.9,58.66,21
+2026-11-02,US,B0H6K1MKQW,CL-COOLING-SHEET-QUEEN-GRAPHITE,COOLINENS Cooling Sheets Queen Size | 4 Piece Set for Hot Sleepers,0.0,0,349.83,0.0,137.04,1.68,488.55,132
+2026-11-02,US,B0H6K1TJWV,CL-COOLING-SHEET-TWIN-GRAPHITE,COOLINENS Cooling Sheets Twin Size | 3 Piece Set for Hot Sleepers,69.99,1,16.79,0.0,13.99,0.0,30.78,15
+2026-11-02,US,B0H6K1XRBF,CL-COOLING-SHEET-QUEEN-CREAM,COOLINENS Cooling Sheets Queen Size | 4 Piece Set for Hot Sleepers,87.99,1,0.0,0.0,0.0,0.0,0.0,19
+2026-11-02,US,B0H6K2GPYY,CL-COOLING-SHEET-TWIN-COOL-GREY,COOLINENS Cooling Sheets Twin Size | 3 Piece Set for Hot Sleepers,69.99,1,0.0,0.0,0.0,0.21,0.21,5
+2026-11-02,US,B0H6K2MXND,CL-COOLING-SHEET-QUEEN-LIGHT-PINK,COOLINENS Cooling Sheets Queen Size | 4 Piece Set for Hot Sleepers,0.0,0,0.0,0.0,0.0,0.48,0.48,16
+2026-11-02,US,B0H6K2W7HC,CL-COOLING-SHEET-FULL-LIGHT-GREY,COOLINENS Cooling Sheets Full Size | 4 Piece Set for Hot Sleepers,0.0,0,0.0,0.0,0.0,1.96,1.96,2
+2026-11-02,US,B0H6K2ZKTZ,CL-COOLING-SHEET-FULL-SAGE-GREEN,COOLINENS Cooling Sheets Full Size | 4 Piece Set for Hot Sleepers,0.0,0,0.0,0.0,0.0,0.04,0.04,3
+2026-11-02,US,B0H6K3X9SH,CL-COOLING-SHEET-KING-LIGHT-GREY,COOLINENS Cooling Sheets King Size | 4 Piece Set for Hot Sleepers,93.99,1,0.0,0.0,0.0,0.0,0.0,9
+2026-11-02,US,B0H6K4KPGJ,CL-COOLING-SHEET-FULL-COOL-GREY,COOLINENS Cooling Sheets Full Size | 4 Piece Set for Hot Sleepers,0.0,0,0.0,0.0,0.0,0.23,0.23,9
+2026-11-02,US,B0H6K55LHF,CL-COOLING-SHEET-QUEEN-LIGHT-GREY,COOLINENS Cooling Sheets Queen Size | 4 Piece Set for Hot Sleepers,87.99,1,0.0,0.0,0.0,0.0,0.0,9
+2026-11-02,US,B0H6K5DRLZ,CL-COOLING-SHEET-CAL-KING-LIGHT-GREY,COOLINENS Cooling Sheets California King | 4 Piece Set for Hot Sleepers,95.99,1,0.0,0.0,0.0,0.0,0.0,1
+2026-11-02,US,B0H6K5JM82,CL-COOLING-SHEET-KING-MIDNIGHT-BLACK,COOLINENS Cooling Sheets King Size | 4 Piece Set for Hot Sleepers,187.98,2,0.0,0.0,0.0,0.0,0.0,16
+2026-11-02,US,B0H6K5MXPD,CL-COOLING-SHEET-QUEEN-WHITE,COOLINENS Cooling Sheets Queen Size | 4 Piece Set for Hot Sleepers,175.98,2,0.0,9.38,17.83,7.32,34.53,23
+2026-11-02,US,B0H6K6KLFY,CL-COOLING-SHEET-CAL-KING-NAVY-BLUE,COOLINENS Cooling Sheets California King | 4 Piece Set for Hot Sleepers,95.99,1,0.0,0.0,0.0,0.0,0.0,3
+2026-11-02,US,B0H6K77BRL,CL-COOLING-SHEET-KING-COOL-GREY,COOLINENS Cooling Sheets King Size | 4 Piece Set for Hot Sleepers,93.99,1,0.0,1.7,0.0,0.0,1.7,22
+2026-11-02,US,B0H6K79KGF,CL-COOLING-SHEET-KING-SAGE-GREEN,COOLINENS Cooling Sheets King Size | 4 Piece Set for Hot Sleepers,93.99,1,0.0,0.0,0.0,0.0,0.0,17
+2026-11-02,US,B0H6K7BNHG,CL-COOLING-SHEET-KING-WHITE,COOLINENS Cooling Sheets King Size | 4 Piece Set for Hot Sleepers,93.99,1,0.0,0.0,0.0,1.03,1.03,17
+2026-11-02,US,B0H6K7DXNY,CL-COOLING-SHEET-KING-LIGHT-PINK,COOLINENS Cooling Sheets King Size | 4 Piece Set for Hot Sleepers,281.97,3,0.0,0.0,0.0,0.0,0.0,10
+2026-11-02,US,B0H6K7PWRL,CL-COOLING-SHEET-QUEEN-NAVY-BLUE,COOLINENS Cooling Sheets Queen Size | 4 Piece Set for Hot Sleepers,87.99,1,0.0,9.57,0.0,0.12,9.69,18
+2026-11-02,US,B0H6K85JXL,CL-COOLING-SHEET-TWIN-WHITE,COOLINENS Cooling Sheets Twin Size | 3 Piece Set for Hot Sleepers,139.98,2,0.0,0.0,0.0,0.0,0.0,3
+2026-11-02,US,B0H6K8W1VH,CL-COOLING-SHEET-QUEEN-LIGHT-BLUE,COOLINENS Cooling Sheets Queen Size | 4 Piece Set for Hot Sleepers,0.0,0,0.0,0.0,0.0,0.71,0.71,23
+2026-11-02,US,B0H6KBLZ6X,CL-COOLING-SHEET-KING-BEIGE,COOLINENS Cooling Sheets King Size | 4 Piece Set for Hot Sleepers,375.96,4,0.0,0.0,0.0,0.0,0.0,24
+2026-11-02,US,B0HCZKG6Q8,SATIN-STRIPE-KING-GRAY-4PCS,DECOLURE Satin Sheets King Size | Softer Than Silk | Luxury 4 Pc Bed Set,33.95,1,0.0,0.0,0.0,0.0,0.0,4
