@@ -440,9 +440,9 @@
    "evidence": "First orders were Vine units on 27–30 Sep (386 units); full-price sales from about 6 Oct; ads from 16 Oct, so day 14 of ads is about day 32 of the listing. 'cooling sheets' held #3 every day 22–28 Oct and units rose from 19.6/day to 30.0/day. Search query report 18–24 Oct: searches down 16–22% week on week while our click share roughly doubled. The 29 Oct crawl showed a one-day drop on several head terms ('cooling sheets' #40), to be confirmed.",
    "type": "Proposed",
    "gate": "If the 7-day average rank on the head terms slips 5+ positions for a week while spend holds, treat the honeymoon as ending.",
-   "status": "Proposed 29 Oct (Day 14)",
+   "status": "Read 5 Nov: no sign of ending",
    "review_on": "2026-11-05",
-   "outcome": "29 Oct: data input for Joseph's honeymoon recommendation (due 30 Oct). First reads 5 and 12 Nov."
+   "outcome": "29 Oct: data input for Joseph's honeymoon recommendation (due 30 Oct). First reads 5 and 12 Nov. 5 Nov first weekly read: 7-day average organic rank on the four head terms ('cooling sheets', 'cooling sheets queen', 'cooling sheets king size', 'king size cooling sheets') flat at about 7.6 (22–28 Oct) vs 7.6 (29 Oct–4 Nov). Units with no ad order 61 → 85 week on week, total units flat (206 → 207). Gate not hit. Next read 12 Nov."
   },
   {
    "id": "D24",
@@ -1289,6 +1289,31 @@
    ],
    "followups": [
     "Nov 6: brand campaigns nearing 30 clicks (King Tails video 16, Cal King collection 15); Queen units; King stock."
+   ]
+  },
+  {
+   "date": "2026-11-05",
+   "kind": "Settled read to Joseph and Erik",
+   "headline": "Sent the 5 Nov settled read: no new campaign at 30 clicks yet, so nothing is cut (new brand campaigns run at 80–98% ACoS, new SP under break-even); Queen at 11.0 units/day clears the 10.4 line and stays on Graphite; spend since 31 Oct buys more units but not more profit; honeymoon read flat.",
+   "results": [
+    "Since 31 Oct: 159 units (31.8/day vs 24.3), $4,851 ads, $547 net (about $109/day).",
+    "Margin after ads before refunds on Sellerboard's current numbers: about $304/day (24–28 Oct), $302/day (31 Oct–2 Nov), $270/day with 3–4 Nov; TACoS 34% vs 33%. Flatter than the $295 → $364 in Joseph's 3 Nov note, likely because Sellerboard has since revised 31 Oct–2 Nov. We use Sellerboard as the source.",
+    "Honeymoon: head-term 7-day average rank flat (7.6 → 7.6); units with no ad order 61 → 85."
+   ],
+   "observations": [
+    "Queen: 8, 13, 7, 8, 19 units; three of five days under 10; −$366 over the five days on $2,355 of ads. The Graphite campaigns sold 15 orders and $1,260 on 4 Nov while Graphite itself sold 3.",
+    "Watch items: 'cooling sheets full size' #87 → #83 (week average #58 vs #31); Cal King Graphite 69 units, Cal King 12 units and +$268 over 31 Oct–4 Nov."
+   ],
+   "actions": [
+    "Asked Joseph for the spend-cap call (D22).",
+    "King Beige reorder (6 units); King Sage Green and Midnight Black next.",
+    "D25: judge each new brand campaign at 30 clicks (King Tails video 16, Cal King collection 15)."
+   ],
+   "reasoning": [
+    "The read follows the gates Joseph set on 3 Nov; no campaign qualifies for a cut yet."
+   ],
+   "followups": [
+    "Joseph's spend-cap decision; next honeymoon read 12 Nov."
    ]
   }
  ],
