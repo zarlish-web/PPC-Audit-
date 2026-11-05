@@ -162,8 +162,9 @@ FIND = [
   "No second record available for these three prices.", "Budget for no-deal products is set from today's spend and sales pace, not price, so the effect is nil.", "None.", "No action"),
  ("Low", "Summary / Rules", "Black Friday and Cyber Monday were described as 2.6x an average day and 31% of BFCM sales.", "Budget by day: Black Friday is 1.9x an average day in the US and 1.6x in Canada; the two days were 33% of US and 26% of Canadian BFCM 2025 sales.",
   "Overstated the peak-day lift.", "Wording corrected in the Summary and the rules tab.", "Fixed"),
- ("Info", "Deal fees", "Deal fees corrected to 1% of deal sales + $70 per deal (were 1.5% + $100).", "Comment on the report, Nov 2.",
-  "US budget +$114 (CooLinens Pillowcases and Sleephoria Cooling Pillowcase caps rise); Canada unchanged.", "Applied. Open question: Amazon charges the $70 per deal day (capped at $2,000 with the 1%); per day would wipe out break-even on the smallest deals.", "Open: confirm basis"),
+ ("Info", "Deal fees", "Deal fees set to BFCM event pricing: $100 per deal + 1.5% of deal sales (capped at $5,000). $70 a day + 1% is the normal-day fee.",
+  "Account fee lines: our 13 Prime Day 2026 Best Deals were billed $1,334 upfront and $5,619 on sales (Jul 8); normal-day deals are billed $70 a day. Amazon: holiday 2026 deal fees are the same as Prime Day.",
+  "Break-even 0.5 points lower on every deal product; only Quilt Set and Linen Curtains fail to cover the $100.", "Applied Nov 5.", "Fixed"),
  ("High", "Stock", "Many sizes of the heroes are out of stock right now, which also holds down today's pace.", "Ads console, Oct 19 - Nov 1: Bamboo 6 Pc 9 SKUs out, about 2 days of cover on the tightest seller; Satin 4 Pc 17 out, about 1 day; Sleep Sanctuary Satin 4 Pc 37 out; Sleephoria Cooling 4 Pc 23 out.",
   "Budget on an out-of-stock size is wasted, and BFCM demand can't be met.", "Stop ads on out-of-stock sizes (the agent's hourly rule) and check inbound timing with Joseph before Nov 19.", "Open: stock"),
  ("Info", "Currency", "Canadian COGS in the deal sheet are in US$; the plan's x1.40 conversion is correct.", "508 of 553 Canadian SKUs carry exactly the US cost.", "Confirms the Canadian break-even.", "None.", "Verified"),
@@ -464,7 +465,7 @@ for i, s_ in enumerate(SRCS):
 me = wb.create_sheet("Method")
 title(me, "How the rebuild stays independent", None)
 ME = ["New code (verification/verify.py) reads the original records directly. It does not import or call the plan's scripts (compute_plan.py, build_ppc_plan.py) or the tracker's builder.",
-      "Formulas were re-implemented from the plan's written method: break-even = (price - COGS - FBA - referral - 1% deal fee) / price (the $70-a-day deal fee is checked at deal level); cap = lower of 80% of break-even and the growth-band ceiling; base = TACoS now x deal-period factor; plan = min(cap, max(base, band floor x factor)); no-deal products hold today's spend at today's pace, cut to the cap.",
+      "Formulas were re-implemented from the plan's written method: break-even = (price - COGS - FBA - referral - 1.5% deal fee) / price (the $100 upfront deal fee is checked at deal level); cap = lower of 80% of break-even and the growth-band ceiling; base = TACoS now x deal-period factor; plan = min(cap, max(base, band floor x factor)); no-deal products hold today's spend at today's pace, cut to the cap.",
       "Account figures were pulled fresh on Nov 2 rather than read from files saved earlier; per-product spend was compared with a second, separate record (the ads console).",
       "The delivered workbook was recalculated and read cell by cell; every comparison carries its tolerance, and the All checks tab re-runs the tolerance test with live formulas.",
       "Business rules that are decisions rather than data (Satin 4 Pc Twin counted under Satin 6 Pc; the name list for re-parented 2025 listings; Liquidation judged on units) were applied as documented and are listed here so they can be challenged.",

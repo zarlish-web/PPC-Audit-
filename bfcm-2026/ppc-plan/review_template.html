@@ -295,12 +295,12 @@ function drawHero() {
   document.getElementById('tiles').replaceChildren(...tiles.map(([k, v, s]) => el('div', { class: 'tile' }, el('span', { class: 'k', text: k }), el('span', { class: 'v', text: v }), el('span', { class: 's', text: s }))));
   const us = DATA.totals.US, ca = DATA.totals.CA, hu = DATA.hist.US, hc = DATA.hist.CA;
   const cl = P.find((p) => p.mkt === 'US' && p.name === 'CooLinens Pillowcases'), cs = P.find((p) => p.mkt === 'US' && p.name === 'CooLinens Cooling Sheets');
-  const lose = P.filter((p) => p.deal === 'Best Deal' && p.be != null && p.be < 0).map((p) => `${p.mkt} ${p.name}`);
+  const lose = P.filter((p) => p.deal_fee && p.deal_margin != null && p.deal_margin < p.deal_fee).map((p) => `${p.mkt} ${p.name}`);
   const items = [
     ['Approve the budget: ', `base ${kmoney(Math.min(us.budget, hu.A), 'US')} US / ${kmoney(Math.min(ca.budget, hc.A), 'CA')} Canada (the plan), ceiling ${kmoney(Math.max(us.budget, hu.A), 'US')} / ${kmoney(Math.max(ca.budget, hc.A), 'CA')} (raising today's spend the way we did in BFCM 2025). Spend above the base is released only while each product stays under its TACoS cap on actual sales.`],
     ['CooLinens Pillowcases: ', `Launch product (band ${pct(cl.band[0], 0)}–${pct(cl.band[1], 0)}) capped at ${pct(cl.cap)} because the $${d3.format('.2f')(cl.asp)} deal leaves only ${pct(cl.be)} break-even. It runs at ${pct(cl.tacos_now)} today.`],
     ['CooLinens Cooling Sheets: ', `no deal; launched Oct 15 and still ramping. The plan holds today's ${money(cs.now_day, 'US')} a day (${pct(cs.tacos_now)} TACoS${cs.band[1] != null && cs.tacos_now <= cs.band[1] ? ', inside its Launch band' : ''}).`],
-    ...(lose.length ? [['Small deals: ', `deal fees are $70 a day plus 1% of sales, so a 12-day Best Deal costs $840. On ${lose.join(', ')} the expected deal sales don't cover that: the deal loses money before any ads. Worth reconsidering before Nov 13.`]] : []),
+    ...(lose.length ? [['Small deals: ', `BFCM deal fees are $100 per deal plus 1.5% of deal sales. On ${lose.length > 1 ? lose.slice(0, -1).join(', ') + ' and ' + lose[lose.length - 1] : lose[0]} the expected margin doesn't cover even the $100: the deal loses money before any ads. Worth dropping or moving into a Prime Exclusive Discount.`]] : []),
     ['Stock (' + DATA.stock_asof + '): ', DATA.stock_risk[m] + ' Confirm inbound timing before Nov 19.'],
   ];
   document.getElementById('decisions').replaceChildren(...items.map(([a, b]) => el('li', {}, el('b', { text: a }), b)));

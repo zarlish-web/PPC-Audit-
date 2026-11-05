@@ -8,8 +8,9 @@ INP = json.load(open(os.path.join(HERE, "inputs_2026-11-02.json")))
 _YO = json.load(open(os.path.join(HERE, "..", "verification", "yoy_results.json")))
 YO14 = {(r["market"], r["pid"]): r for mk in _YO["markets"] for r in _YO["markets"][mk]["rows"]}     # Oct 19 - Nov 1, 2025 vs 2026
 YOBF = {(r["market"], r["pid"]): r for r in _YO["bfcm"]}                                           # BFCM 2025 per product
-DEAL_PERF_FEE = 0.01           # Amazon deal fee, share of deal sales (corrected Nov 2: 1%)
-DEAL_FLAT_FEE = 70.0           # flat fee per deal DAY (confirmed Nov 3: $70 x each day the deal runs; Best Deal 12 days, Lightning Deal 1)
+DEAL_PERF_FEE = 0.015          # BFCM event deal fee, share of deal sales (1.5%, capped at $5,000 per deal; no plan deal comes near the cap)
+DEAL_FLAT_FEE = 100.0          # BFCM event upfront fee per deal, whatever its length (Prime Day 2026: 13 US Best Deals billed $1,334 upfront + 1.7% of deal sales;
+                               # Amazon: holiday 2026 deals cost the same as Prime Day). $70 a day + 1% is the normal-day fee, not the event fee.
 CEIL_SHARE = 0.80              # TACoS ceiling = 80% of the break-even TACoS (keeps 20% of the pre-ad margin)
 CA_COGS_FX = 1.40              # deal sheet CA COGS are the US$ figures next to C$ prices; converted to C$ (Nov 2025 rate 1.40)
 sheet = {}
@@ -66,10 +67,10 @@ for p in D["products"]:
     elif deal and ld: asp = (deal + 11 * cur) / 12
     else: asp = cur
     sales = plan_units * asp
-    # Ad break-even = what an extra unit earns at the deal price (after COGS, FBA, referral and the 1% deal fee).
-    # The $70-a-day deal fee is a fixed cost of running the deal: it is paid whatever is spent on ads, so it does not
+    # Ad break-even = what an extra unit earns at the deal price (after COGS, FBA, referral and the 1.5% deal fee).
+    # The $100 upfront deal fee is a fixed cost of running the deal: it is paid whatever is spent on ads, so it does not
     # change what an extra ad-driven sale earns. It is checked separately at deal level (deal_fee vs deal_margin).
-    deal_fee = DEAL_FLAT_FEE * (1 if ld else 12) if deal else 0.0
+    deal_fee = DEAL_FLAT_FEE if deal else 0.0
     if deal and not ld: be = m_deal / deal
     elif deal and ld: be = ((m_deal + 11 * m_cur) / 12) / asp
 

@@ -97,8 +97,9 @@ cur_ = {"US": "$", "CA": "C$"}
 losers = [(m, r["Product"], P[(m, NAME2SHORT[r["Product"]])]) for m in ("US", "CA") for r in BP[m][1]]
 losers = [(m, n, pr) for m, n, pr in losers if pr.get("deal_fee") and (pr.get("deal_margin") or 0) < pr["deal_fee"]]
 if losers:
-    calls.append("Deal fees are $70 for every day a deal runs plus 1% of deal sales: $840 for a 12-day Best Deal, $70 for a Lightning Deal. The $70 a day is a fixed cost "
-                 "of running the deal, so it is not counted in the ad break-even (an extra ad-driven sale earns the same with or without it). At deal level, the expected margin "
+    calls.append("BFCM deal fees are $100 per deal plus 1.5% of deal sales (capped at $5,000 per deal), the same as Prime Day: Amazon billed our 13 Prime Day Best Deals "
+                 "about $100 each plus 1.7% of deal sales. The 1.5% is inside every product's break-even; the $100 is a fixed cost of running the deal, so it is checked at deal level. "
+                 "The expected margin "
                  "before ads does not cover the fee on " + ", ".join(f"{m} {n} ({cur_[m]}{pr['deal_margin']:,.0f} margin vs {cur_[m]}{pr['deal_fee']:,.0f} fee)".replace(cur_[m] + "-", "-" + cur_[m]) for m, n, pr in losers)
                  + ". Worth reconsidering these deals before Amazon's Nov 13 deadline; if they run, ads are judged on unit margin like every other product.")
 if noads:

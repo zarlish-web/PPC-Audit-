@@ -299,7 +299,7 @@ for m in ("US", "CA"):
             return sum(a * b for a, b in ws) / sum(a for a, _ in ws) if ws else None
         cogs = lambda s: s["cogs"] * (1.40 if m == "CA" else 1)
         dprice = wavg(dealrows, lambda x, s: s["deal"]); cprice = wavg(allrows, lambda x, s: s["cur"])
-        mdeal = wavg(dealrows, lambda x, s: s["deal"] - cogs(s) - s["fba"] - (s["ref"] or 0.15) * s["deal"] - 0.01 * s["deal"]) if dealrows else None
+        mdeal = wavg(dealrows, lambda x, s: s["deal"] - cogs(s) - s["fba"] - (s["ref"] or 0.15) * s["deal"] - 0.015 * s["deal"]) if dealrows else None
         mcur = wavg(allrows, lambda x, s: s["cur"] - cogs(s) - s["fba"] - (s["ref"] or 0.15) * s["cur"])
         dtype = dealrows[0][1]["type"] if dealrows else None
         ld = dtype == "Lightning Deal"
@@ -311,7 +311,7 @@ for m in ("US", "CA"):
         if asp is None:   # no row in the deal sheet: the tracker's list price is the only record
             asp = g_plan_asp = cell(bp, r, "I"); price_note = "No deal-sheet row: price taken from the tracker's listing price."
         sales = units * round(asp, 2)
-        # ad break-even excludes the fixed $70-a-day deal fee (paid whatever is spent on ads)
+        # ad break-even includes the 1.5% deal fee and excludes the fixed $100 upfront deal fee (paid whatever is spent on ads)
         if dprice and not ld:
             be = mdeal / dprice
         elif dprice and ld:

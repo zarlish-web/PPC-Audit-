@@ -115,7 +115,7 @@ for (m, name), b in rows_bp.items():
     prods.append({
         "id": f"{pid}-{m}", "mkt": m, "pid": pid, "name": name, "family": FAMILY(name), "role": t.get("role"), "img": t.get("img") if t.get("img") in IMG else None,
         "stage": b["stage"], "band": [b["band_lo"], b["band_hi"]], "deal": pl.get("deal_type"), "deal_dates": pl.get("deal_dates"), "ld": bool(pl.get("ld")),
-        "deal_price": pl.get("deal_price"), "cur_price": pl.get("cur_price"), "asp": b["asp"],
+        "deal_price": pl.get("deal_price"), "deal_fee": pl.get("deal_fee"), "deal_margin": pl.get("deal_margin"), "cur_price": pl.get("cur_price"), "asp": b["asp"],
         "units": [b["units_lo"], b["units_hi"], b["units_mid"]], "lift": pl.get("lift"), "lift_src": pl.get("lift_src"), "demand_src": pl.get("demand_src"),
         "u28_day": (v["u28"] or 0) / 28, "vel": v["vel"], "pace_now": v["pace14_units_per_day"], "sales": b["sales"],
         "be": b["be"], "cap": b["cap"], "tacos_now": b["tacos_now"], "factor": b["factor"], "floor": b["floor"], "plan_tacos": b["plan_tacos"],
@@ -169,7 +169,7 @@ for x in VR["checks"]:
         flags.append({"mkt": x["mkt"], "product": x.get("product") or "Whole market", "item": x["item"], "why": _flag_why.get(x["item"], x.get("note") or "")})
 CONF = [["The maths (budgets, caps, totals, by day)", 0.99, "Rebuilt independently from the raw records: every number matches."],
         ["Today's starting point (sales pace, TACoS now, stock)", 0.90, "Fresh account data; daily totals match the account exactly. The last two days can still shift slightly."],
-        ["Break-even and TACoS caps", 0.80, "Deal prices are the Oct 27 export; Amazon can change them until Nov 13. Deal-fee basis (per deal or per deal day) to confirm."],
+        ["Break-even and TACoS caps", 0.80, "Deal prices are the Oct 27 export; Amazon can change them until Nov 13. Deal fees checked against what Amazon billed for Prime Day 2026."],
         ["Expected BFCM sales (size of the jump)", 0.62, "Each product's 2025 BFCM lift on today's pace. Traffic is down 34% and Bamboo starts from a higher price, so the jump can differ."],
         ["TACoS falling to the plan in BFCM", 0.60, "Fell 14.6% -> 8.2% in 2025; we start higher this year (about 21%)."],
         ["Overall: the budget to go in with", 0.70, "US spend lands between $53K and $73K: about 80%. Within 10% of the plan: about 60%. The agent paces to each cap on actual sales, so spend corrects itself."]]
