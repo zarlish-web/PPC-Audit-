@@ -14,3 +14,5 @@ Dashboard version (needs Claude sign-in): https://claude.ai/artifact/1MwntnQjbBB
 Each daily update adds a dated entry to the log and a new `data/<date>/` folder; decisions keep their id and get their status and outcome updated.
 
 Scope: every CooLinens cooling-sheet SKU (search CL-COOLING-SHEET). Sellerboard's parent view B0HN51LPQ1 leaves out 4 SKUs it lists outside the parent (Queen Light Grey, Full Beige, Queen Midnight Black, Twin Cream), so the tracker can show more units and ad spend than that view; the day report notes the reconciliation. Days are the same as in Sellerboard.
+
+Rebuilding the scratchpad after a container restart: copy `source/*.csv` to `v8/` (`inv_now.csv` to `v5/`, `sb_campaigns.csv` to `v6/`), the latest `data/<date>/` to `v8/dash/data/` (its `tracker_text.json` to `v8/`), `day/` to `v8/day/`, `source/plan_labels.json` to `v4/data.json`, and the scripts; `append_cc.py` adds command-center days to the daily CSVs; `shot.cjs` checks the page at desktop and phone width.
