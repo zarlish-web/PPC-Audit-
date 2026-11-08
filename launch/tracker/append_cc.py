@@ -20,6 +20,7 @@ st = pd.concat([st, pd.DataFrame(add)]).sort_values('date'); st.to_csv(f'{V}/dai
 rk = pd.read_csv(f'{V}/daily_ranks.csv'); sv = rk.groupby('keyword').searchVolume_mkl.first().to_dict()
 rows = []
 for r in json.load(open(f'{V}/raw/ranks_kw.json'))['rows']:
+    r['keyword'] = r.get('keyword') or r['entityKey'].split('|keyword:')[1].split('|')[0]
     for cell in r['cells']:
         rows.append(dict(keyword=r['keyword'], date=cell['date'], organic_rank=cell.get('rank'), rank_state=cell.get('state'), sponsored_rank=None, searchVolume_mkl=sv.get(r['keyword'])))
 new = pd.DataFrame(rows); keep = rk[~rk.set_index(['keyword', 'date']).index.isin(new.set_index(['keyword', 'date']).index)]
