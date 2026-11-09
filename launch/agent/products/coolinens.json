@@ -1,0 +1,55 @@
+{
+  "product": "CooLinens Cooling Sheets 4PC",
+  "slug": "coolinens",
+  "marketplace": "amazon.com",
+  "owner": "Joseph",
+  "launch_date": "2026-10-16",
+  "pre_ads_baseline_units_per_day": 9.7,
+  "sellerboard": {
+    "account_id": "c81e7dde-c826-11e9-ab35-e4434b2f1e00",
+    "sku_prefix": "CL-COOLING-SHEET",
+    "parent_asin": "B0HN51LPQ1",
+    "sizes": {
+      "Queen": "CL-COOLING-SHEET-QUEEN",
+      "King": "CL-COOLING-SHEET-KING",
+      "Full": "CL-COOLING-SHEET-FULL",
+      "Twin": "CL-COOLING-SHEET-TWIN",
+      "Cal King": "remainder (All minus the four sizes above)"
+    },
+    "campaign_prefix": "CLCS4",
+    "brand_campaign_search": "CLCS4-SB",
+    "monthly_storage_fee_note": "FBA storage is booked once a month (7 Nov 2026: $2,576.23). Report profit with and without it on that day."
+  },
+  "command_center": {
+    "product_id": 69,
+    "decisions_scope": "69",
+    "rank_keywords_file": "launch/tracker/day/2026-10-27/ranks.csv"
+  },
+  "economics": {
+    "break_even_acos": 0.391,
+    "stop_loss_acos": 0.782,
+    "stop_loss_min_clicks": 30,
+    "stop_loss_min_days": 3,
+    "pause_rule": "More than 10 clicks and 0 orders over 2-3 days",
+    "early_data_rule": "No pause, negative or budget cut on a campaign before 14 full days or on fewer than 3 consistent daily reads; settled data leaves out the last 2 days"
+  },
+  "head_terms": ["cooling sheets", "cooling bed sheets", "cooling sheet set", "cooling sheets queen", "cooling sheets king size", "cooling sheets full"],
+  "rank_guards": [
+    {"keyword": "cooling sheets king size", "rule": "7-day median worse than #10 -> step the King taper back up one rung", "decision": "D26/D27"}
+  ],
+  "stock": {
+    "reorder_alert_days": 30,
+    "out_of_stock_units": 5,
+    "replenishment": [
+      {"boat": "Fastest", "sellable": "2026-12-18", "covers": "King"},
+      {"boat": "General", "sellable": "2027-01-10", "covers": "Other sizes"}
+    ]
+  },
+  "outputs": {
+    "shareable_page": "https://claude.ai/artifact/BofUW9KoD7GxXXzuudiR4Z",
+    "dashboard": "https://claude.ai/artifact/1MwntnQjbBBpMyt8cRSe6g",
+    "repo_folder": "launch/tracker",
+    "slack_channel": "TO CONFIRM with Joseph",
+    "slack_mode": "draft"
+  }
+}
