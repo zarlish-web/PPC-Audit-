@@ -16,15 +16,16 @@ bed cooling system,2026-10-26,,unranked,,2545
 bed cooling system,2026-10-27,,unranked,,2545
 bed cooling system,2026-10-28,,unranked,,2545
 bed cooling system,2026-10-29,,unranked,,2545
-bed cooling system,2026-10-30,,unranked,,2545
-bed cooling system,2026-10-31,,unranked,,2545
-bed cooling system,2026-11-01,,unranked,,2545
-bed cooling system,2026-11-02,,unranked,,2545
-bed cooling system,2026-11-03,,unranked,,2545
-bed cooling system,2026-11-04,,unranked,,2545
-bed cooling system,2026-11-05,,unranked,,2545
-bed cooling system,2026-11-06,,unranked,,2545
-bed cooling system,2026-11-07,,unranked,,2545
+bed cooling system,2026-10-30,,not-tracked,,2545
+bed cooling system,2026-10-31,,not-tracked,,2545
+bed cooling system,2026-11-01,,not-tracked,,2545
+bed cooling system,2026-11-02,,not-tracked,,2545
+bed cooling system,2026-11-03,,not-tracked,,2545
+bed cooling system,2026-11-04,,not-tracked,,2545
+bed cooling system,2026-11-05,,not-tracked,,2545
+bed cooling system,2026-11-06,,not-tracked,,2545
+bed cooling system,2026-11-07,,not-tracked,,2545
+bed cooling system,2026-11-08,,not-tracked,,2545
 best cooling sheets,2026-10-13,,unranked,,1023
 best cooling sheets,2026-10-14,,unranked,,1023
 best cooling sheets,2026-10-15,,unranked,,1023
@@ -51,6 +52,7 @@ best cooling sheets,2026-11-04,63.0,ranked,,1023
 best cooling sheets,2026-11-05,63.0,ranked,,1023
 best cooling sheets,2026-11-06,52.0,ranked,,1023
 best cooling sheets,2026-11-07,36.0,ranked,,1023
+best cooling sheets,2026-11-08,36.0,ranked,,1023
 cal king cooling sheets,2026-10-13,,unranked,,672
 cal king cooling sheets,2026-10-14,,unranked,,672
 cal king cooling sheets,2026-10-15,,unranked,,672
@@ -77,6 +79,7 @@ cal king cooling sheets,2026-11-04,,unranked,,672
 cal king cooling sheets,2026-11-05,,unranked,,672
 cal king cooling sheets,2026-11-06,40.0,ranked,,672
 cal king cooling sheets,2026-11-07,43.0,ranked,,672
+cal king cooling sheets,2026-11-08,42.0,ranked,,672
 cold bed sheets,2026-10-13,120.0,ranked,,924
 cold bed sheets,2026-10-14,,unranked,,924
 cold bed sheets,2026-10-15,,unranked,,924
@@ -103,6 +106,7 @@ cold bed sheets,2026-11-04,25.0,ranked,,924
 cold bed sheets,2026-11-05,22.0,ranked,,924
 cold bed sheets,2026-11-06,22.0,ranked,,924
 cold bed sheets,2026-11-07,22.0,ranked,,924
+cold bed sheets,2026-11-08,21.0,ranked,,924
 cold sheets,2026-10-13,,unranked,,924
 cold sheets,2026-10-14,105.0,ranked,,924
 cold sheets,2026-10-15,,unranked,,924
@@ -129,6 +133,7 @@ cold sheets,2026-11-04,38.0,ranked,,924
 cold sheets,2026-11-05,41.0,ranked,,924
 cold sheets,2026-11-06,35.0,ranked,,924
 cold sheets,2026-11-07,24.0,ranked,,924
+cold sheets,2026-11-08,20.0,ranked,,924
 cold sheets for hot sleepers,2026-10-13,,unranked,,822
 cold sheets for hot sleepers,2026-10-14,98.0,ranked,,822
 cold sheets for hot sleepers,2026-10-15,88.0,ranked,,822
@@ -155,6 +160,7 @@ cold sheets for hot sleepers,2026-11-04,60.0,ranked,,822
 cold sheets for hot sleepers,2026-11-05,9.0,ranked,,822
 cold sheets for hot sleepers,2026-11-06,9.0,ranked,,822
 cold sheets for hot sleepers,2026-11-07,23.0,ranked,,822
+cold sheets for hot sleepers,2026-11-08,22.0,ranked,,822
 cool sheets for hot sleepers,2026-10-13,7.0,ranked,,1961
 cool sheets for hot sleepers,2026-10-14,4.0,ranked,,1961
 cool sheets for hot sleepers,2026-10-15,7.0,ranked,,1961
@@ -181,6 +187,7 @@ cool sheets for hot sleepers,2026-11-04,40.0,ranked,,1961
 cool sheets for hot sleepers,2026-11-05,36.0,ranked,,1961
 cool sheets for hot sleepers,2026-11-06,31.0,ranked,,1961
 cool sheets for hot sleepers,2026-11-07,27.0,ranked,,1961
+cool sheets for hot sleepers,2026-11-08,30.0,ranked,,1961
 cooling bed sheet,2026-10-13,105.0,ranked,,672
 cooling bed sheet,2026-10-14,108.0,ranked,,672
 cooling bed sheet,2026-10-15,,unranked,,672
@@ -207,6 +214,7 @@ cooling bed sheet,2026-11-04,,not-tracked,,672
 cooling bed sheet,2026-11-05,,not-tracked,,672
 cooling bed sheet,2026-11-06,,not-tracked,,672
 cooling bed sheet,2026-11-07,,not-tracked,,672
+cooling bed sheet,2026-11-08,,not-tracked,,672
 cooling bed sheets,2026-10-13,5.0,ranked,,12715
 cooling bed sheets,2026-10-14,25.0,ranked,,12715
 cooling bed sheets,2026-10-15,43.0,ranked,,12715
@@ -233,6 +241,7 @@ cooling bed sheets,2026-11-04,3.0,ranked,,12715
 cooling bed sheets,2026-11-05,3.0,ranked,,12715
 cooling bed sheets,2026-11-06,18.0,ranked,,12715
 cooling bed sheets,2026-11-07,20.0,ranked,,12715
+cooling bed sheets,2026-11-08,17.0,ranked,,12715
 cooling bed sheets full,2026-10-13,,unranked,,924
 cooling bed sheets full,2026-10-14,,unranked,,924
 cooling bed sheets full,2026-10-15,,unranked,,924
@@ -259,6 +268,7 @@ cooling bed sheets full,2026-11-04,3.0,ranked,,924
 cooling bed sheets full,2026-11-05,3.0,ranked,,924
 cooling bed sheets full,2026-11-06,4.0,ranked,,924
 cooling bed sheets full,2026-11-07,3.0,ranked,,924
+cooling bed sheets full,2026-11-08,43.0,ranked,,924
 cooling bed sheets king,2026-10-13,,unranked,,1961
 cooling bed sheets king,2026-10-14,,unranked,,1961
 cooling bed sheets king,2026-10-15,,unranked,,1961
@@ -285,6 +295,7 @@ cooling bed sheets king,2026-11-04,3.0,ranked,,1961
 cooling bed sheets king,2026-11-05,11.0,ranked,,1961
 cooling bed sheets king,2026-11-06,7.0,ranked,,1961
 cooling bed sheets king,2026-11-07,17.0,ranked,,1961
+cooling bed sheets king,2026-11-08,41.0,ranked,,1961
 cooling bed sheets queen,2026-10-13,46.0,ranked,,2976
 cooling bed sheets queen,2026-10-14,5.0,ranked,,2976
 cooling bed sheets queen,2026-10-15,38.0,ranked,,2976
@@ -311,6 +322,7 @@ cooling bed sheets queen,2026-11-04,3.0,ranked,,2976
 cooling bed sheets queen,2026-11-05,3.0,ranked,,2976
 cooling bed sheets queen,2026-11-06,3.0,ranked,,2976
 cooling bed sheets queen,2026-11-07,18.0,ranked,,2976
+cooling bed sheets queen,2026-11-08,3.0,ranked,,2976
 cooling bed sheets twin,2026-10-13,,unranked,,501
 cooling bed sheets twin,2026-10-14,,unranked,,501
 cooling bed sheets twin,2026-10-15,,unranked,,501
@@ -337,6 +349,7 @@ cooling bed sheets twin,2026-11-04,,not-tracked,,501
 cooling bed sheets twin,2026-11-05,,not-tracked,,501
 cooling bed sheets twin,2026-11-06,,not-tracked,,501
 cooling bed sheets twin,2026-11-07,,not-tracked,,501
+cooling bed sheets twin,2026-11-08,,not-tracked,,501
 cooling full size sheets,2026-10-13,,unranked,,822
 cooling full size sheets,2026-10-14,,unranked,,822
 cooling full size sheets,2026-10-15,,unranked,,822
@@ -354,15 +367,16 @@ cooling full size sheets,2026-10-26,78.0,ranked,,822
 cooling full size sheets,2026-10-27,81.0,ranked,,822
 cooling full size sheets,2026-10-28,,unranked,,822
 cooling full size sheets,2026-10-29,87.0,ranked,,822
-cooling full size sheets,2026-10-30,79.0,ranked,,822
-cooling full size sheets,2026-10-31,37.0,ranked,,822
-cooling full size sheets,2026-11-01,79.0,ranked,,822
-cooling full size sheets,2026-11-02,87.0,ranked,,822
-cooling full size sheets,2026-11-03,89.0,ranked,,822
-cooling full size sheets,2026-11-04,82.0,ranked,,822
-cooling full size sheets,2026-11-05,88.0,ranked,,822
-cooling full size sheets,2026-11-06,81.0,ranked,,822
-cooling full size sheets,2026-11-07,20.0,ranked,,822
+cooling full size sheets,2026-10-30,,not-tracked,,822
+cooling full size sheets,2026-10-31,,not-tracked,,822
+cooling full size sheets,2026-11-01,,not-tracked,,822
+cooling full size sheets,2026-11-02,,not-tracked,,822
+cooling full size sheets,2026-11-03,,not-tracked,,822
+cooling full size sheets,2026-11-04,,not-tracked,,822
+cooling full size sheets,2026-11-05,,not-tracked,,822
+cooling full size sheets,2026-11-06,,not-tracked,,822
+cooling full size sheets,2026-11-07,,not-tracked,,822
+cooling full size sheets,2026-11-08,,not-tracked,,822
 cooling king bed sheets,2026-10-13,,unranked,,624
 cooling king bed sheets,2026-10-14,,unranked,,624
 cooling king bed sheets,2026-10-15,,unranked,,624
@@ -389,6 +403,7 @@ cooling king bed sheets,2026-11-04,6.0,ranked,,624
 cooling king bed sheets,2026-11-05,3.0,ranked,,624
 cooling king bed sheets,2026-11-06,3.0,ranked,,624
 cooling king bed sheets,2026-11-07,17.0,ranked,,624
+cooling king bed sheets,2026-11-08,17.0,ranked,,624
 cooling king sheet set,2026-10-13,,unranked,,440
 cooling king sheet set,2026-10-14,,unranked,,440
 cooling king sheet set,2026-10-15,,unranked,,440
@@ -415,6 +430,7 @@ cooling king sheet set,2026-11-04,58.0,ranked,,440
 cooling king sheet set,2026-11-05,21.0,ranked,,440
 cooling king sheet set,2026-11-06,3.0,ranked,,440
 cooling king sheet set,2026-11-07,28.0,ranked,,440
+cooling king sheet set,2026-11-08,30.0,ranked,,440
 cooling king sheets,2026-10-13,,unranked,,2637
 cooling king sheets,2026-10-14,,unranked,,2637
 cooling king sheets,2026-10-15,,unranked,,2637
@@ -441,6 +457,7 @@ cooling king sheets,2026-11-04,3.0,ranked,,2637
 cooling king sheets,2026-11-05,6.0,ranked,,2637
 cooling king sheets,2026-11-06,3.0,ranked,,2637
 cooling king sheets,2026-11-07,8.0,ranked,,2637
+cooling king sheets,2026-11-08,3.0,ranked,,2637
 cooling king size sheets,2026-10-13,,unranked,,1023
 cooling king size sheets,2026-10-14,,unranked,,1023
 cooling king size sheets,2026-10-15,,unranked,,1023
@@ -467,6 +484,7 @@ cooling king size sheets,2026-11-04,3.0,ranked,,1023
 cooling king size sheets,2026-11-05,7.0,ranked,,1023
 cooling king size sheets,2026-11-06,3.0,ranked,,1023
 cooling king size sheets,2026-11-07,18.0,ranked,,1023
+cooling king size sheets,2026-11-08,16.0,ranked,,1023
 cooling queen sheets,2026-10-13,4.0,ranked,,2635
 cooling queen sheets,2026-10-14,3.0,ranked,,2635
 cooling queen sheets,2026-10-15,24.0,ranked,,2635
@@ -493,6 +511,7 @@ cooling queen sheets,2026-11-04,7.0,ranked,,2635
 cooling queen sheets,2026-11-05,3.0,ranked,,2635
 cooling queen sheets,2026-11-06,13.0,ranked,,2635
 cooling queen sheets,2026-11-07,28.0,ranked,,2635
+cooling queen sheets,2026-11-08,25.0,ranked,,2635
 cooling sheet set,2026-10-13,,unranked,,1669
 cooling sheet set,2026-10-14,,unranked,,1669
 cooling sheet set,2026-10-15,118.0,ranked,,1669
@@ -519,6 +538,7 @@ cooling sheet set,2026-11-04,7.0,ranked,,1669
 cooling sheet set,2026-11-05,3.0,ranked,,1669
 cooling sheet set,2026-11-06,3.0,ranked,,1669
 cooling sheet set,2026-11-07,31.0,ranked,,1669
+cooling sheet set,2026-11-08,27.0,ranked,,1669
 cooling sheet set king,2026-10-13,,unranked,,573
 cooling sheet set king,2026-10-14,,unranked,,573
 cooling sheet set king,2026-10-15,,unranked,,573
@@ -545,6 +565,7 @@ cooling sheet set king,2026-11-04,7.0,ranked,,573
 cooling sheet set king,2026-11-05,3.0,ranked,,573
 cooling sheet set king,2026-11-06,3.0,ranked,,573
 cooling sheet set king,2026-11-07,3.0,ranked,,573
+cooling sheet set king,2026-11-08,3.0,ranked,,573
 cooling sheet set queen,2026-10-13,7.0,ranked,,766
 cooling sheet set queen,2026-10-14,4.0,ranked,,766
 cooling sheet set queen,2026-10-15,100.0,ranked,,766
@@ -571,6 +592,7 @@ cooling sheet set queen,2026-11-04,3.0,ranked,,766
 cooling sheet set queen,2026-11-05,3.0,ranked,,766
 cooling sheet set queen,2026-11-06,7.0,ranked,,766
 cooling sheet set queen,2026-11-07,25.0,ranked,,766
+cooling sheet set queen,2026-11-08,24.0,ranked,,766
 cooling sheets,2026-10-13,,unranked,,77377
 cooling sheets,2026-10-14,89.0,ranked,,77377
 cooling sheets,2026-10-15,,unranked,,77377
@@ -597,6 +619,7 @@ cooling sheets,2026-11-04,3.0,ranked,,77377
 cooling sheets,2026-11-05,3.0,ranked,,77377
 cooling sheets,2026-11-06,33.0,ranked,,77377
 cooling sheets,2026-11-07,18.0,ranked,,77377
+cooling sheets,2026-11-08,13.0,ranked,,77377
 cooling sheets for hot sleepers,2026-10-13,123.0,ranked,,901
 cooling sheets for hot sleepers,2026-10-14,115.0,ranked,,901
 cooling sheets for hot sleepers,2026-10-15,101.0,ranked,,901
@@ -623,6 +646,7 @@ cooling sheets for hot sleepers,2026-11-04,89.0,ranked,,901
 cooling sheets for hot sleepers,2026-11-05,81.0,ranked,,901
 cooling sheets for hot sleepers,2026-11-06,36.0,ranked,,901
 cooling sheets for hot sleepers,2026-11-07,37.0,ranked,,901
+cooling sheets for hot sleepers,2026-11-08,43.0,ranked,,901
 cooling sheets full,2026-10-13,,unranked,,1216
 cooling sheets full,2026-10-14,,unranked,,1216
 cooling sheets full,2026-10-15,,unranked,,1216
@@ -649,6 +673,7 @@ cooling sheets full,2026-11-04,3.0,ranked,,1216
 cooling sheets full,2026-11-05,3.0,ranked,,1216
 cooling sheets full,2026-11-06,3.0,ranked,,1216
 cooling sheets full,2026-11-07,15.0,ranked,,1216
+cooling sheets full,2026-11-08,15.0,ranked,,1216
 cooling sheets full size,2026-10-13,,unranked,,6228
 cooling sheets full size,2026-10-14,,unranked,,6228
 cooling sheets full size,2026-10-15,,unranked,,6228
@@ -675,6 +700,7 @@ cooling sheets full size,2026-11-04,83.0,ranked,,6228
 cooling sheets full size,2026-11-05,80.0,ranked,,6228
 cooling sheets full size,2026-11-06,75.0,ranked,,6228
 cooling sheets full size,2026-11-07,31.0,ranked,,6228
+cooling sheets full size,2026-11-08,15.0,ranked,,6228
 cooling sheets king,2026-10-13,,unranked,,2630
 cooling sheets king,2026-10-14,,unranked,,2630
 cooling sheets king,2026-10-15,,unranked,,2630
@@ -701,6 +727,7 @@ cooling sheets king,2026-11-04,3.0,ranked,,2630
 cooling sheets king,2026-11-05,4.0,ranked,,2630
 cooling sheets king,2026-11-06,4.0,ranked,,2630
 cooling sheets king,2026-11-07,3.0,ranked,,2630
+cooling sheets king,2026-11-08,12.0,ranked,,2630
 cooling sheets king size,2026-10-13,,unranked,,19413
 cooling sheets king size,2026-10-14,,unranked,,19413
 cooling sheets king size,2026-10-15,,unranked,,19413
@@ -727,6 +754,7 @@ cooling sheets king size,2026-11-04,3.0,ranked,,19413
 cooling sheets king size,2026-11-05,3.0,ranked,,19413
 cooling sheets king size,2026-11-06,3.0,ranked,,19413
 cooling sheets king size,2026-11-07,10.0,ranked,,19413
+cooling sheets king size,2026-11-08,14.0,ranked,,19413
 cooling sheets queen,2026-10-13,118.0,ranked,,30225
 cooling sheets queen,2026-10-14,110.0,ranked,,30225
 cooling sheets queen,2026-10-15,76.0,ranked,,30225
@@ -753,6 +781,7 @@ cooling sheets queen,2026-11-04,3.0,ranked,,30225
 cooling sheets queen,2026-11-05,3.0,ranked,,30225
 cooling sheets queen,2026-11-06,3.0,ranked,,30225
 cooling sheets queen,2026-11-07,3.0,ranked,,30225
+cooling sheets queen,2026-11-08,3.0,ranked,,30225
 cooling sheets queen size,2026-10-13,7.0,ranked,,924
 cooling sheets queen size,2026-10-14,,unranked,,924
 cooling sheets queen size,2026-10-15,61.0,ranked,,924
@@ -779,6 +808,7 @@ cooling sheets queen size,2026-11-04,7.0,ranked,,924
 cooling sheets queen size,2026-11-05,17.0,ranked,,924
 cooling sheets queen size,2026-11-06,7.0,ranked,,924
 cooling sheets queen size,2026-11-07,3.0,ranked,,924
+cooling sheets queen size,2026-11-08,10.0,ranked,,924
 cooling sheets twin,2026-10-13,,unranked,,2976
 cooling sheets twin,2026-10-14,,unranked,,2976
 cooling sheets twin,2026-10-15,,unranked,,2976
@@ -805,6 +835,7 @@ cooling sheets twin,2026-11-04,,unranked,,2976
 cooling sheets twin,2026-11-05,,unranked,,2976
 cooling sheets twin,2026-11-06,,unranked,,2976
 cooling sheets twin,2026-11-07,,unranked,,2976
+cooling sheets twin,2026-11-08,97.0,ranked,,2976
 deep pocket cooling queen sheets,2026-10-13,3.0,ranked,,677
 deep pocket cooling queen sheets,2026-10-14,67.0,ranked,,677
 deep pocket cooling queen sheets,2026-10-15,39.0,ranked,,677
@@ -831,6 +862,7 @@ deep pocket cooling queen sheets,2026-11-04,27.0,ranked,,677
 deep pocket cooling queen sheets,2026-11-05,3.0,ranked,,677
 deep pocket cooling queen sheets,2026-11-06,25.0,ranked,,677
 deep pocket cooling queen sheets,2026-11-07,26.0,ranked,,677
+deep pocket cooling queen sheets,2026-11-08,28.0,ranked,,677
 full size cooling sheets,2026-10-13,,unranked,,1735
 full size cooling sheets,2026-10-14,,unranked,,1735
 full size cooling sheets,2026-10-15,,unranked,,1735
@@ -857,6 +889,7 @@ full size cooling sheets,2026-11-04,88.0,ranked,,1735
 full size cooling sheets,2026-11-05,86.0,ranked,,1735
 full size cooling sheets,2026-11-06,75.0,ranked,,1735
 full size cooling sheets,2026-11-07,20.0,ranked,,1735
+full size cooling sheets,2026-11-08,21.0,ranked,,1735
 king bed sheets cooling,2026-10-13,,unranked,,1109
 king bed sheets cooling,2026-10-14,,unranked,,1109
 king bed sheets cooling,2026-10-15,,unranked,,1109
@@ -883,6 +916,7 @@ king bed sheets cooling,2026-11-04,3.0,ranked,,1109
 king bed sheets cooling,2026-11-05,7.0,ranked,,1109
 king bed sheets cooling,2026-11-06,3.0,ranked,,1109
 king bed sheets cooling,2026-11-07,3.0,ranked,,1109
+king bed sheets cooling,2026-11-08,3.0,ranked,,1109
 king cooling sheet set,2026-10-13,,unranked,,644
 king cooling sheet set,2026-10-14,,unranked,,644
 king cooling sheet set,2026-10-15,,unranked,,644
@@ -909,6 +943,7 @@ king cooling sheet set,2026-11-04,11.0,ranked,,644
 king cooling sheet set,2026-11-05,7.0,ranked,,644
 king cooling sheet set,2026-11-06,3.0,ranked,,644
 king cooling sheet set,2026-11-07,7.0,ranked,,644
+king cooling sheet set,2026-11-08,84.0,ranked,,644
 king cooling sheets,2026-10-13,,unranked,,3271
 king cooling sheets,2026-10-14,,unranked,,3271
 king cooling sheets,2026-10-15,,unranked,,3271
@@ -935,6 +970,7 @@ king cooling sheets,2026-11-04,3.0,ranked,,3271
 king cooling sheets,2026-11-05,3.0,ranked,,3271
 king cooling sheets,2026-11-06,3.0,ranked,,3271
 king cooling sheets,2026-11-07,3.0,ranked,,3271
+king cooling sheets,2026-11-08,13.0,ranked,,3271
 king sheet set cooling,2026-10-13,,unranked,,1023
 king sheet set cooling,2026-10-14,,unranked,,1023
 king sheet set cooling,2026-10-15,,unranked,,1023
@@ -961,6 +997,7 @@ king sheet set cooling,2026-11-04,7.0,ranked,,1023
 king sheet set cooling,2026-11-05,3.0,ranked,,1023
 king sheet set cooling,2026-11-06,3.0,ranked,,1023
 king sheet set cooling,2026-11-07,52.0,ranked,,1023
+king sheet set cooling,2026-11-08,38.0,ranked,,1023
 king sheets cooling,2026-10-13,,unranked,,4954
 king sheets cooling,2026-10-14,,unranked,,4954
 king sheets cooling,2026-10-15,,unranked,,4954
@@ -987,6 +1024,7 @@ king sheets cooling,2026-11-04,3.0,ranked,,4954
 king sheets cooling,2026-11-05,3.0,ranked,,4954
 king sheets cooling,2026-11-06,3.0,ranked,,4954
 king sheets cooling,2026-11-07,3.0,ranked,,4954
+king sheets cooling,2026-11-08,13.0,ranked,,4954
 king size cooling sheets,2026-10-13,,unranked,,4967
 king size cooling sheets,2026-10-14,,unranked,,4967
 king size cooling sheets,2026-10-15,,unranked,,4967
@@ -1013,6 +1051,7 @@ king size cooling sheets,2026-11-04,7.0,ranked,,4967
 king size cooling sheets,2026-11-05,3.0,ranked,,4967
 king size cooling sheets,2026-11-06,3.0,ranked,,4967
 king size cooling sheets,2026-11-07,3.0,ranked,,4967
+king size cooling sheets,2026-11-08,7.0,ranked,,4967
 king size sheets set cooling,2026-10-13,,unranked,,3492
 king size sheets set cooling,2026-10-14,,unranked,,3492
 king size sheets set cooling,2026-10-15,,unranked,,3492
@@ -1039,6 +1078,7 @@ king size sheets set cooling,2026-11-04,21.0,ranked,,3492
 king size sheets set cooling,2026-11-05,19.0,ranked,,3492
 king size sheets set cooling,2026-11-06,7.0,ranked,,3492
 king size sheets set cooling,2026-11-07,17.0,ranked,,3492
+king size sheets set cooling,2026-11-08,14.0,ranked,,3492
 moisture wicking sheets,2026-10-13,,unranked,,535
 moisture wicking sheets,2026-10-14,,unranked,,535
 moisture wicking sheets,2026-10-15,,unranked,,535
@@ -1065,6 +1105,7 @@ moisture wicking sheets,2026-11-04,,unranked,,535
 moisture wicking sheets,2026-11-05,,unranked,,535
 moisture wicking sheets,2026-11-06,,unranked,,535
 moisture wicking sheets,2026-11-07,70.0,ranked,,535
+moisture wicking sheets,2026-11-08,66.0,ranked,,535
 queen bed sheets cooling,2026-10-13,7.0,ranked,,2630
 queen bed sheets cooling,2026-10-14,71.0,ranked,,2630
 queen bed sheets cooling,2026-10-15,54.0,ranked,,2630
@@ -1091,6 +1132,7 @@ queen bed sheets cooling,2026-11-04,3.0,ranked,,2630
 queen bed sheets cooling,2026-11-05,3.0,ranked,,2630
 queen bed sheets cooling,2026-11-06,3.0,ranked,,2630
 queen bed sheets cooling,2026-11-07,3.0,ranked,,2630
+queen bed sheets cooling,2026-11-08,35.0,ranked,,2630
 queen cooling sheets,2026-10-13,7.0,ranked,,4728
 queen cooling sheets,2026-10-14,32.0,ranked,,4728
 queen cooling sheets,2026-10-15,15.0,ranked,,4728
@@ -1117,6 +1159,7 @@ queen cooling sheets,2026-11-04,5.0,ranked,,4728
 queen cooling sheets,2026-11-05,5.0,ranked,,4728
 queen cooling sheets,2026-11-06,3.0,ranked,,4728
 queen cooling sheets,2026-11-07,3.0,ranked,,4728
+queen cooling sheets,2026-11-08,3.0,ranked,,4728
 queen cooling sheets deep pockets,2026-10-13,,unranked,,535
 queen cooling sheets deep pockets,2026-10-14,140.0,ranked,,535
 queen cooling sheets deep pockets,2026-10-15,,unranked,,535
@@ -1143,6 +1186,7 @@ queen cooling sheets deep pockets,2026-11-04,,not-tracked,,535
 queen cooling sheets deep pockets,2026-11-05,,not-tracked,,535
 queen cooling sheets deep pockets,2026-11-06,,not-tracked,,535
 queen cooling sheets deep pockets,2026-11-07,,not-tracked,,535
+queen cooling sheets deep pockets,2026-11-08,,not-tracked,,535
 queen sheet set cooling,2026-10-13,5.0,ranked,,1023
 queen sheet set cooling,2026-10-14,4.0,ranked,,1023
 queen sheet set cooling,2026-10-15,,unranked,,1023
@@ -1169,6 +1213,7 @@ queen sheet set cooling,2026-11-04,52.0,ranked,,1023
 queen sheet set cooling,2026-11-05,37.0,ranked,,1023
 queen sheet set cooling,2026-11-06,5.0,ranked,,1023
 queen sheet set cooling,2026-11-07,3.0,ranked,,1023
+queen sheet set cooling,2026-11-08,21.0,ranked,,1023
 queen sheets cooling,2026-10-13,,unranked,,4964
 queen sheets cooling,2026-10-14,58.0,ranked,,4964
 queen sheets cooling,2026-10-15,,unranked,,4964
@@ -1195,6 +1240,7 @@ queen sheets cooling,2026-11-04,5.0,ranked,,4964
 queen sheets cooling,2026-11-05,3.0,ranked,,4964
 queen sheets cooling,2026-11-06,7.0,ranked,,4964
 queen sheets cooling,2026-11-07,3.0,ranked,,4964
+queen sheets cooling,2026-11-08,24.0,ranked,,4964
 queen size cooling sheets,2026-10-13,,unranked,,2632
 queen size cooling sheets,2026-10-14,28.0,ranked,,2632
 queen size cooling sheets,2026-10-15,49.0,ranked,,2632
@@ -1221,6 +1267,7 @@ queen size cooling sheets,2026-11-04,17.0,ranked,,2632
 queen size cooling sheets,2026-11-05,7.0,ranked,,2632
 queen size cooling sheets,2026-11-06,17.0,ranked,,2632
 queen size cooling sheets,2026-11-07,9.0,ranked,,2632
+queen size cooling sheets,2026-11-08,7.0,ranked,,2632
 queen size cooling sheets deep pocket,2026-10-13,,unranked,,527
 queen size cooling sheets deep pocket,2026-10-14,122.0,ranked,,527
 queen size cooling sheets deep pocket,2026-10-15,,unranked,,527
@@ -1247,6 +1294,7 @@ queen size cooling sheets deep pocket,2026-11-04,71.0,ranked,,527
 queen size cooling sheets deep pocket,2026-11-05,64.0,ranked,,527
 queen size cooling sheets deep pocket,2026-11-06,52.0,ranked,,527
 queen size cooling sheets deep pocket,2026-11-07,19.0,ranked,,527
+queen size cooling sheets deep pocket,2026-11-08,17.0,ranked,,527
 sheets cooling,2026-10-13,,unranked,,924
 sheets cooling,2026-10-14,129.0,ranked,,924
 sheets cooling,2026-10-15,94.0,ranked,,924
@@ -1273,6 +1321,7 @@ sheets cooling,2026-11-04,3.0,ranked,,924
 sheets cooling,2026-11-05,5.0,ranked,,924
 sheets cooling,2026-11-06,34.0,ranked,,924
 sheets cooling,2026-11-07,24.0,ranked,,924
+sheets cooling,2026-11-08,18.0,ranked,,924
 twin cooling sheets,2026-10-13,,unranked,,1305
 twin cooling sheets,2026-10-14,,unranked,,1305
 twin cooling sheets,2026-10-15,,unranked,,1305
@@ -1299,6 +1348,7 @@ twin cooling sheets,2026-11-04,,unranked,,1305
 twin cooling sheets,2026-11-05,,unranked,,1305
 twin cooling sheets,2026-11-06,93.0,ranked,,1305
 twin cooling sheets,2026-11-07,,unranked,,1305
+twin cooling sheets,2026-11-08,,unranked,,1305
 twin sheets cooling,2026-10-13,,unranked,,603
 twin sheets cooling,2026-10-14,,unranked,,603
 twin sheets cooling,2026-10-15,,unranked,,603
@@ -1325,3 +1375,4 @@ twin sheets cooling,2026-11-04,,unranked,,603
 twin sheets cooling,2026-11-05,,unranked,,603
 twin sheets cooling,2026-11-06,,unranked,,603
 twin sheets cooling,2026-11-07,,unranked,,603
+twin sheets cooling,2026-11-08,,unranked,,603
